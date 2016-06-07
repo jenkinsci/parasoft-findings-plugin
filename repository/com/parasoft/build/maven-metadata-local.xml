@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.parasoft</groupId>
+  <artifactId>build</artifactId>
+  <versioning>
+    <versions>
+      <version>10.0.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20160331105219</lastUpdated>
+  </versioning>
+</metadata>

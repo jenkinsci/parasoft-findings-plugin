@@ -1,0 +1,272 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.parasoft</groupId>
+	<artifactId>build</artifactId>
+	<version>10.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	
+    <url>http://parasoft.com</url>
+    
+    <issueManagement>
+        <system>Bugzilla</system>
+        <url>https://bugzilla.parasoft.com</url>
+    </issueManagement>
+	
+    <scm>
+        <connection>scm:svn:http://devel1.parasoft.com.pl/svn/repos/xtest/trunk/build</connection>
+        <developerConnection>scm:svn:https://devel1.parasoft.com.pl/svn/repos/xtest/trunk/build</developerConnection>
+        <url>http://devel1.parasoft.com.pl/svn/repos/xtest/trunk/build</url>
+    </scm>
+
+	<properties>
+		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
+		<build-timestamp>${maven.build.timestamp}</build-timestamp>
+		<!-- used plugins versions -->
+		<tycho-version>0.20.0</tycho-version>
+		<build-helper-version>1.3</build-helper-version>
+		<p2-maven-plugin-version>1.0.0</p2-maven-plugin-version>
+		<maven-deploy-plugin-version>2.7</maven-deploy-plugin-version>
+		<maven-resources-plugin-version>2.6</maven-resources-plugin-version>
+		<maven-clean-plugin-version>2.5</maven-clean-plugin-version>
+		<maven-antrun-plugin-version>1.7</maven-antrun-plugin-version>
+		<maven-javadoc-plugin-version>2.9</maven-javadoc-plugin-version>
+		<maven-assembly-plugin-version>2.4</maven-assembly-plugin-version>
+		<wagon-ftp-version>2.2</wagon-ftp-version>
+		<!-- default environment setup (instead of default profile (because default 
+			profiles need disabling them)) -->
+		<build.os>win32</build.os>
+		<build.ws>win32</build.ws>
+		<build.arch>x86_64</build.arch>
+		<!-- repositories pattern -->
+		<repo-relative-dir>${product-name}/${product-branch}/repos/${repo-name}/${repo-version}</repo-relative-dir>
+		<repo-deploy-dir>${parasoft-buildserver-dir}/${repo-relative-dir}</repo-deploy-dir>
+		<package-relative-dir>${product-name}/${product-branch}/packages/${package-version}</package-relative-dir>
+		<package-deploy-dir>${parasoft-buildserver-dir}/${package-relative-dir}</package-deploy-dir>
+
+		<buildserver-branch-deploy-uri>${parasoft-buildserver-deploy-uri}/${product-name}/${branch-name}</buildserver-branch-deploy-uri>
+		<buildserver-libs-deploy-uri>${buildserver-branch-deploy-uri}</buildserver-libs-deploy-uri>
+
+		<!-- default encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<profiles>
+		<profile>
+            <id>arch.win32_86</id>
+            <properties>
+                <build.os>win32</build.os>
+                <build.ws>win32</build.ws>
+                <build.arch>x86</build.arch>
+            </properties>
+        </profile>
+		<profile>
+			<id>arch.win32_x86_64</id>
+			<properties>
+				<build.os>win32</build.os>
+				<build.ws>win32</build.ws>
+				<build.arch>x86_64</build.arch>
+			</properties>
+		</profile>
+		<profile>
+			<id>arch.linux_x86</id>
+			<properties>
+				<build.os>linux</build.os>
+				<build.ws>gtk</build.ws>
+				<build.arch>x86</build.arch>
+			</properties>
+		</profile>
+		<profile>
+			<id>arch.linux_x86_64</id>
+			<properties>
+				<build.os>linux</build.os>
+				<build.ws>gtk</build.ws>
+				<build.arch>x86_64</build.arch>
+			</properties>
+		</profile>
+		<profile>
+			<id>arch.macosx</id>
+			<properties>
+				<build.os>macosx</build.os>
+				<build.ws>cocoa</build.ws>
+				<build.arch>x86_64</build.arch>
+			</properties>
+		</profile>
+		
+		<profile>
+     		<!-- eclipse 3.5 -->
+			<id>eclipse.galileo</id>
+			<repositories>
+				<repository>
+					<id>eclipse-galileo</id>
+					<url>http://download.eclipse.org/releases/galileo</url>
+					<layout>p2</layout>
+				</repository>
+			</repositories>
+		</profile>
+        <profile>
+            <!-- eclipse 3.6 -->
+            <id>eclipse.helios</id>
+            <repositories>
+                <repository>
+                    <id>eclipse-helios</id>
+                    <url>http://download.eclipse.org/releases/helios</url>
+                    <layout>p2</layout>
+                </repository>
+            </repositories>
+        </profile>
+		<profile>
+     		<!-- eclipse 3.7 -->
+			<id>eclipse.indigo</id>
+			<repositories>
+				<repository>
+					<id>eclipse-indigo</id>
+					<url>http://download.eclipse.org/releases/indigo</url>
+					<layout>p2</layout>
+				</repository>
+			</repositories>
+		</profile>
+		<profile>
+			<id>eclipse.juno</id>
+			<repositories>
+				<repository>
+					<id>eclipse-juno</id>
+					<url>http://download.eclipse.org/releases/juno</url>
+					<layout>p2</layout>
+				</repository>
+			</repositories>
+		</profile>
+		<profile>
+			<id>eclipse.kepler</id>
+			<repositories>
+				<repository>
+					<id>eclipse-kepler</id>
+					<url>http://download.eclipse.org/releases/kepler</url>
+					<layout>p2</layout>
+				</repository>
+			</repositories>
+		</profile>
+
+		<profile>
+			<id>build.nexus</id>
+			<repositories>
+				<repository>
+					<id>ParasoftNexusRepoPL</id>
+					<url>${parasoft-maven-public-url}</url>
+				</repository>
+			</repositories>
+		</profile>
+		<profile>
+			<id>build.tools</id>
+			<modules>
+                <module>builder</module>
+			</modules>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<!-- main Tycho plugin -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+			</plugin>
+			<!-- Target Platform definition -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<environments>
+						<environment>
+							<os>${build.os}</os>
+							<ws>${build.ws}</ws>
+							<arch>${build.arch}</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-maven-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<extensions>true</extensions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>${build-helper-version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.reficio</groupId>
+					<artifactId>p2-maven-plugin</artifactId>
+					<version>${p2-maven-plugin-version}</version>
+				</plugin>
+				<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-deploy-plugin</artifactId>				
+					<version>${maven-deploy-plugin-version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin-version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${maven-clean-plugin-version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${maven-antrun-plugin-version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin-version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${maven-assembly-plugin-version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>${wagon-ftp-version}</version>
+			</extension>
+		</extensions>
+	</build>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>reficio</id>
+			<url>http://repo.reficio.org/maven/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>ParasoftNexusRepoPL</id>
+			<name>Parasoft Nexus Release Repository</name>
+			<url>${parasoft-maven-releases-url}</url>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>ParasoftNexusRepoPL</id>
+			<name>Parasoft Nexus Release Repository</name>
+			<url>${parasoft-maven-snapshots-url}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+</project>
