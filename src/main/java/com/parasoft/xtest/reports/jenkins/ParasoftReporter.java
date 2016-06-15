@@ -16,16 +16,6 @@
 
 package com.parasoft.xtest.reports.jenkins;
 
-import hudson.maven.MavenAggregatedReport;
-import hudson.maven.MavenBuildProxy;
-import hudson.maven.MojoInfo;
-import hudson.maven.MavenBuild;
-import hudson.maven.MavenModule;
-import hudson.plugins.analysis.core.FilesParser;
-import hudson.plugins.analysis.core.HealthAwareReporter;
-import hudson.plugins.analysis.core.ParserResult;
-import hudson.plugins.analysis.util.PluginLogger;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
@@ -35,6 +25,12 @@ import org.apache.maven.project.MavenProject;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import com.parasoft.xtest.reports.jenkins.parser.ParasoftParser;
+
+import hudson.maven.*;
+import hudson.plugins.analysis.core.FilesParser;
+import hudson.plugins.analysis.core.HealthAwareReporter;
+import hudson.plugins.analysis.core.ParserResult;
+import hudson.plugins.analysis.util.PluginLogger;
 
 public class ParasoftReporter
     extends HealthAwareReporter<ParasoftResult>
@@ -164,7 +160,7 @@ public class ParasoftReporter
     protected ParasoftResult createResult(MavenBuild build, ParserResult project)
     {
         return new ParasoftReporterResult(build, getDefaultEncoding(), project,
-            useOnlyStableBuildsAsReference());
+            usePreviousBuildAsReference(), useOnlyStableBuildsAsReference());
     }
 
     @Override

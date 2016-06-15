@@ -16,19 +16,6 @@
 
 package com.parasoft.xtest.reports.jenkins;
 
-import hudson.Launcher;
-import hudson.matrix.MatrixAggregator;
-import hudson.matrix.MatrixBuild;
-import hudson.model.Action;
-import hudson.model.BuildListener;
-import hudson.model.AbstractBuild;
-import hudson.model.AbstractProject;
-import hudson.plugins.analysis.core.FilesParser;
-import hudson.plugins.analysis.core.HealthAwarePublisher;
-import hudson.plugins.analysis.core.ParserResult;
-import hudson.plugins.analysis.core.BuildResult;
-import hudson.plugins.analysis.util.PluginLogger;
-
 import java.io.IOException;
 import java.util.Map;
 
@@ -36,6 +23,13 @@ import org.kohsuke.stapler.DataBoundConstructor;
 
 import com.parasoft.xtest.reports.jenkins.internal.variables.JenkinsVariablesResolver;
 import com.parasoft.xtest.reports.jenkins.parser.ParasoftParser;
+
+import hudson.Launcher;
+import hudson.matrix.MatrixAggregator;
+import hudson.matrix.MatrixBuild;
+import hudson.model.*;
+import hudson.plugins.analysis.core.*;
+import hudson.plugins.analysis.util.PluginLogger;
 
 /**
  * Publishes the results of the Parasoft analysis (collected during execution of a "freestyle project").
@@ -176,7 +170,8 @@ public class ParasoftPublisher
         logger.logLines(project.getLogMessages());
         helper.storeLocalSettings(build.getRootDir());
 
-        ParasoftResult result = new ParasoftResult(build, getDefaultEncoding(), project, useOnlyStableBuildsAsReference());
+        ParasoftResult result = new ParasoftResult(build, getDefaultEncoding(), project,
+            usePreviousBuildAsReference(), useOnlyStableBuildsAsReference());
         build.getActions().add(new ParasoftResultAction(build, this, result));
 
         return result;
@@ -194,7 +189,9 @@ public class ParasoftPublisher
     public MatrixAggregator createAggregator(final MatrixBuild build, final Launcher launcher,
         final BuildListener listener)
     {
-        return new ParasoftAnnotationsAggregator(build, launcher, listener, this, getDefaultEncoding(), useOnlyStableBuildsAsReference());
+        return new ParasoftAnnotationsAggregator(build, launcher, listener, this,
+            getDefaultEncoding(), usePreviousBuildAsReference(),
+            useOnlyStableBuildsAsReference());
     }
     
 

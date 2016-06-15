@@ -27,6 +27,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import org.apache.commons.io.IOUtils;
+import org.jenkinsci.remoting.RoleChecker;
 
 /** 
  * Utility class for operations related to {@link FilePath}.
@@ -55,6 +56,14 @@ public final class FilePathUtil
                     throws IOException, InterruptedException
                 {
                     return f.isAbsolute();
+                }
+
+                @Override
+                public void checkRoles(RoleChecker arg0)
+                    throws SecurityException
+                {
+                    // TODO Auto-generated method stub
+                    
                 }
             });
         } catch (IOException e) {
@@ -89,6 +98,14 @@ public final class FilePathUtil
                     } finally {
                         IOUtils.closeQuietly(input);
                     }
+                }
+
+                @Override
+                public void checkRoles(RoleChecker arg0)
+                    throws SecurityException
+                {
+                    // TODO Auto-generated method stub
+                    
                 }
             });
         } catch (IOException e) {

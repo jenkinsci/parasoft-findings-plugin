@@ -54,7 +54,7 @@ public class VariablePatternVerifier
     public boolean checkVariableNotation()
     {
         int occ = countOccurrences("%"); //$NON-NLS-1$
-        if (occ % 2 == 1) {
+        if (occ % 2 != 0) {
             _errorMessage = Messages.PERCENT_SIGN_MISSING;
             return false;
         }

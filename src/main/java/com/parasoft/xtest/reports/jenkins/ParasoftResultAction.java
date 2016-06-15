@@ -16,9 +16,9 @@
 
 package com.parasoft.xtest.reports.jenkins;
 
-import hudson.model.AbstractBuild;
-import hudson.plugins.analysis.core.HealthDescriptor;
+import hudson.model.Run;
 import hudson.plugins.analysis.core.AbstractResultAction;
+import hudson.plugins.analysis.core.HealthDescriptor;
 import hudson.plugins.analysis.core.PluginDescriptor;
 
 /**
@@ -40,7 +40,7 @@ public class ParasoftResultAction
      * @param healthDescriptor health descriptor to use
      * @param result the result in this build
      */
-    public ParasoftResultAction(AbstractBuild<?, ?> owner, HealthDescriptor healthDescriptor, ParasoftResult result)
+    public ParasoftResultAction(Run<?, ?> owner, HealthDescriptor healthDescriptor, ParasoftResult result)
     {
         super(owner, new ParasoftHealthDescriptor(healthDescriptor), result);
     }

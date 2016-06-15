@@ -16,19 +16,15 @@
 
 package com.parasoft.xtest.reports.jenkins;
 
-import hudson.maven.MavenAggregatedReport;
-import hudson.maven.MavenBuild;
-import hudson.maven.MavenModule;
-import hudson.maven.MavenModuleSet;
-import hudson.maven.MavenModuleSetBuild;
-import hudson.model.Action;
-import hudson.model.AbstractBuild;
-import hudson.plugins.analysis.core.HealthDescriptor;
-import hudson.plugins.analysis.core.ParserResult;
-import hudson.plugins.analysis.core.MavenResultAction;
-
 import java.util.List;
 import java.util.Map;
+
+import hudson.maven.*;
+import hudson.model.AbstractBuild;
+import hudson.model.Action;
+import hudson.plugins.analysis.core.HealthDescriptor;
+import hudson.plugins.analysis.core.MavenResultAction;
+import hudson.plugins.analysis.core.ParserResult;
 
 public class ParasoftMavenResultAction 
     extends MavenResultAction<ParasoftResult> 
@@ -52,7 +48,7 @@ public class ParasoftMavenResultAction
     public MavenAggregatedReport createAggregatedAction(MavenModuleSetBuild build, Map<MavenModule, List<MavenBuild>> moduleBuilds) 
     {
         String sDefaultEncoding = getDefaultEncoding();
-        ParasoftResult result = new ParasoftResult(build, sDefaultEncoding, new ParserResult(), false);
+        ParasoftResult result = new ParasoftResult(build, sDefaultEncoding, new ParserResult(), false, false);
         return new ParasoftMavenResultAction(build, getHealthDescriptor(), sDefaultEncoding, result);
     }
 
@@ -75,7 +71,8 @@ public class ParasoftMavenResultAction
     {
         ParserResult aggregate = aggregate(existingResult, additionalResult);
         String sDefaultEncoding = additionalResult.getDefaultEncoding();
-        return new ParasoftReporterResult(getOwner(), sDefaultEncoding, aggregate, existingResult.useOnlyStableBuildsAsReference());
+
+        return new ParasoftReporterResult(getOwner(), sDefaultEncoding, aggregate, existingResult.usePreviousBuildAsStable(), existingResult.useOnlyStableBuildsAsReference());
     }
 }
 

@@ -17,8 +17,8 @@
 package com.parasoft.xtest.reports.jenkins;
 
 import hudson.Launcher;
-import hudson.matrix.MatrixRun;
 import hudson.matrix.MatrixBuild;
+import hudson.matrix.MatrixRun;
 import hudson.model.Action;
 import hudson.model.BuildListener;
 import hudson.plugins.analysis.core.AnnotationsAggregator;
@@ -39,23 +39,24 @@ public class ParasoftAnnotationsAggregator
      * @param listener the build listener
      * @param healthDescriptor health descriptor
      * @param defaultEncoding the default encoding to be used when reading and parsing files
+     * @param usePreviousBuildAsReference determines whether previous builds should be used as
+     *        reference builds or not
      * @param useStableBuildAsReference determines whether only stable builds should be used as
      *        reference builds or not
      */
     public ParasoftAnnotationsAggregator(final MatrixBuild build, final Launcher launcher,
         final BuildListener listener, final HealthDescriptor healthDescriptor,
-        final String defaultEncoding, final boolean useStableBuildAsReference)
+        final String defaultEncoding, final boolean usePreviousBuildAsReference, final boolean useStableBuildAsReference)
     {
         super(build, launcher, listener, healthDescriptor, defaultEncoding,
-            useStableBuildAsReference);
+            usePreviousBuildAsReference, useStableBuildAsReference);
     }
 
     @Override
     protected Action createAction(final HealthDescriptor healthDescriptor,
         final String defaultEncoding, final ParserResult aggregatedResult)
     {
-        boolean bOnlyStable = useOnlyStableBuildsAsReference();
-        ParasoftResult result = new ParasoftResult(build, defaultEncoding, aggregatedResult, bOnlyStable);
+        ParasoftResult result = new ParasoftResult(build, defaultEncoding, aggregatedResult, usePreviousBuildAsReference(), useOnlyStableBuildsAsReference());
         return new ParasoftResultAction(build, healthDescriptor, result);
     }
 

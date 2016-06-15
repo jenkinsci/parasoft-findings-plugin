@@ -22,6 +22,7 @@ import hudson.model.AbstractBuild;
 import java.io.File;
 import java.io.IOException;
 
+import com.parasoft.xtest.common.IStringConstants;
 import com.parasoft.xtest.common.UURL;
 import com.parasoft.xtest.common.io.FileUtil;
 import com.parasoft.xtest.common.nls.NLS;
@@ -86,7 +87,7 @@ public class RuleDocumentation
     {
         File localFile = UURL.getLocalFile(UURL.toURL(ruleDocLocation));
         try {
-            return FileUtil.readFile(localFile);
+            return FileUtil.readFile(localFile, IStringConstants.UTF_8);
         } catch (IOException e) {
             Logger.getLogger().error(e);
         }

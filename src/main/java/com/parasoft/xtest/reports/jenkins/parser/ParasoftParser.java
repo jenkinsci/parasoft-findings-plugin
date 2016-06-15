@@ -16,24 +16,14 @@
 
 package com.parasoft.xtest.reports.jenkins.parser;
 
-import hudson.plugins.analysis.core.AbstractAnnotationParser;
-import hudson.plugins.analysis.util.model.FileAnnotation;
-import hudson.plugins.analysis.util.model.Priority;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.parasoft.xtest.common.api.IFileTestableInput;
-import com.parasoft.xtest.common.api.IProjectFileTestableInput;
-import com.parasoft.xtest.common.api.ISourceRange;
-import com.parasoft.xtest.common.api.ITestableInput;
+import com.parasoft.xtest.common.api.*;
 import com.parasoft.xtest.common.locations.ILocationAttributes;
 import com.parasoft.xtest.common.math.ULong;
 import com.parasoft.xtest.common.path.PathInput;
@@ -41,12 +31,15 @@ import com.parasoft.xtest.common.text.UString;
 import com.parasoft.xtest.reports.jenkins.internal.JenkinsResultsImporter;
 import com.parasoft.xtest.reports.jenkins.internal.ResultAdditionalAttributes;
 import com.parasoft.xtest.reports.jenkins.internal.rules.JenkinsRulesUtil;
-import com.parasoft.xtest.results.api.ILanguageViolation;
 import com.parasoft.xtest.results.api.IResultLocation;
 import com.parasoft.xtest.results.api.IRuleViolation;
 import com.parasoft.xtest.results.api.IViolation;
 import com.parasoft.xtest.results.api.importer.IImportedData;
 import com.parasoft.xtest.results.api.importer.IRulesImportHandler;
+
+import hudson.plugins.analysis.core.AbstractAnnotationParser;
+import hudson.plugins.analysis.util.model.FileAnnotation;
+import hudson.plugins.analysis.util.model.Priority;
 
 /**
  * A parser for Parasoft files containing xml report.
@@ -214,10 +207,7 @@ public class ParasoftParser
         warning.setColumnPosition(sourceRange.getStartLineOffset(),
             sourceRange.getEndLineOffset());
         
-        String namespace = null;
-        if (violation instanceof ILanguageViolation) { // parasoft-suppress PB.USC.CC OPT.UISO "Keep for future isolation between rule and language violations."
-            namespace = ((ILanguageViolation)violation).getNamespace(); // parasoft-suppress OPT.UNC "Keep for future isolation between rule and language violations."
-        }
+        String namespace = violation.getNamespace();
         if (UString.isNonEmpty(namespace)){
             warning.setPackageName(namespace);
         } else {

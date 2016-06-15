@@ -24,6 +24,7 @@ import java.io.*;
 import java.util.Properties;
 
 import org.apache.commons.io.IOUtils;
+import org.jenkinsci.remoting.RoleChecker;
 
 import com.parasoft.xtest.common.text.UString;
 import com.parasoft.xtest.reports.api.ILocalSettingsConstants;
@@ -135,6 +136,14 @@ public class PublisherHelper
             {
                 storeLocalSettings(file);
                 return Boolean.TRUE;
+            }
+
+            @Override
+            public void checkRoles(RoleChecker arg0)
+                throws SecurityException
+            {
+                // TODO Auto-generated method stub
+                
             }});
         } catch (IOException e) {
             Logger.getLogger().errorTrace(e);

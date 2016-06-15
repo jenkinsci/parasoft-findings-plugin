@@ -16,10 +16,10 @@
 
 package com.parasoft.xtest.reports.jenkins;
 
-import hudson.model.AbstractBuild;
+import hudson.model.Run;
+import hudson.plugins.analysis.core.BuildResult;
 import hudson.plugins.analysis.core.ParserResult;
 import hudson.plugins.analysis.core.ResultAction;
-import hudson.plugins.analysis.core.BuildResult;
 
 public class ParasoftReporterResult 
     extends ParasoftResult 
@@ -31,11 +31,12 @@ public class ParasoftReporterResult
      * @param build the current build as owner of this action
      * @param defaultEncoding the default encoding to be used when reading and parsing files
      * @param result the parsed result with all annotations
+     * @param usePreviousBuildAsReference determines whether previous builds should be used as reference builds or not
      * @param useStableBuildAsReference determines whether only stable builds should be used as reference builds or not
      */
-    public ParasoftReporterResult(AbstractBuild<?, ?> build, String defaultEncoding, ParserResult result, boolean useStableBuildAsReference) 
+    public ParasoftReporterResult(Run<?, ?> build, String defaultEncoding, ParserResult result, boolean usePreviousBuildAsReference, boolean useStableBuildAsReference) 
     {
-        super(build, defaultEncoding, result, useStableBuildAsReference, ParasoftMavenResultAction.class);
+        super(build, defaultEncoding, result, usePreviousBuildAsReference, useStableBuildAsReference, ParasoftMavenResultAction.class);
     }
 
     @Override

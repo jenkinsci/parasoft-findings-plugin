@@ -16,14 +16,11 @@
 
 package com.parasoft.xtest.reports.jenkins;
 
-import hudson.model.AbstractBuild;
-import hudson.plugins.analysis.core.BuildHistory;
-import hudson.plugins.analysis.core.ParserResult;
-import hudson.plugins.analysis.core.ResultAction;
-import hudson.plugins.analysis.core.BuildResult;
-
 import com.parasoft.xtest.reports.jenkins.parser.Warning;
 import com.thoughtworks.xstream.XStream;
+
+import hudson.model.Run;
+import hudson.plugins.analysis.core.*;
 
 /**
  * Represents the results of the Parasoft analysis. 
@@ -39,12 +36,16 @@ public class ParasoftResult
      * @param build the current build as owner of this action
      * @param defaultEncoding the default encoding to be used when reading and parsing files
      * @param result the parsed result with all annotations
+     * @param usePreviousBuildAsReference determines whether only previous builds should be used as
+     *        reference builds or not
      * @param useStableBuildAsReference determines whether only stable builds should be used as
      *        reference builds or not
      */
-    public ParasoftResult(AbstractBuild<?, ?> build, String defaultEncoding, ParserResult result, boolean useStableBuildAsReference)
+    public ParasoftResult(Run<?, ?> build, String defaultEncoding, ParserResult result,
+        boolean usePreviousBuildAsReference, boolean useStableBuildAsReference)
     {
-        this(build, defaultEncoding, result, useStableBuildAsReference, ParasoftResultAction.class);
+        this(build, defaultEncoding, result, usePreviousBuildAsReference,
+            useStableBuildAsReference, ParasoftResultAction.class);
     }
 
     /**
@@ -53,19 +54,22 @@ public class ParasoftResult
      * @param build the current build as owner of this action
      * @param defaultEncoding the default encoding to be used when reading and parsing files
      * @param result the parsed result with all annotations
+     * @param usePreviousBuildAsReference determines whether previous builds should be used as
+     *        reference builds or not
      * @param useStableBuildAsReference determines whether only stable builds should be used as
      *        reference builds or not
      * @param actionType the type of the result action
      */
-    protected ParasoftResult(final AbstractBuild<?, ?> build, final String defaultEncoding,
-        final ParserResult result, final boolean useStableBuildAsReference,
+    protected ParasoftResult(final Run<?, ?> build, final String defaultEncoding,
+        final ParserResult result, final boolean usePreviousBuildAsReference, final boolean useStableBuildAsReference,
         final Class<? extends ResultAction<ParasoftResult>> actionType)
     {
-        this(build, new BuildHistory(build, actionType, useStableBuildAsReference), result,
+        this(build, new BuildHistory(
+            build, actionType, usePreviousBuildAsReference, useStableBuildAsReference), result,
             defaultEncoding, true);
     }
 
-    private ParasoftResult(final AbstractBuild<?, ?> build, final BuildHistory history,
+    private ParasoftResult(final Run<?, ?> build, final BuildHistory history,
         final ParserResult result, final String defaultEncoding, final boolean canSerialize)
     {
         super(build, history, result, defaultEncoding);

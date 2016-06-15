@@ -1,26 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-     <groupId>org.jenkins-ci.plugins</groupId>
-     <artifactId>plugin</artifactId>
-     <version>1.521</version>
-     <!-- target version of Jenkins for this build -->
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plugin</artifactId>
+    <version>2.3</version> <!-- or later -->
   </parent>
 
   <groupId>com.parasoft</groupId>
   <artifactId>parasoft-findings</artifactId>
   <name>Parasoft Findings</name>
-  <version>10.2.2</version>
+  <version>10.2.2.20160315</version>
   <packaging>hpi</packaging>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Parasoft+Findings+Plugin</url>
 
   <properties>
-     <!-- explicitly specifying the latest version here because one we get from 
-            the parent POM tends to lag behind a bit -->
-     <maven-hpi-plugin.version>1.95</maven-hpi-plugin.version>
-     <jdk.version>1.6</jdk.version>
-     <xtest.version>10.2.2.20160315</xtest.version>
-     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
+      <jenkins.version>1.596.1</jenkins.version>
+      <jenkins-test-harness.version>1.596.1</jenkins-test-harness.version>
+      <hpi-plugin.version>1.106</hpi-plugin.version>
+      <stapler-plugin.version>1.17</stapler-plugin.version>
+      <java.level>6</java.level>
+      <jdk.version>1.6</jdk.version>
+      <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
+      <xtest.version>${project.version}</xtest.version>
   </properties>
 
   <developers>
@@ -137,21 +138,27 @@
 		<dependency>
 			<groupId>org.jvnet.hudson.plugins</groupId>
 			<artifactId>analysis-core</artifactId>
-			<version>1.49</version>
+			<version>1.77</version>
 		</dependency>
 
 		<!-- this is last version not requiring JDK 7 in one of build steps -->
 		<dependency>
 			<groupId>org.jenkins-ci.plugins</groupId>
 			<artifactId>xunit</artifactId>
-			<version>1.90</version>
+			<version>1.102</version>
 			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jenkins-ci.plugins</groupId>
 			<artifactId>dashboard-view</artifactId>
-			<version>2.2</version>
+			<version>2.9.4</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.jenkins-ci.plugins</groupId>
+			<artifactId>matrix-project</artifactId>
+			<version>1.4</version>
 			<optional>true</optional>
 		</dependency>
 
