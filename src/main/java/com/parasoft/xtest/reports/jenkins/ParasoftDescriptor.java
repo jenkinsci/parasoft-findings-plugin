@@ -81,10 +81,10 @@ public final class ParasoftDescriptor
         return super.doCheckPattern(project, pattern);
     }
     
-    private static final String ICONS_PREFIX = "/plugin/com.parasoft.xtest.reports.jenkins/icons/"; //$NON-NLS-1$
+    private static final String ICONS_PREFIX = "/plugin/parasoft-findings/icons/"; //$NON-NLS-1$
 
     /** The ID of this plug-in is used as URL. */
-    public static final String PLUGIN_ID = "com.parasoft.xtest.reports.jenkins"; //$NON-NLS-1$
+    public static final String PLUGIN_ID = "parasoft-findings"; //$NON-NLS-1$
 
     /** The URL of the result action. */
     static final String RESULT_URL = PluginDescriptor.createResultUrlName(PLUGIN_ID);
