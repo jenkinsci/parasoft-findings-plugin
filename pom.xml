@@ -32,12 +32,6 @@
     </developer>
   </developers>
 
-  <scm>
-     <connection>scm:git:ssh://github.com/jenkinsci/parasoft-findings-plugin.git</connection>
-     <developerConnection>scm:git:ssh://git@github.com/jenkinsci/parasoft-findings-plugin.git</developerConnection>
-     <url>https://github.com/jenkinsci/parasoft-findings-plugin</url>
-  </scm>
-
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -46,6 +40,12 @@
       <comments>A business-friendly OSS license</comments>
     </license>
   </licenses>
+
+  <scm>
+     <connection>scm:git:ssh://github.com/jenkinsci/parasoft-findings-plugin.git</connection>
+     <developerConnection>scm:git:ssh://git@github.com/jenkinsci/parasoft-findings-plugin.git</developerConnection>
+     <url>https://github.com/jenkinsci/parasoft-findings-plugin</url>
+  </scm>
 
   <build>
         <resources>
@@ -76,27 +76,6 @@
                     <target>${jdk.version}</target>
                 </configuration>
             </plugin>
-            <!--plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin-->
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -147,7 +126,6 @@
 			<version>1.77</version>
 		</dependency>
 
-		<!-- this is last version not requiring JDK 7 in one of build steps -->
 		<dependency>
 			<groupId>org.jenkins-ci.plugins</groupId>
 			<artifactId>xunit</artifactId>
@@ -165,7 +143,6 @@
 			<groupId>org.jenkins-ci.plugins</groupId>
 			<artifactId>matrix-project</artifactId>
 			<version>1.4</version>
-			<optional>true</optional>
 		</dependency>
 
         <dependency>
