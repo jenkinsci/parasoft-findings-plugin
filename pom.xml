@@ -9,7 +9,7 @@
   <groupId>com.parasoft</groupId>
   <artifactId>parasoft-findings</artifactId>
   <name>Parasoft Findings</name>
-  <version>10.2.2-SNAPSHOT</version>
+  <version>10.2.3-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Parasoft+Findings+Plugin</url>
 
@@ -98,7 +98,7 @@
 	                <plugin>
                              <groupId>org.apache.maven.plugins</groupId>
                              <artifactId>maven-release-plugin</artifactId>
-                             <version>2.5.1</version>
+                             <version>2.5.3</version>
                              <dependencies>
                                 <dependency>
                                    <groupId>org.apache.maven.scm</groupId>
