@@ -21,7 +21,7 @@
       <java.level>6</java.level>
       <jdk.version>1.6</jdk.version>
       <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
-      <xtest.version>10.2.2.20160315</xtest.version>
+      <xtest.version>10.2.3.20160715</xtest.version>
   </properties>
 
   <developers>
@@ -45,7 +45,6 @@
      <connection>scm:git:ssh://github.com/jenkinsci/parasoft-findings-plugin.git</connection>
      <developerConnection>scm:git:ssh://git@github.com/jenkinsci/parasoft-findings-plugin.git</developerConnection>
      <url>https://github.com/jenkinsci/parasoft-findings-plugin</url>
-    <tag>HEAD</tag>
   </scm>
 
   <build>
@@ -95,18 +94,6 @@
 					</execution>
 				</executions>
 			</plugin>
-	                <plugin>
-                             <groupId>org.apache.maven.plugins</groupId>
-                             <artifactId>maven-release-plugin</artifactId>
-                             <version>2.5.3</version>
-                             <dependencies>
-                                <dependency>
-                                   <groupId>org.apache.maven.scm</groupId>
-                                   <artifactId>maven-scm-provider-gitexe</artifactId>
-                                   <version>1.9.2</version>
-                                </dependency>
-                             </dependencies>
-                        </plugin>
 		</plugins>
 	</build>
 
@@ -159,29 +146,39 @@
 		</dependency>
 
         <dependency>
-            <groupId>com.parasoft.xtest.libs</groupId>
-            <artifactId>org.apache.commons.codec</artifactId>
-            <version>1.6.0</version>
+           <groupId>commons-logging</groupId>
+           <artifactId>commons-logging</artifactId>
+           <version>1.1.3</version>
         </dependency>
         <dependency>
-            <groupId>com.parasoft.xtest.libs</groupId>
-            <artifactId>org.apache.commons.logging</artifactId>
-            <version>1.1.1</version>
+           <groupId>org.apache.httpcomponents</groupId>
+           <artifactId>httpclient</artifactId>
+           <version>4.3.6</version>
         </dependency>
         <dependency>
-            <groupId>com.parasoft.xtest.libs</groupId>
-            <artifactId>org.apache.commons.httpclient</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.parasoft.xtest.libs</groupId>
-            <artifactId>org.apache.httpcomponents.httpclient</artifactId>
-            <version>4.3.6</version>
-        </dependency>
-        <dependency>
-           <groupId>com.parasoft.xtest.libs</groupId>
-           <artifactId>org.apache.httpcomponents.httpcore</artifactId>
+           <groupId>org.apache.httpcomponents</groupId>
+           <artifactId>httpcore</artifactId>
            <version>4.3.3</version>
+        </dependency>
+        <dependency>
+           <groupId>commons-codec</groupId>
+           <artifactId>commons-codec</artifactId>
+           <version>1.6</version>
+        </dependency>
+        <dependency>
+           <groupId>commons-httpclient</groupId>
+           <artifactId>commons-httpclient</artifactId>
+           <version>3.1</version>
+        </dependency>
+        <dependency>
+           <groupId>org.apache.httpcomponents</groupId>
+           <artifactId>fluent-hc</artifactId>
+           <version>4.3.6</version>
+        </dependency>
+        <dependency>
+           <groupId>org.apache.httpcomponents</groupId>
+           <artifactId>httpmime</artifactId>
+           <version>4.3.6</version>
         </dependency>
         <dependency>
             <groupId>com.parasoft.xtest.libs</groupId>

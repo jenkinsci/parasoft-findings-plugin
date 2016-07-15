@@ -27,11 +27,20 @@
 	</xsl:template>
 
 	<xsl:template match="TestSuite">
-		<testsuite name="{@name}" tests="{count(.//Test)}">
-      <xsl:call-template name="timeAttrIfAvailable" />      
+	<xsl:choose>
+    	<xsl:when test="parent::TestSuite">
 			<xsl:apply-templates select="Test" />
-            <xsl:apply-templates select="TestSuite" />
-		</testsuite>
+			<xsl:apply-templates select="TestSuite" />
+		</xsl:when>
+    	<xsl:otherwise>
+    		<testsuite name="{@name}" tests="{count(.//Test)}">
+	      		<xsl:call-template name="timeAttrIfAvailable" />      
+					<xsl:apply-templates select="Test" />
+	            	<xsl:apply-templates select="TestSuite" />
+			</testsuite> 
+		</xsl:otherwise>
+    </xsl:choose>
+		
 	</xsl:template>
    
   <xsl:template name="timeAttrIfAvailable">
@@ -45,9 +54,8 @@
   </xsl:template>
 
 	<xsl:template match="Test">
-		<xsl:choose>
-			<xsl:when test="TestCase">
-				<testsuite name="{@name}" tests="{count(TestCase)}">
+	<xsl:choose>
+		<xsl:when test="TestCase">
 				<xsl:call-template name="timeAttrIfAvailable" />
 				<xsl:for-each select="TestCase">
 					<xsl:call-template name="writeXUnitTestCase">
@@ -57,20 +65,17 @@
 						<xsl:with-param name="tcId" select="@id" />
 					</xsl:call-template>
 				</xsl:for-each>
+		</xsl:when>
+		<xsl:otherwise>
+			<xsl:call-template name="writeXUnitTestCase">
+				<xsl:with-param name="id" select="@id" />
+				<xsl:with-param name="time" select="@time" />
+				<xsl:with-param name="status" select="@status" />
+				<xsl:with-param name="tcId" select="'null'" />
+			</xsl:call-template>
 
-				</testsuite>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:call-template name="writeXUnitTestCase">
-					<xsl:with-param name="id" select="@id" />
-					<xsl:with-param name="time" select="@time" />
-					<xsl:with-param name="status" select="@status" />
-					<xsl:with-param name="tcId" select="'null'" />
-				</xsl:call-template>
-
-			</xsl:otherwise>
-		</xsl:choose>
-
+		</xsl:otherwise>
+	</xsl:choose>
 	</xsl:template>
 
 	<xsl:template name="writeXUnitTestCase">
