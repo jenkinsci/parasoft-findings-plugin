@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:saxon="http://icl.com/saxon">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <xsl:output method="xml" encoding="UTF-8" indent="yes" />
+    <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
     <xsl:template match="/">
         <xsl:choose>
             <xsl:when test="ResultsSession/@toolName='SOAtest'">
-                <xsl:apply-templates select="ResultsSession/ExecutedTestsDetails"></xsl:apply-templates>
+                <xsl:variable name="violations" select="count(ResultsSession/CodingStandards/StdViols/StdViol)"/>
+                <xsl:variable name="tests"
+                              select="number(concat('0', ResultsSession/ExecutedTestsDetails/Total/@total))"/>
+                <xsl:variable name="testFailures"
+                              select="number(concat('0', ResultsSession/ExecutedTestsDetails/Total/@fail))"/>
+                <testsuites tests="{$tests + $violations}" failures="{$testFailures + $violations}" errors="0">
+                    <xsl:apply-templates select="ResultsSession/ExecutedTestsDetails"/>
+                    <xsl:apply-templates select="ResultsSession/CodingStandards/StdViols/StdViol"/>
+                </testsuites>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
 
+    <!-- ===================== create root test suites node using 'total' =========== -->
     <xsl:template match="ExecutedTestsDetails">
-        <xsl:apply-templates select="Total" />
+        <xsl:apply-templates select="Total"/>
     </xsl:template>
 
-    <!-- ===================== create root testsuites node using 'total' =========== -->
     <xsl:template match="Total">
-        <testsuites tests="{@total}" failures="{@fail}" errors="0">
-            <xsl:call-template name="timeAttrIfAvailable" />
-            <xsl:call-template name="RootTests"/>
-        </testsuites>
+        <xsl:call-template name="timeAttrIfAvailable"/>
+        <xsl:call-template name="RootTests"/>
     </xsl:template>
 
     <!-- ===================== process root test suites =========== -->
     <xsl:template name="RootTests">
-        <xsl:variable name="topTest" select="/ResultsSession/ExecutedTestsDetails/Total/Project//*[@root = 'true']" />
+        <xsl:variable name="topTest" select="/ResultsSession/ExecutedTestsDetails/Total/Project//*[@root = 'true']"/>
 
         <xsl:for-each select="($topTest)">
             <xsl:call-template name="RootTestInfo">
-                <xsl:with-param name="testNode" select="." />
+                <xsl:with-param name="testNode" select="."/>
                 <xsl:with-param name="depth">0</xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
@@ -37,86 +43,96 @@
 
     <!-- ===================== process root test - create testsuite for each tst project =========== -->
     <xsl:template name="RootTestInfo">
-        <xsl:param name="testNode" />
-        <xsl:param name="depth" />
+        <xsl:param name="testNode"/>
+        <xsl:param name="depth"/>
 
-        <xsl:variable name="testID" select="$testNode/@id" />
-        <xsl:variable name="isSuite" select="name($testNode) = 'TestSuite'" />
+        <xsl:variable name="testID" select="$testNode/@id"/>
+        <xsl:variable name="isSuite" select="name($testNode) = 'TestSuite'"/>
 
-        <xsl:variable name="rootTestName"><xsl:call-template name="parent_path_to_test">
-            <xsl:with-param name="dirty_path" select="($testID)"/>
-        </xsl:call-template></xsl:variable>
+        <xsl:variable name="rootTestName">
+            <xsl:call-template name="parent_path_to_test">
+                <xsl:with-param name="dirty_path" select="($testID)"/>
+            </xsl:call-template>
+        </xsl:variable>
 
-        <xsl:variable name="rootTestName1"><xsl:call-template name="replace-last">
-            <xsl:with-param name="text" select="$rootTestName"/>
-            <xsl:with-param name="replace" select="'.'"/>
-            <xsl:with-param name="by" select="'_'"/>
-        </xsl:call-template></xsl:variable>
-        <xsl:variable name="rootTestName2"><xsl:call-template name="replace-last">
-            <xsl:with-param name="text" select="$rootTestName1"/>
-            <xsl:with-param name="replace" select="'/'"/>
-            <xsl:with-param name="by" select="'.'"/>
-        </xsl:call-template></xsl:variable>
-        
-        <xsl:variable name="totalTests"  select="$testNode/@total" />
+        <xsl:variable name="rootTestName1">
+            <xsl:call-template name="replace-last">
+                <xsl:with-param name="text" select="$rootTestName"/>
+                <xsl:with-param name="replace" select="'.'"/>
+                <xsl:with-param name="by" select="'_'"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:variable name="rootTestName2">
+            <xsl:call-template name="replace-last">
+                <xsl:with-param name="text" select="$rootTestName1"/>
+                <xsl:with-param name="replace" select="'/'"/>
+                <xsl:with-param name="by" select="'.'"/>
+            </xsl:call-template>
+        </xsl:variable>
+
+        <xsl:variable name="totalTests" select="$testNode/@total"/>
 
         <testsuite name="{$rootTestName2}" tests="{$totalTests}">
-        <xsl:call-template name="timeAttrIfAvailable" />
+            <xsl:call-template name="timeAttrIfAvailable"/>
 
-        <xsl:for-each select="./Test[@total > 0] | ./TestSuite[@total > 0]">
-            <xsl:call-template name="TestCaseInfo">
-              <xsl:with-param name="testNode" select="." />
-              <xsl:with-param name="depth" select="($depth) + 1" />
-            </xsl:call-template>
-        </xsl:for-each>
+            <xsl:for-each select="./Test[@total > 0] | ./TestSuite[@total > 0]">
+                <xsl:call-template name="TestCaseInfo">
+                    <xsl:with-param name="testNode" select="."/>
+                    <xsl:with-param name="depth" select="($depth) + 1"/>
+                </xsl:call-template>
+            </xsl:for-each>
         </testsuite>
 
     </xsl:template>
 
     <!-- ===================== process tests - create testcase =========== -->
     <xsl:template name="TestCaseInfo">
-        <xsl:param name="testNode" />
-        <xsl:param name="depth" />
+        <xsl:param name="testNode"/>
+        <xsl:param name="depth"/>
 
         <xsl:variable name="isTestSuite" select="name($testNode) = 'TestSuite'"/>
         <xsl:variable name="isTest" select="name($testNode) = 'Test'"/>
-        <xsl:variable name="testID" select="$testNode/@id" />
+        <xsl:variable name="testID" select="$testNode/@id"/>
 
         <xsl:if test="$isTestSuite">
             <xsl:for-each select="./Test[@total > 0] | ./TestSuite[@total > 0]">
                 <xsl:call-template name="TestCaseInfo">
-                    <xsl:with-param name="testNode" select="." />
-                    <xsl:with-param name="depth" select="($depth) + 1" />
+                    <xsl:with-param name="testNode" select="."/>
+                    <xsl:with-param name="depth" select="($depth) + 1"/>
                 </xsl:call-template>
             </xsl:for-each>
         </xsl:if>
 
         <xsl:if test="$isTest">
-            <xsl:variable name="testName"><xsl:call-template name="path_to_test">
-                <xsl:with-param name="testNode" select="$testNode"/>
-                <xsl:with-param name="currentNode" select="$testNode"/>
-            </xsl:call-template></xsl:variable>
+            <xsl:variable name="testName">
+                <xsl:call-template name="path_to_test">
+                    <xsl:with-param name="testNode" select="$testNode"/>
+                    <xsl:with-param name="currentNode" select="$testNode"/>
+                </xsl:call-template>
+            </xsl:variable>
 
-           <xsl:variable name="testCasesNumber" select="count(./TestCase)"/>
+            <xsl:variable name="testCasesNumber" select="count(./TestCase)"/>
             <xsl:choose>
                 <xsl:when test="$testCasesNumber > 1">
                     <xsl:for-each select="./TestCase">
-                        <xsl:variable name="testParams" select="@params" />
-                        <xsl:variable name="funcViols" select="/ResultsSession/FunctionalTests/FuncViols/FuncViol[@testCaseId=$testID and @testParams=$testParams]" />
+                        <xsl:variable name="testParams" select="@params"/>
+                        <xsl:variable name="funcViols"
+                                      select="/ResultsSession/FunctionalTests/FuncViols/FuncViol[@testCaseId=$testID and @testParams=$testParams]"/>
 
                         <xsl:call-template name="writeXUnitTestCase">
-                            <xsl:with-param name="testName" select="concat($testName,'[',@params,']')" />
-                            <xsl:with-param name="funcViols" select="$funcViols" />
-                            <xsl:with-param name="time" select="@time" />
+                            <xsl:with-param name="testName" select="concat($testName,'[',@params,']')"/>
+                            <xsl:with-param name="funcViols" select="$funcViols"/>
+                            <xsl:with-param name="time" select="@time"/>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:variable name="funcViols" select="/ResultsSession/FunctionalTests/FuncViols/FuncViol[@testCaseId=$testID]" />
+                    <xsl:variable name="funcViols"
+                                  select="/ResultsSession/FunctionalTests/FuncViols/FuncViol[@testCaseId=$testID]"/>
                     <xsl:call-template name="writeXUnitTestCase">
-                        <xsl:with-param name="testName" select="$testName" />
-                        <xsl:with-param name="funcViols" select="$funcViols" />
-                        <xsl:with-param name="time" select="@time" />
+                        <xsl:with-param name="testName" select="$testName"/>
+                        <xsl:with-param name="funcViols" select="$funcViols"/>
+                        <xsl:with-param name="time" select="@time"/>
                     </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
@@ -132,10 +148,10 @@
         <xsl:variable name="clean_path" select="substring-before(($trim_start),'#')"/>
         <xsl:choose>
             <xsl:when test="not(string-length($clean_path) > 0)">
-               <xsl:value-of select="substring-before(($trim_start),'.')"/> "/>
+                <xsl:value-of select="substring-before(($trim_start),'.')"/> "/>
             </xsl:when>
             <xsl:otherwise>
-               <xsl:value-of select="($clean_path)"/>
+                <xsl:value-of select="($clean_path)"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -150,8 +166,9 @@
                 <xsl:with-param name="testNode" select="$testNode"/>
                 <xsl:with-param name="currentNode" select="$currentNode/.."/>
             </xsl:call-template>
-            <xsl:value-of select="$currentNode/@name"/><xsl:if test="$currentNode != $testNode">/</xsl:if>
-            
+            <xsl:value-of select="$currentNode/@name"/>
+            <xsl:if test="$currentNode != $testNode">/</xsl:if>
+
         </xsl:if>
     </xsl:template>
 
@@ -159,49 +176,49 @@
     <xsl:template name="timeAttrIfAvailable">
         <xsl:if test="string-length(@time) > 0">
             <xsl:attribute name="time">
-            <xsl:call-template name="timeFormat">
-                <xsl:with-param name="initTime" select="@time" />
-            </xsl:call-template>
+                <xsl:call-template name="timeFormat">
+                    <xsl:with-param name="initTime" select="@time"/>
+                </xsl:call-template>
             </xsl:attribute>
         </xsl:if>
     </xsl:template>
 
     <!-- =================  format time ================== -->
     <xsl:template name="timeFormat">
-        <xsl:param name="initTime" />
+        <xsl:param name="initTime"/>
 
-            <xsl:variable name="millis">
-                <xsl:value-of select="substring($initTime,9,3)" />
-            </xsl:variable>
+        <xsl:variable name="millis">
+            <xsl:value-of select="substring($initTime,9,3)"/>
+        </xsl:variable>
 
-            <xsl:variable name="sec">
-                <xsl:value-of select="substring($initTime,6,2)" />
-            </xsl:variable>
+        <xsl:variable name="sec">
+            <xsl:value-of select="substring($initTime,6,2)"/>
+        </xsl:variable>
 
-            <xsl:variable name="min">
-                <xsl:value-of select="substring($initTime,3,2)" />
-            </xsl:variable>
+        <xsl:variable name="min">
+            <xsl:value-of select="substring($initTime,3,2)"/>
+        </xsl:variable>
 
-            <xsl:variable name="hour">
-                <xsl:value-of select="substring($initTime,1,1)" />
-            </xsl:variable>
+        <xsl:variable name="hour">
+            <xsl:value-of select="substring($initTime,1,1)"/>
+        </xsl:variable>
 
-            <xsl:variable name="allSec">
-                <xsl:value-of select="$sec + (60 * $min) + (3600 * $hour)" />
-            </xsl:variable>
+        <xsl:variable name="allSec">
+            <xsl:value-of select="$sec + (60 * $min) + (3600 * $hour)"/>
+        </xsl:variable>
 
-            <xsl:value-of select="concat($allSec,'.',$millis)" />
+        <xsl:value-of select="concat($allSec,'.',$millis)"/>
     </xsl:template>
 
     <!-- =================  write xUnit test case ================== -->
     <xsl:template name="writeXUnitTestCase">
-        <xsl:param name="testName" />
-        <xsl:param name="funcViols" />
-        <xsl:param name="time" />
+        <xsl:param name="testName"/>
+        <xsl:param name="funcViols"/>
+        <xsl:param name="time"/>
 
         <xsl:variable name="timeInMillis">
             <xsl:call-template name="timeFormat">
-                <xsl:with-param name="initTime" select="$time" />
+                <xsl:with-param name="initTime" select="$time"/>
             </xsl:call-template>
         </xsl:variable>
 
@@ -210,9 +227,9 @@
 
             <xsl:for-each select="($funcViols)">
                 <failure message="{@msg}">
-                <xsl:if test="string-length(@violationDetails) > 0">
-                    <xsl:value-of select="@violationDetails" />
-                </xsl:if>
+                    <xsl:if test="string-length(@violationDetails) > 0">
+                        <xsl:value-of select="@violationDetails"/>
+                    </xsl:if>
                 </failure>
             </xsl:for-each>
         </testcase>
@@ -221,52 +238,91 @@
 
     <!-- =================  replace the last occurrence of 'replace' to 'by' in 'text' ================== -->
     <xsl:template name="replace-last">
-        <xsl:param name="text" />
-        <xsl:param name="replace" />
-        <xsl:param name="by" />
+        <xsl:param name="text"/>
+        <xsl:param name="replace"/>
+        <xsl:param name="by"/>
         <xsl:choose>
             <xsl:when test="contains($text,$replace)">
 
-             <xsl:if test="contains(substring-after($text, $replace), $replace)">
-                <xsl:value-of select="substring-before($text,$replace)" /><xsl:value-of select="$replace"/>
-             </xsl:if>
-             <xsl:if test="not(contains(substring-after($text, $replace), $replace))">
-               <xsl:value-of select="substring-before($text,$replace)" /><xsl:value-of select="$by"/>
-             </xsl:if>
+                <xsl:if test="contains(substring-after($text, $replace), $replace)">
+                    <xsl:value-of select="substring-before($text,$replace)"/><xsl:value-of select="$replace"/>
+                </xsl:if>
+                <xsl:if test="not(contains(substring-after($text, $replace), $replace))">
+                    <xsl:value-of select="substring-before($text,$replace)"/><xsl:value-of select="$by"/>
+                </xsl:if>
                 <xsl:call-template name="replace-last">
-                    <xsl:with-param name="text" select="substring-after($text, $replace)" />
-                    <xsl:with-param name="replace" select="$replace" />
-                    <xsl:with-param name="by" select="$by" />
+                    <xsl:with-param name="text" select="substring-after($text, $replace)"/>
+                    <xsl:with-param name="replace" select="$replace"/>
+                    <xsl:with-param name="by" select="$by"/>
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="$text" />
+                <xsl:value-of select="$text"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
     <!-- =================  replace the all occurrences of 'replace' to 'by' in 'text' ================== -->
     <xsl:template name="string-replace-all">
-       <xsl:param name="text" />
-       <xsl:param name="replace" />
-       <xsl:param name="by" />
-       <xsl:choose>
-           <xsl:when test="$text = '' or $replace = ''or not($replace)" >
-               <!-- Prevent this routine from hanging -->
-               <xsl:value-of select="$text" />
-           </xsl:when>
-           <xsl:when test="contains($text, $replace)">
-               <xsl:value-of select="substring-before($text,$replace)" /><xsl:value-of select="($by)" disable-output-escaping="yes"/>
-               <xsl:call-template name="string-replace-all">
-                   <xsl:with-param name="text" select="substring-after($text,$replace)" />
-                   <xsl:with-param name="replace" select="$replace" />
-                   <xsl:with-param name="by" select="$by" />
-               </xsl:call-template>
-           </xsl:when>
-           <xsl:otherwise>
-               <xsl:value-of select="$text" />
-           </xsl:otherwise>
-       </xsl:choose>
+        <xsl:param name="text"/>
+        <xsl:param name="replace"/>
+        <xsl:param name="by"/>
+        <xsl:choose>
+            <xsl:when test="$text = '' or $replace = ''or not($replace)">
+                <!-- Prevent this routine from hanging -->
+                <xsl:value-of select="$text"/>
+            </xsl:when>
+            <xsl:when test="contains($text, $replace)">
+                <xsl:value-of select="substring-before($text,$replace)"/><xsl:value-of select="($by)"
+                                                                                       disable-output-escaping="yes"/>
+                <xsl:call-template name="string-replace-all">
+                    <xsl:with-param name="text" select="substring-after($text,$replace)"/>
+                    <xsl:with-param name="replace" select="$replace"/>
+                    <xsl:with-param name="by" select="$by"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$text"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
+    <!-- ===================== Add static analysis violations within virtual suites =========== -->
+    <xsl:template match="StdViol">
+        <xsl:param name="project"/>
+        <xsl:param name="rule"/>
+
+        <xsl:choose>
+            <xsl:when test="not(string($project))">
+                <xsl:variable name="thisProject" select="@project"/>
+                <xsl:variable name="thisProjectsViolations" select="../StdViol[@project=$thisProject]"/>
+                <xsl:if test="generate-id() = generate-id($thisProjectsViolations[1])">
+                    <testsuite name="{$thisProject}" tests="{count($thisProjectsViolations)}" failures="{count($thisProjectsViolations)}">
+                        <xsl:apply-templates select="$thisProjectsViolations">
+                            <xsl:with-param name="project" select="$thisProject"/>
+                        </xsl:apply-templates>
+                    </testsuite>
+                </xsl:if>
+            </xsl:when>
+            <xsl:when test="string($project) and not(string($rule))">
+                <xsl:variable name="thisRule" select="@rule"/>
+                <xsl:variable name="thisRulesViolations" select="../StdViol[@project=$project and @rule=$thisRule]"/>
+                <xsl:if test="generate-id() = generate-id($thisRulesViolations[1])">
+                    <testsuite name="{$thisRule}" tests="{count($thisRulesViolations)}" failures="{count($thisRulesViolations)}">
+                        <xsl:apply-templates select="$thisRulesViolations">
+                            <xsl:with-param name="project" select="$project"/>
+                            <xsl:with-param name="rule" select="$thisRule"/>
+                        </xsl:apply-templates>
+                    </testsuite>
+                </xsl:if>
+            </xsl:when>
+            <xsl:when test="string($rule)">
+                <testcase name="{@msg}">
+                    <failure message="({@uri}:{@ln}) {@msg}"/>
+                </testcase>
+            </xsl:when>
+            <xsl:otherwise>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 </xsl:stylesheet>
