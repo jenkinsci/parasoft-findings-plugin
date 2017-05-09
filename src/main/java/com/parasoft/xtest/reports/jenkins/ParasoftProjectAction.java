@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Parasoft Corporation
+ * Copyright 2017 Parasoft Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 
 package com.parasoft.xtest.reports.jenkins;
 
-import hudson.model.AbstractProject;
-import hudson.plugins.analysis.core.ResultAction;
+import hudson.model.Job;
 import hudson.plugins.analysis.core.AbstractProjectAction;
+import hudson.plugins.analysis.core.ResultAction;
 
 /**
  * Entry point to visualize the Parasoft trend graph in the project screen. Drawing
@@ -30,22 +30,22 @@ public class ParasoftProjectAction
     /**
      * Instantiates a new {@link ParasoftProjectAction}.
      *
-     * @param project the project that owns this action
+     * @param job the project that owns this action
      */
-    public ParasoftProjectAction(AbstractProject<?, ?> project)
+    public ParasoftProjectAction(Job<?, ?> job)
     {
-        this(project, ParasoftResultAction.class);
+        this(job, ParasoftResultAction.class);
     }
 
     /**
      * Instantiates a new {@link ParasoftProjectAction}.
      *
-     * @param project the project that owns this action
+     * @param job the job that owns this action
      * @param type the result action type
      */
-    public ParasoftProjectAction(AbstractProject<?, ?> project, Class<? extends ResultAction<ParasoftResult>> type)
+    public ParasoftProjectAction(Job<?, ?> job, Class<? extends ResultAction<ParasoftResult>> type)
     {
-        super(project, type, new LocalizableString(Messages.PARASOFT_PROJECT_ACTION_NAME), new LocalizableString(Messages.PARASOFT_TREND_NAME),
+        super(job, type, new LocalizableString(Messages.PARASOFT_PROJECT_ACTION_NAME), new LocalizableString(Messages.PARASOFT_TREND_NAME),
             ParasoftDescriptor.PLUGIN_ID, ParasoftDescriptor.ICON_URL, ParasoftDescriptor.RESULT_URL);
     }
 }

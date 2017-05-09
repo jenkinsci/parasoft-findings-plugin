@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Parasoft Corporation
+ * Copyright 2017 Parasoft Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -86,10 +86,14 @@ public class RuleDocumentation
     private static String getFromLocal(String ruleDocLocation)
     {
         File localFile = UURL.getLocalFile(UURL.toURL(ruleDocLocation));
-        try {
-            return FileUtil.readFile(localFile, IStringConstants.UTF_8);
-        } catch (IOException e) {
-            Logger.getLogger().error(e);
+        if (localFile != null) {
+            try {
+                return FileUtil.readFile(localFile, IStringConstants.UTF_8);
+            } catch (IOException e) {
+                Logger.getLogger().error(e);
+            }
+        } else {
+            Logger.getLogger().error("Failed to determine local file for rule doc location: " + ruleDocLocation); //$NON-NLS-1$
         }
         return IHtmlTags.HEADER_START_TAG + NLS.getFormatted(Messages.RULE_DOCUMENTATION_UNAVAILABLE_AT,
         		localFile.getAbsolutePath()) + IHtmlTags.HEADER_END_TAG;

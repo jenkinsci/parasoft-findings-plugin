@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Parasoft Corporation
+ * Copyright 2017 Parasoft Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -194,7 +194,7 @@ public class Warning
         Logger.getLogger().debug("Annotations compared by keys"); //$NON-NLS-1$
         long thisKey = getKey();
         long otherKey = other.getKey();
-        return Long.valueOf(thisKey).compareTo(Long.valueOf(otherKey));
+        return Long.compare(thisKey, otherKey);
     }
     
 

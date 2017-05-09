@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Parasoft Corporation
+ * Copyright 2017 Parasoft Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import java.util.Properties;
 import com.parasoft.xtest.common.api.progress.EmptyProgressMonitor;
 import com.parasoft.xtest.common.api.progress.IProgressMonitor;
 import com.parasoft.xtest.common.services.RawServiceContext;
+import com.parasoft.xtest.configuration.api.ConfigurationException;
 import com.parasoft.xtest.configuration.api.rules.IRuleDescriptionUpdateService;
 import com.parasoft.xtest.services.api.IParasoftServiceContext;
 import com.parasoft.xtest.services.api.ServiceUtil;
@@ -43,7 +44,11 @@ public class JenkinsRulesUtil
         IProgressMonitor monitor = EmptyProgressMonitor.getInstance();
         IRuleDescriptionUpdateService ruleDescriptionUpdateService = ServiceUtil.getService(IRuleDescriptionUpdateService.class);
         if (ruleDescriptionUpdateService != null) {
-            ruleDescriptionUpdateService.refreshSharedDescriptions(context, monitor.subTask(1));
+            try {
+                ruleDescriptionUpdateService.refreshSharedDescriptions(context, monitor.subTask(1));
+            } catch (ConfigurationException ce) {
+                Logger.getLogger().error(ce);
+            }
         }
     }
 }

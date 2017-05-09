@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Parasoft Corporation
+ * Copyright 2017 Parasoft Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,9 @@
 
 package com.parasoft.xtest.reports.jenkins;
 
+import java.util.Collection;
+
+import hudson.model.Action;
 import hudson.model.Run;
 import hudson.plugins.analysis.core.AbstractResultAction;
 import hudson.plugins.analysis.core.HealthDescriptor;
@@ -57,5 +60,11 @@ public class ParasoftResultAction
     protected PluginDescriptor getDescriptor()
     {
         return new ParasoftDescriptor();
+    }
+    
+    @Override
+    public Collection<? extends Action> getProjectActions()
+    {
+        return asSet(new ParasoftProjectAction(getJob()));
     }
 }

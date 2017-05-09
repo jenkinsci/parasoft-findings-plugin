@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Parasoft Corporation
+ * Copyright 2017 Parasoft Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -135,12 +135,6 @@ public class ParasoftPublisher
     public boolean getReportCheckField()
     {
         return _bReportCheckField;
-    }
-
-    @Override
-    public Action getProjectAction(final AbstractProject<?, ?> project)
-    {
-        return new ParasoftProjectAction(project);
     }
 
     @Override

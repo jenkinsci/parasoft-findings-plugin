@@ -9,17 +9,17 @@
   <groupId>com.parasoft</groupId>
   <artifactId>parasoft-findings</artifactId>
   <name>Parasoft Findings</name>
-  <version>10.3.0</version>
+  <version>10.3.2</version>
   <packaging>hpi</packaging>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/Parasoft+Findings+Plugin</url>
 
   <properties>
-      <jenkins.version>1.596.1</jenkins.version>
-      <jenkins-test-harness.version>1.596.1</jenkins-test-harness.version>
+      <jenkins.version>1.625.1</jenkins.version>
+      <jenkins-test-harness.version>1.625.1</jenkins-test-harness.version>
       <hpi-plugin.version>1.106</hpi-plugin.version>
       <stapler-plugin.version>1.17</stapler-plugin.version>
-      <java.level>6</java.level>
-      <jdk.version>1.6</jdk.version>
+      <java.level>7</java.level>
+      <jdk.version>1.7</jdk.version>
       <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
       <xtest.version>10.3.2.20170502</xtest.version>
   </properties>
@@ -65,6 +65,7 @@
                 <artifactId>maven-hpi-plugin</artifactId>
                 <configuration>
                     <pluginFirstClassLoader>true</pluginFirstClassLoader>
+                    <disabledTestInjection>true</disabledTestInjection>
                 </configuration>
             </plugin>
 	
@@ -123,7 +124,7 @@
 		<dependency>
 			<groupId>org.jvnet.hudson.plugins</groupId>
 			<artifactId>analysis-core</artifactId>
-			<version>1.77</version>
+			<version>1.82</version>
 		</dependency>
 
 		<dependency>
