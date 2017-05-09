@@ -146,6 +146,16 @@
 				</repository>
 			</repositories>
 		</profile>
+		<profile>
+			<id>eclipse.luna</id>
+			<repositories>
+				<repository>
+					<id>eclipse-luna</id>
+					<url>http://download.eclipse.org/releases/luna</url>
+					<layout>p2</layout>
+				</repository>
+			</repositories>
+		</profile>
 
 		<profile>
 			<id>build.nexus</id>
