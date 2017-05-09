@@ -4,7 +4,7 @@ The Parasoft Findings Plugin project contains a plugin which allows publishing P
 
 Prerequisites for building:
 --------------------------
- - Java 6 JDK
+ - Java 7 JDK
  - Maven 3
 
 To build:
