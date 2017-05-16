@@ -45,6 +45,7 @@
      <connection>scm:git:ssh://github.com/jenkinsci/parasoft-findings-plugin.git</connection>
      <developerConnection>scm:git:ssh://git@github.com/jenkinsci/parasoft-findings-plugin.git</developerConnection>
      <url>https://github.com/jenkinsci/parasoft-findings-plugin</url>
+    <tag>parasoft-findings-10.3.2</tag>
   </scm>
 
   <build>
@@ -95,6 +96,15 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+    	        <groupId>org.apache.maven.plugins</groupId>
+    	        <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <checkModificationExcludes>
+                        <checkModificationExclude>pom.xml</checkModificationExclude>
+                    </checkModificationExcludes>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
