@@ -3,10 +3,10 @@
   <groupId>com.parasoft.xtest.common</groupId>
   <artifactId>com.parasoft.xtest.share</artifactId>
   <versioning>
-    <release>10.3.2.20170502</release>
+    <release>10.3.3.20170929</release>
     <versions>
-      <version>10.3.2.20170502</version>
+      <version>10.3.3.20170929</version>
     </versions>
-    <lastUpdated>20170502122527</lastUpdated>
+    <lastUpdated>20170929074238</lastUpdated>
   </versioning>
 </metadata>
