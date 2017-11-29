@@ -8,6 +8,7 @@
 
   <groupId>com.parasoft</groupId>
   <artifactId>parasoft-findings</artifactId>
+  <name>Parasoft Findings</name>
   <version>10.3.5-SNAPSHOT</version>
   <packaging>hpi</packaging>
 
@@ -41,6 +42,17 @@
       <name>Joseph Benken</name>
       <email>benken@parasoft.com</email>
     </developer>
+  	<developer>
+	  <id>gjorando</id>
+	  <name>Guillaume Jorandon</name>
+	  <email>guillaume.jorandon@cea.fr</email>
+	  <organization>CEA Saclay</organization>
+	    <organizationUrl>http://www.cea.fr/</organizationUrl>
+	    <timezone>+1</timezone>
+	    <roles>
+	      <role>Developer</role>
+	    </roles>
+	  </developer>
   </developers>
 
   <licenses>

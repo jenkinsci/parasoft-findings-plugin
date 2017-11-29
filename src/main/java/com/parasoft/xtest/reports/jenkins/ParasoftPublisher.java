@@ -19,6 +19,7 @@ package com.parasoft.xtest.reports.jenkins;
 import java.io.IOException;
 import java.util.Map;
 
+import hudson.FilePath;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import com.parasoft.xtest.reports.jenkins.internal.variables.JenkinsVariablesResolver;
@@ -138,21 +139,21 @@ public class ParasoftPublisher
     }
 
     @Override
-    public BuildResult perform(final AbstractBuild<?, ?> build, final PluginLogger logger)
+    public BuildResult perform(final Run<?, ?> build, FilePath workspace, final PluginLogger logger)
         throws InterruptedException, IOException
     {
         logger.log(Messages.COLLECTING_REPORT_FILES);
         
-        Map<String, String> buildVars = build.getBuildVariables();
+        //Map<String, String> buildVars = ((AbstractBuild)build).getBuildVariables();
         Map<String, String> envVars = build.getCharacteristicEnvVars();
-        envVars.putAll(buildVars);
+        //envVars.putAll(buildVars);
         
         JenkinsVariablesResolver variablesResolver = new JenkinsVariablesResolver(envVars);
 
         boolean bReportCheckField = getReportCheckField();
         String sReportPattern = variablesResolver.performSubstitution(getReportFilesPattern());
         String sSettingsPath = variablesResolver.performSubstitution(getSettingsPath());
-        PublisherHelper helper = new PublisherHelper(build.getWorkspace(), sSettingsPath, sReportPattern, bReportCheckField);
+        PublisherHelper helper = new PublisherHelper(workspace, sSettingsPath, sReportPattern, bReportCheckField);
 
         Logger.getLogger().info("Using report files location: " + helper.getReportLocation().getRemote()); //$NON-NLS-1$
 

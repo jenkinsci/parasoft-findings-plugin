@@ -2,4 +2,6 @@
 .settings
 .project
 /target/
+.idea/
+parasoft-findings.iml
 .arcconfig
