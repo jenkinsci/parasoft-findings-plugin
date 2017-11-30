@@ -33,19 +33,19 @@ public class ParasoftInputMetric
     @Override
     public String getToolName()
     {
-        return PARASOFT_TOOL;  
+        return PARASOFT_TOOL;
     }
 
     @Override
     public String getToolVersion()
     {
-        return VERSION;  
+        return VERSION;
     }
 
     @Override
     public String getXslName()
     {
-        return XUNIT_XSL;  
+        return XUNIT_XSL;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class ParasoftInputMetric
         return JUnitModel.LATEST;
     }
     
-    private static final String PARASOFT_TOOL = "ParasoftTest"; //$NON-NLS-1$
+    private static final String PARASOFT_TOOL = "ParasoftAnalyzers"; //$NON-NLS-1$
     private static final String VERSION = "10.x"; //$NON-NLS-1$
     private static final String XUNIT_XSL = "xunit.xsl"; //$NON-NLS-1$
     
