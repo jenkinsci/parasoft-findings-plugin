@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.Map;
 
 import hudson.maven.*;
-import hudson.model.AbstractBuild;
 import hudson.model.Action;
+import hudson.model.Run;
 import hudson.plugins.analysis.core.HealthDescriptor;
 import hudson.plugins.analysis.core.MavenResultAction;
 import hudson.plugins.analysis.core.ParserResult;
@@ -37,7 +37,7 @@ public class ParasoftMavenResultAction
      * @param defaultEncoding the default encoding to be used when reading and parsing files
      * @param result the result in this build
      */
-    public ParasoftMavenResultAction(AbstractBuild<?, ?> owner, HealthDescriptor healthDescriptor, String defaultEncoding, ParasoftResult result) 
+    public ParasoftMavenResultAction(Run<?, ?> owner, HealthDescriptor healthDescriptor, String defaultEncoding, ParasoftResult result) 
     {
         super(new ParasoftResultAction(owner, healthDescriptor, result), defaultEncoding, ParasoftDescriptor.PLUGIN_ID);
     }

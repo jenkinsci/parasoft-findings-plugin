@@ -16,7 +16,7 @@
 
 package com.parasoft.xtest.reports.jenkins;
 
-import hudson.model.AbstractBuild;
+import hudson.model.Run;
 import hudson.plugins.analysis.util.model.FileAnnotation;
 import hudson.plugins.analysis.views.DetailFactory;
 import hudson.plugins.analysis.views.TabDetail;
@@ -27,7 +27,7 @@ public class ParasoftTabDetail
     extends TabDetail
 {
 
-    public ParasoftTabDetail(AbstractBuild<?, ?> owner, DetailFactory detailFactory,
+    public ParasoftTabDetail(Run<?, ?> owner, DetailFactory detailFactory,
         Collection<FileAnnotation> annotations, String url, String defaultEncoding)
     {
         super(owner, detailFactory, annotations, url, defaultEncoding);

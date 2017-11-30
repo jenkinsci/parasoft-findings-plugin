@@ -16,7 +16,7 @@
 
 package com.parasoft.xtest.reports.jenkins;
 
-import hudson.model.AbstractBuild;
+import hudson.model.Run;
 import hudson.plugins.analysis.util.model.AnnotationContainer;
 import hudson.plugins.analysis.util.model.FileAnnotation;
 import hudson.plugins.analysis.views.DetailFactory;
@@ -35,7 +35,7 @@ public class ParasoftDetailBuilder
 {
 
     @Override
-    public Object createDetails(String link, AbstractBuild<?, ?> owner,
+    public Object createDetails(String link, Run<?, ?> owner,
         AnnotationContainer container, String defaultEncoding, String displayName)
     {
         if (link.startsWith("link.")) {  //$NON-NLS-1$
@@ -59,7 +59,7 @@ public class ParasoftDetailBuilder
     }
     
     @Override
-    protected TabDetail createTabDetail(AbstractBuild<?, ?> owner,
+    protected TabDetail createTabDetail(Run<?, ?> owner,
                                         Collection<FileAnnotation> annotations, String url, String defaultEncoding)
     {
         return new ParasoftTabDetail(owner, this, annotations, url, defaultEncoding);
@@ -76,7 +76,7 @@ public class ParasoftDetailBuilder
      * @param sToString to hash
      * @return the detail view or <code>null</code>
      */
-    private static Object createParasoftSourceDetail(   AbstractBuild<?, ?> owner, AnnotationContainer container, 
+    private static Object createParasoftSourceDetail(   Run<?, ?> owner, AnnotationContainer container, 
                                                         String sDefaultEncoding, String sFromString, String sToString) 
     {
         long from = Long.parseLong(sFromString);

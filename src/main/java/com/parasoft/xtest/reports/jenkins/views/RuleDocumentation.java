@@ -17,7 +17,7 @@
 package com.parasoft.xtest.reports.jenkins.views;
 
 import hudson.model.ModelObject;
-import hudson.model.AbstractBuild;
+import hudson.model.Run;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,8 +38,8 @@ public class RuleDocumentation
 {
     private final String _sRuleId;
 
-	private final AbstractBuild<?, ?> _owner;
-
+	private final Run<?, ?> _owner;
+	
     private final JenkinsRuleDocumentationProvider _docProvider;
 
     /**
@@ -47,7 +47,7 @@ public class RuleDocumentation
      * @param sAnalyzer
      * @param sRuleId
      */
-    public RuleDocumentation(AbstractBuild<?, ?> owner, String sAnalyzer, String sRuleId)
+    public RuleDocumentation(Run<?, ?> owner, String sAnalyzer, String sRuleId)
     {
     	_owner = owner;
         File settingsFile = new File(owner.getRootDir(), "localsettings.properties"); //$NON-NLS-1$
@@ -55,7 +55,7 @@ public class RuleDocumentation
         _sRuleId = sRuleId;
     }
     
-    public AbstractBuild<?, ?> getOwner()
+    public Run<?, ?> getOwner()
     {
         return _owner;
     }

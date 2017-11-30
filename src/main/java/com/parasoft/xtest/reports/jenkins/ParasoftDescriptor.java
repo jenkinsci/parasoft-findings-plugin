@@ -24,6 +24,7 @@ import hudson.util.FormValidation;
 
 import java.io.IOException;
 
+import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.QueryParameter;
 
@@ -33,6 +34,7 @@ import com.parasoft.xtest.reports.jenkins.internal.variables.VariablePatternVeri
  * Descriptor for the class {@link ParasoftPublisher}. Used as a singleton. 
  * The class is marked as public so it can be accessed from views.
  */
+@Symbol("parasoftFindings")
 @Extension(ordinal = 100)
 public final class ParasoftDescriptor
     extends PluginDescriptor
