@@ -59,7 +59,7 @@ public class Warning
 
     /**
      * Java bean getter.
-     * @return
+     * @return the author of this warning
      */
     public String getAuthor()
     {
@@ -68,7 +68,7 @@ public class Warning
 
     /**
      * Java bean setter
-     * @param author
+     * @param author the author of this warning
      */
     public void setAuthor(String author)
     {
@@ -77,13 +77,13 @@ public class Warning
 
     /**
      * Java bean getter.
-     * @return
+     * @return the revision associated with this warning
      */
     public String getRevision()
     {
         return _revision;
     }
-    
+
     public String getLocalDocLink()
     {
         return "doc." + getAnalyzer() + '|' + getType(); //$NON-NLS-1$
@@ -91,7 +91,7 @@ public class Warning
 
     /**
      * Java bean setter
-     * @param revision
+     * @param revision the revision associated with this warning
      */
     public void setRevision(String revision)
     {
@@ -100,7 +100,7 @@ public class Warning
 
     /**
      * Java bean getter.
-     * @return
+     * @return the analyzer which reported this warning
      */
     public String getAnalyzer()
     {
@@ -109,7 +109,7 @@ public class Warning
 
     /**
      * Java bean setter
-     * @param analyzer
+     * @param analyzer the analyzer which reported this warning
      */
     public void setAnalyzer(String analyzer)
     {
@@ -118,26 +118,24 @@ public class Warning
 
     /**
      * Sets the base tooltip for this warning
-     * @param sToolTip
+     * @param sToolTip tooltip for this warning
      */
     public void setToolTip(String sToolTip)
     {
         _tooltip = UString.getNotNull(sToolTip);
     }
 
-    /**
-     * @see hudson.plugins.analysis.util.model.FileAnnotation#getToolTip()
-     */
+    @Override
     public String getToolTip()
     {
         return _tooltip;
     }
-    
+
     /**
      * If given violation has description of detailed path elements - this method sets details regarding these elements.
      * You are supposed to call this method only once per instance.
      * 
-     * @param violation
+     * @param violation the violation for which build path elements
      */
     public void populateViolationPathElements(IRuleViolation violation)
     {
@@ -153,7 +151,7 @@ public class Warning
     /**
      * Seeks call previous to given child. All child levels are checked.
      * 
-     * @param childHashCode
+     * @param childHashCode the child hash code
      * @return the previous call
      */
     public FileAnnotation getPreviousCall(long childHashCode)

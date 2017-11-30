@@ -19,7 +19,7 @@ package com.parasoft.xtest.reports.jenkins.internal.variables;
 import java.util.HashSet;
 import java.util.Set;
 
-/** 
+/**
  * Checks variables for correctness.
  */
 public class VariablePatternVerifier
@@ -30,7 +30,7 @@ public class VariablePatternVerifier
     
     /**
      * Create verifier for given pattern.
-     * @param pattern
+     * @param pattern the pattern to verify
      */
     public VariablePatternVerifier(String pattern)
     {

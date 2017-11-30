@@ -50,9 +50,9 @@ public class ParasoftPublisher
     /**
      * Creates a new instance of <code>ParasoftPublisher</code>.
      * 
-     * @param reportFilesPattern Ant file-set pattern to scan for Parasoft files
-     * @param settingsPath relative path to the settings file
-     * @param useReportPattern
+     * @param reportPattern Ant file-set pattern to scan for Parasoft files
+     * @param settings relative path to the settings file
+     * @param useReportPattern if <tt>true</tt> then report pattern will be used to find report files
      */
     @DataBoundConstructor
     public ParasoftPublisher(String reportPattern, String settings, boolean useReportPattern)

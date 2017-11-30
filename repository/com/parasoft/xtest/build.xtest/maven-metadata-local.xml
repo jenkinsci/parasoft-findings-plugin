@@ -3,10 +3,9 @@
   <groupId>com.parasoft.xtest</groupId>
   <artifactId>build.xtest</artifactId>
   <versioning>
-    <release>10.3.3.20170929</release>
     <versions>
-      <version>10.3.3.20170929</version>
+      <version>10.3.4-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20170929074157</lastUpdated>
+    <lastUpdated>20171130121953</lastUpdated>
   </versioning>
 </metadata>

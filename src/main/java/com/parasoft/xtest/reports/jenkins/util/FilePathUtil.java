@@ -41,7 +41,7 @@ public final class FilePathUtil
 	private FilePathUtil () {}
 
     /**
-     * @param file
+     * @param file the file to check 
      * @return true if file behind given object is absolute
      */
     public static boolean isAbsolute(FilePath file)
@@ -75,7 +75,7 @@ public final class FilePathUtil
     }
     
     /**
-     * @param file
+     * @param file the file with properties to load
      * @return properties loaded from given file
      */
     public static Properties loadProperties(FilePath file)

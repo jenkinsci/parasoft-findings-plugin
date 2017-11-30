@@ -74,7 +74,7 @@ public class ParasoftReporter
      *        baseline)
      * @param reportFilesPattern Ant file-set pattern to scan for Parasoft files
      * @param settingsPath relative path to settings file
-     * @param reportCheckField
+     * @param reportCheckField if<tt>true</tt> then the report pattern will be used to find report files
      */
     @DataBoundConstructor
     public ParasoftReporter(final String healthy, final String unHealthy,

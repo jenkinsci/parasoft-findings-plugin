@@ -35,7 +35,7 @@ public class JenkinsVariablesResolver
 {
     
     /**
-     * @param buildVariables
+     * @param buildVariables the map with build variables
      */
     public JenkinsVariablesResolver(Map<String, String> buildVariables)
     {

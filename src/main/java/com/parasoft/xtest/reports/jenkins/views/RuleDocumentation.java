@@ -30,7 +30,7 @@ import com.parasoft.xtest.common.text.UString;
 import com.parasoft.xtest.reports.jenkins.html.IHtmlTags;
 import com.parasoft.xtest.reports.jenkins.internal.rules.JenkinsRuleDocumentationProvider;
 
-/** 
+/**
  * Class represents documentation for a single rule.
  */
 public class RuleDocumentation
@@ -43,9 +43,9 @@ public class RuleDocumentation
     private final JenkinsRuleDocumentationProvider _docProvider;
 
     /**
-     * @param owner
-     * @param sAnalyzer
-     * @param sRuleId
+     * @param owner the run context
+     * @param sAnalyzer the analyzer associated with the given rule
+     * @param sRuleId the rule id
      */
     public RuleDocumentation(Run<?, ?> owner, String sAnalyzer, String sRuleId)
     {

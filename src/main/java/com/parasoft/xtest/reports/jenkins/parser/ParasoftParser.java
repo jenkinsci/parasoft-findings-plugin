@@ -16,26 +16,42 @@
 
 package com.parasoft.xtest.reports.jenkins.parser;
 
-import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.util.*;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
-
-import com.parasoft.xtest.common.api.*;
+import com.parasoft.xtest.common.api.IFileTestableInput;
+import com.parasoft.xtest.common.api.IProjectFileTestableInput;
+import com.parasoft.xtest.common.api.ISourceRange;
+import com.parasoft.xtest.common.api.ITestableInput;
 import com.parasoft.xtest.common.locations.ILocationAttributes;
 import com.parasoft.xtest.common.math.ULong;
 import com.parasoft.xtest.common.path.PathInput;
 import com.parasoft.xtest.common.text.UString;
+import com.parasoft.xtest.reports.jenkins.internal.JenkinsLocationMatcher;
 import com.parasoft.xtest.reports.jenkins.internal.JenkinsResultsImporter;
 import com.parasoft.xtest.reports.jenkins.internal.ResultAdditionalAttributes;
 import com.parasoft.xtest.reports.jenkins.internal.rules.JenkinsRulesUtil;
+import com.parasoft.xtest.results.api.IDupCodeViolation;
+import com.parasoft.xtest.results.api.IFlowAnalysisViolation;
+import com.parasoft.xtest.results.api.IMetricsViolation;
 import com.parasoft.xtest.results.api.IResultLocation;
 import com.parasoft.xtest.results.api.IRuleViolation;
 import com.parasoft.xtest.results.api.IViolation;
+import com.parasoft.xtest.results.api.attributes.IRuleAttributes;
 import com.parasoft.xtest.results.api.importer.IImportedData;
 import com.parasoft.xtest.results.api.importer.IRulesImportHandler;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 
 import hudson.plugins.analysis.core.AbstractAnnotationParser;
 import hudson.plugins.analysis.util.model.FileAnnotation;
@@ -48,6 +64,10 @@ public class ParasoftParser
     extends AbstractAnnotationParser
 {
     
+    private static final String GLOBAL_CATEGORY = "GLOBAL"; //$NON-NLS-1$
+
+    private static final String LEGACY_TOOL_NAME = "c++test"; //$NON-NLS-1$
+
     private final Properties _properties;
 
     private transient JenkinsResultsImporter _importer = null;
@@ -153,7 +173,7 @@ public class ParasoftParser
         if (attributes.isSuppressed()) {
             return null;
         }
-        
+
         String message = violation.getMessage();
         int severity = attributes.getSeverity();
         Priority priority = convertSeverityToPriority(severity);
@@ -180,13 +200,18 @@ public class ParasoftParser
             revision = PROPERTY_UNKNOWN;
         }
         warning.setRevision(revision);
-        warning.setAnalyzer(violation.getAnalyzerId());
         
+        String analyzer = violation.getAnalyzerId();
+        if (isLegacyReport(analyzer)) {
+            analyzer = mapToAnalyzer(violation, rulesImportHandler);
+        }
+        warning.setAnalyzer(analyzer);
+
         ITestableInput input = location.getTestableInput();
-        if (input instanceof IFileTestableInput) {              
-            File fileLocation = ((IFileTestableInput)input).getFileLocation();
-            if (fileLocation != null) {
-                warning.setFileName(fileLocation.getAbsolutePath());                    
+        if (input instanceof IFileTestableInput) {
+            String sFilePath = JenkinsLocationMatcher.getFilePath((IFileTestableInput) input);
+            if (sFilePath != null) {
+                warning.setFileName(sFilePath);
             }
         } else if (input instanceof PathInput) {
             String workspacePath = ((PathInput)input).getPath();
@@ -197,7 +222,7 @@ public class ParasoftParser
         } else {
             warning.setFileName(input.getName());
         }
-        
+
         if (input instanceof IProjectFileTestableInput) {
             warning.setModuleName(((IProjectFileTestableInput)input).getProjectName());
         } else {
@@ -221,6 +246,35 @@ public class ParasoftParser
         warning.setContextHashCode(hash);
         
         return warning;
+    }
+
+    private static String mapToAnalyzer(IRuleViolation violation, IRulesImportHandler rulesImportHandler) {
+        String analyzer = null;
+        if (violation instanceof IDupCodeViolation) {
+            analyzer = "com.parasoft.xtest.cpp.analyzer.static.dupcode"; //$NON-NLS-1$
+        } else if (violation instanceof IFlowAnalysisViolation) {
+            analyzer = "com.parasoft.xtest.cpp.analyzer.static.flow"; //$NON-NLS-1$
+        } else if (violation instanceof IMetricsViolation) {
+            analyzer = "com.parasoft.xtest.cpp.analyzer.static.metrics"; //$NON-NLS-1$
+        } else if (isGlobalRule(violation.getRuleId(), rulesImportHandler)) {
+            analyzer = "com.parasoft.xtest.cpp.analyzer.static.global"; //$NON-NLS-1$
+        } else {
+            analyzer = "com.parasoft.xtest.cpp.analyzer.static.pattern"; //$NON-NLS-1$
+        }
+        return analyzer;
+    }
+
+    private static boolean isGlobalRule(String ruleId, IRulesImportHandler rulesImportHandler) {
+        IRuleAttributes ruleAttributes = rulesImportHandler.getRuleAttributes(ruleId);
+        if (ruleAttributes == null) {
+            return false;
+        }
+        String ruleCategory = ruleAttributes.getRuleCategory();
+        return GLOBAL_CATEGORY.equals(ruleCategory);
+    }
+
+    private static boolean isLegacyReport(String analyzer) {
+        return LEGACY_TOOL_NAME.equals(analyzer);
     }
 
     private Collection<FileAnnotation> importResults(File file, String sModuleName)

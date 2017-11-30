@@ -36,9 +36,9 @@ public class JenkinsRuleDocumentationProvider
     private final RuleDocumentationHelper _ruleDocHelper;
 
     /**
-     * @param settingsFile
-     * @param analyzer
-     * @param ruleId
+     * @param settingsFile the settings to configure access to the documentation
+     * @param analyzer the analyzer connected with the given rule
+     * @param ruleId the rule identifier
      */
     public JenkinsRuleDocumentationProvider(File settingsFile, String analyzer, String ruleId)
     {

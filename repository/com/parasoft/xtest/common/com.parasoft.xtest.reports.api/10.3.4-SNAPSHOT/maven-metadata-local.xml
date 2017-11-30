@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.parasoft.xtest.common</groupId>
+  <artifactId>com.parasoft.xtest.reports.api</artifactId>
+  <version>10.3.4-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <localCopy>true</localCopy>
+    </snapshot>
+    <lastUpdated>20171130122042</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <classifier>sources</classifier>
+        <extension>jar</extension>
+        <value>10.3.4-SNAPSHOT</value>
+        <updated>20171130122042</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>10.3.4-SNAPSHOT</value>
+        <updated>20171130122041</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>10.3.4-SNAPSHOT</value>
+        <updated>20171130122041</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

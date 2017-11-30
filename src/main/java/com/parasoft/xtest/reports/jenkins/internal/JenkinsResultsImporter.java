@@ -16,21 +16,20 @@
 
 package com.parasoft.xtest.reports.jenkins.internal;
 
-import java.io.File;
-import java.util.Properties;
-
 import com.parasoft.xtest.common.api.progress.EmptyProgressMonitor;
+import com.parasoft.xtest.common.locations.IImportLocationMatcher;
 import com.parasoft.xtest.common.services.RawServiceContext;
 import com.parasoft.xtest.logging.api.ParasoftLogger;
 import com.parasoft.xtest.logging.java.JavaLoggingHandlerFactory;
 import com.parasoft.xtest.reports.jenkins.internal.services.JenkinsServicesProvider;
 import com.parasoft.xtest.reports.preferences.FileImportPreferences;
-import com.parasoft.xtest.results.api.importer.IImportPreferences;
-import com.parasoft.xtest.results.api.importer.IImportedData;
-import com.parasoft.xtest.results.api.importer.IViolationImportResult;
-import com.parasoft.xtest.results.api.importer.IViolationImporterService;
+import com.parasoft.xtest.results.api.importer.*;
+import com.parasoft.xtest.results.xapi.IMatchingViolationImporter;
 import com.parasoft.xtest.services.api.IServicesProvider;
 import com.parasoft.xtest.services.api.ServiceUtil;
+
+import java.io.File;
+import java.util.Properties;
 
 /**
  * Loads results from report xml file.
@@ -75,7 +74,13 @@ public class JenkinsResultsImporter
         Logger.getLogger().info("Properties used in importResults " + _properties); //$NON-NLS-1$
 
         IImportPreferences prefs = new FileImportPreferences(file);
-        IViolationImportResult importResult = service.importViolations(prefs, EmptyProgressMonitor.getInstance());
+        IViolationImportResult importResult = null;
+        if (service instanceof IMatchingViolationImporter) {
+            IImportLocationMatcher matcher = new JenkinsLocationMatcher();
+            importResult = ((IMatchingViolationImporter)service).importViolations(prefs, matcher, EmptyProgressMonitor.getInstance());
+        } else {
+            importResult = service.importViolations(prefs, EmptyProgressMonitor.getInstance());
+        }
         return (IImportedData)importResult;
     }
 
