@@ -1,0 +1,1430 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ResultsSession buildId="build-2014-07-22 13:42:54" climode="true" hasViols="true" id="1407447857186" lang="pl_PL" machine="jive" project="Jtest 9.5" tag="Unit Tests" time="2014-07-22T13:42:54+02:00" toolId="jtest" toolName="Parasoft Jtest" toolVer="10.0.0.qualifier">
+   <TestConfig machine="jive" name="Unit Tests" pseudoUrl="builtin://Unit Tests" user="grzesiek" />
+   <Authors>
+      <Author id="dev1" name="grzesiek" />
+   </Authors>
+   <Analyzers>
+      <Analyzer id="com.parasoft.jtest.coverage" name="Parasoft Coverage Analyzer" ver="10.0.0.qualifier" />
+      <Analyzer id="com.parasoft.jtest.unittests.analyzers.JUnitAnalyzer" name="Parasoft JUnit Analyzer" ver="10.0.0.qualifier" />
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1" />
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1" />
+   </VersionInfos>
+   <Goals tsks="6">
+      
+   </Goals>
+   
+   <Scope>
+      <Repositories />
+      <Locations>
+         <Loc hash="1932743615" locRef="26" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/InefficientMapRemoval.java" totLns="58" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/InefficientMapRemoval.java" />
+         <Loc hash="953933995" locRef="109" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/runtime/NonSymmetricEqualsFixedTest.java" totLns="34" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/runtime/NonSymmetricEqualsFixedTest.java" />
+         <Loc hash="-1910509133" locRef="72" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/servlets/ExampleServlet.java" totLns="48" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/servlets/ExampleServlet.java" />
+         <Loc hash="1657993246" locRef="70" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/runtime/security/method_specifier.properties" totLns="1" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/runtime/security/method_specifier.properties" />
+         <Loc hash="874526682" locRef="50" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/junit4/MoneyBag.java" totLns="124" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/junit4/MoneyBag.java" />
+         <Loc hash="359238969" locRef="38" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/np/MyDictionary.java" totLns="27" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/np/MyDictionary.java" />
+         <Loc hash="-224268807" locRef="81" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stackmachine/StackInterface.java" totLns="51" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stackmachine/StackInterface.java" />
+         <Loc hash="1282220128" locRef="114" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/stubs/InterpreterTest.java" totLns="49" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/stubs/InterpreterTest.java" />
+         <Loc hash="-1702800121" locRef="36" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/np/ExtendedNullPointer.java" totLns="59" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/np/ExtendedNullPointer.java" />
+         <Loc hash="-1762540449" locRef="35" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/np/DatabaseObject.java" totLns="67" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/np/DatabaseObject.java" />
+         <Loc hash="-148247498" locRef="86" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stubs/DatabaseExample.java" totLns="112" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stubs/DatabaseExample.java" />
+         <Loc hash="-863267990" locRef="104" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/runtime/AddTest.java" totLns="15" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/runtime/AddTest.java" />
+         <Loc hash="549974854" locRef="3" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/bank/BankAccount.java" totLns="47" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/bank/BankAccount.java" />
+         <Loc hash="1374828955" locRef="7" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/bank/Customer.java" totLns="20" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/bank/Customer.java" />
+         <Loc hash="-1186559924" locRef="107" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/runtime/IteratingThroughLinkedListUsingGetFixedTest.java" totLns="28" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/runtime/IteratingThroughLinkedListUsingGetFixedTest.java" />
+         <Loc hash="646984787" locRef="24" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/IncorrectIteratorUsage.java" totLns="41" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/IncorrectIteratorUsage.java" />
+         <Loc hash="-1724845119" locRef="19" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/AlwaysCloseXMLEncDec.java" totLns="76" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/AlwaysCloseXMLEncDec.java" />
+         <Loc hash="-2105563810" locRef="90" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stubs/Logger.java" totLns="9" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stubs/Logger.java" />
+         <Loc hash="-304524193" locRef="100" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/nbank/AccountJUnit4Test.java" totLns="31" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/nbank/AccountJUnit4Test.java" />
+         <Loc hash="2003324352" locRef="16" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/AlwaysCloseNIOChannels.java" totLns="36" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/AlwaysCloseNIOChannels.java" />
+         <Loc hash="1156277555" locRef="55" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/nbank/ConnectionException.java" totLns="9" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/nbank/ConnectionException.java" />
+         <Loc hash="896006844" locRef="98" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/nbank/AccountDynamicSuite.java" totLns="25" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/nbank/AccountDynamicSuite.java" />
+         <Loc hash="-159670830" locRef="112" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/stubs/ConstructorExampleTest.java" totLns="43" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/stubs/ConstructorExampleTest.java" />
+         <Loc hash="-1587264213" locRef="66" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/runtime/ExamplesUtil.java" totLns="35" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/runtime/ExamplesUtil.java" />
+         <Loc hash="-2126764651" locRef="85" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stubs/ConstructorExample.java" totLns="15" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stubs/ConstructorExample.java" />
+         <Loc hash="1051480615" locRef="27" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/InefficientMapUsage.java" totLns="37" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/InefficientMapUsage.java" />
+         <Loc hash="-1762279870" locRef="69" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/runtime/security/input_validator.properties" totLns="1" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/runtime/security/input_validator.properties" />
+         <Loc hash="-798293711" locRef="52" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/nbank/AbstractTransaction.java" totLns="14" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/nbank/AbstractTransaction.java" />
+         <Loc hash="-1671927431" locRef="12" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/exec/Parameterized.java" totLns="14" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/exec/Parameterized.java" />
+         <Loc hash="-1221225349" locRef="34" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/XMLInjection.java" totLns="41" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/XMLInjection.java" />
+         <Loc hash="174869257" locRef="14" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/AlwaysCloseImages.java" totLns="35" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/AlwaysCloseImages.java" />
+         <Loc hash="-1107680187" locRef="5" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/bank/CreditCard.java" totLns="199" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/bank/CreditCard.java" />
+         <Loc hash="2098540602" locRef="113" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/stubs/FileExampleTest.java" totLns="46" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/stubs/FileExampleTest.java" />
+         <Loc hash="-1106172127" locRef="42" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/initialize/RaffleTicketPicker.java" totLns="71" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/initialize/RaffleTicketPicker.java" />
+         <Loc hash="-1719823464" locRef="57" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/nbank/Customer.java" totLns="114" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/nbank/Customer.java" />
+         <Loc hash="1812380721" locRef="91" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stubs/Simple.java" totLns="11" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stubs/Simple.java" />
+         <Loc hash="-929205062" locRef="95" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/unit/Quickfix.java" totLns="23" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/unit/Quickfix.java" />
+         <Loc hash="-1919107570" locRef="21" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/DereferenceBeforeNullCheck.java" totLns="54" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/DereferenceBeforeNullCheck.java" />
+         <Loc hash="980076692" locRef="2" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/dbc/RequirementViolation.java" totLns="15" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/dbc/RequirementViolation.java" />
+         <Loc hash="-945271585" locRef="77" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stackmachine/CustomListRenderer.java" totLns="31" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stackmachine/CustomListRenderer.java" />
+         <Loc hash="-1015952933" locRef="56" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/nbank/CreditCard.java" totLns="200" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/nbank/CreditCard.java" />
+         <Loc hash="412288049" locRef="78" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stackmachine/FifoStackMachine.java" totLns="36" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stackmachine/FifoStackMachine.java" />
+         <Loc hash="2085756194" locRef="29" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/SystemInjection.java" totLns="65" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/SystemInjection.java" />
+         <Loc hash="1305049501" locRef="64" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/repository/Message.java" totLns="28" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/repository/Message.java" />
+         <Loc hash="-2106605594" locRef="108" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/runtime/IteratingThroughLinkedListUsingGetTest.java" totLns="26" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/runtime/IteratingThroughLinkedListUsingGetTest.java" />
+         <Loc hash="1005976568" locRef="76" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stackmachine/CommandLineStackMachine.java" totLns="117" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stackmachine/CommandLineStackMachine.java" />
+         <Loc hash="1488182124" locRef="28" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/SQLInjection.java" totLns="62" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/SQLInjection.java" />
+         <Loc hash="-1384728861" locRef="8" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/bank/Deposit.java" totLns="20" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/bank/Deposit.java" />
+         <Loc hash="1259778297" locRef="44" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/jsp/confirm.jsp" totLns="23" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/jsp/confirm.jsp" />
+         <Loc hash="330872929" locRef="88" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stubs/IOExample.java" totLns="61" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stubs/IOExample.java" />
+         <Loc hash="-716435735" locRef="79" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stackmachine/LifoStackMachine.java" totLns="40" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stackmachine/LifoStackMachine.java" />
+         <Loc hash="986625853" locRef="51" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/leaks/Library.java" totLns="107" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/leaks/Library.java" />
+         <Loc hash="-252146787" locRef="111" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/servlets/ExampleServletTest.java" totLns="111" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/servlets/ExampleServletTest.java" />
+         <Loc hash="-1171517938" locRef="40" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/np/SimpleNeverHappenedAndNotAcknowledgedByBD.java" totLns="34" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/np/SimpleNeverHappenedAndNotAcknowledgedByBD.java" />
+         <Loc hash="-697829711" locRef="9" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/bank/Transaction.java" totLns="14" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/bank/Transaction.java" />
+         <Loc hash="251929394" locRef="61" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/nbank/WithdrawalTransaction.java" totLns="24" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/nbank/WithdrawalTransaction.java" />
+         <Loc hash="398557395" locRef="74" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/singletons/RaffleTicketPicker.java" totLns="69" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/singletons/RaffleTicketPicker.java" />
+         <Loc hash="1930052595" locRef="47" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/jsp/sushi_list.jsp" totLns="80" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/jsp/sushi_list.jsp" />
+         <Loc hash="-1956986370" locRef="97" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/junit4/MoneyTest.java" totLns="165" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/junit4/MoneyTest.java" />
+         <Loc hash="1508281903" locRef="89" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stubs/Interpreter.java" totLns="28" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stubs/Interpreter.java" />
+         <Loc hash="-1016472799" locRef="20" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/ClassCast.java" totLns="19" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/ClassCast.java" />
+         <Loc hash="-303031357" locRef="59" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/nbank/ITransaction.java" totLns="22" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/nbank/ITransaction.java" />
+         <Loc hash="-1475001764" locRef="92" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/suppress/AllFileSuppress.java" totLns="13" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/suppress/AllFileSuppress.java" />
+         <Loc hash="152770624" locRef="71" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/security/InputValidation.java" totLns="136" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/security/InputValidation.java" />
+         <Loc hash="345942915" locRef="58" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/nbank/DepositTransaction.java" totLns="24" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/nbank/DepositTransaction.java" />
+         <Loc hash="-172550179" locRef="103" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/runtime/AccessingFileSimultaneouslyTest.java" totLns="37" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/runtime/AccessingFileSimultaneouslyTest.java" />
+         <Loc hash="784980024" locRef="106" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/runtime/ExitingFinallyBlockAbruptlyTest.java" totLns="28" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/runtime/ExitingFinallyBlockAbruptlyTest.java" />
+         <Loc hash="-1127058647" locRef="13" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/AlwaysCloseGSS.java" totLns="33" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/AlwaysCloseGSS.java" />
+         <Loc hash="162881537" locRef="46" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/jsp/mycart.jsp" totLns="102" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/jsp/mycart.jsp" />
+         <Loc hash="-69771240" locRef="4" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/bank/ChangeOwnership.java" totLns="15" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/bank/ChangeOwnership.java" />
+         <Loc hash="-245476435" locRef="63" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/repository/IntFields.java" totLns="28" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/repository/IntFields.java" />
+         <Loc hash="275524582" locRef="23" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/FilesInjection.java" totLns="32" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/FilesInjection.java" />
+         <Loc hash="-728312803" locRef="45" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/jsp/login.jsp" totLns="24" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/jsp/login.jsp" />
+         <Loc hash="-512299843" locRef="41" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/initialize/Guestbook.java" totLns="94" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/initialize/Guestbook.java" />
+         <Loc hash="404961246" locRef="67" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/runtime/security/InputValidatorExample.java" totLns="19" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/runtime/security/InputValidatorExample.java" />
+         <Loc hash="-960213214" locRef="11" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/eval/Simple.java" totLns="132" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/eval/Simple.java" />
+         <Loc hash="791341732" locRef="65" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/runtime/Add.java" totLns="9" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/runtime/Add.java" />
+         <Loc hash="1367099558" locRef="30" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/UnreachableCode.java" totLns="58" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/UnreachableCode.java" />
+         <Loc hash="1073933388" locRef="96" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/unit/TestingTasks.java" totLns="44" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/unit/TestingTasks.java" />
+         <Loc hash="406098653" locRef="84" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/struts/LoginAction.java" totLns="24" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/struts/LoginAction.java" />
+         <Loc hash="2061096365" locRef="15" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/AlwaysCloseLogging.java" totLns="24" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/AlwaysCloseLogging.java" />
+         <Loc hash="-798223982" locRef="22" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/DivisionByZero.java" totLns="78" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/DivisionByZero.java" />
+         <Loc hash="-1157077983" locRef="6" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/bank/CreditCardWithObject.java" totLns="200" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/bank/CreditCardWithObject.java" />
+         <Loc hash="-1716541218" locRef="116" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="WEB-INF/struts-config.xml" totLns="43" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/WEB-INF/struts-config.xml" />
+         <Loc hash="1801833364" locRef="17" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/AlwaysCloseRAFs.java" totLns="36" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/AlwaysCloseRAFs.java" />
+         <Loc hash="426128185" locRef="119" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="WEB-INF/web.xml" totLns="69" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/WEB-INF/web.xml" />
+         <Loc hash="-180062161" locRef="32" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/UseBeforeInitialization.java" totLns="73" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/UseBeforeInitialization.java" />
+         <Loc hash="-516432544" locRef="73" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/singletons/Guestbook.java" totLns="82" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/singletons/Guestbook.java" />
+         <Loc hash="1152084680" locRef="82" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stackmachine/StackList.java" totLns="112" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stackmachine/StackList.java" />
+         <Loc hash="-1187516400" locRef="75" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stackmachine/AbstractStackMachine.java" totLns="143" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stackmachine/AbstractStackMachine.java" />
+         <Loc hash="159446472" locRef="80" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stackmachine/RunnableStackMachine.java" totLns="447" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stackmachine/RunnableStackMachine.java" />
+         <Loc hash="529854093" locRef="87" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/stubs/FileExample.java" totLns="23" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/stubs/FileExample.java" />
+         <Loc hash="2146360543" locRef="62" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/queue/Queue.java" totLns="76" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/queue/Queue.java" />
+         <Loc hash="-1483577808" locRef="60" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/nbank/LogAccountInfo.java" totLns="46" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/nbank/LogAccountInfo.java" />
+         <Loc hash="363227546" locRef="117" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="WEB-INF/tiles-defs.xml" totLns="42" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/WEB-INF/tiles-defs.xml" />
+         <Loc hash="-1929223117" locRef="18" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/AlwaysCloseSockets.java" totLns="30" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/AlwaysCloseSockets.java" />
+         <Loc hash="-306099231" locRef="37" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/np/MessageFormatter.java" totLns="17" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/np/MessageFormatter.java" />
+         <Loc hash="590524020" locRef="25" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/InefficientCollectionRemoval.java" totLns="32" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/InefficientCollectionRemoval.java" />
+         <Loc hash="1405819373" locRef="10" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/bank/Withdraw.java" totLns="15" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/bank/Withdraw.java" />
+         <Loc hash="411349189" locRef="118" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="WEB-INF/validation.xml" totLns="74" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/WEB-INF/validation.xml" />
+         <Loc hash="290117829" locRef="94" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/unit/Example.java" totLns="75" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/unit/Example.java" />
+         <Loc hash="-1924865398" locRef="1" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/dbc/Example.java" totLns="19" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/dbc/Example.java" />
+         <Loc hash="1293137078" locRef="68" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/runtime/security/MethodSpecifierExample.java" totLns="45" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/runtime/security/MethodSpecifierExample.java" />
+         <Loc hash="-1889623793" locRef="33" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/WebApplication.java" totLns="50" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/WebApplication.java" />
+         <Loc hash="-1872327821" locRef="31" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/UseBeforeInConstructorInitialization.java" totLns="34" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/UseBeforeInConstructorInitialization.java" />
+         <Loc hash="-2034860641" locRef="43" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/inputs/InputData.java" totLns="37" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/inputs/InputData.java" />
+         <Loc hash="2006238417" locRef="102" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/runtime/AccessingFileSimultaneouslyFixedTest.java" totLns="36" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/runtime/AccessingFileSimultaneouslyFixedTest.java" />
+         <Loc hash="176853002" locRef="115" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="META-INF/MANIFEST.MF" totLns="4" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/META-INF/MANIFEST.MF" />
+         <Loc hash="1652415353" locRef="93" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/suppress/Example.java" totLns="7" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/suppress/Example.java" />
+         <Loc hash="-1946149999" locRef="49" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/junit4/Money.java" totLns="185" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/junit4/Money.java" />
+         <Loc hash="-2060521113" locRef="105" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/runtime/ExitingFinallyBlockAbruptlyFixedTest.java" totLns="28" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/runtime/ExitingFinallyBlockAbruptlyFixedTest.java" />
+         <Loc hash="-1229095135" locRef="101" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/nbank/AccountTest.java" totLns="34" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/nbank/AccountTest.java" />
+         <Loc hash="-296435483" locRef="99" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/nbank/AccountDynamicTest.java" totLns="36" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/nbank/AccountDynamicTest.java" />
+         <Loc hash="207838171" locRef="53" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/nbank/Account.java" totLns="78" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/nbank/Account.java" />
+         <Loc hash="-1126305894" locRef="110" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="tests/examples/runtime/NonSymmetricEqualsTest.java" totLns="39" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/tests/examples/runtime/NonSymmetricEqualsTest.java" />
+         <Loc hash="-1323408464" locRef="48" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/junit4/IMoney.java" totLns="45" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/junit4/IMoney.java" />
+         <Loc hash="-1912888609" locRef="39" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/flowanalysis/np/NullPointer.java" totLns="31" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/flowanalysis/np/NullPointer.java" />
+         <Loc hash="-1432761020" locRef="54" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/nbank/Bank.java" totLns="63" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/nbank/Bank.java" />
+         <Loc hash="-971567706" locRef="83" projId="com.parasoft:demo" projPath="/demo" project="com.parasoft:demo" resProjPath="src/examples/struts/InputForm.java" totLns="25" uri="file://jive/media/data/dev/parasoft/10.0/jtest/examples/demo/src/examples/struts/InputForm.java" />
+      </Locations>
+   </Scope>
+   
+  <SetupProblems>
+    <Problem sev="2" totErrs="1" type="UnitTests" msg="JUnit was not able to correctly run following tests:">
+      <ErrorList>
+        <Error val="Test: examples.nbank.AccountDynamicTest#warning&#xa;Message: Class examples.nbank.AccountDynamicTest has no public constructor TestCase(String name) or TestCase()&#xa;Details:&#xa;junit.framework.AssertionFailedError: Class examples.nbank.AccountDynamicTest has no public constructor TestCase(String name) or TestCase()&#xa;&#x9;at junit.framework.Assert.fail(Assert.java:57)&#xa;&#x9;at junit.framework.TestCase.fail(TestCase.java:227)&#xa;&#x9;at junit.framework.TestSuite$1.runTest(TestSuite.java:100)&#xa;&#x9;at junit.framework.TestCase.runBare(TestCase.java:141)&#xa;&#x9;at junit.framework.TestResult$1.protect(TestResult.java:122)&#xa;&#x9;at junit.framework.TestResult.runProtected(TestResult.java:142)&#xa;&#x9;at junit.framework.TestResult.run(TestResult.java:125)&#xa;&#x9;at junit.framework.TestCase.run(TestCase.java:129)&#xa;&#x9;at junit.framework.TestSuite.runTest(TestSuite.java:255)&#xa;&#x9;at junit.framework.TestSuite.run(TestSuite.java:250)&#xa;&#x9;at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#xa;&#x9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#xa;&#x9;at java.lang.reflect.Method.invoke(Method.java:483)&#xa;&#x9;at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)&#xa;&#x9;at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)&#xa;&#x9;at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)&#xa;&#x9;at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)&#xa;&#x9;at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)&#xa;&#xa;&#xa;" />
+      </ErrorList>
+    </Problem>
+  </SetupProblems>
+
+   <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:02">
+      
+      <Categories>
+         <CategoryGroup authTot="6;" authUrg="6;" desc="This represents the tasks arising from tests that have already been reviewed. This includes exceptions that have been marked as expected, assertion failures from previously reviewed tests, and any other kind of unexpected behavior that needs to be looked at (such as timeouts)." id="GROUP.UTEST.PROBL" label="Fix Unit Test Problems" name="Unit Test Problems" total="6">
+            <Category authTot="0;" authUrg="0;" id="EXC" name="Runtime Exceptions" short="exception" total="0" />
+            <Category authTot="6;" authUrg="6;" id="FAIL" name="Assertion Failures" short="failure" total="6">
+               <Type authTot="1;" authUrg="1;" name="junit.framework.AssertionFailedError" total="1" />
+               <Type authTot="3;" authUrg="3;" name="java.lang.NullPointerException" total="3" />
+               <Type authTot="1;" authUrg="1;" name="java.lang.AssertionError" total="1" />
+               <Type authTot="1;" authUrg="1;" name="java.io.FileNotFoundException" total="1" />
+            </Category>
+            <Category authTot="0;" authUrg="0;" id="CON.VIOL" name="Contract Violations" short="contract violation" total="0" />
+            <Category authTot="0;" authUrg="0;" id="PROF.PROBL" name="Profiling Problems" short="profiling problem" total="0" />
+            <Category authTot="0;" authUrg="0;" id="EXEC.PROBL" name="Execution Problems" short="execution problem" total="0" />
+            <Category authTot="0;" authUrg="0;" id="TEST.PROBL" name="Test Problems" short="test problem" total="0" />
+         </CategoryGroup>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="These are exceptions thrown by automatically generated test cases that need to be reviewed. After review they will be marked as &quot;expected&quot; or code fixed so that the exception does not occur any more." id="GROUP.UNVER.EXC" label="Review Exceptions" name="Exceptions" total="0">
+            <Category authTot="0;" authUrg="0;" id="UNVER.EXC" name="Unverified Runtime Exceptions" short="unverified exception" total="0" />
+         </CategoryGroup>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="These are assertion failures from automatically generated tests that have not been reviewed. This is expected to be zero when the tests are executed as soon as they are generated, but can be non-zero in cases where tests that have not been reviewed, but the execution is repeated." id="GROUP.UNVER.FAIL" label="Review Assertion Failures" name="Assertion Failures" total="0">
+            <Category authTot="0;" authUrg="0;" id="UNVER.FAIL" name="Unverified Assertion Failures" short="unverified failure" total="0" />
+         </CategoryGroup>
+      </Categories>
+      <Projects>
+         <Project err="4" fail="2" id="com.parasoft:demo" name="com.parasoft:demo" pass="36" total="42">
+            <CategoryGroupStats id="GROUP.UTEST.PROBL" total="6" />
+            <CategoryGroupStats id="GROUP.UNVER.EXC" total="0" />
+            <CategoryGroupStats id="GROUP.UNVER.FAIL" total="0" />
+         </Project>
+      </Projects>
+      
+  <ExecViols>
+    <UnitViol sev="1" ln="54" cat="FAIL" rev="unknown.revision" testId="examples.nbank.AccountTest#testApply{}" urgent="true" lnHash="-1409184873" loc="/demo/src/examples/nbank/Customer.java" analyzer="com.parasoft.jtest.unittests.analyzers.JUnitAnalyzer" revComm="" locRef="57" goals="1," revTime="1406029378357" auth="grzesiek">
+      <Thr>
+        <ThrPart type="java.lang.NullPointerException" msg="java.lang.NullPointerException&#xa;&#x9;at examples.nbank.Customer.equals(Customer.java:54)&#xa;&#x9;at junit.framework.Assert.assertEquals(Assert.java:75)&#xa;&#x9;at junit.framework.Assert.assertEquals(Assert.java:86)&#xa;&#x9;at junit.framework.TestCase.assertEquals(TestCase.java:253)&#xa;&#x9;at examples.nbank.AccountTest.testApply(AccountTest.java:22)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#xa;&#x9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#xa;&#x9;at java.lang.reflect.Method.invoke(Method.java:483)&#xa;&#x9;at junit.framework.TestCase.runTest(TestCase.java:176)&#xa;&#x9;at junit.framework.TestCase.runBare(TestCase.java:141)&#xa;&#x9;at junit.framework.TestResult$1.protect(TestResult.java:122)&#xa;&#x9;at junit.framework.TestResult.runProtected(TestResult.java:142)&#xa;&#x9;at junit.framework.TestResult.run(TestResult.java:125)&#xa;&#x9;at junit.framework.TestCase.run(TestCase.java:129)&#xa;&#x9;at junit.framework.TestSuite.runTest(TestSuite.java:255)&#xa;&#x9;at junit.framework.TestSuite.run(TestSuite.java:250)&#xa;&#x9;at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#xa;&#x9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#xa;&#x9;at java.lang.reflect.Method.invoke(Method.java:483)&#xa;&#x9;at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)&#xa;&#x9;at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)&#xa;&#x9;at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)&#xa;&#x9;at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)&#xa;&#x9;at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)">
+          <PathElem locRef="57" loc="/demo/src/examples/nbank/Customer.java" lnHash="-1409184873" ln="54" desc="examples.nbank.Customerequals(Customer.java:54)" />
+          <PathElem desc="junit.framework.AssertassertEquals(Assert.java:75)" />
+          <PathElem desc="junit.framework.AssertassertEquals(Assert.java:86)" />
+          <PathElem desc="junit.framework.TestCaseassertEquals(TestCase.java:253)" />
+          <PathElem locRef="101" loc="/demo/tests/examples/nbank/AccountTest.java" lnHash="512580529" ln="22" desc="examples.nbank.AccountTesttestApply(AccountTest.java:22)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="junit.framework.TestCaserunTest(TestCase.java:176)" />
+          <PathElem desc="junit.framework.TestCaserunBare(TestCase.java:141)" />
+          <PathElem desc="junit.framework.TestResult$1protect(TestResult.java:122)" />
+          <PathElem desc="junit.framework.TestResultrunProtected(TestResult.java:142)" />
+          <PathElem desc="junit.framework.TestResultrun(TestResult.java:125)" />
+          <PathElem desc="junit.framework.TestCaserun(TestCase.java:129)" />
+          <PathElem desc="junit.framework.TestSuiterunTest(TestSuite.java:255)" />
+          <PathElem desc="junit.framework.TestSuiterun(TestSuite.java:250)" />
+          <PathElem desc="org.junit.internal.runners.JUnit38ClassRunnerrun(JUnit38ClassRunner.java:84)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerexecute(JUnit4Provider.java:252)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4ProviderexecuteTestSet(JUnit4Provider.java:141)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerinvoke(JUnit4Provider.java:112)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="org.apache.maven.surefire.util.ReflectionUtilsinvokeMethodWithArray(ReflectionUtils.java:189)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactory$ProviderProxyinvoke(ProviderFactory.java:165)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactoryinvokeProvider(ProviderFactory.java:85)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBooterrunSuitesInProcess(ForkedBooter.java:115)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBootermain(ForkedBooter.java:75)" />
+        </ThrPart>
+      </Thr>
+    </UnitViol>
+    <UnitViol sev="1" ln="54" cat="FAIL" rev="unknown.revision" testId="examples.nbank.AccountJUnit4Test#testApply{}" urgent="true" lnHash="-1409184873" loc="/demo/src/examples/nbank/Customer.java" analyzer="com.parasoft.jtest.unittests.analyzers.JUnitAnalyzer" revComm="" locRef="57" goals="1," revTime="1406029378392" auth="grzesiek">
+      <Thr>
+        <ThrPart type="java.lang.NullPointerException" msg="java.lang.NullPointerException&#xa;&#x9;at examples.nbank.Customer.equals(Customer.java:54)&#xa;&#x9;at org.junit.Assert.isEquals(Assert.java:131)&#xa;&#x9;at org.junit.Assert.equalsRegardingNull(Assert.java:127)&#xa;&#x9;at org.junit.Assert.assertEquals(Assert.java:111)&#xa;&#x9;at org.junit.Assert.assertEquals(Assert.java:144)&#xa;&#x9;at examples.nbank.AccountJUnit4Test.testApply(AccountJUnit4Test.java:29)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#xa;&#x9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#xa;&#x9;at java.lang.reflect.Method.invoke(Method.java:483)&#xa;&#x9;at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#xa;&#x9;at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#xa;&#x9;at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#xa;&#x9;at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#xa;&#x9;at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)&#xa;&#x9;at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)&#xa;&#x9;at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)&#xa;&#x9;at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)&#xa;&#x9;at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)&#xa;&#x9;at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)&#xa;&#x9;at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)&#xa;&#x9;at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)&#xa;&#x9;at org.junit.runners.ParentRunner.run(ParentRunner.java:309)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#xa;&#x9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#xa;&#x9;at java.lang.reflect.Method.invoke(Method.java:483)&#xa;&#x9;at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)&#xa;&#x9;at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)&#xa;&#x9;at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)&#xa;&#x9;at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)&#xa;&#x9;at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)">
+          <PathElem locRef="57" loc="/demo/src/examples/nbank/Customer.java" lnHash="-1409184873" ln="54" desc="examples.nbank.Customerequals(Customer.java:54)" />
+          <PathElem desc="org.junit.AssertisEquals(Assert.java:131)" />
+          <PathElem desc="org.junit.AssertequalsRegardingNull(Assert.java:127)" />
+          <PathElem desc="org.junit.AssertassertEquals(Assert.java:111)" />
+          <PathElem desc="org.junit.AssertassertEquals(Assert.java:144)" />
+          <PathElem locRef="100" loc="/demo/tests/examples/nbank/AccountJUnit4Test.java" lnHash="1036737337" ln="29" desc="examples.nbank.AccountJUnit4TesttestApply(AccountJUnit4Test.java:29)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="org.junit.runners.model.FrameworkMethod$1runReflectiveCall(FrameworkMethod.java:47)" />
+          <PathElem desc="org.junit.internal.runners.model.ReflectiveCallablerun(ReflectiveCallable.java:12)" />
+          <PathElem desc="org.junit.runners.model.FrameworkMethodinvokeExplosively(FrameworkMethod.java:44)" />
+          <PathElem desc="org.junit.internal.runners.statements.InvokeMethodevaluate(InvokeMethod.java:17)" />
+          <PathElem desc="org.junit.runners.ParentRunnerrunLeaf(ParentRunner.java:271)" />
+          <PathElem desc="org.junit.runners.BlockJUnit4ClassRunnerrunChild(BlockJUnit4ClassRunner.java:70)" />
+          <PathElem desc="org.junit.runners.BlockJUnit4ClassRunnerrunChild(BlockJUnit4ClassRunner.java:50)" />
+          <PathElem desc="org.junit.runners.ParentRunner$3run(ParentRunner.java:238)" />
+          <PathElem desc="org.junit.runners.ParentRunner$1schedule(ParentRunner.java:63)" />
+          <PathElem desc="org.junit.runners.ParentRunnerrunChildren(ParentRunner.java:236)" />
+          <PathElem desc="org.junit.runners.ParentRunneraccess$000(ParentRunner.java:53)" />
+          <PathElem desc="org.junit.runners.ParentRunner$2evaluate(ParentRunner.java:229)" />
+          <PathElem desc="org.junit.runners.ParentRunnerrun(ParentRunner.java:309)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerexecute(JUnit4Provider.java:252)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4ProviderexecuteTestSet(JUnit4Provider.java:141)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerinvoke(JUnit4Provider.java:112)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="org.apache.maven.surefire.util.ReflectionUtilsinvokeMethodWithArray(ReflectionUtils.java:189)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactory$ProviderProxyinvoke(ProviderFactory.java:165)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactoryinvokeProvider(ProviderFactory.java:85)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBooterrunSuitesInProcess(ForkedBooter.java:115)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBootermain(ForkedBooter.java:75)" />
+        </ThrPart>
+      </Thr>
+    </UnitViol>
+    <UnitViol sev="1" ln="13" cat="FAIL" rev="unknown.revision" testId="examples.runtime.AddTest#testAdd{}" urgent="true" lnHash="1581698990" loc="/demo/tests/examples/runtime/AddTest.java" analyzer="com.parasoft.jtest.unittests.analyzers.JUnitAnalyzer" revComm="" locRef="104" goals="1," revTime="1406029378358" auth="grzesiek">
+      <Thr>
+        <ThrPart type="junit.framework.AssertionFailedError" msg="expected:&lt;2147483650> but was:&lt;-2147483646>">
+          <PathElem desc="junit.framework.Assertfail(Assert.java:57)" />
+          <PathElem desc="junit.framework.AssertfailNotEquals(Assert.java:329)" />
+          <PathElem desc="junit.framework.AssertassertEquals(Assert.java:78)" />
+          <PathElem desc="junit.framework.AssertassertEquals(Assert.java:86)" />
+          <PathElem desc="junit.framework.TestCaseassertEquals(TestCase.java:253)" />
+          <PathElem locRef="104" loc="/demo/tests/examples/runtime/AddTest.java" lnHash="1581698990" ln="13" desc="examples.runtime.AddTesttestAdd(AddTest.java:13)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="junit.framework.TestCaserunTest(TestCase.java:176)" />
+          <PathElem desc="junit.framework.TestCaserunBare(TestCase.java:141)" />
+          <PathElem desc="junit.framework.TestResult$1protect(TestResult.java:122)" />
+          <PathElem desc="junit.framework.TestResultrunProtected(TestResult.java:142)" />
+          <PathElem desc="junit.framework.TestResultrun(TestResult.java:125)" />
+          <PathElem desc="junit.framework.TestCaserun(TestCase.java:129)" />
+          <PathElem desc="junit.framework.TestSuiterunTest(TestSuite.java:255)" />
+          <PathElem desc="junit.framework.TestSuiterun(TestSuite.java:250)" />
+          <PathElem desc="org.junit.internal.runners.JUnit38ClassRunnerrun(JUnit38ClassRunner.java:84)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerexecute(JUnit4Provider.java:252)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4ProviderexecuteTestSet(JUnit4Provider.java:141)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerinvoke(JUnit4Provider.java:112)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="org.apache.maven.surefire.util.ReflectionUtilsinvokeMethodWithArray(ReflectionUtils.java:189)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactory$ProviderProxyinvoke(ProviderFactory.java:165)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactoryinvokeProvider(ProviderFactory.java:85)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBooterrunSuitesInProcess(ForkedBooter.java:115)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBootermain(ForkedBooter.java:75)" />
+        </ThrPart>
+      </Thr>
+    </UnitViol>
+    <UnitViol sev="1" ln="21" cat="FAIL" rev="unknown.revision" testId="examples.runtime.ExitingFinallyBlockAbruptlyFixedTest#test{}" urgent="true" lnHash="209776279" loc="/demo/tests/examples/runtime/ExitingFinallyBlockAbruptlyFixedTest.java" analyzer="com.parasoft.jtest.unittests.analyzers.JUnitAnalyzer" revComm="" locRef="105" goals="1," revTime="1406029378359" auth="grzesiek">
+      <Thr>
+        <ThrPart type="java.io.FileNotFoundException" msg="non_existing_file.tmp (Nie ma takiego pliku ani katalogu)">
+          <PathElem desc="java.io.FileInputStreamopen(-2)" />
+          <PathElem desc="java.io.FileInputStream&lt;init>(FileInputStream.java:131)" />
+          <PathElem desc="java.io.FileInputStream&lt;init>(FileInputStream.java:87)" />
+          <PathElem locRef="105" loc="/demo/tests/examples/runtime/ExitingFinallyBlockAbruptlyFixedTest.java" lnHash="209776279" ln="21" desc="examples.runtime.ExitingFinallyBlockAbruptlyFixedTesttest(ExitingFinallyBlockAbruptlyFixedTest.java:21)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="junit.framework.TestCaserunTest(TestCase.java:176)" />
+          <PathElem desc="junit.framework.TestCaserunBare(TestCase.java:141)" />
+          <PathElem desc="junit.framework.TestResult$1protect(TestResult.java:122)" />
+          <PathElem desc="junit.framework.TestResultrunProtected(TestResult.java:142)" />
+          <PathElem desc="junit.framework.TestResultrun(TestResult.java:125)" />
+          <PathElem desc="junit.framework.TestCaserun(TestCase.java:129)" />
+          <PathElem desc="junit.framework.TestSuiterunTest(TestSuite.java:255)" />
+          <PathElem desc="junit.framework.TestSuiterun(TestSuite.java:250)" />
+          <PathElem desc="org.junit.internal.runners.JUnit38ClassRunnerrun(JUnit38ClassRunner.java:84)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerexecute(JUnit4Provider.java:252)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4ProviderexecuteTestSet(JUnit4Provider.java:141)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerinvoke(JUnit4Provider.java:112)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="org.apache.maven.surefire.util.ReflectionUtilsinvokeMethodWithArray(ReflectionUtils.java:189)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactory$ProviderProxyinvoke(ProviderFactory.java:165)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactoryinvokeProvider(ProviderFactory.java:85)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBooterrunSuitesInProcess(ForkedBooter.java:115)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBootermain(ForkedBooter.java:75)" />
+        </ThrPart>
+      </Thr>
+    </UnitViol>
+    <UnitViol sev="1" ln="25" cat="FAIL" rev="unknown.revision" testId="examples.runtime.ExitingFinallyBlockAbruptlyTest#test{}" urgent="true" lnHash="1506418955" loc="/demo/tests/examples/runtime/ExitingFinallyBlockAbruptlyTest.java" analyzer="com.parasoft.jtest.unittests.analyzers.JUnitAnalyzer" revComm="" locRef="106" goals="1," revTime="1406029378392" auth="grzesiek">
+      <Thr>
+        <ThrPart type="java.lang.NullPointerException" msg="java.lang.NullPointerException&#xa;&#x9;at examples.runtime.ExitingFinallyBlockAbruptlyTest.test(ExitingFinallyBlockAbruptlyTest.java:25)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#xa;&#x9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#xa;&#x9;at java.lang.reflect.Method.invoke(Method.java:483)&#xa;&#x9;at junit.framework.TestCase.runTest(TestCase.java:176)&#xa;&#x9;at junit.framework.TestCase.runBare(TestCase.java:141)&#xa;&#x9;at junit.framework.TestResult$1.protect(TestResult.java:122)&#xa;&#x9;at junit.framework.TestResult.runProtected(TestResult.java:142)&#xa;&#x9;at junit.framework.TestResult.run(TestResult.java:125)&#xa;&#x9;at junit.framework.TestCase.run(TestCase.java:129)&#xa;&#x9;at junit.framework.TestSuite.runTest(TestSuite.java:255)&#xa;&#x9;at junit.framework.TestSuite.run(TestSuite.java:250)&#xa;&#x9;at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)&#xa;&#x9;at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#xa;&#x9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#xa;&#x9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#xa;&#x9;at java.lang.reflect.Method.invoke(Method.java:483)&#xa;&#x9;at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)&#xa;&#x9;at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)&#xa;&#x9;at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)&#xa;&#x9;at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)&#xa;&#x9;at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)">
+          <PathElem locRef="106" loc="/demo/tests/examples/runtime/ExitingFinallyBlockAbruptlyTest.java" lnHash="1506418955" ln="25" desc="examples.runtime.ExitingFinallyBlockAbruptlyTesttest(ExitingFinallyBlockAbruptlyTest.java:25)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="junit.framework.TestCaserunTest(TestCase.java:176)" />
+          <PathElem desc="junit.framework.TestCaserunBare(TestCase.java:141)" />
+          <PathElem desc="junit.framework.TestResult$1protect(TestResult.java:122)" />
+          <PathElem desc="junit.framework.TestResultrunProtected(TestResult.java:142)" />
+          <PathElem desc="junit.framework.TestResultrun(TestResult.java:125)" />
+          <PathElem desc="junit.framework.TestCaserun(TestCase.java:129)" />
+          <PathElem desc="junit.framework.TestSuiterunTest(TestSuite.java:255)" />
+          <PathElem desc="junit.framework.TestSuiterun(TestSuite.java:250)" />
+          <PathElem desc="org.junit.internal.runners.JUnit38ClassRunnerrun(JUnit38ClassRunner.java:84)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerexecute(JUnit4Provider.java:252)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4ProviderexecuteTestSet(JUnit4Provider.java:141)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerinvoke(JUnit4Provider.java:112)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="org.apache.maven.surefire.util.ReflectionUtilsinvokeMethodWithArray(ReflectionUtils.java:189)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactory$ProviderProxyinvoke(ProviderFactory.java:165)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactoryinvokeProvider(ProviderFactory.java:85)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBooterrunSuitesInProcess(ForkedBooter.java:115)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBootermain(ForkedBooter.java:75)" />
+        </ThrPart>
+      </Thr>
+    </UnitViol>
+    <UnitViol sev="1" ln="42" cat="FAIL" rev="unknown.revision" testId="examples.stubs.InterpreterTest#testAdd34{}" urgent="true" lnHash="264341327" loc="/demo/tests/examples/stubs/InterpreterTest.java" analyzer="com.parasoft.jtest.unittests.analyzers.JUnitAnalyzer" revComm="" locRef="114" goals="1," revTime="1406029378359" auth="grzesiek">
+      <Thr>
+        <ThrPart type="java.lang.AssertionError" msg="value is:-1">
+          <PathElem desc="org.junit.Assertfail(Assert.java:88)" />
+          <PathElem desc="org.junit.AssertassertTrue(Assert.java:41)" />
+          <PathElem locRef="114" loc="/demo/tests/examples/stubs/InterpreterTest.java" lnHash="264341327" ln="42" desc="examples.stubs.InterpreterTesttestAdd34(InterpreterTest.java:42)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="org.junit.internal.runners.TestMethodinvoke(TestMethod.java:68)" />
+          <PathElem desc="org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImpl$PowerMockJUnit44MethodRunnerrunTestMethod(PowerMockJUnit44RunnerDelegateImpl.java:310)" />
+          <PathElem desc="org.junit.internal.runners.MethodRoadie$2run(MethodRoadie.java:88)" />
+          <PathElem desc="org.junit.internal.runners.MethodRoadierunBeforesThenTestThenAfters(MethodRoadie.java:96)" />
+          <PathElem desc="org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImpl$PowerMockJUnit44MethodRunnerexecuteTest(PowerMockJUnit44RunnerDelegateImpl.java:294)" />
+          <PathElem desc="org.powermock.modules.junit4.internal.impl.PowerMockJUnit47RunnerDelegateImpl$PowerMockJUnit47MethodRunnerexecuteTestInSuper(PowerMockJUnit47RunnerDelegateImpl.java:127)" />
+          <PathElem desc="org.powermock.modules.junit4.internal.impl.PowerMockJUnit47RunnerDelegateImpl$PowerMockJUnit47MethodRunnerexecuteTest(PowerMockJUnit47RunnerDelegateImpl.java:82)" />
+          <PathElem desc="org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImpl$PowerMockJUnit44MethodRunnerrunBeforesThenTestThenAfters(PowerMockJUnit44RunnerDelegateImpl.java:282)" />
+          <PathElem desc="org.junit.internal.runners.MethodRoadierunTest(MethodRoadie.java:86)" />
+          <PathElem desc="org.junit.internal.runners.MethodRoadierun(MethodRoadie.java:49)" />
+          <PathElem desc="org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImplinvokeTestMethod(PowerMockJUnit44RunnerDelegateImpl.java:207)" />
+          <PathElem desc="org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImplrunMethods(PowerMockJUnit44RunnerDelegateImpl.java:146)" />
+          <PathElem desc="org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImpl$1run(PowerMockJUnit44RunnerDelegateImpl.java:120)" />
+          <PathElem desc="org.junit.internal.runners.ClassRoadierunUnprotected(ClassRoadie.java:33)" />
+          <PathElem desc="org.junit.internal.runners.ClassRoadierunProtected(ClassRoadie.java:45)" />
+          <PathElem desc="org.powermock.modules.junit4.internal.impl.PowerMockJUnit44RunnerDelegateImplrun(PowerMockJUnit44RunnerDelegateImpl.java:118)" />
+          <PathElem desc="org.powermock.modules.junit4.common.internal.impl.JUnit4TestSuiteChunkerImplrun(JUnit4TestSuiteChunkerImpl.java:104)" />
+          <PathElem desc="org.powermock.modules.junit4.common.internal.impl.AbstractCommonPowerMockRunnerrun(AbstractCommonPowerMockRunner.java:53)" />
+          <PathElem desc="org.powermock.modules.junit4.PowerMockRunnerrun(PowerMockRunner.java:53)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerexecute(JUnit4Provider.java:252)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4ProviderexecuteTestSet(JUnit4Provider.java:141)" />
+          <PathElem desc="org.apache.maven.surefire.junit4.JUnit4Providerinvoke(JUnit4Provider.java:112)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke0(-2)" />
+          <PathElem desc="sun.reflect.NativeMethodAccessorImplinvoke(NativeMethodAccessorImpl.java:62)" />
+          <PathElem desc="sun.reflect.DelegatingMethodAccessorImplinvoke(DelegatingMethodAccessorImpl.java:43)" />
+          <PathElem desc="java.lang.reflect.Methodinvoke(Method.java:483)" />
+          <PathElem desc="org.apache.maven.surefire.util.ReflectionUtilsinvokeMethodWithArray(ReflectionUtils.java:189)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactory$ProviderProxyinvoke(ProviderFactory.java:165)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ProviderFactoryinvokeProvider(ProviderFactory.java:85)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBooterrunSuitesInProcess(ForkedBooter.java:115)" />
+          <PathElem desc="org.apache.maven.surefire.booter.ForkedBootermain(ForkedBooter.java:75)" />
+        </ThrPart>
+      </Thr>
+    </UnitViol>
+  </ExecViols>
+
+      
+   <ExecutedTestsDetails>
+      <Total fail="2" name="Passed / Total" authErr="3;" total="42" pass="36" err="4" authFail="2;">
+         <Project fail="2" name="com.parasoft:demo" authErr="3;" total="42" pass="36" err="4" id="com.parasoft:demo" authFail="2;">
+            <TestSuite id="IteratingThroughLinkedListUsingGetTest.java#examples.runtime.IteratingThroughLinkedListUsingGetTest" locRef="108" root="true" name="examples.runtime.IteratingThroughLinkedListUsingGetTest" authErr="0;" total="1" pass="1" authFail="0;">
+               <Test id="examples.runtime.IteratingThroughLinkedListUsingGetTest#test{}" locRef="108" startTime="-1" time="0:00:10.885" startLn="15" status="pass" startPos="5" endLn="25" name="test" endPos="5" authErr="0;" total="1" pass="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="MoneyTest.java#examples.junit4.MoneyTest" locRef="97" root="true" name="examples.junit4.MoneyTest" authErr="0;" total="23" pass="23" authFail="0;">
+               <Test id="examples.junit4.MoneyTest#testSimpleSubtract{}" locRef="97" startTime="-1" time="1:00:00.022" startLn="157" status="pass" startPos="2" endLn="161" name="testSimpleSubtract" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testNormalize2{}" locRef="97" startTime="-1" time="0:00:00.007" startLn="118" status="pass" startPos="2" endLn="122" name="testNormalize2" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testNormalize3{}" locRef="97" startTime="-1" time="0:00:00.016" startLn="123" status="pass" startPos="2" endLn="128" name="testNormalize3" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testNormalize4{}" locRef="97" startTime="-1" time="0:00:00.003" startLn="129" status="pass" startPos="2" endLn="133" name="testNormalize4" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testBagNotEquals{}" locRef="97" startTime="-1" time="0:00:00.002" startLn="77" status="pass" startPos="2" endLn="80" name="testBagNotEquals" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testBagSubtract{}" locRef="97" startTime="-1" time="0:00:00.002" startLn="58" status="pass" startPos="2" endLn="62" name="testBagSubtract" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testSimpleAdd{}" locRef="97" startTime="-1" time="0:00:00.000" startLn="137" status="pass" startPos="2" endLn="141" name="testSimpleAdd" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#zeroMoniesAreEqualRegardlessOfCurrency{}" locRef="97" startTime="-1" time="0:00:00.001" startLn="103" status="pass" startPos="2" endLn="108" name="zeroMoniesAreEqualRegardlessOfCurrency" endPos="3" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testPrint{}" locRef="97" startTime="-1" time="0:00:00.001" startLn="134" status="pass" startPos="2" endLn="136" name="testPrint" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testMoneyHash{}" locRef="97" startTime="-1" time="0:00:00.001" startLn="109" status="pass" startPos="2" endLn="113" name="testMoneyHash" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testSimpleBagAdd{}" locRef="97" startTime="-1" time="0:00:00.001" startLn="142" status="pass" startPos="2" endLn="146" name="testSimpleBagAdd" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testBagSimpleAdd{}" locRef="97" startTime="-1" time="0:00:00.001" startLn="53" status="pass" startPos="2" endLn="57" name="testBagSimpleAdd" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testSimpleNegate{}" locRef="97" startTime="-1" time="0:00:00.001" startLn="152" status="pass" startPos="2" endLn="156" name="testSimpleNegate" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testMoneyBagHash{}" locRef="97" startTime="-1" time="0:00:00.004" startLn="91" status="pass" startPos="2" endLn="94" name="testMoneyBagHash" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testBagNegate{}" locRef="97" startTime="-1" time="0:00:00.002" startLn="48" status="pass" startPos="2" endLn="52" name="testBagNegate" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testSimpleMultiply{}" locRef="97" startTime="-1" time="0:00:00.008" startLn="147" status="pass" startPos="2" endLn="151" name="testSimpleMultiply" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testBagSumAdd{}" locRef="97" startTime="-1" time="0:00:00.003" startLn="63" status="pass" startPos="2" endLn="67" name="testBagSumAdd" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testMoneyBagEquals{}" locRef="97" startTime="-1" time="0:00:00.001" startLn="81" status="pass" startPos="2" endLn="90" name="testMoneyBagEquals" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testBagMultiply{}" locRef="97" startTime="-1" time="0:00:00.001" startLn="33" status="pass" startPos="2" endLn="39" name="testBagMultiply" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testSimplify{}" locRef="97" startTime="-1" time="0:00:00.000" startLn="114" status="pass" startPos="2" endLn="117" name="testSimplify" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testIsZero{}" locRef="97" startTime="-1" time="0:00:00.002" startLn="68" status="pass" startPos="2" endLn="71" name="testIsZero" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testMoneyEquals{}" locRef="97" startTime="-1" time="0:00:00.000" startLn="95" status="pass" startPos="2" endLn="102" name="testMoneyEquals" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.junit4.MoneyTest#testMixedSimpleAdd{}" locRef="97" startTime="-1" time="0:00:00.000" startLn="72" status="pass" startPos="2" endLn="76" name="testMixedSimpleAdd" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="IteratingThroughLinkedListUsingGetFixedTest.java#examples.runtime.IteratingThroughLinkedListUsingGetFixedTest" locRef="107" root="true" name="examples.runtime.IteratingThroughLinkedListUsingGetFixedTest" authErr="0;" total="1" pass="1" authFail="0;">
+               <Test id="examples.runtime.IteratingThroughLinkedListUsingGetFixedTest#test{}" locRef="107" startTime="-1" time="0:00:00.000" startLn="16" status="pass" startPos="5" endLn="27" name="test" endPos="5" authErr="0;" total="1" pass="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="FileExampleTest.java#examples.stubs.FileExampleTest" locRef="113" root="true" name="examples.stubs.FileExampleTest" authErr="0;" total="1" pass="1" authFail="0;">
+               <Test id="examples.stubs.FileExampleTest#testAnalyze{}" locRef="113" startTime="-1" time="0:00:00.019" startLn="15" status="pass" startPos="2" endLn="29" name="testAnalyze" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="NonSymmetricEqualsFixedTest.java#examples.runtime.NonSymmetricEqualsFixedTest" locRef="109" root="true" name="examples.runtime.NonSymmetricEqualsFixedTest" authErr="0;" total="1" pass="1" authFail="0;">
+               <Test id="examples.runtime.NonSymmetricEqualsFixedTest#test{}" locRef="109" startTime="-1" time="0:00:00.000" startLn="16" status="pass" startPos="5" endLn="20" name="test" endPos="5" authErr="0;" total="1" pass="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="ConstructorExampleTest.java#examples.stubs.ConstructorExampleTest" locRef="112" root="true" name="examples.stubs.ConstructorExampleTest" authErr="0;" total="1" pass="1" authFail="0;">
+               <Test id="examples.stubs.ConstructorExampleTest#testGetFileLengthPowerMockito{}" locRef="112" startTime="-1" time="0:00:00.192" startLn="26" status="pass" startPos="5" endLn="40" name="testGetFileLengthPowerMockito" endPos="5" authErr="0;" total="1" pass="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="AccessingFileSimultaneouslyFixedTest.java#examples.runtime.AccessingFileSimultaneouslyFixedTest" locRef="102" root="true" name="examples.runtime.AccessingFileSimultaneouslyFixedTest" authErr="0;" total="1" pass="1" authFail="0;">
+               <Test id="examples.runtime.AccessingFileSimultaneouslyFixedTest#test{}" locRef="102" startTime="-1" time="0:00:00.001" startLn="17" status="pass" startPos="5" endLn="35" name="test" endPos="5" authErr="0;" total="1" pass="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="ExampleServletTest.java#examples.servlets.ExampleServletTest" locRef="111" root="true" name="examples.servlets.ExampleServletTest" authErr="0;" total="4" pass="4" authFail="0;">
+               <Test id="examples.servlets.ExampleServletTest#testTryThis1{}" locRef="111" startTime="-1" time="0:00:00.000" startLn="27" status="pass" startPos="2" endLn="37" name="testTryThis1" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.servlets.ExampleServletTest#testTryThis2{}" locRef="111" startTime="-1" time="0:00:00.168" startLn="48" status="pass" startPos="2" endLn="61" name="testTryThis2" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.servlets.ExampleServletTest#testTryThis3{}" locRef="111" startTime="-1" time="0:00:00.004" startLn="71" status="pass" startPos="2" endLn="85" name="testTryThis3" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+               <Test id="examples.servlets.ExampleServletTest#testTryThis4{}" locRef="111" startTime="-1" time="0:00:00.001" startLn="95" status="pass" startPos="2" endLn="109" name="testTryThis4" endPos="2" authErr="0;" total="1" pass="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="AddTest.java#examples.runtime.AddTest" locRef="104" root="true" name="examples.runtime.AddTest" fail="1" authErr="0;" total="1" authFail="1;">
+               <Test id="examples.runtime.AddTest#testAdd{}" locRef="104" startTime="-1" time="0:00:00.000" startLn="11" status="fail" startPos="5" endLn="14" name="testAdd" endPos="5" fail="1" authErr="0;" total="1" authFail="1;" />
+            </TestSuite>
+            <TestSuite id="ExitingFinallyBlockAbruptlyFixedTest.java#examples.runtime.ExitingFinallyBlockAbruptlyFixedTest" locRef="105" root="true" name="examples.runtime.ExitingFinallyBlockAbruptlyFixedTest" authErr="1;" total="1" err="1" authFail="0;">
+               <Test id="examples.runtime.ExitingFinallyBlockAbruptlyFixedTest#test{}" locRef="105" startTime="-1" time="0:00:00.000" startLn="18" status="err" startPos="5" endLn="27" name="test" endPos="5" authErr="1;" total="1" err="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="InterpreterTest.java#examples.stubs.InterpreterTest" locRef="114" root="true" name="examples.stubs.InterpreterTest" fail="1" authErr="0;" total="1" authFail="1;">
+               <Test id="examples.stubs.InterpreterTest#testAdd34{}" locRef="114" startTime="-1" time="0:00:00.198" startLn="31" status="fail" startPos="5" endLn="47" name="testAdd34" endPos="5" fail="1" authErr="0;" total="1" authFail="1;" />
+            </TestSuite>
+            <TestSuite id="AccountTest.java#examples.nbank.AccountTest" locRef="101" root="true" name="examples.nbank.AccountTest" authErr="0;" total="2" pass="1" err="1" authFail="0;">
+               <Test id="examples.nbank.AccountTest#testApply{}" locRef="101" startTime="-1" time="0:00:00.002" startLn="14" status="err" startPos="5" endLn="23" name="testApply" endPos="5" authErr="0;" total="1" err="1" authFail="0;" />
+               <Test id="examples.nbank.AccountTest#testApply2{}" locRef="101" startTime="-1" time="0:00:00.001" startLn="25" status="pass" startPos="5" endLn="33" name="testApply2" endPos="5" authErr="0;" total="1" pass="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="AccessingFileSimultaneouslyTest.java#examples.runtime.AccessingFileSimultaneouslyTest" locRef="103" root="true" name="examples.runtime.AccessingFileSimultaneouslyTest" authErr="0;" total="1" pass="1" authFail="0;">
+               <Test id="examples.runtime.AccessingFileSimultaneouslyTest#test{}" locRef="103" startTime="-1" time="0:00:00.003" startLn="16" status="pass" startPos="5" endLn="36" name="test" endPos="5" authErr="0;" total="1" pass="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="ExitingFinallyBlockAbruptlyTest.java#examples.runtime.ExitingFinallyBlockAbruptlyTest" locRef="106" root="true" name="examples.runtime.ExitingFinallyBlockAbruptlyTest" authErr="1;" total="1" err="1" authFail="0;">
+               <Test id="examples.runtime.ExitingFinallyBlockAbruptlyTest#test{}" locRef="106" startTime="-1" time="0:00:00.000" startLn="18" status="err" startPos="5" endLn="27" name="test" endPos="5" authErr="1;" total="1" err="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="AccountJUnit4Test.java#examples.nbank.AccountJUnit4Test" locRef="100" root="true" name="examples.nbank.AccountJUnit4Test" authErr="1;" total="1" err="1" authFail="0;">
+               <Test id="examples.nbank.AccountJUnit4Test#testApply{}" locRef="100" startTime="-1" time="0:00:00.005" startLn="19" status="err" startPos="5" endLn="30" name="testApply" endPos="5" authErr="1;" total="1" err="1" authFail="0;" />
+            </TestSuite>
+            <TestSuite id="NonSymmetricEqualsTest.java#examples.runtime.NonSymmetricEqualsTest" locRef="110" root="true" name="examples.runtime.NonSymmetricEqualsTest" authErr="0;" total="1" pass="1" authFail="0;">
+               <Test id="examples.runtime.NonSymmetricEqualsTest#testOne{}" locRef="110" startTime="-1" time="0:00:00.000" startLn="16" status="pass" startPos="5" endLn="20" name="testOne" endPos="5" authErr="0;" total="1" pass="1" authFail="0;" />
+            </TestSuite>
+         </Project>
+      </Total>
+   </ExecutedTestsDetails>
+
+      <Coverage>
+         <Types>
+            <CvgType cvgDecor="Marker" dispCvg="executable lines" dispId="Line" dispName="Line Coverage" dispNoCvg="no executable lines" id="LC" />
+         </Types>
+         <CvgStats>
+            <CvgInfo elem="Total" exp="1" num="183" total="1767" val="10">
+               <CvgInfo elem="com.parasoft:demo" exp="1" num="183" total="1767" val="10">
+                  <CvgInfo elem="src" exp="1" num="183" total="1767" val="10">
+                     <CvgInfo elem="dbc" num="0" total="12" val="0">
+                        <CvgInfo elem="Example.java" num="0" total="10" val="0">
+                           <CvgInfo elem="Example" num="0" total="10" val="0">
+                              <CvgInfo elem="dbc/Example()" num="0" total="1" val="0" />
+                              <CvgInfo elem="main( java.lang.String[] )" num="0" total="7" val="0" />
+                              <CvgInfo elem="printMonth( int )" num="0" total="2" val="0" />
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="RequirementViolation.java" num="0" total="2" val="0">
+                           <CvgInfo elem="RequirementViolation" num="0" total="2" val="0">
+                              <CvgInfo elem="add( int, int )" num="0" total="1" val="0" />
+                              <CvgInfo elem="dbc/RequirementViolation()" num="0" total="1" val="0" />
+                           </CvgInfo>
+                        </CvgInfo>
+                     </CvgInfo>
+                     <CvgInfo elem="examples" exp="1" num="183" total="1755" val="10">
+                        <CvgInfo elem="bank" num="0" total="150" val="0">
+                           <CvgInfo elem="Transaction.java" num="0" total="4" val="0">
+                              <CvgInfo elem="Transaction" num="0" total="4" val="0">
+                                 <CvgInfo elem="examples/bank/Transaction( int )" num="0" total="3" val="0" />
+                                 <CvgInfo elem="getTransactionFee()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="BankAccount.java" num="0" total="20" val="0">
+                              <CvgInfo elem="BankAccount" num="0" total="20" val="0">
+                                 <CvgInfo elem="apply( examples.bank.Transaction )" num="0" total="8" val="0" />
+                                 <CvgInfo elem="apply0( examples.bank.ChangeOwnership )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="apply0( examples.bank.Deposit )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="apply0( examples.bank.Withdraw )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="examples/bank/BankAccount( int, int )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="getBalance()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="getCustomerId()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="CreditCardWithObject.java" num="0" total="54" val="0">
+                              <CvgInfo elem="CreditCardWithObject" num="0" total="54" val="0">
+                                 <CvgInfo elem="displayStatement()" num="0" total="6" val="0" />
+                                 <CvgInfo elem="examples/bank/CreditCardWithObject( int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String )" num="0" total="10" val="0" />
+                                 <CvgInfo elem="get_creditCardNumber()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_currentBalance()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_customerId()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_customerName()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_socialSecurityNumber()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_zipcode()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="makePayment( examples.bank.BankAccount )" num="0" total="5" val="0" />
+                                 <CvgInfo elem="set_creditCardNumber( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_currentBalance( int )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_customerId( int )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_customerName( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_socialSecurityNumber( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_zipcode( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="validate( int[], java.lang.String )" num="0" total="11" val="0" />
+                                 <CvgInfo elem="validate()" num="0" total="4" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Deposit.java" num="0" total="4" val="0">
+                              <CvgInfo elem="Deposit" num="0" total="4" val="0">
+                                 <CvgInfo elem="examples/bank/Deposit( int )" num="0" total="3" val="0" />
+                                 <CvgInfo elem="getAmount()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="CreditCard.java" num="0" total="54" val="0">
+                              <CvgInfo elem="CreditCard" num="0" total="54" val="0">
+                                 <CvgInfo elem="displayStatement()" num="0" total="6" val="0" />
+                                 <CvgInfo elem="examples/bank/CreditCard( int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String )" num="0" total="10" val="0" />
+                                 <CvgInfo elem="get_creditCardNumber()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_currentBalance()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_customerId()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_customerName()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_socialSecurityNumber()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_zipcode()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="makePayment( examples.bank.BankAccount )" num="0" total="5" val="0" />
+                                 <CvgInfo elem="set_creditCardNumber( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_currentBalance( int )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_customerId( int )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_customerName( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_socialSecurityNumber( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_zipcode( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="validate( int[], java.lang.String )" num="0" total="11" val="0" />
+                                 <CvgInfo elem="validate()" num="0" total="4" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Withdraw.java" num="0" total="4" val="0">
+                              <CvgInfo elem="Withdraw" num="0" total="4" val="0">
+                                 <CvgInfo elem="examples/bank/Withdraw( int )" num="0" total="3" val="0" />
+                                 <CvgInfo elem="getAmount()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Customer.java" num="0" total="6" val="0">
+                              <CvgInfo elem="Customer" num="0" total="6" val="0">
+                                 <CvgInfo elem="examples/bank/Customer( java.lang.String, int )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="getName()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="getZip()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="ChangeOwnership.java" num="0" total="4" val="0">
+                              <CvgInfo elem="ChangeOwnership" num="0" total="4" val="0">
+                                 <CvgInfo elem="examples/bank/ChangeOwnership( int )" num="0" total="3" val="0" />
+                                 <CvgInfo elem="getNewCustomerId()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="eval" num="0" total="11" val="0">
+                           <CvgInfo elem="Simple.java" num="0" total="11" val="0">
+                              <CvgInfo elem="Simple" num="0" total="11" val="0">
+                                 <CvgInfo elem="add( int, int )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="examples/eval/Simple()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="map( int )" num="0" total="5" val="0" />
+                                 <CvgInfo elem="startsWith( java.lang.String, java.lang.String )" num="0" total="4" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="exec" num="0" total="2" val="0">
+                           <CvgInfo elem="Parameterized.java" num="0" total="2" val="0">
+                              <CvgInfo elem="Parameterized" num="0" total="2" val="0">
+                                 <CvgInfo elem="add( int, int )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="examples/exec/Parameterized()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="flowanalysis" exp="1" num="0" total="499" val="0">
+                           <CvgInfo elem="np" num="0" total="90" val="0">
+                              <CvgInfo elem="NullPointer.java" num="0" total="15" val="0">
+                                 <CvgInfo elem="NullPointer" num="0" total="15" val="0">
+                                    <CvgInfo elem="close( java.io.Reader )" num="0" total="4" val="0" />
+                                    <CvgInfo elem="examples/flowanalysis/np/NullPointer()" num="0" total="2" val="0" />
+                                    <CvgInfo elem="getLineLength()" num="0" total="9" val="0" />
+                                 </CvgInfo>
+                              </CvgInfo>
+                              <CvgInfo elem="ExtendedNullPointer.java" num="0" total="25" val="0">
+                                 <CvgInfo elem="ExtendedNullPointer" num="0" total="25" val="0">
+                                    <CvgInfo elem="close( java.io.Reader )" num="0" total="6" val="0" />
+                                    <CvgInfo elem="examples/flowanalysis/np/ExtendedNullPointer()" num="0" total="3" val="0" />
+                                    <CvgInfo elem="getCountry( java.lang.String, boolean )" num="0" total="4" val="0" />
+                                    <CvgInfo elem="getCurrentCountryName()" num="0" total="2" val="0" />
+                                    <CvgInfo elem="getLineLength()" num="0" total="10" val="0" />
+                                 </CvgInfo>
+                              </CvgInfo>
+                              <CvgInfo elem="MessageFormatter.java" num="0" total="5" val="0">
+                                 <CvgInfo elem="MessageFormatter" num="0" total="5" val="0">
+                                    <CvgInfo elem="examples/flowanalysis/np/MessageFormatter()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="printMessage( examples.flowanalysis.np.DatabaseObject )" num="0" total="2" val="0" />
+                                    <CvgInfo elem="printMessage( java.lang.Object, java.lang.Object )" num="0" total="2" val="0" />
+                                 </CvgInfo>
+                              </CvgInfo>
+                              <CvgInfo elem="SimpleNeverHappenedAndNotAcknowledgedByBD.java" num="0" total="9" val="0">
+                                 <CvgInfo elem="SimpleNeverHappenedAndNotAcknowledgedByBD" num="0" total="9" val="0">
+                                    <CvgInfo elem="Name" num="0" total="4" val="0">
+                                       <CvgInfo elem="examples/flowanalysis/np/SimpleNeverHappenedAndNotAcknowledgedByBD$Name( examples.flowanalysis.np.SimpleNeverHappenedAndNotAcknowledgedByBD, java.lang.String )" num="0" total="3" val="0" />
+                                       <CvgInfo elem="toString()" num="0" total="1" val="0" />
+                                    </CvgInfo>
+                                    <CvgInfo elem="examples/flowanalysis/np/SimpleNeverHappenedAndNotAcknowledgedByBD()" num="0" total="2" val="0" />
+                                    <CvgInfo elem="getName()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="initialize( java.lang.String )" num="0" total="2" val="0" />
+                                 </CvgInfo>
+                              </CvgInfo>
+                              <CvgInfo elem="DatabaseObject.java" num="0" total="28" val="0">
+                                 <CvgInfo elem="DatabaseObject" num="0" total="28" val="0">
+                                    <CvgInfo elem="close( java.sql.ResultSet )" num="0" total="5" val="0" />
+                                    <CvgInfo elem="close( java.sql.Statement )" num="0" total="5" val="0" />
+                                    <CvgInfo elem="examples/flowanalysis/np/DatabaseObject()" num="0" total="2" val="0" />
+                                    <CvgInfo elem="getClassName()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="getOID()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="getObjectFromDatabase( java.sql.Connection, java.lang.String, java.lang.String )" num="0" total="14" val="0" />
+                                 </CvgInfo>
+                              </CvgInfo>
+                              <CvgInfo elem="MyDictionary.java" num="0" total="8" val="0">
+                                 <CvgInfo elem="MyDictionary" num="0" total="8" val="0">
+                                    <CvgInfo elem="examples/flowanalysis/np/MyDictionary()" num="0" total="2" val="0" />
+                                    <CvgInfo elem="getFromDictionary( java.lang.Object )" num="0" total="1" val="0" />
+                                    <CvgInfo elem="putToDictionary( java.lang.Object, java.lang.Object )" num="0" total="5" val="0" />
+                                 </CvgInfo>
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="FilesInjection.java" num="0" total="12" val="0">
+                              <CvgInfo elem="FilesInjection" num="0" total="12" val="0">
+                                 <CvgInfo elem="examples/flowanalysis/FilesInjection()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="fileNameContentsInjection( javax.servlet.http.HttpServletRequest )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="store( java.lang.String, java.lang.String )" num="0" total="7" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="IncorrectIteratorUsage.java" num="0" total="17" val="0">
+                              <CvgInfo elem="IncorrectIteratorUsage" num="0" total="17" val="0">
+                                 <CvgInfo elem="examples/flowanalysis/IncorrectIteratorUsage()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="removeAllElementsCorrect( java.util.HashSet, java.lang.Class )" num="0" total="8" val="0" />
+                                 <CvgInfo elem="removeAllElementsIncorrect( java.util.HashSet, java.lang.Class )" num="0" total="8" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="WebApplication.java" num="0" total="19" val="0">
+                              <CvgInfo elem="WebApplication" num="0" total="19" val="0">
+                                 <CvgInfo elem="addFooter( javax.servlet.ServletOutputStream )" num="0" total="3" val="0" />
+                                 <CvgInfo elem="addHeader( javax.servlet.ServletOutputStream )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="doGet( javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse )" num="0" total="9" val="0" />
+                                 <CvgInfo elem="doPost( javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/WebApplication()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="UseBeforeInitialization.java" num="0" total="28" val="0">
+                              <CvgInfo elem="UseBeforeInitialization" num="0" total="28" val="0">
+                                 <CvgInfo elem="ValueStorage" num="0" total="4" val="0">
+                                    <CvgInfo elem="examples/flowanalysis/UseBeforeInitialization$ValueStorage( examples.flowanalysis.UseBeforeInitialization )" num="0" total="1" val="0" />
+                                    <CvgInfo elem="getValue()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="setValue( java.lang.Object )" num="0" total="2" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="close( java.io.InputStream )" num="0" total="3" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/UseBeforeInitialization()" num="0" total="2" val="0" />
+                                 <CvgInfo elem="process( java.lang.String )" num="0" total="19" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="AlwaysCloseSockets.java" num="0" total="13" val="0">
+                              <CvgInfo elem="AlwaysCloseSockets" num="0" total="13" val="0">
+                                 <CvgInfo elem="connectClient( java.net.ServerSocket )" num="0" total="5" val="0" />
+                                 <CvgInfo elem="connectClientClose( java.net.ServerSocket )" num="0" total="7" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/AlwaysCloseSockets()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="DivisionByZero.java" num="0" total="31" val="0">
+                              <CvgInfo elem="DivisionByZero" num="0" total="31" val="0">
+                                 <CvgInfo elem="Consumer" num="0" total="9" val="0">
+                                    <CvgInfo elem="examples/flowanalysis/DivisionByZero$Consumer( examples.flowanalysis.DivisionByZero )" num="0" total="3" val="0" />
+                                    <CvgInfo elem="getOverallSum()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="getPersonalDiscountCoefficient()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="setOverallSum( float )" num="0" total="2" val="0" />
+                                    <CvgInfo elem="setPersonalDiscountCoefficient( float )" num="0" total="2" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="calculateCommonDiscountedSum( float )" num="0" total="6" val="0" />
+                                 <CvgInfo elem="calculateDiscountedSum( int, float, examples.flowanalysis.DivisionByZero$Consumer )" num="0" total="13" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/DivisionByZero()" num="0" total="2" val="0" />
+                                 <CvgInfo elem="getSpecialOfferDiscountCoefficient()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="InefficientMapUsage.java" num="0" total="14" val="0">
+                              <CvgInfo elem="InefficientMapUsage" num="0" total="14" val="0">
+                                 <CvgInfo elem="effectiveIteration( java.util.Map )" num="0" total="7" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/InefficientMapUsage()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="inefficientIteration( java.util.Map )" num="0" total="6" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="SystemInjection.java" num="0" total="15" val="0">
+                              <CvgInfo elem="SystemInjection" num="0" total="15" val="0">
+                                 <CvgInfo elem="environmentInjection()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/SystemInjection()" num="0" total="2" val="0" />
+                                 <CvgInfo elem="execInjection()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="getData( java.lang.String )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="libraryInjection()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="reflectionInjection()" num="0" total="3" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="AlwaysCloseGSS.java" num="0" total="17" val="0">
+                              <CvgInfo elem="AlwaysCloseGSS" num="0" total="17" val="0">
+                                 <CvgInfo elem="examples/flowanalysis/AlwaysCloseGSS()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="process( byte[] )" num="0" total="7" val="0" />
+                                 <CvgInfo elem="processClose( byte[] )" num="0" total="9" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="AlwaysCloseRAFs.java" num="0" total="21" val="0">
+                              <CvgInfo elem="AlwaysCloseRAFs" num="0" total="21" val="0">
+                                 <CvgInfo elem="examples/flowanalysis/AlwaysCloseRAFs()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="read( java.lang.String, java.lang.String, int )" num="0" total="9" val="0" />
+                                 <CvgInfo elem="readClose( java.lang.String, java.lang.String, int )" num="0" total="11" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="InefficientCollectionRemoval.java" num="0" total="11" val="0">
+                              <CvgInfo elem="InefficientCollectionRemoval" num="0" total="11" val="0">
+                                 <CvgInfo elem="effectiveRemoval( java.util.Collection )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/InefficientCollectionRemoval()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="inefficientRemoval( java.util.Collection )" num="0" total="6" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="UnreachableCode.java" num="0" total="25" val="0">
+                              <CvgInfo elem="UnreachableCode" num="0" total="25" val="0">
+                                 <CvgInfo elem="examples/flowanalysis/UnreachableCode()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="guessFigure( boolean, boolean )" num="0" total="18" val="0" />
+                                 <CvgInfo elem="printCalculationResult( java.lang.Object )" num="0" total="6" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="AlwaysCloseXMLEncDec.java" num="0" total="41" val="0">
+                              <CvgInfo elem="AlwaysCloseXMLEncDec" num="0" total="41" val="0">
+                                 <CvgInfo elem="examples/flowanalysis/AlwaysCloseXMLEncDec()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="read( java.io.InputStream )" num="0" total="11" val="0" />
+                                 <CvgInfo elem="readClose( java.io.InputStream )" num="0" total="13" val="0" />
+                                 <CvgInfo elem="store( java.io.OutputStream, java.lang.Object[] )" num="0" total="7" val="0" />
+                                 <CvgInfo elem="storeClose( java.io.OutputStream, java.lang.Object[] )" num="0" total="9" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="DereferenceBeforeNullCheck.java" num="0" total="20" val="0">
+                              <CvgInfo elem="DereferenceBeforeNullCheck" num="0" total="20" val="0">
+                                 <CvgInfo elem="closeReader( java.io.Reader )" num="0" total="6" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/DereferenceBeforeNullCheck()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="readFirstLine( java.lang.String )" num="0" total="13" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="UseBeforeInConstructorInitialization.java" num="0" total="14" val="0">
+                              <CvgInfo elem="UseBeforeInConstructorInitialization" num="0" total="14" val="0">
+                                 <CvgInfo elem="RestrictedUser" num="0" total="6" val="0">
+                                    <CvgInfo elem="checkData()" num="0" total="3" val="0" />
+                                    <CvgInfo elem="examples/flowanalysis/UseBeforeInConstructorInitialization$RestrictedUser( java.lang.String, java.lang.String )" num="0" total="3" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="User" num="0" total="6" val="0">
+                                    <CvgInfo elem="checkData()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="examples/flowanalysis/UseBeforeInConstructorInitialization$User( java.lang.String, java.lang.String )" num="0" total="5" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="examples/flowanalysis/UseBeforeInConstructorInitialization()" num="0" total="2" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="AlwaysCloseImages.java" num="0" total="17" val="0">
+                              <CvgInfo elem="AlwaysCloseImages" num="0" total="17" val="0">
+                                 <CvgInfo elem="examples/flowanalysis/AlwaysCloseImages()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="readImage( javax.imageio.spi.ImageReaderSpi )" num="0" total="7" val="0" />
+                                 <CvgInfo elem="readImageClose( javax.imageio.spi.ImageReaderSpi )" num="0" total="9" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="XMLInjection.java" num="0" total="8" val="0">
+                              <CvgInfo elem="XMLInjection" num="0" total="8" val="0">
+                                 <CvgInfo elem="createXMLDocumentAndStoreData( org.w3c.dom.Document, java.lang.String, java.lang.String, java.lang.String, java.lang.String )" num="0" total="7" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/XMLInjection()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="SQLInjection.java" num="0" total="24" val="0">
+                              <CvgInfo elem="SQLInjection" num="0" total="24" val="0">
+                                 <CvgInfo elem="auth( javax.servlet.http.HttpServletRequest, java.sql.Connection )" num="0" total="13" val="0" />
+                                 <CvgInfo elem="close( java.sql.ResultSet )" num="0" total="5" val="0" />
+                                 <CvgInfo elem="close( java.sql.Statement )" num="0" total="5" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/SQLInjection()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="AlwaysCloseNIOChannels.java" num="0" total="19" val="0">
+                              <CvgInfo elem="AlwaysCloseNIOChannels" num="0" total="19" val="0">
+                                 <CvgInfo elem="examples/flowanalysis/AlwaysCloseNIOChannels()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="process( java.lang.String )" num="0" total="8" val="0" />
+                                 <CvgInfo elem="processClose( java.lang.String )" num="0" total="10" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="ClassCast.java" num="0" total="9" val="0">
+                              <CvgInfo elem="ClassCast" num="0" total="9" val="0">
+                                 <CvgInfo elem="callingMethod()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/ClassCast()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="executeOperation( java.lang.Object )" num="0" total="5" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="AlwaysCloseLogging.java" num="0" total="12" val="0">
+                              <CvgInfo elem="AlwaysCloseLogging" num="0" total="12" val="0">
+                                 <CvgInfo elem="examples/flowanalysis/AlwaysCloseLogging()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="log( java.util.logging.Level, java.lang.String )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="logClose( java.util.logging.Level, java.lang.String )" num="0" total="7" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="InefficientMapRemoval.java" num="0" total="22" val="0">
+                              <CvgInfo elem="InefficientMapRemoval" num="0" total="22" val="0">
+                                 <CvgInfo elem="effectiveRemoval( java.util.Map )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="effectiveRemovalKeySet( java.util.Map )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="examples/flowanalysis/InefficientMapRemoval()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="inefficientRemoval( java.util.Map )" num="0" total="6" val="0" />
+                                 <CvgInfo elem="inefficientRemovalEntry( java.util.Map )" num="0" total="7" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="initialize" num="0" total="39" val="0">
+                           <CvgInfo elem="RaffleTicketPicker.java" num="0" total="15" val="0">
+                              <CvgInfo elem="RaffleTicketPicker" num="0" total="15" val="0">
+                                 <CvgInfo elem="dataInitialize()" num="0" total="2" val="0" />
+                                 <CvgInfo elem="dispenseTicket()" num="0" total="5" val="0" />
+                                 <CvgInfo elem="examples/initialize/RaffleTicketPicker()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="selectWinner()" num="0" total="5" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Guestbook.java" num="0" total="24" val="0">
+                              <CvgInfo elem="Guestbook" num="0" total="24" val="0">
+                                 <CvgInfo elem="countGuests()" num="0" total="4" val="0" />
+                                 <CvgInfo elem="dataInitialize()" num="0" total="2" val="0" />
+                                 <CvgInfo elem="display()" num="0" total="8" val="0" />
+                                 <CvgInfo elem="examples/initialize/Guestbook()" num="0" total="2" val="0" />
+                                 <CvgInfo elem="getGuestNames()" num="0" total="5" val="0" />
+                                 <CvgInfo elem="registerGuest( java.lang.String )" num="0" total="3" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="inputs" num="0" total="6" val="0">
+                           <CvgInfo elem="InputData.java" num="0" total="6" val="0">
+                              <CvgInfo elem="InputData" num="0" total="6" val="0">
+                                 <CvgInfo elem="add( int, int )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="examples/inputs/InputData()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="subtract( int, int )" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="junit4" num="95" total="124" val="77">
+                           <CvgInfo elem="Money.java" num="36" total="56" val="64">
+                              <CvgInfo elem="AAA" num="4" total="14" val="29">
+                                 <CvgInfo elem="aaa()" num="3" total="13" val="23">
+                                    <CvgInfo elem="1" num="1" total="11" val="9">
+                                       <CvgInfo elem="aa( examples.junit4.AAA )" num="0" total="4" val="0">
+                                          <CvgInfo elem="2" num="0" total="3" val="0">
+                                             <CvgInfo elem="compare( java.lang.Object, java.lang.Object ) [bridge synthetic]" num="0" total="1" val="0" />
+                                             <CvgInfo elem="compare( java.lang.String, java.lang.String )" num="0" total="1" val="0" />
+                                             <CvgInfo elem="examples/junit4/AAA$1$2( examples.junit4.AAA$1 )" num="0" total="1" val="0" />
+                                          </CvgInfo>
+                                       </CvgInfo>
+                                       <CvgInfo elem="aaa( examples.junit4.AAA )" num="0" total="1" val="0" />
+                                       <CvgInfo elem="examples/junit4/AAA$1( examples.junit4.AAA )" num="1" total="1" val="100" />
+                                       <CvgInfo elem="run()" num="0" total="5" val="0">
+                                          <CvgInfo elem="1" num="0" total="3" val="0">
+                                             <CvgInfo elem="compare( java.lang.Object, java.lang.Object ) [bridge synthetic]" num="0" total="1" val="0" />
+                                             <CvgInfo elem="compare( java.lang.String, java.lang.String )" num="0" total="1" val="0" />
+                                             <CvgInfo elem="examples/junit4/AAA$1$1( examples.junit4.AAA$1 )" num="0" total="1" val="0" />
+                                          </CvgInfo>
+                                       </CvgInfo>
+                                    </CvgInfo>
+                                 </CvgInfo>
+                                 <CvgInfo elem="examples/junit4/AAA()" num="1" total="1" val="100" />
+                              </CvgInfo>
+                              <CvgInfo elem="Money" num="32" total="42" val="76">
+                                 <CvgInfo elem="aaa()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="add( examples.junit4.IMoney )" num="1" total="1" val="100" />
+                                 <CvgInfo elem="addMoney( examples.junit4.Money )" num="3" total="3" val="100" />
+                                 <CvgInfo elem="addMoneyBag( examples.junit4.MoneyBag )" num="1" total="1" val="100" />
+                                 <CvgInfo elem="amount()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="appendTo( examples.junit4.MoneyBag )" num="2" total="2" val="100" />
+                                 <CvgInfo elem="bbb()" num="0" total="9" val="0">
+                                    <CvgInfo elem="1" num="0" total="7" val="0">
+                                       <CvgInfo elem="aaa()" num="0" total="1" val="0" />
+                                       <CvgInfo elem="examples/junit4/Money$1( examples.junit4.Money )" num="0" total="1" val="0" />
+                                       <CvgInfo elem="run()" num="0" total="5" val="0">
+                                          <CvgInfo elem="1" num="0" total="3" val="0">
+                                             <CvgInfo elem="compare( java.lang.Object, java.lang.Object ) [bridge synthetic]" num="0" total="1" val="0" />
+                                             <CvgInfo elem="compare( java.lang.String, java.lang.String )" num="0" total="1" val="0" />
+                                             <CvgInfo elem="examples/junit4/Money$1$1( examples.junit4.Money$1 )" num="0" total="1" val="0" />
+                                          </CvgInfo>
+                                       </CvgInfo>
+                                    </CvgInfo>
+                                 </CvgInfo>
+                                 <CvgInfo elem="currency()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="equals( java.lang.Object )" num="7" total="7" val="100" />
+                                 <CvgInfo elem="examples/junit4/Money( int, java.lang.String )" num="4" total="4" val="100" />
+                                 <CvgInfo elem="hashCode()" num="3" total="3" val="100" />
+                                 <CvgInfo elem="isZero()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="multiply( int )" num="3" total="3" val="100" />
+                                 <CvgInfo elem="negate()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="subtract( examples.junit4.IMoney )" num="1" total="1" val="100" />
+                                 <CvgInfo elem="toString()" num="3" total="3" val="100" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="MoneyBag.java" num="59" total="68" val="87">
+                              <CvgInfo elem="MoneyBag" num="59" total="68" val="87">
+                                 <CvgInfo elem="add( examples.junit4.IMoney )" num="1" total="1" val="100" />
+                                 <CvgInfo elem="addMoney( examples.junit4.Money )" num="1" total="1" val="100" />
+                                 <CvgInfo elem="addMoneyBag( examples.junit4.MoneyBag )" num="1" total="1" val="100" />
+                                 <CvgInfo elem="appendBag( examples.junit4.MoneyBag )" num="3" total="3" val="100" />
+                                 <CvgInfo elem="appendMoney( examples.junit4.Money )" num="11" total="11" val="100" />
+                                 <CvgInfo elem="appendTo( examples.junit4.MoneyBag )" num="2" total="2" val="100" />
+                                 <CvgInfo elem="contains( examples.junit4.Money )" num="3" total="3" val="100" />
+                                 <CvgInfo elem="create( examples.junit4.IMoney, examples.junit4.IMoney )" num="4" total="4" val="100" />
+                                 <CvgInfo elem="equals( java.lang.Object )" num="9" total="12" val="75" />
+                                 <CvgInfo elem="examples/junit4/MoneyBag()" num="2" total="2" val="100" />
+                                 <CvgInfo elem="findMoney( java.lang.String )" num="4" total="4" val="100" />
+                                 <CvgInfo elem="hashCode()" num="4" total="4" val="100" />
+                                 <CvgInfo elem="isZero()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="multiply( int )" num="5" total="5" val="100" />
+                                 <CvgInfo elem="negate()" num="4" total="4" val="100" />
+                                 <CvgInfo elem="simplify()" num="3" total="3" val="100" />
+                                 <CvgInfo elem="subtract( examples.junit4.IMoney )" num="1" total="1" val="100" />
+                                 <CvgInfo elem="toString()" num="0" total="6" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="leaks" num="0" total="14" val="0">
+                           <CvgInfo elem="Library.java" num="0" total="14" val="0">
+                              <CvgInfo elem="Library" num="0" total="14" val="0">
+                                 <CvgInfo elem="Book" num="0" total="7" val="0">
+                                    <CvgInfo elem="examples/leaks/Library$Book( java.lang.String, java.lang.String, char[] )" num="0" total="5" val="0" />
+                                    <CvgInfo elem="getAuthor()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="getTitle()" num="0" total="1" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="addBook( java.lang.String, java.lang.String, int )" num="0" total="3" val="0" />
+                                 <CvgInfo elem="class initialization()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="examples/leaks/Library()" num="0" total="2" val="0" />
+                                 <CvgInfo elem="getBooks()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="nbank" num="43" total="183" val="23">
+                           <CvgInfo elem="DepositTransaction.java" num="6" total="8" val="75">
+                              <CvgInfo elem="DepositTransaction" num="6" total="8" val="75">
+                                 <CvgInfo elem="apply( examples.nbank.Account )" num="3" total="5" val="60" />
+                                 <CvgInfo elem="examples/nbank/DepositTransaction( int )" num="3" total="3" val="100" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="ConnectionException.java" num="0" total="2" val="0">
+                              <CvgInfo elem="ConnectionException" num="0" total="2" val="0">
+                                 <CvgInfo elem="examples/nbank/ConnectionException( java.lang.String )" num="0" total="2" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Account.java" num="17" total="23" val="74">
+                              <CvgInfo elem="Account" num="17" total="23" val="74">
+                                 <CvgInfo elem="apply( examples.nbank.ITransaction )" num="3" total="3" val="100" />
+                                 <CvgInfo elem="class initialization()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="examples/nbank/Account( examples.nbank.Customer, int )" num="7" total="8" val="88" />
+                                 <CvgInfo elem="getBalance()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="getCustomer()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="getID()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="getStatus()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="setAccountStatus( int )" num="2" total="5" val="40" />
+                                 <CvgInfo elem="setBalance( int )" num="2" total="2" val="100" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="LogAccountInfo.java" num="0" total="8" val="0">
+                              <CvgInfo elem="LogAccountInfo" num="0" total="8" val="0">
+                                 <CvgInfo elem="Log( examples.nbank.Account )" num="0" total="7" val="0" />
+                                 <CvgInfo elem="examples/nbank/LogAccountInfo()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="CreditCard.java" num="0" total="55" val="0">
+                              <CvgInfo elem="CreditCard" num="0" total="55" val="0">
+                                 <CvgInfo elem="displayStatement()" num="0" total="6" val="0" />
+                                 <CvgInfo elem="examples/nbank/CreditCard( int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String )" num="0" total="10" val="0" />
+                                 <CvgInfo elem="get_creditCardNumber()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_currentBalance()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_customerId()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_customerName()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_socialSecurityNumber()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="get_zipcode()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="makePayment( examples.nbank.Account )" num="0" total="5" val="0" />
+                                 <CvgInfo elem="set_creditCardNumber( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_currentBalance( int )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_customerId( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_customerName( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_socialSecurityNumber( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="set_zipcode( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="validate( int[], java.lang.String )" num="0" total="11" val="0" />
+                                 <CvgInfo elem="validate()" num="0" total="5" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Bank.java" num="0" total="27" val="0">
+                              <CvgInfo elem="Bank" num="0" total="27" val="0">
+                                 <CvgInfo elem="addAccount( examples.nbank.Account )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="closeAccounts( java.util.List )" num="0" total="8" val="0" />
+                                 <CvgInfo elem="examples/nbank/Bank()" num="0" total="4" val="0" />
+                                 <CvgInfo elem="getAccount( java.lang.String, java.lang.String )" num="0" total="6" val="0" />
+                                 <CvgInfo elem="initialize()" num="0" total="7" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="AbstractTransaction.java" num="2" total="2" val="100">
+                              <CvgInfo elem="AbstractTransaction" num="2" total="2" val="100">
+                                 <CvgInfo elem="examples/nbank/AbstractTransaction()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="fee()" num="1" total="1" val="100" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Customer.java" num="12" total="51" val="24">
+                              <CvgInfo elem="Customer" num="12" total="51" val="24">
+                                 <CvgInfo elem="equals( java.lang.Object )" num="3" total="6" val="50" />
+                                 <CvgInfo elem="examples/nbank/Customer( java.lang.String, java.lang.String )" num="6" total="8" val="75" />
+                                 <CvgInfo elem="getName()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="getSSN()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="hashCode()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="loadCustomer()" num="0" total="23" val="0" />
+                                 <CvgInfo elem="main( java.lang.String[] )" num="0" total="6" val="0" />
+                                 <CvgInfo elem="setName( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="setSSN( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="toStrng()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="WithdrawalTransaction.java" num="6" total="7" val="86">
+                              <CvgInfo elem="WithdrawalTransaction" num="6" total="7" val="86">
+                                 <CvgInfo elem="apply( examples.nbank.Account )" num="2" total="2" val="100" />
+                                 <CvgInfo elem="examples/nbank/WithdrawalTransaction( int )" num="4" total="5" val="80" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="queue" num="0" total="33" val="0">
+                           <CvgInfo elem="Queue.java" num="0" total="33" val="0">
+                              <CvgInfo elem="EmptyQueueException" num="0" total="1" val="0">
+                                 <CvgInfo elem="examples/queue/EmptyQueueException()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                              <CvgInfo elem="Queue" num="0" total="32" val="0">
+                                 <CvgInfo elem="QueueItem" num="0" total="7" val="0">
+                                    <CvgInfo elem="examples/queue/Queue$QueueItem( examples.queue.Queue, java.lang.String )" num="0" total="3" val="0" />
+                                    <CvgInfo elem="getItem()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="getNext()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="setNext( examples.queue.Queue$QueueItem )" num="0" total="2" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="add( java.lang.String )" num="0" total="7" val="0" />
+                                 <CvgInfo elem="examples/queue/Queue()" num="0" total="4" val="0" />
+                                 <CvgInfo elem="isEmpty()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="remove()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="removeAll()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="toString()" num="0" total="7" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="repository" num="0" total="12" val="0">
+                           <CvgInfo elem="Message.java" num="0" total="6" val="0">
+                              <CvgInfo elem="Message" num="0" total="6" val="0">
+                                 <CvgInfo elem="allocate( int )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="examples/repository/Message()" num="0" total="2" val="0" />
+                                 <CvgInfo elem="resetMessage( java.lang.String )" num="0" total="2" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="IntFields.java" num="0" total="6" val="0">
+                              <CvgInfo elem="IntFields" num="0" total="6" val="0">
+                                 <CvgInfo elem="examples/repository/IntFields()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="subtract( int )" num="0" total="5" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="runtime" exp="1" num="6" total="34" val="18">
+                           <CvgInfo elem="security" num="0" total="18" val="0">
+                              <CvgInfo elem="InputValidatorExample.java" num="0" total="5" val="0">
+                                 <CvgInfo elem="InputValidatorExample" num="0" total="5" val="0">
+                                    <CvgInfo elem="examples/runtime/security/InputValidatorExample()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="main( java.lang.String[] )" num="0" total="4" val="0" />
+                                 </CvgInfo>
+                              </CvgInfo>
+                              <CvgInfo elem="MethodSpecifierExample.java" num="0" total="13" val="0">
+                                 <CvgInfo elem="MethodSpecifierExample" num="0" total="13" val="0">
+                                    <CvgInfo elem="dangerousMethod( java.lang.String )" num="0" total="2" val="0" />
+                                    <CvgInfo elem="examples/runtime/security/MethodSpecifierExample()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="generateData( java.lang.String )" num="0" total="1" val="0" />
+                                    <CvgInfo elem="main( java.lang.String[] )" num="0" total="6" val="0" />
+                                    <CvgInfo elem="verifyInputIsGood( java.lang.String )" num="0" total="3" val="0" />
+                                 </CvgInfo>
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Add.java" num="1" total="2" val="50">
+                              <CvgInfo elem="Add" num="1" total="2" val="50">
+                                 <CvgInfo elem="add( int, int )" num="1" total="1" val="100" />
+                                 <CvgInfo elem="examples/runtime/Add()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="ExamplesUtil.java" num="5" total="14" val="36">
+                              <CvgInfo elem="ExamplesUtil" num="5" total="14" val="36">
+                                 <CvgInfo elem="examples/runtime/ExamplesUtil()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="executeCommand( java.lang.String )" num="0" total="5" val="0" />
+                                 <CvgInfo elem="prompt( java.lang.String )" num="0" total="3" val="0" />
+                                 <CvgInfo elem="showFileContents( java.io.File )" num="5" total="5" val="100" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="security" num="0" total="28" val="0">
+                           <CvgInfo elem="InputValidation.java" num="0" total="28" val="0">
+                              <CvgInfo elem="InputValidation" num="0" total="28" val="0">
+                                 <CvgInfo elem="authorize( java.lang.String, java.lang.String )" num="0" total="10" val="0" />
+                                 <CvgInfo elem="doGet( javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse )" num="0" total="8" val="0" />
+                                 <CvgInfo elem="examples/security/InputValidation()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="logInvalidLogin( java.lang.String, java.lang.String )" num="0" total="6" val="0" />
+                                 <CvgInfo elem="validate( java.lang.String )" num="0" total="3" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="servlets" num="16" total="21" val="76">
+                           <CvgInfo elem="ExampleServlet.java" num="16" total="21" val="76">
+                              <CvgInfo elem="ExampleServlet" num="16" total="21" val="76">
+                                 <CvgInfo elem="doGet( javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse )" num="0" total="5" val="0" />
+                                 <CvgInfo elem="examples/servlets/ExampleServlet()" num="1" total="1" val="100" />
+                                 <CvgInfo elem="tryThis( javax.servlet.ServletContext )" num="15" total="15" val="100" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="singletons" num="0" total="31" val="0">
+                           <CvgInfo elem="RaffleTicketPicker.java" num="0" total="14" val="0">
+                              <CvgInfo elem="RaffleTicketPicker" num="0" total="14" val="0">
+                                 <CvgInfo elem="class initialization()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="dispenseTicket()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="examples/singletons/RaffleTicketPicker()" num="0" total="4" val="0" />
+                                 <CvgInfo elem="getInstance()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="selectWinner()" num="0" total="3" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Guestbook.java" num="0" total="17" val="0">
+                              <CvgInfo elem="Guestbook" num="0" total="17" val="0">
+                                 <CvgInfo elem="class initialization()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="countGuests()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="examples/singletons/Guestbook()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="getGuestNames()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="getInstance()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="registerGuest( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="toString()" num="0" total="6" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="stackmachine" num="0" total="418" val="0">
+                           <CvgInfo elem="LifoStackMachine.java" num="0" total="8" val="0">
+                              <CvgInfo elem="LifoStackMachine" num="0" total="8" val="0">
+                                 <CvgInfo elem="examples/stackmachine/LifoStackMachine()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="pop()" num="0" total="2" val="0" />
+                                 <CvgInfo elem="popInt()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="push( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="pushInt( int )" num="0" total="2" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="FifoStackMachine.java" num="0" total="8" val="0">
+                              <CvgInfo elem="FifoStackMachine" num="0" total="8" val="0">
+                                 <CvgInfo elem="examples/stackmachine/FifoStackMachine()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="pop()" num="0" total="2" val="0" />
+                                 <CvgInfo elem="popInt()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="push( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="pushInt( int )" num="0" total="2" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="CommandLineStackMachine.java" num="0" total="58" val="0">
+                              <CvgInfo elem="CommandLineStackMachine" num="0" total="58" val="0">
+                                 <CvgInfo elem="class initialization()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="displayMenu()" num="0" total="9" val="0" />
+                                 <CvgInfo elem="examples/stackmachine/CommandLineStackMachine()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="getStack()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="main( java.lang.String[] )" num="0" total="6" val="0" />
+                                 <CvgInfo elem="nextCommand()" num="0" total="6" val="0" />
+                                 <CvgInfo elem="processCommand( java.lang.String )" num="0" total="34" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="RunnableStackMachine.java" num="0" total="249" val="0">
+                              <CvgInfo elem="RunnableStackMachine" num="0" total="249" val="0">
+                                 <CvgInfo elem="AddButton" num="0" total="6" val="0">
+                                    <CvgInfo elem="actionPerformed( java.awt.event.ActionEvent )" num="0" total="2" val="0" />
+                                    <CvgInfo elem="examples/stackmachine/RunnableStackMachine$AddButton( examples.stackmachine.RunnableStackMachine )" num="0" total="4" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="DivideButton" num="0" total="6" val="0">
+                                    <CvgInfo elem="actionPerformed( java.awt.event.ActionEvent )" num="0" total="2" val="0" />
+                                    <CvgInfo elem="examples/stackmachine/RunnableStackMachine$DivideButton( examples.stackmachine.RunnableStackMachine )" num="0" total="4" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="FifoRadioButton" num="0" total="9" val="0">
+                                    <CvgInfo elem="actionPerformed( java.awt.event.ActionEvent )" num="0" total="4" val="0" />
+                                    <CvgInfo elem="examples/stackmachine/RunnableStackMachine$FifoRadioButton( examples.stackmachine.RunnableStackMachine )" num="0" total="5" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="ImageButton" num="0" total="9" val="0">
+                                    <CvgInfo elem="examples/stackmachine/RunnableStackMachine$ImageButton( examples.stackmachine.RunnableStackMachine, java.lang.String, java.lang.String, java.lang.String )" num="0" total="9" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="LifoRadioButton" num="0" total="10" val="0">
+                                    <CvgInfo elem="actionPerformed( java.awt.event.ActionEvent )" num="0" total="4" val="0" />
+                                    <CvgInfo elem="examples/stackmachine/RunnableStackMachine$LifoRadioButton( examples.stackmachine.RunnableStackMachine )" num="0" total="6" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="MultiplyButton" num="0" total="6" val="0">
+                                    <CvgInfo elem="actionPerformed( java.awt.event.ActionEvent )" num="0" total="2" val="0" />
+                                    <CvgInfo elem="examples/stackmachine/RunnableStackMachine$MultiplyButton( examples.stackmachine.RunnableStackMachine )" num="0" total="4" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="PopButton" num="0" total="6" val="0">
+                                    <CvgInfo elem="actionPerformed( java.awt.event.ActionEvent )" num="0" total="2" val="0" />
+                                    <CvgInfo elem="examples/stackmachine/RunnableStackMachine$PopButton( examples.stackmachine.RunnableStackMachine )" num="0" total="4" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="PushButton" num="0" total="6" val="0">
+                                    <CvgInfo elem="actionPerformed( java.awt.event.ActionEvent )" num="0" total="2" val="0" />
+                                    <CvgInfo elem="examples/stackmachine/RunnableStackMachine$PushButton( examples.stackmachine.RunnableStackMachine )" num="0" total="4" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="PushTextField" num="0" total="7" val="0">
+                                    <CvgInfo elem="actionPerformed( java.awt.event.ActionEvent )" num="0" total="3" val="0" />
+                                    <CvgInfo elem="examples/stackmachine/RunnableStackMachine$PushTextField( examples.stackmachine.RunnableStackMachine )" num="0" total="4" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="SubtractButton" num="0" total="6" val="0">
+                                    <CvgInfo elem="actionPerformed( java.awt.event.ActionEvent )" num="0" total="2" val="0" />
+                                    <CvgInfo elem="examples/stackmachine/RunnableStackMachine$SubtractButton( examples.stackmachine.RunnableStackMachine )" num="0" total="4" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="componentHidden( java.awt.event.ComponentEvent )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="componentMoved( java.awt.event.ComponentEvent )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="componentResized( java.awt.event.ComponentEvent )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="componentShown( java.awt.event.ComponentEvent )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="createApiPanel()" num="0" total="6" val="0" />
+                                 <CvgInfo elem="createInputFieldsPanel()" num="0" total="10" val="0" />
+                                 <CvgInfo elem="createInputPanel()" num="0" total="21" val="0" />
+                                 <CvgInfo elem="createOperationButtonsPanel()" num="0" total="24" val="0" />
+                                 <CvgInfo elem="createPushPanel()" num="0" total="17" val="0" />
+                                 <CvgInfo elem="createRadioOptionsPanel()" num="0" total="21" val="0" />
+                                 <CvgInfo elem="createStackButtonPanel()" num="0" total="16" val="0" />
+                                 <CvgInfo elem="createStackPanel()" num="0" total="17" val="0" />
+                                 <CvgInfo elem="examples/stackmachine/RunnableStackMachine()" num="0" total="29" val="0" />
+                                 <CvgInfo elem="main( java.lang.String[] )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="windowActivated( java.awt.event.WindowEvent )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="windowClosed( java.awt.event.WindowEvent )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="windowClosing( java.awt.event.WindowEvent )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="windowDeactivated( java.awt.event.WindowEvent )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="windowDeiconified( java.awt.event.WindowEvent )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="windowIconified( java.awt.event.WindowEvent )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="windowOpened( java.awt.event.WindowEvent )" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="AbstractStackMachine.java" num="0" total="26" val="0">
+                              <CvgInfo elem="AbstractStackMachine" num="0" total="26" val="0">
+                                 <CvgInfo elem="add()" num="0" total="5" val="0" />
+                                 <CvgInfo elem="at( int )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="divide()" num="0" total="5" val="0" />
+                                 <CvgInfo elem="examples/stackmachine/AbstractStackMachine()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="isInteger( java.lang.String )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="multiply()" num="0" total="5" val="0" />
+                                 <CvgInfo elem="subtract()" num="0" total="5" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="CustomListRenderer.java" num="0" total="8" val="0">
+                              <CvgInfo elem="CustomListRenderer" num="0" total="8" val="0">
+                                 <CvgInfo elem="examples/stackmachine/CustomListRenderer()" num="0" total="2" val="0" />
+                                 <CvgInfo elem="paint( java.awt.Graphics )" num="0" total="6" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="StackList.java" num="0" total="61" val="0">
+                              <CvgInfo elem="StackList" num="0" total="61" val="0">
+                                 <CvgInfo elem="add()" num="0" total="4" val="0" />
+                                 <CvgInfo elem="adjustScroll()" num="0" total="17" val="0" />
+                                 <CvgInfo elem="divide()" num="0" total="4" val="0" />
+                                 <CvgInfo elem="examples/stackmachine/StackList( examples.stackmachine.RunnableStackMachine )" num="0" total="12" val="0" />
+                                 <CvgInfo elem="multiply()" num="0" total="4" val="0" />
+                                 <CvgInfo elem="pop()" num="0" total="4" val="0" />
+                                 <CvgInfo elem="push( java.lang.String )" num="0" total="4" val="0" />
+                                 <CvgInfo elem="subtract()" num="0" total="4" val="0" />
+                                 <CvgInfo elem="updateModel( boolean )" num="0" total="5" val="0" />
+                                 <CvgInfo elem="updateStackSizeLabel()" num="0" total="3" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="struts" num="0" total="16" val="0">
+                           <CvgInfo elem="LoginAction.java" num="0" total="7" val="0">
+                              <CvgInfo elem="LoginAction" num="0" total="7" val="0">
+                                 <CvgInfo elem="examples/struts/LoginAction()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="execute( org.apache.struts.action.ActionMapping, org.apache.struts.action.ActionForm, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse )" num="0" total="6" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="InputForm.java" num="0" total="9" val="0">
+                              <CvgInfo elem="InputForm" num="0" total="9" val="0">
+                                 <CvgInfo elem="examples/struts/InputForm()" num="0" total="3" val="0" />
+                                 <CvgInfo elem="getPassword()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="getUsername()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="setPassword( java.lang.String )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="setUsername( java.lang.String )" num="0" total="2" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="stubs" num="23" total="95" val="24">
+                           <CvgInfo elem="DatabaseExample.java" num="0" total="40" val="0">
+                              <CvgInfo elem="DatabaseExample" num="0" total="40" val="0">
+                                 <CvgInfo elem="addScore( java.lang.String, int )" num="0" total="5" val="0" />
+                                 <CvgInfo elem="class initialization()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="examples/stubs/DatabaseExample()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="getAverageScore( java.lang.String )" num="0" total="13" val="0" />
+                                 <CvgInfo elem="getScores( java.lang.String )" num="0" total="11" val="0" />
+                                 <CvgInfo elem="prepare()" num="0" total="9" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="IOExample.java" num="0" total="20" val="0">
+                              <CvgInfo elem="IOExample" num="0" total="20" val="0">
+                                 <CvgInfo elem="Account" num="0" total="6" val="0">
+                                    <CvgInfo elem="examples/stubs/IOExample$Account( java.io.DataInputStream )" num="0" total="4" val="0" />
+                                    <CvgInfo elem="getBalance()" num="0" total="1" val="0" />
+                                    <CvgInfo elem="getName()" num="0" total="1" val="0" />
+                                 </CvgInfo>
+                                 <CvgInfo elem="addToLowBalancesList( examples.stubs.IOExample$Account )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="checkForLowBalances()" num="0" total="7" val="0" />
+                                 <CvgInfo elem="examples/stubs/IOExample( java.io.InputStream, int )" num="0" total="5" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="FileExample.java" num="10" total="11" val="91">
+                              <CvgInfo elem="FileExample" num="10" total="11" val="91">
+                                 <CvgInfo elem="analyze( java.io.File )" num="10" total="10" val="100" />
+                                 <CvgInfo elem="examples/stubs/FileExample()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="ConstructorExample.java" num="2" total="3" val="67">
+                              <CvgInfo elem="ConstructorExample" num="2" total="3" val="67">
+                                 <CvgInfo elem="examples/stubs/ConstructorExample()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="getFileLength( java.lang.String )" num="2" total="2" val="100" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Simple.java" num="0" total="4" val="0">
+                              <CvgInfo elem="Simple" num="0" total="4" val="0">
+                                 <CvgInfo elem="add( int, int )" num="0" total="2" val="0" />
+                                 <CvgInfo elem="class initialization()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="examples/stubs/Simple()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Logger.java" num="0" total="3" val="0">
+                              <CvgInfo elem="Logger" num="0" total="3" val="0">
+                                 <CvgInfo elem="examples/stubs/Logger()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="sendMessage()" num="0" total="2" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Interpreter.java" num="11" total="14" val="79">
+                              <CvgInfo elem="Interpreter" num="11" total="14" val="79">
+                                 <CvgInfo elem="examples/stubs/Interpreter( java.io.InputStream )" num="3" total="3" val="100" />
+                                 <CvgInfo elem="getNext()" num="8" total="11" val="73" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="suppress" num="0" total="7" val="0">
+                           <CvgInfo elem="Example.java" num="0" total="1" val="0">
+                              <CvgInfo elem="Example" num="0" total="1" val="0">
+                                 <CvgInfo elem="examples/suppress/Example()" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="AllFileSuppress.java" num="0" total="6" val="0">
+                              <CvgInfo elem="AllFileSuppress" num="0" total="6" val="0">
+                                 <CvgInfo elem="examples/suppress/AllFileSuppress()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="main( java.lang.String[] )" num="0" total="5" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                        <CvgInfo elem="unit" num="0" total="32" val="0">
+                           <CvgInfo elem="Example.java" num="0" total="21" val="0">
+                              <CvgInfo elem="Example" num="0" total="21" val="0">
+                                 <CvgInfo elem="add( int, int )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="allocate( int )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="examples/unit/Example()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="main( java.lang.String[] )" num="0" total="10" val="0" />
+                                 <CvgInfo elem="method( byte, java.lang.String, double )" num="0" total="1" val="0" />
+                                 <CvgInfo elem="method( int )" num="0" total="7" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="TestingTasks.java" num="0" total="6" val="0">
+                              <CvgInfo elem="TestingTasks" num="0" total="6" val="0">
+                                 <CvgInfo elem="examples/unit/TestingTasks()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="findEmpty( java.lang.String[] )" num="0" total="5" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                           <CvgInfo elem="Quickfix.java" num="0" total="5" val="0">
+                              <CvgInfo elem="Quickfix" num="0" total="5" val="0">
+                                 <CvgInfo elem="examples/unit/Quickfix( java.lang.String )" num="0" total="3" val="0" />
+                                 <CvgInfo elem="getLength()" num="0" total="1" val="0" />
+                                 <CvgInfo elem="sgetLength( java.lang.String )" num="0" total="1" val="0" />
+                              </CvgInfo>
+                           </CvgInfo>
+                        </CvgInfo>
+                     </CvgInfo>
+                  </CvgInfo>
+               </CvgInfo>
+            </CvgInfo>
+         </CvgStats>
+         
+      </Coverage>
+   </Exec>
+   <Statistics>
+      
+   </Statistics>
+</ResultsSession>

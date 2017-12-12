@@ -1,0 +1,438 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ResultsSession buildId="ctest_mlyko-2017-11-21" date="11/21/17 13:28:32" machine="leto" project="ctest_mlyko" tag="CRules" time="2017-11-21T13:28:32+01:00" toolName="C++test" toolVer="10.3.2" user="ktos_inny">
+   <TestConfig machine="leto" name="CRules" pseudoUrl="c++test.builtin://CRules" user="ktos_inny" />
+   <Authors>
+      <Author id="dev1" name="user11" />
+   </Authors>
+   <VersionInfos>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="IExecutionViolation" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="InsureViolation" ver="3" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.codereview" resultId="ICodeReviewUndefinedAuthorsInfo" ver="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.codereview" resultId="ICodeReviewScannerInfo" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.scope" resultId="IScopeProjectInfo" ver="3" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricEstimationInfo" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationInfo" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationProjectInfo" ver="2" />
+   </VersionInfos>
+   
+      <Locations>
+      
+         <Loc fsPath="e:\Work\JenkinsWorkspaces\ctestKod\examples\Shapes\test.c" loc="/Shapes/test.c" />
+      
+         <Loc fsPath="e:\Work\JenkinsWorkspaces\ctestKod\examples\Shapes\Point.cpp" loc="/Shapes/Point.cpp" />
+   
+      </Locations>
+   
+   
+   <Scope>
+      <ProjectInformations>
+         <ScopeProjectInfo fltFiles="14" fltLns="533" project="/Shapes" totFiles="14" totLns="533" />
+      </ProjectInformations>
+   </Scope>
+   <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:37">
+      <Goal mode="1" name="Static" />
+      <Projects>
+         <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="14" checkedLns="533" name="Shapes" qfixErrs="0" suppErrs="0" totErrs="7" totFiles="14" totLns="533" />
+      </Projects>
+      <TestingProcessProblems>
+         <RulesValidation tested="[WARNING] Validation problems with mapping/cloning:">
+            <ErrorList>
+               <Error val="The rule ID CODSTA-35 is used for mapping more than once." />
+            </ErrorList>
+         </RulesValidation>
+      </TestingProcessProblems>
+      
+  <StdViols>
+    <StdViol msg="Every non empty case clause in a switch statement shall be terminated with a break statement" ln="15" sev="3" auth="user11" rule="CODSTA-39" tool="c++test" cat="CODSTA" lang="cpp" locType="sr" urgent="true" config="1" hash="939481020" locStartln="15" locStartPos="7" locEndLn="15" locEndPos="8" locFile="/Shapes/Point.cpp" />
+    <StdViol msg="Every non empty case clause in a switch statement shall be terminated with a break statement" ln="17" sev="3" auth="user11" rule="CODSTA-39" tool="c++test" cat="CODSTA" lang="cpp" locType="sr" urgent="true" config="1" hash="939481020" locStartln="17" locStartPos="7" locEndLn="17" locEndPos="8" locFile="/Shapes/Point.cpp" />
+    <StdViol msg="Every non empty case clause in a switch statement shall be terminated with a break statement" ln="19" sev="3" auth="user11" rule="CODSTA-39" tool="c++test" cat="CODSTA" lang="cpp" locType="sr" urgent="true" config="1" hash="939481020" locStartln="19" locStartPos="7" locEndLn="19" locEndPos="8" locFile="/Shapes/Point.cpp" />
+    <StdViol msg="Every non empty case clause in a switch statement shall be terminated with a break statement" ln="23" sev="3" auth="user11" rule="MISRA2004-15_2" tool="c++test" cat="MISRA2004" lang="cpp" locType="sr" urgent="true" config="1" hash="939481020" locStartln="23" locStartPos="7" locEndLn="23" locEndPos="8" locFile="/Shapes/Point.cpp" />
+    <StdViol msg="Pointer variable 'mutex1' uninitialized when declared" ln="3" sev="2" auth="user11" rule="INIT-04" tool="c++test" cat="INIT" lang="cpp" locType="sr" urgent="true" config="1" hash="-677226951" locStartln="3" locStartPos="16" locEndLn="3" locEndPos="17" locFile="/Shapes/test.c" />
+    <StdViol msg="Pointer variable 'mutex2' uninitialized when declared" ln="4" sev="2" auth="user11" rule="INIT-04" tool="c++test" cat="INIT" lang="cpp" locType="sr" urgent="true" config="1" hash="-677226951" locStartln="4" locStartPos="16" locEndLn="4" locEndPos="17" locFile="/Shapes/test.c" />
+    <StdViol msg="Pointer variable 'cv' uninitialized when declared" ln="6" sev="2" auth="user11" rule="INIT-04" tool="c++test" cat="INIT" lang="cpp" locType="sr" urgent="true" config="1" hash="-677226951" locStartln="6" locStartPos="15" locEndLn="6" locEndPos="16" locFile="/Shapes/test.c" />
+  </StdViols>
+
+      <Supps />
+      
+      <FADetails />
+   
+      
+      
+      <TestedFilesDetails>
+         
+         <Total name="Suppressed / Total" supp="0" total="7">
+            
+            <Project name="Shapes" supp="0" total="7">
+               
+               <Res name="Square.cpp" supp="0" total="0" />
+               
+               <Res name="Rectangle.h" supp="0" total="0" />
+               
+               <Res name="Rectangle.cpp" supp="0" total="0" />
+               
+               <Res name="Logger.h" supp="0" total="0" />
+               
+               <Res name="BetterRectangle.h" supp="0" total="0" />
+               
+               <Res name="Shape.h" supp="0" total="0" />
+               
+               <Res name="Point.h" supp="0" total="0" />
+               
+               <Res name="Square.h" supp="0" total="0" />
+               
+               <Res name="Logger.cpp" supp="0" total="0" />
+               
+               <Res name="BetterRectangle.cpp" supp="0" total="0" />
+               
+               <Res name="Main.cpp" supp="0" total="0" />
+               
+               <Res name="BetterSquare.h" supp="0" total="0" />
+               
+               <Res loc="/Shapes/test.c" locType="sr" name="test.c" supp="0" total="3" />
+               
+               <Res loc="/Shapes/Point.cpp" locType="sr" name="Point.cpp" supp="0" total="4" />
+            
+            </Project>
+         
+         </Total>
+      
+      </TestedFilesDetails>
+   
+      <Rules>
+         <RulesList>
+         
+        
+         
+         
+         
+            <Rule cat="CODSTA" desc="Avoid internal or external name conflict with a C++ reserved word" id="CODSTA-39" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="CODSTA" desc="Do not use break in for loops" id="CODSTA-08" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="CODSTA" desc="Do not declare the size of an array when the array is passed into a function as a parameter" id="CODSTA-15" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="CODSTA" desc="Array elements shall be accessed by the array operator [ ]" id="CODSTA-01" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="CODSTA" desc="Do not cast pointers to functions to pointers to primitive types" id="CODSTA-09" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="CODSTA" desc="Storage type modifiers shall be associated with the type, not the variable or the function" id="CODSTA-10" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="CODSTA" desc="Never convert consts to non-consts" id="CODSTA-14" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="CODSTA" desc="Codsta 35 a" id="CODSTA-35_a" sev="4">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="INIT" desc="Initialize all pointer variables" id="INIT-04" sev="2">
+               <Stats authTot="3;" authUrg="3;" total="3" />
+            </Rule>
+            <Rule cat="INIT" desc="Objects with external linkage should not be initialized in a header file" id="INIT-01" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="INIT" desc="Avoid initialization order problems across translation units by replacing non-local static objects with local static objects" id="INIT-12" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="METRICS" desc="Follow the Cyclomatic Complexity limit of 10" id="METRICS-18" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Don't write code that depends on the order of evaluation of function arguments" id="MISRA2004-12_2_b" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Avoid implicit conversions between signed and unsigned integer types" id="MISRA2004-10_1_a" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Avoid implicit conversions between signed and unsigned integer types" id="MISRA2004-10_1_h" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="A cast should not convert a pointer type to an integral type" id="MISRA2004-11_3_a" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="The value of an expression shall be the same under any order of evaluation that the standard permits" id="MISRA2004-12_2_a" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Don't write code that depends on the order of evaluation of function designator and function arguments" id="MISRA2004-12_2_c" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Don't write code that depends on the order of evaluation of expression that involves a function call" id="MISRA2004-12_2_d" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Between sequence points an object shall have its stored value modified at most once by the evaluation of an expression" id="MISRA2004-12_2_e" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Do not use more than one volatile in one expression" id="MISRA2004-12_2_f" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Don't write code that depends on the order of evaluation of function calls" id="MISRA2004-12_2_g" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="The operand of the sizeof operator shall not contain any expression which has side effects" id="MISRA2004-12_3" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Assignment operators shall not be used in expressions that yield a Boolean value" id="MISRA2004-13_1" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Floating-point expressions shall not be tested for equality or inequality" id="MISRA2004-13_3" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="The controlling expression of a for statement shall not contain any objects of floating type" id="MISRA2004-13_4" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="The three expressions of a for statement shall be concerned only with loop control" id="MISRA2004-13_5" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Do not modify for loop counter within a body of the loop" id="MISRA2004-13_6" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="The goto statement shall not be used" id="MISRA2004-14_4" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="A function shall have a single point of exit at the end of the function" id="MISRA2004-14_7" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="'if' and 'else' should be followed by a compound statement" id="MISRA2004-14_9" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="An unconditional break statement shall terminate every non-empty case clause" id="MISRA2004-15_2" sev="3">
+               <Stats authTot="4;" authUrg="4;" total="4" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="A pointer parameter in a function prototype should be declared as pointer to const if the pointer is not used to modify the addressed object" id="MISRA2004-16_7" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Do not redefine reserved words" id="MISRA2004-20_1_b" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Identifier declared in a local or function prototype scope shall not hide an identifier declared in a global or namespace scope" id="MISRA2004-5_2_a" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Identifiers declared in an inner local scope should not hide identifiers declared in an outer local scope" id="MISRA2004-5_2_b" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Do not reuse typedef names" id="MISRA2004-5_3_a" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="Do not reuse typedef names as a typedef name" id="MISRA2004-5_3_b" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MISRA2004" desc="There shall be no definitions of objects or functions in a header file" id="MISRA2004-8_5" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MRM" desc="Provide error handling for file opening errors right next to the call to fopen" id="MRM-39" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="MRM" desc="Use allocation by declaration rather than by new or malloc" id="MRM-30" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="NAMING" desc="Functions that begin with 'is' should return boolean values" id="NAMING-20" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="NAMING" desc="Names of parameters in declaration and definition should be identical" id="NAMING-36" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="OPT" desc="Eliminate unused parameters" id="OPT-03" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="OPT" desc="If a file-level static variable is used/referenced in one function only then include that variable in the function itself" id="OPT-11" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="OPT" desc="Declare member variables in the descending size order" id="OPT-13" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="OPT" desc="Avoid unused local variables" id="OPT-02" sev="4">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="OPT" desc="Avoid unnecessary local variables" id="OPT-06" sev="4">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PB" desc="Properly terminate character strings" id="PB-21" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PB" desc="Do not cast a signed char to an unsigned int" id="PB-12" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PB" desc="Don't assign the dividend of two integers to a floating-point type" id="PB-15" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PB" desc="Avoid assigning out-of-range value to char type" id="PB-16" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PB" desc="Avoid assigning out-of-range value to unsigned char type" id="PB-17" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PFO" desc="Use multiple include guards" id="PFO-02" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PORT" desc="Don't use hard coded value of offset in structures" id="PORT-03" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PORT" desc="Do not cast an int pointer to a long pointer" id="PORT-11" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PORT" desc="Do not pass long casted to an int in function call" id="PORT-07" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PREPROC" desc="Don't use macros in include statement" id="PREPROC-02" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PREPROC" desc="In a macro function, use parentheses before and after multiplication or division" id="PREPROC-05" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PREPROC" desc="Do not allow relative path names in #include statements" id="PREPROC-06" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="PREPROC" desc="Don't define part of statement" id="PREPROC-04" sev="4">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="SECURITY" desc="Never use gets()" id="SECURITY-16" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="SECURITY" desc="Do not use scanf and fscanf functions without specifying variable size in format string" id="SECURITY-14" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+         </RulesList>
+         <CategoriesList>
+            <Category desc="Flow Analysis" name="BD" total="82">
+               <Category desc="Incorrect API usage" name="BD-API" total="6">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Miscellaneous" name="BD-MISC" total="2">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Possible Bugs" name="BD-PB" total="41">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Resources" name="BD-RES" total="5">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Security" name="BD-SECURITY" total="12">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Containers" name="BD-CO" total="3">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Threads &amp; Synchronization" name="BD-TRS" total="13">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Code Duplication Detection" name="CDD" total="4">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Coding Conventions" name="CODSTA" total="344">
+               <Category desc="Coding Conventions for C++" name="CODSTA-CPP" total="94">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Coding Conventions for Modern C++" name="CODSTA-MCPP" total="26">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="UNKNOWN" name="CODSTAT" total="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Comments" name="COMMENT" total="13">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Exceptions" name="EXCEPT" total="18">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Formatting" name="FORMAT" total="47">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Global Static Analysis" name="GLOBAL" total="15">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Initialization" name="INIT" total="18">
+               <Stats authTot="3;" authUrg="3;" total="3" />
+            </Category>
+            <Category desc="Joint Strike Fighter" name="JSF" total="270">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Metrics" name="METRICS" total="43">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="MISRA C" name="MISRA" total="60">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="MISRA C 2004" name="MISRA2004" total="216">
+               <Stats authTot="4;" authUrg="4;" total="4" />
+            </Category>
+            <Category desc="MISRA C++ 2008" name="MISRA2008" total="314">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="MISRA C 2012" name="MISRA2012" total="327">
+               <Category desc="MISRA C 2012 Rules" name="MISRA2012-RULE" total="287">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="MISRA C 2012 Directives" name="MISRA2012-DIR" total="40">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Memory and Resource Management" name="MRM" total="53">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Naming Conventions" name="NAMING" total="94">
+               <Category desc="Hungarian Notation" name="NAMING-HN" total="44">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Object Oriented" name="OOP" total="56">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Optimization" name="OPT" total="41">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Parser diagnostics" name="PARSER" total="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Possible Bugs" name="PB" total="73">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Physical File Organization" name="PFO" total="9">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Portability" name="PORT" total="26">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Preprocessor" name="PREPROC" total="19">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Qt Best Practices" name="QT" total="18">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Security" name="SECURITY" total="49">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="STL Best Practices" name="STL" total="42">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Template" name="TEMPL" total="14">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+         </CategoriesList>
+         <SeverityList>
+            <Severity id="2">
+               <Stats authTot="3;" authUrg="3;" total="3" />
+            </Severity>
+            <Severity id="3">
+               <Stats authTot="4;" authUrg="4;" total="4" />
+            </Severity>
+         </SeverityList>
+      </Rules>
+   </CodingStandards>
+   <Metrics ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:37">
+      
+   </Metrics>
+   <AssocUrls />
+</ResultsSession>

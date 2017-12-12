@@ -1,0 +1,1492 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ResultsSession buildId="build-2014-07-23 15:40:35" climode="true" hasViols="true" id="1408162778008" lang="en_GB" machine="cook" project="" tag="Demo-filtered" time="2014-07-23T15:40:35+02:00" toolId="Exec simulator" toolName="Xtest Simulator" toolVer="1.0">
+   <TestConfig machine="cook" name="Demo-filtered" pseudoUrl="E:\OSGI_demo\configurations\Demo-filtered.properties" user="DarekPap" />
+   <Authors>
+      <Author id="dev1" name="unknown" />
+   </Authors>
+   <Analyzers>
+      <Analyzer id="Exec simulator" name="Xtest Simulator" ver="1.0" />
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1" />
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1" />
+   </VersionInfos>
+   <Goals tsks="8">
+      
+   </Goals>
+   
+   <Scope>
+      <Repositories />
+      <Locations>
+         <Loc hash="933299019" locRef="21" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceTraverser.java" totLns="66" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceTraverser.java" />
+         <Loc hash="1824464682" locRef="6" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IResource.java" totLns="129" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResource.java" />
+         <Loc hash="855410254" locRef="7" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IResourceContainer.java" totLns="22" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResourceContainer.java" />
+         <Loc hash="-538458838" locRef="16" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/MarkerCreationInfo.java" totLns="84" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerCreationInfo.java" />
+         <Loc hash="-1894367396" locRef="14" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java" totLns="78" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java" />
+         <Loc hash="-558083786" locRef="18" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/Logger.java" totLns="43" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/Logger.java" />
+         <Loc hash="-3025334" locRef="11" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarker.java" totLns="27" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java" />
+         <Loc hash="512629593" locRef="22" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceUtil.java" totLns="109" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceUtil.java" />
+         <Loc hash="1892729290" locRef="2" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IFile.java" totLns="61" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java" />
+         <Loc hash="-431336354" locRef="9" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/ResourceException.java" totLns="51" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/ResourceException.java" />
+         <Loc hash="1432620297" locRef="3" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IPath.java" totLns="130" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IPath.java" />
+         <Loc hash="2103353780" locRef="20" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceFinder.java" totLns="447" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceFinder.java" />
+         <Loc hash="1239803856" locRef="1" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/EmptyWorkspace.java" totLns="104" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java" />
+         <Loc hash="-1706143452" locRef="5" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IProjectContainer.java" totLns="31" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java" />
+         <Loc hash="-202098261" locRef="4" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IProject.java" totLns="32" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java" />
+         <Loc hash="-1046930728" locRef="19" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceComparator.java" totLns="125" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceComparator.java" />
+         <Loc hash="-995009220" locRef="17" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/MarkerType.java" totLns="101" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerType.java" />
+         <Loc hash="560313352" locRef="23" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/TestableInputAdapter.java" totLns="152" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/TestableInputAdapter.java" />
+         <Loc hash="-729767802" locRef="13" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarkerListener.java" totLns="25" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerListener.java" />
+         <Loc hash="-1657353470" locRef="10" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/DefaultMarker.java" totLns="87" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/DefaultMarker.java" />
+         <Loc hash="927280722" locRef="12" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarkerInfo.java" totLns="112" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerInfo.java" />
+         <Loc hash="1895480130" locRef="15" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java" totLns="63" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java" />
+         <Loc hash="16900182" locRef="8" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IWorkspace.java" totLns="50" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" />
+      </Locations>
+   </Scope>
+   
+   <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
+      
+      <History>
+         <Graph id="tsks">
+            <Categories>
+               <Category authPos="0" color="gray" name="Unit Test Problems" pos="0" />
+               <Category authPos="1" color="green" name="Exceptions" pos="1" />
+               <Category authPos="2" color="red" name="Assertion Failures" pos="2" />
+            </Categories>
+            <Total secSer="1" title="" xTitle="Date" yTitle="Tasks" yTitle2="Assertion Failures">
+               <X>06-18-14,06-20-14,07-03-14,07-04-14,07-10-14,07-14-14,07-15-14,07-16-14,07-17-14,07-18-14,07-22-14,07-23-14,</X>
+               <Y>60,64,8,60,60,60,60,60,1048,5084,8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,</Y>
+               <Delta>0,0,0,</Delta>
+            </Total>
+            <Authors secSer="1" title="" xTitle="Date" yTitle="Tasks" yTitle2="Assertion Failures">
+               <Author name="darekpap">
+                  <X>06-18-14,06-20-14,07-03-14,07-04-14,07-10-14,07-14-14,07-15-14,07-16-14,07-17-14,07-18-14,07-22-14,07-23-14,</X>
+                  <Y>60,64,8,60,60,60,60,60,1048,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,</Y>
+                  <Delta>0,0,0,</Delta>
+               </Author>
+               <Author name="unknown">
+                  <X>06-18-14,06-20-14,07-03-14,07-04-14,07-10-14,07-14-14,07-15-14,07-16-14,07-17-14,07-18-14,07-22-14,07-23-14,</X>
+                  <Y>0,0,0,0,0,0,0,0,0,5084,8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,</Y>
+                  <Delta>0,0,0,</Delta>
+               </Author>
+            </Authors>
+         </Graph>
+         <Graph id="tc">
+            <Categories>
+               <Category color="gray" name="Total" pos="0" />
+               <Category color="green" name="Passed" pos="1" />
+               <Category color="red" name="Failed" pos="2" />
+               <Category color="yellow" name="Incompleted" pos="3" />
+            </Categories>
+            <Total secSer="2" title="" xTitle="Date" yTitle="Total / Passed" yTitle2="Failed / Incompleted">
+               <X>06-18-14,06-20-14,07-03-14,07-04-14,07-10-14,07-14-14,07-15-14,07-16-14,07-17-14,07-18-14,07-22-14,07-23-14,</X>
+               <Y>636,652,82,636,636,636,636,636,10511,50861,85,85,591,604,76,591,591,591,591,591,9725,47048,79,79,45,48,6,45,45,45,45,45,786,3813,6,6,0,0,0,0,0,0,0,0,0,0,0,0,</Y>
+               <Delta>0,0,0,0,</Delta>
+            </Total>
+         </Graph>
+      </History>
+   
+      <Categories>
+         <CategoryGroup authTot="8;" authUrg="8;" desc="This represents the tasks arising from tests that have already been reviewed. This includes exceptions that have been marked as expected, assertion failures from previously reviewed tests, and any other kind of unexpected behavior that needs to be looked at (such as timeouts)." id="GROUP.UTEST.PROBL" label="Fix Unit Test Problems" name="Unit Test Problems" total="8">
+            <Category authTot="0;" authUrg="0;" id="EXC" name="Runtime Exceptions" short="exception" total="0" />
+            <Category authTot="8;" authUrg="8;" id="FAIL" name="Assertion Failures" short="failure" total="8">
+               <Type authTot="4;" authUrg="4;" name="SimulatorException" total="4" />
+               <Type authTot="4;" authUrg="4;" name="unknown" total="4" />
+            </Category>
+            <Category authTot="0;" authUrg="0;" id="CON.VIOL" name="Contract Violations" short="contract violation" total="0" />
+            <Category authTot="0;" authUrg="0;" id="PROF.PROBL" name="Profiling Problems" short="profiling problem" total="0" />
+            <Category authTot="0;" authUrg="0;" id="EXEC.PROBL" name="Execution Problems" short="execution problem" total="0" />
+            <Category authTot="0;" authUrg="0;" id="TEST.PROBL" name="Test Problems" short="test problem" total="0" />
+         </CategoryGroup>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="These are exceptions thrown by automatically generated test cases that need to be reviewed. After review they will be marked as &quot;expected&quot; or code fixed so that the exception does not occur any more." id="GROUP.UNVER.EXC" label="Review Exceptions" name="Exceptions" total="0">
+            <Category authTot="0;" authUrg="0;" id="UNVER.EXC" name="Unverified Runtime Exceptions" short="unverified exception" total="0" />
+         </CategoryGroup>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="These are assertion failures from automatically generated tests that have not been reviewed. This is expected to be zero when the tests are executed as soon as they are generated, but can be non-zero in cases where tests that have not been reviewed, but the execution is repeated." id="GROUP.UNVER.FAIL" label="Review Assertion Failures" name="Assertion Failures" total="0">
+            <Category authTot="0;" authUrg="0;" id="UNVER.FAIL" name="Unverified Assertion Failures" short="unverified failure" total="0" />
+         </CategoryGroup>
+      </Categories>
+      <Projects>
+         <Project err="0" fail="6" id="com.parasoft.xtest.resource.api" name="com.parasoft.xtest.resource.api" pass="79" total="85">
+            <CategoryGroupStats id="GROUP.UTEST.PROBL" total="8" />
+            <CategoryGroupStats id="GROUP.UNVER.EXC" total="0" />
+            <CategoryGroupStats id="GROUP.UNVER.FAIL" total="0" />
+         </Project>
+      </Projects>
+      
+  <ExecViols>
+    <ExecViol sev="1" cat="FAIL" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" startPos="1" urgent="true" endLn="3" lnHash="-431530501" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java" analyzer="Exec simulator" tcId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1 [0]" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" locRef="4" goals="1," startLn="2" endPos="22" auth="unknown" props="win32" />
+    <ExecViol sev="1" cat="FAIL" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" startPos="1" urgent="true" endLn="3" lnHash="-431530501" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java" analyzer="Exec simulator" tcId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1 [1]" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" locRef="4" goals="1," startLn="2" endPos="22" auth="unknown" props="win32" />
+    <ExecViol sev="1" cat="FAIL" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" startPos="1" urgent="true" endLn="3" lnHash="-431530501" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java" analyzer="Exec simulator" tcId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1 [2]" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" locRef="4" goals="1," startLn="2" endPos="22" auth="unknown" props="win32" />
+    <ExecViol sev="1" cat="FAIL" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" startPos="1" urgent="true" endLn="3" lnHash="-431530501" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java" analyzer="Exec simulator" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" locRef="4" goals="1," startLn="2" endPos="22" auth="unknown" props="win32" />
+    <UnitViol sev="1" cat="FAIL" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0" startPos="1" urgent="true" endLn="3" lnHash="-431530501" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" analyzer="Exec simulator" tcId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0 [0]" locRef="8" goals="1," startLn="2" endPos="22" auth="unknown" props="win32">
+      <Thr>
+        <ThrPart type="SimulatorCauseException" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0">
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="1237623311" ln="5" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-985079775" startPos="5" endPos="0" endLn="16" startLn="15" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-1976022424" startPos="3" endPos="13" endLn="4" startLn="12" desc="at IWorkspace.java" />
+        </ThrPart>
+        <ThrPart type="SimulatorException" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0">
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="1237623311" ln="5" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-985079775" startPos="5" endPos="0" endLn="16" startLn="15" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-1976022424" startPos="3" endPos="13" endLn="4" startLn="12" desc="at IWorkspace.java" />
+        </ThrPart>
+      </Thr>
+    </UnitViol>
+    <UnitViol sev="1" cat="FAIL" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0" startPos="1" urgent="true" endLn="3" lnHash="-431530501" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" analyzer="Exec simulator" tcId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0 [1]" locRef="8" goals="1," startLn="2" endPos="22" auth="unknown" props="win32">
+      <Thr>
+        <ThrPart type="SimulatorCauseException" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0">
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="1237623311" ln="5" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-985079775" startPos="5" endPos="0" endLn="16" startLn="15" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-1976022424" startPos="3" endPos="13" endLn="4" startLn="12" desc="at IWorkspace.java" />
+        </ThrPart>
+        <ThrPart type="SimulatorException" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0">
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="1237623311" ln="5" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-985079775" startPos="5" endPos="0" endLn="16" startLn="15" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-1976022424" startPos="3" endPos="13" endLn="4" startLn="12" desc="at IWorkspace.java" />
+        </ThrPart>
+      </Thr>
+    </UnitViol>
+    <UnitViol sev="1" cat="FAIL" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0" startPos="1" urgent="true" endLn="3" lnHash="-431530501" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" analyzer="Exec simulator" tcId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0 [2]" locRef="8" goals="1," startLn="2" endPos="22" auth="unknown" props="win32">
+      <Thr>
+        <ThrPart type="SimulatorCauseException" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0">
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="1237623311" ln="5" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-985079775" startPos="5" endPos="0" endLn="16" startLn="15" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-1976022424" startPos="3" endPos="13" endLn="4" startLn="12" desc="at IWorkspace.java" />
+        </ThrPart>
+        <ThrPart type="SimulatorException" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0">
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="1237623311" ln="5" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-985079775" startPos="5" endPos="0" endLn="16" startLn="15" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-1976022424" startPos="3" endPos="13" endLn="4" startLn="12" desc="at IWorkspace.java" />
+        </ThrPart>
+      </Thr>
+    </UnitViol>
+    <UnitViol sev="1" cat="FAIL" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0" startPos="1" endLn="3" urgent="true" lnHash="-431530501" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" analyzer="Exec simulator" locRef="8" goals="1," startLn="2" endPos="22" auth="unknown" props="win32">
+      <Thr>
+        <ThrPart type="SimulatorCauseException" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0">
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="1237623311" ln="5" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-985079775" startPos="5" endPos="0" endLn="16" startLn="15" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-1976022424" startPos="3" endPos="13" endLn="4" startLn="12" desc="at IWorkspace.java" />
+        </ThrPart>
+        <ThrPart type="SimulatorException" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0">
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="1237623311" ln="5" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-985079775" startPos="5" endPos="0" endLn="16" startLn="15" desc="at IWorkspace.java" />
+          <PathElem locRef="8" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" lnHash="-1976022424" startPos="3" endPos="13" endLn="4" startLn="12" desc="at IWorkspace.java" />
+        </ThrPart>
+      </Thr>
+    </UnitViol>
+  </ExecViols>
+
+      
+   <ExecutedTestsDetails>
+      <Total fail="6" name="Passed / Total" authErr="0;" total="85" pass="79" authFail="6;">
+         <Project fail="6" name="com.parasoft.xtest.resource.api" authErr="0;" total="85" pass="79" id="com.parasoft.xtest.resource.api" authFail="6;">
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java" locRef="1" startLn="5" root="true" startPos="3" endLn="10" name="EmptyWorkspace.java" endPos="7" auth="author" authErr="0;" total="5" pass="5" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java.testMethod_0" locRef="1" startTime="1406122835956" time="0:00:04.535" startLn="5" status="pass" startPos="3" endLn="10" name="EmptyWorkspace.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java.testMethod_1" locRef="1" startTime="1406122835961" time="0:00:04.403" startLn="5" status="pass" startPos="3" endLn="10" name="EmptyWorkspace.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+                  <Detail msg="sample static detail" sev="Normal" type="Static" />
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java.testMethod_1 [0]" startTime="1406122835961" time="0:00:04.403" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java.testMethod_1" status="pass" name="EmptyWorkspace.java.testMethod_1 [0]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java.testMethod_1 [1]" startTime="1406122835961" time="0:00:04.403" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java.testMethod_1" status="pass" name="EmptyWorkspace.java.testMethod_1 [1]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java.testMethod_1 [2]" startTime="1406122835961" time="0:00:04.403" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java.testMethod_1" status="pass" name="EmptyWorkspace.java.testMethod_1 [2]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java.testMethod_2" locRef="1" startTime="1406122835962" time="0:00:09.124" startLn="5" status="pass" startPos="3" endLn="10" name="EmptyWorkspace.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java" locRef="2" startLn="5" root="true" startPos="3" endLn="10" name="IFile.java" endPos="7" auth="author" authErr="0;" total="5" pass="5" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java.testMethod_0" locRef="2" startTime="1406122835990" time="0:00:09.537" startLn="5" status="pass" startPos="3" endLn="10" name="IFile.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+                  <Detail msg="sample static detail" sev="Normal" type="Static" />
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java.testMethod_0 [0]" startTime="1406122835990" time="0:00:09.537" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java.testMethod_0" status="pass" name="IFile.java.testMethod_0 [0]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java.testMethod_0 [1]" startTime="1406122835990" time="0:00:09.537" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java.testMethod_0" status="pass" name="IFile.java.testMethod_0 [1]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java.testMethod_0 [2]" startTime="1406122835990" time="0:00:09.537" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java.testMethod_0" status="pass" name="IFile.java.testMethod_0 [2]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java.testMethod_1" locRef="2" startTime="1406122835990" time="0:00:03.566" startLn="5" status="pass" startPos="3" endLn="10" name="IFile.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java.testMethod_2" locRef="2" startTime="1406122835990" time="0:00:07.499" startLn="5" status="pass" startPos="3" endLn="10" name="IFile.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IPath.java" locRef="3" startLn="5" root="true" startPos="3" endLn="10" name="IPath.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IPath.java.testMethod_0" locRef="3" startTime="1406122836018" time="0:00:09.387" startLn="5" status="pass" startPos="3" endLn="10" name="IPath.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IPath.java.testMethod_1" locRef="3" startTime="1406122836018" time="0:00:12.518" startLn="5" status="pass" startPos="3" endLn="10" name="IPath.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IPath.java.testMethod_2" locRef="3" startTime="1406122836018" time="0:00:11.370" startLn="5" status="pass" startPos="3" endLn="10" name="IPath.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java" locRef="4" startLn="5" root="true" startPos="3" endLn="10" name="IProject.java" endPos="7" auth="author" fail="3" authErr="0;" total="5" pass="2" authFail="3;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_0" locRef="4" startTime="1406122836043" time="0:00:10.774" startLn="5" status="pass" startPos="3" endLn="10" name="IProject.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" locRef="4" startTime="1406122836043" time="0:00:05.477" startLn="5" status="fail" startPos="3" endLn="10" name="IProject.java.testMethod_1" endPos="7" props="win32;" auth="author" fail="3" authErr="0;" total="3" authFail="3;">
+                  <Detail msg="sample static detail" sev="Normal" type="Static" />
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1 [0]" startTime="1406122836043" time="0:00:05.477" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" status="fail" name="IProject.java.testMethod_1 [0]" props="win32;" auth="author" fail="1" authErr="0;" total="1" authFail="1;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="High" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1 [1]" startTime="1406122836043" time="0:00:05.477" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" status="fail" name="IProject.java.testMethod_1 [1]" props="win32;" auth="author" fail="1" authErr="0;" total="1" authFail="1;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="High" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1 [2]" startTime="1406122836043" time="0:00:05.477" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" status="fail" name="IProject.java.testMethod_1 [2]" props="win32;" auth="author" fail="1" authErr="0;" total="1" authFail="1;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="High" type="Assertion" />
+                  </TestCase>
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_2" locRef="4" startTime="1406122836045" time="0:00:08.708" startLn="5" status="pass" startPos="3" endLn="10" name="IProject.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java" locRef="5" startLn="5" root="true" startPos="3" endLn="10" name="IProjectContainer.java" endPos="7" auth="author" authErr="0;" total="5" pass="5" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java.testMethod_0" locRef="5" startTime="1406122836058" time="0:00:02.388" startLn="5" status="pass" startPos="3" endLn="10" name="IProjectContainer.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+                  <Detail msg="sample static detail" sev="Normal" type="Static" />
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java.testMethod_0 [0]" startTime="1406122836058" time="0:00:02.388" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java.testMethod_0" status="pass" name="IProjectContainer.java.testMethod_0 [0]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java.testMethod_0 [1]" startTime="1406122836058" time="0:00:02.388" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java.testMethod_0" status="pass" name="IProjectContainer.java.testMethod_0 [1]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java.testMethod_0 [2]" startTime="1406122836058" time="0:00:02.388" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java.testMethod_0" status="pass" name="IProjectContainer.java.testMethod_0 [2]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java.testMethod_1" locRef="5" startTime="1406122836058" time="0:00:03.558" startLn="5" status="pass" startPos="3" endLn="10" name="IProjectContainer.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java.testMethod_2" locRef="5" startTime="1406122836058" time="0:00:01.253" startLn="5" status="pass" startPos="3" endLn="10" name="IProjectContainer.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResource.java" locRef="6" startLn="5" root="true" startPos="3" endLn="10" name="IResource.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResource.java.testMethod_0" locRef="6" startTime="1406122836076" time="0:00:05.781" startLn="5" status="pass" startPos="3" endLn="10" name="IResource.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResource.java.testMethod_1" locRef="6" startTime="1406122836076" time="0:00:13.713" startLn="5" status="pass" startPos="3" endLn="10" name="IResource.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResource.java.testMethod_2" locRef="6" startTime="1406122836076" time="0:00:11.259" startLn="5" status="pass" startPos="3" endLn="10" name="IResource.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResourceContainer.java" locRef="7" startLn="5" root="true" startPos="3" endLn="10" name="IResourceContainer.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResourceContainer.java.testMethod_0" locRef="7" startTime="1406122836088" time="0:00:01.395" startLn="5" status="pass" startPos="3" endLn="10" name="IResourceContainer.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResourceContainer.java.testMethod_1" locRef="7" startTime="1406122836088" time="0:00:06.279" startLn="5" status="pass" startPos="3" endLn="10" name="IResourceContainer.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResourceContainer.java.testMethod_2" locRef="7" startTime="1406122836088" time="0:00:05.652" startLn="5" status="pass" startPos="3" endLn="10" name="IResourceContainer.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" locRef="8" startLn="5" root="true" startPos="3" endLn="10" name="IWorkspace.java" endPos="7" auth="author" fail="3" authErr="0;" total="5" pass="2" authFail="3;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0" locRef="8" startTime="1406122836099" time="0:00:05.592" startLn="5" status="fail" startPos="3" endLn="10" name="IWorkspace.java.testMethod_0" endPos="7" props="win32;" auth="author" fail="3" authErr="0;" total="3" authFail="3;">
+                  <Detail msg="sample static detail" sev="Normal" type="Static" />
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0 [0]" startTime="1406122836099" time="0:00:05.592" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0" status="fail" name="IWorkspace.java.testMethod_0 [0]" props="win32;" auth="author" fail="1" authErr="0;" total="1" authFail="1;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="High" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0 [1]" startTime="1406122836099" time="0:00:05.592" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0" status="fail" name="IWorkspace.java.testMethod_0 [1]" props="win32;" auth="author" fail="1" authErr="0;" total="1" authFail="1;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="High" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0 [2]" startTime="1406122836099" time="0:00:05.592" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_0" status="fail" name="IWorkspace.java.testMethod_0 [2]" props="win32;" auth="author" fail="1" authErr="0;" total="1" authFail="1;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="High" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="High" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="High" type="Assertion" />
+                  </TestCase>
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_1" locRef="8" startTime="1406122836103" time="0:00:09.033" startLn="5" status="pass" startPos="3" endLn="10" name="IWorkspace.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java.testMethod_2" locRef="8" startTime="1406122836103" time="0:00:01.395" startLn="5" status="pass" startPos="3" endLn="10" name="IWorkspace.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/ResourceException.java" locRef="9" startLn="5" root="true" startPos="3" endLn="10" name="ResourceException.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/ResourceException.java.testMethod_0" locRef="9" startTime="1406122835958" time="0:00:06.054" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceException.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/ResourceException.java.testMethod_1" locRef="9" startTime="1406122835961" time="0:00:01.917" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceException.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/ResourceException.java.testMethod_2" locRef="9" startTime="1406122835961" time="0:00:00.254" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceException.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/DefaultMarker.java" locRef="10" startLn="5" root="true" startPos="3" endLn="10" name="DefaultMarker.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/DefaultMarker.java.testMethod_0" locRef="10" startTime="1406122835979" time="0:00:05.425" startLn="5" status="pass" startPos="3" endLn="10" name="DefaultMarker.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/DefaultMarker.java.testMethod_1" locRef="10" startTime="1406122835979" time="0:00:00.778" startLn="5" status="pass" startPos="3" endLn="10" name="DefaultMarker.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/DefaultMarker.java.testMethod_2" locRef="10" startTime="1406122835980" time="0:00:03.702" startLn="5" status="pass" startPos="3" endLn="10" name="DefaultMarker.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java" locRef="11" startLn="5" root="true" startPos="3" endLn="10" name="IMarker.java" endPos="7" auth="author" authErr="0;" total="5" pass="5" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java.testMethod_0" locRef="11" startTime="1406122836009" time="0:00:00.481" startLn="5" status="pass" startPos="3" endLn="10" name="IMarker.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java.testMethod_1" locRef="11" startTime="1406122836009" time="0:00:03.693" startLn="5" status="pass" startPos="3" endLn="10" name="IMarker.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java.testMethod_2" locRef="11" startTime="1406122836009" time="0:00:05.998" startLn="5" status="pass" startPos="3" endLn="10" name="IMarker.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+                  <Detail msg="sample static detail" sev="Normal" type="Static" />
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java.testMethod_2 [0]" startTime="1406122836009" time="0:00:05.998" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java.testMethod_2" status="pass" name="IMarker.java.testMethod_2 [0]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java.testMethod_2 [1]" startTime="1406122836009" time="0:00:05.998" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java.testMethod_2" status="pass" name="IMarker.java.testMethod_2 [1]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java.testMethod_2 [2]" startTime="1406122836009" time="0:00:05.998" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java.testMethod_2" status="pass" name="IMarker.java.testMethod_2 [2]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerInfo.java" locRef="12" startLn="5" root="true" startPos="3" endLn="10" name="IMarkerInfo.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerInfo.java.testMethod_0" locRef="12" startTime="1406122836036" time="0:00:07.039" startLn="5" status="pass" startPos="3" endLn="10" name="IMarkerInfo.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerInfo.java.testMethod_1" locRef="12" startTime="1406122836036" time="0:00:07.680" startLn="5" status="pass" startPos="3" endLn="10" name="IMarkerInfo.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerInfo.java.testMethod_2" locRef="12" startTime="1406122836036" time="0:00:03.288" startLn="5" status="pass" startPos="3" endLn="10" name="IMarkerInfo.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerListener.java" locRef="13" startLn="5" root="true" startPos="3" endLn="10" name="IMarkerListener.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerListener.java.testMethod_0" locRef="13" startTime="1406122836057" time="0:00:04.337" startLn="5" status="pass" startPos="3" endLn="10" name="IMarkerListener.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerListener.java.testMethod_1" locRef="13" startTime="1406122836057" time="0:00:06.706" startLn="5" status="pass" startPos="3" endLn="10" name="IMarkerListener.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerListener.java.testMethod_2" locRef="13" startTime="1406122836057" time="0:00:01.515" startLn="5" status="pass" startPos="3" endLn="10" name="IMarkerListener.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java" locRef="14" startLn="5" root="true" startPos="3" endLn="10" name="IMarkerManager.java" endPos="7" auth="author" authErr="0;" total="5" pass="5" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java.testMethod_0" locRef="14" startTime="1406122836073" time="0:00:03.884" startLn="5" status="pass" startPos="3" endLn="10" name="IMarkerManager.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java.testMethod_1" locRef="14" startTime="1406122836073" time="0:00:06.390" startLn="5" status="pass" startPos="3" endLn="10" name="IMarkerManager.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java.testMethod_2" locRef="14" startTime="1406122836074" time="0:00:03.651" startLn="5" status="pass" startPos="3" endLn="10" name="IMarkerManager.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+                  <Detail msg="sample static detail" sev="Normal" type="Static" />
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java.testMethod_2 [0]" startTime="1406122836074" time="0:00:03.651" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java.testMethod_2" status="pass" name="IMarkerManager.java.testMethod_2 [0]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java.testMethod_2 [1]" startTime="1406122836074" time="0:00:03.651" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java.testMethod_2" status="pass" name="IMarkerManager.java.testMethod_2 [1]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java.testMethod_2 [2]" startTime="1406122836074" time="0:00:03.651" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java.testMethod_2" status="pass" name="IMarkerManager.java.testMethod_2 [2]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java" locRef="15" startLn="5" root="true" startPos="3" endLn="10" name="MarkerChangedEvent.java" endPos="7" auth="author" authErr="0;" total="5" pass="5" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java.testMethod_0" locRef="15" startTime="1406122836087" time="0:00:00.995" startLn="5" status="pass" startPos="3" endLn="10" name="MarkerChangedEvent.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java.testMethod_1" locRef="15" startTime="1406122836087" time="0:00:01.714" startLn="5" status="pass" startPos="3" endLn="10" name="MarkerChangedEvent.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+                  <Detail msg="sample static detail" sev="Normal" type="Static" />
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java.testMethod_1 [0]" startTime="1406122836087" time="0:00:01.714" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java.testMethod_1" status="pass" name="MarkerChangedEvent.java.testMethod_1 [0]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java.testMethod_1 [1]" startTime="1406122836087" time="0:00:01.714" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java.testMethod_1" status="pass" name="MarkerChangedEvent.java.testMethod_1 [1]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+                  <TestCase id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java.testMethod_1 [2]" startTime="1406122836087" time="0:00:01.714" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java.testMethod_1" status="pass" name="MarkerChangedEvent.java.testMethod_1 [2]" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                     <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                     <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                     <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                     <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  </TestCase>
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java.testMethod_2" locRef="15" startTime="1406122836087" time="0:00:00.835" startLn="5" status="pass" startPos="3" endLn="10" name="MarkerChangedEvent.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerCreationInfo.java" locRef="16" startLn="5" root="true" startPos="3" endLn="10" name="MarkerCreationInfo.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerCreationInfo.java.testMethod_0" locRef="16" startTime="1406122836104" time="0:00:03.566" startLn="5" status="pass" startPos="3" endLn="10" name="MarkerCreationInfo.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerCreationInfo.java.testMethod_1" locRef="16" startTime="1406122836104" time="0:00:00.656" startLn="5" status="pass" startPos="3" endLn="10" name="MarkerCreationInfo.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerCreationInfo.java.testMethod_2" locRef="16" startTime="1406122836104" time="0:00:02.596" startLn="5" status="pass" startPos="3" endLn="10" name="MarkerCreationInfo.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerType.java" locRef="17" startLn="5" root="true" startPos="3" endLn="10" name="MarkerType.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerType.java.testMethod_0" locRef="17" startTime="1406122835956" time="0:00:08.807" startLn="5" status="pass" startPos="3" endLn="10" name="MarkerType.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerType.java.testMethod_1" locRef="17" startTime="1406122835961" time="0:00:09.468" startLn="5" status="pass" startPos="3" endLn="10" name="MarkerType.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerType.java.testMethod_2" locRef="17" startTime="1406122835961" time="0:00:14.638" startLn="5" status="pass" startPos="3" endLn="10" name="MarkerType.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/Logger.java" locRef="18" startLn="5" root="true" startPos="3" endLn="10" name="Logger.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/Logger.java.testMethod_0" locRef="18" startTime="1406122835985" time="0:00:10.168" startLn="5" status="pass" startPos="3" endLn="10" name="Logger.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/Logger.java.testMethod_1" locRef="18" startTime="1406122835986" time="0:00:10.090" startLn="5" status="pass" startPos="3" endLn="10" name="Logger.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/Logger.java.testMethod_2" locRef="18" startTime="1406122835986" time="0:00:07.988" startLn="5" status="pass" startPos="3" endLn="10" name="Logger.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceComparator.java" locRef="19" startLn="5" root="true" startPos="3" endLn="10" name="ResourceComparator.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceComparator.java.testMethod_0" locRef="19" startTime="1406122836007" time="0:00:19.086" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceComparator.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceComparator.java.testMethod_1" locRef="19" startTime="1406122836007" time="0:00:11.226" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceComparator.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceComparator.java.testMethod_2" locRef="19" startTime="1406122836007" time="0:00:14.635" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceComparator.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceFinder.java" locRef="20" startLn="5" root="true" startPos="3" endLn="10" name="ResourceFinder.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceFinder.java.testMethod_0" locRef="20" startTime="1406122836045" time="0:00:12.395" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceFinder.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceFinder.java.testMethod_1" locRef="20" startTime="1406122836045" time="0:00:11.964" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceFinder.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceFinder.java.testMethod_2" locRef="20" startTime="1406122836045" time="0:00:14.388" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceFinder.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceTraverser.java" locRef="21" startLn="5" root="true" startPos="3" endLn="10" name="ResourceTraverser.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceTraverser.java.testMethod_0" locRef="21" startTime="1406122836059" time="0:00:05.695" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceTraverser.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceTraverser.java.testMethod_1" locRef="21" startTime="1406122836059" time="0:00:01.308" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceTraverser.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceTraverser.java.testMethod_2" locRef="21" startTime="1406122836059" time="0:00:00.329" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceTraverser.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceUtil.java" locRef="22" startLn="5" root="true" startPos="3" endLn="10" name="ResourceUtil.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceUtil.java.testMethod_0" locRef="22" startTime="1406122836075" time="0:00:00.066" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceUtil.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceUtil.java.testMethod_1" locRef="22" startTime="1406122836075" time="0:00:03.161" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceUtil.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceUtil.java.testMethod_2" locRef="22" startTime="1406122836075" time="0:00:03.732" startLn="5" status="pass" startPos="3" endLn="10" name="ResourceUtil.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+            <TestSuite id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/TestableInputAdapter.java" locRef="23" startLn="5" root="true" startPos="3" endLn="10" name="TestableInputAdapter.java" endPos="7" auth="author" authErr="0;" total="3" pass="3" authFail="0;">
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/TestableInputAdapter.java.testMethod_0" locRef="23" startTime="1406122836089" time="0:00:04.622" startLn="5" status="pass" startPos="3" endLn="10" name="TestableInputAdapter.java.testMethod_0" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/TestableInputAdapter.java.testMethod_1" locRef="23" startTime="1406122836089" time="0:00:05.925" startLn="5" status="pass" startPos="3" endLn="10" name="TestableInputAdapter.java.testMethod_1" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+               <Test id="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/TestableInputAdapter.java.testMethod_2" locRef="23" startTime="1406122836089" time="0:00:08.528" startLn="5" status="pass" startPos="3" endLn="10" name="TestableInputAdapter.java.testMethod_2" endPos="7" props="win32;" auth="author" authErr="0;" total="1" pass="1" authFail="0;">
+                  <Detail msg="sample static detail&#xa;2nd line of static message" sev="Normal" type="Static" />
+                  <Detail msg="sample dynamic detail 1" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 2" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 3" sev="Normal" type="Runtime" />
+                  <Detail msg="sample dynamic detail 4" sev="Normal" type="Runtime" />
+                  <Detail msg="at line 14: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 24: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 34: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 44: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 54: Assert.assertEquals()" sev="Normal" type="Assertion" />
+                  <Detail msg="at line 64: Assert.assertNotNull()" sev="Normal" type="Assertion" />
+               </Test>
+            </TestSuite>
+         </Project>
+      </Total>
+   </ExecutedTestsDetails>
+
+      <Coverage>
+         <Types>
+            <CvgType cvgDecor="Marker" dispCvg="executable lines" dispId="Line" dispName="Line Coverage" dispNoCvg="no executable lines" id="LC" />
+            <CvgType cvgDecor="Marker" dispCvg="decisions" dispId="Decision" dispName="Decision Coverage" dispNoCvg="no decisions" id="DC" />
+         </Types>
+         <CvgStats>
+            <CvgInfo elem="Total" exp="1" num="591;17" total="769;37" val="77;46">
+               <CvgInfo elem="com.parasoft.xtest.resource.api" num="591;17" total="769;37" val="77;46">
+                  <CvgInfo elem="IFile.java" num="37;1" total="42;2" val="88;50">
+                     <CvgInfo elem="IFile" num="37;1" total="42;2" val="88;50">
+                        <CvgInfo elem="method1" num="11;N/A" total="11;N/A" val="100;N/A" />
+                        <CvgInfo elem="method2" num="26;N/A" total="26;N/A" val="100;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="IPath.java" num="31;1" total="42;2" val="74;50">
+                     <CvgInfo elem="IPath" num="31;1" total="42;2" val="74;50">
+                        <CvgInfo elem="method1" num="9;N/A" total="11;N/A" val="82;N/A" />
+                        <CvgInfo elem="method2" num="22;N/A" total="26;N/A" val="85;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="IResourceContainer.java" num="4;N/A" total="5;N/A" val="80;N/A">
+                     <CvgInfo elem="IResourceContainer" num="4;N/A" total="5;N/A" val="80;N/A" />
+                  </CvgInfo>
+                  <CvgInfo elem="ResourceTraverser.java" num="37;1" total="42;2" val="88;50">
+                     <CvgInfo elem="ResourceTraverser" num="37;1" total="42;2" val="88;50">
+                        <CvgInfo elem="method1" num="11;N/A" total="11;N/A" val="100;N/A" />
+                        <CvgInfo elem="method2" num="26;N/A" total="26;N/A" val="100;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="IProjectContainer.java" num="4;N/A" total="5;N/A" val="80;N/A">
+                     <CvgInfo elem="IProjectContainer" num="4;N/A" total="5;N/A" val="80;N/A" />
+                  </CvgInfo>
+                  <CvgInfo elem="IResource.java" num="13;1" total="42;2" val="31;50">
+                     <CvgInfo elem="IResource" num="13;1" total="42;2" val="31;50">
+                        <CvgInfo elem="method1" num="3;N/A" total="11;N/A" val="27;N/A" />
+                        <CvgInfo elem="method2" num="10;N/A" total="26;N/A" val="38;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="EmptyWorkspace.java" num="37;1" total="42;2" val="88;50">
+                     <CvgInfo elem="EmptyWorkspace" num="37;1" total="42;2" val="88;50">
+                        <CvgInfo elem="method1" num="11;N/A" total="11;N/A" val="100;N/A" />
+                        <CvgInfo elem="method2" num="26;N/A" total="26;N/A" val="100;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="ResourceComparator.java" num="31;1" total="42;2" val="74;50">
+                     <CvgInfo elem="ResourceComparator" num="31;1" total="42;2" val="74;50">
+                        <CvgInfo elem="method1" num="9;N/A" total="11;N/A" val="82;N/A" />
+                        <CvgInfo elem="method2" num="22;N/A" total="26;N/A" val="85;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="MarkerChangedEvent.java" num="31;1" total="42;2" val="74;50">
+                     <CvgInfo elem="MarkerChangedEvent" num="31;1" total="42;2" val="74;50">
+                        <CvgInfo elem="method1" num="9;N/A" total="11;N/A" val="82;N/A" />
+                        <CvgInfo elem="method2" num="22;N/A" total="26;N/A" val="85;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="TestableInputAdapter.java" num="37;1" total="42;2" val="88;50">
+                     <CvgInfo elem="TestableInputAdapter" num="37;1" total="42;2" val="88;50">
+                        <CvgInfo elem="method1" num="11;N/A" total="11;N/A" val="100;N/A" />
+                        <CvgInfo elem="method2" num="26;N/A" total="26;N/A" val="100;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="ResourceUtil.java" num="37;1" total="42;2" val="88;50">
+                     <CvgInfo elem="ResourceUtil" num="37;1" total="42;2" val="88;50">
+                        <CvgInfo elem="method1" num="11;N/A" total="11;N/A" val="100;N/A" />
+                        <CvgInfo elem="method2" num="26;N/A" total="26;N/A" val="100;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="IWorkspace.java" num="4;N/A" total="5;N/A" val="80;N/A">
+                     <CvgInfo elem="IWorkspace" num="4;N/A" total="5;N/A" val="80;N/A" />
+                  </CvgInfo>
+                  <CvgInfo elem="IMarkerInfo.java" num="13;1" total="42;2" val="31;50">
+                     <CvgInfo elem="IMarkerInfo" num="13;1" total="42;2" val="31;50">
+                        <CvgInfo elem="method1" num="3;N/A" total="11;N/A" val="27;N/A" />
+                        <CvgInfo elem="method2" num="10;N/A" total="26;N/A" val="38;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="ResourceFinder.java" num="80;2" total="104;7" val="77;29">
+                     <CvgInfo elem="ResourceFinder" num="80;2" total="104;7" val="77;29">
+                        <CvgInfo elem="ResourceFinder$1" num="49;N/A" total="62;N/A" val="79;N/A">
+                           <CvgInfo elem="nested class method" num="33;N/A" total="41;N/A" val="80;N/A" />
+                        </CvgInfo>
+                        <CvgInfo elem="method1" num="9;N/A" total="11;N/A" val="82;N/A" />
+                        <CvgInfo elem="method2" num="22;N/A" total="26;N/A" val="85;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="IMarker.java" num="4;N/A" total="5;N/A" val="80;N/A">
+                     <CvgInfo elem="IMarker" num="4;N/A" total="5;N/A" val="80;N/A" />
+                  </CvgInfo>
+                  <CvgInfo elem="IMarkerListener.java" num="4;N/A" total="5;N/A" val="80;N/A">
+                     <CvgInfo elem="IMarkerListener" num="4;N/A" total="5;N/A" val="80;N/A" />
+                  </CvgInfo>
+                  <CvgInfo elem="DefaultMarker.java" num="37;1" total="42;2" val="88;50">
+                     <CvgInfo elem="DefaultMarker" num="37;1" total="42;2" val="88;50">
+                        <CvgInfo elem="method1" num="11;N/A" total="11;N/A" val="100;N/A" />
+                        <CvgInfo elem="method2" num="26;N/A" total="26;N/A" val="100;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="IMarkerManager.java" num="37;1" total="42;2" val="88;50">
+                     <CvgInfo elem="IMarkerManager" num="37;1" total="42;2" val="88;50">
+                        <CvgInfo elem="method1" num="11;N/A" total="11;N/A" val="100;N/A" />
+                        <CvgInfo elem="method2" num="26;N/A" total="26;N/A" val="100;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="MarkerCreationInfo.java" num="37;1" total="42;2" val="88;50">
+                     <CvgInfo elem="MarkerCreationInfo" num="37;1" total="42;2" val="88;50">
+                        <CvgInfo elem="method1" num="11;N/A" total="11;N/A" val="100;N/A" />
+                        <CvgInfo elem="method2" num="26;N/A" total="26;N/A" val="100;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="ResourceException.java" num="37;1" total="42;2" val="88;50">
+                     <CvgInfo elem="ResourceException" num="37;1" total="42;2" val="88;50">
+                        <CvgInfo elem="method1" num="11;N/A" total="11;N/A" val="100;N/A" />
+                        <CvgInfo elem="method2" num="26;N/A" total="26;N/A" val="100;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="Logger.java" num="4;N/A" total="5;N/A" val="80;N/A">
+                     <CvgInfo elem="Logger" num="4;N/A" total="5;N/A" val="80;N/A" />
+                  </CvgInfo>
+                  <CvgInfo elem="MarkerType.java" num="31;1" total="42;2" val="74;50">
+                     <CvgInfo elem="MarkerType" num="31;1" total="42;2" val="74;50">
+                        <CvgInfo elem="method1" num="9;N/A" total="11;N/A" val="82;N/A" />
+                        <CvgInfo elem="method2" num="22;N/A" total="26;N/A" val="85;N/A" />
+                     </CvgInfo>
+                  </CvgInfo>
+                  <CvgInfo elem="IProject.java" num="4;N/A" total="5;N/A" val="80;N/A">
+                     <CvgInfo elem="IProject" num="4;N/A" total="5;N/A" val="80;N/A" />
+                  </CvgInfo>
+               </CvgInfo>
+            </CvgInfo>
+         </CvgStats>
+         
+      <History>
+         <Graph id="cvg">
+            <Categories>
+               <Category color="red" name="Line" pos="0" />
+               <Category color="green" name="Decision" pos="1" />
+            </Categories>
+            <Total title="" xTitle="Date" yTitle="Percentage">
+               <X>07-10-14,07-14-14,07-15-14,07-16-14,07-17-14,07-18-14,07-22-14,07-23-14,</X>
+               <Y>80,79,79,80,79,78,78,77,65,0,0,67,65,64,57,46,</Y>
+               <Delta>-1,-11,</Delta>
+            </Total>
+         </Graph>
+      </History>
+   
+      </Coverage>
+   </Exec>
+   <Statistics>
+      
+   </Statistics>
+</ResultsSession>

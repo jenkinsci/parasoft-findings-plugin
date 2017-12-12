@@ -1,0 +1,454 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ResultsSession buildId="ctest_mlyko-2017-11-27" date="11/27/17 12:45:32" machine="leto" project="ctest_mlyko" tag="BugDetective Standard" time="2017-11-27T12:45:32+01:00" toolName="C++test" toolVer="10.3.2" user="ktos_inny">
+   <TestConfig machine="leto" name="BugDetective Standard" pseudoUrl="c++test.builtin://BugDetective Standard" user="ktos_inny" />
+   <Authors>
+      <Author id="dev1" name="mlyko" />
+   </Authors>
+   <VersionInfos>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="IExecutionViolation" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="InsureViolation" ver="3" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.codereview" resultId="ICodeReviewUndefinedAuthorsInfo" ver="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.codereview" resultId="ICodeReviewScannerInfo" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.scope" resultId="IScopeProjectInfo" ver="3" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricEstimationInfo" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationInfo" ver="2" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationProjectInfo" ver="2" />
+   </VersionInfos>
+   
+      <Locations>
+      
+         <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\DivisionByZero.cpp" loc="/BugDetectiveCpp/DivisionByZero.cpp" />
+      
+         <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\DeadLock.cpp" loc="/BugDetectiveCpp/DeadLock.cpp" />
+      
+         <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\Point.hpp" loc="/BugDetectiveCpp/Point.hpp" />
+      
+         <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\NullPointer.cpp" loc="/BugDetectiveCpp/NullPointer.cpp" />
+      
+         <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\MemoryLeak.cpp" loc="/BugDetectiveCpp/MemoryLeak.cpp" />
+      
+         <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\Shapes.hpp" loc="/BugDetectiveCpp/Shapes.hpp" />
+   
+      </Locations>
+   
+   
+   <Scope>
+      <ProjectInformations>
+         <ScopeProjectInfo fltFiles="6" fltLns="236" project="/BugDetectiveCpp" totFiles="6" totLns="236" />
+      </ProjectInformations>
+   </Scope>
+   <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:21">
+      <Goal mode="1" name="Static" />
+      <Projects>
+         <Project bdCheckedFiles="4" bdTotalFiles="4" checkedFiles="6" checkedLns="236" name="BugDetectiveCpp" qfixErrs="0" suppErrs="0" totErrs="4" totFiles="6" totLns="236" />
+      </Projects>
+      <TestingProcessProblems>
+         <RulesValidation tested="[WARNING] Validation problems with mapping/cloning:">
+            <ErrorList>
+               <Error val="The rule ID CODSTA-35 is used for mapping more than once." />
+            </ErrorList>
+         </RulesValidation>
+      </TestingProcessProblems>
+      
+  <StdViols>
+    <FlowViol msg="Unreleased lock: changePositionMutex" ln="103" ruleSAFMsg="Point prior to which the Lock is to be Released" auth="mlyko" sev="1" dumpId="0" rule="BD-TRS-LOCK" ruleSCSCMsg="Point where the Lock is Acquired" pkg="Physics" tool="c++test" id="2037104885" lang="cpp" locType="sr" urgent="true" config="2" hash="-2074750358" locStartln="103" locStartPos="0" locEndLn="104" locEndPos="0" locFile="/BugDetectiveCpp/DeadLock.cpp" FirstElSrcRngStartln="92" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="93" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/BugDetectiveCpp/DeadLock.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="" />
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="90" srcRngStartPos="0" srcRngEndLn="91" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DeadLock.cpp" srcRnghash="-2074750358" ln="90" ElType="." desc="while (!exitGame) {" rngLn="90">
+          <Props />
+        </ElDesc>
+        <ElDesc srcRngStartln="91" srcRngStartPos="0" srcRngEndLn="92" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DeadLock.cpp" srcRnghash="-2074750358" ln="91" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="91">
+          <Props />
+        </ElDesc>
+        <ElDesc srcRngStartln="92" srcRngStartPos="0" srcRngEndLn="93" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DeadLock.cpp" srcRnghash="-2074750358" ln="92" ElType=".C" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="92">
+          <Props />
+        </ElDesc>
+        <ElDesc srcRngStartln="93" srcRngStartPos="0" srcRngEndLn="94" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DeadLock.cpp" srcRnghash="-2074750358" ln="93" ElType="." desc="Point&amp; position = participants[i]->getPosition();" rngLn="93">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props />
+            </ElDesc>
+          </ElDescList>
+          <Props />
+        </ElDesc>
+        <ElDesc srcRngStartln="94" srcRngStartPos="0" srcRngEndLn="95" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DeadLock.cpp" srcRnghash="-2074750358" ln="94" ElType="." desc="position.translate(*velocityArray[i]);" rngLn="94">
+          <ElDescList>
+            <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/Point.hpp" srcRnghash="1950870755" ln="15" ElType="." desc="_x += vector._x;" rngLn="15">
+              <Props />
+            </ElDesc>
+            <ElDesc srcRngStartln="16" srcRngStartPos="0" srcRngEndLn="17" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/Point.hpp" srcRnghash="1950870755" ln="16" ElType="." desc="_y += vector._y;" rngLn="16">
+              <Props />
+            </ElDesc>
+          </ElDescList>
+          <Props />
+        </ElDesc>
+        <ElDesc srcRngStartln="95" srcRngStartPos="0" srcRngEndLn="96" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DeadLock.cpp" srcRnghash="-2074750358" ln="95" ElType="." desc="ring.contains(...)" rngLn="95">
+          <ElDescList>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="getPosition()" rngLn="29">
+              <ElDescList>
+                <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+                  <Props />
+                </ElDesc>
+              </ElDescList>
+              <Props />
+            </ElDesc>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="point.squareDistanceTo(...)" rngLn="29">
+              <ElDescList>
+                <ElDesc srcRngStartln="21" srcRngStartPos="0" srcRngEndLn="22" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/Point.hpp" srcRnghash="1950870755" ln="21" ElType="." desc="return ((_x - point._x) * (_x - point._x)) + ((_y - point._y) * (_y - point._y));" rngLn="21">
+                  <Props />
+                </ElDesc>
+              </ElDescList>
+              <Props />
+            </ElDesc>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="return point.squareDistanceTo(getPosition()) &lt;= (_radius * _radius);" rngLn="29">
+              <Props />
+            </ElDesc>
+          </ElDescList>
+          <Props />
+        </ElDesc>
+        <ElDesc srcRngStartln="95" srcRngStartPos="0" srcRngEndLn="96" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DeadLock.cpp" srcRnghash="-2074750358" ln="95" ElType="!E" desc="assertion(ring.contains(position), &quot;Participant is out of ring&quot;);" rngLn="95" thrownTypes="const char *" throwingMethod="assertion">
+          <ElDescList>
+            <ElDesc srcRngStartln="60" srcRngStartPos="0" srcRngEndLn="61" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DeadLock.cpp" srcRnghash="-2074750358" ln="60" ElType="." desc="if (!condition) {" rngLn="60">
+              <Props />
+            </ElDesc>
+            <ElDesc srcRngStartln="61" srcRngStartPos="0" srcRngEndLn="62" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DeadLock.cpp" srcRnghash="-2074750358" ln="61" ElType="!E" desc="throw message;" rngLn="61" thrownTypes="throwStatement" throwingMethod="">
+              <Props />
+            </ElDesc>
+          </ElDescList>
+          <Props />
+        </ElDesc>
+        <ElDesc srcRngStartln="103" srcRngStartPos="0" srcRngEndLn="104" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DeadLock.cpp" srcRnghash="-2074750358" ln="103" ElType=".P" desc="}" rngLn="103">
+          <Props />
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="&quot;shape2.getArea()&quot; may possibly be zero" ln="5" ruleSAFMsg="Point of Division by Zero" auth="mlyko" sev="1" dumpId="1" rule="BD-PB-ZERO" ruleSCSCMsg="Path start point" tool="c++test" id="2017289422" lang="cpp" locType="sr" urgent="true" config="2" hash="-1665970746" locStartln="5" locStartPos="0" locEndLn="6" locEndPos="0" locFile="/BugDetectiveCpp/DivisionByZero.cpp" FirstElSrcRngStartln="5" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="6" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/BugDetectiveCpp/DivisionByZero.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="" />
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="5" srcRngStartPos="0" srcRngEndLn="6" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DivisionByZero.cpp" srcRnghash="-1665970746" ln="5" ElType=".C" desc="shape2->getArea()" rngLn="5">
+          <ElDescList>
+            <ElDesc srcRngStartln="19" srcRngStartPos="0" srcRngEndLn="20" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/Shapes.hpp" srcRnghash="1537905639" ln="19" ElType="." desc="double getArea() const { return 0; }" rngLn="19">
+              <Props />
+            </ElDesc>
+          </ElDescList>
+          <Props />
+        </ElDesc>
+        <ElDesc srcRngStartln="5" srcRngStartPos="0" srcRngEndLn="6" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/DivisionByZero.cpp" srcRnghash="-1665970746" ln="5" ElType=".P" desc="return shape1->getArea()/shape2->getArea();" rngLn="5">
+          <Props />
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="Memory not deallocated: data" ln="15" ruleSAFMsg="Point where Allocated Memory is Lost" auth="mlyko" sev="1" dumpId="2" rule="BD-RES-LEAKS" ruleSCSCMsg="Point where Memory is Allocated" tool="c++test" id="-50546554" lang="cpp" locType="sr" urgent="true" config="2" hash="1013754779" locStartln="15" locStartPos="0" locEndLn="16" locEndPos="0" locFile="/BugDetectiveCpp/MemoryLeak.cpp" FirstElSrcRngStartln="8" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="9" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/BugDetectiveCpp/MemoryLeak.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Allocated memory" />
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="7" srcRngStartPos="0" srcRngEndLn="8" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/MemoryLeak.cpp" srcRnghash="1013754779" ln="7" ElType="." desc="fscanf(file, &quot;%d&quot;, pSize);" rngLn="7">
+          <Props />
+        </ElDesc>
+        <ElDesc srcRngStartln="8" srcRngStartPos="0" srcRngEndLn="9" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/MemoryLeak.cpp" srcRnghash="1013754779" ln="8" ElType=".C" desc="int* data = new int[*pSize];" rngLn="8">
+          <Props>
+            <Prop key="Tracked variables" val="data" />
+          </Props>
+        </ElDesc>
+        <ElDesc srcRngStartln="9" srcRngStartPos="0" srcRngEndLn="10" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/MemoryLeak.cpp" srcRnghash="1013754779" ln="9" ElType="." desc="for (int i = 0; i &lt; *pSize; i++) {" rngLn="9">
+          <Props>
+            <Prop key="Tracked variables" val="data" />
+          </Props>
+        </ElDesc>
+        <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/MemoryLeak.cpp" srcRnghash="1013754779" ln="10" ElType="!" desc="if (fscanf(file, &quot;%d&quot;, &amp;data[i]) == EOF) {" rngLn="10">
+          <Props>
+            <Prop key="Tracked variables" val="data" />
+          </Props>
+        </ElDesc>
+        <ElDesc srcRngStartln="11" srcRngStartPos="0" srcRngEndLn="12" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/MemoryLeak.cpp" srcRnghash="1013754779" ln="11" ElType="!E" desc="throw IOException();" rngLn="11" thrownTypes="throwStatement" throwingMethod="">
+          <Props>
+            <Prop key="Tracked variables" val="data" />
+          </Props>
+        </ElDesc>
+        <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/MemoryLeak.cpp" srcRnghash="1013754779" ln="15" ElType=".P" desc="}" rngLn="15">
+          <Props>
+            <Prop key="Tracked variables" val="data" />
+          </Props>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="&quot;point&quot; may possibly be null" ln="11" ruleSAFMsg="Null Pointer Dereferencing Point" auth="mlyko" sev="1" dumpId="3" rule="BD-PB-NP" ruleSCSCMsg="Source of Null Value" tool="c++test" id="961652064" lang="cpp" locType="sr" urgent="true" config="2" hash="-1257393797" locStartln="11" locStartPos="0" locEndLn="12" locEndPos="0" locFile="/BugDetectiveCpp/NullPointer.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/BugDetectiveCpp/NullPointer.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Null value carrier" />
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="7" srcRngStartPos="0" srcRngEndLn="8" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/NullPointer.cpp" srcRnghash="-1257393797" ln="7" ElType=".C" desc="Point* point = 0;" rngLn="7">
+          <Props>
+            <Prop key="Tracked variables" val="point" />
+          </Props>
+        </ElDesc>
+        <ElDesc srcRngStartln="8" srcRngStartPos="0" srcRngEndLn="9" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/NullPointer.cpp" srcRnghash="-1257393797" ln="8" ElType="." desc="if (argc > 3) {" rngLn="8">
+          <Props>
+            <Prop key="Tracked variables" val="point" />
+          </Props>
+        </ElDesc>
+        <ElDesc srcRngStartln="11" srcRngStartPos="0" srcRngEndLn="12" srcRngEndPos="0" srcRngFile="/BugDetectiveCpp/NullPointer.cpp" srcRnghash="-1257393797" ln="11" ElType=".P" desc="point->reflectAcrossX();" rngLn="11">
+          <Props>
+            <Prop key="Tracked variables" val="point" />
+          </Props>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+  </StdViols>
+
+      <Supps />
+      
+      <FADetails>
+         <HtmlDump dumpId="0" value=".    DeadLock.cpp (90): while (!exitGame) {&#xd;&#xa;.    DeadLock.cpp (91): for(int i = 0; i &amp;lt; participantsCount; i++) {&#xd;&#xa;.C   DeadLock.cpp (92): LOCK_ACQUIRE(changePositionMutex);&#xd;&#xa;.    DeadLock.cpp (93): Point&amp;amp; position = participants[i]-&amp;gt;getPosition();&#xd;&#xa;.       Shapes.hpp (10): Point&amp;amp; getPosition() { return _position; }&#xd;&#xa;.    DeadLock.cpp (94): position.translate(*velocityArray[i]);&#xd;&#xa;.       Point.hpp (15): _x += vector._x;&#xd;&#xa;.       Point.hpp (16): _y += vector._y;&#xd;&#xa;.    DeadLock.cpp (95): ring.contains(...)&#xd;&#xa;.       Shapes.hpp (29): getPosition()&#xd;&#xa;.          Shapes.hpp (10): Point&amp;amp; getPosition() { return _position; }&#xd;&#xa;.       Shapes.hpp (29): point.squareDistanceTo(...)&#xd;&#xa;.          Point.hpp (21): return ((_x - point._x) * (_x - point._x)) + ((_y - point._y) * (_y - point._y));&#xd;&#xa;.       Shapes.hpp (29): return point.squareDistanceTo(getPosition()) &amp;lt;= (_radius * _radius);&#xd;&#xa;!E   DeadLock.cpp (95): assertion(ring.contains(position), &quot;Participant is out of ring&quot;); // assertion() throws: const char *&#xd;&#xa;.       DeadLock.cpp (60): if (!condition) {&#xd;&#xa;!E      DeadLock.cpp (61): throw message;&#xd;&#xa;.P   DeadLock.cpp (103): }" />
+         <HtmlDump dumpId="1" value=".C   DivisionByZero.cpp (5): shape2-&amp;gt;getArea()&#xd;&#xa;.       Shapes.hpp (19): double getArea() const { return 0; }&#xd;&#xa;.P   DivisionByZero.cpp (5): return shape1-&amp;gt;getArea()/shape2-&amp;gt;getArea();" />
+         <HtmlDump dumpId="2" value=".    MemoryLeak.cpp (7): fscanf(file, &quot;%d&quot;, pSize);&#xd;&#xa;.C   MemoryLeak.cpp (8): int* data = new int[*pSize]; // Allocated memory: data&#xd;&#xa;.    MemoryLeak.cpp (9): for (int i = 0; i &amp;lt; *pSize; i++) { // Allocated memory: data&#xd;&#xa;!    MemoryLeak.cpp (10): if (fscanf(file, &quot;%d&quot;, &amp;amp;data[i]) == EOF) { // Allocated memory: data&#xd;&#xa;!E   MemoryLeak.cpp (11): throw IOException(); // Allocated memory: data&#xd;&#xa;.P   MemoryLeak.cpp (15): } // Allocated memory: data" />
+         <HtmlDump dumpId="3" value=".C   NullPointer.cpp (7): Point* point = 0; // Null value carrier: point&#xd;&#xa;.    NullPointer.cpp (8): if (argc &amp;gt; 3) { // Null value carrier: point&#xd;&#xa;.P   NullPointer.cpp (11): point-&amp;gt;reflectAcrossX(); // Null value carrier: point" />
+      </FADetails>
+   
+      
+      
+      <TestedFilesDetails>
+         
+         <Total name="Suppressed / Total" supp="0" total="4">
+            
+            <Project name="BugDetectiveCpp" supp="0" total="4">
+               
+               <Res loc="/BugDetectiveCpp/DivisionByZero.cpp" locType="sr" name="DivisionByZero.cpp" supp="0" total="1" />
+               
+               <Res loc="/BugDetectiveCpp/DeadLock.cpp" locType="sr" name="DeadLock.cpp" supp="0" total="1" />
+               
+               <Res name="Point.hpp" supp="0" total="0" />
+               
+               <Res loc="/BugDetectiveCpp/NullPointer.cpp" locType="sr" name="NullPointer.cpp" supp="0" total="1" />
+               
+               <Res loc="/BugDetectiveCpp/MemoryLeak.cpp" locType="sr" name="MemoryLeak.cpp" supp="0" total="1" />
+               
+               <Res name="Shapes.hpp" supp="0" total="0" />
+            
+            </Project>
+         
+         </Total>
+      
+      </TestedFilesDetails>
+   
+      <Rules>
+         <RulesList>
+            <Rule cat="BD-PB" desc="Avoid use before initialization" id="BD-PB-NOTINIT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid null pointer dereferencing" id="BD-PB-NP" sev="1">
+               <Stats authTot="1;" authUrg="1;" total="1" />
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid buffer overflow due to defining incorrect format limits" id="BD-PB-OVERFFMT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow due to reading a not zero terminated string" id="BD-PB-OVERFNZT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow when reading from a buffer" id="BD-PB-OVERFRD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow when writing to a buffer" id="BD-PB-OVERFWR" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid division by zero" id="BD-PB-ZERO" sev="1">
+               <Stats authTot="1;" authUrg="1;" total="1" />
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid accessing arrays out of bounds" id="BD-PB-ARRAY" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid conditions that always evaluate to the same value" id="BD-PB-CC" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not check for null after dereferencing" id="BD-PB-DEREF" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid switch with unreachable branches" id="BD-PB-SWITCH" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-RES" desc="Ensure deallocation functions guarantee resource freeing" id="BD-RES-BADFREEF" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-RES" desc="Do not use resources that have been freed" id="BD-RES-FREE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-RES" desc="Do not free resources using invalid pointers" id="BD-RES-INVFREE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-RES" desc="Ensure resources are freed" id="BD-RES-LEAKS" sev="1">
+               <Stats authTot="1;" authUrg="1;" total="1" />
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid tainted data in array indexes" id="BD-SECURITY-ARRAY" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against integer overflow/underflow from tainted data" id="BD-SECURITY-INTOVERF" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid buffer read overflow from tainted data" id="BD-SECURITY-OVERFRD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid buffer write overflow from tainted data" id="BD-SECURITY-OVERFWR" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against command injection" id="BD-SECURITY-TDCMD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against file name injection" id="BD-SECURITY-TDFNAMES" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against SQL injection" id="BD-SECURITY-TDSQL" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid double locking" id="BD-TRS-DLOCK" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not abandon unreleased locks" id="BD-TRS-LOCK" sev="1">
+               <Stats authTot="1;" authUrg="1;" total="1" />
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not use blocking functions while holding a lock" id="BD-TRS-TSHL" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Rule>
+         </RulesList>
+         <CategoriesList>
+            <Category desc="Flow Analysis" name="BD" total="82">
+               <Category desc="Incorrect API usage" name="BD-API" total="6">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Miscellaneous" name="BD-MISC" total="2">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Possible Bugs" name="BD-PB" total="41">
+                  <Stats authTot="2;" authUrg="2;" total="2" />
+               </Category>
+               <Category desc="Resources" name="BD-RES" total="5">
+                  <Stats authTot="1;" authUrg="1;" total="1" />
+               </Category>
+               <Category desc="Security" name="BD-SECURITY" total="12">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Containers" name="BD-CO" total="3">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Threads &amp; Synchronization" name="BD-TRS" total="13">
+                  <Stats authTot="1;" authUrg="1;" total="1" />
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Code Duplication Detection" name="CDD" total="4">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Coding Conventions" name="CODSTA" total="344">
+               <Category desc="Coding Conventions for C++" name="CODSTA-CPP" total="94">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="Coding Conventions for Modern C++" name="CODSTA-MCPP" total="26">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="UNKNOWN" name="CODSTAT" total="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Comments" name="COMMENT" total="13">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Exceptions" name="EXCEPT" total="18">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Formatting" name="FORMAT" total="47">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Global Static Analysis" name="GLOBAL" total="15">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Initialization" name="INIT" total="18">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Joint Strike Fighter" name="JSF" total="270">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Metrics" name="METRICS" total="43">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="MISRA C" name="MISRA" total="60">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="MISRA C 2004" name="MISRA2004" total="216">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="MISRA C++ 2008" name="MISRA2008" total="314">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="MISRA C 2012" name="MISRA2012" total="327">
+               <Category desc="MISRA C 2012 Rules" name="MISRA2012-RULE" total="287">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Category desc="MISRA C 2012 Directives" name="MISRA2012-DIR" total="40">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Memory and Resource Management" name="MRM" total="53">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Naming Conventions" name="NAMING" total="94">
+               <Category desc="Hungarian Notation" name="NAMING-HN" total="44">
+                  <Stats authTot="0;" authUrg="0;" total="0" />
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Object Oriented" name="OOP" total="56">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Optimization" name="OPT" total="41">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Parser diagnostics" name="PARSER" total="2">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Possible Bugs" name="PB" total="73">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Physical File Organization" name="PFO" total="9">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Portability" name="PORT" total="26">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Preprocessor" name="PREPROC" total="19">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Qt Best Practices" name="QT" total="18">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Security" name="SECURITY" total="49">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="STL Best Practices" name="STL" total="42">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+            <Category desc="Template" name="TEMPL" total="14">
+               <Stats authTot="0;" authUrg="0;" total="0" />
+            </Category>
+         </CategoriesList>
+         <SeverityList>
+            <Severity id="1">
+               <Stats authTot="4;" authUrg="4;" total="4" />
+            </Severity>
+         </SeverityList>
+      </Rules>
+   </CodingStandards>
+   <Metrics ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:21">
+      
+   </Metrics>
+   <AssocUrls />
+</ResultsSession>
