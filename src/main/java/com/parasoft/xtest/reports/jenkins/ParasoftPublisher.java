@@ -97,7 +97,7 @@ public class ParasoftPublisher
     {
         logger.log(Messages.COLLECTING_REPORT_FILES);
         
-        Map<String, String> envVars = build.getCharacteristicEnvVars();
+        Map<String, String> envVars = build.getEnvironment(TaskListener.NULL);
         
         JenkinsVariablesResolver variablesResolver = new JenkinsVariablesResolver(envVars);
 
