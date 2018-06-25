@@ -19,8 +19,7 @@
 
     <!-- ===================== create root testsuites node using 'total' =========== -->
     <xsl:template match="Total">
-        <testsuites tests="{@total}" failures="{@fail}" errors="0">
-            <xsl:call-template name="timeAttrIfAvailable" />
+        <testsuites>
             <xsl:call-template name="RootTests" />
         </testsuites>
     </xsl:template>
@@ -62,15 +61,40 @@
 
         <xsl:variable name="totalTests" select="$testNode/@total" />
 
-        <testsuite name="{$rootTestName2}" tests="{$totalTests}">
-            <xsl:call-template name="timeAttrIfAvailable" />
+        <xsl:variable name="failuresCount">
+            <xsl:call-template name="getAttrValueOrDefault">
+                <xsl:with-param name="attr" select="@fail"/>
+                <xsl:with-param name="defaultValue">0</xsl:with-param>
+            </xsl:call-template>
+        </xsl:variable>
 
+        <xsl:variable name="errorsCount">
+            <xsl:call-template name="getAttrValueOrDefault">
+                <xsl:with-param name="attr" select="@err"/>
+                <xsl:with-param name="defaultValue">0</xsl:with-param>
+            </xsl:call-template>
+        </xsl:variable>
+
+        <xsl:variable name="time">
+            <xsl:call-template name="getAttrValueOrDefault">
+                <xsl:with-param name="attr" select="@time"/>
+                <xsl:with-param name="defaultValue">0.0</xsl:with-param>
+            </xsl:call-template>
+        </xsl:variable>
+
+        <testsuite name="{$rootTestName2}" tests="{$totalTests}" id="{position()}" package="" timestamp="1111-11-11T00:00:00"
+                   hostname="-" failures="{$failuresCount}" errors="{$errorsCount}" time="{$time}">
+            <xsl:call-template name="timeAttrIfAvailable" />
+            <properties/>
             <xsl:for-each select="./Test[@total > 0] | ./TestSuite[@total > 0]">
                 <xsl:call-template name="TestCaseInfo">
                     <xsl:with-param name="testNode" select="." />
                     <xsl:with-param name="depth" select="($depth) + 1" />
+                    <xsl:with-param name="classname" select="$rootTestName2" />
                 </xsl:call-template>
             </xsl:for-each>
+            <system-out/>
+            <system-err/>
         </testsuite>
 
     </xsl:template>
@@ -79,6 +103,7 @@
     <xsl:template name="TestCaseInfo">
         <xsl:param name="testNode" />
         <xsl:param name="depth" />
+        <xsl:param name="classname"/>
 
         <xsl:variable name="isTestSuite" select="name($testNode) = 'TestSuite'" />
         <xsl:variable name="isTest" select="name($testNode) = 'Test'" />
@@ -89,6 +114,7 @@
                 <xsl:call-template name="TestCaseInfo">
                     <xsl:with-param name="testNode" select="." />
                     <xsl:with-param name="depth" select="($depth) + 1" />
+                    <xsl:with-param name="classname" select="$classname" />
                 </xsl:call-template>
             </xsl:for-each>
         </xsl:if>
@@ -110,6 +136,7 @@
                             <xsl:with-param name="testName" select="concat($testName,'[',@params,']')" />
                             <xsl:with-param name="funcViols" select="$funcViols" />
                             <xsl:with-param name="time" select="@time" />
+                            <xsl:with-param name="className" select="$classname" />
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:when>
@@ -119,6 +146,7 @@
                         <xsl:with-param name="testName" select="$testName" />
                         <xsl:with-param name="funcViols" select="$funcViols" />
                         <xsl:with-param name="time" select="@time" />
+                        <xsl:with-param name="className" select="$classname" />
                     </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
@@ -199,14 +227,23 @@
         <xsl:param name="testName" />
         <xsl:param name="funcViols" />
         <xsl:param name="time" />
+        <xsl:param name="className"/>
 
         <xsl:variable name="timeInMillis">
-            <xsl:call-template name="timeFormat">
-                <xsl:with-param name="initTime" select="$time" />
-            </xsl:call-template>
+            <xsl:choose>
+                <xsl:when test="$time">
+                    <xsl:call-template name="timeFormat">
+                        <xsl:with-param name="initTime" select="$time" />
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="0"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
 
-        <testcase name="{$testName}" time="{$timeInMillis}">
+
+        <testcase name="{$testName}" time="{$timeInMillis}" classname="{$className}">
             <xsl:if test="count($funcViols) > 0">
                 <xsl:choose>
                     <xsl:when test="count($funcViols) > 1">
@@ -221,12 +258,12 @@
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
-                        <failure message="Multiple errors reported">
+                        <failure message="Multiple errors reported" type="Failure">
                             <xsl:value-of select="$combinedFailures" />
                         </failure>
                     </xsl:when>
                     <xsl:otherwise>
-                        <failure message="{$funcViols/@msg}">
+                        <failure message="{$funcViols/@msg}" type="Failure">
                             <xsl:if test="string-length($funcViols/@violationDetails) > 0">
                                 <xsl:value-of select="$funcViols/@violationDetails" />
                             </xsl:if>
@@ -283,6 +320,20 @@
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$text" />
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="getAttrValueOrDefault">
+        <xsl:param name="attr" />
+        <xsl:param name="defaultValue" />
+
+        <xsl:choose>
+            <xsl:when test="$attr">
+                <xsl:value-of select="$attr"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$defaultValue"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>

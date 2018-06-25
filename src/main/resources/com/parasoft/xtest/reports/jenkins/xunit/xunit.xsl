@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
@@ -33,7 +33,7 @@
     </xsl:template>
 
     <xsl:template match="Total" mode="exec">
-        <testsuites tests="{@total}" failures="{@fail}" errors="{@err}">
+        <testsuites>
             <xsl:call-template name="timeAttrIfAvailable" />
             <xsl:apply-templates select="Project/TestSuite | TestSuite" mode="exec" />
         </testsuites>
@@ -46,10 +46,37 @@
                 <xsl:apply-templates select="TestSuite" mode="exec"/>
             </xsl:when>
             <xsl:otherwise>
-                <testsuite name="{@name}" tests="{count(.//Test[not(TestCase)] | .//Test/TestCase)}">
+
+                <xsl:variable name="failuresCount">
+                    <xsl:call-template name="getAttrValueOrDefault">
+                        <xsl:with-param name="attr" select="@fail"/>
+                        <xsl:with-param name="defaultValue">0</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:variable>
+
+                <xsl:variable name="errorsCount">
+                    <xsl:call-template name="getAttrValueOrDefault">
+                        <xsl:with-param name="attr" select="@err"/>
+                        <xsl:with-param name="defaultValue">0</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:variable>
+
+                <xsl:variable name="time">
+                    <xsl:call-template name="getAttrValueOrDefault">
+                        <xsl:with-param name="attr" select="@time"/>
+                        <xsl:with-param name="defaultValue">0.0</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:variable>
+
+                <testsuite name="{@name}" tests="{count(.//Test[not(TestCase)] | .//Test/TestCase)}" id="{position()}" package=""
+                           timestamp="1111-11-11T00:00:00" hostname="-" failures="{$failuresCount}" errors="{$errorsCount}"
+                           time="{$time}">
                     <xsl:call-template name="timeAttrIfAvailable" />
+                    <properties/>
                     <xsl:apply-templates select="Test" mode="exec" />
                     <xsl:apply-templates select="TestSuite" mode="exec" />
+                    <system-out/>
+                    <system-err/>
                 </testsuite>
             </xsl:otherwise>
         </xsl:choose>
@@ -87,7 +114,15 @@
 
         <xsl:choose>
             <xsl:when test="$tcId='null'">
-                <testcase name="{@name}" classname="{$className}">
+
+                <xsl:variable name="testCaseTime">
+                    <xsl:call-template name="getAttrValueOrDefault">
+                        <xsl:with-param name="attr" select="@time"/>
+                        <xsl:with-param name="defaultValue">0.0</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:variable>
+
+                <testcase name="{@name}" classname="{$className}" time="{$testCaseTime}">
                     <xsl:call-template name="timeAttrIfAvailable" />
                     <xsl:if test="$status!='pass'">
                         <xsl:call-template name="processExecViols">
@@ -120,7 +155,7 @@
 
         <xsl:choose>
             <xsl:when test="$status='err'">
-                <error>
+                <error type="Error">
                     <xsl:call-template name="printUnitViols">
                         <xsl:with-param name="unitViols" select="$unitViols" />
                     </xsl:call-template>
@@ -130,7 +165,7 @@
                 </error>
             </xsl:when>
             <xsl:when test="$status='fail'">
-                <failure>
+                <failure type="Failure">
                     <xsl:call-template name="printUnitViols">
                         <xsl:with-param name="unitViols" select="$unitViols" />
                     </xsl:call-template>
@@ -202,8 +237,7 @@
     </xsl:template>
     
     <xsl:template match="Total" mode="execLegacy">
-        <testsuites tests="{@total}" failures="{@fail}" errors="{@err}">
-            <xsl:call-template name="timeAttrIfAvailable" />
+        <testsuites>
             <xsl:apply-templates select="Project/TestSuite | TestSuite" mode="execLegacy" />
         </testsuites>
     </xsl:template>
@@ -215,10 +249,37 @@
                 <xsl:apply-templates select="TestSuite" mode="execLegacy"/>
             </xsl:when>
             <xsl:otherwise>
-                <testsuite name="{@name}" tests="{count(.//Test[not(TestCase)] | .//Test/TestCase)}">
+
+                <xsl:variable name="failuresCount">
+                    <xsl:call-template name="getAttrValueOrDefault">
+                        <xsl:with-param name="attr" select="@fail"/>
+                        <xsl:with-param name="defaultValue">0</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:variable>
+
+                <xsl:variable name="errorsCount">
+                    <xsl:call-template name="getAttrValueOrDefault">
+                        <xsl:with-param name="attr" select="@err"/>
+                        <xsl:with-param name="defaultValue">0</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:variable>
+
+                <xsl:variable name="time">
+                    <xsl:call-template name="getAttrValueOrDefault">
+                        <xsl:with-param name="attr" select="@time"/>
+                        <xsl:with-param name="defaultValue">0.0</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:variable>
+
+                <testsuite name="{@name}" tests="{count(.//Test[not(TestCase)] | .//Test/TestCase)}"
+                           id="{position()}" package="" timestamp="1111-11-11T00:00:00" hostname="-"
+                           failures="{$failuresCount}" errors="{$errorsCount}" time="{$time}">
                     <xsl:call-template name="timeAttrIfAvailable" />
+                    <properties/>
                     <xsl:apply-templates select="Test" mode="execLegacy" />
                     <xsl:apply-templates select="TestSuite" mode="execLegacy" />
+                    <system-out/>
+                    <system-err/>
                 </testsuite>
             </xsl:otherwise>
         </xsl:choose>
@@ -304,7 +365,7 @@
         <xsl:param name="status" />
         <xsl:choose>
             <xsl:when test="$status='err'">
-                <error>
+                <error type="Error">
                     <xsl:text>&#xa;&#x9;</xsl:text>
                     <xsl:call-template name="processStackTrace_Legacy">
                         <xsl:with-param name="execViols" select="$execViols" />
@@ -312,7 +373,7 @@
                 </error>
             </xsl:when>
             <xsl:when test="$status='fail'">
-                <failure>
+                <failure type="Failure">
                     <xsl:text>&#xa;&#x9;</xsl:text>
                     <xsl:call-template name="processStackTrace_Legacy">
                         <xsl:with-param name="execViols" select="$execViols" />
@@ -427,6 +488,20 @@
             </xsl:if>
         </xsl:if>
 
+    </xsl:template>
+
+    <xsl:template name="getAttrValueOrDefault">
+        <xsl:param name="attr" />
+        <xsl:param name="defaultValue" />
+
+        <xsl:choose>
+            <xsl:when test="$attr">
+                <xsl:value-of select="$attr"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$defaultValue"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
 </xsl:stylesheet>

@@ -1,0 +1,320 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ResultsSession buildId="C++test-2017-11-13" climode="true" execEnv="win32_x86" hasViols="true" id="1511851298970" lang="en_US" machine="cyprus" prjModule="C++test" project="C++test" tag="${scontrol_branch}-win32_x86" time="2017-11-13T22:56:31+01:00" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="10.3.4" user="modtest">
+    <TestConfig machine="cyprus" name="GoogleTest" pseudoUrl="builtin://GoogleTest" user="modtest" />
+    <Authors>
+        <Author id="dev1" name="UnknownGoogleTestUser" />
+        <Author id="dev2" name="modtest" />
+    </Authors>
+    <Analyzers>
+        <Analyzer id="xtest" name="Scope Analyzer" ver="1" />
+        <Analyzer id="com.parasoft.xtest.cpp.analyzer.coverage" name="Parasoft C/C++ Coverage Analyzer" ver="10.3.4" />
+        <Analyzer id="com.parasoft.xtest.cpp.analyzer.googletest" name="Parasoft C/C++ GoogleTest Analyzer" ver="10.3.4" />
+    </Analyzers>
+    <VersionInfos>
+        <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
+    </VersionInfos>
+    <Goals tsks="12">
+
+        <History>
+            <Graph id="gls">
+                <Categories>
+                    <Category color="red" name="Total" pos="0" />
+                </Categories>
+                <Total secSer="1" title="" xTitle="Date" yTitle="Tasks" yTitle2="Total Tasks">
+                    <X>11-13-17,</X>
+                    <Y>12,</Y>
+                    <Delta>12,</Delta>
+                </Total>
+            </Graph>
+        </History>
+
+    </Goals>
+    <Scope>
+        <Repositories />
+        <Locations>
+            <Loc accLns="0" auth="modtest" hash="-1295238355" locRef="1" projId="607525877" projPath="" project="C++test" rejBy="com.parasoft.xtest.cpp.filter.filename.FileNamePreFilter" resProjPath="linkedlist_queue_test.xml" totLns="183" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/linkedlist_queue_test.xml" />
+            <Loc auth="UnknownGoogleTestUser" hash="-1187332121" locRef="2" projId="607525877" projPath="" project="C++test" resProjPath="Queue_death_test.cpp" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/Queue_death_test.cpp" />
+            <Loc auth="UnknownGoogleTestUser" hash="953031315" locRef="3" projId="607525877" projPath="" project="C++test" resProjPath="Queue_basic_test.cpp" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/Queue_basic_test.cpp" />
+            <Loc auth="UnknownGoogleTestUser" hash="415502830" locRef="4" projId="607525877" projPath="" project="C++test" resProjPath="LinkedList_scoped_trace_test.cpp" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/LinkedList_scoped_trace_test.cpp" />
+            <Loc auth="UnknownGoogleTestUser" hash="1299022293" locRef="5" projId="607525877" projPath="" project="C++test" resProjPath="LinkedList_fixture_test.cpp" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/LinkedList_fixture_test.cpp" />
+            <Loc auth="UnknownGoogleTestUser" hash="-1523146660" locRef="6" projId="607525877" projPath="" project="C++test" resProjPath="LinkedList_basic_test.cpp" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/LinkedList_basic_test.cpp" />
+        </Locations>
+    </Scope>
+
+    <SetupProblems />
+
+    <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
+
+        <AssocUrls>
+            <Tag disp="Problem report" name="pr" />
+            <Tag disp="Feature request" name="fr" />
+            <Tag disp="Task" name="task" />
+            <Tag disp="Asset" name="asset" />
+            <Tag disp="Requirement" name="req" />
+        </AssocUrls>
+
+
+        <History>
+            <Graph id="tsks">
+                <Categories>
+                    <Category authPos="0" color="gray" name="Unit Test Problems" pos="0" />
+                    <Category authPos="1" color="green" name="Exceptions" pos="1" />
+                    <Category authPos="2" color="red" name="Assertion Failures" pos="2" />
+                </Categories>
+                <Total secSer="1" title="" xTitle="Date" yTitle="Tasks" yTitle2="Assertion Failures">
+                    <X>11-13-17,</X>
+                    <Y>12,0,0,</Y>
+                    <Delta>12,0,0,</Delta>
+                </Total>
+                <Authors secSer="1" title="" xTitle="Date" yTitle="Tasks" yTitle2="Assertion Failures">
+                    <Author name="UnknownGoogleTestUser">
+                        <X>11-13-17,</X>
+                        <Y>0,0,0,</Y>
+                        <Delta>0,0,0,</Delta>
+                    </Author>
+                    <Author name="modtest">
+                        <X>11-13-17,</X>
+                        <Y>12,0,0,</Y>
+                        <Delta>12,0,0,</Delta>
+                    </Author>
+                </Authors>
+            </Graph>
+            <Graph id="tc">
+                <Categories>
+                    <Category color="gray" name="Total" pos="0" />
+                    <Category color="green" name="Passed" pos="1" />
+                    <Category color="red" name="Failed" pos="2" />
+                    <Category color="yellow" name="Incomplete" pos="3" />
+                </Categories>
+                <Total secSer="2" title="" xTitle="Date" yTitle="Total / Passed" yTitle2="Failed / Incomplete">
+                    <X>11-13-17,</X>
+                    <Y>40,23,12,5,</Y>
+                    <Delta>40,23,12,5,</Delta>
+                </Total>
+            </Graph>
+        </History>
+
+        <Categories>
+            <CategoryGroup authTot="0;12;" authUrg="0;12;" desc="This represents the findings arising from tests that have already been reviewed. This includes exceptions that have been marked as expected, assertion failures from previously reviewed tests, and any other kind of unexpected behavior that needs to be looked at (such as timeouts)." id="GROUP.UTEST.PROBL" label="Fix Unit Test Problems" name="Unit Test Problems" total="12">
+                <Category authTot="0;0;" authUrg="0;0;" id="EXC" name="Runtime Exceptions" short="exception" total="0" />
+                <Category authTot="0;12;" authUrg="0;12;" id="FAIL" name="Assertion Failures" short="failure" total="12">
+                    <Type authTot="0;1;" authUrg="0;1;" name="LinkedList_basic_test.cpp::LinkedListBasicTest::AddFrontFailsExpectEq" total="1" />
+                    <Type authTot="0;1;" authUrg="0;1;" name="LinkedList_scoped_trace_test.cpp::LinkedListScopedTraceTest::ScopedTraceTest2" total="1" />
+                    <Type authTot="0;1;" authUrg="0;1;" name="LinkedList_scoped_trace_test.cpp::LinkedListScopedTraceTest::ScopedTraceTest1" total="1" />
+                    <Type authTot="0;1;" authUrg="0;1;" name="Queue_basic_test.cpp::QueueTest_second::EnqueueFailsAssertEq" total="1" />
+                    <Type authTot="0;1;" authUrg="0;1;" name="LinkedList_fixture_test.cpp::LinkedListFixtureTest::checkContentsOfStdStringList" total="1" />
+                    <Type authTot="0;1;" authUrg="0;1;" name="Queue_basic_test.cpp::QueueTest::EnqueueFailsExpectEq" total="1" />
+                    <Type authTot="0;1;" authUrg="0;1;" name="Queue_death_test.cpp::QueueDeathTest::QueueDeathTestFailure" total="1" />
+                    <Type authTot="0;1;" authUrg="0;1;" name="Queue_basic_test.cpp::QueueTest::EnqueueFailsAssertEq" total="1" />
+                    <Type authTot="0;1;" authUrg="0;1;" name="LinkedList_fixture_test.cpp::LinkedListFixtureTest::checkContentsOfIntList" total="1" />
+                    <Type authTot="0;1;" authUrg="0;1;" name="LinkedList_basic_test.cpp::LinkedListBasicTest::AddFrontFailsExpectNe" total="1" />
+                    <Type authTot="0;1;" authUrg="0;1;" name="LinkedList_basic_test.cpp::LinkedListBasicTest::AddFrontFailsAssertEq" total="1" />
+                    <Type authTot="0;1;" authUrg="0;1;" name="Queue_basic_test.cpp::QueueTest::EnqueueFailsExpectNe" total="1" />
+                </Category>
+                <Category authTot="0;0;" authUrg="0;0;" id="CON.VIOL" name="Contract Violations" short="contract violation" total="0" />
+                <Category authTot="0;0;" authUrg="0;0;" id="PROF.PROBL" name="Profiling Problems" short="profiling problem" total="0" />
+                <Category authTot="0;0;" authUrg="0;0;" id="EXEC.PROBL" name="Execution Problems" short="execution problem" total="0" />
+                <Category authTot="0;0;" authUrg="0;0;" id="TEST.PROBL" name="Test Problems" short="test problem" total="0" />
+            </CategoryGroup>
+            <CategoryGroup authTot="0;0;" authUrg="0;0;" desc="These are exceptions thrown by automatically generated test cases that need to be reviewed. After review they will be marked as &quot;expected&quot; or code fixed so that the exception does not occur any more." id="GROUP.UNVER.EXC" label="Review Exceptions" name="Exceptions" total="0">
+                <Category authTot="0;0;" authUrg="0;0;" id="UNVER.EXC" name="Unverified Runtime Exceptions" short="unverified exception" total="0" />
+            </CategoryGroup>
+            <CategoryGroup authTot="0;0;" authUrg="0;0;" desc="These are assertion failures from automatically generated tests that have not been reviewed. This is expected to be zero when the tests are executed as soon as they are generated, but can be non-zero in cases where tests that have not been reviewed, but the execution is repeated." id="GROUP.UNVER.FAIL" label="Review Assertion Failures" name="Assertion Failures" total="0">
+                <Category authTot="0;0;" authUrg="0;0;" id="UNVER.FAIL" name="Unverified Assertion Failures" short="unverified failure" total="0" />
+            </CategoryGroup>
+        </Categories>
+        <Projects>
+            <Project err="5" fail="12" id="607525877" name="C++test" pass="23" total="40">
+                <CategoryGroupStats id="GROUP.UTEST.PROBL" total="12" />
+                <CategoryGroupStats id="GROUP.UNVER.EXC" total="0" />
+                <CategoryGroupStats id="GROUP.UNVER.FAIL" total="0" />
+            </Project>
+        </Projects>
+
+        <ExecViols>
+            <UnitViol loc="/Queue_death_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="2" cat="FAIL" testId="cpptest.provider://QueueDeathTest::QueueDeathTestFailure" lnHash="-1511158338" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="Queue_death_test.cpp::QueueDeathTest::QueueDeathTestFailure" msg="Detected 2 GoogleTest assertion failures in test case [QueueDeathTestFailure]" />
+                </Thr>
+            </UnitViol>
+            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest::EnqueueFailsExpectEq" lnHash="-1511158338" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="Queue_basic_test.cpp::QueueTest::EnqueueFailsExpectEq" msg="Detected 1 GoogleTest assertion failure in test case [EnqueueFailsExpectEq]" />
+                </Thr>
+            </UnitViol>
+            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest::EnqueueFailsExpectNe" lnHash="-1511158338" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="Queue_basic_test.cpp::QueueTest::EnqueueFailsExpectNe" msg="Detected 1 GoogleTest assertion failure in test case [EnqueueFailsExpectNe]" />
+                </Thr>
+            </UnitViol>
+            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest::EnqueueFailsAssertEq" lnHash="-1511158338" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="Queue_basic_test.cpp::QueueTest::EnqueueFailsAssertEq" msg="Detected 1 GoogleTest assertion failure in test case [EnqueueFailsAssertEq]" />
+                </Thr>
+            </UnitViol>
+            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest_second::EnqueueFailsAssertEq" lnHash="-1511158338" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="Queue_basic_test.cpp::QueueTest_second::EnqueueFailsAssertEq" msg="Detected 1 GoogleTest assertion failure in test case [EnqueueFailsAssertEq]" />
+                </Thr>
+            </UnitViol>
+            <UnitViol loc="/LinkedList_scoped_trace_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="4" cat="FAIL" testId="cpptest.provider://LinkedListScopedTraceTest::ScopedTraceTest1" lnHash="839346442" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="LinkedList_scoped_trace_test.cpp::LinkedListScopedTraceTest::ScopedTraceTest1" msg="Detected 1 GoogleTest assertion failure in test case [ScopedTraceTest1]" />
+                </Thr>
+            </UnitViol>
+            <UnitViol loc="/LinkedList_scoped_trace_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="4" cat="FAIL" testId="cpptest.provider://LinkedListScopedTraceTest::ScopedTraceTest2" lnHash="839346442" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="LinkedList_scoped_trace_test.cpp::LinkedListScopedTraceTest::ScopedTraceTest2" msg="Detected 1 GoogleTest assertion failure in test case [ScopedTraceTest2]" />
+                </Thr>
+            </UnitViol>
+            <UnitViol loc="/LinkedList_fixture_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="5" cat="FAIL" testId="cpptest.provider://LinkedListFixtureTest::checkContentsOfIntList" lnHash="839346442" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="LinkedList_fixture_test.cpp::LinkedListFixtureTest::checkContentsOfIntList" msg="Detected 5 GoogleTest assertion failures in test case [checkContentsOfIntList]" />
+                </Thr>
+            </UnitViol>
+            <UnitViol loc="/LinkedList_fixture_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="5" cat="FAIL" testId="cpptest.provider://LinkedListFixtureTest::checkContentsOfStdStringList" lnHash="839346442" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="LinkedList_fixture_test.cpp::LinkedListFixtureTest::checkContentsOfStdStringList" msg="Detected 9 GoogleTest assertion failures in test case [checkContentsOfStdStringList]" />
+                </Thr>
+            </UnitViol>
+            <UnitViol loc="/LinkedList_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="6" cat="FAIL" testId="cpptest.provider://LinkedListBasicTest::AddFrontFailsExpectEq" lnHash="839346442" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="LinkedList_basic_test.cpp::LinkedListBasicTest::AddFrontFailsExpectEq" msg="Detected 1 GoogleTest assertion failure in test case [AddFrontFailsExpectEq]" />
+                </Thr>
+            </UnitViol>
+            <UnitViol loc="/LinkedList_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="6" cat="FAIL" testId="cpptest.provider://LinkedListBasicTest::AddFrontFailsExpectNe" lnHash="839346442" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="LinkedList_basic_test.cpp::LinkedListBasicTest::AddFrontFailsExpectNe" msg="Detected 1 GoogleTest assertion failure in test case [AddFrontFailsExpectNe]" />
+                </Thr>
+            </UnitViol>
+            <UnitViol loc="/LinkedList_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="6" cat="FAIL" testId="cpptest.provider://LinkedListBasicTest::AddFrontFailsAssertEq" lnHash="839346442" urgent="true" goals="1,">
+                <Thr>
+                    <ThrPart type="LinkedList_basic_test.cpp::LinkedListBasicTest::AddFrontFailsAssertEq" msg="Detected 1 GoogleTest assertion failure in test case [AddFrontFailsAssertEq]" />
+                </Thr>
+            </UnitViol>
+        </ExecViols>
+
+
+        <ExecutedTestsDetails type="UT">
+            <Total fail="12" name="Passed / Total" authErr="0;0;" total="40" pass="23" err="5" authFail="0;12;">
+                <Project fail="12" name="C++test" authErr="0;0;" total="40" pass="23" err="5" id="607525877" authFail="0;12;">
+                    <TestSuite ln="1" locRef="2" root="true" name="QueueDeathTest" id="cpptest.provider://QueueDeathTest" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="2" name="QueueDeathTestFailure" id="cpptest.provider://QueueDeathTest::QueueDeathTestFailure" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="Queue_death_test.cpp:12&#xa;Death test: llChar.isEmpty()&#xa;    Result: failed to die.&#xa; Error msg:&#xa;[  DEATH   ]" sev="Normal" type="Assertion" />
+                            <Detail msg="Queue_death_test.cpp:15&#xa;Death test: llChar.isEmpty()&#xa;    Result: failed to die.&#xa; Error msg:&#xa;[  DEATH   ]" sev="Normal" type="Assertion" />
+                        </Test>
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="1" root="true" name="LinkedListDeathTest" id="cpptest.provider://LinkedListDeathTest" authErr="0;0;" total="1" pass="1" authFail="0;0;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="LinkedListPurposefulCrashByNullPointerDereference" id="cpptest.provider://LinkedListDeathTest::LinkedListPurposefulCrashByNullPointerDereference" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="1" root="true" name="QueueTypeParamTest/0" id="cpptest.provider://QueueTypeParamTest/0" authErr="0;0;" total="1" pass="1" authFail="0;0;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="TypedTest" id="cpptest.provider://QueueTypeParamTest/0::TypedTest" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="1" root="true" name="QueueTypeParamTest/1" id="cpptest.provider://QueueTypeParamTest/1" authErr="0;0;" total="1" pass="1" authFail="0;0;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="TypedTest" id="cpptest.provider://QueueTypeParamTest/1::TypedTest" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="1" root="true" name="QueueTypeInstantiation/QueueTypeParamTest/0" id="cpptest.provider://QueueTypeInstantiation/QueueTypeParamTest/0" authErr="0;0;" total="1" pass="1" authFail="0;0;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="TypeParameterizedTest" id="cpptest.provider://QueueTypeInstantiation/QueueTypeParamTest/0::TypeParameterizedTest" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="1" root="true" name="QueueTypeInstantiation/QueueTypeParamTest/1" id="cpptest.provider://QueueTypeInstantiation/QueueTypeParamTest/1" authErr="0;0;" total="1" pass="1" authFail="0;0;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="TypeParameterizedTest" id="cpptest.provider://QueueTypeInstantiation/QueueTypeParamTest/1::TypeParameterizedTest" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="1" root="true" name="QueueTypeInstantiation/QueueTypeParamTest/2" id="cpptest.provider://QueueTypeInstantiation/QueueTypeParamTest/2" authErr="0;0;" total="1" pass="1" authFail="0;0;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="TypeParameterizedTest" id="cpptest.provider://QueueTypeInstantiation/QueueTypeParamTest/2::TypeParameterizedTest" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="1" root="true" name="QueueFixtureTest" id="cpptest.provider://QueueFixtureTest" authErr="0;0;" total="4" err="4" authFail="0;0;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="DISABLED_checkSizeOfIntList" id="cpptest.provider://QueueFixtureTest::DISABLED_checkSizeOfIntList" status="err" authErr="0;0;" total="1" err="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="DISABLED_checkSizeOfStdStringList" id="cpptest.provider://QueueFixtureTest::DISABLED_checkSizeOfStdStringList" status="err" authErr="0;0;" total="1" err="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="DISABLED_checkContentsOfIntList" id="cpptest.provider://QueueFixtureTest::DISABLED_checkContentsOfIntList" status="err" authErr="0;0;" total="1" err="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="DISABLED_checkContentsOfStdStringList" id="cpptest.provider://QueueFixtureTest::DISABLED_checkContentsOfStdStringList" status="err" authErr="0;0;" total="1" err="1" authFail="0;0;" />
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="3" root="true" name="QueueTest" id="cpptest.provider://QueueTest" fail="3" authErr="0;0;" total="7" pass="4" authFail="0;3;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="3" name="HighDuration" id="cpptest.provider://QueueTest::HighDuration" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="3" name="EnqueuePassesExpectEq" id="cpptest.provider://QueueTest::EnqueuePassesExpectEq" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="3" name="EnqueuePassesExpectNe" id="cpptest.provider://QueueTest::EnqueuePassesExpectNe" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="3" name="EnqueuePassesAssertEq" id="cpptest.provider://QueueTest::EnqueuePassesAssertEq" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="3" name="EnqueueFailsExpectEq" id="cpptest.provider://QueueTest::EnqueueFailsExpectEq" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="Queue_basic_test.cpp:42&#xa;Value of: q.front()&#xa;  Actual: 1&#xa;Expected: 0" sev="Normal" type="Assertion" />
+                        </Test>
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="3" name="EnqueueFailsExpectNe" id="cpptest.provider://QueueTest::EnqueueFailsExpectNe" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="Queue_basic_test.cpp:49&#xa;Expected: (1) != (q.front()), actual: 1 vs 1" sev="Normal" type="Assertion" />
+                        </Test>
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="3" name="EnqueueFailsAssertEq" id="cpptest.provider://QueueTest::EnqueueFailsAssertEq" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="Queue_basic_test.cpp:56&#xa;Value of: q.front()&#xa;  Actual: 1&#xa;Expected: 0" sev="Normal" type="Assertion" />
+                        </Test>
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="3" root="true" name="QueueTest_second" id="cpptest.provider://QueueTest_second" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="3" name="EnqueueFailsAssertEq" id="cpptest.provider://QueueTest_second::EnqueueFailsAssertEq" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="Queue_basic_test.cpp:63&#xa;Value of: q.front()&#xa;  Actual: 1&#xa;Expected: 0" sev="Normal" type="Assertion" />
+                        </Test>
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="4" root="true" name="LinkedListScopedTraceTest" id="cpptest.provider://LinkedListScopedTraceTest" fail="2" authErr="0;0;" total="2" authFail="0;2;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="4" name="ScopedTraceTest1" id="cpptest.provider://LinkedListScopedTraceTest::ScopedTraceTest1" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="LinkedList_scoped_trace_test.cpp:10&#xa;Expected: (data1) != (data2), actual: 7 vs 7&#xa;Google Test trace:&#xa;LinkedList_scoped_trace_test.cpp:21: LinkedListScopedTraceTest&#xa;LinkedList_scoped_trace_test.cpp:20: ScopedTraceTest1" sev="Normal" type="Assertion" />
+                        </Test>
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="4" name="ScopedTraceTest2" id="cpptest.provider://LinkedListScopedTraceTest::ScopedTraceTest2" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="LinkedList_scoped_trace_test.cpp:10&#xa;Expected: (data1) != (data2), actual: &quot;Seven&quot; vs &quot;Seven&quot;&#xa;Google Test trace:&#xa;LinkedList_scoped_trace_test.cpp:33: LinkedListScopedTraceTest&#xa;LinkedList_scoped_trace_test.cpp:32: ScopedTraceTest2" sev="Normal" type="Assertion" />
+                        </Test>
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="5" root="true" name="LinkedListFixtureTest" id="cpptest.provider://LinkedListFixtureTest" fail="2" authErr="0;0;" total="4" pass="2" authFail="0;2;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="5" name="checkSizeOfIntList" id="cpptest.provider://LinkedListFixtureTest::checkSizeOfIntList" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="5" name="checkSizeOfStdStringList" id="cpptest.provider://LinkedListFixtureTest::checkSizeOfStdStringList" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="5" name="checkContentsOfIntList" id="cpptest.provider://LinkedListFixtureTest::checkContentsOfIntList" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="LinkedList_fixture_test.cpp:42&#xa;Value of: _llInt.getHeadData() % 2&#xa;  Actual: 0&#xa;Expected: 1" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:42&#xa;Value of: _llInt.getHeadData() % 2&#xa;  Actual: 0&#xa;Expected: 1" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:42&#xa;Value of: _llInt.getHeadData() % 2&#xa;  Actual: 0&#xa;Expected: 1" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:42&#xa;Value of: _llInt.getHeadData() % 2&#xa;  Actual: 0&#xa;Expected: 1" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:42&#xa;Value of: _llInt.getHeadData() % 2&#xa;  Actual: 0&#xa;Expected: 1" sev="Normal" type="Assertion" />
+                        </Test>
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="5" name="checkContentsOfStdStringList" id="cpptest.provider://LinkedListFixtureTest::checkContentsOfStdStringList" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="LinkedList_fixture_test.cpp:49&#xa;Value of: _llStdString.getHeadData()&#xa;  Actual: &quot;string9&quot;&#xa;Expected: &quot;string7&quot;" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:49&#xa;Value of: _llStdString.getHeadData()&#xa;  Actual: &quot;string8&quot;&#xa;Expected: &quot;string7&quot;" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:49&#xa;Value of: _llStdString.getHeadData()&#xa;  Actual: &quot;string6&quot;&#xa;Expected: &quot;string7&quot;" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:49&#xa;Value of: _llStdString.getHeadData()&#xa;  Actual: &quot;string5&quot;&#xa;Expected: &quot;string7&quot;" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:49&#xa;Value of: _llStdString.getHeadData()&#xa;  Actual: &quot;string4&quot;&#xa;Expected: &quot;string7&quot;" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:49&#xa;Value of: _llStdString.getHeadData()&#xa;  Actual: &quot;string3&quot;&#xa;Expected: &quot;string7&quot;" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:49&#xa;Value of: _llStdString.getHeadData()&#xa;  Actual: &quot;string2&quot;&#xa;Expected: &quot;string7&quot;" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:49&#xa;Value of: _llStdString.getHeadData()&#xa;  Actual: &quot;string1&quot;&#xa;Expected: &quot;string7&quot;" sev="Normal" type="Assertion" />
+                            <Detail msg="LinkedList_fixture_test.cpp:49&#xa;Value of: _llStdString.getHeadData()&#xa;  Actual: &quot;string0&quot;&#xa;Expected: &quot;string7&quot;" sev="Normal" type="Assertion" />
+                        </Test>
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="6" root="true" name="LinkedListBasicTest" id="cpptest.provider://LinkedListBasicTest" fail="3" authErr="0;0;" total="8" pass="4" err="1" authFail="0;3;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="6" name="HighDuration" id="cpptest.provider://LinkedListBasicTest::HighDuration" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="6" name="AddFrontPassesExpectEq" id="cpptest.provider://LinkedListBasicTest::AddFrontPassesExpectEq" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="6" name="AddFrontFailsExpectEq" id="cpptest.provider://LinkedListBasicTest::AddFrontFailsExpectEq" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="LinkedList_basic_test.cpp:30&#xa;Value of: ll.getHeadData()&#xa;  Actual: 1&#xa;Expected: 0" sev="Normal" type="Assertion" />
+                        </Test>
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="6" name="AddFrontPassesExpectNe" id="cpptest.provider://LinkedListBasicTest::AddFrontPassesExpectNe" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="6" name="AddFrontFailsExpectNe" id="cpptest.provider://LinkedListBasicTest::AddFrontFailsExpectNe" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="LinkedList_basic_test.cpp:43&#xa;Expected: (1) != (ll.getHeadData()), actual: 1 vs 1" sev="Normal" type="Assertion" />
+                        </Test>
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="6" name="AddFrontPassesAssertEq" id="cpptest.provider://LinkedListBasicTest::AddFrontPassesAssertEq" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="6" name="AddFrontFailsAssertEq" id="cpptest.provider://LinkedListBasicTest::AddFrontFailsAssertEq" status="fail" fail="1" authErr="0;0;" total="1" authFail="0;1;">
+                            <Detail msg="LinkedList_basic_test.cpp:56&#xa;Value of: ll.getHeadData()&#xa;  Actual: 1&#xa;Expected: 0" sev="Normal" type="Assertion" />
+                        </Test>
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="6" name="DISABLED_AddFrontBackMultiple" id="cpptest.provider://LinkedListBasicTest::DISABLED_AddFrontBackMultiple" status="err" authErr="0;0;" total="1" err="1" authFail="0;0;" />
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="1" root="true" name="RainbowInstantiation/QueueValueParamTest" id="cpptest.provider://RainbowInstantiation/QueueValueParamTest" authErr="0;0;" total="7" pass="7" authFail="0;0;">
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="QueueTestWithValueParams_ContainsColor/0" id="cpptest.provider://RainbowInstantiation/QueueValueParamTest::QueueTestWithValueParams_ContainsColor/0" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="QueueTestWithValueParams_ContainsColor/1" id="cpptest.provider://RainbowInstantiation/QueueValueParamTest::QueueTestWithValueParams_ContainsColor/1" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="QueueTestWithValueParams_ContainsColor/2" id="cpptest.provider://RainbowInstantiation/QueueValueParamTest::QueueTestWithValueParams_ContainsColor/2" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="QueueTestWithValueParams_ContainsColor/3" id="cpptest.provider://RainbowInstantiation/QueueValueParamTest::QueueTestWithValueParams_ContainsColor/3" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="QueueTestWithValueParams_ContainsColor/4" id="cpptest.provider://RainbowInstantiation/QueueValueParamTest::QueueTestWithValueParams_ContainsColor/4" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="QueueTestWithValueParams_ContainsColor/5" id="cpptest.provider://RainbowInstantiation/QueueValueParamTest::QueueTestWithValueParams_ContainsColor/5" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                        <Test ln="1" auth="UnknownGoogleTestUser" locRef="1" name="QueueTestWithValueParams_ContainsColor/6" id="cpptest.provider://RainbowInstantiation/QueueValueParamTest::QueueTestWithValueParams_ContainsColor/6" status="pass" authErr="0;0;" total="1" pass="1" authFail="0;0;" />
+                    </TestSuite>
+                </Project>
+            </Total>
+        </ExecutedTestsDetails>
+
+    </Exec>
+    <Statistics>
+
+    </Statistics>
+</ResultsSession>
