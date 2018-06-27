@@ -27,7 +27,7 @@
     <java.level>7</java.level>
     <jdk.version>1.7</jdk.version>
     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
-    <xtest.version>10.3.4.20171205</xtest.version>
+    <xtest.version>10.4.0.20180618</xtest.version>
   </properties>
 
   <developers>

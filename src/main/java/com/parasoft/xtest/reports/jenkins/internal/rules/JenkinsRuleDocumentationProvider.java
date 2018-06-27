@@ -16,15 +16,19 @@
 
 package com.parasoft.xtest.reports.jenkins.internal.rules;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 import org.apache.commons.io.IOUtils;
 
 import com.parasoft.xtest.common.dtp.IDtpServiceRegistry;
 import com.parasoft.xtest.common.services.RawServiceContext;
+import com.parasoft.xtest.configuration.dtp.XRestRulesClient;
 import com.parasoft.xtest.configuration.rules.RuleDocumentationHelper;
-import com.parasoft.xtest.configuration.rules.XRestRulesClient;
 import com.parasoft.xtest.services.api.IParasoftServiceContext;
 import com.parasoft.xtest.services.api.ServiceUtil;
 

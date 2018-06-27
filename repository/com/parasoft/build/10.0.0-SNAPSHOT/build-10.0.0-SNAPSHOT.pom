@@ -30,7 +30,7 @@
 		<maven-resources-plugin-version>2.6</maven-resources-plugin-version>
 		<maven-clean-plugin-version>2.5</maven-clean-plugin-version>
 		<maven-antrun-plugin-version>1.7</maven-antrun-plugin-version>
-		<maven-javadoc-plugin-version>2.9</maven-javadoc-plugin-version>
+		<maven-javadoc-plugin-version>3.0.0</maven-javadoc-plugin-version>
 		<maven-assembly-plugin-version>2.4</maven-assembly-plugin-version>
 		<wagon-ftp-version>2.2</wagon-ftp-version>
 		<!-- default environment setup (instead of default profile (because default 
@@ -52,6 +52,12 @@
         
 		<cbi-jdt-repo.url>https://repo.eclipse.org/content/repositories/eclipse-staging/</cbi-jdt-repo.url>
 		<cbi-jdt-version>3.10.0.v20140316-0146</cbi-jdt-version>
+        <version_major_minor>${XTEST_MAJ_MIN_VERSION}</version_major_minor>
+        <version_release>${XTEST_RELEASE_VERSION}</version_release>
+
+        <copy.to.isolated.libs.repository.phase>none</copy.to.isolated.libs.repository.phase>
+        <xtest.libs.osgi.deploy>true</xtest.libs.osgi.deploy>
+        <xtest.libs.repository.url>http://${parasoft-buildserver-deploy-base-uri}/builds/${product-name}/${branch-name}/libs/latest/</xtest.libs.repository.url>
 	</properties>
 
 	<profiles>
@@ -102,7 +108,8 @@
 			<repositories>
 				<repository>
 					<id>eclipse-galileo</id>
-					<url>http://download.eclipse.org/releases/galileo</url>
+					<!--  url>http://download.eclipse.org/releases/galileo</url -->
+                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_35_galileo</url>
 					<layout>p2</layout>
 				</repository>
 			</repositories>
@@ -113,7 +120,8 @@
             <repositories>
                 <repository>
                     <id>eclipse-helios</id>
-                    <url>http://download.eclipse.org/releases/helios</url>
+                    <!-- url>http://download.eclipse.org/releases/helios</url -->
+                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_36_helios</url>
                     <layout>p2</layout>
                 </repository>
             </repositories>
@@ -124,37 +132,44 @@
 			<repositories>
 				<repository>
 					<id>eclipse-indigo</id>
-					<url>http://download.eclipse.org/releases/indigo</url>
+					<!--  url>http://download.eclipse.org/releases/indigo</url -->
+                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_37_indigo</url>
 					<layout>p2</layout>
 				</repository>
 			</repositories>
 		</profile>
 		<profile>
+            <!-- eclipse 3.8 (also known as 4.2!) -->
 			<id>eclipse.juno</id>
 			<repositories>
 				<repository>
 					<id>eclipse-juno</id>
-					<url>http://download.eclipse.org/releases/juno</url>
+					<!--  url>http://download.eclipse.org/releases/juno</url -->
+                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_38_juno</url>
 					<layout>p2</layout>
 				</repository>
 			</repositories>
 		</profile>
 		<profile>
+            <!-- eclipse 4.3 -->
 			<id>eclipse.kepler</id>
 			<repositories>
 				<repository>
 					<id>eclipse-kepler</id>
-					<url>http://download.eclipse.org/releases/kepler</url>
+					<!--  url>http://download.eclipse.org/releases/kepler</url -->
+                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_43_kepler</url>
 					<layout>p2</layout>
 				</repository>
 			</repositories>
 		</profile>
 		<profile>
+            <!-- eclipse 4.4 -->
 			<id>eclipse.luna</id>
 			<repositories>
 				<repository>
 					<id>eclipse-luna</id>
-					<url>http://download.eclipse.org/releases/luna</url>
+					<!-- url>http://download.eclipse.org/releases/luna</url -->
+                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_44_luna</url>
 					<layout>p2</layout>
 				</repository>
 			</repositories>
@@ -175,6 +190,111 @@
                 <module>builder</module>
 			</modules>
 		</profile>
+        <profile><!--  a post release action- uploading artifacts to the Parasoft Public Maven Repo to be run like: `mvn -Pxtest.release.public.repo validate`  -->
+            <id>xtest.release.public.repo</id>
+            <build>
+            <plugins>
+            <plugin>
+               <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                  <execution>
+                    <phase>validate</phase>
+                    <goals>
+                      <goal>execute</goal>
+                    </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                <scripts>
+                  <script>file:///${project.basedir}/scripts/deploy-api-jars.gy</script>
+                </scripts>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                      <groupId>org.codehaus.groovy</groupId>
+                      <artifactId>groovy-all</artifactId>
+                      <version>2.4.13</version>
+                      <classifier>indy</classifier>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>xtest.release.md5sums</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>compute_md5</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                    <echo message="Generating md5sums at the builds server"/>
+                                    <sshexec host="xtest.parasoft.com.pl" username="builder"
+                                            password="build%pass" trust="true"
+                                            command="cd /builds/htdocs/builds/xtest/${version_major_minor}/latest &amp;&amp; md5sum parasoft_* &gt; xtest_${version_release}.md5"
+                                            />
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.ant</groupId>
+                                <artifactId>ant-commons-net</artifactId>
+                                <version>1.9.2</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>commons-net</groupId>
+                                <artifactId>commons-net</artifactId>
+                                <version>3.3</version>
+                            </dependency>
+                            <!-- dependency>
+                                <groupId>org.apache.ant</groupId>
+                                <artifactId>ant-nodeps</artifactId>
+                                <version>1.8.1</version>
+                            </dependency -->
+                            <dependency>
+                              <groupId>org.apache.ant</groupId>
+                              <artifactId>ant-jsch</artifactId>
+                              <version>1.9.10</version>
+                            </dependency>
+                            <dependency>
+                              <groupId>com.jcraft</groupId>
+                              <artifactId>jsch</artifactId>
+                              <version>0.1.54</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>isolated.build</id>
+            <activation>
+                <property>
+                    <name>env.ACTVATE_ISOLATED_BUILD</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+              <xtest.libs.osgi.deploy>false</xtest.libs.osgi.deploy>
+              <xtest.libs.repository.dir>${env.WORKSPACE}/p2-osgi-libs</xtest.libs.repository.dir>
+              <xtest.libs.repository.url>file://${xtest.libs.repository.dir}</xtest.libs.repository.url>
+              <copy.to.isolated.libs.repository.phase>install</copy.to.isolated.libs.repository.phase>
+            </properties>
+        </profile>
 	</profiles>
 
 	<build>
