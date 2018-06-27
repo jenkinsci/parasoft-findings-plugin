@@ -33,7 +33,7 @@ public interface IHtmlTags
 
     String NON_BREAKABLE_SPACE = "&nbsp"; //$NON-NLS-1$
 
-    String LINE_SEPARATOR = "    "; //$NON-NLS-1$
+    String NON_BREAKABLE_4_SPACE = NON_BREAKABLE_SPACE + NON_BREAKABLE_SPACE + NON_BREAKABLE_SPACE + NON_BREAKABLE_SPACE;
 
     String DIAMOND_SEPARATOR = " &diams; "; //$NON-NLS-1$
 

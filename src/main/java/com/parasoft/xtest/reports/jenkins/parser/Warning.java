@@ -220,7 +220,7 @@ public class Warning
     private static String appendLineSeparator(String message)
     {
         //used as hint in Jenkins is not showing correctly
-        return message + IHtmlTags.LINE_SEPARATOR;
+        return message + IHtmlTags.NON_BREAKABLE_4_SPACE;
     }
 
     /** Unique identifier of this class. */
