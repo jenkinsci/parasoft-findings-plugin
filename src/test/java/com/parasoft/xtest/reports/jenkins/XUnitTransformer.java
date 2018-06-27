@@ -59,7 +59,7 @@ public class XUnitTransformer
     {
         // keep compatibility with old schema
         validate(outputFile, "xml/junit-7.xsd");
-        // validateAgainstXslSchemas against Ant Junit schema: https://github.com/windyroad/JUnit-Schema/blob/master/JUnit.xsd
+        // validate against Ant Junit schema: https://github.com/windyroad/JUnit-Schema/blob/master/JUnit.xsd
         validate(outputFile, "xml/antJunitSchema.xsd");
     }
 
