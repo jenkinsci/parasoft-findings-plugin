@@ -1,0 +1,322 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ResultsSession buildId="master_10.4.0.20180515B1158" climode="true" execEnv="linux_x86_64" hasViols="true" id="1527060793502" lang="en_US" machine="flow-analysis5" prjModule="ATM" project="BugDetective" tag="ref_master_ATM" time="2018-05-16T10:46:30+02:00" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="10.4.0" user="modtest">
+    <TestConfig machine="flow-analysis5" name="AllRules" pseudoUrl="user://AllRules" user="modtest" />
+    <Authors>
+        <Author id="dev1" name="modtest" />
+    </Authors>
+    <Analyzers>
+        <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.code" name="Parasoft C/C++ Code Analyzer" ver="10.4.0" />
+        <Analyzer id="xtest" name="Scope Analyzer" ver="1" />
+        <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.pattern" name="Parasoft C/C++ Static Analyzer" ver="10.4.0" />
+        <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.flow" name="Parasoft C/C++ Flow Analyzer" ver="10.4.0" />
+        <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.global" name="Parasoft C/C++ Global Static Analyzer" ver="10.4.0" />
+    </Analyzers>
+    <VersionInfos>
+        <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
+    </VersionInfos>
+    <Goals tsks="1">
+
+        <History>
+            <Graph id="gls">
+                <Categories>
+                    <Category color="red" name="Total" pos="0" />
+                </Categories>
+                <Total secSer="1" title="" xTitle="Date" yTitle="Tasks" yTitle2="Total Tasks">
+                    <X>05-16-18,</X>
+                    <Y>1,</Y>
+                    <Delta>1,</Delta>
+                </Total>
+            </Graph>
+        </History>
+
+    </Goals>
+    <Scope>
+        <Repositories />
+        <Locations>
+            <Loc auth="modtest" hash="-318977119" locRef="1" projId="ATM" projPath="/ATM" project="ATM" resProjPath="ATM.cxx" totLns="52" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/ATM.cxx" />
+            <Loc auth="modtest" hash="-1422048276" locRef="2" projId="ATM" projPath="/ATM" project="ATM" resProjPath="Bank.cxx" totLns="40" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/Bank.cxx" />
+            <Loc auth="modtest" hash="-1798372520" locRef="3" projId="ATM" projPath="/ATM" project="ATM" resProjPath="BaseDisplay.cxx" totLns="18" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/BaseDisplay.cxx" />
+            <Loc auth="modtest" hash="-1636172050" locRef="4" projId="ATM" projPath="/ATM" project="ATM" resProjPath="Account.cxx" totLns="14" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/Account.cxx" />
+            <Loc auth="modtest" hash="2036829073" locRef="5" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/Account.hxx" totLns="55" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/Account.hxx" />
+            <Loc auth="modtest" hash="-118678391" locRef="6" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/Bank.hxx" totLns="25" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/Bank.hxx" />
+            <Loc auth="modtest" hash="785146300" locRef="7" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/ATM.hxx" totLns="39" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/ATM.hxx" />
+            <Loc auth="modtest" hash="-2070703729" locRef="8" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/BaseDisplay.hxx" totLns="16" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/BaseDisplay.hxx" />
+        </Locations>
+    </Scope>
+
+    <SetupProblems />
+
+    <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:07">
+        <Projects>
+            <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="8" checkedLns="259" id="ATM" name="ATM" qfixErrs="0" suppErrs="0" totErrs="1" totFiles="8" totLns="259" />
+        </Projects>
+
+        <FADetails>
+            <HtmlDump dumpId="1" value=".C   ATM.cxx (10): void ATM::viewAccount(int accountNumber, string password)&#xa;!    ATM.cxx (12): myBank-&amp;gt;getAccount(...)&#xa;.       Bank.cxx (17): Account* userAccount = NULL;&#xa;.       Bank.cxx (18): if (myAccounts.size() &amp;gt; num) // Condition evaluation: (this-&amp;gt;myAccounts.size() &amp;gt; num) (assuming false)&#xa;.       Bank.cxx (22): if ((userAccount != NULL) &amp;amp;&amp;amp; (password.compare(userAccount-&amp;gt;getPassword()) != 0)) // Condition evaluation: (userAccount != 0) (false)&#xa;!       Bank.cxx (28): return NULL;&#xa;.P   ATM.cxx (12): if ( !(myCurrentAccount = myBank-&amp;gt;getAccount(accountNumber, password)) )" />
+        </FADetails>
+
+
+        <History>
+            <Graph id="lns">
+                <Categories>
+                    <Category color="blue" name="Total Lines" pos="0" />
+                    <Category color="green" name="Checked Lines" pos="1" />
+                    <Category authPos="0" color="red" name="Tasks" pos="2" />
+                </Categories>
+                <Total secSer="1" title="" xTitle="Date" yTitle="Lines" yTitle2="Tasks">
+                    <X>05-16-18,</X>
+                    <Y>259,259,1,</Y>
+                    <Delta>259,259,1,</Delta>
+                </Total>
+                <Authors title="" xTitle="Date" yTitle="Total Tasks">
+                    <Author name="modtest">
+                        <X>05-16-18,</X>
+                        <Y>1,</Y>
+                        <Delta>1,</Delta>
+                    </Author>
+                </Authors>
+            </Graph>
+        </History>
+
+
+        <Rules>
+            <CategoriesList>
+                <Category authTot="0;" authUrg="0;" desc="Flow Analysis" name="BD" rules="94" total="0">
+                    <Category authTot="0;" authUrg="0;" desc="Incorrect API usage" name="BD-API" rules="6" total="0" />
+                    <Category authTot="0;" authUrg="0;" desc="Miscellaneous" name="BD-MISC" rules="2" total="0" />
+                    <Category authTot="1;" authUrg="1;" desc="Possible Bugs" name="BD-PB" rules="51" total="1" />
+                    <Category authTot="0;" authUrg="0;" desc="Resources" name="BD-RES" rules="5" total="0" />
+                    <Category authTot="0;" authUrg="0;" desc="Security" name="BD-SECURITY" rules="13" total="0" />
+                    <Category authTot="0;" authUrg="0;" desc="Containers" name="BD-CO" rules="3" total="0" />
+                    <Category authTot="0;" authUrg="0;" desc="Threads &amp; Synchronization" name="BD-TRS" rules="14" total="0" />
+                </Category>
+                <Category authTot="0;" authUrg="0;" desc="Code Duplication Detection" name="CDD" rules="4" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Coding Conventions" name="CODSTA" rules="347" total="0">
+                    <Category authTot="0;" authUrg="0;" desc="Coding Conventions for C++" name="CODSTA-CPP" rules="94" total="0" />
+                    <Category authTot="0;" authUrg="0;" desc="Coding Conventions for Modern C++" name="CODSTA-MCPP" rules="29" total="0" />
+                </Category>
+                <Category authTot="0;" authUrg="0;" desc="Comments" name="COMMENT" rules="13" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Exceptions" name="EXCEPT" rules="18" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Formatting" name="FORMAT" rules="47" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Global Static Analysis" name="GLOBAL" rules="18" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Initialization" name="INIT" rules="18" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Joint Strike Fighter" name="JSF" rules="270" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Metric" name="METRIC" rules="49" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Metrics" name="METRICS" rules="43" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="MISRA C" name="MISRA" rules="60" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="MISRA C 2004" name="MISRA2004" rules="216" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="MISRA C++ 2008" name="MISRA2008" rules="313" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="MISRA C 2012" name="MISRA2012" rules="327" total="0">
+                    <Category authTot="0;" authUrg="0;" desc="MISRA C 2012 Rules" name="MISRA2012-RULE" rules="287" total="0" />
+                    <Category authTot="0;" authUrg="0;" desc="MISRA C 2012 Directives" name="MISRA2012-DIR" rules="40" total="0" />
+                </Category>
+                <Category authTot="0;" authUrg="0;" desc="Memory and Resource Management" name="MRM" rules="54" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Naming Conventions" name="NAMING" rules="94" total="0">
+                    <Category authTot="0;" authUrg="0;" desc="Hungarian Notation" name="NAMING-HN" rules="44" total="0" />
+                </Category>
+                <Category authTot="0;" authUrg="0;" desc="Object Oriented" name="OOP" rules="56" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Optimization" name="OPT" rules="41" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Parser diagnostics" name="PARSER" rules="2" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Possible Bugs" name="PB" rules="73" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Physical File Organization" name="PFO" rules="9" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Portability" name="PORT" rules="26" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Preprocessor" name="PREPROC" rules="20" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Qt Best Practices" name="QT" rules="18" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Security" name="SECURITY" rules="49" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="STL Best Practices" name="STL" rules="42" total="0" />
+                <Category authTot="0;" authUrg="0;" desc="Template" name="TEMPL" rules="15" total="0" />
+            </CategoriesList>
+            <RulesList>
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-API" desc="Do not pass incorrect values to library functions" id="BD-API-BADPARAM" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-API" desc="Do not pass negative values to functions expecting non-negative arguments" id="BD-API-NEGPARAM" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-API" desc="Do not pass incorrect values to ctype.h library functions" id="BD-API-CTYPE" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-API" desc="Do not check for a non-negative value after passing as a non-negative argument" id="BD-API-REVNEGPARAM" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-API" desc="The size_t argument passed to any function in string.h shall have an appropriate value" id="BD-API-STRSIZE" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-API" desc="Validate values passed to library functions" id="BD-API-VALPARAM" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-CO" desc="Do not access iterator out of range" id="BD-CO-ITOUT" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-CO" desc="Do not compare iterators from different containers" id="BD-CO-ITINVCOMP" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-CO" desc="Do not modify container while iterating over it" id="BD-CO-ITMOD" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-MISC" desc="Always close transactions" id="BD-MISC-TRANS" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-MISC" desc="Prevent calling unsafe functions (custom rule)" id="BD-MISC-DC" sev="5" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Always catch exceptions" id="BD-PB-EXCEPT" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not modify string literals" id="BD-PB-MODSTR" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid use before initialization" id="BD-PB-NOTINIT" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid null pointer dereferencing" id="BD-PB-NP" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid buffer overflow due to defining incorrect format limits" id="BD-PB-OVERFFMT" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid overflow due to reading a not zero terminated string" id="BD-PB-OVERFNZT" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid overflow when reading from a buffer" id="BD-PB-OVERFRD" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid overflow when writing to a buffer" id="BD-PB-OVERFWR" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid overwriting method parameters" id="BD-PB-POVR" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not point to a wrapped object that has been freed" id="BD-PB-WRAPESC" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid division by zero" id="BD-PB-ZERO" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid accessing arrays out of bounds" id="BD-PB-ARRAY" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid incorrect shift operations" id="BD-PB-BADSHIFT" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Use the correct byte ordering when transferring data between systems" id="BD-PB-BYTEORD" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="1;" authUrg="1;" cat="BD-PB" desc="Avoid conditions that always evaluate to the same value" id="BD-PB-CC" sev="2" total="1" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Consistently check the returned value of non-void functions" id="BD-PB-CHECKRET" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Always check the returned value of non-void function" id="BD-PB-CHECKRETGEN" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not check for null after dereferencing" id="BD-PB-DEREF" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not modify the alignment of objects by calling realloc()" id="BD-PB-DNMPTR" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="The macro EOF should be compared with the unmodified return value from the Standard Library function" id="BD-PB-EOFCOMP" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Properly use errno value" id="BD-PB-ERRNO" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Properly define exit handlers" id="BD-PB-EXITHAN" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Reset strings on fgets() or fgetws() failure" id="BD-PB-FGETS" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Only use values for fsetpos() that are returned from fgetpos()" id="BD-PB-FSETPOS" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid infinite recursion" id="BD-PB-INFREC" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not rely on an environment pointer following an operation that may invalidate it" id="BD-PB-INVENV" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Pointers returned by certain Standard Library functions should not be used following a subsequent call to the same or related function" id="BD-PB-INVRET" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="The Standard Library function memcmp shall not be used to compare null terminated strings" id="BD-PB-MCCSTR" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Never return from functions that should not return" id="BD-PB-NORETURN" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid accessing arrays and pointers out of bounds" id="BD-PB-OVERFARRAY" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="A pointer operand and any pointer resulting from pointer arithmetic using that operand shall both address elements of the same array" id="BD-PB-PTRARR" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not call putenv() with a pointer to an automatic variable as the argument" id="BD-PB-PUTENV" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Properly define signal handlers" id="BD-PB-SIGHAN" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not return from a computational exception signal handler" id="BD-PB-SIGRETURN" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not alternately input and output from a stream without an intervening flush or positioning call" id="BD-PB-STREAMINOUT" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not subsequently use the argument to std::forward" id="BD-PB-SUBSEQFRWD" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid switch with unreachable branches" id="BD-PB-SWITCH" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not invoke class's virtual functions from any of its constructors" id="BD-PB-VCTOR" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not invoke class's virtual functions from its destructor" id="BD-PB-VDTOR" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Ensure the size of the variable length array is in valid range" id="BD-PB-VLASIZE" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="The same file shall not be opened for read and write access at the same time on different streams" id="BD-PB-WRRDSTR" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid writing to a stream which has been opened as read only" id="BD-PB-WRROS" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid integer overflows" id="BD-PB-INTOVERF" sev="3" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Ensure strings are zero terminated" id="BD-PB-NZTS" sev="3" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Always throw the created std::exception object" id="BD-PB-STDEXC" sev="3" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Suspicious setting of stream flags" id="BD-PB-STREAMFLAGS" sev="3" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Restore stream format" id="BD-PB-STREAMFMT" sev="3" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Use macros for variable arguments correctly" id="BD-PB-VARARGS" sev="3" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid unused values" id="BD-PB-VOVR" sev="3" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid unreachable methods" id="BD-PB-UCMETH" sev="4" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not use recursion" id="BD-PB-RECFUN" sev="5" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-RES" desc="Ensure deallocation functions guarantee resource freeing" id="BD-RES-BADFREEF" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-RES" desc="Do not use resources that have been freed" id="BD-RES-FREE" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-RES" desc="Do not free resources using invalid pointers" id="BD-RES-INVFREE" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-RES" desc="Ensure resources are freed" id="BD-RES-LEAKS" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-RES" desc="Do not create variables on the stack above the defined limits" id="BD-RES-STACKLIM" sev="3" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Avoid tainted data in array indexes" id="BD-SECURITY-ARRAY" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Prevent buffer overflows from tainted data" id="BD-SECURITY-BUFWRITE" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Protect against integer overflow/underflow from tainted data" id="BD-SECURITY-INTOVERF" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Avoid buffer overflow from tainted data due to defining incorrect format limits" id="BD-SECURITY-OVERFFMT" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Avoid buffer read overflow from tainted data" id="BD-SECURITY-OVERFRD" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Avoid buffer write overflow from tainted data" id="BD-SECURITY-OVERFWR" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Protect against command injection" id="BD-SECURITY-TDCMD" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Avoid printing tainted data on the output console" id="BD-SECURITY-TDCONSOLE" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Protect against environment injection" id="BD-SECURITY-TDENV" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Protect against file name injection" id="BD-SECURITY-TDFNAMES" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Protect against SQL injection" id="BD-SECURITY-TDSQL" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Avoid passing unvalidated binary data to log methods" id="BD-SECURITY-LOG" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-SECURITY" desc="Properly seed pseudorandom number generators" id="BD-SECURITY-RAND" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Variable should be used in context of single critical section" id="BD-TRS-DIFCS" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Avoid double locking" id="BD-TRS-DLOCK" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Avoid race conditions when using fork and file descriptors" id="BD-TRS-FORKFILE" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Do not abandon unreleased locks" id="BD-TRS-LOCK" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Do not use global variable with different locks set" id="BD-TRS-MLOCK" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Do not acquire locks in different order" id="BD-TRS-ORDER" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Avoid race conditions while checking for the existence of a symbolic link" id="BD-TRS-SYMLINK" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Do not use blocking functions while holding a lock" id="BD-TRS-TSHL" sev="1" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Declare objects shared between POSIX threads with appropriate storage durations" id="BD-TRS-ARG" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Make const member functions thread-safe" id="BD-TRS-CMF" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Do not join or detach a thread that was previously joined or detached" id="BD-TRS-JOINDETACH" sev="2" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Use locks to prevent race conditions when modifying bit fields" id="BD-TRS-BITLOCK" sev="3" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Do not destroy another thread's mutex" id="BD-TRS-DSTRLOCK" sev="3" total="0" />
+                <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Do not release a lock that has not been acquired" id="BD-TRS-REVLOCK" sev="3" total="0" />
+            </RulesList>
+            <SeverityList>
+                <Severity authTot="1;" authUrg="1;" id="2" total="1" />
+            </SeverityList>
+        </Rules>
+
+        <Supps />
+
+
+        <StdViols>
+            <FlowViol msg="Condition &quot;!(bool)this->myCurrentAccount&quot; always evaluates to true" ln="12" locFile="/ATM/ATM.cxx" ruleSAFMsg="Point where senseless condition is used" FirstElSrcRngEndPos="0" auth="modtest" FirstElSrcRngEndLn="11" rule="BD-PB-CC" FirstElSrcRngStartPos="0" lnHash="1719088503" ruleSCSCMsg="Start of the path" FirstElSrcRngFile="/ATM/ATM.cxx" FirstElSrcRngStartln="10" locStartPos="0" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="311360009" lang="cpp" locEndPos="0" urgent="true" prio="Not Defined" locEndLn="13" goals="1," locStartln="12" sev="2" locRef="1" dumpId="1" tool="c++test" lineHash="1719088503" risk="Undefined" locType="sr" hash="-318977119" causeLocRef="1">
+                <Props />
+                <ElDescList>
+                    <ElDesc lineHash="-2065354134" locType="sr" srcRnghash="-318977119" locRef="1" srcRngFile="/ATM/ATM.cxx" srcRngEndLn="11" ln="10" srcRngEndPos="0" srcRngStartln="10" srcRngStartPos="0" desc="void ATM::viewAccount(int accountNumber, string password)" ElType=".C" rngLn="10">
+                        <Anns>
+                            <Ann msg="Start of the path" kind="cause" />
+                        </Anns>
+                    </ElDesc>
+                    <ElDesc lineHash="1719088503" locType="sr" srcRnghash="-318977119" locRef="1" srcRngFile="/ATM/ATM.cxx" srcRngEndLn="13" ln="12" srcRngEndPos="0" srcRngStartln="12" srcRngStartPos="0" desc="myBank->getAccount(...)" ElType="!" rngLn="12">
+                        <ElDescList>
+                            <ElDesc lineHash="-1782456624" locType="sr" srcRnghash="-1422048276" locRef="2" srcRngFile="/ATM/Bank.cxx" srcRngEndLn="18" ln="17" srcRngEndPos="0" srcRngStartln="17" srcRngStartPos="0" desc="Account* userAccount = NULL;" ElType="." rngLn="17" />
+                            <ElDesc lineHash="-1454903092" locType="sr" srcRnghash="-1422048276" locRef="2" srcRngFile="/ATM/Bank.cxx" srcRngEndLn="19" ln="18" srcRngEndPos="0" srcRngStartln="18" srcRngStartPos="0" desc="if (myAccounts.size() > num)" ElType="." rngLn="18">
+                                <Anns>
+                                    <Ann msg="Condition evaluation: (this->myAccounts.size() > num) (assuming false)" kind="condEval" />
+                                </Anns>
+                            </ElDesc>
+                            <ElDesc lineHash="-840112945" locType="sr" srcRnghash="-1422048276" locRef="2" srcRngFile="/ATM/Bank.cxx" srcRngEndLn="23" ln="22" srcRngEndPos="0" srcRngStartln="22" srcRngStartPos="0" desc="if ((userAccount != NULL) &amp;&amp; (password.compare(userAccount->getPassword()) != 0))" ElType="." rngLn="22">
+                                <Anns>
+                                    <Ann msg="Condition evaluation: (userAccount != 0) (false)" kind="condEval" />
+                                </Anns>
+                            </ElDesc>
+                            <ElDesc lineHash="1374202020" locType="sr" srcRnghash="-1422048276" locRef="2" srcRngFile="/ATM/Bank.cxx" srcRngEndLn="29" ln="28" srcRngEndPos="0" srcRngStartln="28" srcRngStartPos="0" desc="return NULL;" ElType="!" rngLn="28" />
+                        </ElDescList>
+                    </ElDesc>
+                    <ElDesc lineHash="1719088503" locType="sr" srcRnghash="-318977119" locRef="1" srcRngFile="/ATM/ATM.cxx" srcRngEndLn="13" ln="12" srcRngEndPos="0" srcRngStartln="12" srcRngStartPos="0" desc="if ( !(myCurrentAccount = myBank->getAccount(accountNumber, password)) )" ElType=".P" rngLn="12">
+                        <Anns>
+                            <Ann msg="Point where senseless condition is used" kind="point" />
+                        </Anns>
+                    </ElDesc>
+                </ElDescList>
+            </FlowViol>
+        </StdViols>
+
+        <TestedFilesDetails>
+            <Total name="Total (Suppressed)" supp="0" total="1">
+                <Project id="ATM" name="ATM" supp="0" total="1">
+                    <Res loc="/ATM/ATM.cxx" locRef="1" locType="sr" name="ATM.cxx" supp="0" total="1" />
+                    <Res loc="/ATM/Bank.cxx" locRef="2" locType="sr" name="Bank.cxx" supp="0" total="0" />
+                    <Res loc="/ATM/BaseDisplay.cxx" locRef="3" locType="sr" name="BaseDisplay.cxx" supp="0" total="0" />
+                    <Res loc="/ATM/Account.cxx" locRef="4" locType="sr" name="Account.cxx" supp="0" total="0" />
+                    <Res name="include" supp="0" total="0">
+                        <Res loc="/ATM/include/Account.hxx" locRef="5" locType="sr" name="Account.hxx" supp="0" total="0" />
+                        <Res loc="/ATM/include/Bank.hxx" locRef="6" locType="sr" name="Bank.hxx" supp="0" total="0" />
+                        <Res loc="/ATM/include/ATM.hxx" locRef="7" locType="sr" name="ATM.hxx" supp="0" total="0" />
+                        <Res loc="/ATM/include/BaseDisplay.hxx" locRef="8" locType="sr" name="BaseDisplay.hxx" supp="0" total="0" />
+                    </Res>
+                </Project>
+            </Total>
+        </TestedFilesDetails>
+    </CodingStandards>
+    <Statistics>
+
+        <History>
+            <Graph id="memory_session_statistics">
+                <Categories>
+                    <Category color="red" name="Usage" pos="0" />
+                    <Category color="blue" name="Total" pos="0" />
+                    <Category color="orange" name="Max" pos="0" />
+                </Categories>
+                <Total title="" xTitle="Date" yTitle="Memory (MB)">
+                    <X>05-16-18,</X>
+                    <Y>222,433,1909,</Y>
+                    <Delta>222,433,1909,</Delta>
+                </Total>
+            </Graph>
+            <Graph id="time_session_statistics">
+                <Categories>
+                    <Category color="red" name="Total" pos="0" />
+                    <Category color="blue" name="Processors" pos="0" />
+                    <Category color="orange" name="Scope" pos="0" />
+                    <Category color="green" name="Reporting" pos="0" />
+                    <Category color="gray" name="Analysis" pos="0" />
+                </Categories>
+                <Total title="" xTitle="Date" yTitle="Time (s)">
+                    <X>05-16-18,</X>
+                    <Y>8,0,0,0,0,</Y>
+                    <Delta>8,0,0,0,0,</Delta>
+                </Total>
+            </Graph>
+        </History>
+    </Statistics>
+</ResultsSession>

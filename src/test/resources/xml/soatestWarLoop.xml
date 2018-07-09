@@ -1,0 +1,1363 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ResultsSession buildId="2018-02-21" climode="true" execEnv="win32_x86_64" hasViols="true" id="1518151114846" lang="en_US" machine="ONYX" prjModule="TestAssets" project="" tag="Run Automated Server Tests" time="2018-02-21T15:01:29+01:00" toolId="soatest" toolName="SOAtest" toolVer="9.10.4.20180221" user="marzec">
+    <TestConfig machine="ONYX" name="Run Automated Server Tests" pseudoUrl="builtin://Run Automated Server Tests" user="marzec" />
+    <Authors>
+        <Author id="dev1" name="marzec" />
+    </Authors>
+    <Analyzers>
+        <Analyzer id="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" name="Parasoft Functional Tests Analyzer" ver="9.10.4.SNAPSHOT" />
+    </Analyzers>
+    <VersionInfos>
+        <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
+    </VersionInfos>
+    <Goals tsks="30">
+
+    </Goals>
+    <Scope>
+        <Repositories />
+        <Locations>
+            <Loc hash="567680125" locRef="1" projId="TestAssets" projPath="/TestAssets" project="TestAssets" resProjPath="EnabledShowAllIterations_loop_run.tst" totLns="2847" uri="file://ONYX/C:/home/marzec/nightly/soavirt-server/virtualize_workspace_clean/TestAssets/EnabledShowAllIterations_loop_run.tst" />
+            <Loc hash="366781097" locRef="2" projId="TestAssets" projPath="/TestAssets" project="TestAssets" resProjPath="DisabledShowAllIterations_loop_run.tst" totLns="2848" uri="file://ONYX/C:/home/marzec/nightly/soavirt-server/virtualize_workspace_clean/TestAssets/DisabledShowAllIterations_loop_run.tst" />
+        </Locations>
+    </Scope>
+
+    <SetupProblems />
+
+    <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
+
+        <AssocUrls>
+            <Tag disp="Problem report" name="pr" />
+            <Tag disp="Feature request" name="fr" />
+            <Tag disp="Task" name="task" />
+            <Tag disp="Asset" name="asset" />
+            <Tag disp="Requirement" name="req" />
+        </AssocUrls>
+
+
+        <Categories>
+            <CategoryGroup authTot="30;" authUrg="30;" desc="Functional Test Problems" id="GROUP.FUNC.FAIL" label="Fix Functional Test Problems" name="Functional Test Problems" total="30">
+                <Category authTot="28;" authUrg="28;" id="FUNC.FAIL" name="Functional Failures" short="functional failure" total="28">
+                    <Type authTot="28;" authUrg="28;" name="unknown" total="28" />
+                </Category>
+                <Category authTot="0;" authUrg="0;" id="XML.VALID.ERROR" name="XML Validation Errors" short="XML validation error" total="0" />
+                <Category authTot="2;" authUrg="2;" id="MISC.ERR" name="Miscellaneous Errors" short="miscellaneous error" total="2">
+                    <Type authTot="2;" authUrg="2;" name="unknown" total="2" />
+                </Category>
+            </CategoryGroup>
+            <CategoryGroup authTot="0;" authUrg="0;" desc="Change Impact" id="GROUP.CHNG.IMP" label="Review Change Impact" name="Change Impact" total="0">
+                <Category authTot="0;" authUrg="0;" id="CHNG.IMP" name="Change Impact" short="change impact" total="0" />
+            </CategoryGroup>
+        </Categories>
+        <Projects>
+            <Project err="0" fail="20" id="TestAssets" name="TestAssets" pass="0" total="20">
+                <CategoryGroupStats id="GROUP.FUNC.FAIL" total="30" />
+                <CategoryGroupStats id="GROUP.CHNG.IMP" total="0" />
+            </Project>
+        </Projects>
+
+        <APICoverage>
+            <service type="REST" definition-uri="http://localhost:9080/soavirt/api/v1/def">
+                <resource id="/v1/children">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/datasources">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v1/datasources/csv">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/datasources/database">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/datasources/excel">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/datasources/repository">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/descendants/assets">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/descendants/files">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/environments">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/environments/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/files/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files/download">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/files/pvas">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files/pvas/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files/tsts">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files/tsts/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files/upload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/suites">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v1/suites/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/suites/responderSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/suites/testSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/testExecutions">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/testExecutions/{id}/results">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/testExecutions/{id}/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/tools">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v1/tools/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/dbTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/tools/difftools">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/extensionTools">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/messageResponders">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/restClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/tools/soapClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/tools/writefiletools">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/xmlAssertors">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/xmlDataBanks">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/xmlValidators">
+                    <operation name="POST" />
+                </resource>
+            </service>
+            <service type="REST" definition-uri="http://localhost:9080/soavirt/api/v2/def">
+                <resource id="/v2/children">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v2/datasources/csv">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/datasources/csv/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/csv/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/database">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/datasources/database/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/database/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/excel">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/datasources/excel/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/excel/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/repository">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/descendants/assets">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/descendants/files">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/environments">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/environments/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/files/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/download">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/files/pvas">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/pvas/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/pvas/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/tsts">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/tsts/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/tsts/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/upload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/suites">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v2/suites/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/suites/responderSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/suites/testSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/testExecutions">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/testExecutions/{id}">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v2/testExecutions/{id}/results">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/testExecutions/{id}/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/tools">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v2/tools/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/tools/dbTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/diffTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/extensionTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/jsonAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/jsonDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/messageResponders">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/restClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/soapClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/writeFileTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/xmlAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/xmlDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/xmlValidators">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+            </service>
+            <service type="REST" definition-uri="http://localhost:9080/soavirt/api/v3/def">
+                <resource id="/v3/children">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v3/datasources/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/datasources/csv">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/datasources/csv/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/csv/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/database">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/datasources/database/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/database/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/excel">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/datasources/excel/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/excel/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/datasources/repository">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/descendants/assets">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/descendants/files">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/environments">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/environments/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/environments/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/files/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/download">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/files/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/pvas">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/pvas/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/pvas/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/tsts">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/tsts/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/tsts/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/upload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/suites">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v3/suites/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/suites/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/suites/responderSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/suites/testSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/testExecutions">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/testExecutions/{id}">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v3/testExecutions/{id}/results">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/testExecutions/{id}/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/tools">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v3/tools/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/tools/dbTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/diffTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/extensionTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/fileStreamWriters">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/jsonAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/jsonDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/messageResponders">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/tools/restClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/soapClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/writeFileTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/xmlAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/xmlDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/xmlTransformers">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/xmlValidators">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+            </service>
+            <service type="REST" definition-uri="http://localhost:9080/soavirt/api/v4/def">
+                <resource id="/v4/children">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v4/datasources/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/datasources/csv">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/datasources/csv/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/csv/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/database">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/datasources/database/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/database/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/excel">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/datasources/excel/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/excel/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/datasources/repository">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/datasources/repository/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/descendants/assets">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/descendants/files">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/environments">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/environments/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/environments/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/files/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/download">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/files/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/pvas">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/pvas/raml">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/pvas/swagger">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/pvas/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/pvas/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/tsts">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/tsts/raml">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/tsts/swagger">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/tsts/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/tsts/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/upload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/suites">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v4/suites/children">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/suites/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/suites/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/suites/responderSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/suites/responderSuites/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/suites/testSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/suites/testSuites/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/testExecutions">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/testExecutions/{id}">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v4/testExecutions/{id}/results">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/testExecutions/{id}/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/testExecutions/{id}/traffic">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/tools">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v4/tools/browserPlaybackTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/tools/dbTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/diffTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/extensionTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/fileStreamWriters">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/jsonAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/jsonDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/messageResponders">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/tools/restClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/soapClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/writeFileTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/xmlAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/xmlDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/xmlTransformers">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/xmlValidators">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+            </service>
+            <service type="REST" definition-uri="http://localhost:9080/soavirt/api/v5/def">
+                <resource id="/v5/assets/data">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/children">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v5/datasources/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/datasources/csv">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/datasources/csv/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/csv/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/dataGroup">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/database">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/datasources/database/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/database/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/excel">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/datasources/excel/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/excel/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/datasources/repository">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/datasources/repository/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/descendants/assets">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/descendants/files">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/environments">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/environments/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/environments/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/files/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/download">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/files/locks">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/raml">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/swagger">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic/workflows">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic/workflows/configurations">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic/workflows/groups">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic/workflows/{sessionID}">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic/workflows/{sessionID}/groups/{name}/messageTemplates">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/files/pvas/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/xsd">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts/raml">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts/swagger">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts/xsd">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/upload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/jdbcControllers">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/jdbcControllers/{id}">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/jdbcControllers/{id}/acknowledge">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/jdbcControllers/{id}/locks">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/jdbcControllers/{id}/register">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/messageProxies">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/messageProxies/{id}">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/messageProxies/{id}/enabled">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/messageProxies/{id}/locks">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/messageProxies/{id}/recording">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/preferences/brokers">
+                    <operation name="GET" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/preferences/config">
+                    <operation name="GET" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/preferences/connections/custom">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/preferences/connections/jms">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/preferences/connections/jms/{id}">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/preferences/connections/mq">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/preferences/connections/mq/{id}">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/preferences/systemProperties/reload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/repositories/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/status/health">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/suites">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v5/suites/children">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/suites/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/suites/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/suites/responderSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/suites/responderSuites/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/suites/testSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/suites/testSuites/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/testExecutions">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/testExecutions/{id}">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v5/testExecutions/{id}/results">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/testExecutions/{id}/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/testExecutions/{id}/traffic">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/tools">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/browserPlaybackTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/tools/dataGenerators">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/dbTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/diffTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/disabled">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/extensionTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/extensionTools/evaluates">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/tools/extensionTools/languages">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/tools/fileStreamWriters">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/jsonAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/jsonDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/messageResponders">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/tools/restClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/restUrlDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/soapClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/writeFileTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/xmlAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/xmlDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/xmlTransformers">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/xmlValidators">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/virtualAssets">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/virtualAssets/redeployments">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/activeDataGroups">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/activePerformanceProfiles">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/dataGroups">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/enabled">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/locks">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/performanceProfiles">
+                    <operation name="GET" />
+                </resource>
+            </service>
+        </APICoverage>
+
+
+        <TrafficData />
+
+        <ExecViols>
+            <FuncViol msg="Test did not pass during 5 loops." loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="MISC.ERR" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000317#0000000318" tcId="Test Logic (x=false)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=1)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=2)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=3)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=4)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=5)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=6)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=7)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/EnabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=8)" urgent="true" goals="1," />
+            <FuncViol msg="Test did not pass during 5 loops." loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="MISC.ERR" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000317#0000000318" tcId="Test Logic (x=false)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=1)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=2)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=3)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=4)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=5)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=6)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=7)" urgent="true" goals="1," />
+            <FuncViol msg="Connection refused: connect" loc="/TestAssets/DisabledShowAllIterations_loop_run.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" tcId="Test Logic (counter=8)" urgent="true" goals="1," />
+        </ExecViols>
+
+
+        <ExecutedTestsDetails type="FT">
+            <Total fail="20" name="Passed / Total" authErr="0;" total="20" time="0:00:29.500" authFail="20;">
+                <Project fail="20" name="TestAssets" authErr="0;" total="20" time="0:00:29.500" id="TestAssets" authFail="20;">
+                    <TestSuite ln="1" locRef="1" root="true" name="EnabledShowAllIterations_loop_run.tst" id="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst" fail="10" authErr="0;" total="10" time="0:00:14.803" authFail="10;">
+                        <TestSuite ln="1" locRef="1" name="Test Suite: Test Suite" id="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000" fail="10" authErr="0;" total="10" time="0:00:14.803" authFail="10;">
+                            <TestSuite ln="1" locRef="1" name="Test Suite: Wait pass/fail loop" id="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000315" fail="1" authErr="0;" total="1" time="0:00:00.086" authFail="1;">
+                                <Test ln="1" auth="marzec" locRef="1" name="Test 1: check status" startTime="1519221701032" id="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" status="fail" fail="1" authErr="0;" total="1" time="0:00:00.086" authFail="1;" />
+                            </TestSuite>
+                            <TestSuite ln="1" locRef="1" name="Scenario: Wait variable loop - boolean not changed" id="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000317" fail="1" authErr="0;" total="1" time="0:00:01.631" authFail="1;">
+                                <Test ln="1" auth="marzec" locRef="1" name="Test 1: check status" startTime="1519221701652" id="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000317#0000000318" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.631" authFail="1;">
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (x=false)" startTime="1519221720856" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000317#0000000318" id="Test Logic (x=false)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.631" authFail="1;" />
+                                </Test>
+                            </TestSuite>
+                            <TestSuite ln="1" locRef="1" name="Scenario: Wait variable loop - integer changed" id="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320" fail="8" authErr="0;" total="8" time="0:00:13.086" authFail="8;">
+                                <Test ln="1" auth="marzec" locRef="1" name="Test 1: check status" startTime="1519221722991" id="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" status="fail" fail="8" authErr="0;" total="8" time="0:00:13.086" authFail="8;">
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=1)" startTime="1519221722991" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=1)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.634" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=2)" startTime="1519221725126" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=2)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.628" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=3)" startTime="1519221727255" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=3)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.625" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=4)" startTime="1519221729383" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=4)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.625" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=5)" startTime="1519221731509" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=5)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.663" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=6)" startTime="1519221733674" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=6)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.646" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=7)" startTime="1519221735820" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=7)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.627" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=8)" startTime="1519221737947" testId="wk:///TestAssets/EnabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=8)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.638" authFail="1;" />
+                                </Test>
+                            </TestSuite>
+                        </TestSuite>
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="2" root="true" name="DisabledShowAllIterations_loop_run.tst" id="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst" fail="10" authErr="0;" total="10" time="0:00:14.697" authFail="10;">
+                        <TestSuite ln="1" locRef="2" name="Test Suite: Test Suite" id="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000" fail="10" authErr="0;" total="10" time="0:00:14.697" authFail="10;">
+                            <TestSuite ln="1" locRef="2" name="Test Suite: Wait pass/fail loop" id="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000315" fail="1" authErr="0;" total="1" time="0:00:00.002" authFail="1;">
+                                <Test ln="1" auth="marzec" locRef="2" name="Test 1: check status" startTime="1519221750440" id="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000315#0000000316" status="fail" fail="1" authErr="0;" total="1" time="0:00:00.002" authFail="1;" />
+                            </TestSuite>
+                            <TestSuite ln="1" locRef="2" name="Scenario: Wait variable loop - boolean not changed" id="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000317" fail="1" authErr="0;" total="1" time="0:00:01.643" authFail="1;">
+                                <Test ln="1" auth="marzec" locRef="2" name="Test 1: check status" startTime="1519221750947" id="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000317#0000000318" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.643" authFail="1;">
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (x=false)" startTime="1519221770124" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000317#0000000318" id="Test Logic (x=false)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.643" authFail="1;" />
+                                </Test>
+                            </TestSuite>
+                            <TestSuite ln="1" locRef="2" name="Scenario: Wait variable loop - integer changed" id="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320" fail="8" authErr="0;" total="8" time="0:00:13.052" authFail="8;">
+                                <Test ln="1" auth="marzec" locRef="2" name="Test 1: check status" startTime="1519221772270" id="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" status="fail" fail="8" authErr="0;" total="8" time="0:00:13.052" authFail="8;">
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=1)" startTime="1519221772270" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=1)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.640" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=2)" startTime="1519221774411" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=2)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.630" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=3)" startTime="1519221776542" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=3)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.629" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=4)" startTime="1519221778671" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=4)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.627" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=5)" startTime="1519221780799" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=5)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.630" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=6)" startTime="1519221782930" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=6)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.628" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=7)" startTime="1519221785059" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=7)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.628" authFail="1;" />
+                                    <TestCase auth="marzec" name="Test 1: check status: Test Logic (counter=8)" startTime="1519221787188" testId="wk:///TestAssets/DisabledShowAllIterations_loop_run.tst#0000000000#0000000320#0000000321" id="Test Logic (counter=8)" status="fail" fail="1" authErr="0;" total="1" time="0:00:01.640" authFail="1;" />
+                                </Test>
+                            </TestSuite>
+                        </TestSuite>
+                    </TestSuite>
+                </Project>
+            </Total>
+        </ExecutedTestsDetails>
+
+    </Exec>
+    <Statistics>
+
+    </Statistics>
+</ResultsSession>

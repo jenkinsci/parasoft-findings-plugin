@@ -1,0 +1,1365 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ResultsSession buildId="2018-02-21" climode="true" execEnv="win32_x86_64" hasViols="true" id="1518150984218" lang="en_US" machine="ONYX" prjModule="TestAssets" project="" tag="Run Automated Server Tests" time="2018-02-21T15:00:51+01:00" toolId="soatest" toolName="SOAtest" toolVer="9.10.4.20180221" user="marzec">
+    <TestConfig machine="ONYX" name="Run Automated Server Tests" pseudoUrl="builtin://Run Automated Server Tests" user="marzec" />
+    <Authors>
+        <Author id="dev1" name="marzec" />
+    </Authors>
+    <Analyzers>
+        <Analyzer id="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" name="Parasoft Functional Tests Analyzer" ver="9.10.4.SNAPSHOT" />
+    </Analyzers>
+    <VersionInfos>
+        <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1" />
+        <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1" />
+        <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
+    </VersionInfos>
+    <Goals tsks="32">
+
+    </Goals>
+    <Scope>
+        <Repositories />
+        <Locations>
+            <Loc hash="675002637" locRef="1" projId="TestAssets" projPath="/TestAssets" project="TestAssets" resProjPath="EnabledShowAllIterations_status.tst" totLns="1205" uri="file://ONYX/C:/home/marzec/nightly/soavirt-server/virtualize_workspace_clean/TestAssets/EnabledShowAllIterations_status.tst" />
+            <Loc hash="182939541" locRef="2" projId="TestAssets" projPath="/TestAssets" project="TestAssets" resProjPath="DisabledShowAllIterations_status.tst" totLns="1206" uri="file://ONYX/C:/home/marzec/nightly/soavirt-server/virtualize_workspace_clean/TestAssets/DisabledShowAllIterations_status.tst" />
+        </Locations>
+    </Scope>
+
+    <SetupProblems />
+
+    <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
+
+        <AssocUrls>
+            <Tag disp="Problem report" name="pr" />
+            <Tag disp="Feature request" name="fr" />
+            <Tag disp="Task" name="task" />
+            <Tag disp="Asset" name="asset" />
+            <Tag disp="Requirement" name="req" />
+        </AssocUrls>
+
+
+        <Categories>
+            <CategoryGroup authTot="32;" authUrg="32;" desc="Functional Test Problems" id="GROUP.FUNC.FAIL" label="Fix Functional Test Problems" name="Functional Test Problems" total="32">
+                <Category authTot="32;" authUrg="32;" id="FUNC.FAIL" name="Functional Failures" short="functional failure" total="32">
+                    <Type authTot="32;" authUrg="32;" name="unknown" total="32" />
+                </Category>
+                <Category authTot="0;" authUrg="0;" id="XML.VALID.ERROR" name="XML Validation Errors" short="XML validation error" total="0" />
+                <Category authTot="0;" authUrg="0;" id="MISC.ERR" name="Miscellaneous Errors" short="miscellaneous error" total="0" />
+            </CategoryGroup>
+            <CategoryGroup authTot="0;" authUrg="0;" desc="Change Impact" id="GROUP.CHNG.IMP" label="Review Change Impact" name="Change Impact" total="0">
+                <Category authTot="0;" authUrg="0;" id="CHNG.IMP" name="Change Impact" short="change impact" total="0" />
+            </CategoryGroup>
+        </Categories>
+        <Projects>
+            <Project err="0" fail="6" id="TestAssets" name="TestAssets" pass="0" total="6">
+                <CategoryGroupStats id="GROUP.FUNC.FAIL" total="32" />
+                <CategoryGroupStats id="GROUP.CHNG.IMP" total="0" />
+            </Project>
+        </Projects>
+
+        <APICoverage>
+            <service type="REST" definition-uri="http://localhost:9080/soavirt/api/v1/def">
+                <resource id="/v1/children">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/datasources">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v1/datasources/csv">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/datasources/database">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/datasources/excel">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/datasources/repository">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/descendants/assets">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/descendants/files">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/environments">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/environments/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/files/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files/download">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/files/pvas">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files/pvas/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files/tsts">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files/tsts/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/files/upload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/status">
+                    <operation name="GET">
+                        <test-ref id="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" />
+                        <test-ref id="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" />
+                    </operation>
+                </resource>
+                <resource id="/v1/suites">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v1/suites/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/suites/responderSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/suites/testSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/testExecutions">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/testExecutions/{id}/results">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/testExecutions/{id}/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v1/tools">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v1/tools/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/dbTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/tools/difftools">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/extensionTools">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/messageResponders">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/restClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/tools/soapClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v1/tools/writefiletools">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/xmlAssertors">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/xmlDataBanks">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v1/tools/xmlValidators">
+                    <operation name="POST" />
+                </resource>
+            </service>
+            <service type="REST" definition-uri="http://localhost:9080/soavirt/api/v2/def">
+                <resource id="/v2/children">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v2/datasources/csv">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/datasources/csv/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/csv/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/database">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/datasources/database/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/database/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/excel">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/datasources/excel/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/excel/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/datasources/repository">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/descendants/assets">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/descendants/files">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/environments">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/environments/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/files/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/download">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/files/pvas">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/pvas/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/pvas/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/tsts">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/tsts/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/tsts/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/files/upload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/status">
+                    <operation name="GET">
+                        <test-ref id="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" />
+                        <test-ref id="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" />
+                    </operation>
+                </resource>
+                <resource id="/v2/suites">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v2/suites/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/suites/responderSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/suites/testSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/testExecutions">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/testExecutions/{id}">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v2/testExecutions/{id}/results">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/testExecutions/{id}/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v2/tools">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v2/tools/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v2/tools/dbTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/diffTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/extensionTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/jsonAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/jsonDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/messageResponders">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/restClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/soapClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/writeFileTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/xmlAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/xmlDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v2/tools/xmlValidators">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+            </service>
+            <service type="REST" definition-uri="http://localhost:9080/soavirt/api/v3/def">
+                <resource id="/v3/children">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v3/datasources/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/datasources/csv">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/datasources/csv/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/csv/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/database">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/datasources/database/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/database/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/excel">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/datasources/excel/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/excel/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/datasources/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/datasources/repository">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/descendants/assets">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/descendants/files">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/environments">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/environments/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/environments/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/files/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/download">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/files/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/pvas">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/pvas/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/pvas/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/tsts">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/tsts/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/tsts/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/files/upload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/status">
+                    <operation name="GET">
+                        <test-ref id="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" />
+                        <test-ref id="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" />
+                    </operation>
+                </resource>
+                <resource id="/v3/suites">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v3/suites/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/suites/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/suites/responderSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/suites/testSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/testExecutions">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/testExecutions/{id}">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v3/testExecutions/{id}/results">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/testExecutions/{id}/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v3/tools">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v3/tools/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/tools/dbTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/diffTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/extensionTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/fileStreamWriters">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/jsonAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/jsonDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/messageResponders">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v3/tools/restClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/soapClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/writeFileTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/xmlAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/xmlDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/xmlTransformers">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v3/tools/xmlValidators">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+            </service>
+            <service type="REST" definition-uri="http://localhost:9080/soavirt/api/v4/def">
+                <resource id="/v4/children">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v4/datasources/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/datasources/csv">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/datasources/csv/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/csv/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/database">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/datasources/database/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/database/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/excel">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/datasources/excel/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/excel/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/datasources/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/datasources/repository">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/datasources/repository/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/descendants/assets">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/descendants/files">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/environments">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/environments/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/environments/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/files/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/download">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/files/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/pvas">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/pvas/raml">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/pvas/swagger">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/pvas/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/pvas/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/tsts">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/tsts/raml">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/tsts/swagger">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/tsts/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/tsts/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/files/upload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/status">
+                    <operation name="GET">
+                        <test-ref id="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" />
+                        <test-ref id="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" />
+                    </operation>
+                </resource>
+                <resource id="/v4/suites">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v4/suites/children">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/suites/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/suites/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/suites/responderSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/suites/responderSuites/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/suites/testSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/suites/testSuites/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/testExecutions">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/testExecutions/{id}">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v4/testExecutions/{id}/results">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/testExecutions/{id}/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/testExecutions/{id}/traffic">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v4/tools">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v4/tools/browserPlaybackTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/tools/dbTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/diffTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/extensionTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/fileStreamWriters">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/jsonAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/jsonDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/messageResponders">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v4/tools/restClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/soapClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/writeFileTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/xmlAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/xmlDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/xmlTransformers">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v4/tools/xmlValidators">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+            </service>
+            <service type="REST" definition-uri="http://localhost:9080/soavirt/api/v5/def">
+                <resource id="/v5/assets/data">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/children">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v5/datasources/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/datasources/csv">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/datasources/csv/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/csv/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/dataGroup">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/database">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/datasources/database/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/database/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/excel">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/datasources/excel/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/excel/data">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/datasources/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/datasources/repository">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/datasources/repository/columns">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/descendants/assets">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/descendants/files">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/environments">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/environments/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/environments/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/files/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/download">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/files/locks">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/raml">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/swagger">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic/workflows">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic/workflows/configurations">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic/workflows/groups">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic/workflows/{sessionID}">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v5/files/pvas/traffic/workflows/{sessionID}/groups/{name}/messageTemplates">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/files/pvas/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/pvas/xsd">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts/raml">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts/swagger">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/tsts/xsd">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/files/upload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/jdbcControllers">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/jdbcControllers/{id}">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/jdbcControllers/{id}/acknowledge">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/jdbcControllers/{id}/locks">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/jdbcControllers/{id}/register">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/messageProxies">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/messageProxies/{id}">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/messageProxies/{id}/enabled">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/messageProxies/{id}/locks">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/messageProxies/{id}/recording">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/preferences/brokers">
+                    <operation name="GET" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/preferences/config">
+                    <operation name="GET" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/preferences/connections/custom">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/preferences/connections/jms">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/preferences/connections/jms/{id}">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/preferences/connections/mq">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/preferences/connections/mq/{id}">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/preferences/systemProperties/reload">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/repositories/traffic">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/status">
+                    <operation name="GET">
+                        <test-ref id="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" />
+                        <test-ref id="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" />
+                    </operation>
+                </resource>
+                <resource id="/v5/status/health">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/suites">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v5/suites/children">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/suites/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/suites/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/suites/responderSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/suites/responderSuites/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/suites/testSuites">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/suites/testSuites/wsdl">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/testExecutions">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/testExecutions/{id}">
+                    <operation name="DELETE" />
+                </resource>
+                <resource id="/v5/testExecutions/{id}/results">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/testExecutions/{id}/status">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/testExecutions/{id}/traffic">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/tools">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/browserPlaybackTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/copy">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/tools/dataGenerators">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/dbTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/diffTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/disabled">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/extensionTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/extensionTools/evaluates">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/tools/extensionTools/languages">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/tools/fileStreamWriters">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/jsonAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/jsonDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/messageResponders">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/move">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/tools/restClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/restUrlDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/soapClients">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/writeFileTools">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/xmlAssertors">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/xmlDataBanks">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/xmlTransformers">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/tools/xmlValidators">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/virtualAssets">
+                    <operation name="GET" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/virtualAssets/redeployments">
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}">
+                    <operation name="DELETE" />
+                    <operation name="GET" />
+                    <operation name="POST" />
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/activeDataGroups">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/activePerformanceProfiles">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/dataGroups">
+                    <operation name="GET" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/enabled">
+                    <operation name="PUT" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/locks">
+                    <operation name="DELETE" />
+                    <operation name="POST" />
+                </resource>
+                <resource id="/v5/virtualAssets/{id}/performanceProfiles">
+                    <operation name="GET" />
+                </resource>
+            </service>
+        </APICoverage>
+
+
+        <TrafficData>
+            <Traffic reqHeaders="GET /soavirt/api/v1/status HTTP/1.0&#xd;&#xa;Host: localhost:9080&#xd;&#xa;parasoftRefresh: false&#xd;&#xa;Authorization: Basic YWRtaW46YWRtaW4=" serverResTime="16" resBody="{&quot;apiUser&quot;:{&quot;username&quot;:&quot;anonymous&quot;,&quot;role&quot;:&quot;admin&quot;},&quot;server&quot;:{&quot;test&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;10&quot;,&quot;minor&quot;:&quot;3&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;&quot;}},&quot;soatest&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;RuleWizard&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Desktop&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Server&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Command Line&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Server API Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;SOA&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Web&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;SOAtest&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Jtest Connect&quot;,&quot;active&quot;:false}]},&quot;virtualize&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;100000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;500000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;50000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Virtualize&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;1 Million Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;30 HPS&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;10000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Validate&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;25000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Unlimited Hits/Day&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Service Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Developer Sandbox 1000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Performance&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Extension Pack&quot;,&quot;active&quot;:true}]}}}" resMIMEType="application/json" reqTime="537611924" reqMIMEType="text/xml" resHeaders="HTTP/1.1 200 OK&#xd;&#xa;Server: Apache-Coyote/1.1&#xd;&#xa;Access-Control-Allow-Origin: *&#xd;&#xa;Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS&#xd;&#xa;Access-Control-Allow-Headers: Content-Type, Accept, Authorization&#xd;&#xa;Vary: Accept-Encoding&#xd;&#xa;Content-Type: application/json;charset=UTF-8&#xd;&#xa;Content-Length: 1345&#xd;&#xa;Date: Wed, 21 Feb 2018 14:00:55 GMT&#xd;&#xa;Connection: close" tfcRef="1" />
+            <Traffic reqHeaders="GET /soavirt/api/v2/status HTTP/1.0&#xd;&#xa;Host: localhost:9080&#xd;&#xa;parasoftRefresh: false&#xd;&#xa;Authorization: Basic YWRtaW46YWRtaW4=" serverResTime="10" resBody="{&quot;apiUser&quot;:{&quot;username&quot;:&quot;anonymous&quot;,&quot;role&quot;:&quot;admin&quot;},&quot;server&quot;:{&quot;test&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;10&quot;,&quot;minor&quot;:&quot;3&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;&quot;}},&quot;soatest&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;RuleWizard&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Desktop&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Server&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Command Line&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Server API Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;SOA&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Web&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;SOAtest&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Jtest Connect&quot;,&quot;active&quot;:false}]},&quot;virtualize&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;100000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;500000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;50000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Virtualize&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;1 Million Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;30 HPS&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;10000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Validate&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;25000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Unlimited Hits/Day&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Service Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Developer Sandbox 1000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Performance&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Extension Pack&quot;,&quot;active&quot;:true}]}}}" resMIMEType="application/json" reqTime="537614210" reqMIMEType="text/xml" resHeaders="HTTP/1.1 200 OK&#xd;&#xa;Server: Apache-Coyote/1.1&#xd;&#xa;Access-Control-Allow-Origin: *&#xd;&#xa;Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS&#xd;&#xa;Access-Control-Allow-Headers: Content-Type, Accept, Authorization&#xd;&#xa;Vary: Accept-Encoding&#xd;&#xa;Content-Type: application/json;charset=UTF-8&#xd;&#xa;Content-Length: 1345&#xd;&#xa;Date: Wed, 21 Feb 2018 14:00:57 GMT&#xd;&#xa;Connection: close" tfcRef="2" />
+            <Traffic reqHeaders="GET /soavirt/api/v3/status HTTP/1.0&#xd;&#xa;Host: localhost:9080&#xd;&#xa;parasoftRefresh: false&#xd;&#xa;Authorization: Basic YWRtaW46YWRtaW4=" serverResTime="8" resBody="{&quot;apiUser&quot;:{&quot;username&quot;:&quot;anonymous&quot;,&quot;role&quot;:&quot;admin&quot;},&quot;server&quot;:{&quot;test&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;10&quot;,&quot;minor&quot;:&quot;3&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;&quot;}},&quot;soatest&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;RuleWizard&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Desktop&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Server&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Command Line&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Server API Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;SOA&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Web&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;SOAtest&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Jtest Connect&quot;,&quot;active&quot;:false}]},&quot;virtualize&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;100000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;500000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;50000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Virtualize&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;1 Million Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;30 HPS&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;10000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Validate&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;25000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Unlimited Hits/Day&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Service Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Developer Sandbox 1000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Performance&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Extension Pack&quot;,&quot;active&quot;:true}]}}}" resMIMEType="application/json" reqTime="537614247" reqMIMEType="text/xml" resHeaders="HTTP/1.1 200 OK&#xd;&#xa;Server: Apache-Coyote/1.1&#xd;&#xa;Access-Control-Allow-Origin: *&#xd;&#xa;Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS&#xd;&#xa;Access-Control-Allow-Headers: Content-Type, Accept, Authorization&#xd;&#xa;Vary: Accept-Encoding&#xd;&#xa;Content-Type: application/json;charset=UTF-8&#xd;&#xa;Content-Length: 1345&#xd;&#xa;Date: Wed, 21 Feb 2018 14:00:57 GMT&#xd;&#xa;Connection: close" tfcRef="3" />
+            <Traffic reqHeaders="GET /soavirt/api/v4/status HTTP/1.0&#xd;&#xa;Host: localhost:9080&#xd;&#xa;parasoftRefresh: false&#xd;&#xa;Authorization: Basic YWRtaW46YWRtaW4=" serverResTime="8" resBody="{&quot;apiUser&quot;:{&quot;username&quot;:&quot;anonymous&quot;,&quot;role&quot;:&quot;admin&quot;},&quot;server&quot;:{&quot;test&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;10&quot;,&quot;minor&quot;:&quot;3&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;&quot;}},&quot;soatest&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;RuleWizard&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Desktop&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Server&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Command Line&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Server API Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;SOA&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Web&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;SOAtest&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Jtest Connect&quot;,&quot;active&quot;:false}]},&quot;virtualize&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;100000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;500000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;50000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Virtualize&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;1 Million Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;30 HPS&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;10000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Validate&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;25000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Unlimited Hits/Day&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Service Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Developer Sandbox 1000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Performance&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Extension Pack&quot;,&quot;active&quot;:true}]}}}" resMIMEType="application/json" reqTime="537614279" reqMIMEType="text/xml" resHeaders="HTTP/1.1 200 OK&#xd;&#xa;Server: Apache-Coyote/1.1&#xd;&#xa;Access-Control-Allow-Origin: *&#xd;&#xa;Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS&#xd;&#xa;Access-Control-Allow-Headers: Content-Type, Accept, Authorization&#xd;&#xa;Vary: Accept-Encoding&#xd;&#xa;Content-Type: application/json;charset=UTF-8&#xd;&#xa;Content-Length: 1345&#xd;&#xa;Date: Wed, 21 Feb 2018 14:00:57 GMT&#xd;&#xa;Connection: close" tfcRef="4" />
+            <Traffic reqHeaders="GET /soavirt/api/v5/status HTTP/1.0&#xd;&#xa;Host: localhost:9080&#xd;&#xa;parasoftRefresh: false&#xd;&#xa;Authorization: Basic YWRtaW46YWRtaW4=" serverResTime="6" resBody="{&quot;apiUser&quot;:{&quot;username&quot;:&quot;anonymous&quot;,&quot;role&quot;:&quot;admin&quot;},&quot;server&quot;:{&quot;test&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;10&quot;,&quot;minor&quot;:&quot;3&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;&quot;}},&quot;soatest&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;RuleWizard&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Desktop&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Server&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Command Line&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Server API Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;SOA&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Web&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;SOAtest&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Jtest Connect&quot;,&quot;active&quot;:false}]},&quot;virtualize&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;100000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;500000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;50000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Virtualize&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;1 Million Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;30 HPS&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;10000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Validate&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;25000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Unlimited Hits/Day&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Service Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Developer Sandbox 1000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Performance&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Extension Pack&quot;,&quot;active&quot;:true}]}},&quot;machineId&quot;:&quot;WIN32-4001828d&quot;}" resMIMEType="application/json" reqTime="537614340" reqMIMEType="text/xml" resHeaders="HTTP/1.1 200 OK&#xd;&#xa;Server: Apache-Coyote/1.1&#xd;&#xa;Access-Control-Allow-Origin: *&#xd;&#xa;Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS&#xd;&#xa;Access-Control-Allow-Headers: Content-Type, Accept, Authorization&#xd;&#xa;Vary: Accept-Encoding&#xd;&#xa;Content-Type: application/json;charset=UTF-8&#xd;&#xa;Content-Length: 1374&#xd;&#xa;Date: Wed, 21 Feb 2018 14:00:57 GMT&#xd;&#xa;Connection: close" tfcRef="5" />
+            <Traffic reqHeaders="GET /soavirt/api/v1/status HTTP/1.0&#xd;&#xa;Host: localhost:9080&#xd;&#xa;parasoftRefresh: false&#xd;&#xa;Authorization: Basic YWRtaW46YWRtaW4=" serverResTime="9" resBody="{&quot;apiUser&quot;:{&quot;username&quot;:&quot;anonymous&quot;,&quot;role&quot;:&quot;admin&quot;},&quot;server&quot;:{&quot;test&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;10&quot;,&quot;minor&quot;:&quot;3&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;&quot;}},&quot;soatest&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;RuleWizard&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Desktop&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Server&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Command Line&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Server API Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;SOA&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Web&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;SOAtest&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Jtest Connect&quot;,&quot;active&quot;:false}]},&quot;virtualize&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;100000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;500000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;50000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Virtualize&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;1 Million Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;30 HPS&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;10000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Validate&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;25000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Unlimited Hits/Day&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Service Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Developer Sandbox 1000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Performance&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Extension Pack&quot;,&quot;active&quot;:true}]}}}" resMIMEType="application/json" reqTime="537614478" reqMIMEType="text/xml" resHeaders="HTTP/1.1 200 OK&#xd;&#xa;Server: Apache-Coyote/1.1&#xd;&#xa;Access-Control-Allow-Origin: *&#xd;&#xa;Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS&#xd;&#xa;Access-Control-Allow-Headers: Content-Type, Accept, Authorization&#xd;&#xa;Vary: Accept-Encoding&#xd;&#xa;Content-Type: application/json;charset=UTF-8&#xd;&#xa;Content-Length: 1345&#xd;&#xa;Date: Wed, 21 Feb 2018 14:00:57 GMT&#xd;&#xa;Connection: close" tfcRef="6" />
+            <Traffic reqHeaders="GET /soavirt/api/v2/status HTTP/1.0&#xd;&#xa;Host: localhost:9080&#xd;&#xa;parasoftRefresh: false&#xd;&#xa;Authorization: Basic YWRtaW46YWRtaW4=" serverResTime="8" resBody="{&quot;apiUser&quot;:{&quot;username&quot;:&quot;anonymous&quot;,&quot;role&quot;:&quot;admin&quot;},&quot;server&quot;:{&quot;test&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;10&quot;,&quot;minor&quot;:&quot;3&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;&quot;}},&quot;soatest&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;RuleWizard&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Desktop&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Server&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Command Line&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Server API Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;SOA&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Web&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;SOAtest&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Jtest Connect&quot;,&quot;active&quot;:false}]},&quot;virtualize&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;100000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;500000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;50000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Virtualize&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;1 Million Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;30 HPS&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;10000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Validate&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;25000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Unlimited Hits/Day&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Service Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Developer Sandbox 1000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Performance&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Extension Pack&quot;,&quot;active&quot;:true}]}}}" resMIMEType="application/json" reqTime="537614511" reqMIMEType="text/xml" resHeaders="HTTP/1.1 200 OK&#xd;&#xa;Server: Apache-Coyote/1.1&#xd;&#xa;Access-Control-Allow-Origin: *&#xd;&#xa;Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS&#xd;&#xa;Access-Control-Allow-Headers: Content-Type, Accept, Authorization&#xd;&#xa;Vary: Accept-Encoding&#xd;&#xa;Content-Type: application/json;charset=UTF-8&#xd;&#xa;Content-Length: 1345&#xd;&#xa;Date: Wed, 21 Feb 2018 14:00:57 GMT&#xd;&#xa;Connection: close" tfcRef="7" />
+            <Traffic reqHeaders="GET /soavirt/api/v3/status HTTP/1.0&#xd;&#xa;Host: localhost:9080&#xd;&#xa;parasoftRefresh: false&#xd;&#xa;Authorization: Basic YWRtaW46YWRtaW4=" serverResTime="6" resBody="{&quot;apiUser&quot;:{&quot;username&quot;:&quot;anonymous&quot;,&quot;role&quot;:&quot;admin&quot;},&quot;server&quot;:{&quot;test&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;10&quot;,&quot;minor&quot;:&quot;3&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;&quot;}},&quot;soatest&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;RuleWizard&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Desktop&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Server&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Command Line&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Server API Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;SOA&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Web&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;SOAtest&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Jtest Connect&quot;,&quot;active&quot;:false}]},&quot;virtualize&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;100000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;500000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;50000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Virtualize&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;1 Million Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;30 HPS&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;10000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Validate&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;25000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Unlimited Hits/Day&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Service Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Developer Sandbox 1000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Performance&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Extension Pack&quot;,&quot;active&quot;:true}]}}}" resMIMEType="application/json" reqTime="537614542" reqMIMEType="text/xml" resHeaders="HTTP/1.1 200 OK&#xd;&#xa;Server: Apache-Coyote/1.1&#xd;&#xa;Access-Control-Allow-Origin: *&#xd;&#xa;Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS&#xd;&#xa;Access-Control-Allow-Headers: Content-Type, Accept, Authorization&#xd;&#xa;Vary: Accept-Encoding&#xd;&#xa;Content-Type: application/json;charset=UTF-8&#xd;&#xa;Content-Length: 1345&#xd;&#xa;Date: Wed, 21 Feb 2018 14:00:57 GMT&#xd;&#xa;Connection: close" tfcRef="8" />
+            <Traffic reqHeaders="GET /soavirt/api/v4/status HTTP/1.0&#xd;&#xa;Host: localhost:9080&#xd;&#xa;parasoftRefresh: false&#xd;&#xa;Authorization: Basic YWRtaW46YWRtaW4=" serverResTime="7" resBody="{&quot;apiUser&quot;:{&quot;username&quot;:&quot;anonymous&quot;,&quot;role&quot;:&quot;admin&quot;},&quot;server&quot;:{&quot;test&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;10&quot;,&quot;minor&quot;:&quot;3&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;&quot;}},&quot;soatest&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;RuleWizard&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Desktop&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Server&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Command Line&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Server API Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;SOA&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Web&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;SOAtest&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Jtest Connect&quot;,&quot;active&quot;:false}]},&quot;virtualize&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;100000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;500000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;50000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Virtualize&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;1 Million Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;30 HPS&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;10000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Validate&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;25000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Unlimited Hits/Day&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Service Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Developer Sandbox 1000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Performance&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Extension Pack&quot;,&quot;active&quot;:true}]}}}" resMIMEType="application/json" reqTime="537614565" reqMIMEType="text/xml" resHeaders="HTTP/1.1 200 OK&#xd;&#xa;Server: Apache-Coyote/1.1&#xd;&#xa;Access-Control-Allow-Origin: *&#xd;&#xa;Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS&#xd;&#xa;Access-Control-Allow-Headers: Content-Type, Accept, Authorization&#xd;&#xa;Vary: Accept-Encoding&#xd;&#xa;Content-Type: application/json;charset=UTF-8&#xd;&#xa;Content-Length: 1345&#xd;&#xa;Date: Wed, 21 Feb 2018 14:00:57 GMT&#xd;&#xa;Connection: close" tfcRef="9" />
+            <Traffic reqHeaders="GET /soavirt/api/v5/status HTTP/1.0&#xd;&#xa;Host: localhost:9080&#xd;&#xa;parasoftRefresh: false&#xd;&#xa;Authorization: Basic YWRtaW46YWRtaW4=" serverResTime="7" resBody="{&quot;apiUser&quot;:{&quot;username&quot;:&quot;anonymous&quot;,&quot;role&quot;:&quot;admin&quot;},&quot;server&quot;:{&quot;test&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;10&quot;,&quot;minor&quot;:&quot;3&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;&quot;}},&quot;soatest&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;RuleWizard&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Desktop&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Stub Server&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Command Line&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Server API Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;SOA&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Web&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;SOAtest&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Jtest Connect&quot;,&quot;active&quot;:false}]},&quot;virtualize&quot;:{&quot;version&quot;:{&quot;major&quot;:&quot;9&quot;,&quot;minor&quot;:&quot;10&quot;,&quot;subminor&quot;:&quot;4&quot;,&quot;build&quot;:&quot;20180221&quot;},&quot;licensed&quot;:true,&quot;features&quot;:[{&quot;name&quot;:&quot;Message Packs&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;100000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;500000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;50000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Virtualize&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;1 Million Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;30 HPS&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;10000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Validate&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;25000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Unlimited Hits/Day&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Service Enabled&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Developer Sandbox 1000 Hits/Day&quot;,&quot;active&quot;:false},{&quot;name&quot;:&quot;Performance&quot;,&quot;active&quot;:true},{&quot;name&quot;:&quot;Extension Pack&quot;,&quot;active&quot;:true}]}},&quot;machineId&quot;:&quot;WIN32-4001828d&quot;}" resMIMEType="application/json" reqTime="537614588" reqMIMEType="text/xml" resHeaders="HTTP/1.1 200 OK&#xd;&#xa;Server: Apache-Coyote/1.1&#xd;&#xa;Access-Control-Allow-Origin: *&#xd;&#xa;Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS&#xd;&#xa;Access-Control-Allow-Headers: Content-Type, Accept, Authorization&#xd;&#xa;Vary: Accept-Encoding&#xd;&#xa;Content-Type: application/json;charset=UTF-8&#xd;&#xa;Content-Length: 1374&#xd;&#xa;Date: Wed, 21 Feb 2018 14:00:57 GMT&#xd;&#xa;Connection: close" tfcRef="10" /></TrafficData>
+
+        <ExecViols>
+            <FuncViol msg="DataSource: ds (row 1): The value of the property &quot;apiUser.username&quot; has changed from &quot;admin&quot; to &quot;anonymous&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 1)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="1" />
+            <FuncViol msg="DataSource: ds (row 1): The value of the property &quot;server.test.version.minor&quot; has changed from &quot;7&quot; to &quot;3&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 1)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="1" />
+            <FuncViol msg="DataSource: ds (row 1): The value of the property &quot;server.test.version.major&quot; has changed from &quot;9&quot; to &quot;10&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 1)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="1" />
+            <FuncViol msg="DataSource: ds (row 2): The value of the property &quot;apiUser.username&quot; has changed from &quot;admin&quot; to &quot;anonymous&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 2)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="2" />
+            <FuncViol msg="DataSource: ds (row 2): The value of the property &quot;server.test.version.minor&quot; has changed from &quot;7&quot; to &quot;3&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 2)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="2" />
+            <FuncViol msg="DataSource: ds (row 2): The value of the property &quot;server.test.version.major&quot; has changed from &quot;9&quot; to &quot;10&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 2)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="2" />
+            <FuncViol msg="DataSource: ds (row 3): The value of the property &quot;apiUser.username&quot; has changed from &quot;admin&quot; to &quot;anonymous&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 3)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="3" />
+            <FuncViol msg="DataSource: ds (row 3): The value of the property &quot;server.test.version.minor&quot; has changed from &quot;7&quot; to &quot;3&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 3)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="3" />
+            <FuncViol msg="DataSource: ds (row 3): The value of the property &quot;server.test.version.major&quot; has changed from &quot;9&quot; to &quot;10&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 3)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="3" />
+            <FuncViol msg="DataSource: ds (row 4): The value of the property &quot;apiUser.username&quot; has changed from &quot;admin&quot; to &quot;anonymous&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 4)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="4" />
+            <FuncViol msg="DataSource: ds (row 4): The value of the property &quot;server.test.version.minor&quot; has changed from &quot;7&quot; to &quot;3&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 4)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="4" />
+            <FuncViol msg="DataSource: ds (row 4): The value of the property &quot;server.test.version.major&quot; has changed from &quot;9&quot; to &quot;10&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 4)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="4" />
+            <FuncViol msg="DataSource: ds (row 5): The value of the property &quot;apiUser.username&quot; has changed from &quot;admin&quot; to &quot;anonymous&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 5)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="5" />
+            <FuncViol msg="DataSource: ds (row 5): The value of the property &quot;server.test.version.minor&quot; has changed from &quot;7&quot; to &quot;3&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 5)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="5" />
+            <FuncViol msg="DataSource: ds (row 5): The value of the property &quot;server.test.version.major&quot; has changed from &quot;9&quot; to &quot;10&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 5)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="5" />
+            <FuncViol msg="DataSource: ds (row 5): The input object  contains the additional field &quot;machineId&quot;." loc="/TestAssets/EnabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="1" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" tcId="ds (row 5)" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="5" />
+            <FuncViol msg="DataSource: ds (row 1): The value of the property &quot;apiUser.username&quot; has changed from &quot;admin&quot; to &quot;anonymous&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="6" />
+            <FuncViol msg="DataSource: ds (row 1): The value of the property &quot;server.test.version.minor&quot; has changed from &quot;7&quot; to &quot;3&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="6" />
+            <FuncViol msg="DataSource: ds (row 1): The value of the property &quot;server.test.version.major&quot; has changed from &quot;9&quot; to &quot;10&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="6" />
+            <FuncViol msg="DataSource: ds (row 2): The value of the property &quot;apiUser.username&quot; has changed from &quot;admin&quot; to &quot;anonymous&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="7" />
+            <FuncViol msg="DataSource: ds (row 2): The value of the property &quot;server.test.version.minor&quot; has changed from &quot;7&quot; to &quot;3&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="7" />
+            <FuncViol msg="DataSource: ds (row 2): The value of the property &quot;server.test.version.major&quot; has changed from &quot;9&quot; to &quot;10&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="7" />
+            <FuncViol msg="DataSource: ds (row 3): The value of the property &quot;apiUser.username&quot; has changed from &quot;admin&quot; to &quot;anonymous&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="8" />
+            <FuncViol msg="DataSource: ds (row 3): The value of the property &quot;server.test.version.minor&quot; has changed from &quot;7&quot; to &quot;3&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="8" />
+            <FuncViol msg="DataSource: ds (row 3): The value of the property &quot;server.test.version.major&quot; has changed from &quot;9&quot; to &quot;10&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="8" />
+            <FuncViol msg="DataSource: ds (row 4): The value of the property &quot;apiUser.username&quot; has changed from &quot;admin&quot; to &quot;anonymous&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="9" />
+            <FuncViol msg="DataSource: ds (row 4): The value of the property &quot;server.test.version.minor&quot; has changed from &quot;7&quot; to &quot;3&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="9" />
+            <FuncViol msg="DataSource: ds (row 4): The value of the property &quot;server.test.version.major&quot; has changed from &quot;9&quot; to &quot;10&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="9" />
+            <FuncViol msg="DataSource: ds (row 5): The value of the property &quot;apiUser.username&quot; has changed from &quot;admin&quot; to &quot;anonymous&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="10" />
+            <FuncViol msg="DataSource: ds (row 5): The value of the property &quot;server.test.version.minor&quot; has changed from &quot;7&quot; to &quot;3&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="10" />
+            <FuncViol msg="DataSource: ds (row 5): The value of the property &quot;server.test.version.major&quot; has changed from &quot;9&quot; to &quot;10&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="10" />
+            <FuncViol msg="DataSource: ds (row 5): The input object  contains the additional field &quot;machineId&quot;." loc="/TestAssets/DisabledShowAllIterations_status.tst" ln="0" sev="1" auth="marzec" locRef="2" violationDetails="Source: GET Status Output" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.testexecutions.analyzers.FunctionalTestsAnalyzer" cat="FUNC.FAIL" pageDescription="GET Status Output" testId="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" urgent="true" goals="1," toolSource="GET Status Output" tfcRef="10" />
+        </ExecViols>
+
+
+        <ExecutedTestsDetails type="FT">
+            <Total fail="6" name="Passed / Total" authErr="0;" total="6" time="0:00:04.747" authFail="6;">
+                <Project fail="6" name="TestAssets" authErr="0;" total="6" time="0:00:04.747" id="TestAssets" authFail="6;">
+                    <TestSuite ln="1" locRef="1" root="true" name="EnabledShowAllIterations_status.tst" id="wk:///TestAssets/EnabledShowAllIterations_status.tst" fail="5" authErr="0;" total="5" time="0:00:04.612" authFail="5;">
+                        <TestSuite ln="1" locRef="1" name="Test Suite: Test Suite" id="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000" fail="5" authErr="0;" total="5" time="0:00:04.612" authFail="5;">
+                            <Test ln="1" auth="marzec" locRef="1" name="Test 1: GET Status" startTime="1519221653395" id="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" status="fail" fail="5" authErr="0;" total="5" time="0:00:04.612" authFail="5;">
+                                <assoc id="67652" tag="task" />
+                                <assoc id="70447" tag="task" />
+                                <assoc id="67126" tag="task" />
+                                <assoc id="69942" tag="task" />
+                                <TestCase auth="marzec" name="Test 1: GET Status: ds (row 1)" startTime="1519221653395" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" id="ds (row 1)" status="fail" tfcRef="1" fail="1" authErr="0;" total="1" time="0:00:04.454" authFail="1;" />
+                                <TestCase auth="marzec" name="Test 1: GET Status: ds (row 2)" startTime="1519221657866" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" id="ds (row 2)" status="fail" tfcRef="2" fail="1" authErr="0;" total="1" time="0:00:00.040" authFail="1;" />
+                                <TestCase auth="marzec" name="Test 1: GET Status: ds (row 3)" startTime="1519221657907" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" id="ds (row 3)" status="fail" tfcRef="3" fail="1" authErr="0;" total="1" time="0:00:00.031" authFail="1;" />
+                                <TestCase auth="marzec" name="Test 1: GET Status: ds (row 4)" startTime="1519221657938" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" id="ds (row 4)" status="fail" tfcRef="4" fail="1" authErr="0;" total="1" time="0:00:00.061" authFail="1;" />
+                                <TestCase auth="marzec" name="Test 1: GET Status: ds (row 5)" startTime="1519221657999" testId="wk:///TestAssets/EnabledShowAllIterations_status.tst#0000000000#0000000002" id="ds (row 5)" status="fail" tfcRef="5" fail="1" authErr="0;" total="1" time="0:00:00.026" authFail="1;" />
+                            </Test>
+                        </TestSuite>
+                    </TestSuite>
+                    <TestSuite ln="1" locRef="2" root="true" name="DisabledShowAllIterations_status.tst" id="wk:///TestAssets/DisabledShowAllIterations_status.tst" fail="1" authErr="0;" total="1" time="0:00:00.135" authFail="1;">
+                        <TestSuite ln="1" locRef="2" name="Test Suite: Test Suite" id="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000" fail="1" authErr="0;" total="1" time="0:00:00.135" authFail="1;">
+                            <Test ln="1" auth="marzec" locRef="2" name="Test 1: GET Status" startTime="1519221658137" id="wk:///TestAssets/DisabledShowAllIterations_status.tst#0000000000#0000000002" status="fail" tfcRef="6" fail="1" authErr="0;" total="1" time="0:00:00.135" authFail="1;">
+                                <assoc id="67652" tag="task" />
+                                <assoc id="70447" tag="task" />
+                                <assoc id="67126" tag="task" />
+                                <assoc id="69942" tag="task" />
+                            </Test>
+                        </TestSuite>
+                    </TestSuite>
+                </Project>
+            </Total>
+        </ExecutedTestsDetails>
+
+    </Exec>
+    <Statistics>
+
+    </Statistics>
+</ResultsSession>
