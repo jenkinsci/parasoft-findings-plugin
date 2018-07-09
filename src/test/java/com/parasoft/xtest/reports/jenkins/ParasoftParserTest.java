@@ -15,44 +15,18 @@
  */
 package com.parasoft.xtest.reports.jenkins;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import com.parasoft.xtest.common.api.IProjectFileTestableInput;
 import com.parasoft.xtest.common.api.ISourceRange;
 import com.parasoft.xtest.common.iterators.IteratorUtil;
 import com.parasoft.xtest.common.text.UString;
 import com.parasoft.xtest.reports.jenkins.parser.ParasoftParser;
 import com.parasoft.xtest.reports.jenkins.parser.Warning;
-import com.parasoft.xtest.results.api.IFlowAnalysisPathElement;
+import com.parasoft.xtest.results.api.*;
 import com.parasoft.xtest.results.api.IFlowAnalysisPathElement.Type;
-import com.parasoft.xtest.results.api.IFlowAnalysisViolation;
-import com.parasoft.xtest.results.api.IResultLocation;
-import com.parasoft.xtest.results.api.IRuleViolation;
-import com.parasoft.xtest.results.api.IViolation;
 import com.parasoft.xtest.results.api.attributes.IRuleAttributes;
 import com.parasoft.xtest.results.api.importer.IRulesImportHandler;
-
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-
+import hudson.plugins.analysis.util.model.FileAnnotation;
+import hudson.plugins.analysis.util.model.Priority;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.hamcrest.collection.IsIn;
 import org.junit.AfterClass;
@@ -60,8 +34,17 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import hudson.plugins.analysis.util.model.FileAnnotation;
-import hudson.plugins.analysis.util.model.Priority;
+import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.*;
 
 /**
  * Tests the extraction of Parasoft analysis results.
@@ -69,6 +52,8 @@ import hudson.plugins.analysis.util.model.Priority;
 @SuppressWarnings("nls")
 public class ParasoftParserTest
 {
+
+    private static final String TEST_RESOURCES = "src/test/resources/";
 
     private static final String PROJECT_NAME = "com.parasoft.xtest.reports.jenkins"; //$NON-NLS-1$
 
@@ -95,7 +80,7 @@ public class ParasoftParserTest
     @Test
     public void parseStdViolReportTest()
     {
-        Collection<FileAnnotation> annotations = parseFile("xml/jTest_10_static_2.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml"); //$NON-NLS-1$
         assertEquals(503, IteratorUtil.countElements(annotations.iterator()));
     }
 
@@ -103,7 +88,7 @@ public class ParasoftParserTest
     public void parseFAViolReportTest()
     {
 
-        Collection<FileAnnotation> annotations = parseFile("xml/jTest_10_static.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/jTest_10_static.xml"); //$NON-NLS-1$
         assertEquals(65, IteratorUtil.countElements(annotations.iterator()));
     }
     
@@ -111,7 +96,7 @@ public class ParasoftParserTest
     public void parseCppEngineTestStatic()
     {
 
-        Collection<FileAnnotation> annotations = parseFile("xml/cppTest_10.3.4_Engine_static.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.4_Engine_static.xml"); //$NON-NLS-1$
         assertEquals(5, IteratorUtil.countElements(annotations.iterator()));
     }
 
@@ -122,7 +107,7 @@ public class ParasoftParserTest
     public void parseFAViolReportTest2()
     {
 
-        Collection<FileAnnotation> annotations = parseFile("xml/jTest_10_static_empty_element.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/jTest_10_static_empty_element.xml"); //$NON-NLS-1$
         assertEquals(16, IteratorUtil.countElements(annotations.iterator()));
         for (FileAnnotation fileAnnotation : annotations) {
             assertTrue(fileAnnotation instanceof Warning);
@@ -136,7 +121,7 @@ public class ParasoftParserTest
     @Test
     public void parseCppDesktopStdViolsTest()
     {
-        Collection<FileAnnotation> annotations = parseFile("xml/cppTest_10.3.2_static.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_static.xml"); //$NON-NLS-1$
         
         assertEquals(7, IteratorUtil.countElements(annotations.iterator()));
         for (FileAnnotation fileAnnotation : annotations) {
@@ -149,7 +134,7 @@ public class ParasoftParserTest
     @Test
     public void parseCppDesktopStdViolsCategoriesTest()
     {
-        Collection<FileAnnotation> annotations = parseFile("xml/cppTest_10.3.2_static_Categories.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_static_Categories.xml"); //$NON-NLS-1$
         
         assertEquals(7, IteratorUtil.countElements(annotations.iterator()));
         for (FileAnnotation fileAnnotation : annotations) {
@@ -164,7 +149,7 @@ public class ParasoftParserTest
     @Test
     public void parseCppDesktopFAViolsTest()
     {
-        Collection<FileAnnotation> annotations = parseFile("xml/cppTest_10.3.2_static_FA.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES +  "xml/cppTest_10.3.2_static_FA.xml"); //$NON-NLS-1$
         
         assertEquals(4, IteratorUtil.countElements(annotations.iterator()));
         for (FileAnnotation fileAnnotation : annotations) {
@@ -181,14 +166,17 @@ public class ParasoftParserTest
 
     private static Collection<FileAnnotation> parseFile(String name, ParasoftParser parser)
     {
-        URL resource = ParasoftParserTest.class.getResource(name);
+        URL resource = null;
+        try {
+            resource = new File(name).toURI().toURL();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         File file;
         try {
             file = new File(resource.toURI());
             return parser.parse(file, PROJECT_NAME);
-        } catch (URISyntaxException e) {
-            fail();
-        } catch (InvocationTargetException e) {
+        } catch (URISyntaxException | InvocationTargetException e) {
             fail();
         }
         return null;
@@ -281,7 +269,7 @@ public class ParasoftParserTest
         settings.setProperty("rules.provider1a.separator", ".");
         settings.setProperty("rules.provider1a.data", "/home/jez/dv/dv-etest/com.parasoft.xtest.analyzers.checkstyle/rules/cs-rules.xml");
         ParasoftParser parserBefore = new ParasoftParser("PL-123", settings);
-        Collection<FileAnnotation> parsedBefore = parseFile("xml/jTest_10_static_2.xml", parserBefore);
+        Collection<FileAnnotation> parsedBefore = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml", parserBefore);
         
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(out);
@@ -290,7 +278,7 @@ public class ParasoftParserTest
         ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
         ObjectInputStream ois = new ObjectInputStream(in);
         ParasoftParser parserAfter = (ParasoftParser)ois.readObject();
-        Collection<FileAnnotation> parsedAfter = parseFile("xml/jTest_10_static_2.xml", parserAfter);
+        Collection<FileAnnotation> parsedAfter = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml", parserAfter);
         
         assertEquals(parsedBefore.size(), parsedAfter.size());
         

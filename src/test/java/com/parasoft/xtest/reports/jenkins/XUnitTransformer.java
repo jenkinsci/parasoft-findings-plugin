@@ -5,6 +5,9 @@ import com.parasoft.xtest.common.UIO;
 import com.parasoft.xtest.common.io.FileUtil;
 import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -17,29 +20,36 @@ import javax.xml.validation.Validator;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
 import static org.junit.Assert.fail;
 
-public class XUnitTransformer
+class XUnitTransformer
 {
-    public static void testXUnitTransform(String reportFileName, String outputFileName, String pathToXslSchema)
+    static void testXUnitTransformation(String reportFileName, String outputFileName, String pathToXslSchema)
     {
         try {
-            URL report = XSLTransformTest.class.getResource(reportFileName);
-            URL resource = new File(pathToXslSchema).toURI().toURL();
-            File outputFile = new File(outputFileName);
-            outputFile.deleteOnExit();
+            File outputFile = transform(reportFileName, outputFileName, pathToXslSchema);
 
-            transform(report, resource, outputFile);
             printContents(outputFile);
             validateAgainstXslSchemas(outputFile);
-
         } catch (TransformerException | SAXException | IOException e) {
             Logger.getLogger().error(e);
             doFail(e);
         }
+    }
+
+    static File transform(String reportFileName, String outputFileName, String pathToXslSchema)
+        throws MalformedURLException, TransformerException
+    {
+        URL report = new File(reportFileName).toURI().toURL();
+        URL resource = new File(pathToXslSchema).toURI().toURL();
+        File outputFile = new File(outputFileName);
+        outputFile.deleteOnExit();
+        transform(report, resource, outputFile);
+        return outputFile;
     }
 
     private static void printContents(File outputFile)
@@ -53,20 +63,19 @@ public class XUnitTransformer
         }
     }
 
-
     private static void validateAgainstXslSchemas(File outputFile)
         throws SAXException, IOException
     {
         // keep compatibility with old schema
-        validate(outputFile, "xml/junit-7.xsd");
+        validate(outputFile, "src/test/resources/schema/junit-7.xsd");
         // validate against Ant Junit schema: https://github.com/windyroad/JUnit-Schema/blob/master/JUnit.xsd
-        validate(outputFile, "xml/antJunitSchema.xsd");
+        validate(outputFile, "src/test/resources/schema/antJunitSchema.xsd");
     }
 
     private static void validate(File outputFile, String schemaPath)
         throws SAXException, IOException
     {
-        URL schemaFile = XSLTransformTest.class.getResource(schemaPath);
+        URL schemaFile = new File(schemaPath).toURI().toURL();
         Source xmlFile = new StreamSource(outputFile);
         SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
         Schema schema = schemaFactory.newSchema(schemaFile);
@@ -94,6 +103,14 @@ public class XUnitTransformer
             UIO.close(inputStream);
             UIO.close(xslStream);
         }
+    }
+
+    static void parseXunitOutputXml(File outputFile, TagCounterVerifier verifier)
+        throws ParserConfigurationException, SAXException, IOException
+    {
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser parser = factory.newSAXParser();
+        parser.parse(outputFile, verifier);
     }
 
     static void doFail(Exception e)

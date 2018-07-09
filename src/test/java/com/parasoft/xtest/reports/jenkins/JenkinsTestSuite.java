@@ -15,7 +15,6 @@
  */
 package com.parasoft.xtest.reports.jenkins;
 
-import com.parasoft.xtest.reports.jenkins.xml.Soatest9ReportsXslTransformationTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -25,7 +24,7 @@ import org.junit.runners.Suite;
     ParasoftParserTest.class,
     VariablePatternVerifierTest.class,
     XSLTransformTest.class,
-    Soatest9ReportsXslTransformationTest.class
+    SoatestReportsXslTransformationTest.class
 })
 
 public class JenkinsTestSuite {

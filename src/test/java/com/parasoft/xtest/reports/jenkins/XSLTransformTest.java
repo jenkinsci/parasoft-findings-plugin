@@ -17,18 +17,12 @@ package com.parasoft.xtest.reports.jenkins;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.xml.sax.Attributes;
-import org.xml.sax.helpers.DefaultHandler;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 public class XSLTransformTest
 {
+    private static final String TEST_RESOURCES = "src/test/resources/";
 
     private static final String XUNIT_XSL = "src/main/resources/com/parasoft/xtest/reports/jenkins/xunit/xunit.xsl";
 
@@ -38,20 +32,20 @@ public class XSLTransformTest
     @Test
     public void testXUnitTransform()
     {
-        xunitTransformation("xml/jTest_10_unit.xml", "junit-jtest.xml");
-        xunitTransformation("xml/simulator_unit.xml", "junit-sim.xml");
+        xunitTransformation(TEST_RESOURCES + "xml/jTest_10_unit.xml", "junit-jtest.xml");
+        xunitTransformation(TEST_RESOURCES + "xml/simulator_unit.xml", "junit-sim.xml");
     }
 
     @Test
     public void testCppTest10EngineXUnitTransform2()
     {
-        xunitTransformation("xml/c++Test10Engine.xml", "c++Test10Engine-output.xml");
+        xunitTransformation(TEST_RESOURCES + "xml/c++Test10Engine.xml", "c++Test10Engine-output.xml");
     }
 
     @Test
     public void testCppTest10EngineXUnitTransform()
     {
-        xunitTransformation("xml/c++Test10DesktopVisualStudio.xml", "c++Test10DesktopVisualStudio-output.xml");
+        xunitTransformation(TEST_RESOURCES + "xml/c++Test10DesktopVisualStudio.xml", "c++Test10DesktopVisualStudio-output.xml");
     }
 
     /**
@@ -61,20 +55,15 @@ public class XSLTransformTest
     public void testDemoXUnitTransform()
     {
         try {
-            URL report = XSLTransformTest.class.getResource("xml/jTest_10.2_unit.xml");
-            URL resource = new File(XUNIT_XSL).toURI().toURL();
-            File outputFile = new File("junit-demo.xml");
-            outputFile.deleteOnExit();
-            XUnitTransformer.transform(report, resource, outputFile);
-            TagCounterVerifier verifier = new TagCounterVerifier();
+            String reportFileName = TEST_RESOURCES + "xml/jTest_10.2_unit.xml";
+            String outputFileName = "junit-demo.xml";
+            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, XUNIT_XSL);
 
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser parser = factory.newSAXParser();
-            parser.parse(outputFile, verifier);
+            TagCounterVerifier verifier = new TagCounterVerifier();
+            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
 
             Assert.assertEquals(4, verifier.getNumber("failure"));
             Assert.assertEquals(4, verifier.getNumber("error"));
-
         } catch (Exception e) {
             XUnitTransformer.doFail(e);
         }
@@ -84,16 +73,12 @@ public class XSLTransformTest
     public void testCppTestUnitXUnitTransform()
     {
         try {
-            URL report = XSLTransformTest.class.getResource("xml/cppTest_10.3.3_unit.xml");
-            URL resource = new File(XUNIT_XSL).toURI().toURL();
-            File outputFile = new File("junit-demo.xml");
-            outputFile.deleteOnExit();
-            XUnitTransformer.transform(report, resource, outputFile);
-            TagCounterVerifier verifier = new TagCounterVerifier();
+            String reportFileName = TEST_RESOURCES + "xml/cppTest_10.3.3_unit.xml";
+            String outputFileName = "junit-demo.xml";
+            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, XUNIT_XSL);
 
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser parser = factory.newSAXParser();
-            parser.parse(outputFile, verifier);
+            TagCounterVerifier verifier = new TagCounterVerifier();
+            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
 
             Assert.assertEquals(147, verifier.getNumber("failure"));
             Assert.assertEquals(0, verifier.getNumber("error"));
@@ -104,19 +89,15 @@ public class XSLTransformTest
     }
 
     @Test
-    public void testCppTesEnginetUnitXUnitTransform()
+    public void testCppTesEngineUnitXUnitTransform()
     {
         try {
-            URL report = XSLTransformTest.class.getResource("xml/cppTest_10.3.4_Engine_unit.xml");
-            URL resource = new File(XUNIT_XSL).toURI().toURL();
-            File outputFile = new File("junit-demo.xml");
-            outputFile.deleteOnExit();
-            XUnitTransformer.transform(report, resource, outputFile);
-            TagCounterVerifier verifier = new TagCounterVerifier();
+            String reportFileName = TEST_RESOURCES + "xml/cppTest_10.3.4_Engine_unit.xml";
+            String outputFileName = "junit-demo.xml";
+            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, XUNIT_XSL);
 
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser parser = factory.newSAXParser();
-            parser.parse(outputFile, verifier);
+            TagCounterVerifier verifier = new TagCounterVerifier();
+            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
 
             Assert.assertEquals(12, verifier.getNumber("failure"));
             Assert.assertEquals(5, verifier.getNumber("error"));
@@ -128,31 +109,6 @@ public class XSLTransformTest
 
     private static void xunitTransformation(String reportFileName, String outputFileName)
     {
-        XUnitTransformer.testXUnitTransform(reportFileName, outputFileName, XUNIT_XSL);
-    }
-
-    public class TagCounterVerifier
-        extends DefaultHandler
-    {
-        private final Map<String, Integer> _tagCountMap = new HashMap<>();
-
-        TagCounterVerifier()
-        {
-        }
-
-        @Override
-        public void startElement(String uri, String localName, String qName, Attributes attributes)
-        {
-            Integer integer = _tagCountMap.get(qName);
-            if (integer == null) {
-                integer = 0;
-            }
-            _tagCountMap.put(qName, integer + 1);
-        }
-
-        int getNumber(String sName)
-        {
-            return _tagCountMap.get(sName) == null ? 0 : _tagCountMap.get(sName);
-        }
+        XUnitTransformer.testXUnitTransformation(reportFileName, outputFileName, XUNIT_XSL);
     }
 }
