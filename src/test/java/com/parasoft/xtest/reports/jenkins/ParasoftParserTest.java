@@ -87,7 +87,6 @@ public class ParasoftParserTest
     @Test
     public void parseFAViolReportTest()
     {
-
         Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/jTest_10_static.xml"); //$NON-NLS-1$
         assertEquals(65, IteratorUtil.countElements(annotations.iterator()));
     }
@@ -95,7 +94,6 @@ public class ParasoftParserTest
     @Test
     public void parseCppEngineTestStatic()
     {
-
         Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.4_Engine_static.xml"); //$NON-NLS-1$
         assertEquals(5, IteratorUtil.countElements(annotations.iterator()));
     }
@@ -106,7 +104,6 @@ public class ParasoftParserTest
     @Test
     public void parseFAViolReportTest2()
     {
-
         Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/jTest_10_static_empty_element.xml"); //$NON-NLS-1$
         assertEquals(16, IteratorUtil.countElements(annotations.iterator()));
         for (FileAnnotation fileAnnotation : annotations) {
@@ -130,7 +127,26 @@ public class ParasoftParserTest
             assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", warning.getAnalyzer()); //$NON-NLS-1$
         }
     }
-    
+
+    @Test
+    public void parseCppDesktopStdViolsCategoriesTest_Old()
+    {
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_static.xml"); //$NON-NLS-1$
+
+        String[] rules = {"CODSTA-39", "CODSTA-39", "CODSTA-39", "MISRA2004-15_2", "INIT-04", "INIT-04", "INIT-04"}; 
+        assertEquals(7, IteratorUtil.countElements(annotations.iterator()));
+        int i = 0;
+        for (FileAnnotation fileAnnotation : annotations) {
+            assertTrue(fileAnnotation instanceof Warning);
+            Warning warning = (Warning)fileAnnotation;
+            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", warning.getAnalyzer()); //$NON-NLS-1$
+            
+            assertEquals(rules[i], warning.getType());
+            assertEquals("-", warning.getCategory());
+            i++;
+        }
+    }
+
     @Test
     public void parseCppDesktopStdViolsCategoriesTest()
     {
