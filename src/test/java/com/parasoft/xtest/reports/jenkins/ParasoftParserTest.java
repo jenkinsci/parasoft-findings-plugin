@@ -15,18 +15,30 @@
  */
 package com.parasoft.xtest.reports.jenkins;
 
-import com.parasoft.xtest.common.api.IProjectFileTestableInput;
-import com.parasoft.xtest.common.api.ISourceRange;
-import com.parasoft.xtest.common.iterators.IteratorUtil;
-import com.parasoft.xtest.common.text.UString;
-import com.parasoft.xtest.reports.jenkins.parser.ParasoftParser;
-import com.parasoft.xtest.reports.jenkins.parser.Warning;
-import com.parasoft.xtest.results.api.*;
-import com.parasoft.xtest.results.api.IFlowAnalysisPathElement.Type;
-import com.parasoft.xtest.results.api.attributes.IRuleAttributes;
-import com.parasoft.xtest.results.api.importer.IRulesImportHandler;
-import hudson.plugins.analysis.util.model.FileAnnotation;
-import hudson.plugins.analysis.util.model.Priority;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.hamcrest.collection.IsIn;
 import org.junit.AfterClass;
@@ -34,17 +46,23 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import com.parasoft.xtest.common.api.IProjectFileTestableInput;
+import com.parasoft.xtest.common.api.ISourceRange;
+import com.parasoft.xtest.common.iterators.IteratorUtil;
+import com.parasoft.xtest.common.text.UString;
+import com.parasoft.xtest.reports.jenkins.parser.ParasoftParser;
+import com.parasoft.xtest.reports.jenkins.parser.Warning;
+import com.parasoft.xtest.results.api.IFlowAnalysisPathElement;
+import com.parasoft.xtest.results.api.IFlowAnalysisPathElement.Type;
+import com.parasoft.xtest.results.api.IFlowAnalysisViolation;
+import com.parasoft.xtest.results.api.IResultLocation;
+import com.parasoft.xtest.results.api.IRuleViolation;
+import com.parasoft.xtest.results.api.IViolation;
+import com.parasoft.xtest.results.api.attributes.IRuleAttributes;
+import com.parasoft.xtest.results.api.importer.IRulesImportHandler;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.*;
+import hudson.plugins.analysis.util.model.FileAnnotation;
+import hudson.plugins.analysis.util.model.Priority;
 
 /**
  * Tests the extraction of Parasoft analysis results.
@@ -94,7 +112,7 @@ public class ParasoftParserTest
     @Test
     public void parseCppEngineTestStatic()
     {
-        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.4_Engine_static.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.4_engine_static.xml"); //$NON-NLS-1$
         assertEquals(5, IteratorUtil.countElements(annotations.iterator()));
     }
 
@@ -118,7 +136,7 @@ public class ParasoftParserTest
     @Test
     public void parseCppDesktopStdViolsTest()
     {
-        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_static.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static.xml"); //$NON-NLS-1$
         
         assertEquals(7, IteratorUtil.countElements(annotations.iterator()));
         for (FileAnnotation fileAnnotation : annotations) {
@@ -131,7 +149,7 @@ public class ParasoftParserTest
     @Test
     public void parseCppDesktopStdViolsCategoriesTest_Old()
     {
-        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_static.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static.xml"); //$NON-NLS-1$
 
         String[] rules = {"CODSTA-39", "CODSTA-39", "CODSTA-39", "MISRA2004-15_2", "INIT-04", "INIT-04", "INIT-04"}; 
         assertEquals(7, IteratorUtil.countElements(annotations.iterator()));
@@ -150,7 +168,7 @@ public class ParasoftParserTest
     @Test
     public void parseCppDesktopStdViolsCategoriesTest()
     {
-        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_static_Categories.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static_categories.xml"); //$NON-NLS-1$
         
         assertEquals(7, IteratorUtil.countElements(annotations.iterator()));
         for (FileAnnotation fileAnnotation : annotations) {
@@ -165,7 +183,7 @@ public class ParasoftParserTest
     @Test
     public void parseCppDesktopFAViolsTest()
     {
-        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES +  "xml/cppTest_10.3.2_static_FA.xml"); //$NON-NLS-1$
+        Collection<FileAnnotation> annotations = parseFile(TEST_RESOURCES +  "xml/cppTest_10.3.2_desktop_flowanalysis.xml"); //$NON-NLS-1$
         
         assertEquals(4, IteratorUtil.countElements(annotations.iterator()));
         for (FileAnnotation fileAnnotation : annotations) {
@@ -286,28 +304,40 @@ public class ParasoftParserTest
         settings.setProperty("rules.provider1a.data", "/home/jez/dv/dv-etest/com.parasoft.xtest.analyzers.checkstyle/rules/cs-rules.xml");
         ParasoftParser parserBefore = new ParasoftParser("PL-123", settings);
         Collection<FileAnnotation> parsedBefore = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml", parserBefore);
-        
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream(out);
-        oos.writeObject(parserBefore);
-        
-        ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
-        ObjectInputStream ois = new ObjectInputStream(in);
-        ParasoftParser parserAfter = (ParasoftParser)ois.readObject();
-        Collection<FileAnnotation> parsedAfter = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml", parserAfter);
-        
-        assertEquals(parsedBefore.size(), parsedAfter.size());
-        
-        Properties propertiesBefore = parserBefore.getProperties();
-        Properties propertiesAfter = parserAfter.getProperties();
-        assertEquals(propertiesBefore.size(), propertiesAfter.size());
-        Enumeration<Object> keys = propertiesBefore.keys();
-        while (keys.hasMoreElements()) {
-            String sKey = (String)keys.nextElement();
-            assertTrue(propertiesAfter.containsKey(sKey));
-            assertEquals(propertiesBefore.getProperty(sKey), propertiesAfter.getProperty(sKey));
-        }
-    }
+
+		ObjectOutputStream oos = null;
+		ObjectInputStream ois = null;
+		try {
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			oos = new ObjectOutputStream(out);
+			oos.writeObject(parserBefore);
+
+			ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
+			ois = new ObjectInputStream(in);
+			ParasoftParser parserAfter = (ParasoftParser) ois.readObject();
+			Collection<FileAnnotation> parsedAfter = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml",
+					parserAfter);
+
+			assertEquals(parsedBefore.size(), parsedAfter.size());
+
+			Properties propertiesBefore = parserBefore.getProperties();
+			Properties propertiesAfter = parserAfter.getProperties();
+			assertEquals(propertiesBefore.size(), propertiesAfter.size());
+			Enumeration<Object> keys = propertiesBefore.keys();
+			while (keys.hasMoreElements()) {
+				String sKey = (String) keys.nextElement();
+				assertTrue(propertiesAfter.containsKey(sKey));
+				assertEquals(propertiesBefore.getProperty(sKey), propertiesAfter.getProperty(sKey));
+			}
+		} finally {
+			if (oos != null) {
+				oos.close();
+			}
+			if (ois != null) {
+				ois.close();
+			}
+		}
+	}
 
     private static List<IViolation> mockViolations()
     {

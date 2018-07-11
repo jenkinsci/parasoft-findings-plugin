@@ -39,13 +39,13 @@ public class XSLTransformTest
     @Test
     public void testCppTest10EngineXUnitTransform2()
     {
-        xunitTransformation(TEST_RESOURCES + "xml/c++Test10Engine.xml", "c++Test10Engine-output.xml");
+        xunitTransformation(TEST_RESOURCES + "xml/cppTest_10.3.4_engine_unit_2.xml", "cppTest_10.3.4_engine_unit_2-output.xml");
     }
 
     @Test
     public void testCppTest10EngineXUnitTransform()
     {
-        xunitTransformation(TEST_RESOURCES + "xml/c++Test10DesktopVisualStudio.xml", "c++Test10DesktopVisualStudio-output.xml");
+        xunitTransformation(TEST_RESOURCES + "xml/cppTest_10.3.3_desktop_vs_unit.xml", "cppTest_10.3.3_desktop_vs_unit-output.xml");
     }
 
     /**
@@ -73,7 +73,7 @@ public class XSLTransformTest
     public void testCppTestUnitXUnitTransform()
     {
         try {
-            String reportFileName = TEST_RESOURCES + "xml/cppTest_10.3.3_unit.xml";
+            String reportFileName = TEST_RESOURCES + "xml/cppTest_10.3.3_desktop_unit.xml";
             String outputFileName = "junit-demo.xml";
             File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, XUNIT_XSL);
 
@@ -92,7 +92,7 @@ public class XSLTransformTest
     public void testCppTesEngineUnitXUnitTransform()
     {
         try {
-            String reportFileName = TEST_RESOURCES + "xml/cppTest_10.3.4_Engine_unit.xml";
+            String reportFileName = TEST_RESOURCES + "xml/cppTest_10.3.4_engine_unit.xml";
             String outputFileName = "junit-demo.xml";
             File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, XUNIT_XSL);
 
