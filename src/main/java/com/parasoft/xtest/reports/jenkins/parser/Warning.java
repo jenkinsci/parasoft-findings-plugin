@@ -16,10 +16,6 @@
 
 package com.parasoft.xtest.reports.jenkins.parser;
 
-import hudson.plugins.analysis.util.model.AbstractAnnotation;
-import hudson.plugins.analysis.util.model.FileAnnotation;
-import hudson.plugins.analysis.util.model.Priority;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -29,6 +25,10 @@ import com.parasoft.xtest.reports.jenkins.html.IHtmlTags;
 import com.parasoft.xtest.results.api.IDupCodeViolation;
 import com.parasoft.xtest.results.api.IFlowAnalysisViolation;
 import com.parasoft.xtest.results.api.IRuleViolation;
+
+import hudson.plugins.analysis.util.model.AbstractAnnotation;
+import hudson.plugins.analysis.util.model.FileAnnotation;
+import hudson.plugins.analysis.util.model.Priority;
 
 /**
  * Core class representing a warning.
@@ -165,7 +165,18 @@ public class Warning
         }
         throw new NoSuchElementException("Previous call annotation not found: key=" + childHashCode); //$NON-NLS-1$
     }
-
+    
+    /**
+     * Set path name only if is null. If path name was set in ParasoftParser#toWarning should not be overridden in FilesParser#invoke method
+     * @see hudson.plugins.analysis.util.model.AbstractAnnotation#setPathName(java.lang.String)
+     */
+    @Override
+    public void setPathName(final String workspacePath) {
+        if (getPathName() == null) {
+            super.setPathName(workspacePath);
+        }
+    }
+    
     /**
      * @see hudson.plugins.analysis.util.model.AbstractAnnotation#compareTo(hudson.plugins.analysis.util.model.FileAnnotation)
      */
@@ -222,7 +233,7 @@ public class Warning
         //used as hint in Jenkins is not showing correctly
         return message + IHtmlTags.NON_BREAKABLE_4_SPACE;
     }
-
+    
     /** Unique identifier of this class. */
     private static final long serialVersionUID = 3626343302732656530L;
 
