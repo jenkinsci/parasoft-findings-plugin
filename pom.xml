@@ -22,12 +22,13 @@
   <properties>
     <jenkins.version>1.625.1</jenkins.version>
     <jenkins-test-harness.version>1.625.1</jenkins-test-harness.version>
-    <hpi-plugin.version>1.106</hpi-plugin.version>
+    <hpi-plugin.version>1.117</hpi-plugin.version>
     <stapler-plugin.version>1.17</stapler-plugin.version>
     <java.level>7</java.level>
     <jdk.version>1.7</jdk.version>
-    <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
-    <xtest.version>10.4.0.20180618</xtest.version>
+    <parasoft.snapshots.url>http://builder2.parasoft.com.pl:8081/nexus/content/repositories/snapshots/</parasoft.snapshots.url>
+    <parasoft.libs.url>http://builder2.parasoft.com.pl:8081/nexus/content/repositories/releases/</parasoft.libs.url>
+    <xtest.version>10.4.1.20181116</xtest.version>
   </properties>
 
   <developers>
@@ -52,13 +53,6 @@
     </license>
   </licenses>
 
-  <scm>
-    <connection>scm:git:ssh://github.com/jenkinsci/parasoft-findings-plugin.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/parasoft-findings-plugin.git</developerConnection>
-    <url>https://github.com/jenkinsci/parasoft-findings-plugin</url>
-    <tag>master</tag>
-  </scm>
-
   <build>
     <resources>
       <resource>
@@ -72,33 +66,91 @@
       </resource>
     </resources>
     <plugins>
-      <plugin>
+        <plugin>
+            <groupId>org.jenkins-ci.tools</groupId>
+                <artifactId>maven-hpi-plugin</artifactId>
+                <version>1.117</version>
+                <configuration>
+                    <pluginFirstClassLoader>true</pluginFirstClassLoader>
+                    <disabledTestInjection>true</disabledTestInjection>
+                </configuration>
+            </plugin>
+  
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
+        <artifactId>maven-deploy-plugin</artifactId>
         <configuration>
-          <additionalClasspathElements>
-            <additionalClasspathElement>src/test/java</additionalClasspathElement>
-          </additionalClasspathElements>
+          <skip>true</skip>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.jenkins-ci.tools</groupId>
-        <artifactId>maven-hpi-plugin</artifactId>
-        <configuration>
-          <pluginFirstClassLoader>true</pluginFirstClassLoader>
-          <disabledTestInjection>true</disabledTestInjection>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>${jdk.version}</source>
-          <target>${jdk.version}</target>
-        </configuration>
-      </plugin>
-      <plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <toolchains>
+                        <jdk>
+                            <version>${jdk.version}</version>
+                        </jdk>
+                    </toolchains>
+                </configuration>
+            </plugin>
+           <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+                 <artifactId>build-helper-maven-plugin</artifactId>
+                 <version>1.9.1</version>
+                 <executions>
+                    <execution>
+                       <id>attach-artifacts</id>
+                       <phase>package</phase>
+                       <goals>
+                          <goal>attach-artifact</goal>
+                       </goals>
+                       <configuration>
+                          <artifacts>
+                             <artifact>
+                                <file>${project.build.directory}/${project.artifactId}-sources.zip</file>
+                                <type>zip</type>
+                                <classifier>sources</classifier>
+                             </artifact>
+                          </artifacts>
+                       </configuration>
+                    </execution>
+                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.10</version>
         <executions>
           <execution>
             <id>copy-dependencies</id>
@@ -109,31 +161,218 @@
             <configuration>
               <includeGroupIds>com.parasoft.xtest.common</includeGroupIds>
               <outputDirectory>${project.build.directory}/${project.artifactId}/WEB-INF/lib</outputDirectory>
+                            <overWriteReleases>true</overWriteReleases>
+                            <overWriteSnapshots>true</overWriteSnapshots>
             </configuration>
           </execution>
+                    <execution>
+                        <id>backup-dependencies</id>
+                        <goals>
+                           <goal>copy-dependencies</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                             <outputDirectory>${basedir}/repository</outputDirectory>
+                             <includeGroupIds>com.parasoft.xtest</includeGroupIds>
+                             <includeScope>runtime</includeScope>
+                             <useRepositoryLayout>true</useRepositoryLayout>
+                             <copyPom>true</copyPom>
+                             <overWriteReleases>true</overWriteReleases>
+                             <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>backup-sources</id>
+                        <goals>
+                           <goal>copy-dependencies</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                             <outputDirectory>${basedir}/repository</outputDirectory>
+                             <includeGroupIds>com.parasoft.xtest</includeGroupIds>
+                             <includeArtifactIds>com.parasoft.xtest.analyzers.api,com.parasoft.xtest.common.api,
+                                com.parasoft.xtest.configuration.api,com.parasoft.xtest.coverage.api,com.parasoft.xtest.dupcode.api,
+                                com.parasoft.xtest.logging.api,com.parasoft.xtest.reports.api,com.parasoft.xtest.results.api,
+                                com.parasoft.xtest.scope.api,com.parasoft.xtest.services.api,com.parasoft.xtest.scontrol.api,
+                                com.parasoft.xtest.testcases.api</includeArtifactIds>
+                             <classifier>sources</classifier>
+                             <includeScope>runtime</includeScope>
+                             <useRepositoryLayout>true</useRepositoryLayout>
+                             <overWriteReleases>true</overWriteReleases>
+                             <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <configuration>
-          <checkModificationExcludes>
-            <checkModificationExclude>pom.xml</checkModificationExclude>
-          </checkModificationExcludes>
-        </configuration>
-      </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>renumber.plugin.version</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <property name="classpath" refid="maven.plugin.classpath" />
+                                <!-- 
+                                   Modify version numbers for 'xtest' key
+                                   in versions.properties and current_versions.properties
+                                -->
+                               <echo>Replacing version to ${xtest.version} in ${basedir}/pom-src.xml</echo>
+                               <replaceregexp file="${basedir}/pom-src.xml" match="\&lt;xtest.version\&gt;(.*)\&lt;/xtest.version\&gt;" replace="\&lt;xtest.version\&gt;${xtest.version}\&lt;/xtest.version\&gt;" byline="true" />
+                               <echo>Replacing version to ${xtest.version} in ${basedir}/pom-src.xml</echo>
+                               <replaceregexp file="${basedir}/pom-src.xml" match="\&lt;version\&gt;10.0.0-SNAPSHOT\&lt;/version\&gt;" replace="\&lt;version\&gt;${xtest.version}\&lt;/version\&gt;" byline="true" />
+
+                               <!-- echo>Replacing version to ${xtest.version} in ${basedir}/pom.xml</echo>
+                               <replaceregexp file="${basedir}/pom.xml" match="\&lt;xtest.version\&gt;(.*)\&lt;/xtest.version\&gt;"
+                                   replace="\&lt;xtest.version\&gt;${xtest-release-version-full}\&lt;/xtest.version\&gt;"
+                                   byline="true"/-->
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+           </plugin>
+           <plugin>
+                <groupId>net.ju-n.maven.plugins</groupId>
+                <artifactId>checksum-maven-plugin</artifactId>
+                <version>1.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>files</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <fileSets>
+                        <fileSet>
+                            <directory>${basedir}/repository/com</directory>
+                            <includes>
+                                <include>**/*.jar</include>
+                                <include>**/*.xml</include>
+                                <include>**/*.pom</include>
+                            </includes>
+                        </fileSet>
+                    </fileSets>
+                </configuration>
+           </plugin>
+           <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.5</version>
+                <executions>
+                    <execution>
+                        <id>xtest.sources</id>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                           <appendAssemblyId>true</appendAssemblyId>
+                                 <descriptors>
+                              <descriptor>assembly.plugin.sources.xml</descriptor>
+                                 </descriptors>
+                           <outputDirectory>${project.build.directory}</outputDirectory>
+                           <finalName>${project.artifactId}</finalName>
+                        </configuration>
+                    </execution>
+                 </executions>
+           </plugin>       
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>
+                      org.codehaus.mojo
+                    </groupId>
+                    <artifactId>
+                      build-helper-maven-plugin
+                    </artifactId>
+                    <versionRange>
+                      [1.7,)
+                    </versionRange>
+                    <goals>
+                      <goal>add-source</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>
+                      org.apache.maven.plugins
+                    </groupId>
+                    <artifactId>
+                      maven-toolchains-plugin
+                    </artifactId>
+                    <versionRange>
+                      [1.1,)
+                    </versionRange>
+                    <goals>
+                      <goal>toolchain</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>
+                      org.apache.maven.plugins
+                    </groupId>
+                    <artifactId>
+                      maven-antrun-plugin
+                    </artifactId>
+                    <versionRange>
+                      [1.3,)
+                    </versionRange>
+                    <goals>
+                      <goal>run</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 
   <repositories>
-    <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
+    <!-- get every artifact through repo.jenkins-ci.org, which proxies all 
+      the artifacts that we need -->
     <repository>
       <id>repo.jenkins-ci.org</id>
       <url>http://repo.jenkins-ci.org/public/</url>
     </repository>
     <repository>
-      <id>parasoft</id>
-      <url>${parasoft.repository.url}</url>
+      <id>parasoft-snapshots</id>
+      <url>${parasoft.snapshots.url}</url>
+    </repository>
+    <repository>
+      <id>parasoft-libs</id>
+      <url>${parasoft.libs.url}</url>
     </repository>
     <repository>
       <id>pustefix</id>
@@ -158,12 +397,14 @@
       <artifactId>analysis-core</artifactId>
       <version>1.82</version>
     </dependency>
+
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>xunit</artifactId>
       <version>1.102</version>
       <optional>true</optional>
     </dependency>
+
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>dashboard-view</artifactId>
@@ -181,41 +422,46 @@
       <version>1.1</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>4.3.6</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpcore</artifactId>
-      <version>4.3.3</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.6</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-httpclient</groupId>
-      <artifactId>commons-httpclient</artifactId>
-      <version>3.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>fluent-hc</artifactId>
-      <version>4.3.6</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpmime</artifactId>
-      <version>4.3.6</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.libs</groupId>
-      <artifactId>org.json</artifactId>
-      <version>1.0.0</version>
-    </dependency>
+        <dependency>
+           <groupId>commons-logging</groupId>
+           <artifactId>commons-logging</artifactId>
+           <version>1.1.3</version>
+        </dependency>
+        <dependency>
+           <groupId>org.apache.httpcomponents</groupId>
+           <artifactId>httpclient</artifactId>
+           <version>4.3.6</version>
+        </dependency>
+        <dependency>
+           <groupId>org.apache.httpcomponents</groupId>
+           <artifactId>httpcore</artifactId>
+           <version>4.3.3</version>
+        </dependency>
+        <dependency>
+           <groupId>commons-codec</groupId>
+           <artifactId>commons-codec</artifactId>
+           <version>1.6</version>
+        </dependency>
+        <dependency>
+           <groupId>commons-httpclient</groupId>
+           <artifactId>commons-httpclient</artifactId>
+           <version>3.1</version>
+        </dependency>
+        <dependency>
+           <groupId>org.apache.httpcomponents</groupId>
+           <artifactId>fluent-hc</artifactId>
+           <version>4.3.6</version>
+        </dependency>
+        <dependency>
+           <groupId>org.apache.httpcomponents</groupId>
+           <artifactId>httpmime</artifactId>
+           <version>4.3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.parasoft.xtest.libs</groupId>
+            <artifactId>org.json</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     <dependency>
       <groupId>com.parasoft.xtest.common</groupId>
       <artifactId>com.parasoft.xtest.common</artifactId>
@@ -319,12 +565,24 @@
         <version>6.5.5</version>
         <scope>test</scope>
     </dependency>
-    <dependency>
-        <groupId>commons-logging</groupId>
-        <artifactId>commons-logging</artifactId>
-        <version>1.1.3</version>
-    </dependency>
-
   </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>ParasoftNexusRepoPL</id>
+            <name>Parasoft Nexus Release Repository</name>
+            <url>${parasoft-maven-releases-url}</url>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>ParasoftNexusRepoPL</id>
+            <name>Parasoft Nexus Release Repository</name>
+            <url>${parasoft-maven-snapshots-url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+  <scm>
+    <tag>parasoft-findings-10.4.1</tag>
+  </scm>
 </project>
