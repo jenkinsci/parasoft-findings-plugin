@@ -55,9 +55,22 @@
         <version_major_minor>${XTEST_MAJ_MIN_VERSION}</version_major_minor>
         <version_release>${XTEST_RELEASE_VERSION}</version_release>
 
+        <!-- Eclipse p2 repository URLs -->
+        <eclipse.repository.base.url>http://builder.parasoft.com.pl:8081/nexus/content/repositories</eclipse.repository.base.url>
+        <eclipse.galileo.repository.url>${eclipse.repository.base.url}/eclipse_35_galileo</eclipse.galileo.repository.url>
+        <eclipse.helios.repository.url>${eclipse.repository.base.url}/eclipse_36_helios</eclipse.helios.repository.url>
+        <eclipse.indigo.repository.url>${eclipse.repository.base.url}/eclipse_37_indigo</eclipse.indigo.repository.url>
+        <eclipse.juno.repository.url>${eclipse.repository.base.url}/eclipse_38_juno</eclipse.juno.repository.url>
+        <eclipse.kepler.repository.url>${eclipse.repository.base.url}/eclipse_43_kepler</eclipse.kepler.repository.url>
+        <eclipse.luna.repository.url>${eclipse.repository.base.url}/eclipse_44_luna</eclipse.luna.repository.url>
+
         <copy.to.isolated.libs.repository.phase>none</copy.to.isolated.libs.repository.phase>
         <xtest.libs.osgi.deploy>true</xtest.libs.osgi.deploy>
         <xtest.libs.repository.url>http://${parasoft-buildserver-deploy-base-uri}/builds/${product-name}/${branch-name}/libs/latest/</xtest.libs.repository.url>
+
+        <!-- "surefire.memory.settings" is an single space by default. Surefire will ignore an empty space added to its argline. -->
+        <!-- surefire.memory.settings> </surefire.memory.settings -->
+        <surefire.memory.settings>-Xmx4096m</surefire.memory.settings>
 	</properties>
 
 	<profiles>
@@ -109,7 +122,7 @@
 				<repository>
 					<id>eclipse-galileo</id>
 					<!--  url>http://download.eclipse.org/releases/galileo</url -->
-                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_35_galileo</url>
+                    <url>${eclipse.galileo.repository.url}</url>
 					<layout>p2</layout>
 				</repository>
 			</repositories>
@@ -121,7 +134,7 @@
                 <repository>
                     <id>eclipse-helios</id>
                     <!-- url>http://download.eclipse.org/releases/helios</url -->
-                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_36_helios</url>
+                    <url>${eclipse.helios.repository.url}</url>
                     <layout>p2</layout>
                 </repository>
             </repositories>
@@ -133,7 +146,7 @@
 				<repository>
 					<id>eclipse-indigo</id>
 					<!--  url>http://download.eclipse.org/releases/indigo</url -->
-                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_37_indigo</url>
+                    <url>${eclipse.indigo.repository.url}</url>
 					<layout>p2</layout>
 				</repository>
 			</repositories>
@@ -145,7 +158,7 @@
 				<repository>
 					<id>eclipse-juno</id>
 					<!--  url>http://download.eclipse.org/releases/juno</url -->
-                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_38_juno</url>
+                    <url>${eclipse.juno.repository.url}</url>
 					<layout>p2</layout>
 				</repository>
 			</repositories>
@@ -157,7 +170,7 @@
 				<repository>
 					<id>eclipse-kepler</id>
 					<!--  url>http://download.eclipse.org/releases/kepler</url -->
-                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_43_kepler</url>
+                    <url>${eclipse.kepler.repository.url}</url>
 					<layout>p2</layout>
 				</repository>
 			</repositories>
@@ -169,7 +182,7 @@
 				<repository>
 					<id>eclipse-luna</id>
 					<!-- url>http://download.eclipse.org/releases/luna</url -->
-                    <url>http://builder.parasoft.com.pl:8081/nexus/content/repositories/eclipse_44_luna</url>
+                    <url>${eclipse.luna.repository.url}</url>
 					<layout>p2</layout>
 				</repository>
 			</repositories>
@@ -281,6 +294,23 @@
             </build>
         </profile>
         <profile>
+            <id>build-zone-monrovia</id>
+            <properties>
+                <eclipse.repository.base.url>http://nexus.parasoft.com:8081/nexus/content/repositories</eclipse.repository.base.url>
+                <eclipse.galileo.repository.url>${eclipse.repository.base.url}/eclipse-galileo-releases</eclipse.galileo.repository.url>
+                <eclipse.helios.repository.url>${eclipse.repository.base.url}/eclipse-helios-releases</eclipse.helios.repository.url>
+                <eclipse.indigo.repository.url>${eclipse.repository.base.url}/eclipse-indigo-releases</eclipse.indigo.repository.url>
+                <eclipse.juno.repository.url>${eclipse.repository.base.url}/eclipse-juno-releases</eclipse.juno.repository.url>
+                <eclipse.kepler.repository.url>${eclipse.repository.base.url}/eclipse-kepler-releases</eclipse.kepler.repository.url>
+                <eclipse.luna.repository.url>${eclipse.repository.base.url}/eclipse-luna-releases</eclipse.luna.repository.url>
+                <!--
+                <eclipse.mars.repository.url>${eclipse.repository.base.url}/eclipse-mars-releases</eclipse.mars.repository.url>
+                <eclipse.neon.repository.url>${eclipse.repository.base.url}/eclipse-neon-releases</eclipse.neon.repository.url>
+                <eclipse.oxygen.repository.url>${eclipse.repository.base.url}/eclipse-oxygen-releases</eclipse.oxygen.repository.url>
+                -->
+            </properties>
+        </profile>
+        <profile>
             <id>isolated.build</id>
             <activation>
                 <property>
@@ -293,6 +323,7 @@
               <xtest.libs.repository.dir>${env.WORKSPACE}/p2-osgi-libs</xtest.libs.repository.dir>
               <xtest.libs.repository.url>file://${xtest.libs.repository.dir}</xtest.libs.repository.url>
               <copy.to.isolated.libs.repository.phase>install</copy.to.isolated.libs.repository.phase>
+              <!-- surefire.memory.settings>-Xmx2048m</surefire.memory.settings -->
             </properties>
         </profile>
 	</profiles>

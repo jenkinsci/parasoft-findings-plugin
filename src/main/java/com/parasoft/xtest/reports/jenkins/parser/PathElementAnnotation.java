@@ -27,6 +27,7 @@ import com.parasoft.xtest.common.IStringConstants;
 import com.parasoft.xtest.common.api.IFileTestableInput;
 import com.parasoft.xtest.common.api.ISourceRange;
 import com.parasoft.xtest.common.api.ITestableInput;
+import com.parasoft.xtest.reports.jenkins.html.Colors;
 import com.parasoft.xtest.reports.jenkins.html.IHtmlTags;
 import com.parasoft.xtest.results.api.IResultLocation;
 
@@ -36,14 +37,15 @@ import com.parasoft.xtest.results.api.IResultLocation;
 class PathElementAnnotation
     extends AbstractAnnotation
 {
-    
     private final long _parentKey;
 
     private List<PathElementAnnotation> _children = new ArrayList<PathElementAnnotation>();
     
     private String _description = null;
 
-    private String _type = null;
+    private String _point = null;
+    
+    private String _cause = null;
 
     /**
      * @param message this element's message
@@ -86,12 +88,15 @@ class PathElementAnnotation
         _children = children;
     }
     
-    /**
-     * @param type type of this path element
-     */
-    public void setType(String type)
+    public void setPoint(String point)
     {
-        _type = type;
+        _point = point;
+    }
+
+
+    public void setCause(String cause)
+    {
+        _cause = cause;
     }
 
     /**
@@ -129,7 +134,10 @@ class PathElementAnnotation
     {
         StringBuilder message = new StringBuilder();
         message.append(IHtmlTags.LIST_ELEM_START_TAG);
-        addType(message);
+        message.append(IHtmlTags.BOLD_START_TAG);
+        addCause(message);
+        addPoint(message);
+        message.append(IHtmlTags.BOLD_END_TAG);
         message.append(getLinkToCallPlace());
         message.append(IHtmlTags.NON_BREAKABLE_SPACE);
         message.append(_description);
@@ -146,18 +154,24 @@ class PathElementAnnotation
             getPrimaryLineNumber());
     }
 
-    private void addType(StringBuilder message)
-    {
-        StringBuilder sb = new StringBuilder();
-        sb.append(IHtmlTags.FONT_MONOSPACE_SPAN_START_TAG);
-        sb.append(_type);
-        int length = _type.length();
-        for (int i = 0; i < 4 - length; i++) {
-            sb.append(IHtmlTags.NON_BREAKABLE_SPACE);
+    private void addCause(StringBuilder message) {
+        if(_cause != null) {
+            message.append(Colors.createColorSpanStartTag(Colors.BLUE));
+            message.append(_cause);
+            message.append(IHtmlTags.SPAN_END_TAG);
+            message.append(IHtmlTags.BREAK_LINE_TAG);
         }
-        sb.append(IHtmlTags.SPAN_END_TAG);
-        message.append(sb.toString());
     }
+    
+    private void addPoint(StringBuilder message) {
+        if(_point != null) {
+            message.append(Colors.createColorSpanStartTag(Colors.RED));
+            message.append(_point);
+            message.append(IHtmlTags.SPAN_END_TAG);
+            message.append(IHtmlTags.BREAK_LINE_TAG);
+        }
+    }
+    
 
     private void addChildren(StringBuilder message)
     {
@@ -191,7 +205,6 @@ class PathElementAnnotation
             super(IStringConstants.EMPTY, 0, 0, parentKey);
             setChildren(Collections.<PathElementAnnotation>emptyList());
             setDescription(IStringConstants.EMPTY);
-            setType(IStringConstants.EMPTY);
         }
 
         @Override

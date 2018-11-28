@@ -15,13 +15,13 @@
  */
 package com.parasoft.xtest.reports.jenkins;
 
-import com.parasoft.xtest.results.api.IFlowAnalysisPathElement;
-import com.parasoft.xtest.results.api.IFlowAnalysisViolation;
-import com.parasoft.xtest.results.api.IResultLocation;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+
+import com.parasoft.xtest.results.api.IFlowAnalysisPathElement;
+import com.parasoft.xtest.results.api.IFlowAnalysisViolation;
+import com.parasoft.xtest.results.api.IResultLocation;
 
 public class FARuleViolationMock
     extends RuleViolationMock
@@ -85,7 +85,7 @@ public class FARuleViolationMock
 
     public String getFlowPathDescription()
     {
-        return "path description";
+        return null;
     }
 
 }

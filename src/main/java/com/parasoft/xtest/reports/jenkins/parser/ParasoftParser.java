@@ -16,6 +16,21 @@
 
 package com.parasoft.xtest.reports.jenkins.parser;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+
 import com.parasoft.xtest.common.api.IFileTestableInput;
 import com.parasoft.xtest.common.api.IProjectFileTestableInput;
 import com.parasoft.xtest.common.api.ISourceRange;
@@ -38,22 +53,8 @@ import com.parasoft.xtest.results.api.attributes.IRuleAttributes;
 import com.parasoft.xtest.results.api.importer.IImportedData;
 import com.parasoft.xtest.results.api.importer.IRulesImportHandler;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
-
 import hudson.plugins.analysis.core.AbstractAnnotationParser;
+import hudson.plugins.analysis.util.PackageDetectors;
 import hudson.plugins.analysis.util.model.FileAnnotation;
 import hudson.plugins.analysis.util.model.Priority;
 
@@ -67,7 +68,7 @@ public class ParasoftParser
     private static final String GLOBAL_CATEGORY = "GLOBAL"; //$NON-NLS-1$
 
     private static final String LEGACY_TOOL_NAME = "c++test"; //$NON-NLS-1$
-
+    
     private final Properties _properties;
 
     private transient JenkinsResultsImporter _importer = null;
@@ -213,7 +214,7 @@ public class ParasoftParser
             if (sFilePath != null) {
                 warning.setFileName(sFilePath);
             }
-        } else if (input instanceof PathInput) {
+        } else if (input instanceof PathInput) {    
             String workspacePath = ((PathInput)input).getPath();
             if (workspacePath.startsWith("/")) { //$NON-NLS-1$
                 workspacePath = workspacePath.substring(1);
@@ -222,22 +223,25 @@ public class ParasoftParser
         } else {
             warning.setFileName(input.getName());
         }
-
+               
         if (input instanceof IProjectFileTestableInput) {
-            warning.setModuleName(((IProjectFileTestableInput)input).getProjectName());
+            IProjectFileTestableInput projectInput = (IProjectFileTestableInput)input;
+            warning.setModuleName(projectInput.getProjectName());
+            warning.setPathName(getProjectWorkspacePath(projectInput, warning.getFileName()));
+
         } else {
             warning.setModuleName(sModuleName);
         }
-        
-        warning.setColumnPosition(sourceRange.getStartLineOffset(),
-            sourceRange.getEndLineOffset());
+
+        warning.setColumnPosition(sourceRange.getStartLineOffset(), sourceRange.getEndLineOffset());
         
         String namespace = violation.getNamespace();
         if (UString.isNonEmpty(namespace)){
             warning.setPackageName(namespace);
         } else {
-            warning.setPackageName(PROPERTY_UNKNOWN);
+            warning.setPackageName(PackageDetectors.UNDEFINED_PACKAGE);
         }
+        
         warning.setToolTip(attributes.getRuleTitle());
         
         warning.populateViolationPathElements(violation);
@@ -246,6 +250,15 @@ public class ParasoftParser
         warning.setContextHashCode(hash);
         
         return warning;
+    }
+        
+    public static String getProjectWorkspacePath(IProjectFileTestableInput projectFileTestableInput, String filePath)
+    {
+        String path = StringUtils.removeEnd(filePath, projectFileTestableInput.getProjectRelativePath());
+        path = StringUtils.removeEnd(path, IProjectFileTestableInput.PATH_SEPARATOR);
+        path = StringUtils.removeEnd(path, projectFileTestableInput.getProjectPath());
+
+        return path;
     }
 
     private static String mapToAnalyzer(IRuleViolation violation, IRulesImportHandler rulesImportHandler) {

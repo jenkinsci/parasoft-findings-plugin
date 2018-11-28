@@ -8,7 +8,7 @@
 
   <groupId>com.parasoft</groupId>
   <artifactId>parasoft-findings</artifactId>
-  <version>10.4.1-SNAPSHOT</version>
+  <version>10.4.1</version>
   <packaging>hpi</packaging>
 
   <name>Parasoft Findings</name>
@@ -27,7 +27,7 @@
     <java.level>7</java.level>
     <jdk.version>1.7</jdk.version>
     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
-    <xtest.version>10.4.0.20180618</xtest.version>
+    <xtest.version>10.4.1.20181116</xtest.version>
   </properties>
 
   <developers>

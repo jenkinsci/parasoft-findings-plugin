@@ -72,7 +72,6 @@ public class DupCodePathBuilder
             String sMessage = getMessage(pathElement);
             element = new PathElementAnnotation(sMessage, location, _parentKey);
             element.setDescription(getDescription(pathElement));
-            element.setType(IStringConstants.EMPTY);
         } else {
             element = new EmptyFlowAnalysisElement(_parentKey);
         }

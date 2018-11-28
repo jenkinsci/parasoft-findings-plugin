@@ -21,7 +21,7 @@ public interface IHtmlTags
 
     String ITALIC_END_TAG = "</i>"; //$NON-NLS-1$
 
-    String GRAY_ITALIC_STYLE_START_TAG = "<i style=\"color:#B0B0B0;\">"; //$NON-NLS-1$
+    String ITALIC_START_TAG = "<i>"; //$NON-NLS-1$
 
     String BOLD_END_TAG = "</b>"; //$NON-NLS-1$
 
@@ -44,6 +44,10 @@ public interface IHtmlTags
     String LIST_ELEM_END_TAG = "</li>"; //$NON-NLS-1$
 
     String LIST_ELEM_START_TAG = "<li>"; //$NON-NLS-1$
+    
+    String SPAN_COLOR_START_TAG = "<span style=\"color:"; //$NON-NLS-1$
+    
+    String  SPAN_COLOR_CLOSE_START_TAG = "\">";
 
     String SPAN_END_TAG = "</span>"; //$NON-NLS-1$
 
@@ -52,5 +56,7 @@ public interface IHtmlTags
     String HEADER_START_TAG = "<h1>"; //$NON-NLS-1$
 
     String HEADER_END_TAG = "</h1>"; //$NON-NLS-1$
+    
+    String BREAK_LINE_TAG = "</br>"; //$NON-NLS-1$
 
 }
