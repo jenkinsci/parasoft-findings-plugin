@@ -56,7 +56,7 @@
     <connection>scm:git:ssh://github.com/jenkinsci/parasoft-findings-plugin.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/jenkinsci/parasoft-findings-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/parasoft-findings-plugin</url>
-    <tag>master</tag>
+    <tag>parasoft-findings-10.4.1</tag>
   </scm>
 
   <build>
