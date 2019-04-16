@@ -18,25 +18,16 @@ package com.parasoft.xtest.reports.jenkins.parser;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.io.IOException;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Properties;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.parasoft.xtest.common.api.IFileTestableInput;
 import com.parasoft.xtest.common.api.IProjectFileTestableInput;
 import com.parasoft.xtest.common.api.ISourceRange;
 import com.parasoft.xtest.common.api.ITestableInput;
-import com.parasoft.xtest.common.locations.ILocationAttributes;
-import com.parasoft.xtest.common.math.ULong;
 import com.parasoft.xtest.common.path.PathInput;
 import com.parasoft.xtest.common.text.UString;
 import com.parasoft.xtest.reports.jenkins.internal.JenkinsLocationMatcher;
@@ -53,110 +44,183 @@ import com.parasoft.xtest.results.api.attributes.IRuleAttributes;
 import com.parasoft.xtest.results.api.importer.IImportedData;
 import com.parasoft.xtest.results.api.importer.IRulesImportHandler;
 
-import hudson.plugins.analysis.core.AbstractAnnotationParser;
-import hudson.plugins.analysis.util.PackageDetectors;
-import hudson.plugins.analysis.util.model.FileAnnotation;
-import hudson.plugins.analysis.util.model.Priority;
+import edu.hm.hafner.analysis.IssueBuilder;
+import edu.hm.hafner.analysis.IssueParser;
+import edu.hm.hafner.analysis.ParsingCanceledException;
+import edu.hm.hafner.analysis.ParsingException;
+import edu.hm.hafner.analysis.ReaderFactory;
+import edu.hm.hafner.analysis.Report;
+import edu.hm.hafner.analysis.Severity;
 
 /**
  * A parser for Parasoft files containing xml report.
  */
 public class ParasoftParser
-    extends AbstractAnnotationParser
+extends IssueParser
 {
-    
+    private static final long serialVersionUID = 1731087921659486425L;
+
     private static final String GLOBAL_CATEGORY = "GLOBAL"; //$NON-NLS-1$
 
     private static final String LEGACY_TOOL_NAME = "c++test"; //$NON-NLS-1$
-    
+
     private final Properties _properties;
 
     private transient JenkinsResultsImporter _importer = null;
 
-    /**
-     * Creates a new instance of {@link ParasoftParser}.
-     */
     public ParasoftParser()
     {
-        this(StringUtils.EMPTY, new Properties());
+        this(new Properties());
     }
 
-    /**
-     * Creates a new instance of {@link ParasoftParser}.
-     * 
-     * @param sDefaultEncoding the default encoding to be used when reading and parsing files
-     * @param properties settings to use while constructing annotations
-     */
-    public ParasoftParser(String sDefaultEncoding, Properties properties)
+    public ParasoftParser(Properties properties)
     {
-        super(sDefaultEncoding);
-        
         _properties = properties;
         Logger.getLogger().debug("Constructor call with settings: " + _properties); //$NON-NLS-1$
     }
 
     @Override
-    public Collection<FileAnnotation> parse(File file, String sModuleName)
-        throws InvocationTargetException
+    public Report parse(ReaderFactory readerFactory) throws ParsingException, ParsingCanceledException
     {
-        FileInputStream input = null;
-        try {
-            input = new FileInputStream(file);
-            return intern(importResults(file, sModuleName));
-        } catch (FileNotFoundException exception) {
-            throw new InvocationTargetException(exception);
-        } finally {
-            IOUtils.closeQuietly(input);
+        File file = new File(readerFactory.getFileName());
+        try (FileInputStream input = new FileInputStream(file)) {
+            return importResults(file);
+        } catch (IOException exception) {
+            throw new ParsingException(exception);
         }
     }
-    
-    @Override
-    public Collection<FileAnnotation> parse(InputStream file, String moduleName)
-        throws InvocationTargetException
+
+    private Report importResults(File file)
     {
-        // unused
-        return null;
+        IImportedData importedData = getImporter().performImport(file);
+        if (importedData == null) {
+            return new Report();
+        }
+        return convert(importedData, importedData.getRulesImportHandler());
     }
 
-    /**
-     * Converts the internal structure to the annotations API.
-     * 
-     * @param importResults list of violations
-     * @param rulesImportHandler provides information about rules
-     * @param sModuleName name of the maven module
-     * @return a collection of results in format of the annotations API
-     */
-    public Collection<FileAnnotation> convert(Iterator<IViolation> importResults, IRulesImportHandler rulesImportHandler, String sModuleName)
+    private Report convert(Iterator<IViolation> importResults, IRulesImportHandler rulesImportHandler)
     {
         JenkinsRulesUtil.refreshRuleDescriptions(_properties);
-        
-        List<FileAnnotation> annotations = new ArrayList<FileAnnotation>();
+
+        IssueBuilder issueBuilder = new IssueBuilder();
+        Report report = new Report();
+
         while (importResults.hasNext()) {
             IViolation result = importResults.next();
             IRuleViolation violation = null;
-            if (result instanceof IRuleViolation){
-                violation = (IRuleViolation)result;
+            if (result instanceof IRuleViolation) {
+                violation = (IRuleViolation) result;
             } else {
                 Logger.getLogger().warn("Result is not instance of IRuleViolation"); //$NON-NLS-1$
                 continue;
             }
-            
-            Warning warning = toWarning(violation, rulesImportHandler, sModuleName);
-            if (warning == null) {
-                continue;
+            if (reportViolation(violation, rulesImportHandler, "-", issueBuilder)) {
+                report.add(issueBuilder.build());
             }
-                
-            annotations.add(warning);
         }
-        return annotations;
+        return report;
     }
-    
-    /**
-     * @return settings used by this instance of parser
-     */
-    public Properties getProperties()
+
+    private boolean reportViolation(IRuleViolation violation, IRulesImportHandler rulesImportHandler, String moduleName, IssueBuilder issueBuilder)
     {
-        return _properties;
+        ResultAdditionalAttributes attributes = new ResultAdditionalAttributes(violation);
+        if (attributes.isSuppressed()) {
+            return false;
+        }
+
+        String message = violation.getMessage();
+        int severity = attributes.getSeverity();
+        Severity severityLevel = convertToSeverityLevel(severity);
+        String ruleCategory = attributes.getRuleCategory();
+
+        IResultLocation location = violation.getResultLocation();
+        ISourceRange sourceRange = location.getSourceRange();
+        int startLine = sourceRange.getStartLine();
+        int endLine = sourceRange.getEndLine();
+
+        String ruleId = violation.getRuleId();
+        String categoryDesc = rulesImportHandler.getCategoryDescription(ruleCategory);
+        String ruleDesc = ruleId;
+
+        issueBuilder.setSeverity(severityLevel)
+        .setMessage(message)
+        .setLineStart(startLine)
+        .setLineEnd(endLine)
+        .setCategory(categoryDesc)
+        .setType(ruleDesc);
+
+        String author = attributes.getAuthor();
+        if (UString.isEmpty(author)) {
+            author = PROPERTY_UNKNOWN;
+        }
+        // TODO - set author
+
+        String revision = attributes.getRevision();
+        if (UString.isEmpty(revision)) {
+            revision = PROPERTY_UNKNOWN;
+        }
+        // TODO - set revision
+
+        String analyzer = violation.getAnalyzerId();
+        if (isLegacyReport(analyzer)) {
+            analyzer = mapToAnalyzer(violation, rulesImportHandler);
+        }
+        // TODO - set analyzer
+
+        ITestableInput input = location.getTestableInput();
+        String filePath = null;
+        if (input instanceof IFileTestableInput) {
+            filePath = JenkinsLocationMatcher.getFilePath((IFileTestableInput) input);
+        } else if (input instanceof PathInput) {
+            filePath = ((PathInput) input).getPath();
+            if (filePath.startsWith("/")) { //$NON-NLS-1$
+                filePath = filePath.substring(1);
+            }
+        } else {
+            filePath = input.getName();
+        }
+        if (UString.isNonEmptyTrimmed(filePath)) {
+            issueBuilder.setFileName(filePath);
+        }
+
+        if (input instanceof IProjectFileTestableInput) {
+            IProjectFileTestableInput projectInput = (IProjectFileTestableInput) input;
+            issueBuilder.setModuleName(projectInput.getProjectName());
+            // set pathName setPathName(getProjectWorkspacePath(projectInput, filePath));
+        } else {
+            issueBuilder.setModuleName(moduleName);
+        }
+
+        issueBuilder.setColumnStart(sourceRange.getStartLineOffset());
+        issueBuilder.setColumnEnd(sourceRange.getEndLineOffset());
+
+        String namespace = violation.getNamespace();
+        if (UString.isNonEmpty(namespace)) {
+            issueBuilder.setPackageName(namespace);
+        } else {
+            issueBuilder.setPackageName("_");
+        }
+
+        // TODO - set toolTip attributes.getRuleTitle()
+        // warning.populateViolationPathElements(violation);
+
+        // TODO - long hash = ULong.parseLong(violation.getAttribute(ILocationAttributes.LINE_HASH_ATTR), violation.hashCode());
+        // warning.setContextHashCode(hash);
+        return true;
+    }
+
+    private Severity convertToSeverityLevel(int severity)
+    {
+        switch (severity) {
+            case 1:
+            case 2:
+                return Severity.WARNING_HIGH;
+            case 3:
+                return Severity.WARNING_NORMAL;
+            default:
+                return Severity.WARNING_LOW;
+        }
     }
 
     private synchronized JenkinsResultsImporter getImporter()
@@ -168,100 +232,13 @@ public class ParasoftParser
         return _importer;
     }
 
-    private static Warning toWarning(IRuleViolation violation, IRulesImportHandler rulesImportHandler, String sModuleName)
+    private static boolean isLegacyReport(String analyzer)
     {
-        ResultAdditionalAttributes attributes = new ResultAdditionalAttributes(violation);
-        if (attributes.isSuppressed()) {
-            return null;
-        }
-
-        String message = violation.getMessage();
-        int severity = attributes.getSeverity();
-        Priority priority = convertSeverityToPriority(severity);
-        String ruleCategory = attributes.getRuleCategory();
-        
-        IResultLocation location = violation.getResultLocation();
-        ISourceRange sourceRange = location.getSourceRange();
-        int startLine = sourceRange.getStartLine();
-        int endLine = sourceRange.getEndLine();
-
-        String ruleId = violation.getRuleId();
-        String categoryDesc = rulesImportHandler.getCategoryDescription(ruleCategory);
-        String ruleDesc = ruleId;
-        
-        Warning warning = new Warning(priority, message, startLine, endLine, categoryDesc, ruleDesc);
-        
-        String author = attributes.getAuthor();
-        if (UString.isEmpty(author)) {
-            author = PROPERTY_UNKNOWN;
-        }
-        warning.setAuthor(author);
-        String revision = attributes.getRevision();
-        if (UString.isEmpty(revision)) {
-            revision = PROPERTY_UNKNOWN;
-        }
-        warning.setRevision(revision);
-        
-        String analyzer = violation.getAnalyzerId();
-        if (isLegacyReport(analyzer)) {
-            analyzer = mapToAnalyzer(violation, rulesImportHandler);
-        }
-        warning.setAnalyzer(analyzer);
-
-        ITestableInput input = location.getTestableInput();
-        if (input instanceof IFileTestableInput) {
-            String sFilePath = JenkinsLocationMatcher.getFilePath((IFileTestableInput) input);
-            if (sFilePath != null) {
-                warning.setFileName(sFilePath);
-            }
-        } else if (input instanceof PathInput) {    
-            String workspacePath = ((PathInput)input).getPath();
-            if (workspacePath.startsWith("/")) { //$NON-NLS-1$
-                workspacePath = workspacePath.substring(1);
-            }
-            warning.setFileName(workspacePath);
-        } else {
-            warning.setFileName(input.getName());
-        }
-               
-        if (input instanceof IProjectFileTestableInput) {
-            IProjectFileTestableInput projectInput = (IProjectFileTestableInput)input;
-            warning.setModuleName(projectInput.getProjectName());
-            warning.setPathName(getProjectWorkspacePath(projectInput, warning.getFileName()));
-
-        } else {
-            warning.setModuleName(sModuleName);
-        }
-
-        warning.setColumnPosition(sourceRange.getStartLineOffset(), sourceRange.getEndLineOffset());
-        
-        String namespace = violation.getNamespace();
-        if (UString.isNonEmpty(namespace)){
-            warning.setPackageName(namespace);
-        } else {
-            warning.setPackageName(PackageDetectors.UNDEFINED_PACKAGE);
-        }
-        
-        warning.setToolTip(attributes.getRuleTitle());
-        
-        warning.populateViolationPathElements(violation);
-
-        long hash = ULong.parseLong(violation.getAttribute(ILocationAttributes.LINE_HASH_ATTR), violation.hashCode());
-        warning.setContextHashCode(hash);
-        
-        return warning;
-    }
-        
-    public static String getProjectWorkspacePath(IProjectFileTestableInput projectFileTestableInput, String filePath)
-    {
-        String path = StringUtils.removeEnd(filePath, projectFileTestableInput.getProjectRelativePath());
-        path = StringUtils.removeEnd(path, IProjectFileTestableInput.PATH_SEPARATOR);
-        path = StringUtils.removeEnd(path, projectFileTestableInput.getProjectPath());
-
-        return path;
+        return LEGACY_TOOL_NAME.equals(analyzer);
     }
 
-    private static String mapToAnalyzer(IRuleViolation violation, IRulesImportHandler rulesImportHandler) {
+    private String mapToAnalyzer(IRuleViolation violation, IRulesImportHandler rulesImportHandler)
+    {
         String analyzer = null;
         if (violation instanceof IDupCodeViolation) {
             analyzer = "com.parasoft.xtest.cpp.analyzer.static.dupcode"; //$NON-NLS-1$
@@ -277,7 +254,8 @@ public class ParasoftParser
         return analyzer;
     }
 
-    private static boolean isGlobalRule(String ruleId, IRulesImportHandler rulesImportHandler) {
+    private boolean isGlobalRule(String ruleId, IRulesImportHandler rulesImportHandler)
+    {
         IRuleAttributes ruleAttributes = rulesImportHandler.getRuleAttributes(ruleId);
         if (ruleAttributes == null) {
             return false;
@@ -286,39 +264,14 @@ public class ParasoftParser
         return GLOBAL_CATEGORY.equals(ruleCategory);
     }
 
-    private static boolean isLegacyReport(String analyzer) {
-        return LEGACY_TOOL_NAME.equals(analyzer);
-    }
-
-    private Collection<FileAnnotation> importResults(File file, String sModuleName)
+    private String getProjectWorkspacePath(IProjectFileTestableInput projectFileTestableInput, String filePath)
     {
-        IImportedData importedData = getImporter().performImport(file);
-        if (importedData == null) {
-            return Collections.emptyList();
-        }
-        if (UString.isEmpty(sModuleName)) {
-            sModuleName = PROPERTY_UNKNOWN;
-        }
-        return convert(importedData, importedData.getRulesImportHandler(), sModuleName);
-    }
+        String path = StringUtils.removeEnd(filePath, projectFileTestableInput.getProjectRelativePath());
+        path = StringUtils.removeEnd(path, IProjectFileTestableInput.PATH_SEPARATOR);
+        path = StringUtils.removeEnd(path, projectFileTestableInput.getProjectPath());
 
-    private static Priority convertSeverityToPriority(int severity)
-    {
-        switch (severity) {
-            case 1:
-            case 2:
-                return Priority.HIGH;
-            case 3:
-                return Priority.NORMAL;
-            default:
-                return Priority.LOW;
-        }
+        return path;
     }
-
-    
-    /** Unique ID of this class. */
-    private static final long serialVersionUID = 6507147028628714704L;
 
     private static final String PROPERTY_UNKNOWN = "unknown"; //$NON-NLS-1$
-
 }
