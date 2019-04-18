@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Parasoft Corporation
+ * Copyright 2019 Parasoft Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,8 +21,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Properties;
-
-import org.apache.commons.lang.StringUtils;
 
 import com.parasoft.xtest.common.api.IFileTestableInput;
 import com.parasoft.xtest.common.api.IProjectFileTestableInput;
@@ -115,7 +113,7 @@ extends IssueParser
                 Logger.getLogger().warn("Result is not instance of IRuleViolation"); //$NON-NLS-1$
                 continue;
             }
-            if (reportViolation(violation, rulesImportHandler, "-", issueBuilder)) {
+            if (reportViolation(violation, rulesImportHandler, "-", issueBuilder)) { //$NON-NLS-1$
                 report.add(issueBuilder.build());
             }
         }
@@ -150,24 +148,6 @@ extends IssueParser
         .setCategory(categoryDesc)
         .setType(ruleDesc);
 
-        String author = attributes.getAuthor();
-        if (UString.isEmpty(author)) {
-            author = PROPERTY_UNKNOWN;
-        }
-        // TODO - set author
-
-        String revision = attributes.getRevision();
-        if (UString.isEmpty(revision)) {
-            revision = PROPERTY_UNKNOWN;
-        }
-        // TODO - set revision
-
-        String analyzer = violation.getAnalyzerId();
-        if (isLegacyReport(analyzer)) {
-            analyzer = mapToAnalyzer(violation, rulesImportHandler);
-        }
-        // TODO - set analyzer
-
         ITestableInput input = location.getTestableInput();
         String filePath = null;
         if (input instanceof IFileTestableInput) {
@@ -187,7 +167,6 @@ extends IssueParser
         if (input instanceof IProjectFileTestableInput) {
             IProjectFileTestableInput projectInput = (IProjectFileTestableInput) input;
             issueBuilder.setModuleName(projectInput.getProjectName());
-            // set pathName setPathName(getProjectWorkspacePath(projectInput, filePath));
         } else {
             issueBuilder.setModuleName(moduleName);
         }
@@ -199,14 +178,28 @@ extends IssueParser
         if (UString.isNonEmpty(namespace)) {
             issueBuilder.setPackageName(namespace);
         } else {
-            issueBuilder.setPackageName("_");
+            issueBuilder.setPackageName("-"); //$NON-NLS-1$
         }
 
-        // TODO - set toolTip attributes.getRuleTitle()
-        // warning.populateViolationPathElements(violation);
+        String author = attributes.getAuthor();
+        if (UString.isEmpty(author)) {
+            author = PROPERTY_UNKNOWN;
+        }
 
-        // TODO - long hash = ULong.parseLong(violation.getAttribute(ILocationAttributes.LINE_HASH_ATTR), violation.hashCode());
-        // warning.setContextHashCode(hash);
+        String revision = attributes.getRevision();
+        if (UString.isEmpty(revision)) {
+            revision = PROPERTY_UNKNOWN;
+        }
+
+        String analyzer = violation.getAnalyzerId();
+        if (isLegacyReport(analyzer)) {
+            analyzer = mapToAnalyzer(violation, rulesImportHandler);
+        }
+        // TODO - set toolTip attributes.getRuleTitle()
+        // TODO - set flow path populateViolationPathElements(violation);
+
+        issueBuilder.setAdditionalProperties(new ParasoftIssueAdditionalProperties(author, revision, analyzer));
+
         return true;
     }
 
@@ -262,15 +255,6 @@ extends IssueParser
         }
         String ruleCategory = ruleAttributes.getRuleCategory();
         return GLOBAL_CATEGORY.equals(ruleCategory);
-    }
-
-    private String getProjectWorkspacePath(IProjectFileTestableInput projectFileTestableInput, String filePath)
-    {
-        String path = StringUtils.removeEnd(filePath, projectFileTestableInput.getProjectRelativePath());
-        path = StringUtils.removeEnd(path, IProjectFileTestableInput.PATH_SEPARATOR);
-        path = StringUtils.removeEnd(path, projectFileTestableInput.getProjectPath());
-
-        return path;
     }
 
     private static final String PROPERTY_UNKNOWN = "unknown"; //$NON-NLS-1$
