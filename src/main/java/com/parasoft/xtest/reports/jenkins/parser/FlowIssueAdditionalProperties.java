@@ -108,7 +108,7 @@ public class FlowIssueAdditionalProperties
         addCause(message, additionalProperties);
         addPoint(message, additionalProperties);
         message.append(IHtmlTags.BOLD_END_TAG);
-        message.append(getLinkToCallPlace(issue, fileNameRenderer));
+        message.append(getLinkToCallPlace(issue, additionalProperties, fileNameRenderer));
         message.append(IHtmlTags.NON_BREAKABLE_SPACE);
         message.append(additionalProperties.getDescription());
         addChildren(message, additionalProperties, fileNameRenderer);
@@ -148,12 +148,20 @@ public class FlowIssueAdditionalProperties
         }
     }
 
-    private String getLinkToCallPlace(Issue issue, FileNameRenderer fileNameRenderer)
+    private String getLinkToCallPlace(Issue issue, FlowIssueAdditionalProperties additionalProperties, FileNameRenderer fileNameRenderer)
     {
         if (fileNameRenderer != null) {
             return fileNameRenderer.createAffectedFileLink(issue).render();
         } else {
-            return String.format("%s:%d", issue.getBaseName(), issue.getLineStart()); //$NON-NLS-1$
+            String message = Colors.createColorSpanStartTag(Colors.GRAY);
+            if (additionalProperties.getCause() != null) {
+                message = Colors.createColorSpanStartTag(Colors.BLUE);
+            } else if (additionalProperties.getPoint() != null) {
+                message = Colors.createColorSpanStartTag(Colors.RED);
+            }
+            message += String.format("%s:%d", issue.getBaseName(), issue.getLineStart()); //$NON-NLS-1$
+            message += IHtmlTags.SPAN_END_TAG;
+            return message;
         }
     }
 

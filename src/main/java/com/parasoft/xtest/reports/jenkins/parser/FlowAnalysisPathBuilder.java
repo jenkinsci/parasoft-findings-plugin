@@ -104,7 +104,9 @@ public class FlowAnalysisPathBuilder
             sb.append(descriptor.getDescription());
             sb.append(IHtmlTags.SPAN_END_TAG);
         } else {
+            sb.append(Colors.createColorSpanStartTag(Colors.BLACK));
             sb.append(descriptor.getDescription());
+            sb.append(IHtmlTags.SPAN_END_TAG);
         }
 
         sb.append(IHtmlTags.CODE_END_TAG);
