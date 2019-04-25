@@ -19,6 +19,7 @@ package com.parasoft.xtest.reports.jenkins.tool;
 import java.io.Serializable;
 import java.util.List;
 
+import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
@@ -39,7 +40,7 @@ import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider;
 import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider.AgeBuilder;
 
 public class ParasoftTool
-extends ReportScanningTool
+    extends ReportScanningTool
 {
     private static final long serialVersionUID = -5773171179445359278L;
     private final static String PLUGIN_ID = "parasoft-findings"; //$NON-NLS-1$
@@ -63,8 +64,9 @@ extends ReportScanningTool
     }
 
     @Extension
+    @Symbol("parasoftFindings")
     public static class Descriptor
-    extends ReportScanningToolDescriptor
+        extends ReportScanningToolDescriptor
     {
         public Descriptor()
         {
@@ -92,7 +94,7 @@ extends ReportScanningTool
     }
 
     private static class LabelProvider
-    extends IconLabelProvider
+        extends IconLabelProvider
     {
 
         private static final String ICONS_PREFIX = "/plugin/parasoft-findings/icons/"; //$NON-NLS-1$
@@ -122,7 +124,7 @@ extends ReportScanningTool
     }
 
     private static class ParasoftTableModel
-    extends DetailsTableModel
+        extends DetailsTableModel
     {
 
         public ParasoftTableModel(AgeBuilder ageBuilder, FileNameRenderer fileNameRenderer, DescriptionProvider descriptionProvider)
@@ -154,7 +156,7 @@ extends ReportScanningTool
             List<String> row = super.getRow(report, issue, description);
             Serializable additionalProperties = issue.getAdditionalProperties();
             if (additionalProperties instanceof ParasoftIssueAdditionalProperties) {
-                ParasoftIssueAdditionalProperties parasoftIssueAdditionalProperties = (ParasoftIssueAdditionalProperties) additionalProperties;
+                ParasoftIssueAdditionalProperties parasoftIssueAdditionalProperties = (ParasoftIssueAdditionalProperties)additionalProperties;
                 row.add(parasoftIssueAdditionalProperties.getAuthor());
                 row.add(parasoftIssueAdditionalProperties.getRevision());
             } else {
@@ -163,7 +165,5 @@ extends ReportScanningTool
             }
             return row;
         }
-
     }
-
 }
