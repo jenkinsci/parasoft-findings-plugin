@@ -19,6 +19,8 @@ package com.parasoft.xtest.reports.jenkins.parser;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
+import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -42,6 +44,7 @@ import com.parasoft.xtest.results.api.attributes.IRuleAttributes;
 import com.parasoft.xtest.results.api.importer.IImportedData;
 import com.parasoft.xtest.results.api.importer.IRulesImportHandler;
 
+import edu.hm.hafner.analysis.Issue;
 import edu.hm.hafner.analysis.IssueBuilder;
 import edu.hm.hafner.analysis.IssueParser;
 import edu.hm.hafner.analysis.ParsingCanceledException;
@@ -54,7 +57,7 @@ import edu.hm.hafner.analysis.Severity;
  * A parser for Parasoft files containing xml report.
  */
 public class ParasoftParser
-extends IssueParser
+    extends IssueParser
 {
     private static final long serialVersionUID = 1731087921659486425L;
 
@@ -64,17 +67,20 @@ extends IssueParser
 
     private final Properties _properties;
 
+    private final Path _workspace;
+
     private transient JenkinsResultsImporter _importer = null;
 
     public ParasoftParser()
     {
-        this(new Properties());
+        this(new Properties(), null);
     }
 
-    public ParasoftParser(Properties properties)
+    public ParasoftParser(Properties properties, String workspace)
     {
-        _properties = properties;
+        _properties = properties == null ? new Properties() : properties;
         Logger.getLogger().debug("Constructor call with settings: " + _properties); //$NON-NLS-1$
+        _workspace = workspace == null ? null : new File(workspace).toPath();
     }
 
     @Override
@@ -114,10 +120,26 @@ extends IssueParser
                 continue;
             }
             if (reportViolation(violation, rulesImportHandler, "-", issueBuilder)) { //$NON-NLS-1$
-                report.add(issueBuilder.build());
+                Issue issue = issueBuilder.build();
+                populateViolationPathElements(violation, issue);
+                report.add(issue);
             }
         }
         return report;
+    }
+
+    private void populateViolationPathElements(IRuleViolation violation, Issue issue)
+    {
+        Serializable properties = issue.getAdditionalProperties();
+        if (properties instanceof FlowIssueAdditionalProperties) {
+            FlowIssueAdditionalProperties additionalProperties = (FlowIssueAdditionalProperties) properties;
+            additionalProperties
+                .setChildren(new FlowAnalysisPathBuilder((IFlowAnalysisViolation) violation, issue.getId().toString(), _workspace).getPath());
+        } else if (violation instanceof IDupCodeViolation) {
+            // TODO
+            //_children = new DupCodePathBuilder((IDupCodeViolation)violation, getKey()).getPath();
+            //addTraceToolTip();
+        }
     }
 
     private boolean reportViolation(IRuleViolation violation, IRulesImportHandler rulesImportHandler, String moduleName, IssueBuilder issueBuilder)
@@ -141,12 +163,8 @@ extends IssueParser
         String categoryDesc = rulesImportHandler.getCategoryDescription(ruleCategory);
         String ruleDesc = ruleId;
 
-        issueBuilder.setSeverity(severityLevel)
-        .setMessage(message)
-        .setLineStart(startLine)
-        .setLineEnd(endLine)
-        .setCategory(categoryDesc)
-        .setType(ruleDesc);
+        issueBuilder.setSeverity(severityLevel).setMessage(message).setLineStart(startLine).setLineEnd(endLine).setCategory(categoryDesc)
+            .setType(ruleDesc);
 
         ITestableInput input = location.getTestableInput();
         String filePath = null;
@@ -195,10 +213,16 @@ extends IssueParser
         if (isLegacyReport(analyzer)) {
             analyzer = mapToAnalyzer(violation, rulesImportHandler);
         }
-        // TODO - set toolTip attributes.getRuleTitle()
-        // TODO - set flow path populateViolationPathElements(violation);
+        issueBuilder.setDescription(attributes.getRuleTitle());
 
-        issueBuilder.setAdditionalProperties(new ParasoftIssueAdditionalProperties(author, revision, analyzer));
+        if (violation instanceof IFlowAnalysisViolation) {
+            issueBuilder.setAdditionalProperties(new FlowIssueAdditionalProperties(author, revision, analyzer));
+            // TODO
+            //} else if(violation instanceof IDupCodeViolation) {
+            //    issueBuilder.setAdditionalProperties(new DupIssueAdditionalProperties(author, revision, analyzer));
+        } else {
+            issueBuilder.setAdditionalProperties(new ParasoftIssueAdditionalProperties(author, revision, analyzer));
+        }
 
         return true;
     }

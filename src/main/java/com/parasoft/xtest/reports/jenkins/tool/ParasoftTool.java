@@ -17,12 +17,15 @@
 package com.parasoft.xtest.reports.jenkins.tool;
 
 import java.io.Serializable;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
+import com.parasoft.xtest.reports.jenkins.html.IHtmlTags;
+import com.parasoft.xtest.reports.jenkins.parser.FlowIssueAdditionalProperties;
 import com.parasoft.xtest.reports.jenkins.parser.ParasoftIssueAdditionalProperties;
 import com.parasoft.xtest.reports.jenkins.parser.ParasoftParser;
 
@@ -30,6 +33,7 @@ import edu.hm.hafner.analysis.Issue;
 import edu.hm.hafner.analysis.IssueParser;
 import edu.hm.hafner.analysis.Report;
 import hudson.Extension;
+import hudson.FilePath;
 import hudson.model.Run;
 import io.jenkins.plugins.analysis.core.model.DescriptionProvider;
 import io.jenkins.plugins.analysis.core.model.DetailsTableModel;
@@ -38,12 +42,14 @@ import io.jenkins.plugins.analysis.core.model.IconLabelProvider;
 import io.jenkins.plugins.analysis.core.model.ReportScanningTool;
 import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider;
 import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider.AgeBuilder;
+import io.jenkins.plugins.analysis.core.util.LogHandler;
 
 public class ParasoftTool
     extends ReportScanningTool
 {
     private static final long serialVersionUID = -5773171179445359278L;
     private final static String PLUGIN_ID = "parasoft-findings"; //$NON-NLS-1$
+    private String _workspace;
 
     @DataBoundConstructor
     public ParasoftTool()
@@ -54,7 +60,14 @@ public class ParasoftTool
     @Override
     public IssueParser createParser()
     {
-        return new ParasoftParser();
+        return new ParasoftParser(null, _workspace);
+    }
+
+    @Override
+    public Report scan(final Run<?, ?> run, final FilePath workspace, final Charset sourceCodeEncoding, final LogHandler logger)
+    {
+        _workspace = workspace.getRemote();
+        return super.scan(run, workspace, sourceCodeEncoding, logger);
     }
 
     @DataBoundSetter
@@ -121,6 +134,18 @@ public class ParasoftTool
         {
             return new ParasoftTableModel(getAgeBuilder(build, url), getFileNameRenderer(build), this);
         }
+
+        @Override
+        public String getSourceCodeDescription(Run<?, ?> build, Issue issue)
+        {
+            String description = super.getSourceCodeDescription(build, issue);
+            Serializable properties = issue.getAdditionalProperties();
+            if (properties instanceof FlowIssueAdditionalProperties) {
+                description += IHtmlTags.BREAK_LINE_TAG + ((FlowIssueAdditionalProperties) properties).getCallHierarchy(null);
+            }
+            // TODO - DupCode issues
+            return description;
+        }
     }
 
     private static class ParasoftTableModel
@@ -156,7 +181,7 @@ public class ParasoftTool
             List<String> row = super.getRow(report, issue, description);
             Serializable additionalProperties = issue.getAdditionalProperties();
             if (additionalProperties instanceof ParasoftIssueAdditionalProperties) {
-                ParasoftIssueAdditionalProperties parasoftIssueAdditionalProperties = (ParasoftIssueAdditionalProperties)additionalProperties;
+                ParasoftIssueAdditionalProperties parasoftIssueAdditionalProperties = (ParasoftIssueAdditionalProperties) additionalProperties;
                 row.add(parasoftIssueAdditionalProperties.getAuthor());
                 row.add(parasoftIssueAdditionalProperties.getRevision());
             } else {
@@ -164,6 +189,18 @@ public class ParasoftTool
                 row.add("-"); //$NON-NLS-1$
             }
             return row;
+        }
+
+        @Override
+        protected String formatDetails(Issue issue, String description)
+        {
+            Serializable properties = issue.getAdditionalProperties();
+            if (properties instanceof FlowIssueAdditionalProperties) {
+                return super.formatDetails(issue, description + IHtmlTags.BREAK_LINE_TAG + IHtmlTags.BREAK_LINE_TAG
+                    + ((FlowIssueAdditionalProperties) properties).getCallHierarchy(null)); //TODO use getFileNameRenderer() to generate link. as for now link doesn't work
+            }
+            // TODO - DucCode issues
+            return super.formatDetails(issue, description);
         }
     }
 }

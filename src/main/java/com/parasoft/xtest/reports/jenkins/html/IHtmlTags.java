@@ -44,10 +44,10 @@ public interface IHtmlTags
     String LIST_ELEM_END_TAG = "</li>"; //$NON-NLS-1$
 
     String LIST_ELEM_START_TAG = "<li>"; //$NON-NLS-1$
-    
+
     String SPAN_COLOR_START_TAG = "<span style=\"color:"; //$NON-NLS-1$
-    
-    String  SPAN_COLOR_CLOSE_START_TAG = "\">";
+
+    String SPAN_COLOR_CLOSE_START_TAG = "\">"; //$NON-NLS-1$
 
     String SPAN_END_TAG = "</span>"; //$NON-NLS-1$
 
@@ -56,7 +56,7 @@ public interface IHtmlTags
     String HEADER_START_TAG = "<h1>"; //$NON-NLS-1$
 
     String HEADER_END_TAG = "</h1>"; //$NON-NLS-1$
-    
-    String BREAK_LINE_TAG = "</br>"; //$NON-NLS-1$
+
+    String BREAK_LINE_TAG = "<br>"; //$NON-NLS-1$
 
 }

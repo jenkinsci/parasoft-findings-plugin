@@ -19,13 +19,16 @@ package com.parasoft.xtest.reports.jenkins.parser;
 import java.io.Serializable;
 
 public class ParasoftIssueAdditionalProperties
-implements Serializable
+    implements Serializable
 {
     private static final long serialVersionUID = -5014146322978138084L;
 
     private String _author;
     private String _revision;
     private String _analyzer;
+
+    public ParasoftIssueAdditionalProperties()
+    {}
 
     public ParasoftIssueAdditionalProperties(String author, String revision, String analyzer)
     {
