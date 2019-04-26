@@ -254,9 +254,9 @@ public class FlowAnalysisPathBuilder
             sb.append(Colors.createColorSpanStartTag(color));
         }
 
-        String sSeparator = "";
+        String sSeparator = IStringConstants.EMPTY;
         if (!bFullDescription && (sb.length() > 0)) {
-            sSeparator = "; ";
+            sSeparator = "; "; //$NON-NLS-1$
         } else if (bFullDescription) {
             sSeparator = ANNOTATION_SEPARATOR;
         }
@@ -346,7 +346,6 @@ public class FlowAnalysisPathBuilder
             issueBuilder.setLineEnd(sourceRange.getEndLine());
             issueBuilder.setColumnStart(sourceRange.getStartLineOffset());
             issueBuilder.setColumnEnd(sourceRange.getEndLineOffset());
-            additionalProperties.setParentKey(_parentKey);
             additionalProperties.setChildren(getChildren(descriptor));
             additionalProperties.setDescription(getDescription(descriptor, useAnnotation));
 
@@ -368,9 +367,8 @@ public class FlowAnalysisPathBuilder
                     }
                 }
             }
-        } else {
-            additionalProperties.setParentKey(_parentKey);
         }
+        additionalProperties.setParentKey(_parentKey);
 
         return issueBuilder.build();
     }

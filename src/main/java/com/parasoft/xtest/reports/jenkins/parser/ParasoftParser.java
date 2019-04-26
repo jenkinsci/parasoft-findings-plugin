@@ -135,10 +135,9 @@ public class ParasoftParser
             FlowIssueAdditionalProperties additionalProperties = (FlowIssueAdditionalProperties) properties;
             additionalProperties
                 .setChildren(new FlowAnalysisPathBuilder((IFlowAnalysisViolation) violation, issue.getId().toString(), _workspace).getPath());
-        } else if (violation instanceof IDupCodeViolation) {
-            // TODO
-            //_children = new DupCodePathBuilder((IDupCodeViolation)violation, getKey()).getPath();
-            //addTraceToolTip();
+        } else if (properties instanceof DupIssueAdditionalProperties) {
+            DupIssueAdditionalProperties additionalProperties = (DupIssueAdditionalProperties) properties;
+            additionalProperties.setChildren(new DupCodePathBuilder((IDupCodeViolation) violation, issue.getId().toString(), _workspace).getPath());
         }
     }
 
@@ -217,9 +216,8 @@ public class ParasoftParser
 
         if (violation instanceof IFlowAnalysisViolation) {
             issueBuilder.setAdditionalProperties(new FlowIssueAdditionalProperties(author, revision, analyzer));
-            // TODO
-            //} else if(violation instanceof IDupCodeViolation) {
-            //    issueBuilder.setAdditionalProperties(new DupIssueAdditionalProperties(author, revision, analyzer));
+        } else if (violation instanceof IDupCodeViolation) {
+            issueBuilder.setAdditionalProperties(new DupIssueAdditionalProperties(author, revision, analyzer));
         } else {
             issueBuilder.setAdditionalProperties(new ParasoftIssueAdditionalProperties(author, revision, analyzer));
         }

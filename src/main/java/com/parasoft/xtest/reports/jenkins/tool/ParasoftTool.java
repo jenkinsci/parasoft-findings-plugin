@@ -25,6 +25,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
 import com.parasoft.xtest.reports.jenkins.html.IHtmlTags;
+import com.parasoft.xtest.reports.jenkins.parser.DupIssueAdditionalProperties;
 import com.parasoft.xtest.reports.jenkins.parser.FlowIssueAdditionalProperties;
 import com.parasoft.xtest.reports.jenkins.parser.ParasoftIssueAdditionalProperties;
 import com.parasoft.xtest.reports.jenkins.parser.ParasoftParser;
@@ -142,8 +143,9 @@ public class ParasoftTool
             Serializable properties = issue.getAdditionalProperties();
             if (properties instanceof FlowIssueAdditionalProperties) {
                 description += IHtmlTags.BREAK_LINE_TAG + ((FlowIssueAdditionalProperties) properties).getCallHierarchy(null);
+            } else if (properties instanceof DupIssueAdditionalProperties) {
+                description += IHtmlTags.BREAK_LINE_TAG + ((DupIssueAdditionalProperties) properties).getCallHierarchy(null);
             }
-            // TODO - DupCode issues
             return description;
         }
     }
@@ -198,8 +200,10 @@ public class ParasoftTool
             if (properties instanceof FlowIssueAdditionalProperties) {
                 return super.formatDetails(issue, description + IHtmlTags.BREAK_LINE_TAG + IHtmlTags.BREAK_LINE_TAG
                     + ((FlowIssueAdditionalProperties) properties).getCallHierarchy(null)); //TODO use getFileNameRenderer() to generate link. as for now link doesn't work
+            } else if (properties instanceof DupIssueAdditionalProperties) {
+                return super.formatDetails(issue, description + IHtmlTags.BREAK_LINE_TAG + IHtmlTags.BREAK_LINE_TAG
+                    + ((DupIssueAdditionalProperties) properties).getCallHierarchy(null));
             }
-            // TODO - DucCode issues
             return super.formatDetails(issue, description);
         }
     }
