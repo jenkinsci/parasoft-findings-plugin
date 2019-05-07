@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ResultsSession buildId="2019-04-26" climode="true" execEnv="win32_x86_64" hasViols="true" id="1554544887097" lang="en_US" machine="CHINCHILLA" prjModule="demo" project="" tag="${scontrol_branch}-win32_x86_64" time="2019-04-26T11:36:53+02:00" toolDispName="Jtest" toolId="jtest" toolName="DTP Engine for Java" toolVer="10.4.2.20190306" user="kmarczyk">
+   <TestConfig machine="CHINCHILLA" name="Find Duplicated Code" pseudoUrl="builtin://Find Duplicated Code" user="kmarczyk" />
+   <Authors>
+      <Author id="dev1" name="kmarczyk" />
+   </Authors>
+   <Analyzers>
+      <Analyzer id="com.parasoft.jtest.standards.dupcode" name="Parasoft Code Duplication Detector" ver="10.4.2.20190308" />
+      <Analyzer id="com.parasoft.xtest.dupcode.parser" name="Parasoft Code Duplication Parser" ver="10.4.2.20190308" />
+      <Analyzer id="com.parasoft.jtest.standards.checkers.java" name="Parasoft Java Static Analyzer" ver="10.4.2.20190306" />
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
+   </VersionInfos>
+   <Goals tsks="2">
+      
+   </Goals>
+   <Scope>
+      <Repositories />
+      <Locations>
+         <Loc hash="-2121569923" locRef="1" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/eval/Simple.java" totLns="68" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/eval/Simple.java" />
+         <Loc hash="1860787879" locRef="2" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/AlwaysCloseGSS.java" totLns="35" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/AlwaysCloseGSS.java" />
+         <Loc hash="1088242968" locRef="3" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/AlwaysCloseImages.java" totLns="35" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/AlwaysCloseImages.java" />
+         <Loc hash="-89489575" locRef="4" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/AlwaysCloseLogging.java" totLns="25" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/AlwaysCloseLogging.java" />
+         <Loc hash="1710944294" locRef="5" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/AlwaysCloseNIOChannels.java" totLns="40" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/AlwaysCloseNIOChannels.java" />
+         <Loc hash="-1842798386" locRef="6" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/AlwaysCloseRAFs.java" totLns="38" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/AlwaysCloseRAFs.java" />
+         <Loc hash="-69784133" locRef="7" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/AlwaysCloseSockets.java" totLns="33" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/AlwaysCloseSockets.java" />
+         <Loc hash="-1630627415" locRef="8" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/AlwaysCloseXMLEncDec.java" totLns="75" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/AlwaysCloseXMLEncDec.java" />
+         <Loc hash="726838777" locRef="9" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/DereferenceBeforeNullCheck.java" totLns="55" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/DereferenceBeforeNullCheck.java" />
+         <Loc hash="-1891737324" locRef="10" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/DivisionByZero.java" totLns="69" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/DivisionByZero.java" />
+         <Loc hash="686946442" locRef="11" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/FilesInjection.java" totLns="30" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/FilesInjection.java" />
+         <Loc hash="438092426" locRef="12" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/IncorrectIteratorUsage.java" totLns="41" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/IncorrectIteratorUsage.java" />
+         <Loc hash="1816383512" locRef="13" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/InefficientCollectionRemoval.java" totLns="32" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/InefficientCollectionRemoval.java" />
+         <Loc hash="-417185865" locRef="14" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/InefficientMapRemoval.java" totLns="59" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/InefficientMapRemoval.java" />
+         <Loc hash="-359565455" locRef="15" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/InefficientMapUsage.java" totLns="37" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/InefficientMapUsage.java" />
+         <Loc hash="1862789318" locRef="16" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/SQLInjection.java" totLns="58" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/SQLInjection.java" />
+         <Loc hash="-152258803" locRef="17" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/SystemInjection.java" totLns="55" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/SystemInjection.java" />
+         <Loc hash="1709312165" locRef="18" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/UnreachableCode.java" totLns="59" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/UnreachableCode.java" />
+         <Loc hash="-635152949" locRef="19" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/UseBeforeInConstructorInitialization.java" totLns="46" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/UseBeforeInConstructorInitialization.java" />
+         <Loc hash="2110246917" locRef="20" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/UseBeforeInitialization.java" totLns="67" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/UseBeforeInitialization.java" />
+         <Loc hash="565976681" locRef="21" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/WebApplication.java" totLns="51" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/WebApplication.java" />
+         <Loc hash="-367659159" locRef="22" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/XMLInjection.java" totLns="39" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/XMLInjection.java" />
+         <Loc hash="635578452" locRef="23" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/np/DatabaseObject.java" totLns="63" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/np/DatabaseObject.java" />
+         <Loc hash="1118499003" locRef="24" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/np/ExtendedNullPointer.java" totLns="57" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/np/ExtendedNullPointer.java" />
+         <Loc hash="796982299" locRef="25" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/np/MessageFormatter.java" totLns="15" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/np/MessageFormatter.java" />
+         <Loc hash="1067996598" locRef="26" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/np/MyDictionary.java" totLns="24" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/np/MyDictionary.java" />
+         <Loc hash="-51902665" locRef="27" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/flowanalysis/np/NullPointer.java" totLns="31" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/flowanalysis/np/NullPointer.java" />
+         <Loc hash="13842231" locRef="28" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/junit/ChoosingConstructor.java" totLns="59" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/junit/ChoosingConstructor.java" />
+         <Loc hash="1460192582" locRef="29" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/junit/CustomMoney.java" totLns="15" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/junit/CustomMoney.java" />
+         <Loc hash="-47973091" locRef="30" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/junit/IMoney.java" totLns="52" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/junit/IMoney.java" />
+         <Loc hash="1622384320" locRef="31" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/junit/IntegerComparator.java" totLns="15" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/junit/IntegerComparator.java" />
+         <Loc hash="-1765121077" locRef="32" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/junit/Money.java" totLns="91" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/junit/Money.java" />
+         <Loc hash="-113332437" locRef="33" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/junit/MoneyBag.java" totLns="140" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/junit/MoneyBag.java" />
+         <Loc hash="1434598914" locRef="34" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/junit/NaiveStringBuilder.java" totLns="26" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/junit/NaiveStringBuilder.java" />
+         <Loc hash="1554031451" locRef="35" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/junit/SimpleObjectHandler.java" totLns="39" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/junit/SimpleObjectHandler.java" />
+         <Loc hash="-1994237948" locRef="36" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/metrics/MetricsExample.java" totLns="52" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/metrics/MetricsExample.java" />
+         <Loc hash="-252272571" locRef="37" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/mock/CharacterReader.java" totLns="31" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/mock/CharacterReader.java" />
+         <Loc hash="-458905718" locRef="38" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/mock/ConstructorExample.java" totLns="15" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/mock/ConstructorExample.java" />
+         <Loc hash="-454695497" locRef="39" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/mock/FileExample.java" totLns="24" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/mock/FileExample.java" />
+         <Loc hash="-141343473" locRef="40" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/mock/Interpreter.java" totLns="28" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/mock/Interpreter.java" />
+         <Loc hash="-762775565" locRef="41" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/mock/MultiSourceCharacterReader.java" totLns="34" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/mock/MultiSourceCharacterReader.java" />
+         <Loc hash="-251506569" locRef="42" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/nbank/AbstractTransaction.java" totLns="22" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/nbank/AbstractTransaction.java" />
+         <Loc hash="-1300196067" locRef="43" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/nbank/Account.java" totLns="106" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/nbank/Account.java" />
+         <Loc hash="-1683403269" locRef="44" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/nbank/Bank.java" totLns="82" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/nbank/Bank.java" />
+         <Loc hash="2120971007" locRef="45" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/nbank/BankState.java" totLns="22" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/nbank/BankState.java" />
+         <Loc hash="-368683629" locRef="46" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/nbank/ConnectionException.java" totLns="8" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/nbank/ConnectionException.java" />
+         <Loc hash="3241407" locRef="47" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/nbank/CreditCard.java" totLns="199" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/nbank/CreditCard.java" />
+         <Loc hash="2046383933" locRef="48" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/nbank/Customer.java" totLns="106" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/nbank/Customer.java" />
+         <Loc hash="-249228641" locRef="49" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/nbank/DepositTransaction.java" totLns="24" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/nbank/DepositTransaction.java" />
+         <Loc hash="1398902534" locRef="50" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/nbank/ITransaction.java" totLns="25" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/nbank/ITransaction.java" />
+         <Loc hash="-179143843" locRef="51" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/nbank/LogAccountInfo.java" totLns="48" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/nbank/LogAccountInfo.java" />
+         <Loc hash="-1206559161" locRef="52" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/nbank/WithdrawalTransaction.java" totLns="24" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/nbank/WithdrawalTransaction.java" />
+         <Loc hash="-981357238" locRef="53" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/queue/Queue.java" totLns="83" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/queue/Queue.java" />
+         <Loc hash="-1145404863" locRef="54" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/security/InputValidation.java" totLns="127" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/security/InputValidation.java" />
+         <Loc hash="-1999350871" locRef="55" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/servlets/ExampleServlet.java" totLns="42" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/servlets/ExampleServlet.java" />
+         <Loc hash="1553680728" locRef="56" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/stackmachine/AbstractStackMachine.java" totLns="123" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/stackmachine/AbstractStackMachine.java" />
+         <Loc hash="-1581767335" locRef="57" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/stackmachine/CommandLineStackMachine.java" totLns="147" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/stackmachine/CommandLineStackMachine.java" />
+         <Loc hash="1782082961" locRef="58" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/stackmachine/CustomListRenderer.java" totLns="30" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/stackmachine/CustomListRenderer.java" />
+         <Loc hash="-726989549" locRef="59" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/stackmachine/FifoStackMachine.java" totLns="39" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/stackmachine/FifoStackMachine.java" />
+         <Loc hash="-1559173645" locRef="60" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/stackmachine/LifoStackMachine.java" totLns="39" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/stackmachine/LifoStackMachine.java" />
+         <Loc hash="-339219917" locRef="61" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/stackmachine/RunnableStackMachine.java" totLns="396" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/stackmachine/RunnableStackMachine.java" />
+         <Loc hash="963698942" locRef="62" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/stackmachine/StackInterface.java" totLns="26" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/stackmachine/StackInterface.java" />
+         <Loc hash="-1082942404" locRef="63" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/stackmachine/StackList.java" totLns="100" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/stackmachine/StackList.java" />
+         <Loc hash="-2129128806" locRef="64" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/suppress/AllFileSuppress.java" totLns="13" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/suppress/AllFileSuppress.java" />
+         <Loc hash="2004133938" locRef="65" projId="demo" projPath="/demo" project="demo" resProjPath="src/main/java/examples/suppress/Example.java" totLns="10" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/main/java/examples/suppress/Example.java" />
+         <Loc hash="623770480" locRef="66" projId="demo" projPath="/demo" project="demo" resProjPath="src/test/java/examples/junit/MoneyBagParameterizedTest.java" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/test/java/examples/junit/MoneyBagParameterizedTest.java" />
+         <Loc hash="-1290590071" locRef="67" projId="demo" projPath="/demo" project="demo" resProjPath="src/test/java/examples/junit/MoneyTest.java" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/test/java/examples/junit/MoneyTest.java" />
+         <Loc hash="-1095385538" locRef="68" projId="demo" projPath="/demo" project="demo" resProjPath="src/test/java/examples/junit/NaiveStringBuilderParameterizedTest.java" totLns="52" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/test/java/examples/junit/NaiveStringBuilderParameterizedTest.java" />
+         <Loc hash="-1619358957" locRef="69" projId="demo" projPath="/demo" project="demo" resProjPath="src/test/java/examples/mock/ConstructorExampleTest.java" totLns="41" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/test/java/examples/mock/ConstructorExampleTest.java" />
+         <Loc hash="-644754988" locRef="70" projId="demo" projPath="/demo" project="demo" resProjPath="src/test/java/examples/mock/FileExampleTest.java" totLns="45" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/test/java/examples/mock/FileExampleTest.java" />
+         <Loc hash="2124704454" locRef="71" projId="demo" projPath="/demo" project="demo" resProjPath="src/test/java/examples/mock/InterpreterTest.java" totLns="50" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/test/java/examples/mock/InterpreterTest.java" />
+         <Loc hash="-78929844" locRef="72" projId="demo" projPath="/demo" project="demo" resProjPath="src/test/java/examples/servlets/ExampleServletTest.java" totLns="111" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/src/test/java/examples/servlets/ExampleServletTest.java" />
+         <Loc hash="176853002" locRef="73" projId="demo" projPath="/demo" project="demo" resProjPath="META-INF/MANIFEST.MF" totLns="4" uri="file://CHINCHILLA/D:/Program%20Files%20(x86)/Jenkins/workspace/static_analysis/jtest-examples/META-INF/MANIFEST.MF" />
+      </Locations>
+   </Scope>
+   
+  <SetupProblems />
+
+   <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:00">
+      <Projects>
+         <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="73" checkedLns="4337" id="demo" name="demo" qfixErrs="0" suppErrs="0" totErrs="2" totFiles="73" totLns="4337" />
+      </Projects>
+      
+      
+      <Rules>
+         <CategoriesList>
+            <Category authTot="2;" authUrg="2;" desc="Code Duplication Detection" name="CDD" rules="6" total="2" />
+         </CategoriesList>
+         <RulesList>
+            <Rule analyzer="com.parasoft.jtest.standards.dupcode" authTot="0;" authUrg="0;" cat="CDD" desc="Avoid method duplication" id="CDD.DUPM" sev="2" total="0" />
+            <Rule analyzer="com.parasoft.jtest.standards.dupcode" authTot="0;" authUrg="0;" cat="CDD" desc="Avoid class duplication" id="CDD.DUPT" sev="2" total="0" />
+            <Rule analyzer="com.parasoft.jtest.standards.dupcode" authTot="0;" authUrg="0;" cat="CDD" desc="Avoid code duplication" id="CDD.DUPC" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.jtest.standards.checkers.java" authTot="0;" authUrg="0;" cat="CDD" desc="Avoid duplicate import statements" id="CDD.DUPI" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.jtest.standards.dupcode" authTot="2;" authUrg="2;" cat="CDD" desc="Avoid string literal duplication" id="CDD.DUPS" sev="3" total="2" />
+            <Rule analyzer="com.parasoft.jtest.standards.checkers.java" authTot="0;" authUrg="0;" cat="CDD" desc="Avoid duplicated field initialization in constructors" id="CDD.DFI" sev="4" total="0" />
+         </RulesList>
+         <SeverityList>
+            <Severity authTot="2;" authUrg="2;" id="3" total="2" />
+         </SeverityList>
+      </Rules>
+      
+  <Supps />
+
+      
+  <StdViols>
+    <DupViol msg="Duplicated string literal: &quot;USD&quot;" ln="39" locFile="/demo/src/test/java/examples/junit/MoneyBagParameterizedTest.java" locStartln="39" sev="3" auth="kmarczyk" locRef="66" rule="CDD.DUPS" lnHash="1980390540" rule.header="Avoid string literal duplication" tool="jtest" lineHash="1980390540" locStartPos="54" analyzer="com.parasoft.jtest.standards.dupcode" lang="java" locEndPos="58" locType="sr" urgent="true" hash="623770480" locEndLn="39" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="1980390540" locType="sr" srcRnghash="623770480" locRef="66" srcRngFile="/demo/src/test/java/examples/junit/MoneyBagParameterizedTest.java" srcRngEndLn="39" ln="39" srcRngEndPos="58" srcRngStartln="39" srcRngStartPos="54" desc="[Line 39] Duplicated string literal in file 'MoneyBagParameterizedTest.java'" rngLn="39" />
+        <ElDesc lineHash="1631856985" locType="sr" srcRnghash="623770480" locRef="66" srcRngFile="/demo/src/test/java/examples/junit/MoneyBagParameterizedTest.java" srcRngEndLn="42" ln="42" srcRngEndPos="64" srcRngStartln="42" srcRngStartPos="60" desc="[Line 42] Duplicated string literal in file 'MoneyBagParameterizedTest.java'" rngLn="42" />
+        <ElDesc lineHash="-968628389" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="39" ln="39" srcRngEndPos="33" srcRngStartln="39" srcRngStartPos="29" desc="[Line 39] Duplicated string literal in file 'MoneyTest.java'" rngLn="39" />
+        <ElDesc lineHash="-847504045" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="40" ln="40" srcRngEndPos="35" srcRngStartln="40" srcRngStartPos="31" desc="[Line 40] Duplicated string literal in file 'MoneyTest.java'" rngLn="40" />
+        <ElDesc lineHash="-1596448582" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="57" ln="57" srcRngEndPos="60" srcRngStartln="57" srcRngStartPos="56" desc="[Line 57] Duplicated string literal in file 'MoneyTest.java'" rngLn="57" />
+        <ElDesc lineHash="-1377661265" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="80" ln="80" srcRngEndPos="83" srcRngStartln="80" srcRngStartPos="79" desc="[Line 80] Duplicated string literal in file 'MoneyTest.java'" rngLn="80" />
+        <ElDesc lineHash="1777976126" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="88" ln="88" srcRngEndPos="81" srcRngStartln="88" srcRngStartPos="77" desc="[Line 88] Duplicated string literal in file 'MoneyTest.java'" rngLn="88" />
+        <ElDesc lineHash="571300374" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="96" ln="96" srcRngEndPos="83" srcRngStartln="96" srcRngStartPos="79" desc="[Line 96] Duplicated string literal in file 'MoneyTest.java'" rngLn="96" />
+        <ElDesc lineHash="-942907359" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="104" ln="104" srcRngEndPos="82" srcRngStartln="104" srcRngStartPos="78" desc="[Line 104] Duplicated string literal in file 'MoneyTest.java'" rngLn="104" />
+        <ElDesc lineHash="1142259189" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="112" ln="112" srcRngEndPos="73" srcRngStartln="112" srcRngStartPos="69" desc="[Line 112] Duplicated string literal in file 'MoneyTest.java'" rngLn="112" />
+        <ElDesc lineHash="-1614842037" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="136" ln="136" srcRngEndPos="78" srcRngStartln="136" srcRngStartPos="74" desc="[Line 136] Duplicated string literal in file 'MoneyTest.java'" rngLn="136" />
+        <ElDesc lineHash="-1614842037" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="146" ln="146" srcRngEndPos="78" srcRngStartln="146" srcRngStartPos="74" desc="[Line 146] Duplicated string literal in file 'MoneyTest.java'" rngLn="146" />
+        <ElDesc lineHash="-1795916408" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="164" ln="164" srcRngEndPos="45" srcRngStartln="164" srcRngStartPos="41" desc="[Line 164] Duplicated string literal in file 'MoneyTest.java'" rngLn="164" />
+        <ElDesc lineHash="-593358600" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="189" ln="189" srcRngEndPos="42" srcRngStartln="189" srcRngStartPos="38" desc="[Line 189] Duplicated string literal in file 'MoneyTest.java'" rngLn="189" />
+        <ElDesc lineHash="1990883294" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="197" ln="197" srcRngEndPos="76" srcRngStartln="197" srcRngStartPos="72" desc="[Line 197] Duplicated string literal in file 'MoneyTest.java'" rngLn="197" />
+        <ElDesc lineHash="-3818085" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="198" ln="198" srcRngEndPos="42" srcRngStartln="198" srcRngStartPos="38" desc="[Line 198] Duplicated string literal in file 'MoneyTest.java'" rngLn="198" />
+        <ElDesc lineHash="1990883294" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="205" ln="205" srcRngEndPos="76" srcRngStartln="205" srcRngStartPos="72" desc="[Line 205] Duplicated string literal in file 'MoneyTest.java'" rngLn="205" />
+        <ElDesc lineHash="848601315" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="206" ln="206" srcRngEndPos="43" srcRngStartln="206" srcRngStartPos="39" desc="[Line 206] Duplicated string literal in file 'MoneyTest.java'" rngLn="206" />
+        <ElDesc lineHash="1777976126" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="228" ln="228" srcRngEndPos="81" srcRngStartln="228" srcRngStartPos="77" desc="[Line 228] Duplicated string literal in file 'MoneyTest.java'" rngLn="228" />
+      </ElDescList>
+    </DupViol>
+    <DupViol msg="Duplicated string literal: &quot;CHF&quot;" ln="37" locFile="/demo/src/test/java/examples/junit/MoneyTest.java" locStartln="37" sev="3" auth="kmarczyk" locRef="67" rule="CDD.DUPS" lnHash="-1050180689" rule.header="Avoid string literal duplication" tool="jtest" lineHash="-1050180689" locStartPos="31" analyzer="com.parasoft.jtest.standards.dupcode" lang="java" locEndPos="35" locType="sr" urgent="true" hash="-1290590071" locEndLn="37" goals="1,">
+      <ElDescList>
+        <ElDesc lineHash="-1050180689" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="37" ln="37" srcRngEndPos="35" srcRngStartln="37" srcRngStartPos="31" desc="[Line 37] Duplicated string literal in file 'MoneyTest.java'" rngLn="37" />
+        <ElDesc lineHash="-1952680789" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="38" ln="38" srcRngEndPos="35" srcRngStartln="38" srcRngStartPos="31" desc="[Line 38] Duplicated string literal in file 'MoneyTest.java'" rngLn="38" />
+        <ElDesc lineHash="-1596448582" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="57" ln="57" srcRngEndPos="49" srcRngStartln="57" srcRngStartPos="45" desc="[Line 57] Duplicated string literal in file 'MoneyTest.java'" rngLn="57" />
+        <ElDesc lineHash="-1377661265" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="80" ln="80" srcRngEndPos="61" srcRngStartln="80" srcRngStartPos="57" desc="[Line 80] Duplicated string literal in file 'MoneyTest.java'" rngLn="80" />
+        <ElDesc lineHash="1777976126" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="88" ln="88" srcRngEndPos="60" srcRngStartln="88" srcRngStartPos="56" desc="[Line 88] Duplicated string literal in file 'MoneyTest.java'" rngLn="88" />
+        <ElDesc lineHash="571300374" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="96" ln="96" srcRngEndPos="60" srcRngStartln="96" srcRngStartPos="56" desc="[Line 96] Duplicated string literal in file 'MoneyTest.java'" rngLn="96" />
+        <ElDesc lineHash="-942907359" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="104" ln="104" srcRngEndPos="60" srcRngStartln="104" srcRngStartPos="56" desc="[Line 104] Duplicated string literal in file 'MoneyTest.java'" rngLn="104" />
+        <ElDesc lineHash="1142259189" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="112" ln="112" srcRngEndPos="52" srcRngStartln="112" srcRngStartPos="48" desc="[Line 112] Duplicated string literal in file 'MoneyTest.java'" rngLn="112" />
+        <ElDesc lineHash="-1614842037" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="136" ln="136" srcRngEndPos="57" srcRngStartln="136" srcRngStartPos="53" desc="[Line 136] Duplicated string literal in file 'MoneyTest.java'" rngLn="136" />
+        <ElDesc lineHash="-1614842037" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="146" ln="146" srcRngEndPos="57" srcRngStartln="146" srcRngStartPos="53" desc="[Line 146] Duplicated string literal in file 'MoneyTest.java'" rngLn="146" />
+        <ElDesc lineHash="1420184833" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="154" ln="154" srcRngEndPos="45" srcRngStartln="154" srcRngStartPos="41" desc="[Line 154] Duplicated string literal in file 'MoneyTest.java'" rngLn="154" />
+        <ElDesc lineHash="691078603" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="165" ln="165" srcRngEndPos="44" srcRngStartln="165" srcRngStartPos="40" desc="[Line 165] Duplicated string literal in file 'MoneyTest.java'" rngLn="165" />
+        <ElDesc lineHash="-1470244023" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="174" ln="174" srcRngEndPos="40" srcRngStartln="174" srcRngStartPos="36" desc="[Line 174] Duplicated string literal in file 'MoneyTest.java'" rngLn="174" />
+        <ElDesc lineHash="-1695687578" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="181" ln="181" srcRngEndPos="57" srcRngStartln="181" srcRngStartPos="53" desc="[Line 181] Duplicated string literal in file 'MoneyTest.java'" rngLn="181" />
+        <ElDesc lineHash="-1695687578" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="181" ln="181" srcRngEndPos="79" srcRngStartln="181" srcRngStartPos="75" desc="[Line 181] Duplicated string literal in file 'MoneyTest.java'" rngLn="181" />
+        <ElDesc lineHash="-993187814" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="182" ln="182" srcRngEndPos="39" srcRngStartln="182" srcRngStartPos="35" desc="[Line 182] Duplicated string literal in file 'MoneyTest.java'" rngLn="182" />
+        <ElDesc lineHash="1990883294" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="197" ln="197" srcRngEndPos="55" srcRngStartln="197" srcRngStartPos="51" desc="[Line 197] Duplicated string literal in file 'MoneyTest.java'" rngLn="197" />
+        <ElDesc lineHash="1990883294" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="205" ln="205" srcRngEndPos="55" srcRngStartln="205" srcRngStartPos="51" desc="[Line 205] Duplicated string literal in file 'MoneyTest.java'" rngLn="205" />
+        <ElDesc lineHash="-661185270" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="220" ln="220" srcRngEndPos="43" srcRngStartln="220" srcRngStartPos="39" desc="[Line 220] Duplicated string literal in file 'MoneyTest.java'" rngLn="220" />
+        <ElDesc lineHash="1777976126" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="228" ln="228" srcRngEndPos="60" srcRngStartln="228" srcRngStartPos="56" desc="[Line 228] Duplicated string literal in file 'MoneyTest.java'" rngLn="228" />
+        <ElDesc lineHash="-1054212280" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="236" ln="236" srcRngEndPos="43" srcRngStartln="236" srcRngStartPos="39" desc="[Line 236] Duplicated string literal in file 'MoneyTest.java'" rngLn="236" />
+        <ElDesc lineHash="387039364" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="244" ln="244" srcRngEndPos="44" srcRngStartln="244" srcRngStartPos="40" desc="[Line 244] Duplicated string literal in file 'MoneyTest.java'" rngLn="244" />
+        <ElDesc lineHash="-136214942" locType="sr" srcRnghash="-1290590071" locRef="67" srcRngFile="/demo/src/test/java/examples/junit/MoneyTest.java" srcRngEndLn="252" ln="252" srcRngEndPos="42" srcRngStartln="252" srcRngStartPos="38" desc="[Line 252] Duplicated string literal in file 'MoneyTest.java'" rngLn="252" />
+      </ElDescList>
+    </DupViol>
+  </StdViols>
+
+      <TestedFilesDetails>
+         <Total name="Total (Suppressed)" supp="0" total="2">
+            <Project id="demo" name="demo" supp="0" total="2">
+               <Res name="src" supp="0" total="2">
+                  <Res name="main" supp="0" total="0">
+                     <Res name="java" supp="0" total="0">
+                        <Res name="examples" supp="0" total="0">
+                           <Res name="eval" supp="0" total="0">
+                              <Res loc="/demo/src/main/java/examples/eval/Simple.java" locRef="1" locType="sr" name="Simple.java" supp="0" total="0" />
+                           </Res>
+                           <Res name="flowanalysis" supp="0" total="0">
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/AlwaysCloseGSS.java" locRef="2" locType="sr" name="AlwaysCloseGSS.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/AlwaysCloseImages.java" locRef="3" locType="sr" name="AlwaysCloseImages.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/AlwaysCloseLogging.java" locRef="4" locType="sr" name="AlwaysCloseLogging.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/AlwaysCloseNIOChannels.java" locRef="5" locType="sr" name="AlwaysCloseNIOChannels.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/AlwaysCloseRAFs.java" locRef="6" locType="sr" name="AlwaysCloseRAFs.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/AlwaysCloseSockets.java" locRef="7" locType="sr" name="AlwaysCloseSockets.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/AlwaysCloseXMLEncDec.java" locRef="8" locType="sr" name="AlwaysCloseXMLEncDec.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/DereferenceBeforeNullCheck.java" locRef="9" locType="sr" name="DereferenceBeforeNullCheck.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/DivisionByZero.java" locRef="10" locType="sr" name="DivisionByZero.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/FilesInjection.java" locRef="11" locType="sr" name="FilesInjection.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/IncorrectIteratorUsage.java" locRef="12" locType="sr" name="IncorrectIteratorUsage.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/InefficientCollectionRemoval.java" locRef="13" locType="sr" name="InefficientCollectionRemoval.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/InefficientMapRemoval.java" locRef="14" locType="sr" name="InefficientMapRemoval.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/InefficientMapUsage.java" locRef="15" locType="sr" name="InefficientMapUsage.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/SQLInjection.java" locRef="16" locType="sr" name="SQLInjection.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/SystemInjection.java" locRef="17" locType="sr" name="SystemInjection.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/UnreachableCode.java" locRef="18" locType="sr" name="UnreachableCode.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/UseBeforeInConstructorInitialization.java" locRef="19" locType="sr" name="UseBeforeInConstructorInitialization.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/UseBeforeInitialization.java" locRef="20" locType="sr" name="UseBeforeInitialization.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/WebApplication.java" locRef="21" locType="sr" name="WebApplication.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/flowanalysis/XMLInjection.java" locRef="22" locType="sr" name="XMLInjection.java" supp="0" total="0" />
+                              <Res name="np" supp="0" total="0">
+                                 <Res loc="/demo/src/main/java/examples/flowanalysis/np/DatabaseObject.java" locRef="23" locType="sr" name="DatabaseObject.java" supp="0" total="0" />
+                                 <Res loc="/demo/src/main/java/examples/flowanalysis/np/ExtendedNullPointer.java" locRef="24" locType="sr" name="ExtendedNullPointer.java" supp="0" total="0" />
+                                 <Res loc="/demo/src/main/java/examples/flowanalysis/np/MessageFormatter.java" locRef="25" locType="sr" name="MessageFormatter.java" supp="0" total="0" />
+                                 <Res loc="/demo/src/main/java/examples/flowanalysis/np/MyDictionary.java" locRef="26" locType="sr" name="MyDictionary.java" supp="0" total="0" />
+                                 <Res loc="/demo/src/main/java/examples/flowanalysis/np/NullPointer.java" locRef="27" locType="sr" name="NullPointer.java" supp="0" total="0" />
+                              </Res>
+                           </Res>
+                           <Res name="junit" supp="0" total="0">
+                              <Res loc="/demo/src/main/java/examples/junit/ChoosingConstructor.java" locRef="28" locType="sr" name="ChoosingConstructor.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/junit/CustomMoney.java" locRef="29" locType="sr" name="CustomMoney.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/junit/IMoney.java" locRef="30" locType="sr" name="IMoney.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/junit/IntegerComparator.java" locRef="31" locType="sr" name="IntegerComparator.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/junit/Money.java" locRef="32" locType="sr" name="Money.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/junit/MoneyBag.java" locRef="33" locType="sr" name="MoneyBag.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/junit/NaiveStringBuilder.java" locRef="34" locType="sr" name="NaiveStringBuilder.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/junit/SimpleObjectHandler.java" locRef="35" locType="sr" name="SimpleObjectHandler.java" supp="0" total="0" />
+                           </Res>
+                           <Res name="metrics" supp="0" total="0">
+                              <Res loc="/demo/src/main/java/examples/metrics/MetricsExample.java" locRef="36" locType="sr" name="MetricsExample.java" supp="0" total="0" />
+                           </Res>
+                           <Res name="mock" supp="0" total="0">
+                              <Res loc="/demo/src/main/java/examples/mock/CharacterReader.java" locRef="37" locType="sr" name="CharacterReader.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/mock/ConstructorExample.java" locRef="38" locType="sr" name="ConstructorExample.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/mock/FileExample.java" locRef="39" locType="sr" name="FileExample.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/mock/Interpreter.java" locRef="40" locType="sr" name="Interpreter.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/mock/MultiSourceCharacterReader.java" locRef="41" locType="sr" name="MultiSourceCharacterReader.java" supp="0" total="0" />
+                           </Res>
+                           <Res name="nbank" supp="0" total="0">
+                              <Res loc="/demo/src/main/java/examples/nbank/AbstractTransaction.java" locRef="42" locType="sr" name="AbstractTransaction.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/nbank/Account.java" locRef="43" locType="sr" name="Account.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/nbank/Bank.java" locRef="44" locType="sr" name="Bank.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/nbank/BankState.java" locRef="45" locType="sr" name="BankState.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/nbank/ConnectionException.java" locRef="46" locType="sr" name="ConnectionException.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/nbank/CreditCard.java" locRef="47" locType="sr" name="CreditCard.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/nbank/Customer.java" locRef="48" locType="sr" name="Customer.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/nbank/DepositTransaction.java" locRef="49" locType="sr" name="DepositTransaction.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/nbank/ITransaction.java" locRef="50" locType="sr" name="ITransaction.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/nbank/LogAccountInfo.java" locRef="51" locType="sr" name="LogAccountInfo.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/nbank/WithdrawalTransaction.java" locRef="52" locType="sr" name="WithdrawalTransaction.java" supp="0" total="0" />
+                           </Res>
+                           <Res name="queue" supp="0" total="0">
+                              <Res loc="/demo/src/main/java/examples/queue/Queue.java" locRef="53" locType="sr" name="Queue.java" supp="0" total="0" />
+                           </Res>
+                           <Res name="security" supp="0" total="0">
+                              <Res loc="/demo/src/main/java/examples/security/InputValidation.java" locRef="54" locType="sr" name="InputValidation.java" supp="0" total="0" />
+                           </Res>
+                           <Res name="servlets" supp="0" total="0">
+                              <Res loc="/demo/src/main/java/examples/servlets/ExampleServlet.java" locRef="55" locType="sr" name="ExampleServlet.java" supp="0" total="0" />
+                           </Res>
+                           <Res name="stackmachine" supp="0" total="0">
+                              <Res loc="/demo/src/main/java/examples/stackmachine/AbstractStackMachine.java" locRef="56" locType="sr" name="AbstractStackMachine.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/stackmachine/CommandLineStackMachine.java" locRef="57" locType="sr" name="CommandLineStackMachine.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/stackmachine/CustomListRenderer.java" locRef="58" locType="sr" name="CustomListRenderer.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/stackmachine/FifoStackMachine.java" locRef="59" locType="sr" name="FifoStackMachine.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/stackmachine/LifoStackMachine.java" locRef="60" locType="sr" name="LifoStackMachine.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/stackmachine/RunnableStackMachine.java" locRef="61" locType="sr" name="RunnableStackMachine.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/stackmachine/StackInterface.java" locRef="62" locType="sr" name="StackInterface.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/stackmachine/StackList.java" locRef="63" locType="sr" name="StackList.java" supp="0" total="0" />
+                           </Res>
+                           <Res name="suppress" supp="0" total="0">
+                              <Res loc="/demo/src/main/java/examples/suppress/AllFileSuppress.java" locRef="64" locType="sr" name="AllFileSuppress.java" supp="0" total="0" />
+                              <Res loc="/demo/src/main/java/examples/suppress/Example.java" locRef="65" locType="sr" name="Example.java" supp="0" total="0" />
+                           </Res>
+                        </Res>
+                     </Res>
+                  </Res>
+                  <Res name="test" supp="0" total="2">
+                     <Res name="java" supp="0" total="2">
+                        <Res name="examples" supp="0" total="2">
+                           <Res name="junit" supp="0" total="2">
+                              <Res loc="/demo/src/test/java/examples/junit/MoneyBagParameterizedTest.java" locRef="66" locType="sr" name="MoneyBagParameterizedTest.java" supp="0" total="1" />
+                              <Res loc="/demo/src/test/java/examples/junit/MoneyTest.java" locRef="67" locType="sr" name="MoneyTest.java" supp="0" total="1" />
+                              <Res loc="/demo/src/test/java/examples/junit/NaiveStringBuilderParameterizedTest.java" locRef="68" locType="sr" name="NaiveStringBuilderParameterizedTest.java" supp="0" total="0" />
+                           </Res>
+                           <Res name="mock" supp="0" total="0">
+                              <Res loc="/demo/src/test/java/examples/mock/ConstructorExampleTest.java" locRef="69" locType="sr" name="ConstructorExampleTest.java" supp="0" total="0" />
+                              <Res loc="/demo/src/test/java/examples/mock/FileExampleTest.java" locRef="70" locType="sr" name="FileExampleTest.java" supp="0" total="0" />
+                              <Res loc="/demo/src/test/java/examples/mock/InterpreterTest.java" locRef="71" locType="sr" name="InterpreterTest.java" supp="0" total="0" />
+                           </Res>
+                           <Res name="servlets" supp="0" total="0">
+                              <Res loc="/demo/src/test/java/examples/servlets/ExampleServletTest.java" locRef="72" locType="sr" name="ExampleServletTest.java" supp="0" total="0" />
+                           </Res>
+                        </Res>
+                     </Res>
+                  </Res>
+               </Res>
+               <Res name="META-INF" supp="0" total="0">
+                  <Res loc="/demo/META-INF/MANIFEST.MF" locRef="73" locType="sr" name="MANIFEST.MF" supp="0" total="0" />
+               </Res>
+            </Project>
+         </Total>
+      </TestedFilesDetails>
+   </CodingStandards>
+   <Statistics>
+      
+   </Statistics>
+</ResultsSession>

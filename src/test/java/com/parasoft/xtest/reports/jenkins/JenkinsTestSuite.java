@@ -21,7 +21,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
     JenkinsVariablesResolverTest.class,
-    //ParasoftParserTest.class,
+    ParasoftParserTest.class,
     VariablePatternVerifierTest.class,
     XSLTransformTest.class,
     SoatestReportsXslTransformationTest.class

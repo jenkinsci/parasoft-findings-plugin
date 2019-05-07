@@ -67,7 +67,7 @@ public class ParasoftParser
 
     private final Properties _properties;
 
-    private final Path _workspace;
+    private final String _workspace;
 
     private transient JenkinsResultsImporter _importer = null;
 
@@ -80,7 +80,12 @@ public class ParasoftParser
     {
         _properties = properties == null ? new Properties() : properties;
         Logger.getLogger().debug("Constructor call with settings: " + _properties); //$NON-NLS-1$
-        _workspace = workspace == null ? null : new File(workspace).toPath();
+        _workspace = workspace;
+    }
+
+    public Properties getProperties()
+    {
+        return _properties;
     }
 
     @Override
@@ -103,7 +108,8 @@ public class ParasoftParser
         return convert(importedData, importedData.getRulesImportHandler());
     }
 
-    private Report convert(Iterator<IViolation> importResults, IRulesImportHandler rulesImportHandler)
+    // keep it public for JUnit tests
+    public Report convert(Iterator<IViolation> importResults, IRulesImportHandler rulesImportHandler)
     {
         JenkinsRulesUtil.refreshRuleDescriptions(_properties);
 
@@ -131,13 +137,15 @@ public class ParasoftParser
     private void populateViolationPathElements(IRuleViolation violation, Issue issue)
     {
         Serializable properties = issue.getAdditionalProperties();
+        Path workspacePath = _workspace == null ? null : new File(_workspace).toPath();
         if (properties instanceof FlowIssueAdditionalProperties) {
             FlowIssueAdditionalProperties additionalProperties = (FlowIssueAdditionalProperties) properties;
             additionalProperties
-                .setChildren(new FlowAnalysisPathBuilder((IFlowAnalysisViolation) violation, issue.getId().toString(), _workspace).getPath());
+                .setChildren(new FlowAnalysisPathBuilder((IFlowAnalysisViolation) violation, issue.getId().toString(), workspacePath).getPath());
         } else if (properties instanceof DupIssueAdditionalProperties) {
             DupIssueAdditionalProperties additionalProperties = (DupIssueAdditionalProperties) properties;
-            additionalProperties.setChildren(new DupCodePathBuilder((IDupCodeViolation) violation, issue.getId().toString(), _workspace).getPath());
+            additionalProperties
+                .setChildren(new DupCodePathBuilder((IDupCodeViolation) violation, issue.getId().toString(), workspacePath).getPath());
         }
     }
 
