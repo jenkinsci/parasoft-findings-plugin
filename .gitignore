@@ -2,4 +2,6 @@
 .settings
 .project
 /target/
+/work/
+xtest.diagnostics.txt
 .arcconfig

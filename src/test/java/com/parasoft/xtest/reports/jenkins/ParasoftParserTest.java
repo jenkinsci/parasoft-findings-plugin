@@ -87,7 +87,7 @@ public class ParasoftParserTest
     @BeforeClass
     public static void initialize()
     {
-        _parser = new ParasoftParser(new Properties(), "workspace");
+        _parser = new ParasoftParser("workspace");
     }
 
     @AfterClass
@@ -162,6 +162,34 @@ public class ParasoftParserTest
     }
 
     @Test
+    public void parseCppMetricsViolsTest()
+    {
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.4.2_engine_metrics.xml"); //$NON-NLS-1$
+
+        assertEquals(105, report.getSize());
+        int countFlow = 0;
+        int countMetrics = 0;
+        for (Issue issue : report) {
+            Serializable properties = issue.getAdditionalProperties();
+            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
+            ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties)properties;
+            if (additionalProperties instanceof FlowIssueAdditionalProperties) {
+                assertEquals("com.parasoft.xtest.cpp.analyzer.static.flow", additionalProperties.getAnalyzer()); //$NON-NLS-1$   
+                countFlow++;
+            } else {
+                if (issue.getType().startsWith("METRIC")) { //$NON-NLS-1$
+                    assertEquals("com.parasoft.xtest.cpp.analyzer.static.metrics", additionalProperties.getAnalyzer()); //$NON-NLS-1$   
+                    countMetrics++;
+                } else {
+                    assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer()); //$NON-NLS-1$      
+                }
+            }
+        }
+        assertEquals(30, countFlow);
+        assertEquals(64, countMetrics);
+    }
+
+    @Test
     public void parseCppDesktopStdViolsTest()
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static.xml"); //$NON-NLS-1$
@@ -211,7 +239,6 @@ public class ParasoftParserTest
             assertThat(issue.getCategory(), IsIn.isIn(new String[] { "Coding Conventions", "Initialization", "MISRA C 2004" })); //$NON-NLS-1$  //$NON-NLS-2$  //$NON-NLS-3$
         }
     }
-
 
     @Test
     public void parseCppDesktopFAViolsTest()
@@ -343,7 +370,8 @@ public class ParasoftParserTest
         settings.setProperty("rules.provider1a.analyzer", "com.puppycrawl.tools.checkstyle");
         settings.setProperty("rules.provider1a.separator", ".");
         settings.setProperty("rules.provider1a.data", "/home/jez/dv/dv-etest/com.parasoft.xtest.analyzers.checkstyle/rules/cs-rules.xml");
-        ParasoftParser parserBefore = new ParasoftParser(settings, "workspace");
+        ParasoftParser parserBefore = new ParasoftParser("workspace");
+        parserBefore.setProperties(settings);
         Report reportBefore = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml", parserBefore);
 
         ObjectOutputStream oos = null;
