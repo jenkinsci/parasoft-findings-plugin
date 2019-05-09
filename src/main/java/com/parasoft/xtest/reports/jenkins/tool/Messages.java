@@ -37,5 +37,7 @@ extends NLS
     public static String AUTHOR_COLUMN_HEADER;
 
     public static String REVISION_COLUMN_HEADER;
+    
+    public static String RULE_DOCUMENTATION_UNAVAILABLE;
 
-} // final class Messages
+}

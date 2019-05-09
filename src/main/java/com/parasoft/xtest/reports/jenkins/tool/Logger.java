@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Parasoft Corporation
+ * Copyright 2019 Parasoft Corporation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,30 +14,32 @@
  * limitations under the License.
  */
 
-package com.parasoft.xtest.reports.jenkins.views;
+package com.parasoft.xtest.reports.jenkins.tool;
 
-import com.parasoft.xtest.common.nls.NLS;
+import com.parasoft.xtest.logging.api.ParasoftLogger;
 
-/**
- * Provides localized messages for this package.
- */
-final class Messages
-    extends NLS
+final class Logger
 {
-    static {
-        // initialize resource bundle
-        NLS.initMessages(Messages.class);
+    /**
+     * Provides logger for this package.
+     * @return the logger instance
+     *
+     * @post $result != null
+     */
+    public static ParasoftLogger getLogger()
+    {
+        return _LOGGER;
     }
 
-    /**
-     * Just to prevent instantiation.
+    /** 
+     * Just to prevent instantiation. 
      */
-    private Messages() { }
-
-    public static String RULE_DOCUMENTATION_DISPLAY_NAME;
+    private Logger()
+    {
+        super();
+    }
     
-    public static String RULE_DOCUMENTATION_UNAVAILABLE;
+    private final static ParasoftLogger _LOGGER = ParasoftLogger.getLogger(Logger.class);
+   
+}
 
-    public static String RULE_DOCUMENTATION_UNAVAILABLE_AT;
-
-} // final class Messages

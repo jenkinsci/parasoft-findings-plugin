@@ -187,18 +187,6 @@
       <version>1.102</version>
       <optional>true</optional>
     </dependency>
-    <!--<dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>dashboard-view</artifactId> 
-      <version>2.9.4</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.sonatype.sisu</groupId>
-          <artifactId>sisu-guice</artifactId>
-        </exclusion>
-      </exclusions>
-      <optional>true</optional>
-    </dependency -->
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>structs</artifactId>

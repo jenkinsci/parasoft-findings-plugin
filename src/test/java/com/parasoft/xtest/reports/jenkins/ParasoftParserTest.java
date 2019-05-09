@@ -87,7 +87,7 @@ public class ParasoftParserTest
     @BeforeClass
     public static void initialize()
     {
-        _parser = new ParasoftParser("workspace");
+        _parser = new ParasoftParser(new Properties(), "workspace");
     }
 
     @AfterClass
@@ -370,8 +370,7 @@ public class ParasoftParserTest
         settings.setProperty("rules.provider1a.analyzer", "com.puppycrawl.tools.checkstyle");
         settings.setProperty("rules.provider1a.separator", ".");
         settings.setProperty("rules.provider1a.data", "/home/jez/dv/dv-etest/com.parasoft.xtest.analyzers.checkstyle/rules/cs-rules.xml");
-        ParasoftParser parserBefore = new ParasoftParser("workspace");
-        parserBefore.setProperties(settings);
+        ParasoftParser parserBefore = new ParasoftParser(settings, "workspace");
         Report reportBefore = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml", parserBefore);
 
         ObjectOutputStream oos = null;

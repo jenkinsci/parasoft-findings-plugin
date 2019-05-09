@@ -71,11 +71,6 @@ public class ParasoftParser
 
     private transient JenkinsResultsImporter _importer = null;
 
-    public ParasoftParser()
-    {
-        this(new Properties(), null);
-    }
-
     public ParasoftParser(Properties properties, String workspace)
     {
         _properties = properties == null ? new Properties() : properties;

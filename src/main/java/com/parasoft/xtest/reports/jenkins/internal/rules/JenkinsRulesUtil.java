@@ -16,15 +16,20 @@
 
 package com.parasoft.xtest.reports.jenkins.internal.rules;
 
+import java.io.File;
 import java.util.Properties;
 
 import com.parasoft.xtest.common.api.progress.EmptyProgressMonitor;
 import com.parasoft.xtest.common.api.progress.IProgressMonitor;
 import com.parasoft.xtest.common.services.RawServiceContext;
+import com.parasoft.xtest.common.text.UString;
 import com.parasoft.xtest.configuration.api.ConfigurationException;
 import com.parasoft.xtest.configuration.api.rules.IRuleDescriptionUpdateService;
+import com.parasoft.xtest.reports.jenkins.util.FilePathUtil;
 import com.parasoft.xtest.services.api.IParasoftServiceContext;
 import com.parasoft.xtest.services.api.ServiceUtil;
+
+import hudson.FilePath;
 
 /**
  * Utility class for operations related to rules.
@@ -50,5 +55,27 @@ public class JenkinsRulesUtil
                 Logger.getLogger().error(ce);
             }
         }
+    }
+
+    /**
+     * Loads settings from remote workspace location
+     * @param workspaceDir workspace directory
+     * @param settingsPath relative or absolute path to settings
+     * @return Parasoft settings
+     */
+    public static Properties loadSettings(FilePath workspaceDir, String settingsPath)
+    {
+        if (UString.isEmpty(settingsPath)) {
+            return new Properties();
+        }
+        FilePath localSettingsFile = null;
+        File localPath = new File(settingsPath);
+        if (localPath.isAbsolute() && localPath.exists()) {
+            localSettingsFile = new FilePath(localPath);
+        } else {
+            localSettingsFile = new FilePath(workspaceDir, settingsPath);
+        }
+        Logger.getLogger().info("Path to local settings is " + localSettingsFile.getRemote()); //$NON-NLS-1$
+        return FilePathUtil.loadProperties(localSettingsFile);
     }
 }

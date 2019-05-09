@@ -59,4 +59,7 @@ public interface IHtmlTags
 
     String BREAK_LINE_TAG = "<br>"; //$NON-NLS-1$
 
+    String PARAGRAPH_START_TAG = "<p>"; //$NON-NLS-1$
+
+    String PARAGRAPH_END_TAG = "</p>"; //$NON-NLS-1$
 }
