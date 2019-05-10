@@ -25,7 +25,7 @@
     <jenkins.version>2.89.1</jenkins.version>
     <java.level>8</java.level>
     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
-    <xtest.version>10.4.1.20181116</xtest.version>
+    <xtest.version>10.4.2.20190510</xtest.version>
   </properties>
 
   <developers>

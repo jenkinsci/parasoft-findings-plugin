@@ -25,7 +25,8 @@
 		<!-- used plugins versions -->
 		<tycho-version>0.21.0</tycho-version>
 		<build-helper-version>1.3</build-helper-version>
-		<p2-maven-plugin-version>1.0.0</p2-maven-plugin-version>
+		<p2-maven-plugin-version>1.2.0</p2-maven-plugin-version>
+		<versions-maven-plugin-version>2.7</versions-maven-plugin-version>
 		<maven-deploy-plugin-version>2.7</maven-deploy-plugin-version>
 		<maven-resources-plugin-version>2.6</maven-resources-plugin-version>
 		<maven-clean-plugin-version>2.5</maven-clean-plugin-version>
@@ -57,9 +58,6 @@
 
         <!-- Eclipse p2 repository URLs -->
         <eclipse.repository.base.url>http://builder.parasoft.com.pl:8081/nexus/content/repositories</eclipse.repository.base.url>
-        <eclipse.galileo.repository.url>${eclipse.repository.base.url}/eclipse_35_galileo</eclipse.galileo.repository.url>
-        <eclipse.helios.repository.url>${eclipse.repository.base.url}/eclipse_36_helios</eclipse.helios.repository.url>
-        <eclipse.indigo.repository.url>${eclipse.repository.base.url}/eclipse_37_indigo</eclipse.indigo.repository.url>
         <eclipse.juno.repository.url>${eclipse.repository.base.url}/eclipse_38_juno</eclipse.juno.repository.url>
         <eclipse.kepler.repository.url>${eclipse.repository.base.url}/eclipse_43_kepler</eclipse.kepler.repository.url>
         <eclipse.luna.repository.url>${eclipse.repository.base.url}/eclipse_44_luna</eclipse.luna.repository.url>
@@ -68,9 +66,21 @@
         <xtest.libs.osgi.deploy>true</xtest.libs.osgi.deploy>
         <xtest.libs.repository.url>http://${parasoft-buildserver-deploy-base-uri}/builds/${product-name}/${branch-name}/libs/latest/</xtest.libs.repository.url>
 
-        <!-- "surefire.memory.settings" is an single space by default. Surefire will ignore an empty space added to its argline. -->
-        <!-- surefire.memory.settings> </surefire.memory.settings -->
+        <!--
+          modules that don't have tests should still have the same surefire version and dependencies, for build stability reasons
+            so these are declared with "pluginManagment" can use them
+        -->
+        <junit.version>4.12</junit.version>
+        <junit.jupiter.version>5.2.0</junit.jupiter.version>
+        <junit.vintage.version>${junit.jupiter.version}</junit.vintage.version>
+        <junit.platform.version>1.2.0</junit.platform.version>
+        <surefire.version>2.21.0</surefire.version>
         <surefire.memory.settings>-Xmx4096m</surefire.memory.settings>
+        <surefire.fork.mode></surefire.fork.mode>
+        <surefire.fork.count>1</surefire.fork.count>
+        <surefire.fork.reuse>false</surefire.fork.reuse>
+        <surefire.trimstack>true</surefire.trimstack>
+        <surefire.use.system.classloader>true</surefire.use.system.classloader>
 	</properties>
 
 	<profiles>
@@ -115,42 +125,6 @@
 			</properties>
 		</profile>
 		
-		<profile>
-     		<!-- eclipse 3.5 -->
-			<id>eclipse.galileo</id>
-			<repositories>
-				<repository>
-					<id>eclipse-galileo</id>
-					<!--  url>http://download.eclipse.org/releases/galileo</url -->
-                    <url>${eclipse.galileo.repository.url}</url>
-					<layout>p2</layout>
-				</repository>
-			</repositories>
-		</profile>
-        <profile>
-            <!-- eclipse 3.6 -->
-            <id>eclipse.helios</id>
-            <repositories>
-                <repository>
-                    <id>eclipse-helios</id>
-                    <!-- url>http://download.eclipse.org/releases/helios</url -->
-                    <url>${eclipse.helios.repository.url}</url>
-                    <layout>p2</layout>
-                </repository>
-            </repositories>
-        </profile>
-		<profile>
-     		<!-- eclipse 3.7 -->
-			<id>eclipse.indigo</id>
-			<repositories>
-				<repository>
-					<id>eclipse-indigo</id>
-					<!--  url>http://download.eclipse.org/releases/indigo</url -->
-                    <url>${eclipse.indigo.repository.url}</url>
-					<layout>p2</layout>
-				</repository>
-			</repositories>
-		</profile>
 		<profile>
             <!-- eclipse 3.8 (also known as 4.2!) -->
 			<id>eclipse.juno</id>
@@ -321,9 +295,24 @@
             <properties>
               <xtest.libs.osgi.deploy>false</xtest.libs.osgi.deploy>
               <xtest.libs.repository.dir>${env.WORKSPACE}/p2-osgi-libs</xtest.libs.repository.dir>
-              <xtest.libs.repository.url>file://${xtest.libs.repository.dir}</xtest.libs.repository.url>
+              <xtest.libs.repository.url>file:///${xtest.libs.repository.dir}</xtest.libs.repository.url>
               <copy.to.isolated.libs.repository.phase>install</copy.to.isolated.libs.repository.phase>
-              <!-- surefire.memory.settings>-Xmx2048m</surefire.memory.settings -->
+
+              <!-- This is about all the memory Monrovia's test machine can provide -->
+              <surefire.memory.settings>-Xmx2048m</surefire.memory.settings>
+              <!-- we want to see the full stack in the log -->
+              <surefire.trimstack>false</surefire.trimstack>
+            </properties>
+        </profile>
+        <profile>
+            <id>surefire-3.x.x</id>
+            <properties>
+              <!--
+                Maven 3.1.0 or later is required to use this.
+                    some tests in "common ui exec" do not yet work with Maven 3.1 or later
+               -->
+              <surefire.version>3.0.0-M3</surefire.version>
+              <surefire.use.system.classloader>false</surefire.use.system.classloader>
             </properties>
         </profile>
 	</profiles>
@@ -351,9 +340,44 @@
 					</environments>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>${versions-maven-plugin-version}</version>
+				<configuration>
+					<includes></includes>
+				</configuration>
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
+                <plugin>
+                    <!--
+                      Some projects which don't have tests still trigger Surefire...
+                          for stability, they should use the same Surefire the actual test projects use.
+                          but the configuration for testing is still in another pom.
+                     -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${surefire.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.junit.platform</groupId>
+                            <artifactId>junit-platform-surefire-provider</artifactId>
+                            <version>${junit.platform.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.junit.jupiter</groupId>
+                            <artifactId>junit-jupiter-engine</artifactId>
+                            <version>${junit.jupiter.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.junit.vintage</groupId>
+                            <artifactId>junit-vintage-engine</artifactId>
+                            <version>${junit.vintage.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-maven-plugin</artifactId>
@@ -411,12 +435,12 @@
 		</extensions>
 	</build>
 
-	<pluginRepositories>
+	<!-- pluginRepositories>
 		<pluginRepository>
 			<id>reficio</id>
 			<url>http://repo.reficio.org/maven/</url>
 		</pluginRepository>
-	</pluginRepositories>
+	</pluginRepositories -->
 
 	<distributionManagement>
 		<repository>
