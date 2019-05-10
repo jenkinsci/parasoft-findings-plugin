@@ -138,7 +138,7 @@ public class ParasoftTool
         @Override
         public String getDisplayName()
         {
-            return "Parasoft Findings"; //$NON-NLS-1$
+            return Messages.PARASOFT_TOOL_DISPLAY_NAME;
         }
 
         @Override
@@ -152,6 +152,16 @@ public class ParasoftTool
         {
             return new LabelProvider();
         }
+
+        @Override
+        public String getPattern() {
+            return "**/report.xml"; //$NON-NLS-1$
+        }
+
+        @Override
+        public String getUrl() {
+            return "https://www.parasoft.com/"; //$NON-NLS-1$
+        }
     }
 
     private static class LabelProvider
@@ -162,7 +172,7 @@ public class ParasoftTool
 
         LabelProvider()
         {
-            super(PLUGIN_ID, "Parasoft"); //$NON-NLS-1$
+            super(PLUGIN_ID, Messages.PARASOFT_NAME);
         }
 
         @Override

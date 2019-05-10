@@ -40,4 +40,8 @@ extends NLS
     
     public static String RULE_DOCUMENTATION_UNAVAILABLE;
 
+    public static String PARASOFT_TOOL_DISPLAY_NAME;
+
+    public static String PARASOFT_NAME;
+
 }
