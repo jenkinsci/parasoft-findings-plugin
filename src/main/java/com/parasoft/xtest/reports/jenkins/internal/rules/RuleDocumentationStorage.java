@@ -17,11 +17,12 @@
 package com.parasoft.xtest.reports.jenkins.internal.rules;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Properties;
@@ -117,7 +118,7 @@ public class RuleDocumentationStorage
         BufferedReader in = null;
         try {
             URL ruleDocUrl = new URL(externalUrl);
-            in = new BufferedReader(new InputStreamReader(ruleDocUrl.openStream()));
+            in = new BufferedReader(new InputStreamReader(ruleDocUrl.openStream(), IStringConstants.UTF_8));
 
             return FileUtil.readFile(in);
         } catch (IOException ioe) {} finally {
@@ -154,13 +155,13 @@ public class RuleDocumentationStorage
 
     private void internalStoreRuleDoc(File rootDir, String ruleDocFile, String contents)
     {
-        BufferedWriter writer = null;
+        Writer writer = null;
         try {
             File file = new File(rootDir, ruleDocFile);
-            file.getParentFile().mkdirs();
-            writer = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
-            writer.write(contents);
-
+            if (file.getParentFile().mkdirs()) {
+                writer = new OutputStreamWriter(new FileOutputStream(file.getAbsolutePath()), IStringConstants.UTF_8);
+                writer.write(contents);
+            }
         } catch (IOException e) {
             Logger.getLogger().warnTrace(e);
         } finally {
