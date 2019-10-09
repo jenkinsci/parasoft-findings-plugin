@@ -152,7 +152,7 @@
     <!-- get every artifact through repo.jenkins-ci.org, which proxies all the artifacts that we need -->
     <repository>
       <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
+      <url>https://repo.jenkins-ci.org/public/</url>
     </repository>
     <repository>
       <id>parasoft</id>
@@ -167,7 +167,7 @@
   <pluginRepositories>
     <pluginRepository>
       <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
+      <url>https://repo.jenkins-ci.org/public/</url>
     </pluginRepository>
     <pluginRepository>
       <id>pustefix</id>
