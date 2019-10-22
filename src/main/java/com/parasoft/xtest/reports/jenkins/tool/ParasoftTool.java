@@ -19,7 +19,6 @@ package com.parasoft.xtest.reports.jenkins.tool;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -28,10 +27,8 @@ import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
-import com.parasoft.xtest.common.text.UString;
 import com.parasoft.xtest.reports.jenkins.html.IHtmlTags;
 import com.parasoft.xtest.reports.jenkins.internal.rules.JenkinsRulesUtil;
-import com.parasoft.xtest.reports.jenkins.internal.rules.RuleDocumentationReader;
 import com.parasoft.xtest.reports.jenkins.internal.rules.RuleDocumentationStorage;
 import com.parasoft.xtest.reports.jenkins.internal.variables.JenkinsVariablesResolver;
 import com.parasoft.xtest.reports.jenkins.parser.DupIssueAdditionalProperties;
@@ -47,13 +44,10 @@ import hudson.Extension;
 import hudson.FilePath;
 import hudson.model.Run;
 import hudson.model.TaskListener;
-import io.jenkins.plugins.analysis.core.model.DescriptionProvider;
 import io.jenkins.plugins.analysis.core.model.DetailsTableModel;
-import io.jenkins.plugins.analysis.core.model.FileNameRenderer;
 import io.jenkins.plugins.analysis.core.model.IconLabelProvider;
 import io.jenkins.plugins.analysis.core.model.ReportScanningTool;
 import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider;
-import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider.AgeBuilder;
 import io.jenkins.plugins.analysis.core.util.LogHandler;
 
 public class ParasoftTool
@@ -65,7 +59,7 @@ public class ParasoftTool
 
     private String _workspace = null;
     private Properties _settings = null;
-    
+
     @DataBoundConstructor
     public ParasoftTool()
     {
@@ -116,7 +110,7 @@ public class ParasoftTool
     @DataBoundSetter
     public void setLocalSettingsPath(final String localSettingsPath)
     {
-        this._localSettingsPath = localSettingsPath;
+        _localSettingsPath = localSettingsPath;
     }
 
     @Nullable
@@ -204,78 +198,6 @@ public class ParasoftTool
                 description += IHtmlTags.BREAK_LINE_TAG + ((DupIssueAdditionalProperties) properties).getCallHierarchy(null);
             }
             return description;
-        }
-    }
-
-    private static class ParasoftTableModel
-        extends DetailsTableModel
-    {
-        private RuleDocumentationReader _ruleDocReader = null;
-
-        public ParasoftTableModel(Run<?, ?> build, AgeBuilder ageBuilder, FileNameRenderer fileNameRenderer, DescriptionProvider descriptionProvider)
-        {
-            super(ageBuilder, fileNameRenderer, descriptionProvider);
-            _ruleDocReader = new RuleDocumentationReader(build.getRootDir());
-        }
-
-        @Override
-        public List<Integer> getWidths(Report report)
-        {
-            List<Integer> widths = super.getWidths(report);
-            widths.add(1);
-            widths.add(1);
-            return widths;
-        }
-
-        @Override
-        public List<String> getHeaders(Report report)
-        {
-            List<String> headers = super.getHeaders(report);
-            headers.add(Messages.AUTHOR_COLUMN_HEADER);
-            headers.add(Messages.REVISION_COLUMN_HEADER);
-            return headers;
-        }
-
-        @Override
-        protected List<String> getRow(Report report, Issue issue, String description)
-        {
-            List<String> row = super.getRow(report, issue, description);
-            Serializable additionalProperties = issue.getAdditionalProperties();
-            if (additionalProperties instanceof ParasoftIssueAdditionalProperties) {
-                ParasoftIssueAdditionalProperties parasoftIssueAdditionalProperties = (ParasoftIssueAdditionalProperties) additionalProperties;
-                row.add(parasoftIssueAdditionalProperties.getAuthor());
-                row.add(parasoftIssueAdditionalProperties.getRevision());
-            } else {
-                row.add("-"); //$NON-NLS-1$
-                row.add("-"); //$NON-NLS-1$
-            }
-            return row;
-        }
-
-        @Override
-        protected String formatDetails(Issue issue, String description)
-        {
-            Serializable properties = issue.getAdditionalProperties();
-            if (!(properties instanceof ParasoftIssueAdditionalProperties)) {
-                return super.formatDetails(issue, description);
-            }
-            StringBuilder sb = new StringBuilder();
-            
-            if (properties instanceof FlowIssueAdditionalProperties) {
-                sb.append(IHtmlTags.BREAK_LINE_TAG + ((FlowIssueAdditionalProperties) properties).getCallHierarchy(null));
-            } else if (properties instanceof DupIssueAdditionalProperties) {
-                sb.append(IHtmlTags.BREAK_LINE_TAG + ((DupIssueAdditionalProperties) properties).getCallHierarchy(null));
-            }
-            String analyzer = ((ParasoftIssueAdditionalProperties)properties).getAnalyzer();
-            String ruleId = issue.getType();
-            String ruleDocContents = _ruleDocReader.getRuleDoc(analyzer, ruleId);
-
-            if (UString.isNonEmpty(ruleDocContents)) {
-                sb.append(IHtmlTags.BREAK_LINE_TAG + IHtmlTags.PARAGRAPH_START_TAG + ruleDocContents + IHtmlTags.PARAGRAPH_END_TAG);
-            } else if (UString.isNonEmptyTrimmed(ruleId)) {
-                //sb.append(IHtmlTags.BREAK_LINE_TAG + NLS.getFormatted(Messages.RULE_DOCUMENTATION_UNAVAILABLE, ruleId));
-            }
-            return super.formatDetails(issue, sb.toString());
         }
     }
 }

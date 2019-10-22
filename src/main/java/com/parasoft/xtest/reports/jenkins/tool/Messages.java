@@ -37,7 +37,21 @@ extends NLS
     public static String AUTHOR_COLUMN_HEADER;
 
     public static String REVISION_COLUMN_HEADER;
-    
+
+    public static String DETAILS_COLUMN_HEADER;
+
+    public static String FILE_COLUMN_HEADER;
+
+    public static String PACKAGE_COLUMN_HEADER;
+
+    public static String CATEGORY_COLUMN_HEADER;
+
+    public static String TYPE_COLUMN_HEADER;
+
+    public static String SEVERITY_COLUMN_HEADER;
+
+    public static String AGE_COLUMN_HEADER;
+
     public static String RULE_DOCUMENTATION_UNAVAILABLE;
 
     public static String PARASOFT_TOOL_DISPLAY_NAME;
