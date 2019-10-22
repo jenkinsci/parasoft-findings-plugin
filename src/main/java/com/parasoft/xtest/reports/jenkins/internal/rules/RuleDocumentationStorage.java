@@ -134,6 +134,7 @@ public class RuleDocumentationStorage
             {
                 private static final long serialVersionUID = 1L;
 
+                @Override
                 public Boolean invoke(File file, VirtualChannel channel)
                     throws IOException, InterruptedException
                 {
@@ -158,10 +159,14 @@ public class RuleDocumentationStorage
         Writer writer = null;
         try {
             File file = new File(rootDir, ruleDocFile);
-            if (file.getParentFile().mkdirs()) {
-                writer = new OutputStreamWriter(new FileOutputStream(file.getAbsolutePath()), IStringConstants.UTF_8);
-                writer.write(contents);
+            File parent = file.getParentFile();
+            if (!parent.exists()) {
+                if (parent.mkdirs()){
+                    Logger.getLogger().debug("Created rules dir: " + parent.getAbsolutePath()); //$NON-NLS-1$
+                }
             }
+            writer = new OutputStreamWriter(new FileOutputStream(file.getAbsolutePath()), IStringConstants.UTF_8);
+            writer.write(contents);
         } catch (IOException e) {
             Logger.getLogger().warnTrace(e);
         } finally {
@@ -185,7 +190,7 @@ public class RuleDocumentationStorage
             _context = new RawServiceContext(settings);
             _client = getRuleClient(_context);
         }
-        
+
         /**
          * @return url of rule docs or null
          */
