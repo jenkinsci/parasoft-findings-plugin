@@ -73,26 +73,35 @@ public class DupIssueAdditionalProperties
         StringBuilder message = new StringBuilder();
         message.append("<ul>"); //$NON-NLS-1$
         for (Issue child : _children) {
-            message.append(getChildrenLinks(child, fileNameRenderer));
+            String childDesc = getChildDescription(child, fileNameRenderer);
+            if (childDesc != null) {
+                message.append(childDesc);
+            }
         }
         message.append("</ul>"); //$NON-NLS-1$
         return message.toString();
     }
 
-    private String getChildrenLinks(Issue issue, FileNameRenderer fileNameRenderer)
+    private String getChildDescription(Issue issue, FileNameRenderer fileNameRenderer)
     {
+        DupIssueAdditionalProperties additionalProperties = getAdditionalProperties(issue);
+        if (additionalProperties == null) {
+            return null;
+        }
         issue.setFileName(issue.getFileName());
         StringBuilder message = new StringBuilder();
-        DupIssueAdditionalProperties additionalProperties = getAdditionalProperties(issue);
+
         message.append(IHtmlTags.LIST_ELEM_START_TAG);
-        message.append(getLinkToCallPlace(issue, additionalProperties, fileNameRenderer));
+        message.append(getLinkToCallPlace(issue, fileNameRenderer));
+
         message.append(IHtmlTags.NON_BREAKABLE_SPACE);
         message.append(additionalProperties.getDescription());
+
         message.append(IHtmlTags.LIST_ELEM_END_TAG);
         return message.toString();
     }
 
-    private String getLinkToCallPlace(Issue issue, DupIssueAdditionalProperties additionalProperties, FileNameRenderer fileNameRenderer)
+    private String getLinkToCallPlace(Issue issue, FileNameRenderer fileNameRenderer)
     {
         if (fileNameRenderer != null) {
             return fileNameRenderer.createAffectedFileLink(issue).render();

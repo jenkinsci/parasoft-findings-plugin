@@ -10,7 +10,7 @@
 
   <groupId>com.parasoft</groupId>
   <artifactId>parasoft-findings</artifactId>
-  <version>10.4.2-SNAPSHOT</version>
+  <version>10.4.3-SNAPSHOT</version>
   <packaging>hpi</packaging>
 
   <name>Parasoft Findings</name>
@@ -18,7 +18,7 @@
 
   <organization>
     <name>Parasoft</name>
-    <url>http://www.parasoft.com/</url>
+    <url>https://www.parasoft.com/</url>
   </organization>
 
   <properties>
@@ -44,7 +44,7 @@
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
       <distribution>repo</distribution>
       <comments>A business-friendly OSS license</comments>
     </license>
@@ -191,7 +191,6 @@
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>xunit</artifactId>
       <version>1.102</version>
-      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>

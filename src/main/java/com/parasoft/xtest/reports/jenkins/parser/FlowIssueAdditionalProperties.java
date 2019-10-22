@@ -92,17 +92,23 @@ public class FlowIssueAdditionalProperties
         StringBuilder message = new StringBuilder();
         message.append("<ul>"); //$NON-NLS-1$
         for (Issue child : _children) {
-            message.append(getChildrenLinks(child, fileNameRenderer));
+            String childDesc = getChildDescription(child, fileNameRenderer);
+            if (childDesc != null) {
+                message.append(childDesc);
+            }
         }
         message.append("</ul>"); //$NON-NLS-1$
         return message.toString();
     }
 
-    private String getChildrenLinks(Issue issue, FileNameRenderer fileNameRenderer)
+    private String getChildDescription(Issue issue, FileNameRenderer fileNameRenderer)
     {
+        FlowIssueAdditionalProperties additionalProperties = getAdditionalProperties(issue);
+        if (additionalProperties == null) {
+            return null;
+        }
         issue.setFileName(issue.getFileName());
         StringBuilder message = new StringBuilder();
-        FlowIssueAdditionalProperties additionalProperties = getAdditionalProperties(issue);
         message.append(IHtmlTags.LIST_ELEM_START_TAG);
         message.append(IHtmlTags.BOLD_START_TAG);
         addCause(message, additionalProperties);
@@ -142,7 +148,7 @@ public class FlowIssueAdditionalProperties
         if (UCollection.isNonEmpty(children)) {
             for (Issue child : children) {
                 message.append(IHtmlTags.LIST_START_TAG);
-                message.append(getChildrenLinks(child, fileNameRenderer));
+                message.append(getChildDescription(child, fileNameRenderer));
                 message.append(IHtmlTags.LIST_END_TAG);
             }
         }
