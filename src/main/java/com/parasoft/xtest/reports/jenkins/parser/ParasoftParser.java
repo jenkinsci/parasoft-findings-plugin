@@ -122,8 +122,9 @@ public class ParasoftParser
             }
             if (reportViolation(violation, rulesImportHandler, "-", issueBuilder)) { //$NON-NLS-1$
                 Issue issue = issueBuilder.build();
-                populateViolationPathElements(violation, issue);
-                report.add(issue);
+                ParasoftIssue parasoftIssue = new ParasoftIssue(issue);
+                populateViolationPathElements(violation, parasoftIssue);
+                report.add(parasoftIssue);
             }
         }
         return report;
