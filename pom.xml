@@ -158,7 +158,7 @@
     </repository>
     <repository>
       <id>pustefix</id>
-      <url>http://www.pustefix-framework.org/repository</url>
+      <url>https://www.pustefix-framework.org/repository</url>
     </repository>
   </repositories>
 
@@ -169,7 +169,7 @@
     </pluginRepository>
     <pluginRepository>
       <id>pustefix</id>
-      <url>http://www.pustefix-framework.org/repository</url>
+      <url>https://www.pustefix-framework.org/repository</url>
     </pluginRepository>
   </pluginRepositories>
 
