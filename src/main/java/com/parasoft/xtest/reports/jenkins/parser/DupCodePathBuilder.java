@@ -16,7 +16,6 @@
 
 package com.parasoft.xtest.reports.jenkins.parser;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,13 +40,11 @@ public class DupCodePathBuilder
 {
     private final IDupCodeViolation _violation;
     private final String _parentKey;
-    private Path _workspace;
 
-    public DupCodePathBuilder(IDupCodeViolation violation, String parentKey, Path workspace)
+    public DupCodePathBuilder(IDupCodeViolation violation, String parentKey)
     {
         _violation = violation;
         _parentKey = parentKey;
-        _workspace = workspace;
     }
 
     public List<Issue> getPath()

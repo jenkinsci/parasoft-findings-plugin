@@ -41,10 +41,10 @@ import com.parasoft.xtest.results.api.IFlowAnalysisViolation;
 import com.parasoft.xtest.results.api.IPathElementAnnotation;
 import com.parasoft.xtest.results.api.IResultLocation;
 
+import edu.hm.hafner.analysis.FileNameResolver;
 import edu.hm.hafner.analysis.Issue;
 import edu.hm.hafner.analysis.IssueBuilder;
 import edu.hm.hafner.analysis.Report;
-import io.jenkins.plugins.analysis.core.util.AbsolutePathGenerator;
 
 public class FlowAnalysisPathBuilder
 {
@@ -308,8 +308,8 @@ public class FlowAnalysisPathBuilder
     {
         Report report = new Report();
         report.addAll(issues);
-        AbsolutePathGenerator apg = new AbsolutePathGenerator();
-        apg.run(report, _workspace);
+        FileNameResolver resolver = new FileNameResolver();
+        resolver.run(report, _workspace.toString(), x -> false);
     }
 
     private Issue createElement(IFlowAnalysisPathElement descriptor, boolean useAnnotation, IssueBuilder issueBuilder)

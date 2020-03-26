@@ -30,10 +30,6 @@ public class DupIssueAdditionalProperties
 {
     private static final long serialVersionUID = -984630394099766160L;
 
-    private String _parentKey;
-    private List<Issue> _children;
-    private String _description;
-
     public DupIssueAdditionalProperties()
     {}
 
@@ -44,35 +40,40 @@ public class DupIssueAdditionalProperties
 
     public String getParentKey()
     {
-        return _parentKey;
+        return (String)get(PARENT_KEY);
     }
+
+    @SuppressWarnings("unchecked")
     public List<Issue> getChildren()
     {
-        return _children;
+        return (List<Issue>)get(CHILDREN_KEY);
     }
+
     public String getDescription()
     {
-        return _description;
+        return (String)get(DESCRIPTION_KEY);
     }
 
     public void setParentKey(String parentKey)
     {
-        _parentKey = parentKey;
+        put(PARENT_KEY, parentKey);
     }
+
     public void setChildren(List<Issue> children)
     {
-        _children = children;
+        put(CHILDREN_KEY, children);
     }
+
     public void setDescription(String description)
     {
-        _description = description;
+        put(DESCRIPTION_KEY, description);
     }
 
     public String getCallHierarchy(FileNameRenderer fileNameRenderer)
     {
         StringBuilder message = new StringBuilder();
         message.append("<ul>"); //$NON-NLS-1$
-        for (Issue child : _children) {
+        for (Issue child : getChildren()) {
             String childDesc = getChildDescription(child, fileNameRenderer);
             if (childDesc != null) {
                 message.append(childDesc);
@@ -88,7 +89,6 @@ public class DupIssueAdditionalProperties
         if (additionalProperties == null) {
             return null;
         }
-        issue.setFileName(issue.getFileName());
         StringBuilder message = new StringBuilder();
 
         message.append(IHtmlTags.LIST_ELEM_START_TAG);
@@ -118,4 +118,8 @@ public class DupIssueAdditionalProperties
         }
         return null;
     }
+
+    public static final String PARENT_KEY = "parentKey"; //$NON-NLS-1$
+	public static final String DESCRIPTION_KEY = "description"; //$NON-NLS-1$
+	public static final String CHILDREN_KEY = "children"; //$NON-NLS-1$
 }

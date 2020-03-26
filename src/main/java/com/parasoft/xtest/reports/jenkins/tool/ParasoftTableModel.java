@@ -6,7 +6,6 @@
  */
 package com.parasoft.xtest.reports.jenkins.tool;
 
-import static j2html.TagCreator.div;
 import static j2html.TagCreator.join;
 import static j2html.TagCreator.p;
 import static j2html.TagCreator.strong;
@@ -31,6 +30,8 @@ import io.jenkins.plugins.analysis.core.model.DescriptionProvider;
 import io.jenkins.plugins.analysis.core.model.DetailsTableModel;
 import io.jenkins.plugins.analysis.core.model.FileNameRenderer;
 import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider.AgeBuilder;
+import io.jenkins.plugins.datatables.TableColumn;
+import io.jenkins.plugins.util.JenkinsFacade;
 import j2html.tags.UnescapedText;
 
 public class ParasoftTableModel
@@ -38,76 +39,46 @@ public class ParasoftTableModel
 {
     private RuleDocumentationReader _ruleDocReader = null;
 
-    public ParasoftTableModel(Run<?, ?> build, AgeBuilder ageBuilder, FileNameRenderer fileNameRenderer, DescriptionProvider descriptionProvider)
+    public ParasoftTableModel(Run<?, ?> build, Report report, FileNameRenderer fileNameRenderer, AgeBuilder ageBuilder,
+        DescriptionProvider descriptionProvider, JenkinsFacade jenkinsFacade)
     {
-        super(ageBuilder, fileNameRenderer, descriptionProvider);
+        super(report, fileNameRenderer, ageBuilder, descriptionProvider, jenkinsFacade);
         _ruleDocReader = new RuleDocumentationReader(build.getRootDir());
     }
 
     @Override
-    public List<Integer> getWidths(Report report)
+    public TableRow getRow(Issue issue)
     {
-        List<Integer> widths = new ArrayList<Integer>();
-        widths.add(1);
-        widths.add(1);
-        if (report.hasPackages()) {
-            widths.add(2);
-        }
-        if (report.hasCategories()) {
-            widths.add(1);
-        }
-        if (report.hasTypes()) {
-            widths.add(1);
-        }
-        widths.add(1);
-        widths.add(1);
-        widths.add(1);
-        widths.add(1);
-        return widths;
+        return new ParasoftTableRow(getAgeBuilder(), getFileNameRenderer(), getDescriptionProvider(), issue, getJenkinsFacade());
     }
 
     @Override
-    public List<String> getHeaders(Report report)
+    public String getId()
     {
-        List<String> visibleColumns = new ArrayList<>();
-        visibleColumns.add(Messages.DETAILS_COLUMN_HEADER);
-        visibleColumns.add(Messages.FILE_COLUMN_HEADER);
-        if (report.hasPackages()) {
-            visibleColumns.add(Messages.PACKAGE_COLUMN_HEADER);
-        }
-        if (report.hasCategories()) {
-            visibleColumns.add(Messages.CATEGORY_COLUMN_HEADER);
-        }
-        if (report.hasTypes()) {
-            visibleColumns.add(Messages.TYPE_COLUMN_HEADER);
-        }
-        visibleColumns.add(Messages.SEVERITY_COLUMN_HEADER);
-        visibleColumns.add(Messages.AGE_COLUMN_HEADER);
-        visibleColumns.add(Messages.AUTHOR_COLUMN_HEADER);
-        visibleColumns.add(Messages.REVISION_COLUMN_HEADER);
-        return visibleColumns;
+        return "issues"; //$NON-NLS-1$
     }
 
     @Override
-    protected void configureColumns(ColumnDefinitionBuilder builder, Report report)
+    public List<TableColumn> getColumns()
     {
-        builder.add("description").add("fileName", "string"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        if (report.hasPackages()) {
-            builder.add("packageName"); //$NON-NLS-1$
-        }
-        if (report.hasCategories()) {
-            builder.add("category"); //$NON-NLS-1$
-        }
-        if (report.hasTypes()) {
-            builder.add("type"); //$NON-NLS-1$
-        }
-        builder.add("severity").add("age").add("author").add("revision"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-    }
+        List<TableColumn> columns = new ArrayList<TableColumn>();
 
-    @Override
-    public TableRow getRow(Report report, Issue issue)
-    {
-        return new ParasoftTableRow(getAgeBuilder(), getFileNameRenderer(), getDescriptionProvider(), issue);
+        columns.add(createDetailsColumn());
+        columns.add(createFileColumn());
+        if (getReport().hasPackages()) {
+            columns.add(new TableColumn(Messages.PACKAGE_COLUMN_HEADER, "packageName").setWidth(2)); //$NON-NLS-1$
+        }
+        if (getReport().hasCategories()) {
+            columns.add(new TableColumn(Messages.CATEGORY_COLUMN_HEADER, "category")); //$NON-NLS-1$
+        }
+        if (getReport().hasTypes()) {
+            columns.add(new TableColumn(Messages.TYPE_COLUMN_HEADER, "type")); //$NON-NLS-1$
+        }
+        columns.add(createSeverityColumn());
+        columns.add(createAgeColumn());
+        columns.add(new TableColumn(Messages.AUTHOR_COLUMN_HEADER, "author")); //$NON-NLS-1$
+        columns.add(new TableColumn(Messages.REVISION_COLUMN_HEADER, "revision")); //$NON-NLS-1$
+        return columns;
     }
 
     public class ParasoftTableRow
@@ -121,9 +92,10 @@ public class ParasoftTableModel
         private String author = "-"; //$NON-NLS-1$
         private String revision = "-"; //$NON-NLS-1$
 
-        protected ParasoftTableRow(AgeBuilder ageBuilder, FileNameRenderer fileNameRenderer, DescriptionProvider descriptionProvider, Issue issue)
+        protected ParasoftTableRow(AgeBuilder ageBuilder, FileNameRenderer fileNameRenderer, DescriptionProvider descriptionProvider, Issue issue,
+            JenkinsFacade jenkinsFacade)
         {
-            super(ageBuilder, fileNameRenderer, descriptionProvider, issue);
+            super(ageBuilder, fileNameRenderer, descriptionProvider, issue, jenkinsFacade);
             description = formatDetails(issue, descriptionProvider.getDescription(issue));
             packageName = formatProperty("packageName", issue.getPackageName()); //$NON-NLS-1$
             category = formatProperty("category", issue.getCategory()); //$NON-NLS-1$
@@ -132,9 +104,11 @@ public class ParasoftTableModel
 
             Serializable additionalProperties = issue.getAdditionalProperties();
             if (additionalProperties instanceof ParasoftIssueAdditionalProperties) {
-                ParasoftIssueAdditionalProperties parasoftIssueAdditionalProperties = (ParasoftIssueAdditionalProperties) additionalProperties;
-                author = formatProperty("author", parasoftIssueAdditionalProperties.getAuthor()); //$NON-NLS-1$
-                revision = formatProperty("revision", parasoftIssueAdditionalProperties.getRevision()); //$NON-NLS-1$
+                ParasoftIssueAdditionalProperties parasoftIssueAdditionalProperties = (ParasoftIssueAdditionalProperties)additionalProperties;
+                author = formatProperty("additionalProperties(" + ParasoftIssueAdditionalProperties.AUTHOR_KEY + ")", //$NON-NLS-1$ //$NON-NLS-2$
+                    parasoftIssueAdditionalProperties.getAuthor());
+                revision = formatProperty("additionalProperties(" + ParasoftIssueAdditionalProperties.REVISION_KEY + ")", //$NON-NLS-1$ //$NON-NLS-2$
+                    parasoftIssueAdditionalProperties.getRevision());
             }
         }
 
@@ -207,7 +181,7 @@ public class ParasoftTableModel
             } else {
                 details = join(p(strong().with(new UnescapedText(issue.getMessage()))), additionalDescription);
             }
-            return div().withClass("details-control").attr("data-description", render(details)).render(); //$NON-NLS-1$ //$NON-NLS-2$
+            return TableColumn.renderDetailsColumn(render(details), getJenkinsFacade());
         }
     }
 }

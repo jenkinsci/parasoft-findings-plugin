@@ -122,9 +122,8 @@ public class ParasoftParser
             }
             if (reportViolation(violation, rulesImportHandler, "-", issueBuilder)) { //$NON-NLS-1$
                 Issue issue = issueBuilder.build();
-                ParasoftIssue parasoftIssue = new ParasoftIssue(issue);
-                populateViolationPathElements(violation, parasoftIssue);
-                report.add(parasoftIssue);
+                populateViolationPathElements(violation, issue);
+                report.add(issue);
             }
         }
         return report;
@@ -139,9 +138,8 @@ public class ParasoftParser
             additionalProperties
                 .setChildren(new FlowAnalysisPathBuilder((IFlowAnalysisViolation) violation, issue.getId().toString(), workspacePath).getPath());
         } else if (properties instanceof DupIssueAdditionalProperties) {
-            DupIssueAdditionalProperties additionalProperties = (DupIssueAdditionalProperties) properties;
-            additionalProperties
-                .setChildren(new DupCodePathBuilder((IDupCodeViolation) violation, issue.getId().toString(), workspacePath).getPath());
+            DupIssueAdditionalProperties additionalProperties = (DupIssueAdditionalProperties)properties;
+            additionalProperties.setChildren(new DupCodePathBuilder((IDupCodeViolation)violation, issue.getId().toString()).getPath());
         }
     }
 

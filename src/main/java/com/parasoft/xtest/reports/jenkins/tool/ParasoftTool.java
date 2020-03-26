@@ -49,6 +49,7 @@ import io.jenkins.plugins.analysis.core.model.IconLabelProvider;
 import io.jenkins.plugins.analysis.core.model.ReportScanningTool;
 import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider;
 import io.jenkins.plugins.analysis.core.util.LogHandler;
+import io.jenkins.plugins.util.JenkinsFacade;
 
 public class ParasoftTool
     extends ReportScanningTool
@@ -182,9 +183,9 @@ public class ParasoftTool
         }
 
         @Override
-        public DetailsTableModel getIssuesModel(Run<?, ?> build, String url)
+        public DetailsTableModel getIssuesModel(Run<?, ?> build, String url, Report report)
         {
-            return new ParasoftTableModel(build, getAgeBuilder(build, url), getFileNameRenderer(build), this);
+            return new ParasoftTableModel(build, report, getFileNameRenderer(build), getAgeBuilder(build, url), this, new JenkinsFacade());
         }
 
         @Override

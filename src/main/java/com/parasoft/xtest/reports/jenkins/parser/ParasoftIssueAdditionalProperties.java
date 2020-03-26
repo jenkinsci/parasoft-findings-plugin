@@ -16,37 +16,39 @@
 
 package com.parasoft.xtest.reports.jenkins.parser;
 
-import java.io.Serializable;
+import java.util.HashMap;
 
 public class ParasoftIssueAdditionalProperties
-    implements Serializable
+		extends HashMap<String, Object>
 {
-    private static final long serialVersionUID = -5014146322978138084L;
-
-    private String _author;
-    private String _revision;
-    private String _analyzer;
+	private static final long serialVersionUID = -5014146322978138084L;
 
     public ParasoftIssueAdditionalProperties()
     {}
 
     public ParasoftIssueAdditionalProperties(String author, String revision, String analyzer)
     {
-        _author = author;
-        _revision = revision;
-        _analyzer = analyzer;
+        put(AUTHOR_KEY, author);
+        put(REVISION_KEY, revision);
+        put(ANALYZER_KEY, analyzer);
     }
 
     public String getAuthor()
     {
-        return _author;
+        return (String)get(AUTHOR_KEY);
     }
+
     public String getRevision()
     {
-        return _revision;
+        return (String)get(REVISION_KEY);
     }
+
     public String getAnalyzer()
     {
-        return _analyzer;
+        return (String)get(ANALYZER_KEY);
     }
+
+    public static final String ANALYZER_KEY = "analyzer"; //$NON-NLS-1$
+    public static final String REVISION_KEY = "revision"; //$NON-NLS-1$
+    public static final String AUTHOR_KEY = "author"; //$NON-NLS-1$
 }

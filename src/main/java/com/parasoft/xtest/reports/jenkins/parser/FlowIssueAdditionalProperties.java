@@ -31,12 +31,6 @@ public class FlowIssueAdditionalProperties
 {
     private static final long serialVersionUID = 3241507213664883643L;
 
-    private String _parentKey;
-    private List<Issue> _children;
-    private String _description;
-    private String _cause = null;
-    private String _point = null;
-
     public FlowIssueAdditionalProperties()
     {}
 
@@ -47,51 +41,60 @@ public class FlowIssueAdditionalProperties
 
     public String getParentKey()
     {
-        return _parentKey;
+        return (String)get(PARENT_KEY);
     }
+
+    @SuppressWarnings("unchecked")
     public List<Issue> getChildren()
     {
-        return _children;
+        return (List<Issue>)get(CHILDREN_KEY);
     }
+
     public String getDescription()
     {
-        return _description;
+        return (String)get(DESCRIPTION_KEY);
     }
+
     public String getCause()
     {
-        return _cause;
+        return (String)get(CAUSE_KEY);
     }
+
     public String getPoint()
     {
-        return _point;
+        return (String)get(POINT_KEY);
     }
 
     public void setParentKey(String parentKey)
     {
-        _parentKey = parentKey;
+        put(PARENT_KEY, parentKey);
     }
+
     public void setChildren(List<Issue> children)
     {
-        _children = children;
+        put(CHILDREN_KEY, children);
     }
+
     public void setDescription(String description)
     {
-        _description = description;
+        put(DESCRIPTION_KEY, description);
     }
+
     public void setCause(String cause)
     {
-        _cause = cause;
+        put(CAUSE_KEY, cause);
     }
+
     public void setPoint(String point)
     {
-        _point = point;
+        put(POINT_KEY, point);
     }
 
     public String getCallHierarchy(FileNameRenderer fileNameRenderer)
     {
         StringBuilder message = new StringBuilder();
         message.append("<ul>"); //$NON-NLS-1$
-        for (Issue child : _children) {
+        for (Issue child : getChildren()) {
             String childDesc = getChildDescription(child, fileNameRenderer);
             if (childDesc != null) {
                 message.append(childDesc);
@@ -107,7 +110,7 @@ public class FlowIssueAdditionalProperties
         if (additionalProperties == null) {
             return null;
         }
-        issue.setFileName(issue.getFileName());
+
         StringBuilder message = new StringBuilder();
         message.append(IHtmlTags.LIST_ELEM_START_TAG);
         message.append(IHtmlTags.BOLD_START_TAG);
@@ -179,4 +182,10 @@ public class FlowIssueAdditionalProperties
         }
         return null;
     }
+
+    public static final String CAUSE_KEY = "cause"; //$NON-NLS-1$
+    public static final String POINT_KEY = "point"; //$NON-NLS-1$
+    public static final String PARENT_KEY = "parentKey"; //$NON-NLS-1$
+    public static final String DESCRIPTION_KEY = "description"; //$NON-NLS-1$
+    public static final String CHILDREN_KEY = "children"; //$NON-NLS-1$
 }
