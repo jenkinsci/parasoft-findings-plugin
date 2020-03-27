@@ -165,7 +165,7 @@ public class RuleDocumentationStorage
                     Logger.getLogger().debug("Created rules dir: " + parent.getAbsolutePath()); //$NON-NLS-1$
                 }
             }
-            writer = new OutputStreamWriter(new FileOutputStream(file.getAbsolutePath()), IStringConstants.UTF_8);
+            writer = new OutputStreamWriter(new FileOutputStream(file.getAbsolutePath()), IStringConstants.UTF_8); // parasoft-suppress BD.RES.LEAKS "Closed in finally"
             writer.write(contents);
         } catch (IOException e) {
             Logger.getLogger().warnTrace(e);
@@ -207,7 +207,7 @@ public class RuleDocumentationStorage
                 return null;
             }
 
-            XRestRulesClient rulesClient = XRestRulesClient.create(registry);
+            XRestRulesClient rulesClient = XRestRulesClient.create(registry, context);
             if (rulesClient == null) {
                 Logger.getLogger().info("Rules service client could not be created."); //$NON-NLS-1$
             }
