@@ -23,7 +23,7 @@
     <jenkins.version>2.138.4</jenkins.version>
     <java.level>8</java.level>
     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
-    <xtest.version>10.4.2.20190510</xtest.version>
+    <xtest.version>10.4.4.20200320</xtest.version>
   </properties>
 
   <developers>
@@ -266,6 +266,11 @@
     <dependency>
       <groupId>com.parasoft.xtest.common</groupId>
       <artifactId>com.parasoft.xtest.common</artifactId>
+      <version>${xtest.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.parasoft.xtest.common</groupId>
+      <artifactId>com.parasoft.xtest.common.base</artifactId>
       <version>${xtest.version}</version>
     </dependency>
     <dependency>
