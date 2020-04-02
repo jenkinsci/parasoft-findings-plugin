@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Thu Apr 02 16:16:32 CEST 2020
+org.json-1.0.0.jar>=
+org.json-1.0.0.pom>=

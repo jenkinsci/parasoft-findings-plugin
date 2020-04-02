@@ -5,4 +5,5 @@
   <groupId>com.parasoft.xtest.libs</groupId>
   <artifactId>org.json</artifactId>
   <version>1.0.0</version>
+  <description>POM was created from install:install-file</description>
 </project>
