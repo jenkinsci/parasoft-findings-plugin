@@ -156,20 +156,11 @@
       <id>parasoft</id>
       <url>${parasoft.repository.url}</url>
     </repository>
-    <repository>
-      <id>pustefix</id>
-      <url>https://www.pustefix-framework.org/repository</url>
-    </repository>
   </repositories>
-
   <pluginRepositories>
     <pluginRepository>
       <id>repo.jenkins-ci.org</id>
       <url>https://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-    <pluginRepository>
-      <id>pustefix</id>
-      <url>https://www.pustefix-framework.org/repository</url>
     </pluginRepository>
   </pluginRepositories>
 
@@ -339,11 +330,10 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.icl.saxon</groupId>
+      <groupId>saxon</groupId>
       <artifactId>saxon</artifactId>
-      <version>6.5.5</version>
+      <version>6.5.3</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
-
 </project>
