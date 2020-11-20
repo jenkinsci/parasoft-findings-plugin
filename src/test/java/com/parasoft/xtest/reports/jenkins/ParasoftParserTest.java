@@ -227,7 +227,7 @@ public class ParasoftParserTest
     @Test
     public void parseCppStdViolsTest_10_5()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.0_desktop_static.xml"); //$NON-NLS-1$
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.0_static.xml"); //$NON-NLS-1$
         String[] rules = { "INIT-06", "OPT-14", "OPT-14", "CODSTA-CPP-04", "OPT-14", "OOP-23"};
         String[] authors = { "tester", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski"};
         String[] categories = { "Initialization", "Optimization", "Optimization", "Coding Conventions for C++", "Optimization", "Object Oriented"};
