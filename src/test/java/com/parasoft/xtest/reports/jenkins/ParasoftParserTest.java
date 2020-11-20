@@ -225,6 +225,35 @@ public class ParasoftParserTest
     }
 
     @Test
+    public void parseCppStdViolsTest_10_5()
+    {
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.0_desktop_static.xml"); //$NON-NLS-1$
+        String[] rules = { "INIT-06", "OPT-14", "OPT-14", "CODSTA-CPP-04", "OPT-14", "OOP-23"};
+        String[] authors = { "tester", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski"};
+        String[] categories = { "Initialization", "Optimization", "Optimization", "Coding Conventions for C++", "Optimization", "Object Oriented"};
+        assertEquals(6, report.getSize());
+        int i = 0;
+        for (Issue issue : report) {
+            Serializable properties = issue.getAdditionalProperties();
+            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
+            ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties)properties;
+
+            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer()); //$NON-NLS-1$
+            assertEquals(rules[i], issue.getType());
+            assertEquals(categories[i], issue.getCategory());
+            assertEquals(authors[i], additionalProperties.getAuthor());
+            i++;
+        }
+    }
+
+    @Test
+    public void parseJtestStdViolsTest_10_5()
+    {
+        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10.5.0_static.xml"); //$NON-NLS-1$
+        assertEquals(67, report.getSize());
+    }
+
+    @Test
     public void parseCppDesktopStdViolsCategoriesTest()
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static_categories.xml"); //$NON-NLS-1$

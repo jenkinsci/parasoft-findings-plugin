@@ -15,10 +15,10 @@
  */
 package com.parasoft.xtest.reports.jenkins;
 
+import java.io.File;
+
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.File;
 
 public class SoatestReportsXslTransformationTest
 {
@@ -171,6 +171,29 @@ public class SoatestReportsXslTransformationTest
         } catch (Exception e) {
             XUnitTransformer.doFail(e);
         }
+    }
+
+    @Test
+    public void parseSOAtestTest_10_5_XUnitOutput()
+    {
+        try {
+            String reportFileName = TEST_RESOURCES + "xml/soatest_10.5.0.xml";
+            String outputFileName = "soatest_10.5.0-output.xml";
+            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, SOATEST_XUNIT_XSL);
+
+            TagCounterVerifier verifier = new TagCounterVerifier();
+            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
+
+            assertElementsCounts(verifier, 12, 153, 82);
+        } catch (Exception e) {
+            XUnitTransformer.doFail(e);
+        }
+    }
+
+    @Test
+    public void parseSOAtestTest_10_5_XUnitTransform()
+    {
+        soatestXunitTransformation(TEST_RESOURCES + "xml/soatest_10.5.0.xml", "soatest_10.5.0-output.xml");
     }
 
     private void assertElementsCounts(TagCounterVerifier verifier, int expectedTestSuiteCount, int expectedTestCaseCount, int expectedFailuresCount)
