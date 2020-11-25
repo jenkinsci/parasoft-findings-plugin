@@ -40,8 +40,5 @@ The plugin can consume the following report types:
 
 ## Documentation
 
-* For documentation please visit the link [Parasoft Findings for
+For documentation please visit the link [Parasoft Findings for
 Jenkins](https://docs.parasoft.com/display/FINDS/Parasoft+Findings+for+Jenkins)
-* [Changelog](https://github.com/jenkinsci/parasoft-findings-plugin/releases)
-* [Plugin Javadoc](http://javadoc.jenkins.io/plugin/parasoft-findings/)
-
