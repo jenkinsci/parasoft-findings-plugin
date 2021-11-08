@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Oct 29 08:42:57 CEST 2021
+com.parasoft.xtest.results-10.5.2.20211029.jar>=
+com.parasoft.xtest.results-10.5.2.20211029.pom>=

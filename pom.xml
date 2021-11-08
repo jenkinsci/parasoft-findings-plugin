@@ -8,7 +8,7 @@
 
   <groupId>com.parasoft</groupId>
   <artifactId>parasoft-findings</artifactId>
-  <version>10.5.1-SNAPSHOT</version>
+  <version>10.5.2-SNAPSHOT</version>
   <packaging>hpi</packaging>
 
   <name>Parasoft Findings</name>
@@ -23,7 +23,7 @@
     <jenkins.version>2.138.4</jenkins.version>
     <java.level>8</java.level>
     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
-    <xtest.version>10.5.0.20201016</xtest.version>
+    <xtest.version>10.5.2.20211029</xtest.version>
   </properties>
 
   <developers>
@@ -200,28 +200,33 @@
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
-      <version>4.5.2</version>
+      <version>4.5.13</version>
     </dependency>
     <!--  shared by xtest and warnings-ng - synchronize with xtest -->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpcore</artifactId>
-      <version>4.4.4</version>
+      <version>4.4.14</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+      <version>4.4</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>fluent-hc</artifactId>
-      <version>4.5.2</version>
+      <version>4.5.13</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpmime</artifactId>
-      <version>4.5.2</version>
+      <version>4.5.13</version>
     </dependency>
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
-      <version>1.9</version>
+      <version>1.15</version>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
@@ -231,7 +236,7 @@
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
-      <version>1.10.9</version>
+      <version>1.10.11</version>
     </dependency>
     <dependency>
       <groupId>commons-httpclient</groupId>
