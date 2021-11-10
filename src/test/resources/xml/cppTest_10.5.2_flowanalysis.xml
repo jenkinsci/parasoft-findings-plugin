@@ -1,0 +1,468 @@
+<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="Default Project-2021-11-10" date="11/10/21 11:56:47" machine="CONQUEROR" project="Default Project" tag="Flow Analysis Standard" time="2021-11-10T11:56:47+01:00" toolName="C++test" toolVer="2021.2.0.20211105B1600" user="mgorecka">
+   <TestConfig machine="CONQUEROR" name="Flow Analysis Standard" pseudoUrl="c++test.builtin://Flow Analysis Standard" user="mgorecka"/>
+   <Authors>
+      <Author id="dev1" name="mgorecka"/>
+   </Authors>
+   <VersionInfos>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="IExecutionViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="InsureViolation" ver="3"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.scope" resultId="IScopeProjectInfo" ver="3"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricEstimationInfo" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationInfo" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationProjectInfo" ver="2"/>
+   </VersionInfos>
+   
+   
+   <Scope>
+      <ProjectInformations>
+         <ScopeProjectInfo fltFiles="18" fltLns="3381" project="/ATM" totFiles="18" totLns="3381"/>
+      </ProjectInformations>
+   </Scope>
+   <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:08">
+      <Goal mode="1" name="Static"/>
+      <Projects>
+         <Project bdCheckedFiles="2" bdTotalFiles="2" checkedFiles="8" checkedLns="259" name="ATM" qfixErrs="0" suppErrs="0" totErrs="2" totFiles="8" totLns="259"/>
+      </Projects>
+      <Rules>
+         <RulesList>
+            <Rule cat="BD-API" desc="Do not pass incorrect values to library functions" id="BD-API-BADPARAM" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-API" desc="Do not pass negative values to functions expecting non-negative arguments" id="BD-API-NEGPARAM" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-API" desc="Do not check for a non-negative value after passing as a non-negative argument" id="BD-API-REVNEGPARAM" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-CO" desc="Do not access iterator out of range" id="BD-CO-ITOUT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-CO" desc="Use valid references, pointers, and iterators to reference elements of a basic_string" id="BD-CO-STRMOD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-CO" desc="Do not pass empty container iterators to std algorithms as destinations" id="BD-CO-EMPCON" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-CO" desc="Do not modify container while iterating over it" id="BD-CO-ITMOD" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Always catch exceptions" id="BD-PB-EXCEPT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid use before initialization" id="BD-PB-NOTINIT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid null pointer dereferencing" id="BD-PB-NP" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid buffer overflow due to defining incorrect format limits" id="BD-PB-OVERFFMT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow due to reading a not zero terminated string" id="BD-PB-OVERFNZT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow when reading from a buffer" id="BD-PB-OVERFRD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow when writing to a buffer" id="BD-PB-OVERFWR" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overwriting method parameters" id="BD-PB-POVR" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not point to a wrapped object that has been freed" id="BD-PB-WRAPESC" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid division by zero" id="BD-PB-ZERO" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid accessing arrays out of bounds" id="BD-PB-ARRAY" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="A pointer pointing to an element of an array of objects shall not be passed to a smart pointer of single object type" id="BD-PB-ARRPTR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid incorrect shift operations" id="BD-PB-BADSHIFT" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Use the correct byte ordering when transferring data between systems" id="BD-PB-BYTEORD" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid conditions that always evaluate to the same value" id="BD-PB-CC" sev="2">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Consistently check the returned value of non-void functions" id="BD-PB-CHECKRET" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Always check the returned value of non-void function" id="BD-PB-CHECKRETGEN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not check for null after dereferencing" id="BD-PB-DEREF" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not modify the alignment of objects by calling realloc()" id="BD-PB-DNMPTR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="The macro EOF should be compared with the unmodified return value from the Standard Library function" id="BD-PB-EOFCOMP" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Properly use errno value" id="BD-PB-ERRNO" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Properly define exit handlers" id="BD-PB-EXITHAN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Reset strings on fgets() or fgetws() failure" id="BD-PB-FGETS" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Only use values for fsetpos() that are returned from fgetpos()" id="BD-PB-FSETPOS" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not rely on an environment pointer following an operation that may invalidate it" id="BD-PB-INVENV" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Pointers returned by certain Standard Library functions should not be used following a subsequent call to the same or related function" id="BD-PB-INVRET" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="The Standard Library function memcmp shall not be used to compare null terminated strings" id="BD-PB-MCCSTR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Properly define new handlers" id="BD-PB-NEWHAN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid throwing exceptions from functions that are declared not to throw" id="BD-PB-NOEXCEPT" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Never return from functions that should not return" id="BD-PB-NORETURN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid accessing arrays and pointers out of bounds" id="BD-PB-OVERFARRAY" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="An object shall not be assigned or copied to an overlapping object" id="BD-PB-OVERLAP" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not treat arrays polymorphically" id="BD-PB-POLARR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not compare two unrelated pointers" id="BD-PB-PTRCMP" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not subtract two pointers that do not address elements of the same array" id="BD-PB-PTRSUB" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not store an already-owned pointer value in an unrelated smart pointer" id="BD-PB-PTRVALUE" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not call putenv() with a pointer to an automatic variable as the argument" id="BD-PB-PUTENV" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not return from a computational exception signal handler" id="BD-PB-SIGRETURN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not alternately input and output from a stream without an intervening flush or positioning call" id="BD-PB-STREAMINOUT" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not subsequently use the argument to std::forward" id="BD-PB-SUBSEQFRWD" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not rely on the value of a moved-from object" id="BD-PB-SUBSEQMOVE" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid switch with unreachable branches" id="BD-PB-SWITCH" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Properly define terminate handlers" id="BD-PB-TERMHAN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Properly define unexpected handlers" id="BD-PB-UNEXPHAN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not invoke class's virtual functions from any of its constructors" id="BD-PB-VCTOR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not invoke class's virtual functions from its destructor" id="BD-PB-VDTOR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Ensure the size of the variable length array is in valid range" id="BD-PB-VLASIZE" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="The same file shall not be opened for read and write access at the same time on different streams" id="BD-PB-WRRDSTR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid writing to a stream which has been opened as read only" id="BD-PB-WRROS" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid integer overflows" id="BD-PB-INTOVERF" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Ensure strings are zero terminated" id="BD-PB-NZTS" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Always throw the created std::exception object" id="BD-PB-STDEXC" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Suspicious setting of stream flags" id="BD-PB-STREAMFLAGS" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Restore stream format" id="BD-PB-STREAMFMT" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid unused values" id="BD-PB-VOVR" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Guarantee that container indices are within the valid range" id="BD-PB-VALRANGE" sev="4">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Properly deallocate dynamically allocated resources" id="BD-RES-BADDEALLOC" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Ensure deallocation functions guarantee resource freeing" id="BD-RES-BADFREEF" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Do not use resources that have been freed" id="BD-RES-FREE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Allocate sufficient memory to hold an object of a given type" id="BD-RES-INSUFMEM" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Do not free resources using invalid pointers" id="BD-RES-INVFREE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Ensure resources are freed" id="BD-RES-LEAKS" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Avoid cyclic shared_ptr references" id="BD-RES-CSP" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Do not create variables on the stack above the defined limits" id="BD-RES-STACKLIM" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid tainted data in array indexes" id="BD-SECURITY-ARRAY" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Prevent buffer overflows from tainted data" id="BD-SECURITY-BUFWRITE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against integer overflow/underflow from tainted data" id="BD-SECURITY-INTOVERF" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid buffer overflow from tainted data due to defining incorrect format limits" id="BD-SECURITY-OVERFFMT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid buffer read overflow from tainted data" id="BD-SECURITY-OVERFRD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid buffer write overflow from tainted data" id="BD-SECURITY-OVERFWR" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against command injection" id="BD-SECURITY-TDCMD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid printing tainted data on the output console" id="BD-SECURITY-TDCONSOLE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against environment injection" id="BD-SECURITY-TDENV" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against file name injection" id="BD-SECURITY-TDFNAMES" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Exclude unsanitized user input from format strings" id="BD-SECURITY-TDINPUT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against SQL injection" id="BD-SECURITY-TDSQL" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid passing sensitive data to functions that write to log files" id="BD-SECURITY-SENSLOG" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Validate potentially tainted data before it is used to determine the size of memory allocation" id="BD-SECURITY-TDALLOC" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Disable resolving XML external entities (XXE) in libxerces-c" id="BD-SECURITY-XXEXRC" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid double locking" id="BD-TRS-DLOCK" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid race conditions when using fork and file descriptors" id="BD-TRS-FORKFILE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not abandon unreleased locks" id="BD-TRS-LOCK" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not acquire locks in different order" id="BD-TRS-ORDER" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid race conditions while checking for the existence of a symbolic link" id="BD-TRS-SYMLINK" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not use blocking functions while holding a lock" id="BD-TRS-TSHL" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Declare objects shared between POSIX threads with appropriate storage durations" id="BD-TRS-ARG" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Variable should be used in context of single critical section" id="BD-TRS-DIFCS" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid race conditions while accessing files" id="BD-TRS-FRC" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not join or detach a thread that was previously joined or detached" id="BD-TRS-JOINDETACH" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+         </RulesList>
+         <CategoriesList>
+            <Category desc="Flow Analysis" name="BD" total="118">
+               <Category desc="Incorrect API usage" name="BD-API" total="6">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Category desc="Possible Bugs" name="BD-PB" total="65">
+                  <Stats authTot="2;" authUrg="2;" total="2"/>
+               </Category>
+               <Category desc="Resources" name="BD-RES" total="8">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Category desc="Security" name="BD-SECURITY" total="17">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Category desc="Containers" name="BD-CO" total="5">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Category desc="Threads &amp; Synchronization" name="BD-TRS" total="15">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Category>
+         </CategoriesList>
+         <SeverityList>
+            <Severity id="2">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Severity>
+            <Severity id="4">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Severity>
+         </SeverityList>
+      </Rules>
+      
+  <StdViols>
+    <FlowViol msg="Condition &quot;!(bool)this->myCurrentAccount&quot; always evaluates to true" ln="12" ruleSAFMsg="Point where senseless condition is used" auth="mgorecka" sev="2" rule="BD-PB-CC" ruleSCSCMsg="Start of the path" tool="c++test" id="873174745" lang="cpp" locType="sr" urgent="true" config="3" hash="-318977119" locStartln="12" locStartPos="0" locEndLn="13" locEndPos="0" locFile="/ATM/ATM/ATM.cxx" FirstElSrcRngStartln="10" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="11" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/ATM/ATM/ATM.cxx">
+      <Props/>
+      <ElDescList>
+        <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/ATM/ATM/ATM.cxx" srcRnghash="-318977119" ln="10" ElType=".C" desc="void ATM::viewAccount(int accountNumber, string password)" rngLn="10">
+          <Props/>
+          <Anns>
+            <Ann msg="Start of the path" kind="cause"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="12" srcRngStartPos="0" srcRngEndLn="13" srcRngEndPos="0" srcRngFile="/ATM/ATM/ATM.cxx" srcRnghash="-318977119" ln="12" ElType="!" desc="myBank->getAccount(...)" rngLn="12">
+          <ElDescList>
+            <ElDesc srcRngStartln="17" srcRngStartPos="0" srcRngEndLn="18" srcRngEndPos="0" srcRngFile="/ATM/ATM/Bank.cxx" srcRnghash="-1422048276" ln="17" ElType="." desc="Account* userAccount = NULL;" rngLn="17">
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="18" srcRngStartPos="0" srcRngEndLn="19" srcRngEndPos="0" srcRngFile="/ATM/ATM/Bank.cxx" srcRnghash="-1422048276" ln="18" ElType="." desc="if (myAccounts.size() > num)" rngLn="18">
+              <Props/>
+              <Anns>
+                <Ann msg="Condition evaluation: (this->myAccounts.size() > num) (assuming false)" kind="condEval"/>
+              </Anns>
+            </ElDesc>
+            <ElDesc srcRngStartln="22" srcRngStartPos="0" srcRngEndLn="23" srcRngEndPos="0" srcRngFile="/ATM/ATM/Bank.cxx" srcRnghash="-1422048276" ln="22" ElType="." desc="if ((userAccount != NULL) &amp;&amp; (password.compare(userAccount->getPassword()) != 0))" rngLn="22">
+              <Props/>
+              <Anns>
+                <Ann msg="Condition evaluation: (userAccount != 0) (false)" kind="condEval"/>
+                <Ann msg="Condition evaluation: (userAccount != NULL) &amp;&amp; (password.compare(userAccount->getPassword()) != 0 (false)" kind="condEval"/>
+              </Anns>
+            </ElDesc>
+            <ElDesc srcRngStartln="28" srcRngStartPos="0" srcRngEndLn="29" srcRngEndPos="0" srcRngFile="/ATM/ATM/Bank.cxx" srcRnghash="-1422048276" ln="28" ElType="!" desc="return NULL;" rngLn="28">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="12" srcRngStartPos="0" srcRngEndLn="13" srcRngEndPos="0" srcRngFile="/ATM/ATM/ATM.cxx" srcRnghash="-318977119" ln="12" ElType=".P" desc="if ( !(myCurrentAccount = myBank->getAccount(accountNumber, password)) )" rngLn="12">
+          <Props/>
+          <Anns>
+            <Ann msg="Point where senseless condition is used" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="The &quot;this->myAccounts&quot; variable may be accessed out of bounds at index &quot;num&quot;, which may have a negative value" ln="20" ruleSAFMsg="Out of bounds access point" auth="mgorecka" sev="4" rule="BD-PB-VALRANGE" ruleSCSCMsg="Start of the path" tool="c++test" id="-1592769229" lang="cpp" locType="sr" urgent="true" config="3" hash="-1422048276" locStartln="20" locStartPos="0" locEndLn="21" locEndPos="0" locFile="/ATM/ATM/Bank.cxx" FirstElSrcRngStartln="15" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="16" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/ATM/ATM/Bank.cxx">
+      <Props/>
+      <ElDescList>
+        <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/ATM/ATM/Bank.cxx" srcRnghash="-1422048276" ln="15" ElType=".C" desc="Account* Bank::getAccount(int num, string password)" rngLn="15">
+          <Props/>
+          <Anns>
+            <Ann msg="Start of the path" kind="cause"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="17" srcRngStartPos="0" srcRngEndLn="18" srcRngEndPos="0" srcRngFile="/ATM/ATM/Bank.cxx" srcRnghash="-1422048276" ln="17" ElType="." desc="Account* userAccount = NULL;" rngLn="17">
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="18" srcRngStartPos="0" srcRngEndLn="19" srcRngEndPos="0" srcRngFile="/ATM/ATM/Bank.cxx" srcRnghash="-1422048276" ln="18" ElType="." desc="if (myAccounts.size() > num)" rngLn="18">
+          <Props/>
+          <Anns>
+            <Ann msg="Condition evaluation: (this->myAccounts.size() > num) (assuming true)" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="20" srcRngStartPos="0" srcRngEndLn="21" srcRngEndPos="0" srcRngFile="/ATM/ATM/Bank.cxx" srcRnghash="-1422048276" ln="20" ElType=".P" desc="myAccounts[num]" rngLn="20">
+          <Props/>
+          <Anns>
+            <Ann msg="Out of bounds access point" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+  </StdViols>
+
+      <Supps/>
+      
+      
+      <TestedFilesDetails>
+         
+         <Total name="Suppressed / Total" supp="0" total="2">
+            
+            <Project name="ATM" supp="0" total="2">
+               
+               <Res name="ATM" supp="0" total="2">
+                  
+                  <Res loc="/ATM/ATM/Bank.cxx" locType="sr" name="Bank.cxx" supp="0" total="1"/>
+                  
+                  <Res loc="/ATM/ATM/ATM.cxx" locType="sr" name="ATM.cxx" supp="0" total="1"/>
+                  
+                  <Res name="Account.cxx" supp="0" total="0"/>
+                  
+                  <Res name="BaseDisplay.cxx" supp="0" total="0"/>
+               
+               </Res>
+               
+               <Res name="ATM/include" supp="0" total="0">
+                  
+                  <Res name="Bank.hxx" supp="0" total="0"/>
+                  
+                  <Res name="ATM.hxx" supp="0" total="0"/>
+                  
+                  <Res name="Account.hxx" supp="0" total="0"/>
+                  
+                  <Res name="BaseDisplay.hxx" supp="0" total="0"/>
+               
+               </Res>
+            
+            </Project>
+         
+         </Total>
+      
+      </TestedFilesDetails>
+   
+   </CodingStandards>
+   <Metrics ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:08">
+      
+   </Metrics>
+   <AssocUrls/>
+</ResultsSession>

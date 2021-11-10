@@ -51,54 +51,41 @@ public class SoatestReportsXslTransformationTest
     @Test
     public void testSoatestDesktop9FunctionalOutputXUnit()
     {
-        try {
-            String reportFileName = TEST_RESOURCES + "xml/soatestDesktop9Functional.xml";
-            String outputFileName = "soatestDesktop9Functional-output.xml";
-            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, SOATEST_XUNIT_XSL);
+        transform("soatestDesktop9Functional.xml", "soatestDesktop9Functional-output.xml", 2, 6, 6);
+    }
 
-            TagCounterVerifier verifier = new TagCounterVerifier();
-            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
-
-            assertElementsCounts(verifier, 2,6,6);
-        } catch (Exception e) {
-            XUnitTransformer.doFail(e);
-        }
+    @Test
+    public void testSoatestDesktop10FunctionalOutputXUnit()
+    {
+        transform("soatest_desktop_10_5_2.xml", "soatestDesktop10Functional-output.xml", 3, 6, 6);
     }
 
     @Test
     public void testSoatestDesktop9FunctionalIterationsOutputXUnit()
     {
-        try {
-            String reportFileName = TEST_RESOURCES + "xml/soatestDesktop9FunctionalIterations.xml";
-            String outputFileName = "soatestDesktop9FunctionalIterations-output.xml";
-            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, SOATEST_XUNIT_XSL);
-
-            TagCounterVerifier verifier = new TagCounterVerifier();
-            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
-
-            assertElementsCounts(verifier, 2,20,20);
-        } catch (Exception e) {
-            XUnitTransformer.doFail(e);
-        }
+        transform("soatestDesktop9FunctionalIterations.xml", "soatestDesktop9FunctionalIterations.xml", 2, 20, 20);
     }
 
     @Test
     public void testSoatest9DesktopCalc3OutputXUnit()
     {
+        transform("soatestDesktopCalc3.xml", "soatestDesktopCalc3-output.xml", 1, 5, 2);
+    }
+
+    private void transform(String fileName, String outputFileName, int testsuite, int testcase, int failure)
+    {
         try {
-            String reportFileName = TEST_RESOURCES + "xml/soatestDesktopCalc3.xml";
-            String outputFileName = "soatestDesktopCalc3-output.xml";
+            String reportFileName = TEST_RESOURCES + "xml/" + fileName;
             File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, SOATEST_XUNIT_XSL);
 
             TagCounterVerifier verifier = new TagCounterVerifier();
             XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
 
-            assertElementsCounts(verifier, 1,5,2);
+            assertElementsCounts(verifier, testsuite, testcase, failure);
         } catch (Exception e) {
             XUnitTransformer.doFail(e);
         }
     }
-
 
     @Test
     public void testSoatestWarFunctionalXUnitTransform()
@@ -125,69 +112,25 @@ public class SoatestReportsXslTransformationTest
     @Test
     public void testSoatestWarFunctionalXUnitOutput()
     {
-        try {
-            String reportFileName = TEST_RESOURCES + "xml/soatestWar.xml";
-            String outputFileName = "soatestWar-output.xml";
-            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, SOATEST_XUNIT_XSL);
-
-            TagCounterVerifier verifier = new TagCounterVerifier();
-            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
-
-            assertElementsCounts(verifier, 2,6,6);
-        } catch (Exception e) {
-            XUnitTransformer.doFail(e);
-        }
+        transform("soatestWar.xml", "soatestWar-output.xml", 2, 6, 6);
     }
 
     @Test
     public void testSoatestWarLoopFunctionalXUnitOutput()
     {
-        try {
-            String reportFileName = TEST_RESOURCES + "xml/soatestWarLoop.xml";
-            String outputFileName = "soatestWarLoop-output.xml";
-            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, SOATEST_XUNIT_XSL);
-
-            TagCounterVerifier verifier = new TagCounterVerifier();
-            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
-
-            assertElementsCounts(verifier, 2,20,20);
-        } catch (Exception e) {
-            XUnitTransformer.doFail(e);
-        }
+        transform("soatestWarLoop.xml", "soatestWarLoop-output.xml", 2, 20, 20);
     }
 
     @Test
     public void testSoatestWarCalc3FunctionalXUnitOutput()
     {
-        try {
-            String reportFileName = TEST_RESOURCES + "xml/soatestWarCalc3.xml";
-            String outputFileName = "soatestWarCalc3-output.xml";
-            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, SOATEST_XUNIT_XSL);
-
-            TagCounterVerifier verifier = new TagCounterVerifier();
-            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
-
-            assertElementsCounts(verifier, 1,5,2);
-        } catch (Exception e) {
-            XUnitTransformer.doFail(e);
-        }
+        transform("soatestWarCalc3.xml", "soatestWarCalc3-output.xml", 1, 5, 2);
     }
 
     @Test
     public void parseSOAtestTest_10_5_XUnitOutput()
     {
-        try {
-            String reportFileName = TEST_RESOURCES + "xml/soatest_10.5.0.xml";
-            String outputFileName = "soatest_10.5.0-output.xml";
-            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, SOATEST_XUNIT_XSL);
-
-            TagCounterVerifier verifier = new TagCounterVerifier();
-            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
-
-            assertElementsCounts(verifier, 12, 153, 82);
-        } catch (Exception e) {
-            XUnitTransformer.doFail(e);
-        }
+        transform("soatest_10.5.0.xml", "soatest_10.5.0-output.xml", 12, 153, 82);
     }
 
     @Test

@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="Default Project-2021-11-10" date="11/10/21 11:26:28" machine="CONQUEROR" project="Default Project" tag="Recommended Rules" time="2021-11-10T11:26:28+01:00" toolName="C++test" toolVer="2021.2.0.20211105B1600" user="mgorecka">
+   <TestConfig machine="CONQUEROR" name="Recommended Rules" pseudoUrl="c++test.builtin://Recommended Rules" user="mgorecka"/>
+   <Authors>
+      <Author id="dev1" name="mgorecka"/>
+   </Authors>
+   <VersionInfos>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="IExecutionViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="InsureViolation" ver="3"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.scope" resultId="IScopeProjectInfo" ver="3"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricEstimationInfo" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationInfo" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationProjectInfo" ver="2"/>
+   </VersionInfos>
+   
+   
+   <Scope>
+      <ProjectInformations>
+         <ScopeProjectInfo fltFiles="18" fltLns="3381" project="/ATM" totFiles="18" totLns="3381"/>
+      </ProjectInformations>
+   </Scope>
+   <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:12">
+      <Goal mode="1" name="Static"/>
+      <Projects>
+         <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="8" checkedLns="259" name="ATM" qfixErrs="0" suppErrs="0" totErrs="6" totFiles="8" totLns="259"/>
+      </Projects>
+      <Rules>
+         <RulesList>
+            <Rule cat="BD-API" desc="Do not pass negative values to functions expecting non-negative arguments" id="BD-API-NEGPARAM" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Always catch exceptions" id="BD-PB-EXCEPT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid use before initialization" id="BD-PB-NOTINIT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid null pointer dereferencing" id="BD-PB-NP" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid buffer overflow due to defining incorrect format limits" id="BD-PB-OVERFFMT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow due to reading a not zero terminated string" id="BD-PB-OVERFNZT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow when reading from a buffer" id="BD-PB-OVERFRD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow when writing to a buffer" id="BD-PB-OVERFWR" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid division by zero" id="BD-PB-ZERO" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid accessing arrays out of bounds" id="BD-PB-ARRAY" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid conditions that always evaluate to the same value" id="BD-PB-CC" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not check for null after dereferencing" id="BD-PB-DEREF" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Suspicious setting of stream flags" id="BD-PB-STREAMFLAGS" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Restore stream format" id="BD-PB-STREAMFMT" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Properly deallocate dynamically allocated resources" id="BD-RES-BADDEALLOC" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Do not use resources that have been freed" id="BD-RES-FREE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Do not free resources using invalid pointers" id="BD-RES-INVFREE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Ensure resources are freed" id="BD-RES-LEAKS" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid double locking" id="BD-TRS-DLOCK" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid race conditions when using fork and file descriptors" id="BD-TRS-FORKFILE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not abandon unreleased locks" id="BD-TRS-LOCK" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not acquire locks in different order" id="BD-TRS-ORDER" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid race conditions while checking for the existence of a symbolic link" id="BD-TRS-SYMLINK" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not use blocking functions while holding a lock" id="BD-TRS-TSHL" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="CDD" desc="Avoid function duplication" id="CDD-DUPM" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="CODSTA" desc="Local variables should not use the same names as member variables" id="CODSTA-44" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="CODSTA" desc="Pointer should not be compared with NULL using relational operators &lt;, >, >=, &lt;=" id="CODSTA-147" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="CODSTA" desc="Do not use string literals as operands of equality or relational operators" id="CODSTA-148" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="CODSTA" desc="Avoid infinite loops" id="CODSTA-82" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="CODSTA-CPP" desc="Constructors allowing for conversion should be made explicit" id="CODSTA-CPP-04" sev="1">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Rule>
+            <Rule cat="EXCEPT" desc="Throw by value, catch by reference" id="EXCEPT-02" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="EXCEPT" desc="Do not throw from within destructor" id="EXCEPT-03" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="INIT" desc="All member variables should be initialized in constructor" id="INIT-06" sev="1">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Rule>
+            <Rule cat="METRIC" desc="McCabe Cyclomatic Complexity" id="METRIC.CC" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="METRIC" desc="Nested Blocks Depth" id="METRIC.NBD" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="MISRA2004" desc="Floating-point expressions shall not be tested for equality or inequality" id="MISRA2004-13_3" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="MISRA2004" desc="All exit paths from a function with non-void return type shall have an explicit return statement with an expression" id="MISRA2004-16_8" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="MISRA2004" desc="The address of an object with automatic storage shall not be returned from a function" id="MISRA2004-17_6_a" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="MRM" desc="Do not invoke malloc/realloc for objects having constructors" id="MRM-08" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="MRM" desc="Declare a copy assignment operator for classes with dynamically allocated memory" id="MRM-37" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="MRM" desc="Declare a copy constructor for classes with dynamically allocated memory" id="MRM-38" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="MRM" desc="Never provide brackets ([]) for delete when deallocating non-arrays" id="MRM-35" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="MRM" desc="Always provide empty brackets ([]) for delete when deallocating arrays" id="MRM-36" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="MRM" desc="Do not use 'delete' on pointers to a void type" id="MRM-51" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="OOP" desc="Class cannot inherit other class more than once unless it is virtual inheritance" id="OOP-03" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="OOP" desc="Avoid calling virtual functions from constructors" id="OOP-16" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="OOP" desc="If a class has virtual functions it shall have a virtual destructor" id="OOP-23" sev="2">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Rule>
+            <Rule cat="OPT" desc="Pass objects by reference instead of by value" id="OPT-14" sev="3">
+               <Stats authTot="3;" authUrg="3;" total="3"/>
+            </Rule>
+            <Rule cat="PB" desc="Do not call delete on non-pointers" id="PB-13" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="PB" desc="Properly terminate character strings" id="PB-21" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="PB" desc="Do not cast from or to incomplete class at the point of casting" id="PB-54" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="PB" desc="Do not delete objects with incomplete class at the point of deletion" id="PB-55" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="PB" desc="Boolean condition always evaluates to the same value due to enumeration with only zero or only non-zero constants" id="PB-68" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="PB" desc="Suspicious argument to malloc" id="PB-60" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="PB" desc="Pointer arithmetic performed on freshly allocated memory" id="PB-61" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+         </RulesList>
+         <CategoriesList>
+            <Category desc="Flow Analysis" name="BD" total="118">
+               <Category desc="Incorrect API usage" name="BD-API" total="6">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Category desc="Possible Bugs" name="BD-PB" total="65">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Category desc="Resources" name="BD-RES" total="8">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Category desc="Threads &amp; Synchronization" name="BD-TRS" total="15">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Category>
+            <Category desc="Code Duplication Detection" name="CDD" total="4">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Category>
+            <Category desc="Coding Conventions" name="CODSTA" total="437">
+               <Category desc="Coding Conventions for C++" name="CODSTA-CPP" total="111">
+                  <Stats authTot="1;" authUrg="1;" total="1"/>
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Category>
+            <Category desc="Exceptions" name="EXCEPT" total="26">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Category>
+            <Category desc="Initialization" name="INIT" total="20">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Category>
+            <Category desc="Metric" name="METRIC" total="50">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Category>
+            <Category desc="MISRA C 2004" name="MISRA2004" total="220">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Category>
+            <Category desc="Memory and Resource Management" name="MRM" total="60">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Category>
+            <Category desc="Object Oriented" name="OOP" total="60">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Category>
+            <Category desc="Optimization" name="OPT" total="43">
+               <Stats authTot="3;" authUrg="3;" total="3"/>
+            </Category>
+            <Category desc="Possible Bugs" name="PB" total="86">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Category>
+         </CategoriesList>
+         <SeverityList>
+            <Severity id="1">
+               <Stats authTot="2;" authUrg="2;" total="2"/>
+            </Severity>
+            <Severity id="2">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Severity>
+            <Severity id="3">
+               <Stats authTot="3;" authUrg="3;" total="3"/>
+            </Severity>
+         </SeverityList>
+      </Rules>
+      
+  <StdViols>
+    <StdViol msg="Constructor does not initialize members: 'myCurrentAccount'" ln="4" sev="1" auth="mgorecka" rule="INIT-06" tool="c++test" cat="INIT" lang="cpp" locType="sr" urgent="true" config="1" hash="-318977119" locStartln="4" locStartPos="5" locEndLn="4" locEndPos="6" locFile="/ATM/ATM/ATM.cxx"/>
+    <StdViol msg="The parameter 'password' of function 'viewAccount' is passed by value" ln="10" sev="3" auth="mgorecka" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-318977119" locStartln="10" locStartPos="48" locEndLn="10" locEndPos="49" locFile="/ATM/ATM/ATM.cxx"/>
+    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="15" sev="3" auth="mgorecka" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-1422048276" locStartln="15" locStartPos="42" locEndLn="15" locEndPos="43" locFile="/ATM/ATM/Bank.cxx"/>
+    <StdViol msg="Constructor 'Account' allowing conversion should be made explicit" ln="16" sev="1" auth="mgorecka" rule="CODSTA-CPP-04" tool="c++test" cat="CODSTA-CPP" lang="cpp" locType="sr" urgent="true" config="1" hash="2036829073" locStartln="16" locStartPos="8" locEndLn="16" locEndPos="9" locFile="/ATM/ATM/include/Account.hxx"/>
+    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="16" sev="3" auth="mgorecka" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-118678391" locStartln="16" locStartPos="44" locEndLn="16" locEndPos="45" locFile="/ATM/ATM/include/Bank.hxx"/>
+    <StdViol msg="Class 'BaseDisplay' has virtual functions without a virtual destructor" ln="4" sev="2" auth="mgorecka" rule="OOP-23" tool="c++test" cat="OOP" lang="cpp" locType="sr" urgent="true" config="1" hash="-2070703729" locStartln="4" locStartPos="6" locEndLn="4" locEndPos="7" locFile="/ATM/ATM/include/BaseDisplay.hxx"/>
+  </StdViols>
+
+      <Supps/>
+      
+      
+      <TestedFilesDetails>
+         
+         <Total name="Suppressed / Total" supp="0" total="6">
+            
+            <Project name="ATM" supp="0" total="6">
+               
+               <Res name="ATM" supp="0" total="3">
+                  
+                  <Res loc="/ATM/ATM/Bank.cxx" locType="sr" name="Bank.cxx" supp="0" total="1"/>
+                  
+                  <Res loc="/ATM/ATM/ATM.cxx" locType="sr" name="ATM.cxx" supp="0" total="2"/>
+                  
+                  <Res name="Account.cxx" supp="0" total="0"/>
+                  
+                  <Res name="BaseDisplay.cxx" supp="0" total="0"/>
+               
+               </Res>
+               
+               <Res name="ATM/include" supp="0" total="3">
+                  
+                  <Res loc="/ATM/ATM/include/Bank.hxx" locType="sr" name="Bank.hxx" supp="0" total="1"/>
+                  
+                  <Res name="ATM.hxx" supp="0" total="0"/>
+                  
+                  <Res loc="/ATM/ATM/include/Account.hxx" locType="sr" name="Account.hxx" supp="0" total="1"/>
+                  
+                  <Res loc="/ATM/ATM/include/BaseDisplay.hxx" locType="sr" name="BaseDisplay.hxx" supp="0" total="1"/>
+               
+               </Res>
+            
+            </Project>
+         
+         </Total>
+      
+      </TestedFilesDetails>
+   
+   </CodingStandards>
+   <Metrics ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:12">
+      
+   </Metrics>
+   <AssocUrls/>
+</ResultsSession>

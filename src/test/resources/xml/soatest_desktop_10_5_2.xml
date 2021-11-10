@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="Default Project-2021-11-09" climode="false" execEnv="win32_x86_64" hasViols="true" id="1634646283126" lang="en_US" machine="CONQUEROR" project="Default Project" tag="Demo Configuration" time="2021-11-09T13:07:06+01:00" toolDispName="SOAtest" toolId="soatest" toolName="SOAtest" toolVer="2021.2.0.202110102000" user="mgorecka">
+   <TestConfig machine="CONQUEROR" name="Demo Configuration" pseudoUrl="soatest.builtin://Demo Configuration" user="mgorecka"/>
+   <Authors>
+      <Author id="dev1" name="mgorecka"/>
+   </Authors>
+   <Analyzers>
+      <Analyzer id="com.parasoft.soavirt.desktop.functional.analyzer" name="Parasoft Functional Tests Analyzer" ver="10.5.2.202110102000"/>
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1"/>
+   </VersionInfos>
+   <Scope>
+      <Repositories/>
+      <Locations>
+         <Loc hash="-584936826" locRef="1" projId="TestAssets" projPath="/TestAssets" project="TestAssets" resProjPath="BillPayFullTest.tst" totLns="296" uri="file://CONQUEROR/F:/soa-workspace/TestAssets/BillPayFullTest.tst"/>
+         <Loc hash="-818944226" locRef="2" projId="TestAssets" projPath="/TestAssets" project="TestAssets" resProjPath="BillPaySimpleTest.tst" totLns="161" uri="file://CONQUEROR/F:/soa-workspace/TestAssets/BillPaySimpleTest.tst"/>
+         <Loc hash="564754025" locRef="3" projId="TestAssets" projPath="/TestAssets" project="TestAssets" resProjPath="TransferFundsTest.tst" totLns="255" uri="file://CONQUEROR/F:/soa-workspace/TestAssets/TransferFundsTest.tst"/>
+      </Locations>
+   </Scope>
+   
+  <SetupProblems/>
+
+   <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:01:08">
+      
+      <AssocUrls>
+         <Tag disp="Requirement" name="req"/>
+         <Tag disp="Feature request" name="fr"/>
+         <Tag disp="Problem report" name="pr"/>
+         <Tag disp="Task" name="task"/>
+         <Tag disp="Asset" name="asset"/>
+         <Tag disp="Test" name="test"/>
+      </AssocUrls>
+   
+      
+      <Categories>
+         <CategoryGroup authTot="6;" authUrg="0;" desc="Functional Test Problems" id="GROUP.FUNC.FAIL" label="Fix Functional Test Problems" name="Functional Test Problems" total="6">
+            <Category authTot="0;" authUrg="0;" id="FUNC.FAIL" name="Functional Failures" short="functional failure" total="0"/>
+            <Category authTot="0;" authUrg="0;" id="XML.VALID.ERROR" name="XML Validation Errors" short="XML validation error" total="0"/>
+            <Category authTot="6;" authUrg="0;" id="MISC.ERR" name="Miscellaneous Errors" short="miscellaneous error" total="6">
+               <Type authTot="6;" authUrg="0;" name="unknown" total="6"/>
+            </Category>
+         </CategoryGroup>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="Change Impact" id="GROUP.CHNG.IMP" label="Review Change Impact" name="Change Impact" total="0">
+            <Category authTot="0;" authUrg="0;" id="CHNG.IMP" name="Change Impact" short="change impact" total="0"/>
+         </CategoryGroup>
+      </Categories>
+      <Projects>
+         <Project err="0" fail="6" id="TestAssets" name="TestAssets" pass="0" total="6">
+            <CategoryGroupStats id="GROUP.FUNC.FAIL" total="6"/>
+            <CategoryGroupStats id="GROUP.CHNG.IMP" total="0"/>
+         </Project>
+      </Projects>
+      
+  <APICoverage/>
+
+      
+  <TrafficData/>
+      
+  <EnvData/>
+      <FuncAPISecurity pentest="false">
+         
+  <Categories/>
+         
+  <Attacks/>
+      </FuncAPISecurity>
+      
+  <ExecViols>
+    <FuncViol msg="(Chrome 95.0) 403 - Forbidden" loc="/TestAssets/BillPayFullTest.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="Source: http://localhost:8080/parabank" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="MISC.ERR" pageDescription="http://localhost:8080/parabank" testId="wk:///TestAssets/BillPayFullTest.tst#0000000000#0000000001#0000000002#0000000003" tcId="Chrome" toolSource="http://localhost:8080/parabank"/>
+    <FuncViol msg="(Chrome 95.0) Unable to perform user action: Element /descendant::input[@name=&quot;username&quot;] not found" loc="/TestAssets/BillPayFullTest.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="" lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="MISC.ERR" testId="wk:///TestAssets/BillPayFullTest.tst#0000000000#0000000001#0000000002#0000000004#0000000005" tcId="Chrome"/>
+    <FuncViol msg="(Chrome 95.0) 403 - Forbidden" loc="/TestAssets/BillPaySimpleTest.tst" ln="-1" sev="1" auth="mgorecka" locRef="2" violationDetails="Source: http://localhost:8080/parabank" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="MISC.ERR" pageDescription="http://localhost:8080/parabank" testId="wk:///TestAssets/BillPaySimpleTest.tst#0000000000#0000000001#0000000002#0000000003" tcId="Chrome" toolSource="http://localhost:8080/parabank"/>
+    <FuncViol msg="(Chrome 95.0) Unable to perform user action: Element /descendant::input[@name=&quot;username&quot;] not found" loc="/TestAssets/BillPaySimpleTest.tst" ln="-1" sev="1" auth="mgorecka" locRef="2" violationDetails="" lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="MISC.ERR" testId="wk:///TestAssets/BillPaySimpleTest.tst#0000000000#0000000001#0000000002#0000000004#0000000005" tcId="Chrome"/>
+    <FuncViol msg="(Chrome 95.0) 403 - Forbidden" loc="/TestAssets/TransferFundsTest.tst" ln="-1" sev="1" auth="mgorecka" locRef="3" violationDetails="Source: http://localhost:8080/parabank" lnHash="0" fatal="false" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="MISC.ERR" pageDescription="http://localhost:8080/parabank" testId="wk:///TestAssets/TransferFundsTest.tst#0000000000#0000000001#0000000002#0000000003" tcId="Chrome" toolSource="http://localhost:8080/parabank"/>
+    <FuncViol msg="(Chrome 95.0) Unable to perform user action: Element /descendant::input[@name=&quot;username&quot;] not found" loc="/TestAssets/TransferFundsTest.tst" ln="-1" sev="1" auth="mgorecka" locRef="3" violationDetails="" lnHash="0" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="MISC.ERR" testId="wk:///TestAssets/TransferFundsTest.tst#0000000000#0000000001#0000000002#0000000004#0000000005" tcId="Chrome"/>
+  </ExecViols>
+
+      
+   <ExecutedTestsDetails type="FT">
+      <Total fail="6" name="Passed / Total" authErr="0;" total="6" time="0:01:08.677" authFail="6;">
+         <Project fail="6" name="TestAssets" authErr="0;" total="6" time="0:01:08.677" id="TestAssets" authFail="6;">
+            <TestSuite ln="0" locRef="1" root="true" name="BillPayFullTest.tst" id="wk:///TestAssets/BillPayFullTest.tst" fail="2" authErr="0;" total="2" time="0:00:22.670" authFail="2;">
+               <TestSuite ln="0" locRef="1" name="Test Suite: Test Suite" id="wk:///TestAssets/BillPayFullTest.tst#0000000000" fail="2" authErr="0;" total="2" time="0:00:22.670" authFail="2;">
+                  <TestSuite ln="0" locRef="1" name="Test Suite: Web Scenarios" id="wk:///TestAssets/BillPayFullTest.tst#0000000000#0000000001" fail="2" authErr="0;" total="2" time="0:00:22.670" authFail="2;">
+                     <TestSuite ln="0" locRef="1" name="Scenario: http://localhost:8080/parabank" id="wk:///TestAssets/BillPayFullTest.tst#0000000000#0000000001#0000000002" fail="2" authErr="0;" total="2" time="0:00:22.670" authFail="2;">
+                        <Test ln="0" auth="mgorecka" locRef="1" name="Test 1: Navigate to &quot;${LOCALHOST_BASE_URL}/parabank&quot;" startTime="0" id="wk:///TestAssets/BillPayFullTest.tst#0000000000#0000000001#0000000002#0000000003" status="fail" fail="1" authErr="0;" total="1" time="0:00:22.236" authFail="1;">
+                           <TestCase auth="mgorecka" name="Test 1: Navigate to &quot;${LOCALHOST_BASE_URL}/parabank&quot;: Chrome" startTime="1636459557815" testId="wk:///TestAssets/BillPayFullTest.tst#0000000000#0000000001#0000000002#0000000003" id="Chrome" status="fail" fail="1" authErr="0;" total="1" time="0:00:22.236" authFail="1;"/>
+                        </Test>
+                        <TestSuite ln="0" locRef="1" name="Scenario: Form: login" id="wk:///TestAssets/BillPayFullTest.tst#0000000000#0000000001#0000000002#0000000004" fail="1" authErr="0;" total="1" time="0:00:00.434" authFail="1;">
+                           <Test ln="0" auth="mgorecka" locRef="1" name="Test 1: Type &quot;john&quot;" startTime="0" id="wk:///TestAssets/BillPayFullTest.tst#0000000000#0000000001#0000000002#0000000004#0000000005" status="fail" fail="1" authErr="0;" total="1" time="0:00:00.434" authFail="1;">
+                              <TestCase auth="mgorecka" name="Test 1: Type &quot;john&quot;: Chrome" startTime="1636459580053" testId="wk:///TestAssets/BillPayFullTest.tst#0000000000#0000000001#0000000002#0000000004#0000000005" id="Chrome" status="fail" fail="1" authErr="0;" total="1" time="0:00:00.434" authFail="1;"/>
+                           </Test>
+                        </TestSuite>
+                     </TestSuite>
+                  </TestSuite>
+               </TestSuite>
+            </TestSuite>
+            <TestSuite ln="0" locRef="2" root="true" name="BillPaySimpleTest.tst" id="wk:///TestAssets/BillPaySimpleTest.tst" fail="2" authErr="0;" total="2" time="0:00:23.070" authFail="2;">
+               <TestSuite ln="0" locRef="2" name="Test Suite: Test Suite" id="wk:///TestAssets/BillPaySimpleTest.tst#0000000000" fail="2" authErr="0;" total="2" time="0:00:23.070" authFail="2;">
+                  <TestSuite ln="0" locRef="2" name="Test Suite: Web Scenarios" id="wk:///TestAssets/BillPaySimpleTest.tst#0000000000#0000000001" fail="2" authErr="0;" total="2" time="0:00:23.070" authFail="2;">
+                     <TestSuite ln="0" locRef="2" name="Scenario: http://localhost:8080/parabank" id="wk:///TestAssets/BillPaySimpleTest.tst#0000000000#0000000001#0000000002" fail="2" authErr="0;" total="2" time="0:00:23.070" authFail="2;">
+                        <Test ln="0" auth="mgorecka" locRef="2" name="Test 1: Navigate to &quot;${LOCALHOST_BASE_URL}/parabank&quot;" startTime="0" id="wk:///TestAssets/BillPaySimpleTest.tst#0000000000#0000000001#0000000002#0000000003" status="fail" fail="1" authErr="0;" total="1" time="0:00:22.643" authFail="1;">
+                           <TestCase auth="mgorecka" name="Test 1: Navigate to &quot;${LOCALHOST_BASE_URL}/parabank&quot;: Chrome" startTime="1636459580540" testId="wk:///TestAssets/BillPaySimpleTest.tst#0000000000#0000000001#0000000002#0000000003" id="Chrome" status="fail" fail="1" authErr="0;" total="1" time="0:00:22.643" authFail="1;"/>
+                        </Test>
+                        <TestSuite ln="0" locRef="2" name="Scenario: Form: login" id="wk:///TestAssets/BillPaySimpleTest.tst#0000000000#0000000001#0000000002#0000000004" fail="1" authErr="0;" total="1" time="0:00:00.427" authFail="1;">
+                           <Test ln="0" auth="mgorecka" locRef="2" name="Test 1: Type &quot;john&quot;" startTime="0" id="wk:///TestAssets/BillPaySimpleTest.tst#0000000000#0000000001#0000000002#0000000004#0000000005" status="fail" fail="1" authErr="0;" total="1" time="0:00:00.427" authFail="1;">
+                              <TestCase auth="mgorecka" name="Test 1: Type &quot;john&quot;: Chrome" startTime="1636459603185" testId="wk:///TestAssets/BillPaySimpleTest.tst#0000000000#0000000001#0000000002#0000000004#0000000005" id="Chrome" status="fail" fail="1" authErr="0;" total="1" time="0:00:00.427" authFail="1;"/>
+                           </Test>
+                        </TestSuite>
+                     </TestSuite>
+                  </TestSuite>
+               </TestSuite>
+            </TestSuite>
+            <TestSuite ln="0" locRef="3" root="true" name="TransferFundsTest.tst" id="wk:///TestAssets/TransferFundsTest.tst" fail="2" authErr="0;" total="2" time="0:00:22.937" authFail="2;">
+               <TestSuite ln="0" locRef="3" name="Test Suite: Test Suite" id="wk:///TestAssets/TransferFundsTest.tst#0000000000" fail="2" authErr="0;" total="2" time="0:00:22.937" authFail="2;">
+                  <TestSuite ln="0" locRef="3" name="Test Suite: Web Scenarios" id="wk:///TestAssets/TransferFundsTest.tst#0000000000#0000000001" fail="2" authErr="0;" total="2" time="0:00:22.937" authFail="2;">
+                     <TestSuite ln="0" locRef="3" name="Scenario: http://localhost:8080/parabank" id="wk:///TestAssets/TransferFundsTest.tst#0000000000#0000000001#0000000002" fail="2" authErr="0;" total="2" time="0:00:22.937" authFail="2;">
+                        <Test ln="0" auth="mgorecka" locRef="3" name="Test 1: Navigate to &quot;${LOCALHOST_BASE_URL}/parabank&quot;" startTime="0" id="wk:///TestAssets/TransferFundsTest.tst#0000000000#0000000001#0000000002#0000000003" status="fail" fail="1" authErr="0;" total="1" time="0:00:22.509" authFail="1;">
+                           <TestCase auth="mgorecka" name="Test 1: Navigate to &quot;${LOCALHOST_BASE_URL}/parabank&quot;: Chrome" startTime="1636459603642" testId="wk:///TestAssets/TransferFundsTest.tst#0000000000#0000000001#0000000002#0000000003" id="Chrome" status="fail" fail="1" authErr="0;" total="1" time="0:00:22.509" authFail="1;"/>
+                        </Test>
+                        <TestSuite ln="0" locRef="3" name="Scenario: Form: login" id="wk:///TestAssets/TransferFundsTest.tst#0000000000#0000000001#0000000002#0000000004" fail="1" authErr="0;" total="1" time="0:00:00.428" authFail="1;">
+                           <Test ln="0" auth="mgorecka" locRef="3" name="Test 1: Type &quot;john&quot;" startTime="0" id="wk:///TestAssets/TransferFundsTest.tst#0000000000#0000000001#0000000002#0000000004#0000000005" status="fail" fail="1" authErr="0;" total="1" time="0:00:00.428" authFail="1;">
+                              <TestCase auth="mgorecka" name="Test 1: Type &quot;john&quot;: Chrome" startTime="1636459626153" testId="wk:///TestAssets/TransferFundsTest.tst#0000000000#0000000001#0000000002#0000000004#0000000005" id="Chrome" status="fail" fail="1" authErr="0;" total="1" time="0:00:00.428" authFail="1;"/>
+                           </Test>
+                        </TestSuite>
+                     </TestSuite>
+                  </TestSuite>
+               </TestSuite>
+            </TestSuite>
+         </Project>
+      </Total>
+   </ExecutedTestsDetails>
+
+      
+  <FuncTestDetails/>
+   </Exec>
+   <Statistics>
+      
+   </Statistics>
+</ResultsSession>
