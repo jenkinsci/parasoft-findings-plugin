@@ -168,7 +168,7 @@
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>warnings-ng</artifactId>
-      <version>8.0.0</version>
+      <version>9.10.3</version>
       <exclusions>
         <exclusion>
           <groupId>org.slf4j</groupId>
