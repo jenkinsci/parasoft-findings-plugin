@@ -199,7 +199,7 @@
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-      <version>20210307</version>
+      <version>20211205</version>
     </dependency>
     <!--  shared by xtest and warnings-ng - synchronize with xtest -->
     <dependency>
