@@ -23,7 +23,7 @@
     <jenkins.version>2.138.4</jenkins.version>
     <java.level>8</java.level>
     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
-    <xtest.version>10.5.2.20211029</xtest.version>
+    <xtest.version>10.5.3.20220126</xtest.version>
   </properties>
 
   <developers>
@@ -196,6 +196,11 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20190722</version>
+    </dependency>
     <!--  shared by xtest and warnings-ng - synchronize with xtest -->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
@@ -253,11 +258,6 @@
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-classworlds</artifactId>
       <version>2.4.2</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.libs</groupId>
-      <artifactId>org.json</artifactId>
-      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>com.parasoft.xtest.common</groupId>
