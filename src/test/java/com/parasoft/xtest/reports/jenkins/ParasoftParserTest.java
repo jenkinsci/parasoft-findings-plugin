@@ -120,10 +120,17 @@ public class ParasoftParserTest
     }
 
     @Test
-    public void parseCppEngineTestStatic()
+    public void parseCppEngineTestStatic_10_3_4()
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.4_engine_static.xml");
         assertEquals(5, report.getSize());
+    }
+
+    @Test
+    public void parseCppEngineTestStatic_10_5_2()
+    {
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.2_engine_static.xml");
+        assertEquals(3, report.getSize());
     }
 
     /**

@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ResultsSession buildId="2022-01-28" climode="true" execEnv="win32_x86_64" hasViols="true" id="1641566751256" lang="en_US" machine="CONQUEROR" prjModule="ATM" project="" tag="${scontrol_branch}-win32_x86_64" time="2022-01-28T15:28:08+01:00" toolDispName="C/C++test" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="2021.2.1" user="mgorecka">
+   <TestConfig machine="CONQUEROR" name="Recommended Rules" pseudoUrl="builtin://Recommended Rules" user="mgorecka" />
+   <Authors>
+      <Author id="dev1" name="mgorecka" />
+   </Authors>
+   <Analyzers>
+      <Analyzer id="com.parasoft.xtest.scope.analyzer" name="Scope Analyzer" ver="10.5.2.20211215" />
+      <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.code" name="Parasoft C/C++ Code Analyzer" ver="10.5.2.20211216B1470" />
+      <Analyzer id="com.parasoft.xtest.dupcode.parser" name="Code Duplication Parser" ver="10.5.2.20211215" />
+      <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.pattern" name="Parasoft C/C++ Static Analyzer" ver="10.5.2.20211216B1470" />
+      <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.flow" name="Parasoft C/C++ Flow Analyzer" ver="10.5.2.20211014B3008" />
+      <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.metrics" name="Parasoft C/C++ Metrics Analyzer" ver="10.5.2.20211216B1470" />
+      <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.dupcode" name="Code Duplication Detector" ver="10.5.2.20211215" />
+      <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.global" name="Parasoft C/C++ Global Static Analyzer" ver="10.5.2.20211216B1470" />
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
+   </VersionInfos>
+   <Goals tsks="3">
+      
+   </Goals>
+   <Metrics>
+      <Metric avg="1.571" disp="true" id="METRIC.CC" max="5" min="1" name="McCabe Cyclomatic Complexity" noi="14" stddev="1.116">
+         <Info avg="1.571" disp="true" elem="ATM" max="5" min="1" noi="14" stddev="1.116" />
+      </Metric>
+      <Metric avg="0.286" disp="true" id="METRIC.NBD" max="1" min="0" name="Nested Blocks Depth" noi="14" stddev="0.452">
+         <Info avg="0.286" disp="true" elem="ATM" max="1" min="0" noi="14" stddev="0.452" />
+      </Metric>
+      <Metric avg="31" disp="true" id="METRIC.NOPLIF" max="52" min="14" name="Physical Lines in Files" noi="4" stddev="15.652">
+         <Info avg="31" disp="true" elem="ATM" max="52" min="14" noi="4" stddev="15.652" />
+      </Metric>
+      <Metric avg="6.5" disp="true" id="METRIC.NOSLIM" max="13" min="3" name="Source Lines in Methods" noi="14" stddev="2.897">
+         <Info avg="6.5" disp="true" elem="ATM" max="13" min="3" noi="14" stddev="2.897" />
+      </Metric>
+   </Metrics>
+   <Scope>
+      <Repositories />
+      <Locations>
+         <Loc auth="mgorecka" hash="-318977119" locRef="1" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" totLns="52" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" />
+         <Loc auth="mgorecka" hash="-1422048276" locRef="2" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" totLns="40" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" />
+         <Loc auth="mgorecka" hash="-1798372520" locRef="3" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/BaseDisplay.cxx" totLns="18" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/BaseDisplay.cxx" />
+         <Loc auth="mgorecka" hash="-1636172050" locRef="4" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Account.cxx" totLns="14" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/Account.cxx" />
+      </Locations>
+   </Scope>
+   
+  <SetupProblems />
+
+   <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:04">
+      <Projects>
+         <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="4" checkedLns="124" id="ATM" name="ATM" qfixErrs="0" suppErrs="0" totErrs="3" totFiles="4" totLns="124" />
+      </Projects>
+      
+      
+      <Rules>
+         <CategoriesList>
+            <Category authTot="0;" authUrg="0;" desc="Flow Analysis" name="BD" rules="118" total="0">
+               <Category authTot="0;" authUrg="0;" desc="Incorrect API usage" name="BD-API" rules="6" total="0" />
+               <Category authTot="1;" authUrg="1;" desc="Possible Bugs" name="BD-PB" rules="65" total="1" />
+               <Category authTot="0;" authUrg="0;" desc="Resources" name="BD-RES" rules="8" total="0" />
+               <Category authTot="0;" authUrg="0;" desc="Threads &amp; Synchronization" name="BD-TRS" rules="15" total="0" />
+            </Category>
+            <Category authTot="0;" authUrg="0;" desc="Code Duplication Detection" name="CDD" rules="4" total="0" />
+            <Category authTot="0;" authUrg="0;" desc="Coding Conventions" name="CODSTA" rules="437" total="0">
+               <Category authTot="0;" authUrg="0;" desc="Coding Conventions for C++" name="CODSTA-CPP" rules="111" total="0" />
+            </Category>
+            <Category authTot="0;" authUrg="0;" desc="Exceptions" name="EXCEPT" rules="26" total="0" />
+            <Category authTot="0;" authUrg="0;" desc="Initialization" name="INIT" rules="20" total="0" />
+            <Category authTot="0;" authUrg="0;" desc="Metric" name="METRIC" rules="50" total="0" />
+            <Category authTot="0;" authUrg="0;" desc="MISRA C 2004" name="MISRA2004" rules="220" total="0" />
+            <Category authTot="0;" authUrg="0;" desc="Memory and Resource Management" name="MRM" rules="60" total="0" />
+            <Category authTot="0;" authUrg="0;" desc="Object Oriented" name="OOP" rules="60" total="0" />
+            <Category authTot="2;" authUrg="2;" desc="Optimization" name="OPT" rules="43" total="2" />
+            <Category authTot="0;" authUrg="0;" desc="Possible Bugs" name="PB" rules="86" total="0" />
+         </CategoriesList>
+         <RulesList>
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-API" desc="Do not pass negative values to functions expecting non-negative arguments" id="BD-API-NEGPARAM" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Always catch exceptions" id="BD-PB-EXCEPT" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid use before initialization" id="BD-PB-NOTINIT" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid null pointer dereferencing" id="BD-PB-NP" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid buffer overflow due to defining incorrect format limits" id="BD-PB-OVERFFMT" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid overflow due to reading a not zero terminated string" id="BD-PB-OVERFNZT" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid overflow when reading from a buffer" id="BD-PB-OVERFRD" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid overflow when writing to a buffer" id="BD-PB-OVERFWR" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid division by zero" id="BD-PB-ZERO" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Avoid accessing arrays out of bounds" id="BD-PB-ARRAY" sev="2" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="1;" authUrg="1;" cat="BD-PB" desc="Avoid conditions that always evaluate to the same value" id="BD-PB-CC" sev="2" total="1" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Do not check for null after dereferencing" id="BD-PB-DEREF" sev="2" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Suspicious setting of stream flags" id="BD-PB-STREAMFLAGS" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-PB" desc="Restore stream format" id="BD-PB-STREAMFMT" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-RES" desc="Properly deallocate dynamically allocated resources" id="BD-RES-BADDEALLOC" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-RES" desc="Do not use resources that have been freed" id="BD-RES-FREE" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-RES" desc="Do not free resources using invalid pointers" id="BD-RES-INVFREE" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-RES" desc="Ensure resources are freed" id="BD-RES-LEAKS" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Avoid double locking" id="BD-TRS-DLOCK" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Avoid race conditions when using fork and file descriptors" id="BD-TRS-FORKFILE" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Do not abandon unreleased locks" id="BD-TRS-LOCK" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Do not acquire locks in different order" id="BD-TRS-ORDER" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Avoid race conditions while checking for the existence of a symbolic link" id="BD-TRS-SYMLINK" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" authTot="0;" authUrg="0;" cat="BD-TRS" desc="Do not use blocking functions while holding a lock" id="BD-TRS-TSHL" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.dupcode" authTot="0;" authUrg="0;" cat="CDD" desc="Avoid function duplication" id="CDD-DUPM" sev="2" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="CODSTA" desc="Local variables should not use the same names as member variables" id="CODSTA-44" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="CODSTA" desc="Pointer should not be compared with NULL using relational operators &lt;, >, >=, &lt;=" id="CODSTA-147" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="CODSTA" desc="Do not use string literals as operands of equality or relational operators" id="CODSTA-148" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="CODSTA" desc="Avoid infinite loops" id="CODSTA-82" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="CODSTA-CPP" desc="Constructors allowing for conversion should be made explicit" id="CODSTA-CPP-04" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="EXCEPT" desc="Throw by value, catch by reference" id="EXCEPT-02" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="EXCEPT" desc="Do not throw from within destructor" id="EXCEPT-03" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="INIT" desc="All member variables should be initialized in constructor" id="INIT-06" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.metrics" authTot="0;" authUrg="0;" cat="METRIC" desc="McCabe Cyclomatic Complexity" id="METRIC.CC" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.metrics" authTot="0;" authUrg="0;" cat="METRIC" desc="Nested Blocks Depth" id="METRIC.NBD" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="MISRA2004" desc="Floating-point expressions shall not be tested for equality or inequality" id="MISRA2004-13_3" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="MISRA2004" desc="All exit paths from a function with non-void return type shall have an explicit return statement with an expression" id="MISRA2004-16_8" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="MISRA2004" desc="The address of an object with automatic storage shall not be returned from a function" id="MISRA2004-17_6_a" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="MRM" desc="Do not invoke malloc/realloc for objects having constructors" id="MRM-08" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="MRM" desc="Declare a copy assignment operator for classes with dynamically allocated memory" id="MRM-37" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="MRM" desc="Declare a copy constructor for classes with dynamically allocated memory" id="MRM-38" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="MRM" desc="Never provide brackets ([]) for delete when deallocating non-arrays" id="MRM-35" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="MRM" desc="Always provide empty brackets ([]) for delete when deallocating arrays" id="MRM-36" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="MRM" desc="Do not use 'delete' on pointers to a void type" id="MRM-51" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="OOP" desc="Class cannot inherit other class more than once unless it is virtual inheritance" id="OOP-03" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="OOP" desc="Avoid calling virtual functions from constructors" id="OOP-16" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="OOP" desc="If a class has virtual functions it shall have a virtual destructor" id="OOP-23" sev="2" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="2;" authUrg="2;" cat="OPT" desc="Pass objects by reference instead of by value" id="OPT-14" sev="3" total="2" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="PB" desc="Do not call delete on non-pointers" id="PB-13" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="PB" desc="Properly terminate character strings" id="PB-21" sev="1" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="PB" desc="Do not cast from or to incomplete class at the point of casting" id="PB-54" sev="2" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="PB" desc="Do not delete objects with incomplete class at the point of deletion" id="PB-55" sev="2" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="PB" desc="Boolean condition always evaluates to the same value due to enumeration with only zero or only non-zero constants" id="PB-68" sev="2" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="PB" desc="Suspicious argument to malloc" id="PB-60" sev="3" total="0" />
+            <Rule analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" authTot="0;" authUrg="0;" cat="PB" desc="Pointer arithmetic performed on freshly allocated memory" id="PB-61" sev="3" total="0" />
+         </RulesList>
+         <SeverityList>
+            <Severity authTot="1;" authUrg="1;" id="2" total="1" />
+            <Severity authTot="2;" authUrg="2;" id="3" total="2" />
+         </SeverityList>
+      </Rules>
+      
+  <Supps />
+
+      
+  <StdViols>
+    <StdViol msg="The parameter 'password' of function 'viewAccount' is passed by value" ln="10" locFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" locStartln="10" sev="3" auth="mgorecka" locRef="1" rule="OPT-14" lnHash="-2065354134" rule.header="Pass objects by reference instead of by value" tool="c++test" lineHash="-2065354134" unbViolId="6f651dce-4832-32a9-9816-494f331a947e" locStartPos="48" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" lang="cpp" violId="795922c2-d810-395b-8e92-c4b0ec8b3740" locEndPos="49" locType="sr" urgent="true" hash="-318977119" locEndLn="10" goals="1," />
+    <FlowViol msg="Condition &quot;!(bool)this->myCurrentAccount&quot; always evaluates to true" ln="12" locFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" ruleSAFMsg="Point where senseless condition is used" FirstElSrcRngEndPos="0" auth="mgorecka" FirstElSrcRngEndLn="11" rule="BD-PB-CC" FirstElSrcRngStartPos="0" lnHash="1719088503" ruleSCSCMsg="Start of the path" FirstElSrcRngFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" rule.header="Avoid conditions that always evaluate to the same value" FirstElSrcRngStartln="10" locStartPos="0" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="873174745" lang="cpp" violId="978e4505-0aaf-3eed-b9ef-58d8e027e913" locEndPos="0" urgent="true" locEndLn="13" goals="1," locStartln="12" sev="2" locRef="1" tool="c++test" lineHash="1719088503" unbViolId="e70ccbfe-b254-3223-a6cf-abd41c9d19d6" locType="sr" hash="-318977119" causeLocRef="1">
+      <Props />
+      <ElDescList>
+        <ElDesc lineHash="-2065354134" locType="sr" srcRnghash="-318977119" locRef="1" srcRngFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" srcRngEndLn="11" ln="10" srcRngEndPos="0" srcRngStartln="10" srcRngStartPos="0" desc="void ATM::viewAccount(int accountNumber, string password)" ElType=".C" rngLn="10">
+          <Anns>
+            <Ann msg="Start of the path" kind="cause" />
+          </Anns>
+        </ElDesc>
+        <ElDesc lineHash="1719088503" locType="sr" srcRnghash="-318977119" locRef="1" srcRngFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" srcRngEndLn="13" ln="12" srcRngEndPos="0" srcRngStartln="12" srcRngStartPos="0" desc="myBank->getAccount(...)" ElType="!" rngLn="12">
+          <ElDescList>
+            <ElDesc lineHash="-1782456624" locType="sr" srcRnghash="-1422048276" locRef="2" srcRngFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" srcRngEndLn="18" ln="17" srcRngEndPos="0" srcRngStartln="17" srcRngStartPos="0" desc="Account* userAccount = NULL;" ElType="." rngLn="17" />
+            <ElDesc lineHash="-1454903092" locType="sr" srcRnghash="-1422048276" locRef="2" srcRngFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" srcRngEndLn="19" ln="18" srcRngEndPos="0" srcRngStartln="18" srcRngStartPos="0" desc="if (myAccounts.size() > num)" ElType="." rngLn="18">
+              <Anns>
+                <Ann msg="Condition evaluation: (this->myAccounts.size() > num) (assuming false)" kind="condEval" />
+              </Anns>
+            </ElDesc>
+            <ElDesc lineHash="-840112945" locType="sr" srcRnghash="-1422048276" locRef="2" srcRngFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" srcRngEndLn="23" ln="22" srcRngEndPos="0" srcRngStartln="22" srcRngStartPos="0" desc="if ((userAccount != NULL) &amp;&amp; (password.compare(userAccount->getPassword()) != 0))" ElType="." rngLn="22">
+              <Anns>
+                <Ann msg="Condition evaluation: (userAccount != 0) (false)" kind="condEval" />
+                <Ann msg="Condition evaluation: (userAccount != NULL) &amp;&amp; (password.compare(userAccount->getPassword()) != 0 (false)" kind="condEval" />
+              </Anns>
+            </ElDesc>
+            <ElDesc lineHash="1374202020" locType="sr" srcRnghash="-1422048276" locRef="2" srcRngFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" srcRngEndLn="29" ln="28" srcRngEndPos="0" srcRngStartln="28" srcRngStartPos="0" desc="return NULL;" ElType="!" rngLn="28" />
+          </ElDescList>
+        </ElDesc>
+        <ElDesc lineHash="1719088503" locType="sr" srcRnghash="-318977119" locRef="1" srcRngFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" srcRngEndLn="13" ln="12" srcRngEndPos="0" srcRngStartln="12" srcRngStartPos="0" desc="if ( !(myCurrentAccount = myBank->getAccount(accountNumber, password)) )" ElType=".P" rngLn="12">
+          <Anns>
+            <Ann msg="Point where senseless condition is used" kind="point" />
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="15" locFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" locStartln="15" sev="3" auth="mgorecka" locRef="2" rule="OPT-14" lnHash="22837910" rule.header="Pass objects by reference instead of by value" tool="c++test" lineHash="22837910" unbViolId="47244651-b228-3394-ac8c-91ad80e8fe46" locStartPos="42" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" lang="cpp" violId="a5cf8eb1-7633-3ec8-bfbe-66d33471f1ee" locEndPos="43" locType="sr" urgent="true" hash="-1422048276" locEndLn="15" goals="1," />
+  </StdViols>
+
+      <TestedFilesDetails>
+         <Total name="Total (Suppressed)" supp="0" total="3">
+            <Project id="ATM" name="ATM" supp="0" total="3">
+               <Res name="C:" supp="0" total="3">
+                  <Res name="Program Files" supp="0" total="3">
+                     <Res name="Parasoft" supp="0" total="3">
+                        <Res name="C++test" supp="0" total="3">
+                           <Res name="10.5" supp="0" total="3">
+                              <Res name="examples" supp="0" total="3">
+                                 <Res name="ATM" supp="0" total="3">
+                                    <Res loc="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" locRef="1" locType="sr" name="ATM.cxx" supp="0" total="2" />
+                                    <Res loc="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" locRef="2" locType="sr" name="Bank.cxx" supp="0" total="1" />
+                                    <Res loc="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/BaseDisplay.cxx" locRef="3" locType="sr" name="BaseDisplay.cxx" supp="0" total="0" />
+                                    <Res loc="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Account.cxx" locRef="4" locType="sr" name="Account.cxx" supp="0" total="0" />
+                                 </Res>
+                              </Res>
+                           </Res>
+                        </Res>
+                     </Res>
+                  </Res>
+               </Res>
+            </Project>
+         </Total>
+      </TestedFilesDetails>
+   </CodingStandards>
+   <Statistics>
+      
+   </Statistics>
+</ResultsSession>

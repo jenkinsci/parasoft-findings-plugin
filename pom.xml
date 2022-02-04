@@ -20,10 +20,10 @@
   </organization>
 
   <properties>
-    <jenkins.version>2.138.4</jenkins.version>
+    <jenkins.version>2.289.1</jenkins.version>
     <java.level>8</java.level>
     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
-    <xtest.version>10.5.2.20211029</xtest.version>
+    <xtest.version>10.5.3.20220126</xtest.version>
   </properties>
 
   <developers>
@@ -168,11 +168,11 @@
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>warnings-ng</artifactId>
-      <version>8.0.0</version>
+      <version>9.10.3</version>
       <exclusions>
         <exclusion>
           <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-api</artifactId>
+          <artifactId>*</artifactId>
         </exclusion>
         <exclusion>
           <groupId>org.apache.httpcomponents</groupId>
@@ -238,26 +238,21 @@
       <artifactId>ant</artifactId>
       <version>1.10.11</version>
     </dependency>
-    <dependency>
-      <groupId>commons-httpclient</groupId>
-      <artifactId>commons-httpclient</artifactId>
-      <version>3.1-jenkins-1</version>
-    </dependency>
     <!-- Override parent spotbugs-annotations dependency and use version as in WNG -->
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
-      <version>4.0.0</version><!--$NO-MVN-MAN-VER$-->
+      <version>4.2.0</version><!--$NO-MVN-MAN-VER$-->
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20211205</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-classworlds</artifactId>
       <version>2.4.2</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.libs</groupId>
-      <artifactId>org.json</artifactId>
-      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>com.parasoft.xtest.common</groupId>
@@ -365,6 +360,60 @@
       <groupId>saxon</groupId>
       <artifactId>saxon</artifactId>
       <version>6.5.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci</groupId>
+      <artifactId>annotation-indexer</artifactId>
+      <version>1.14</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>cloudbees-folder</artifactId>
+      <version>6.16</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>scm-api</artifactId>
+      <version>2.6.5</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kohsuke</groupId>
+      <artifactId>access-modifier-annotation</artifactId>
+      <version>1.21</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-jdk14</artifactId>
+      <version>1.7.30</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.30</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <version>1.7.30</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.7.30</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.12.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
