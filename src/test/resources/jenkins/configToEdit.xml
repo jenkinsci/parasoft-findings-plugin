@@ -24,7 +24,7 @@
         </com.parasoft.xtest.reports.jenkins.tool.ParasoftTool>
       </analysisTools>
       <sourceCodeEncoding></sourceCodeEncoding>
-      <sourceDirectory></sourceDirectory>
+      <sourceDirectory>${WORKSPACE}</sourceDirectory>
       <ignoreQualityGate>false</ignoreQualityGate>
       <ignoreFailedBuilds>true</ignoreFailedBuilds>
       <referenceJobName>-</referenceJobName>
