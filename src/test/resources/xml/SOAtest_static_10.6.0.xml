@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="buil-id-desktop" climode="false" execEnv="win32_x86_64" hasViols="true" id="1642161812820" lang="en_US" machine="CONQUEROR" project="soavirt-test" tag="session-tag-desktop" time="2022-02-04T12:45:51+01:00" toolDispName="SOAtest" toolId="soatest" toolName="SOAtest" toolVer="2022.1.0.qualifier" user="mgorecka">
+   <TestConfig machine="CONQUEROR" name="static" pseudoUrl="soatest.user://static" user="mgorecka"/>
+   <Authors>
+      <Author id="dev1" name="unknown"/>
+      <Author id="dev2" name="mgorecka"/>
+   </Authors>
+   <Analyzers>
+      <Analyzer id="com.parasoft.soavirt.desktop.static.analyzer" name="Parasoft Web Static Analyzer" ver="10.6.0.qualifier"/>
+      <Analyzer id="com.parasoft.soavirt.desktop.functional.analyzer" name="Parasoft Functional Tests Analyzer" ver="10.6.0.qualifier"/>
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IChangeImpactViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1"/>
+   </VersionInfos>
+   <Scope>
+      <Repositories/>
+      <Locations>
+         <Loc hash="-167103014" locRef="1" projId="Examples_SOAVirtPL" projPath="/Examples_SOAVirtPL" project="Examples_SOAVirtPL" resProjPath="StaticAnalysis/XML/report (6).xml" totLns="222" uri="file://CONQUEROR/C:/Users/mgorecka/Workspaces/runtime-SOAtest/Examples_SOAVirtPL/StaticAnalysis/XML/report%20(6).xml"/>
+      </Locations>
+   </Scope>
+   <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:01">
+      <Projects>
+         <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="1" checkedLns="222" id="Examples_SOAVirtPL" name="Examples_SOAVirtPL" qfixErrs="0" suppErrs="1" totErrs="1" totFiles="1" totLns="222"/>
+      </Projects>
+      
+      <History>
+         <Graph id="lns">
+            <Categories>
+               <Category color="blue" name="Total Lines" pos="0"/>
+               <Category color="green" name="Checked Lines" pos="1"/>
+               <Category authPos="0" color="red" name="Tasks" pos="2"/>
+            </Categories>
+            <Total secSer="1" title="" xTitle="Date" yTitle="Lines" yTitle2="Tasks">
+               <X>02-04-22,</X>
+               <Y>222,222,1,</Y>
+               <Delta>222,222,1,</Delta>
+            </Total>
+            <Authors title="" xTitle="Date" yTitle="Total Tasks">
+               <Author name="unknown">
+                  <X>02-04-22,</X>
+                  <Y>1,</Y>
+                  <Delta>1,</Delta>
+               </Author>
+            </Authors>
+         </Graph>
+      </History>
+   
+      
+      <Rules>
+         <CategoriesList>
+            <Category authTot="1;" authUrg="0;" desc="Validate XML" name="VXML" rules="2" total="1"/>
+         </CategoriesList>
+         <RulesList>
+            <Rule analyzer="com.parasoft.soavirt.desktop.static.analyzer" authTot="0;" authUrg="0;" cat="VXML" desc="Ensure XML is well-formed" id="VXML.CHECK" sev="1" total="0"/>
+            <Rule analyzer="com.parasoft.soavirt.desktop.static.analyzer" authTot="1;" authUrg="0;" cat="VXML" desc="Check WSDL semantics" id="VXML.SCR" sev="1" total="1"/>
+         </RulesList>
+         <SeverityList>
+            <Severity authTot="1;" authUrg="0;" id="1" total="1"/>
+         </SeverityList>
+      </Rules>
+      
+  <Supps>
+    <Supp suppAuth="mgorecka" locRef="1" suppRsn="in-file-test" refId="1" suppLine="1" type="in-file" suppMsg="Content is not allowed in prolog." suppRule="VXML.CHECK" suppLoc="/Examples_SOAVirtPL/StaticAnalysis/XML/report (6).xml"/>
+  </Supps>
+
+      
+  <StdViols>
+    <StdViol msg="Problem with /ResultsSession. WSDLException (at /ResultsSession): faultCode=INVALID_WSDL: Expected element '{http://schemas.xmlsoap.org/wsdl/}definitions'." ln="1" locFile="/Examples_SOAVirtPL/StaticAnalysis/XML/report (6).xml" locStartln="1" sev="1" auth="unknown" locRef="1" rule="VXML.SCR" rule.header="Check WSDL semantics" tool="soatest" lineHash="789580073" locStartPos="0" analyzer="com.parasoft.soavirt.desktop.static.analyzer" lang="web" locEndPos="0" locType="sr" hash="-167103014" locEndLn="2"/>
+    <StdViol msg="Content is not allowed in prolog." ln="1" locFile="/Examples_SOAVirtPL/StaticAnalysis/XML/report (6).xml" suppRef="1" locStartln="1" sev="1" auth="unknown" locRef="1" rule="VXML.CHECK" rule.header="Ensure XML is well-formed" tool="soatest" lineHash="789580073" locStartPos="0" supp="true" analyzer="com.parasoft.soavirt.desktop.static.analyzer" lang="web" locEndPos="0" locType="sr" hash="-167103014" locEndLn="2"/>
+  </StdViols>
+
+      <TestedFilesDetails>
+         <Total name="Total (Suppressed)" supp="1" total="1">
+            <Project id="Examples_SOAVirtPL" name="Examples_SOAVirtPL" supp="1" total="1">
+               <Res name="StaticAnalysis" supp="1" total="1">
+                  <Res name="XML" supp="1" total="1">
+                     <Res loc="/Examples_SOAVirtPL/StaticAnalysis/XML/report (6).xml" locRef="1" locType="sr" name="report (6).xml" supp="1" total="1"/>
+                  </Res>
+               </Res>
+            </Project>
+         </Total>
+      </TestedFilesDetails>
+   </CodingStandards>
+   
+  <SetupProblems>
+    <Problem msg="Validation problems with mapping/cloning:" sev="1" totErrs="1" type="RulesValidation">
+      <ErrorList>
+        <Error val="The rule with the ID UNKNOWN.USER-ID-RULE has not been found and cannot be mapped or cloned."/>
+      </ErrorList>
+    </Problem>
+  </SetupProblems>
+
+   <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
+      
+      <AssocUrls>
+         <Tag disp="Requirement" name="req"/>
+         <Tag disp="Feature request" name="fr"/>
+         <Tag disp="Problem report" name="pr"/>
+         <Tag disp="Task" name="task"/>
+         <Tag disp="Asset" name="asset"/>
+         <Tag disp="Test" name="test"/>
+      </AssocUrls>
+   
+      
+      <History>
+         <Graph id="tsks">
+            <Categories>
+               <Category authPos="0" color="gray" name="Functional Test Problems" pos="0"/>
+               <Category authPos="1" color="green" name="Change Impact" pos="1"/>
+            </Categories>
+            <Total secSer="1" title="" xTitle="Date" yTitle="Tasks" yTitle2="Change Impact">
+               <X>02-04-22,</X>
+               <Y>0,0,</Y>
+               <Delta>0,0,</Delta>
+            </Total>
+            <Authors secSer="1" title="" xTitle="Date" yTitle="Tasks" yTitle2="Change Impact">
+               <Author name="unknown">
+                  <X>02-04-22,</X>
+                  <Y>0,0,</Y>
+                  <Delta>0,0,</Delta>
+               </Author>
+            </Authors>
+         </Graph>
+         <Graph id="tc">
+            <Categories>
+               <Category color="gray" name="Total" pos="0"/>
+               <Category color="green" name="Passed" pos="1"/>
+               <Category color="red" name="Failed" pos="2"/>
+               <Category color="yellow" name="Incomplete" pos="3"/>
+            </Categories>
+            <Total secSer="2" title="" xTitle="Date" yTitle="Total / Passed" yTitle2="Failed / Incomplete">
+               <X>02-04-22,</X>
+               <Y>0,0,0,0,</Y>
+               <Delta>0,0,0,0,</Delta>
+            </Total>
+         </Graph>
+      </History>
+   
+      <Categories>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="Functional Test Problems" id="GROUP.FUNC.FAIL" label="Fix Functional Test Problems" name="Functional Test Problems" total="0">
+            <Category authTot="0;" authUrg="0;" id="FUNC.FAIL" name="Functional Failures" short="functional failure" total="0"/>
+            <Category authTot="0;" authUrg="0;" id="XML.VALID.ERROR" name="XML Validation Errors" short="XML validation error" total="0"/>
+            <Category authTot="0;" authUrg="0;" id="MISC.ERR" name="Miscellaneous Errors" short="miscellaneous error" total="0"/>
+         </CategoryGroup>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="Change Impact" id="GROUP.CHNG.IMP" label="Review Change Impact" name="Change Impact" total="0">
+            <Category authTot="0;" authUrg="0;" id="CHNG.IMP" name="Change Impact" short="change impact" total="0"/>
+         </CategoryGroup>
+      </Categories>
+      <Projects/>
+      
+  <APICoverage/>
+
+      
+  <TrafficData/>
+      
+  <EnvData/>
+      <FuncAPISecurity pentest="false">
+         
+  <Categories/>
+         
+  <Attacks/>
+      </FuncAPISecurity>
+      
+  <ExecViols/>
+
+      
+   <ExecutedTestsDetails functional="true" changeImpact="false" type="FT">
+      <Total name="Passed / Total" authErr="0;0;" total="0" authFail="0;0;"/>
+   </ExecutedTestsDetails>
+
+      
+  <FuncTestDetails/>
+   </Exec>
+   <Statistics>
+      
+   </Statistics>
+</ResultsSession>

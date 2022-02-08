@@ -291,6 +291,27 @@ public class ParasoftParserTest
     }
 
     @Test
+    public void parseSOAtestStdViolsCategoriesTest_10_6_0()
+    {
+        Report report = parseFile(TEST_RESOURCES + "xml/SOAtest_static_10.6.0.xml");
+
+        String[] rules = { "VXML.SCR", "VXML.CHECK" };
+        assertEquals(1, report.getSize());
+        int i = 0;
+        for (Issue issue : report) {
+            Serializable properties = issue.getAdditionalProperties();
+            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
+            ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
+
+            assertEquals("com.parasoft.soavirt.desktop.static.analyzer", additionalProperties.getAnalyzer());
+
+            assertEquals(rules[i], issue.getType());
+            assertEquals("Validate XML", issue.getCategory());
+            i++;
+        }
+    }
+
+    @Test
     public void parseCppDesktopStdViolsCategoriesTest()
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static_categories.xml");
