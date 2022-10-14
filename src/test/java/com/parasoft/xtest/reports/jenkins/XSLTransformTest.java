@@ -54,45 +54,54 @@ public class XSLTransformTest
     @Test
     public void testDemoXUnitTransform()
     {
-        transform("jTest_10.2_unit.xml", 4, 4);
-    }
-
-    @Test
-    public void testCppTestUnitXUnitTransform()
-    {
-        transform("cppTest_10.3.3_desktop_unit.xml", 147, 0);
-    }
-
-    @Test
-    public void testCppTestUnit_10_5_1_XUnitTransform()
-    {
-        transform("cppTest_10.5.1_unit.xml", 15, 0);
-    }
-
-    @Test
-    public void testCppTestUnit_10_5_2_XUnitTransform()
-    {
-        transform("cppTest_10.5.2_unit.xml", 15, 0);
-    }
-
-    @Test
-    public void testCppTesEngineUnitXUnitTransform()
-    {
-        transform("cppTest_10.3.4_engine_unit.xml", 12, 5);
-    }
-
-    private void transform(String fileName, int failureNumber, int errorNumber)
-    {
         try {
-            String reportFileName = TEST_RESOURCES + "xml/" + fileName;
+            String reportFileName = TEST_RESOURCES + "xml/jTest_10.2_unit.xml";
             String outputFileName = "junit-demo.xml";
             File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, XUNIT_XSL);
 
             TagCounterVerifier verifier = new TagCounterVerifier();
             XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
 
-            Assert.assertEquals(failureNumber, verifier.getNumber("failure"));
-            Assert.assertEquals(errorNumber, verifier.getNumber("error"));
+            Assert.assertEquals(4, verifier.getNumber("failure"));
+            Assert.assertEquals(4, verifier.getNumber("error"));
+        } catch (Exception e) {
+            XUnitTransformer.doFail(e);
+        }
+    }
+
+    @Test
+    public void testCppTestUnitXUnitTransform()
+    {
+        try {
+            String reportFileName = TEST_RESOURCES + "xml/cppTest_10.3.3_desktop_unit.xml";
+            String outputFileName = "junit-demo.xml";
+            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, XUNIT_XSL);
+
+            TagCounterVerifier verifier = new TagCounterVerifier();
+            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
+
+            Assert.assertEquals(147, verifier.getNumber("failure"));
+            Assert.assertEquals(0, verifier.getNumber("error"));
+
+        } catch (Exception e) {
+            XUnitTransformer.doFail(e);
+        }
+    }
+
+    @Test
+    public void testCppTesEngineUnitXUnitTransform()
+    {
+        try {
+            String reportFileName = TEST_RESOURCES + "xml/cppTest_10.3.4_engine_unit.xml";
+            String outputFileName = "junit-demo.xml";
+            File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, XUNIT_XSL);
+
+            TagCounterVerifier verifier = new TagCounterVerifier();
+            XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
+
+            Assert.assertEquals(12, verifier.getNumber("failure"));
+            Assert.assertEquals(5, verifier.getNumber("error"));
+
         } catch (Exception e) {
             XUnitTransformer.doFail(e);
         }

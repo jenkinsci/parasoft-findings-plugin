@@ -164,7 +164,7 @@ public class ParasoftTableModel
             String analyzer = ((ParasoftIssueAdditionalProperties) properties).getAnalyzer();
             String ruleId = issue.getType();
             String ruleDocContents = _ruleDocReader.getRuleDoc(analyzer, ruleId);
-            ruleDocContents = replaceUnsupportedTags(ruleDocContents);
+
             if (UString.isNonEmpty(ruleDocContents)) {
                 sb.append(IHtmlTags.BREAK_LINE_TAG + IHtmlTags.PARAGRAPH_START_TAG + ruleDocContents + IHtmlTags.PARAGRAPH_END_TAG);
             } else if (UString.isNonEmptyTrimmed(ruleId)) {
@@ -182,13 +182,6 @@ public class ParasoftTableModel
                 details = join(p(strong().with(new UnescapedText(issue.getMessage()))), additionalDescription);
             }
             return TableColumn.renderDetailsColumn(render(details), getJenkinsFacade());
-        }
-
-        private String replaceUnsupportedTags(String details)
-        {
-            details = details.replaceAll("(?i)<pre>", "<div style=\"display: block; font-family: monospace; white-space: pre; margin: 1em 0;\">"); //$NON-NLS-1$ //$NON-NLS-2$
-            details = details.replaceAll("(?i)</pre>", "</div>"); //$NON-NLS-1$ //$NON-NLS-2$
-            return details;
         }
     }
 }

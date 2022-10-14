@@ -31,7 +31,7 @@ import java.util.*;
 public class JenkinsLocationMatcher 
     extends DefaultLocationMatcher 
 {
-    private Map<String, ITestableInput> _inputsMap = new HashMap<String, ITestableInput>();
+    private final Map<String, ITestableInput> _inputsMap = new HashMap<>();
 
     @Override
     public ITestableInput matchLocation(Properties storedLocation, boolean bAcceptModified)
@@ -52,7 +52,7 @@ public class JenkinsLocationMatcher
     }
 
     @Override
-    public ITestableInput matchLocation(ITestableInput originalInput, List<Integer> hashes,
+    public ITestableInput matchLocation(ITestableInput originalInput, List<Long> hashes,
             String sRepositoryPath, String sBranch, boolean bAcceptModified)
         throws LocationsException
     {
@@ -82,9 +82,9 @@ public class JenkinsLocationMatcher
             return fileLocation.getAbsolutePath();
         }
         if (input instanceof IProjectFileTestableInput) {
-            String sFilePath = ((IProjectFileTestableInput) input).getProjectPath() + IProjectFileTestableInput.PATH_SEPARATOR
+            String sFilePath = ((IProjectFileTestableInput) input).getProjectPath() + IProjectTestableInput.PATH_SEPARATOR
                     + ((IProjectFileTestableInput) input).getProjectRelativePath();
-            if (sFilePath.startsWith(IProjectFileTestableInput.PATH_SEPARATOR)) {
+            if (sFilePath.startsWith(IProjectTestableInput.PATH_SEPARATOR)) {
                 sFilePath = sFilePath.substring(1);
             }
             return sFilePath;
@@ -94,27 +94,27 @@ public class JenkinsLocationMatcher
 
     private ITestableInput compute(PathInput pathInput) {
         String sPath = pathInput.getPath();
-        String sFSPath = ((PathInput)pathInput).getFileSystemPath();
+        String sFSPath = pathInput.getFileSystemPath();
         File inputFile = getFile(sFSPath, sPath);
         if (inputFile == null) {
             return pathInput;
         }
-        String sProjectPath = ((PathInput)pathInput).getProjectPath();
-        String sProjectName = ((PathInput)pathInput).getProjectName();
+        String sProjectPath = pathInput.getProjectPath();
+        String sProjectName = pathInput.getProjectName();
         String sResPrjRelativePath = null;
         if ((sProjectPath != null) && sPath.startsWith(sProjectPath)) {
             sResPrjRelativePath = sPath.substring(sProjectPath.length());
         } else {
             String[] aParts = PathUtil.splitPath(sPath);
-            if ((aParts.length > 2) && !sPath.startsWith(IProjectFileTestableInput.PATH_SEPARATOR)) {
+            if ((aParts.length > 2) && !sPath.startsWith(IProjectTestableInput.PATH_SEPARATOR)) {
                 // get two segments - it is VS project path
                 sProjectName = aParts[1];
-                sProjectPath = aParts[0] + IProjectFileTestableInput.PATH_SEPARATOR + aParts[1];
+                sProjectPath = aParts[0] + IProjectTestableInput.PATH_SEPARATOR + aParts[1];
                 sResPrjRelativePath = concatProjectPathSegments(aParts, 2);
             } else if (aParts.length > 1) {
                 // get only the first part as project path - it is project name too
                 sProjectName = aParts[0];
-                sProjectPath = IProjectFileTestableInput.PATH_SEPARATOR + aParts[0];
+                sProjectPath = IProjectTestableInput.PATH_SEPARATOR + aParts[0];
                 sResPrjRelativePath = concatProjectPathSegments(aParts, 1);
             }
         }
@@ -129,7 +129,7 @@ public class JenkinsLocationMatcher
         StringBuilder sb = new StringBuilder();
         for (int i = startIdx; i < aSegments.length; i++) {
             if (sb.length() > 0) {
-                sb.append(IProjectFileTestableInput.PATH_SEPARATOR);
+                sb.append(IProjectTestableInput.PATH_SEPARATOR);
             }
             sb.append(aSegments[i]);
         }

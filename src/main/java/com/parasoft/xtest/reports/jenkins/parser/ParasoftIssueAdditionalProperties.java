@@ -19,9 +19,9 @@ package com.parasoft.xtest.reports.jenkins.parser;
 import java.util.HashMap;
 
 public class ParasoftIssueAdditionalProperties
-		extends HashMap<String, Object>
+    extends HashMap<String, Object>
 {
-	private static final long serialVersionUID = -5014146322978138084L;
+    private static final long serialVersionUID = -5014146322978138084L;
 
     public ParasoftIssueAdditionalProperties()
     {}

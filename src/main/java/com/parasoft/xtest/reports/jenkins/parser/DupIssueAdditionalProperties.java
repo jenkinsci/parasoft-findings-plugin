@@ -120,6 +120,8 @@ public class DupIssueAdditionalProperties
     }
 
     public static final String PARENT_KEY = "parentKey"; //$NON-NLS-1$
-	public static final String DESCRIPTION_KEY = "description"; //$NON-NLS-1$
-	public static final String CHILDREN_KEY = "children"; //$NON-NLS-1$
+
+    public static final String DESCRIPTION_KEY = "description"; //$NON-NLS-1$
+
+    public static final String CHILDREN_KEY = "children"; //$NON-NLS-1$
 }

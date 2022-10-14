@@ -76,11 +76,11 @@ public class ParasoftParserTest
 
     private static final String TEST_RESOURCES = "src/test/resources/";
 
-    private static final String PROJECT_NAME = "com.parasoft.xtest.reports.jenkins";
+    private static final String PROJECT_NAME = "com.parasoft.xtest.reports.jenkins"; //$NON-NLS-1$
 
-    private static final String PROJECT_PATH = "E:\\Eclipse Workspace\\com.parasoft.xtest.reports.jenkins";
+    private static final String PROJECT_PATH = "E:\\Eclipse Workspace\\com.parasoft.xtest.reports.jenkins"; //$NON-NLS-1$
 
-    private static final String RELATIVE_PATH = "\\src\\main\\java\\com\\parasoft\\xtest\\reports\\jenkins";
+    private static final String RELATIVE_PATH = "\\src\\main\\java\\com\\parasoft\\xtest\\reports\\jenkins"; //$NON-NLS-1$
 
     private static ParasoftParser _parser = null;
 
@@ -101,36 +101,22 @@ public class ParasoftParserTest
     @Test
     public void parseStdViolReportTest()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml"); //$NON-NLS-1$
         assertEquals(503, report.getSize());
     }
 
     @Test
     public void parseFAViolReportTest()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static.xml"); //$NON-NLS-1$
         assertEquals(65, report.getSize());
     }
 
     @Test
-    public void parseStdViolReportJtest_10_5_2Test()
+    public void parseCppEngineTestStatic()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/jtest_10.5.2_static.xml");
-        assertEquals(808, report.getSize());
-    }
-
-    @Test
-    public void parseCppEngineTestStatic_10_3_4()
-    {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.4_engine_static.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.4_engine_static.xml"); //$NON-NLS-1$
         assertEquals(5, report.getSize());
-    }
-
-    @Test
-    public void parseCppEngineTestStatic_10_5_2()
-    {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.2_engine_static.xml");
-        assertEquals(3, report.getSize());
     }
 
     /**
@@ -139,7 +125,7 @@ public class ParasoftParserTest
     @Test
     public void parseFAViolReportTest2()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_empty_element.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_empty_element.xml"); //$NON-NLS-1$
         assertEquals(16, report.getSize());
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
@@ -152,7 +138,7 @@ public class ParasoftParserTest
     @Test
     public void parseFAViolWithAnnotationsReportTest()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_with_annotations.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_with_annotations.xml"); //$NON-NLS-1$
         assertEquals(64, report.getSize());
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
@@ -165,7 +151,7 @@ public class ParasoftParserTest
     @Test
     public void parseDCViolReportTest()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_code_dup.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_code_dup.xml"); //$NON-NLS-1$
         assertEquals(2, report.getSize());
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
@@ -178,7 +164,7 @@ public class ParasoftParserTest
     @Test
     public void parseCppMetricsViolsTest()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.4.2_engine_metrics.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.4.2_engine_metrics.xml"); //$NON-NLS-1$
 
         assertEquals(105, report.getSize());
         int countFlow = 0;
@@ -188,14 +174,14 @@ public class ParasoftParserTest
             assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties)properties;
             if (additionalProperties instanceof FlowIssueAdditionalProperties) {
-                assertEquals("com.parasoft.xtest.cpp.analyzer.static.flow", additionalProperties.getAnalyzer());   
+                assertEquals("com.parasoft.xtest.cpp.analyzer.static.flow", additionalProperties.getAnalyzer()); //$NON-NLS-1$   
                 countFlow++;
             } else {
-                if (issue.getType().startsWith("METRIC")) {
-                    assertEquals("com.parasoft.xtest.cpp.analyzer.static.metrics", additionalProperties.getAnalyzer());   
+                if (issue.getType().startsWith("METRIC")) { //$NON-NLS-1$
+                    assertEquals("com.parasoft.xtest.cpp.analyzer.static.metrics", additionalProperties.getAnalyzer()); //$NON-NLS-1$   
                     countMetrics++;
                 } else {
-                    assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer());      
+                    assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer()); //$NON-NLS-1$      
                 }
             }
         }
@@ -206,21 +192,21 @@ public class ParasoftParserTest
     @Test
     public void parseCppDesktopStdViolsTest()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static.xml"); //$NON-NLS-1$
 
         assertEquals(7, report.getSize());
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
             assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
-            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer());
+            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer()); //$NON-NLS-1$
         }
     }
 
     @Test
     public void parseCppDesktopStdViolsCategoriesTest_Old()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static.xml"); //$NON-NLS-1$
 
         String[] rules = { "CODSTA-39", "CODSTA-39", "CODSTA-39", "MISRA2004-15_2", "INIT-04", "INIT-04", "INIT-04" };
         assertEquals(7, report.getSize());
@@ -230,7 +216,7 @@ public class ParasoftParserTest
             assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
 
-            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer());
+            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer()); //$NON-NLS-1$
 
             assertEquals(rules[i], issue.getType());
             assertEquals("", issue.getCategory()); // TODO - empty category should be "-"
@@ -241,28 +227,9 @@ public class ParasoftParserTest
     @Test
     public void parseCppStdViolsTest_10_5()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.0_static.xml");
-        String[] authors = { "tester", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski"};
-        checkStaticReport(report, authors);
-    }
-
-    @Test
-    public void parseCppStdViolsTest_10_5_1()
-    {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.1_static.xml");
-        checkStaticReport(report, new String[] {"mgorecka"});
-    }
-
-    @Test
-    public void parseCppStdViolsTest_10_5_2()
-    {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.2_static.xml");
-        checkStaticReport(report, new String[] {"mgorecka"});
-    }
-
-    private void checkStaticReport(Report report, String[] authors)
-    {
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.0_static.xml"); //$NON-NLS-1$
         String[] rules = { "INIT-06", "OPT-14", "OPT-14", "CODSTA-CPP-04", "OPT-14", "OOP-23"};
+        String[] authors = { "tester", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski"};
         String[] categories = { "Initialization", "Optimization", "Optimization", "Coding Conventions for C++", "Optimization", "Object Oriented"};
         assertEquals(6, report.getSize());
         int i = 0;
@@ -271,14 +238,10 @@ public class ParasoftParserTest
             assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties)properties;
 
-            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer());
+            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer()); //$NON-NLS-1$
             assertEquals(rules[i], issue.getType());
             assertEquals(categories[i], issue.getCategory());
-            if (authors.length == 1) {
-                assertEquals(authors[0], additionalProperties.getAuthor());
-            } else {
-                assertEquals(authors[i], additionalProperties.getAuthor());
-            }
+            assertEquals(authors[i], additionalProperties.getAuthor());
             i++;
         }
     }
@@ -286,35 +249,14 @@ public class ParasoftParserTest
     @Test
     public void parseJtestStdViolsTest_10_5()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10.5.0_static.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/jTest_10.5.0_static.xml"); //$NON-NLS-1$
         assertEquals(67, report.getSize());
-    }
-
-    @Test
-    public void parseSOAtestStdViolsCategoriesTest_10_6_0()
-    {
-        Report report = parseFile(TEST_RESOURCES + "xml/SOAtest_static_10.6.0.xml");
-
-        String[] rules = { "VXML.SCR", "VXML.CHECK" };
-        assertEquals(1, report.getSize());
-        int i = 0;
-        for (Issue issue : report) {
-            Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
-            ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
-
-            assertEquals("com.parasoft.soavirt.desktop.static.analyzer", additionalProperties.getAnalyzer());
-
-            assertEquals(rules[i], issue.getType());
-            assertEquals("Validate XML", issue.getCategory());
-            i++;
-        }
     }
 
     @Test
     public void parseCppDesktopStdViolsCategoriesTest()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static_categories.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static_categories.xml"); //$NON-NLS-1$
 
         assertEquals(7, report.getSize());
         for (Issue issue : report) {
@@ -322,46 +264,23 @@ public class ParasoftParserTest
             assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
 
-            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer());
-            assertThat(issue.getCategory(), IsIn.isIn(new String[] { "Coding Conventions", "Initialization", "MISRA C 2004" }));  //$NON-NLS-2$  //$NON-NLS-3$
+            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer()); //$NON-NLS-1$
+            assertThat(issue.getCategory(), IsIn.isIn(new String[] { "Coding Conventions", "Initialization", "MISRA C 2004" })); //$NON-NLS-1$  //$NON-NLS-2$  //$NON-NLS-3$
         }
     }
 
     @Test
     public void parseCppDesktopFAViolsTest()
     {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_flowanalysis.xml");
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_flowanalysis.xml"); //$NON-NLS-1$
 
         assertEquals(4, report.getSize());
-        checkFAReport(report, "mlyko");
-    }
-
-    @Test
-    public void parseCppDesktop_10_5_1_FAViolsTest()
-    {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.1_flowanalysis.xml");
-
-        assertEquals(2, report.getSize());
-        checkFAReport(report, "mgorecka");
-    }
-
-    @Test
-    public void parseCppDesktop_10_5_2_FAViolsTest()
-    {
-        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.2_flowanalysis.xml");
-
-        assertEquals(2, report.getSize());
-        checkFAReport(report, "mgorecka");
-    }
-
-    private void checkFAReport(Report report, String author)
-    {
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
             assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
-            assertEquals("com.parasoft.xtest.cpp.analyzer.static.flow", additionalProperties.getAnalyzer());
-            assertEquals(author, additionalProperties.getAuthor());
+            assertEquals("com.parasoft.xtest.cpp.analyzer.static.flow", additionalProperties.getAnalyzer()); //$NON-NLS-1$
+            assertEquals("mlyko", additionalProperties.getAuthor());
             assertEquals("unknown", additionalProperties.getRevision());
         }
     }
@@ -476,23 +395,12 @@ public class ParasoftParserTest
     @Test
     public void testSerialization() throws IOException, ClassNotFoundException
     {
-        serialization("jTest_10_static_2.xml");
-    }
-
-    @Test
-    public void testSerializationJtest_10_5_2() throws IOException, ClassNotFoundException
-    {
-        serialization("jtest_10.5.2_static.xml");
-    }
-
-    public void serialization(String fileName) throws IOException, ClassNotFoundException
-    {
         Properties settings = new Properties();
         settings.setProperty("rules.provider1a.analyzer", "com.puppycrawl.tools.checkstyle");
         settings.setProperty("rules.provider1a.separator", ".");
         settings.setProperty("rules.provider1a.data", "/home/jez/dv/dv-etest/com.parasoft.xtest.analyzers.checkstyle/rules/cs-rules.xml");
         ParasoftParser parserBefore = new ParasoftParser(settings, "workspace");
-        Report reportBefore = parseFile(TEST_RESOURCES + "xml/" + fileName, parserBefore);
+        Report reportBefore = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml", parserBefore);
 
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
@@ -504,7 +412,7 @@ public class ParasoftParserTest
             ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
             ois = new ObjectInputStream(in);
             ParasoftParser parserAfter = (ParasoftParser) ois.readObject();
-            Report reportAfter = parseFile(TEST_RESOURCES + "xml/" + fileName, parserAfter);
+            Report reportAfter = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml", parserAfter);
 
             assertEquals(reportBefore.size(), reportAfter.size());
 
@@ -531,33 +439,33 @@ public class ParasoftParserTest
     {
         List<IViolation> violations = new ArrayList<IViolation>();
         IRuleViolation violationMock = mockViolation(// severity 5
-            "INIT.AAI",
-            "Array initializer used.",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
+            "INIT.AAI", //$NON-NLS-1$
+            "Array initializer used.", //$NON-NLS-1$
+            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java", //$NON-NLS-1$
             PROJECT_NAME, 5, 10, "5", "Do not use array initializers.");
         violations.add(violationMock);
         violationMock = mockViolation(// severity 5
-            "INIT.AAI",
-            "Array initializer used.",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftResult.java",
+            "INIT.AAI", //$NON-NLS-1$
+            "Array initializer used.", //$NON-NLS-1$
+            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftResult.java", //$NON-NLS-1$
             PROJECT_NAME, 7, 12, "5", "Do not use array initializers.");
         violations.add(violationMock);
         violationMock = mockViolation(// severity 3
-            "INIT.AULI",
-            "This &quot;if&quot; statement may mistakenly use &quot;!=&quot; instead of &quot;==&quot; for lazy initialization of &quot;{0}&quot;.",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
+            "INIT.AULI", //$NON-NLS-1$
+            "This &quot;if&quot; statement may mistakenly use &quot;!=&quot; instead of &quot;==&quot; for lazy initialization of &quot;{0}&quot;.", //$NON-NLS-1$
+            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java", //$NON-NLS-1$
             PROJECT_NAME, 5, 10, "3", "Ensure that the &quot;if&quot; check for lazy initialization uses the correct operator.");
         violations.add(violationMock);
         violationMock = mockViolation(// severity 3
-            "SERIAL.SNSO",
-            "Argument ''{0}'' to method &quot;setAttribute&quot; is non-serializable.",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftDescriptor.java",
+            "SERIAL.SNSO", //$NON-NLS-1$
+            "Argument ''{0}'' to method &quot;setAttribute&quot; is non-serializable.", //$NON-NLS-1$
+            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftDescriptor.java", //$NON-NLS-1$
             PROJECT_NAME, 5, 10, "3", "Do not store non-serializable objects as HttpSession attributes");
         violations.add(violationMock);
         violationMock = mockViolation(// severity 1
-            "SERIAL.OC",
-            "Outer class ''{0}'' is not serializable.",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPublisher.java",
+            "SERIAL.OC", //$NON-NLS-1$
+            "Outer class ''{0}'' is not serializable.", //$NON-NLS-1$
+            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPublisher.java", //$NON-NLS-1$
             PROJECT_NAME, 5, 10, "1", "Ensure outer class is serializable if its inner class is serializable");
         violations.add(violationMock);
         return violations;
@@ -592,21 +500,21 @@ public class ParasoftParserTest
         childrenFileNames.add(PROJECT_PATH + RELATIVE_PATH + "\\ParasoftHealthDescriptor.java");
 
         IFlowAnalysisViolation violationMock = mockFAViolation(// severity 5
-            "FA.FA",
-            "Null value carrier",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
+            "FA.FA", //$NON-NLS-1$
+            "Null value carrier", //$NON-NLS-1$
+            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java", //$NON-NLS-1$
             childrenFileNames, PROJECT_NAME, 10, 10);
         violations.add(violationMock);
         violationMock = mockFAViolation(// severity 5
-            "FA.FA",
-            "Null value carrier",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftResult.java",
+            "FA.FA", //$NON-NLS-1$
+            "Null value carrier", //$NON-NLS-1$
+            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftResult.java", //$NON-NLS-1$
             childrenFileNames, PROJECT_NAME, 12, 12);
         violations.add(violationMock);
         violationMock = mockFAViolation(// severity 3
-            "FA.FA",
-            "Null value carrier",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
+            "FA.FA", //$NON-NLS-1$
+            "Null value carrier", //$NON-NLS-1$
+            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java", //$NON-NLS-1$
             childrenFileNames, PROJECT_NAME, 17, 17);
         violations.add(violationMock);
         return violations;

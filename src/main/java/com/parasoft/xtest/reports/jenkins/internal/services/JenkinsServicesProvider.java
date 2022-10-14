@@ -18,6 +18,8 @@ package com.parasoft.xtest.reports.jenkins.internal.services;
 
 import java.util.Properties;
 
+import com.parasoft.xtest.common.SystemServiceFactory;
+import com.parasoft.xtest.common.api.ISystemService;
 import com.parasoft.xtest.common.api.parallel.IParallelRunner;
 import com.parasoft.xtest.common.application.IApplication;
 import com.parasoft.xtest.common.application.OSGiApplication;
@@ -101,6 +103,7 @@ public final class JenkinsServicesProvider
         registerService(IDtpServiceRegistry.Factory.class, new DtpServiceRegistryFactory());
         registerService(IResultsInitManager.class, new ResultsInitManager());
         registerService(IPreferencesService.class, new DtpAutoconfPreferencesService());
+        registerService(ISystemService.Factory.class, new SystemServiceFactory());
         Properties properties = new Properties();
         properties.setProperty(PreferencesServiceUtil.PREFERENCES_ID_PROPERTY, IDtpPreferences.PREFERENCES_ID);
         registerService(IPreferences.Factory.class, new DtpPreferencesFactory(), properties);

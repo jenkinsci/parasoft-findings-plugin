@@ -16,8 +16,11 @@
 
 package com.parasoft.xtest.reports.jenkins.internal;
 
+import com.parasoft.xtest.common.api.ISystemService;
 import com.parasoft.xtest.common.api.progress.EmptyProgressMonitor;
+import com.parasoft.xtest.common.crypto.CryptUtil;
 import com.parasoft.xtest.common.locations.IImportLocationMatcher;
+import com.parasoft.xtest.common.services.IStorableServiceContext;
 import com.parasoft.xtest.common.services.RawServiceContext;
 import com.parasoft.xtest.logging.api.ParasoftLogger;
 import com.parasoft.xtest.logging.java.JavaLoggingHandlerFactory;
@@ -59,7 +62,8 @@ public class JenkinsResultsImporter
         ParasoftLogger.setCurrentFactory(new JavaLoggingHandlerFactory());
         Logger.getLogger().info("Service initialization"); //$NON-NLS-1$
         
-        IViolationImporterService service = ServiceUtil.getService(IViolationImporterService.class, new RawServiceContext(_properties));
+        IStorableServiceContext rawContext = new RawServiceContext(_properties);
+        IViolationImporterService service = ServiceUtil.getService(IViolationImporterService.class, rawContext);
         if (service == null) {
             Logger.getLogger().warn("Report importer service is null"); //$NON-NLS-1$
             IServicesProvider servicesProvider = ServiceUtil.getServicesProvider();
@@ -71,7 +75,7 @@ public class JenkinsResultsImporter
         if (_properties.isEmpty()) {
             Logger.getLogger().warn("Empty properties"); //$NON-NLS-1$
         }
-        Logger.getLogger().info("Properties used in importResults " + _properties); //$NON-NLS-1$
+        logProperties(rawContext);
 
         IImportPreferences prefs = new FileImportPreferences(file);
         IViolationImportResult importResult = null;
@@ -84,4 +88,21 @@ public class JenkinsResultsImporter
         return (IImportedData)importResult;
     }
 
+    private void logProperties(IStorableServiceContext rawContext)
+    {
+        ISystemService sensitiveKeysService = ServiceUtil.getService(ISystemService.class, rawContext);
+        if (sensitiveKeysService == null) {
+            Logger.getLogger().warn("Sensitive Keys Service service is null"); //$NON-NLS-1$
+            return;
+        }
+        Properties result = new Properties();
+        for (Object sKey : _properties.keySet()) {
+            String sKeyString = String.valueOf(sKey);
+            boolean canPrintValue = !sensitiveKeysService.isSensitiveSetting(sKeyString);
+            String sValue = _properties.getProperty(sKeyString);
+            String sPrintedValue = canPrintValue ? sValue : CryptUtil.anonymize(sValue);
+            result.setProperty(sKeyString, sPrintedValue);
+        }
+        Logger.getLogger().info("Properties used in importResults " + result); //$NON-NLS-1$
+    }
 }
