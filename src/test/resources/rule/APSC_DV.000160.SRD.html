@@ -1,0 +1,165 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<LINK REL="stylesheet" HREF="book.css" TYPE="text/css">
+<TITLE>
+Use 'java.security.SecureRandom' instead of 'java.util.Random' or 'Math.random()' [APSC_DV.000160.SRD]
+</TITLE>
+</HEAD>
+<BODY BGCOLOR=#FFFFFF>
+<STRONG>
+Use 'java.security.SecureRandom' instead of 'java.util.Random' or 'Math.random()' [APSC_DV.000160.SRD]
+</STRONG>
+<p>
+<BR><BR>
+<STRONG>
+DESCRIPTION
+</STRONG>
+<PRE>
+
+This rule identifies declarations of the 'java.util.Random'
+object or method invocations of 'Math.random()'. An error
+is reported for each occurrence.
+
+
+</PRE>
+<STRONG>
+SINCE
+</STRONG>
+<PRE>
+
+v6.0
+
+
+</PRE>
+<STRONG>
+SECURITY RELEVANCE
+</STRONG>
+<PRE>
+
+category: Weak Security Controls
+category: Cryptography
+
+Enforcing this rule will help to protect against the OWASP Top 10 2021
+application vulnerability "A02:2021 – Cryptographic Failures".
+
+Avoid weak random number generators. See BENEFITS for more
+information.
+
+
+
+</PRE>
+<STRONG>
+BENEFITS
+</STRONG>
+<PRE>
+
+'java.security.SecureRandom' is more secure than
+'java.util.Random' and 'Math.random()'. The 'SecureRandom'
+class provides a cryptographically strong pseudo-random
+number generator (PRNG). A cryptographically strong
+pseudo-random number minimally complies with the
+statistical random number generator tests specified in FIPS
+140-2, Security Requirements for Cryptographic Modules,
+section 4.9.1. Additionally, SecureRandom must produce
+non-deterministic output; thus, it is required that
+the seed material be unpredictable and that output of
+SecureRandom be cryptographically strong sequences as
+described in RFC 1750:
+Randomness Recommendations for Security.
+
+
+</PRE>
+<STRONG>
+EXAMPLE
+</STRONG>
+<PRE>
+
+package examples.rules.security.wsc;
+
+public class SRD {
+    public static void main(String[] args) {
+        java.util.Random r = new java.util.Random(); //VIOLATION
+    }
+}
+
+
+</PRE>
+<STRONG>
+REPAIR
+</STRONG>
+<PRE>
+
+package examples.rules.security.wsc;
+
+public class SRDFixed {
+    public static void main(String[] args) {
+        java.security.SecureRandom r = new java.security.SecureRandom(); //FIXED
+    }
+}
+
+
+
+</PRE>
+<STRONG>
+EDUCATION AND TRAINING
+</STRONG>
+<PRE>
+
+Additional training about this vulnerability and preventative best practices are available via our educational partner.
+Please contact your Parasoft support team for more information how to access these resources.
+<A HREF="https://app.hackedu.com/link/965797ae-a554-4c58-8a07-b01788a1e5e0">https://app.hackedu.com/link/965797ae-a554-4c58-8a07-b01788a1e5e0</A>
+
+
+
+</PRE>
+<STRONG>
+REFERENCES
+</STRONG>
+<PRE>
+
+OWASP Top 10-2021
+A02:2021 – Cryptographic Failures
+<A HREF="https://owasp.org/Top10/A02_2021-Cryptographic_Failures/">https://owasp.org/Top10/A02_2021-Cryptographic_Failures/</A>
+
+OWASP API Security Top 10-2019
+API7-Security Misconfiguration
+<A HREF="https://github.com/OWASP/API-Security/blob/v1.4.1/2019/en/src/0xa7-security-misconfiguration.md">https://github.com/OWASP/API-Security/blob/v1.4.1/2019/en/src/0xa7-security-misconfiguration.md</A>
+
+PCI Data Security Standard 3.2
+6.5.3 Insecure cryptographic storage
+<A HREF="https://www.pcisecuritystandards.org/documents/PCI_DSS_v3-2-1.pdf">https://www.pcisecuritystandards.org/documents/PCI_DSS_v3-2-1.pdf</A>
+
+2019 CWE Weaknesses On the Cusp
+CWE-326: Inadequate Encryption Strength
+<A HREF="https://cwe.mitre.org/data/definitions/326.html">https://cwe.mitre.org/data/definitions/326.html</A>
+
+CWE-327: Use of a Broken or Risky Cryptographic Algorithm
+<A HREF="https://cwe.mitre.org/data/definitions/327.html">https://cwe.mitre.org/data/definitions/327.html</A>
+
+CWE-328: Use of Weak Hash
+<A HREF="https://cwe.mitre.org/data/definitions/328.html">https://cwe.mitre.org/data/definitions/328.html</A>
+
+CWE-338: Use of Cryptographically Weak Pseudo-Random Number Generator (PRNG)
+<A HREF="https://cwe.mitre.org/data/definitions/338.html">https://cwe.mitre.org/data/definitions/338.html</A>
+
+CWE-676: Use of Potentially Dangerous Function
+<A HREF="https://cwe.mitre.org/data/definitions/676.html">https://cwe.mitre.org/data/definitions/676.html</A>
+
+SecureRandom (Java 2. Platform SE 5.0)
+<A HREF="https://docs.oracle.com/javase/1.5.0/docs/api/java/security/SecureRandom.html">https://docs.oracle.com/javase/1.5.0/docs/api/java/security/SecureRandom.html</A>
+
+SEI CERT Oracle Coding Standard for Java
+MSC02-J. Generate strong random numbers
+<A HREF="https://wiki.sei.cmu.edu/confluence/display/java/MSC02-J.+Generate+strong+random+numbers">https://wiki.sei.cmu.edu/confluence/display/java/MSC02-J.+Generate+strong+random+numbers</A>
+
+DISA Application Security and Development Security Technical Implementation Guide (STIG)
+APSC-DV-000160: The application must implement DoD-approved encryption to protect the confidentiality of remote access sessions
+APSC-DV-000170: The application must implement cryptographic mechanisms to protect the integrity of remote access sessions
+APSC-DV-001460: An application vulnerability assessment must be conducted
+APSC-DV-001860: The application must use mechanisms meeting the requirements of applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance for authentication to a cryptographic module
+APSC-DV-002290: The application must use the Federal Information Processing Standard (FIPS) 140-2-validated cryptographic modules and random number generator if the application implements encryption, key exchange, digital signature, and hash functionality
+
+</PRE>
+</BODY>
+</HTML>
