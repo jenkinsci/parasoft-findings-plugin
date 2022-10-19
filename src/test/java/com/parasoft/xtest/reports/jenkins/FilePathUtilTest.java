@@ -21,8 +21,9 @@ public class FilePathUtilTest
     {
         assertFalse(FilePathUtil.isAbsolute(new FilePath(
             new File("src/test/resources/xml"))));
+        String path = new File("src/test/resources/rule/APSC_DV.000160.SRD.html").getAbsolutePath();
         assertTrue(FilePathUtil.isAbsolute(new FilePath(
-            new File("C:/test/path/src/test/resources/xml"))));
+            new File(path))));
     }
 
     @Test
