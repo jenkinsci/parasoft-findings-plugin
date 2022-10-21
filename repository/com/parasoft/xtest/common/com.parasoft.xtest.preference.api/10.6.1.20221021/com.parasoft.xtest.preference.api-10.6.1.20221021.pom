@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.parasoft.xtest.common</groupId>
+	<artifactId>com.parasoft.xtest.preference.api</artifactId>
+	<version>10.6.1.20221021</version>
+	<packaging>eclipse-plugin</packaging>
+
+	<parent>
+		<groupId>com.parasoft.xtest.common</groupId>
+		<artifactId>common.xtest</artifactId>
+		<version>10.6.1.20221021</version>
+	</parent>
+    <dependencies><!-- based on the MANIFEST.MF -->
+	<!-- xtest API -->
+        <dependency>
+            <groupId>com.parasoft.xtest.common</groupId>
+            <artifactId>com.parasoft.xtest.common.api</artifactId>
+            <version>10.6.1.20221021</version>
+        </dependency>
+        <dependency>
+            <groupId>com.parasoft.xtest.common</groupId>
+            <artifactId>com.parasoft.xtest.configuration.api</artifactId>
+            <version>10.6.1.20221021</version>
+        </dependency>
+        <dependency>
+            <groupId>com.parasoft.xtest.common</groupId>
+            <artifactId>com.parasoft.xtest.logging.api</artifactId>
+            <version>10.6.1.20221021</version>
+        </dependency>
+        <dependency>
+            <groupId>com.parasoft.xtest.common</groupId>
+            <artifactId>com.parasoft.xtest.services.api</artifactId>
+            <version>10.6.1.20221021</version>
+        </dependency>
+    </dependencies>
+</project>
