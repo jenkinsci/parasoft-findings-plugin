@@ -1,0 +1,1230 @@
+<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="Default Project-2022-10-18" date="10/18/22 09:48:38" machine="CONQUEROR" project="Default Project" tag="Flow Analysis Standard" time="2022-10-18T09:48:38+02:00" toolName="C++test" toolVer="2022.1.0.20220615B1827" user="mgorecka">
+   <TestConfig machine="CONQUEROR" name="Flow Analysis Standard" pseudoUrl="c++test.builtin://Flow Analysis Standard" user="mgorecka"/>
+   <Authors>
+      <Author id="dev1" name="mgorecka"/>
+   </Authors>
+   <VersionInfos>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="IExecutionViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="InsureViolation" ver="3"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.scope" resultId="IScopeProjectInfo" ver="3"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricEstimationInfo" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationInfo" ver="2"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationProjectInfo" ver="2"/>
+   </VersionInfos>
+   
+   
+   <Scope>
+      <ProjectInformations>
+         <ScopeProjectInfo fltFiles="6" fltLns="236" project="/FlowAnalysisCpp" totFiles="6" totLns="236"/>
+      </ProjectInformations>
+   </Scope>
+   <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:15">
+      <Goal mode="1" name="Static"/>
+      <Projects>
+         <Project bdCheckedFiles="4" bdTotalFiles="4" checkedFiles="6" checkedLns="236" name="FlowAnalysisCpp" qfixErrs="0" suppErrs="1" totErrs="11" totFiles="6" totLns="236"/>
+      </Projects>
+      <Rules>
+         <RulesList>
+            <Rule cat="BD-API" desc="Do not pass incorrect values to library functions" id="BD-API-BADPARAM" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-API" desc="Do not pass negative values to functions expecting non-negative arguments" id="BD-API-NEGPARAM" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-API" desc="Do not check for a non-negative value after passing as a non-negative argument" id="BD-API-REVNEGPARAM" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-CO" desc="Do not access iterator out of range" id="BD-CO-ITOUT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-CO" desc="Use valid references, pointers, and iterators to reference elements of a basic_string" id="BD-CO-STRMOD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-CO" desc="Do not pass empty container iterators to std algorithms as destinations" id="BD-CO-EMPCON" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-CO" desc="Do not modify container while iterating over it" id="BD-CO-ITMOD" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Always catch exceptions" id="BD-PB-EXCEPT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid use before initialization" id="BD-PB-NOTINIT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid null pointer dereferencing" id="BD-PB-NP" sev="1">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid buffer overflow due to defining incorrect format limits" id="BD-PB-OVERFFMT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow due to reading a not zero terminated string" id="BD-PB-OVERFNZT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow when reading from a buffer" id="BD-PB-OVERFRD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overflow when writing to a buffer" id="BD-PB-OVERFWR" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid overwriting method parameters" id="BD-PB-POVR" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not point to a wrapped object that has been freed" id="BD-PB-WRAPESC" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid division by zero" id="BD-PB-ZERO" sev="1">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid accessing arrays out of bounds" id="BD-PB-ARRAY" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="A pointer pointing to an element of an array of objects shall not be passed to a smart pointer of single object type" id="BD-PB-ARRPTR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid incorrect shift operations" id="BD-PB-BADSHIFT" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Use the correct byte ordering when transferring data between systems" id="BD-PB-BYTEORD" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid conditions that always evaluate to the same value" id="BD-PB-CC" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Consistently check the returned value of non-void functions" id="BD-PB-CHECKRET" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Always check the returned value of non-void function" id="BD-PB-CHECKRETGEN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not check for null after dereferencing" id="BD-PB-DEREF" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not modify the alignment of objects by calling realloc()" id="BD-PB-DNMPTR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="The macro EOF should be compared with the unmodified return value from the Standard Library function" id="BD-PB-EOFCOMP" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Properly use errno value" id="BD-PB-ERRNO" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Properly define exit handlers" id="BD-PB-EXITHAN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Reset strings on fgets() or fgetws() failure" id="BD-PB-FGETS" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Only use values for fsetpos() that are returned from fgetpos()" id="BD-PB-FSETPOS" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not rely on an environment pointer following an operation that may invalidate it" id="BD-PB-INVENV" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Pointers returned by certain Standard Library functions should not be used following a subsequent call to the same or related function" id="BD-PB-INVRET" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="The Standard Library function memcmp shall not be used to compare null terminated strings" id="BD-PB-MCCSTR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid calls to memory-setting functions that can be optimized out by the compiler" id="BD-PB-MEMOPT" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Properly define new handlers" id="BD-PB-NEWHAN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid throwing exceptions from functions that are declared not to throw" id="BD-PB-NOEXCEPT" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Never return from functions that should not return" id="BD-PB-NORETURN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid accessing arrays and pointers out of bounds" id="BD-PB-OVERFARRAY" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="An object shall not be assigned or copied to an overlapping object" id="BD-PB-OVERLAP" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not treat arrays polymorphically" id="BD-PB-POLARR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not compare two unrelated pointers" id="BD-PB-PTRCMP" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not subtract two pointers that do not address elements of the same array" id="BD-PB-PTRSUB" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not store an already-owned pointer value in an unrelated smart pointer" id="BD-PB-PTRVALUE" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not call putenv() with a pointer to an automatic variable as the argument" id="BD-PB-PUTENV" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not return from a computational exception signal handler" id="BD-PB-SIGRETURN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not alternately input and output from a stream without an intervening flush or positioning call" id="BD-PB-STREAMINOUT" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not subsequently use the argument to std::forward" id="BD-PB-SUBSEQFRWD" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not rely on the value of a moved-from object" id="BD-PB-SUBSEQMOVE" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid switch with unreachable branches" id="BD-PB-SWITCH" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Properly define terminate handlers" id="BD-PB-TERMHAN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Properly define unexpected handlers" id="BD-PB-UNEXPHAN" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not use dynamic type of an object under construction" id="BD-PB-VCTOR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Do not use dynamic type of an object under destruction" id="BD-PB-VDTOR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Ensure the size of the variable length array is in valid range" id="BD-PB-VLASIZE" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="The same file shall not be opened for read and write access at the same time on different streams" id="BD-PB-WRRDSTR" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid writing to a stream which has been opened as read only" id="BD-PB-WRROS" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid integer overflows" id="BD-PB-INTOVERF" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Ensure strings are zero terminated" id="BD-PB-NZTS" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Ensure the output buffer is large enough when using path manipulation functions" id="BD-PB-PATHBUF" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Always throw the created std::exception object" id="BD-PB-STDEXC" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Suspicious setting of stream flags" id="BD-PB-STREAMFLAGS" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Restore stream format" id="BD-PB-STREAMFMT" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Avoid unused values" id="BD-PB-VOVR" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-PB" desc="Guarantee that container indices are within the valid range" id="BD-PB-VALRANGE" sev="4">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Properly deallocate dynamically allocated resources" id="BD-RES-BADDEALLOC" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Ensure deallocation functions guarantee resource freeing" id="BD-RES-BADFREEF" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Do not use resources that have been freed" id="BD-RES-FREE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Allocate sufficient memory to hold an object of a given type" id="BD-RES-INSUFMEM" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Do not free resources using invalid pointers" id="BD-RES-INVFREE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Ensure resources are freed" id="BD-RES-LEAKS" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Avoid cyclic shared_ptr references" id="BD-RES-CSP" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-RES" desc="Do not create variables on the stack above the defined limits" id="BD-RES-STACKLIM" sev="3">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid tainted data in array indexes" id="BD-SECURITY-ARRAY" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Prevent buffer overflows from tainted data" id="BD-SECURITY-BUFWRITE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against integer overflow/underflow from tainted data" id="BD-SECURITY-INTOVERF" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid buffer overflow from tainted data due to defining incorrect format limits" id="BD-SECURITY-OVERFFMT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid buffer read overflow from tainted data" id="BD-SECURITY-OVERFRD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid buffer write overflow from tainted data" id="BD-SECURITY-OVERFWR" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against command injection" id="BD-SECURITY-TDCMD" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid printing tainted data on the output console" id="BD-SECURITY-TDCONSOLE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against environment injection" id="BD-SECURITY-TDENV" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against file name injection" id="BD-SECURITY-TDFNAMES" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Exclude unsanitized user input from format strings" id="BD-SECURITY-TDINPUT" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Validate potentially tainted data before it is used in the controlling expression of a loop" id="BD-SECURITY-TDLOOP" sev="1">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Protect against SQL injection" id="BD-SECURITY-TDSQL" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Sensitive data should be cleared before being deallocated" id="BD-SECURITY-SENSFREE" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Avoid passing sensitive data to functions that write to log files" id="BD-SECURITY-SENSLOG" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Validate potentially tainted data before it is used to determine the size of memory allocation" id="BD-SECURITY-TDALLOC" sev="2">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Rule>
+            <Rule cat="BD-SECURITY" desc="Disable resolving XML external entities (XXE) in libxerces-c" id="BD-SECURITY-XXEXRC" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid double locking" id="BD-TRS-DLOCK" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid race conditions when using fork and file descriptors" id="BD-TRS-FORKFILE" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not abandon unreleased locks" id="BD-TRS-LOCK" sev="1">
+               <Stats authTot="1;" authUrg="1;" total="1"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not acquire locks in different order" id="BD-TRS-ORDER" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid race conditions while checking for the existence of a symbolic link" id="BD-TRS-SYMLINK" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not use blocking functions while holding a lock" id="BD-TRS-TSHL" sev="1">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Declare objects shared between POSIX threads with appropriate storage durations" id="BD-TRS-ARG" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Variable should be used in context of single critical section" id="BD-TRS-DIFCS" sev="2">
+               <Stats authTot="6;" authUrg="6;" total="6"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Avoid race conditions while accessing files" id="BD-TRS-FRC" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+            <Rule cat="BD-TRS" desc="Do not join or detach a thread that was previously joined or detached" id="BD-TRS-JOINDETACH" sev="2">
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Rule>
+         </RulesList>
+         <CategoriesList>
+            <Category desc="Flow Analysis" name="BD" total="122">
+               <Category desc="Incorrect API usage" name="BD-API" total="6">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Category desc="Possible Bugs" name="BD-PB" total="67">
+                  <Stats authTot="2;" authUrg="2;" total="2"/>
+               </Category>
+               <Category desc="Resources" name="BD-RES" total="8">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Category desc="Security" name="BD-SECURITY" total="19">
+                  <Stats authTot="2;" authUrg="2;" total="2"/>
+               </Category>
+               <Category desc="Containers" name="BD-CO" total="5">
+                  <Stats authTot="0;" authUrg="0;" total="0"/>
+               </Category>
+               <Category desc="Threads &amp; Synchronization" name="BD-TRS" total="15">
+                  <Stats authTot="7;" authUrg="7;" total="7"/>
+               </Category>
+               <Stats authTot="0;" authUrg="0;" total="0"/>
+            </Category>
+         </CategoriesList>
+         <SeverityList>
+            <Severity id="1">
+               <Stats authTot="4;" authUrg="4;" total="4"/>
+            </Severity>
+            <Severity id="2">
+               <Stats authTot="7;" authUrg="7;" total="7"/>
+            </Severity>
+         </SeverityList>
+      </Rules>
+      
+  <StdViols>
+    <FlowViol msg="&quot;participants&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="93" ruleSAFMsg="Usage of &quot;participants&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;participants&quot; in first critical section" pkg="Physics" tool="c++test" id="208209936" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="93" locStartPos="0" locEndLn="94" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="93" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="94" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Variable used in critical section"/>
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="90" srcRngStartPos="0" srcRngEndLn="91" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="90" ElType="." desc="while (!exitGame) {" rngLn="90">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: !exitGame (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="91" srcRngStartPos="0" srcRngEndLn="92" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="91" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="91">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; participantsCount) (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="92" srcRngStartPos="0" srcRngEndLn="93" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="92" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="92">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="93" srcRngStartPos="0" srcRngEndLn="94" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="93" ElType=".C" desc="Point&amp; position = participants[i]->getPosition();" rngLn="93">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;participants&quot; in first critical section" kind="cause"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="94" srcRngStartPos="0" srcRngEndLn="95" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="94" ElType="." desc="position.translate(*velocityArray[i]);" rngLn="94">
+          <ElDescList>
+            <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="15" ElType="." desc="_x += vector._x;" rngLn="15">
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="16" srcRngStartPos="0" srcRngEndLn="17" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="16" ElType="." desc="_y += vector._y;" rngLn="16">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="95" srcRngStartPos="0" srcRngEndLn="96" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="95" ElType="." desc="ring.contains(...)" rngLn="95">
+          <ElDescList>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="getPosition()" rngLn="29">
+              <ElDescList>
+                <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+                  <Props/>
+                </ElDesc>
+              </ElDescList>
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="point.squareDistanceTo(...)" rngLn="29">
+              <ElDescList>
+                <ElDesc srcRngStartln="21" srcRngStartPos="0" srcRngEndLn="22" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="21" ElType="." desc="return ((_x - point._x) * (_x - point._x)) + ((_y - point._y) * (_y - point._y));" rngLn="21">
+                  <Props/>
+                </ElDesc>
+              </ElDescList>
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="return point.squareDistanceTo(getPosition()) &lt;= (_radius * _radius);" rngLn="29">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="95" srcRngStartPos="0" srcRngEndLn="96" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="95" ElType="." desc="assertion(ring.contains(position), &quot;Participant is out of ring&quot;);" rngLn="95">
+          <ElDescList>
+            <ElDesc srcRngStartln="60" srcRngStartPos="0" srcRngEndLn="61" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="60" ElType="." desc="if (!condition) {" rngLn="60">
+              <Props/>
+              <Anns>
+                <Ann msg="Condition evaluation: !condition (assuming false)" kind="condEval"/>
+              </Anns>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="98" srcRngStartPos="0" srcRngEndLn="99" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="98" ElType="!" desc="LOCK_RELEASE(changePositionMutex);" rngLn="98">
+          <Props/>
+          <Anns>
+            <Ann msg="Unlocking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="91" srcRngStartPos="0" srcRngEndLn="92" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="91" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="91">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; participantsCount) (true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="92" srcRngStartPos="0" srcRngEndLn="93" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="92" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="92">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="93" srcRngStartPos="0" srcRngEndLn="94" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="93" ElType=".P" desc="Point&amp; position = participants[i]->getPosition();" rngLn="93">
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;participants&quot; in second critical section" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="&quot;velocityArray&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="94" ruleSAFMsg="Usage of &quot;velocityArray&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;velocityArray&quot; in first critical section" pkg="Physics" tool="c++test" id="1066261748" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="94" locStartPos="0" locEndLn="95" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="94" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="95" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Variable used in critical section"/>
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="90" srcRngStartPos="0" srcRngEndLn="91" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="90" ElType="." desc="while (!exitGame) {" rngLn="90">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: !exitGame (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="91" srcRngStartPos="0" srcRngEndLn="92" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="91" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="91">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; participantsCount) (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="92" srcRngStartPos="0" srcRngEndLn="93" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="92" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="92">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="93" srcRngStartPos="0" srcRngEndLn="94" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="93" ElType="." desc="Point&amp; position = participants[i]->getPosition();" rngLn="93">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="94" srcRngStartPos="0" srcRngEndLn="95" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="94" ElType=".C" desc="position.translate(*velocityArray[i]);" rngLn="94">
+          <ElDescList>
+            <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="15" ElType="." desc="_x += vector._x;" rngLn="15">
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="16" srcRngStartPos="0" srcRngEndLn="17" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="16" ElType="." desc="_y += vector._y;" rngLn="16">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;velocityArray&quot; in first critical section" kind="cause"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="95" srcRngStartPos="0" srcRngEndLn="96" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="95" ElType="." desc="ring.contains(...)" rngLn="95">
+          <ElDescList>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="getPosition()" rngLn="29">
+              <ElDescList>
+                <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+                  <Props/>
+                </ElDesc>
+              </ElDescList>
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="point.squareDistanceTo(...)" rngLn="29">
+              <ElDescList>
+                <ElDesc srcRngStartln="21" srcRngStartPos="0" srcRngEndLn="22" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="21" ElType="." desc="return ((_x - point._x) * (_x - point._x)) + ((_y - point._y) * (_y - point._y));" rngLn="21">
+                  <Props/>
+                </ElDesc>
+              </ElDescList>
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="return point.squareDistanceTo(getPosition()) &lt;= (_radius * _radius);" rngLn="29">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="95" srcRngStartPos="0" srcRngEndLn="96" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="95" ElType="." desc="assertion(ring.contains(position), &quot;Participant is out of ring&quot;);" rngLn="95">
+          <ElDescList>
+            <ElDesc srcRngStartln="60" srcRngStartPos="0" srcRngEndLn="61" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="60" ElType="." desc="if (!condition) {" rngLn="60">
+              <Props/>
+              <Anns>
+                <Ann msg="Condition evaluation: !condition (assuming false)" kind="condEval"/>
+              </Anns>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="98" srcRngStartPos="0" srcRngEndLn="99" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="98" ElType="!" desc="LOCK_RELEASE(changePositionMutex);" rngLn="98">
+          <Props/>
+          <Anns>
+            <Ann msg="Unlocking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="91" srcRngStartPos="0" srcRngEndLn="92" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="91" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="91">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; participantsCount) (true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="92" srcRngStartPos="0" srcRngEndLn="93" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="92" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="92">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="93" srcRngStartPos="0" srcRngEndLn="94" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="93" ElType="." desc="Point&amp; position = participants[i]->getPosition();" rngLn="93">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="94" srcRngStartPos="0" srcRngEndLn="95" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="94" ElType=".P" desc="position.translate(*velocityArray[i]);" rngLn="94">
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;velocityArray&quot; in second critical section" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="&quot;ring&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="95" ruleSAFMsg="Usage of &quot;ring&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;ring&quot; in first critical section" pkg="Physics" tool="c++test" id="-1966185267" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="95" locStartPos="0" locEndLn="96" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="95" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="96" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Variable used in critical section"/>
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="90" srcRngStartPos="0" srcRngEndLn="91" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="90" ElType="." desc="while (!exitGame) {" rngLn="90">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: !exitGame (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="91" srcRngStartPos="0" srcRngEndLn="92" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="91" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="91">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; participantsCount) (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="92" srcRngStartPos="0" srcRngEndLn="93" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="92" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="92">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="93" srcRngStartPos="0" srcRngEndLn="94" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="93" ElType="." desc="Point&amp; position = participants[i]->getPosition();" rngLn="93">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="94" srcRngStartPos="0" srcRngEndLn="95" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="94" ElType="." desc="position.translate(*velocityArray[i]);" rngLn="94">
+          <ElDescList>
+            <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="15" ElType="." desc="_x += vector._x;" rngLn="15">
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="16" srcRngStartPos="0" srcRngEndLn="17" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="16" ElType="." desc="_y += vector._y;" rngLn="16">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="95" srcRngStartPos="0" srcRngEndLn="96" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="95" ElType=".C" desc="ring.contains(...)" rngLn="95">
+          <ElDescList>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="getPosition()" rngLn="29">
+              <ElDescList>
+                <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+                  <Props/>
+                </ElDesc>
+              </ElDescList>
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="point.squareDistanceTo(...)" rngLn="29">
+              <ElDescList>
+                <ElDesc srcRngStartln="21" srcRngStartPos="0" srcRngEndLn="22" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="21" ElType="." desc="return ((_x - point._x) * (_x - point._x)) + ((_y - point._y) * (_y - point._y));" rngLn="21">
+                  <Props/>
+                </ElDesc>
+              </ElDescList>
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="return point.squareDistanceTo(getPosition()) &lt;= (_radius * _radius);" rngLn="29">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;ring&quot; in first critical section" kind="cause"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="95" srcRngStartPos="0" srcRngEndLn="96" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="95" ElType="." desc="assertion(ring.contains(position), &quot;Participant is out of ring&quot;);" rngLn="95">
+          <ElDescList>
+            <ElDesc srcRngStartln="60" srcRngStartPos="0" srcRngEndLn="61" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="60" ElType="." desc="if (!condition) {" rngLn="60">
+              <Props/>
+              <Anns>
+                <Ann msg="Condition evaluation: !condition (assuming false)" kind="condEval"/>
+              </Anns>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="98" srcRngStartPos="0" srcRngEndLn="99" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="98" ElType="!" desc="LOCK_RELEASE(changePositionMutex);" rngLn="98">
+          <Props/>
+          <Anns>
+            <Ann msg="Unlocking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="91" srcRngStartPos="0" srcRngEndLn="92" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="91" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="91">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; participantsCount) (true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="92" srcRngStartPos="0" srcRngEndLn="93" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="92" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="92">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="93" srcRngStartPos="0" srcRngEndLn="94" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="93" ElType="." desc="Point&amp; position = participants[i]->getPosition();" rngLn="93">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="94" srcRngStartPos="0" srcRngEndLn="95" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="94" ElType="." desc="position.translate(*velocityArray[i]);" rngLn="94">
+          <ElDescList>
+            <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="15" ElType="." desc="_x += vector._x;" rngLn="15">
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="16" srcRngStartPos="0" srcRngEndLn="17" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="16" ElType="." desc="_y += vector._y;" rngLn="16">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="95" srcRngStartPos="0" srcRngEndLn="96" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="95" ElType=".P" desc="ring.contains(...)" rngLn="95">
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;ring&quot; in second critical section" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="Unreleased lock: changePositionMutex" ln="103" ruleSAFMsg="Point prior to which the lock is to be released" auth="mgorecka" sev="1" rule="BD-TRS-LOCK" ruleSCSCMsg="Point where the lock is acquired" pkg="Physics" tool="c++test" id="-1760906373" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="103" locStartPos="0" locEndLn="104" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="92" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="93" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+      <Props/>
+      <ElDescList>
+        <ElDesc srcRngStartln="90" srcRngStartPos="0" srcRngEndLn="91" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="90" ElType="." desc="while (!exitGame) {" rngLn="90">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: !exitGame (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="91" srcRngStartPos="0" srcRngEndLn="92" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="91" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="91">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; participantsCount) (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="92" srcRngStartPos="0" srcRngEndLn="93" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="92" ElType=".C" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="92">
+          <Props/>
+          <Anns>
+            <Ann msg="Point where the lock is acquired" kind="cause"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="93" srcRngStartPos="0" srcRngEndLn="94" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="93" ElType="." desc="Point&amp; position = participants[i]->getPosition();" rngLn="93">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="94" srcRngStartPos="0" srcRngEndLn="95" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="94" ElType="." desc="position.translate(*velocityArray[i]);" rngLn="94">
+          <ElDescList>
+            <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="15" ElType="." desc="_x += vector._x;" rngLn="15">
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="16" srcRngStartPos="0" srcRngEndLn="17" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="16" ElType="." desc="_y += vector._y;" rngLn="16">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="95" srcRngStartPos="0" srcRngEndLn="96" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="95" ElType="." desc="ring.contains(...)" rngLn="95">
+          <ElDescList>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="getPosition()" rngLn="29">
+              <ElDescList>
+                <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+                  <Props/>
+                </ElDesc>
+              </ElDescList>
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="point.squareDistanceTo(...)" rngLn="29">
+              <ElDescList>
+                <ElDesc srcRngStartln="21" srcRngStartPos="0" srcRngEndLn="22" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="21" ElType="." desc="return ((_x - point._x) * (_x - point._x)) + ((_y - point._y) * (_y - point._y));" rngLn="21">
+                  <Props/>
+                </ElDesc>
+              </ElDescList>
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="29" srcRngStartPos="0" srcRngEndLn="30" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="29" ElType="." desc="return point.squareDistanceTo(getPosition()) &lt;= (_radius * _radius);" rngLn="29">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="95" srcRngStartPos="0" srcRngEndLn="96" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="95" ElType="!E" desc="assertion(ring.contains(position), &quot;Participant is out of ring&quot;);" rngLn="95" thrownTypes="const char *" throwingMethod="assertion">
+          <ElDescList>
+            <ElDesc srcRngStartln="60" srcRngStartPos="0" srcRngEndLn="61" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="60" ElType="." desc="if (!condition) {" rngLn="60">
+              <Props/>
+              <Anns>
+                <Ann msg="Condition evaluation: !condition (assuming true)" kind="condEval"/>
+              </Anns>
+            </ElDesc>
+            <ElDesc srcRngStartln="61" srcRngStartPos="0" srcRngEndLn="62" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="61" ElType="!E" desc="throw message;" rngLn="61" thrownTypes="throwStatement" throwingMethod="">
+              <Props/>
+              <Anns>
+                <Ann msg="Throws an exception" kind="except"/>
+              </Anns>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+          <Anns>
+            <Ann msg="assertion() throws const char *" kind="except"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="103" srcRngStartPos="0" srcRngEndLn="104" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="103" ElType=".P" desc="}" rngLn="103">
+          <Props/>
+          <Anns>
+            <Ann msg="Point prior to which the lock is to be released" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="&quot;ring&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="119" ruleSAFMsg="Usage of &quot;ring&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;ring&quot; in first critical section" pkg="Render" tool="c++test" id="240447899" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="119" locStartPos="0" locEndLn="120" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="119" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="120" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Variable used in critical section"/>
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="117" srcRngStartPos="0" srcRngEndLn="118" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="117" ElType="." desc="while (!exitGame) {" rngLn="117">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: !exitGame (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="118" srcRngStartPos="0" srcRngEndLn="119" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="118" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="118">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="119" srcRngStartPos="0" srcRngEndLn="120" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="119" ElType=".C" desc="ring.getPosition()" rngLn="119">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;ring&quot; in first critical section" kind="cause"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="119" srcRngStartPos="0" srcRngEndLn="120" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="119" ElType="." desc="ring.getPosition().translate(*currentCameraVelocity);" rngLn="119">
+          <ElDescList>
+            <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="15" ElType="." desc="_x += vector._x;" rngLn="15">
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="16" srcRngStartPos="0" srcRngEndLn="17" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="16" ElType="." desc="_y += vector._y;" rngLn="16">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="120" srcRngStartPos="0" srcRngEndLn="121" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="120" ElType="!" desc="LOCK_RELEASE(changePositionMutex);" rngLn="120">
+          <Props/>
+          <Anns>
+            <Ann msg="Unlocking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="122" srcRngStartPos="0" srcRngEndLn="123" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="122" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="122">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; participantsCount) (assuming false)" kind="condEval"/>
+            <Ann msg="Not entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="128" srcRngStartPos="0" srcRngEndLn="129" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="128" ElType="." desc="SLEEP(STEP);" rngLn="128">
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="117" srcRngStartPos="0" srcRngEndLn="118" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="117" ElType="." desc="while (!exitGame) {" rngLn="117">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: !exitGame (true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="118" srcRngStartPos="0" srcRngEndLn="119" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="118" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="118">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="119" srcRngStartPos="0" srcRngEndLn="120" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="119" ElType=".P" desc="ring.getPosition()" rngLn="119">
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;ring&quot; in second critical section" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="&quot;currentCameraVelocity&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="124" ruleSAFMsg="Usage of &quot;currentCameraVelocity&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;currentCameraVelocity&quot; in first critical section" pkg="Render" tool="c++test" id="-881739154" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="124" locStartPos="0" locEndLn="125" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="119" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="120" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Variable used in critical section"/>
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="117" srcRngStartPos="0" srcRngEndLn="118" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="117" ElType="." desc="while (!exitGame) {" rngLn="117">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: !exitGame (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="118" srcRngStartPos="0" srcRngEndLn="119" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="118" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="118">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="119" srcRngStartPos="0" srcRngEndLn="120" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="119" ElType="." desc="ring.getPosition()" rngLn="119">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="119" srcRngStartPos="0" srcRngEndLn="120" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="119" ElType=".C" desc="ring.getPosition().translate(*currentCameraVelocity);" rngLn="119">
+          <ElDescList>
+            <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="15" ElType="." desc="_x += vector._x;" rngLn="15">
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="16" srcRngStartPos="0" srcRngEndLn="17" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="16" ElType="." desc="_y += vector._y;" rngLn="16">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;currentCameraVelocity&quot; in first critical section" kind="cause"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="120" srcRngStartPos="0" srcRngEndLn="121" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="120" ElType="!" desc="LOCK_RELEASE(changePositionMutex);" rngLn="120">
+          <Props/>
+          <Anns>
+            <Ann msg="Unlocking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="122" srcRngStartPos="0" srcRngEndLn="123" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="122" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="122">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; participantsCount) (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="123" srcRngStartPos="0" srcRngEndLn="124" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="123" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="123">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="124" srcRngStartPos="0" srcRngEndLn="125" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="124" ElType="." desc="participants[i]->getPosition()" rngLn="124">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="124" srcRngStartPos="0" srcRngEndLn="125" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="124" ElType=".P" desc="participants[i]->getPosition().translate(*currentCameraVelocity);" rngLn="124">
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;currentCameraVelocity&quot; in second critical section" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="&quot;participants&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="124" ruleSAFMsg="Usage of &quot;participants&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;participants&quot; in first critical section" pkg="Render" tool="c++test" id="-935999178" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="124" locStartPos="0" locEndLn="125" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="124" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="125" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Variable used in critical section"/>
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="117" srcRngStartPos="0" srcRngEndLn="118" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="117" ElType="." desc="while (!exitGame) {" rngLn="117">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: !exitGame (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="118" srcRngStartPos="0" srcRngEndLn="119" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="118" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="118">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="119" srcRngStartPos="0" srcRngEndLn="120" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="119" ElType="." desc="ring.getPosition()" rngLn="119">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="119" srcRngStartPos="0" srcRngEndLn="120" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="119" ElType="." desc="ring.getPosition().translate(*currentCameraVelocity);" rngLn="119">
+          <ElDescList>
+            <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="15" ElType="." desc="_x += vector._x;" rngLn="15">
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="16" srcRngStartPos="0" srcRngEndLn="17" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="16" ElType="." desc="_y += vector._y;" rngLn="16">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="120" srcRngStartPos="0" srcRngEndLn="121" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="120" ElType="!" desc="LOCK_RELEASE(changePositionMutex);" rngLn="120">
+          <Props/>
+          <Anns>
+            <Ann msg="Unlocking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="122" srcRngStartPos="0" srcRngEndLn="123" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="122" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="122">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; participantsCount) (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="123" srcRngStartPos="0" srcRngEndLn="124" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="123" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="123">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="124" srcRngStartPos="0" srcRngEndLn="125" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="124" ElType=".C" desc="participants[i]->getPosition()" rngLn="124">
+          <ElDescList>
+            <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="10" ElType="." desc="Point&amp; getPosition() { return _position; }" rngLn="10">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;participants&quot; in first critical section" kind="cause"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="124" srcRngStartPos="0" srcRngEndLn="125" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="124" ElType="." desc="participants[i]->getPosition().translate(*currentCameraVelocity);" rngLn="124">
+          <ElDescList>
+            <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="15" ElType="." desc="_x += vector._x;" rngLn="15">
+              <Props/>
+            </ElDesc>
+            <ElDesc srcRngStartln="16" srcRngStartPos="0" srcRngEndLn="17" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Point.hpp" srcRnghash="1950870755" ln="16" ElType="." desc="_y += vector._y;" rngLn="16">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="125" srcRngStartPos="0" srcRngEndLn="126" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="125" ElType="!" desc="LOCK_RELEASE(changePositionMutex);" rngLn="125">
+          <Props/>
+          <Anns>
+            <Ann msg="Unlocking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="126" srcRngStartPos="0" srcRngEndLn="127" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="126" ElType="!" desc="draw(participants[i]);" rngLn="126">
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="122" srcRngStartPos="0" srcRngEndLn="123" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="122" ElType="." desc="for(int i = 0; i &lt; participantsCount; i++) {" rngLn="122">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; participantsCount) (true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="123" srcRngStartPos="0" srcRngEndLn="124" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="123" ElType="!" desc="LOCK_ACQUIRE(changePositionMutex);" rngLn="123">
+          <Props/>
+          <Anns>
+            <Ann msg="Locking: &amp;changePositionMutex" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="124" srcRngStartPos="0" srcRngEndLn="125" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="124" ElType=".P" desc="participants[i]->getPosition()" rngLn="124">
+          <Props/>
+          <Anns>
+            <Ann msg="Usage of &quot;participants&quot; in second critical section" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="Division by &quot;shape2.getArea()&quot; which may possibly be zero" ln="5" ruleSAFMsg="Point of division by zero" auth="mgorecka" sev="1" rule="BD-PB-ZERO" ruleSCSCMsg="Start of the path" tool="c++test" id="-1887152637" lang="cpp" locType="sr" urgent="true" config="3" hash="-1665970746" locStartln="5" locStartPos="0" locEndLn="6" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp" FirstElSrcRngStartln="5" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="6" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp">
+      <Props/>
+      <ElDescList>
+        <ElDesc srcRngStartln="5" srcRngStartPos="0" srcRngEndLn="6" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp" srcRnghash="-1665970746" ln="5" ElType=".C" desc="shape2->getArea()" rngLn="5">
+          <ElDescList>
+            <ElDesc srcRngStartln="19" srcRngStartPos="0" srcRngEndLn="20" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp" srcRnghash="1537905639" ln="19" ElType="!" desc="double getArea() const { return 0; }" rngLn="19">
+              <Props/>
+            </ElDesc>
+          </ElDescList>
+          <Props/>
+          <Anns>
+            <Ann msg="Start of the path" kind="cause"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="5" srcRngStartPos="0" srcRngEndLn="6" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp" srcRnghash="-1665970746" ln="5" ElType=".P" desc="return shape1->getArea()/shape2->getArea();" rngLn="5">
+          <Props/>
+          <Anns>
+            <Ann msg="Point of division by zero" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="Data obtained from a file (&quot;*pSize&quot;) is used to determine the size of memory allocation" ln="8" ruleSAFMsg="Point where the array is allocated" auth="mgorecka" sev="2" rule="BD-SECURITY-TDALLOC" ruleSCSCMsg="Tainting point" tool="c++test" id="-862528737" lang="cpp" locType="sr" urgent="true" config="3" hash="-443364725" locStartln="8" locStartPos="0" locEndLn="9" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Tainted data"/>
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="7" srcRngStartPos="0" srcRngEndLn="8" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" srcRnghash="-443364725" ln="7" ElType=".C" desc="fscanf(file, &quot;%d&quot;, pSize);" rngLn="7">
+          <Props/>
+          <Anns>
+            <Ann msg="Tainting point" kind="cause"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="8" srcRngStartPos="0" srcRngEndLn="9" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" srcRnghash="-443364725" ln="8" ElType=".P" desc="int* data = new int[*pSize];" rngLn="8">
+          <Props/>
+          <Anns>
+            <Ann msg="Point where the array is allocated" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="Data obtained from a file (&quot;*pSize&quot;) is used in a loop condition" ln="9" ruleSAFMsg="Tainted data use in a loop condition" auth="mgorecka" sev="1" rule="BD-SECURITY-TDLOOP" ruleSCSCMsg="Tainting point" tool="c++test" id="2054996746" lang="cpp" locType="sr" urgent="true" config="3" hash="-443364725" locStartln="9" locStartPos="0" locEndLn="10" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Tainted data"/>
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="7" srcRngStartPos="0" srcRngEndLn="8" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" srcRnghash="-443364725" ln="7" ElType=".C" desc="fscanf(file, &quot;%d&quot;, pSize);" rngLn="7">
+          <Props>
+            <Prop key="Tracked variables" val="pSize[]"/>
+          </Props>
+          <Anns>
+            <Ann msg="Tainting point" kind="cause"/>
+            <Ann msg="Tainted data: pSize[]" kind="var"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="8" srcRngStartPos="0" srcRngEndLn="9" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" srcRnghash="-443364725" ln="8" ElType="." desc="int* data = new int[*pSize];" rngLn="8">
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="9" srcRngStartPos="0" srcRngEndLn="10" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" srcRnghash="-443364725" ln="9" ElType=".P" desc="for (int i = 0; i &lt; *pSize; i++) {" rngLn="9">
+          <Props>
+            <Prop key="Tracked variables" val="pSize[]"/>
+          </Props>
+          <Anns>
+            <Ann msg="Tainted data: pSize[]" kind="var"/>
+            <Ann msg="Tainted data use in a loop condition" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="Memory not deallocated: data" ln="15" ruleSAFMsg="Point where allocated memory is lost" auth="mgorecka" sev="1" rule="BD-RES-LEAKS" ruleSCSCMsg="Point where memory is allocated" tool="c++test" supp="true" id="-1842545282" lang="cpp" locType="sr" config="3" hash="-443364725" locStartln="15" locStartPos="0" locEndLn="16" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" FirstElSrcRngStartln="8" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="9" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Allocated memory"/>
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="7" srcRngStartPos="0" srcRngEndLn="8" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" srcRnghash="-443364725" ln="7" ElType="." desc="fscanf(file, &quot;%d&quot;, pSize);" rngLn="7">
+          <Props/>
+        </ElDesc>
+        <ElDesc srcRngStartln="8" srcRngStartPos="0" srcRngEndLn="9" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" srcRnghash="-443364725" ln="8" ElType=".C" desc="int* data = new int[*pSize];" rngLn="8">
+          <Props>
+            <Prop key="Tracked variables" val="data"/>
+          </Props>
+          <Anns>
+            <Ann msg="Point where memory is allocated" kind="cause"/>
+            <Ann msg="Allocated memory: data" kind="var"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="9" srcRngStartPos="0" srcRngEndLn="10" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" srcRnghash="-443364725" ln="9" ElType="." desc="for (int i = 0; i &lt; *pSize; i++) {" rngLn="9">
+          <Props/>
+          <Anns>
+            <Ann msg="Loop condition evaluation: (i &lt; *pSize) (assuming true)" kind="condEval"/>
+            <Ann msg="Entering the loop" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="10" srcRngStartPos="0" srcRngEndLn="11" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" srcRnghash="-443364725" ln="10" ElType="!" desc="if (fscanf(file, &quot;%d&quot;, &amp;data[i]) == EOF) {" rngLn="10">
+          <Props/>
+          <Anns>
+            <Ann msg="Condition evaluation: (fscanf(...) == -1) (assuming true)" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="11" srcRngStartPos="0" srcRngEndLn="12" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" srcRnghash="-443364725" ln="11" ElType="!E" desc="throw IOException();" rngLn="11" thrownTypes="throwStatement" throwingMethod="">
+          <Props/>
+          <Anns>
+            <Ann msg="Throws an exception" kind="except"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="15" srcRngStartPos="0" srcRngEndLn="16" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" srcRnghash="-443364725" ln="15" ElType=".P" desc="} // parasoft-suppress BD-RES-LEAKS &quot;source-code1&quot;" rngLn="15">
+          <Props>
+            <Prop key="Tracked variables" val="data"/>
+          </Props>
+          <Anns>
+            <Ann msg="Allocated memory: data" kind="var"/>
+            <Ann msg="Point where allocated memory is lost" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+    <FlowViol msg="&quot;point&quot; may possibly be null" ln="11" ruleSAFMsg="Null pointer dereferencing point" auth="mgorecka" sev="1" rule="BD-PB-NP" ruleSCSCMsg="Source of null value" tool="c++test" id="1390236584" lang="cpp" locType="sr" urgent="true" config="3" hash="-1257393797" locStartln="11" locStartPos="0" locEndLn="12" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp">
+      <Props>
+        <Prop key="Tracked variables" val="Null value carrier"/>
+      </Props>
+      <ElDescList>
+        <ElDesc srcRngStartln="7" srcRngStartPos="0" srcRngEndLn="8" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp" srcRnghash="-1257393797" ln="7" ElType=".C" desc="Point* point = 0;" rngLn="7">
+          <Props/>
+          <Anns>
+            <Ann msg="Source of null value" kind="cause"/>
+            <Ann msg="Null value carrier: point" kind="comment"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="8" srcRngStartPos="0" srcRngEndLn="9" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp" srcRnghash="-1257393797" ln="8" ElType="." desc="if (argc > 3) {" rngLn="8">
+          <Props/>
+          <Anns>
+            <Ann msg="Condition evaluation: (argc > 3) (assuming false)" kind="condEval"/>
+          </Anns>
+        </ElDesc>
+        <ElDesc srcRngStartln="11" srcRngStartPos="0" srcRngEndLn="12" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp" srcRnghash="-1257393797" ln="11" ElType=".P" desc="point->reflectAcrossX();" rngLn="11">
+          <Props/>
+          <Anns>
+            <Ann msg="Null value carrier: point" kind="comment"/>
+            <Ann msg="Null pointer dereferencing point" kind="point"/>
+          </Anns>
+        </ElDesc>
+      </ElDescList>
+    </FlowViol>
+  </StdViols>
+
+      <Supps>
+         <Supp suppAuth="mgorecka" suppCount="1" suppLine="15" suppLoc="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" suppMsg="Memory not deallocated: data" suppRsn="source-code1" suppRule="BD-RES-LEAKS"/>
+      </Supps>
+      
+      
+   </CodingStandards>
+   <Metrics ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:15">
+      
+   </Metrics>
+   <AssocUrls/>
+</ResultsSession>

@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?><ResultsSession buildId="soavirt-test-2022-10-18" climode="false" execEnv="win32_x86_64" hasViols="true" id="1664274441037" lang="en_US" machine="CONQUEROR" project="soavirt-test" tag="Default" time="2022-10-18T12:09:44+02:00" toolDispName="SOAtest" toolId="soatest" toolName="SOAtest" toolVer="2022.2.0.202210032000" user="mgorecka">
+   <TestConfig machine="CONQUEROR" name="Demo Configuration" pseudoUrl="soatest.builtin://Demo Configuration" user="mgorecka"/>
+   <Authors>
+      <Author id="dev1" name="mgorecka"/>
+   </Authors>
+   <Analyzers>
+      <Analyzer id="com.parasoft.soavirt.desktop.functional.analyzer" name="Parasoft Functional Tests Analyzer" ver="10.6.1.202210032000"/>
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IChangeImpactViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1"/>
+   </VersionInfos>
+   <Scope>
+      <Repositories/>
+      <Locations>
+         <Loc hash="-848041479" locRef="1" projId="VirtualAssets" projPath="/VirtualAssets" project="VirtualAssets" resProjPath="generateResults.tst" totLns="4543" uri="file://CONQUEROR/C:/Users/mgorecka/parasoft/soavirt_workspace/VirtualAssets/generateResults.tst"/>
+      </Locations>
+   </Scope>
+   
+  <SetupProblems/>
+
+   <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
+      
+      <AssocUrls>
+         <Tag disp="Requirement" name="req"/>
+         <Tag disp="Feature request" name="fr"/>
+         <Tag disp="Problem report" name="pr"/>
+         <Tag disp="Task" name="task"/>
+         <Tag disp="Asset" name="asset"/>
+         <Tag disp="Test" name="test"/>
+      </AssocUrls>
+   
+      
+      <Categories>
+         <CategoryGroup authTot="18;" authUrg="0;" desc="Functional Test Problems" id="GROUP.FUNC.FAIL" label="Fix Functional Test Problems" name="Functional Test Problems" total="18">
+            <Category authTot="18;" authUrg="0;" id="FUNC.FAIL" name="Functional Failures" short="functional failure" total="18">
+               <Type authTot="18;" authUrg="0;" name="unknown" total="18"/>
+            </Category>
+            <Category authTot="0;" authUrg="0;" id="XML.VALID.ERROR" name="XML Validation Errors" short="XML validation error" total="0"/>
+            <Category authTot="0;" authUrg="0;" id="MISC.ERR" name="Miscellaneous Errors" short="miscellaneous error" total="0"/>
+         </CategoryGroup>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="Change Impact" id="GROUP.CHNG.IMP" label="Review Change Impact" name="Change Impact" total="0">
+            <Category authTot="0;" authUrg="0;" id="CHNG.IMP" name="Change Impact" short="change impact" total="0"/>
+         </CategoryGroup>
+      </Categories>
+      <Projects>
+         <Project err="0" fail="18" id="VirtualAssets" name="VirtualAssets" pass="0" total="18">
+            <CategoryGroupStats id="GROUP.FUNC.FAIL" total="18"/>
+            <CategoryGroupStats id="GROUP.CHNG.IMP" total="0"/>
+         </Project>
+      </Projects>
+      
+  <APICoverage/>
+
+      
+  <TrafficData/>
+      
+  <EnvData/>
+      <FuncAPISecurity pentest="false">
+         
+  <Categories/>
+         
+  <Attacks/>
+      </FuncAPISecurity>
+      
+  <ExecViols>
+    <FuncViol msg="Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000002"/>
+    <FuncViol msg="Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000006"/>
+    <FuncViol msg="Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000007"/>
+    <FuncViol msg="DataSource: Status (row 1): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008#0000000009" tcId="Status (row 1)"/>
+    <FuncViol msg="DataSource: Status (row 2): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008#0000000009" tcId="Status (row 2)"/>
+    <FuncViol msg="DataSource: Status (row 3): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008#0000000009" tcId="Status (row 3)"/>
+    <FuncViol msg="DataSource: Status (row 4): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008#0000000009" tcId="Status (row 4)"/>
+    <FuncViol msg="DataSource: Status (row 5): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008#0000000009" tcId="Status (row 5)"/>
+    <FuncViol msg="DataSource: Status (row 1): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014#0000000015" tcId="Status (row 1)"/>
+    <FuncViol msg="DataSource: Status (row 2): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014#0000000015" tcId="Status (row 2)"/>
+    <FuncViol msg="DataSource: Status (row 3): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014#0000000015" tcId="Status (row 3)"/>
+    <FuncViol msg="DataSource: Status (row 4): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014#0000000015" tcId="Status (row 4)"/>
+    <FuncViol msg="DataSource: Status (row 5): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014#0000000015" tcId="Status (row 5)"/>
+    <FuncViol msg="DataSource: Status (row 1): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018#0000000019" tcId="Status (row 1)"/>
+    <FuncViol msg="DataSource: Status (row 2): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018#0000000019" tcId="Status (row 2)"/>
+    <FuncViol msg="DataSource: Status (row 3): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018#0000000019" tcId="Status (row 3)"/>
+    <FuncViol msg="DataSource: Status (row 4): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018#0000000019" tcId="Status (row 4)"/>
+    <FuncViol msg="DataSource: Status (row 5): Connection refused: connect" loc="/VirtualAssets/generateResults.tst" ln="-1" sev="1" auth="mgorecka" locRef="1" violationDetails="A connection error has been detected.  This may occur if a test has timed out while the client was still attempting to send or receive data." startPos="-1" endPos="-1" fatal="true" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="FUNC.FAIL" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018#0000000019" tcId="Status (row 5)"/>
+  </ExecViols>
+
+      
+   <ExecutedTestsDetails functional="true" changeImpact="false" type="FT">
+      <Total fail="18" total="18" name="Passed / Total" time="0:00:00.768" authErr="0;" authFail="18;">
+         <Project fail="18" total="18" name="VirtualAssets" time="0:00:00.768" authErr="0;" id="VirtualAssets" authFail="18;">
+            <TestSuite ln="0" locRef="1" root="true" name="generateResults.tst" id="wk:///VirtualAssets/generateResults.tst" fail="18" total="18" time="0:00:00.768" authErr="0;" authFail="18;">
+               <TestSuite ln="0" locRef="1" name="Test Suite: Test Suite" id="wk:///VirtualAssets/generateResults.tst#0000000000" fail="18" total="18" time="0:00:00.768" authErr="0;" authFail="18;">
+                  <Test ln="0" auth="mgorecka" locRef="1" name="Test 1: passingTest" startTime="1666087783615" id="wk:///VirtualAssets/generateResults.tst#0000000000#0000000002" status="fail" fail="1" total="1" time="0:00:00.620" authErr="0;" authFail="1;">
+                     <assoc id="SOA-12115" tag="req"/>
+                     <assoc id="PR" tag="pr"/>
+                     <assoc id="12345" tag="task"/>
+                     <assoc id="SOA-12222" tag="test"/>
+                  </Test>
+                  <Test ln="0" auth="mgorecka" locRef="1" name="Test 2: failingTestWithSingleViolation" startTime="1666087784236" id="wk:///VirtualAssets/generateResults.tst#0000000000#0000000006" status="fail" fail="1" total="1" time="0:00:00.014" authErr="0;" authFail="1;"/>
+                  <Test ln="0" auth="mgorecka" locRef="1" name="Test 3: failingTestWithmultipleViolations" startTime="1666087784251" id="wk:///VirtualAssets/generateResults.tst#0000000000#0000000007" status="fail" fail="1" total="1" time="0:00:00.008" authErr="0;" authFail="1;"/>
+                  <TestSuite ln="0" locRef="1" name="Test Suite: parametrizedPassingTest" id="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008" fail="5" total="5" time="0:00:00.043" authErr="0;" authFail="5;">
+                     <Test ln="0" auth="mgorecka" locRef="1" name="Test 1: passingTest" startTime="0" id="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008#0000000009" status="fail" fail="5" total="5" time="0:00:00.043" authErr="0;" authFail="5;">
+                        <assoc id="12345" tag="pr"/>
+                        <TestCase auth="mgorecka" name="Test 1: passingTest: Status (row 1)" startTime="1666087784260" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008#0000000009" id="Status (row 1)" status="fail" fail="1" total="1" time="0:00:00.010" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: passingTest: Status (row 2)" startTime="1666087784270" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008#0000000009" id="Status (row 2)" status="fail" fail="1" total="1" time="0:00:00.009" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: passingTest: Status (row 3)" startTime="1666087784280" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008#0000000009" id="Status (row 3)" status="fail" fail="1" total="1" time="0:00:00.009" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: passingTest: Status (row 4)" startTime="1666087784290" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008#0000000009" id="Status (row 4)" status="fail" fail="1" total="1" time="0:00:00.008" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: passingTest: Status (row 5)" startTime="1666087784299" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000008#0000000009" id="Status (row 5)" status="fail" fail="1" total="1" time="0:00:00.007" authErr="0;" authFail="1;"/>
+                     </Test>
+                  </TestSuite>
+                  <TestSuite ln="0" locRef="1" name="Test Suite: parametrizedFailingTestWithSingleViolation" id="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014" fail="5" total="5" time="0:00:00.041" authErr="0;" authFail="5;">
+                     <Test ln="0" auth="mgorecka" locRef="1" name="Test 1: failingTestWithSingleViolation" startTime="0" id="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014#0000000015" status="fail" fail="5" total="5" time="0:00:00.041" authErr="0;" authFail="5;">
+                        <TestCase auth="mgorecka" name="Test 1: failingTestWithSingleViolation: Status (row 1)" startTime="1666087784308" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014#0000000015" id="Status (row 1)" status="fail" fail="1" total="1" time="0:00:00.010" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: failingTestWithSingleViolation: Status (row 2)" startTime="1666087784319" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014#0000000015" id="Status (row 2)" status="fail" fail="1" total="1" time="0:00:00.008" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: failingTestWithSingleViolation: Status (row 3)" startTime="1666087784328" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014#0000000015" id="Status (row 3)" status="fail" fail="1" total="1" time="0:00:00.007" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: failingTestWithSingleViolation: Status (row 4)" startTime="1666087784336" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014#0000000015" id="Status (row 4)" status="fail" fail="1" total="1" time="0:00:00.008" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: failingTestWithSingleViolation: Status (row 5)" startTime="1666087784345" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000014#0000000015" id="Status (row 5)" status="fail" fail="1" total="1" time="0:00:00.008" authErr="0;" authFail="1;"/>
+                     </Test>
+                  </TestSuite>
+                  <TestSuite ln="0" locRef="1" name="Test Suite: parametrizedFailingTestWithMultipleViolations" id="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018" fail="5" total="5" time="0:00:00.042" authErr="0;" authFail="5;">
+                     <Test ln="0" auth="mgorecka" locRef="1" name="Test 1: failingTestWithMultipleViolations" startTime="0" id="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018#0000000019" status="fail" fail="5" total="5" time="0:00:00.042" authErr="0;" authFail="5;">
+                        <TestCase auth="mgorecka" name="Test 1: failingTestWithMultipleViolations: Status (row 1)" startTime="1666087784354" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018#0000000019" id="Status (row 1)" status="fail" fail="1" total="1" time="0:00:00.010" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: failingTestWithMultipleViolations: Status (row 2)" startTime="1666087784365" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018#0000000019" id="Status (row 2)" status="fail" fail="1" total="1" time="0:00:00.008" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: failingTestWithMultipleViolations: Status (row 3)" startTime="1666087784373" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018#0000000019" id="Status (row 3)" status="fail" fail="1" total="1" time="0:00:00.009" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: failingTestWithMultipleViolations: Status (row 4)" startTime="1666087784383" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018#0000000019" id="Status (row 4)" status="fail" fail="1" total="1" time="0:00:00.008" authErr="0;" authFail="1;"/>
+                        <TestCase auth="mgorecka" name="Test 1: failingTestWithMultipleViolations: Status (row 5)" startTime="1666087784392" testId="wk:///VirtualAssets/generateResults.tst#0000000000#0000000018#0000000019" id="Status (row 5)" status="fail" fail="1" total="1" time="0:00:00.007" authErr="0;" authFail="1;"/>
+                     </Test>
+                  </TestSuite>
+               </TestSuite>
+            </TestSuite>
+         </Project>
+      </Total>
+   </ExecutedTestsDetails>
+
+      
+  <FuncTestDetails/>
+   </Exec>
+   <Statistics>
+      
+   </Statistics>
+</ResultsSession>

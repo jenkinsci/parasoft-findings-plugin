@@ -39,6 +39,8 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.hamcrest.collection.IsIn;
 import org.junit.AfterClass;
@@ -81,6 +83,14 @@ public class ParasoftParserTest
     private static final String PROJECT_PATH = "E:\\Eclipse Workspace\\com.parasoft.xtest.reports.jenkins";
 
     private static final String RELATIVE_PATH = "\\src\\main\\java\\com\\parasoft\\xtest\\reports\\jenkins";
+
+    private static final String ANALYZER_PATTERN = "com.parasoft.xtest.cpp.analyzer.static.pattern";
+
+    private static final String ANALYZER_FLOW = "com.parasoft.xtest.cpp.analyzer.static.flow";
+
+    private static final String[] RULES = { "INIT-06", "OPT-14", "OPT-14", "CODSTA-CPP-04", "OPT-14", "OOP-23"};
+
+    private static final String[] CATEGORIES = { "Initialization", "Optimization", "Optimization", "Coding Conventions for C++", "Optimization", "Object Oriented"};
 
     private static ParasoftParser _parser = null;
 
@@ -215,7 +225,7 @@ public class ParasoftParserTest
                     assertEquals("com.parasoft.xtest.cpp.analyzer.static.metrics", additionalProperties.getAnalyzer());   
                     countMetrics++;
                 } else {
-                    assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer());      
+                    assertEquals(ANALYZER_PATTERN, additionalProperties.getAnalyzer());      
                 }
             }
         }
@@ -233,7 +243,7 @@ public class ParasoftParserTest
             Serializable properties = issue.getAdditionalProperties();
             assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
-            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer());
+            assertEquals(ANALYZER_PATTERN, additionalProperties.getAnalyzer());
         }
     }
 
@@ -250,7 +260,7 @@ public class ParasoftParserTest
             assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
 
-            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer());
+            assertEquals(ANALYZER_PATTERN, additionalProperties.getAnalyzer());
 
             assertEquals(rules[i], issue.getType());
             assertEquals("", issue.getCategory()); // TODO - empty category should be "-"
@@ -263,37 +273,58 @@ public class ParasoftParserTest
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.0_static.xml");
         String[] authors = { "tester", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski"};
-        checkStaticReport(report, authors);
+        checkStaticReport(6, new String[] {ANALYZER_PATTERN}, report, authors, RULES, CATEGORIES);
     }
 
     @Test
     public void parseCppStdViolsTest_10_5_1()
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.1_static.xml");
-        checkStaticReport(report, new String[] {"mgorecka"});
+        checkStaticReport(6, new String[] {ANALYZER_PATTERN}, report, new String[] {"mgorecka"}, RULES, CATEGORIES);
     }
 
     @Test
     public void parseCppStdViolsTest_10_5_2()
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.2_static.xml");
-        checkStaticReport(report, new String[] {"mgorecka"});
+        checkStaticReport(6, new String[] {ANALYZER_PATTERN}, report, new String[] {"mgorecka"}, RULES, CATEGORIES);
     }
 
-    private void checkStaticReport(Report report, String[] authors)
+    @Test
+    public void parseCppStdViolsTest_10_6_0()
     {
-        String[] rules = { "INIT-06", "OPT-14", "OPT-14", "CODSTA-CPP-04", "OPT-14", "OOP-23"};
-        String[] categories = { "Initialization", "Optimization", "Optimization", "Coding Conventions for C++", "Optimization", "Object Oriented"};
-        assertEquals(6, report.getSize());
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.6.0_static.xml");
+        checkStaticReport(11, new String[] {ANALYZER_FLOW, ANALYZER_PATTERN}, report,
+            new String[] {"mgorecka"}, new String[] {"BD-PB-ZERO", "BD-PB-NP", "OOP-23",
+                    "Object Oriented", "OOP-23", "CODSTA-CPP-04", "OPT-14"},
+            new String[] {"Possible Bugs", "Object Oriented", "CODSTA-CPP-04",
+                    "Coding Conventions for C++", "Optimization"});
+    }
+
+    private void checkStaticReport(int reportSize, String[] patternNames, Report report, String[] authors, String[] rules, String[] categories)
+    {
+        assertEquals(reportSize, report.getSize());
         int i = 0;
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
             assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties)properties;
 
-            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer());
-            assertEquals(rules[i], issue.getType());
-            assertEquals(categories[i], issue.getCategory());
+            if (patternNames.length == 1) {
+                assertEquals(patternNames[0], additionalProperties.getAnalyzer());
+            } else {
+                assertTrue(Stream.of(patternNames).collect(Collectors.toList()).contains(additionalProperties.getAnalyzer()));
+            }
+            if (rules.length == 1) {
+                assertEquals(rules[0], issue.getType());
+            } else {
+                assertTrue(Stream.of(rules).collect(Collectors.toList()).contains(issue.getType()));
+            }
+            if (categories.length == 1) {
+                assertEquals(categories[0], issue.getCategory());
+            } else {
+                assertTrue(Stream.of(categories).collect(Collectors.toList()).contains(issue.getCategory()));
+            }
             if (authors.length == 1) {
                 assertEquals(authors[0], additionalProperties.getAuthor());
             } else {
@@ -366,7 +397,7 @@ public class ParasoftParserTest
             assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
 
-            assertEquals("com.parasoft.xtest.cpp.analyzer.static.pattern", additionalProperties.getAnalyzer());
+            assertEquals(ANALYZER_PATTERN, additionalProperties.getAnalyzer());
             assertThat(issue.getCategory(), IsIn.isIn(new String[] { "Coding Conventions", "Initialization", "MISRA C 2004" }));  //$NON-NLS-2$  //$NON-NLS-3$
         }
     }
@@ -395,6 +426,15 @@ public class ParasoftParserTest
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.2_flowanalysis.xml");
 
         assertEquals(2, report.getSize());
+        checkFAReport(report, "mgorecka");
+    }
+
+    @Test
+    public void parseCppDesktop_10_6_0_FAViolsTest()
+    {
+        Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.6.0_flowanalysis.xml");
+
+        assertEquals(11, report.getSize());
         checkFAReport(report, "mgorecka");
     }
 

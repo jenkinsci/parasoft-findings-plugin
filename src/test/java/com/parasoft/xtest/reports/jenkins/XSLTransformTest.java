@@ -76,6 +76,12 @@ public class XSLTransformTest
     }
 
     @Test
+    public void testCppTestUnit_10_6_0_XUnitTransform()
+    {
+        transform("cppTest_10.6.0_unit.xml", 27, 0);
+    }
+
+    @Test
     public void testCppTesEngineUnitXUnitTransform()
     {
         transform("cppTest_10.3.4_engine_unit.xml", 12, 5);
