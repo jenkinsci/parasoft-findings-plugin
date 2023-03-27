@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>3.49</version> <!-- or later -->
+    <version>4.56</version> <!-- or later -->
   </parent>
 
   <groupId>com.parasoft</groupId>
@@ -20,12 +20,10 @@
   </organization>
 
   <properties>
-    <jenkins.version>2.289.1</jenkins.version>
+    <jenkins.version>2.387.1</jenkins.version>
     <java.level>8</java.level>
     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
     <xtest.version>10.6.1.20221021</xtest.version>
-    <asm.version>9.3</asm.version>
-    <slf4j.version>1.7.32</slf4j.version>
   </properties>
 
   <developers>
@@ -52,7 +50,7 @@
 
   <scm>
     <connection>scm:git:ssh://github.com/jenkinsci/parasoft-findings-plugin.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/parasoft-findings-plugin.git</developerConnection>
+    <developerConnection>scm:git:git@github.com/jenkinsci/parasoft-findings-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/parasoft-findings-plugin</url>
     <tag>master</tag>
   </scm>
@@ -170,11 +168,48 @@
     </pluginRepository>
   </pluginRepositories>
 
+  <dependencyManagement>
+    <dependencies>
+      <!-- Work around "Require upper bound dependencies error for io.jenkins.plugins:javax-activation-api:1.2.0-3" for warnings-ng. -->
+      <dependency>
+        <groupId>io.jenkins.plugins</groupId>
+        <artifactId>javax-activation-api</artifactId>
+        <version>1.2.0-5</version>
+      </dependency>
+      <!-- Work around "Require upper bound dependencies error for net.minidev:json-smart:2.4.8" for warnings-ng. -->
+      <dependency>
+        <groupId>net.minidev</groupId>
+        <artifactId>json-smart</artifactId>
+        <version>2.4.10</version>
+      </dependency>
+      <!-- Work around "Require upper bound dependencies error for org.jsoup:jsoup:1.15.3" for warnings-ng. -->
+      <dependency>
+        <groupId>org.jsoup</groupId>
+        <artifactId>jsoup</artifactId>
+        <version>1.15.4</version>
+      </dependency>
+      <!-- shared by xunit and warnings-ng - synchronize with warnings-ng
+      Work around "Require upper bound dependencies error for io.jenkins.plugins:jaxb:2.3.6-1" for warnings-ng. -->
+      <dependency>
+        <groupId>io.jenkins.plugins</groupId>
+        <artifactId>jaxb</artifactId>
+        <version>2.3.8-1</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
+    <!-- Remove "o.k.s.f.adjunct.AdjunctsInPage#findNeeded: No such adjunct found: io.jenkins.plugins.popper2" warning and related stacktrace in Jenkins log. -->
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>popper2-api</artifactId>
+      <version>2.11.6-2</version>
+      <scope>runtime</scope>
+    </dependency>
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>warnings-ng</artifactId>
-      <version>9.10.3</version>
+      <version>10.0.3</version>
       <exclusions>
         <exclusion>
           <groupId>org.slf4j</groupId>
@@ -199,6 +234,24 @@
         <exclusion>
           <groupId>commons-codec</groupId>
           <artifactId>commons-codec</artifactId>
+        </exclusion>
+        <!--  shared by xtest(2.13.4) and warnings-ng(2.14.2) - synchronize with xtest(2.13.4)
+        Work around the following require upper bound dependencies errors:
+          * com.fasterxml.jackson.core:jackson-core:2.13.4
+          * com.fasterxml.jackson.core:jackson-annotations:2.13.4
+          * com.fasterxml.jackson.core:jackson-databind:2.13.4.2
+        -->
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -237,18 +290,24 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>xunit</artifactId>
-      <version>1.102</version>
+      <version>3.1.2</version>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
-      <version>1.10.11</version>
+      <version>1.10.12</version>
     </dependency>
     <!-- Override parent spotbugs-annotations dependency and use version as in WNG -->
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
-      <version>4.2.3</version><!--$NO-MVN-MAN-VER$-->
+      <version>4.7.3</version><!--$NO-MVN-MAN-VER$-->
+    </dependency>
+    <!-- Override parent jsr305 dependency and use version as in spotbugs-annotations -->
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <version>3.0.2</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
@@ -458,18 +517,6 @@
     </dependency>
     <!-- these are needed only for tests -->
     <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-core</artifactId>
-      <version>1.3</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-library</artifactId>
-      <version>1.3</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
       <version>1.10.19</version>
@@ -480,84 +527,6 @@
       <artifactId>saxon</artifactId>
       <version>6.5.3</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci</groupId>
-      <artifactId>annotation-indexer</artifactId>
-      <version>1.14</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>cloudbees-folder</artifactId>
-      <version>6.16</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>scm-api</artifactId>
-      <version>2.6.5</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci</groupId>
-      <artifactId>annotation-indexer</artifactId>
-      <version>1.15</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kohsuke</groupId>
-      <artifactId>access-modifier-annotation</artifactId>
-      <version>1.25</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-jdk14</artifactId>
-      <version>${slf4j.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>${slf4j.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>log4j-over-slf4j</artifactId>
-      <version>${slf4j.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <version>${slf4j.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>xerces</groupId>
-      <artifactId>xercesImpl</artifactId>
-      <version>2.12.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.ow2.asm</groupId>
-      <artifactId>asm-tree</artifactId>
-      <version>${asm.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.ow2.asm</groupId>
-      <artifactId>asm</artifactId>
-      <version>${asm.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.ow2.asm</groupId>
-      <artifactId>asm-analysis</artifactId>
-      <version>${asm.version}</version>
-      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>

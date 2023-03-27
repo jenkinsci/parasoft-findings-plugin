@@ -1,21 +1,6 @@
 
 package com.parasoft.xtest.reports.jenkins;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.List;
-import java.util.Set;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.mockito.Mockito;
-
 import com.parasoft.xtest.common.io.FileUtil;
 import com.parasoft.xtest.common.services.RawServiceContext;
 import com.parasoft.xtest.reports.jenkins.internal.services.JenkinsServicesProvider;
@@ -23,16 +8,30 @@ import com.parasoft.xtest.reports.jenkins.tool.ParasoftTableModel;
 import com.parasoft.xtest.reports.jenkins.tool.ParasoftTableModel.ParasoftTableRow;
 import com.parasoft.xtest.reports.jenkins.tool.ParasoftTool;
 import com.parasoft.xtest.reports.jenkins.tool.ParasoftTool.Descriptor;
-
 import edu.hm.hafner.analysis.Report;
 import edu.hm.hafner.analysis.Severity;
 import hudson.EnvVars;
 import hudson.FilePath;
 import hudson.model.FreeStyleBuild;
 import hudson.model.TaskListener;
-import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider;
+import io.jenkins.plugins.analysis.core.model.ReportScanningTool;
 import io.jenkins.plugins.analysis.core.model.ReportScanningTool.ReportScanningToolDescriptor;
-import io.jenkins.plugins.analysis.core.util.LogHandler;
+import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider;
+import io.jenkins.plugins.util.JenkinsFacade;
+import io.jenkins.plugins.util.LogHandler;
+import org.jenkins.ui.symbol.SymbolRequest;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.List;
+import java.util.Set;
+
+import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
 
 public class ParasoftToolTest
 {
@@ -59,8 +58,10 @@ public class ParasoftToolTest
             .thenReturn(new EnvVars());
             LogHandler logger = Mockito.mock(LogHandler.class);
 
-            ParasoftTool underTest = new UnderTest();
+            ParasoftTool underTest = Mockito.spy(new UnderTest());
             underTest.setLocalSettingsPath(localSettingsPath);
+
+            Mockito.doReturn(new Descriptor()).when((ReportScanningTool)underTest).getDescriptor();
 
             Report report = underTest.scan(freeStyleBuild,
                 new FilePath(new File("src/test/resources/xml")),
@@ -92,6 +93,10 @@ public class ParasoftToolTest
             ParasoftTool underTest = new UnderTest();
             underTest.setLocalSettingsPath(localSettingsPath);
 
+            JenkinsFacade jenkinsFacade = Mockito.mock(JenkinsFacade.class);
+            Mockito.when(jenkinsFacade.getDescriptorOrDie(any())).thenReturn(new Descriptor());
+            underTest.setJenkinsFacade(jenkinsFacade);
+
             Report report = underTest.scan(freeStyleBuild,
                 new FilePath(new File("src/test/resources/xml")),
                 Charset.forName("UTF-8"), logger);
@@ -108,6 +113,9 @@ public class ParasoftToolTest
             assertEquals("parasoft-findings", labelProvider.getId());
             assertEquals("/plugin/parasoft-findings/icons/parasofttest48.png", labelProvider.getLargeIconUrl());
             assertEquals("/plugin/parasoft-findings/icons/parasofttest24.png", labelProvider.getSmallIconUrl());
+
+            Mockito.when(jenkinsFacade.getSymbol(any(SymbolRequest.class))).thenReturn("<svg>details-open-close-icon</svg>");
+            ((ParasoftTool.LabelProvider) labelProvider).setJenkinsFacade(jenkinsFacade);
 
             ParasoftTableModel model = (ParasoftTableModel)labelProvider.getIssuesModel(freeStyleBuild, "parasoft-findings", report);
             assertEquals(9, model.getColumns().size());
