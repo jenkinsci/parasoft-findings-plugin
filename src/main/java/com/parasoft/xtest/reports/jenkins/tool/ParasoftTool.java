@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
+import edu.hm.hafner.util.VisibleForTesting;
 import org.apache.commons.lang3.StringUtils;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -48,7 +49,7 @@ import io.jenkins.plugins.analysis.core.model.DetailsTableModel;
 import io.jenkins.plugins.analysis.core.model.IconLabelProvider;
 import io.jenkins.plugins.analysis.core.model.ReportScanningTool;
 import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider;
-import io.jenkins.plugins.analysis.core.util.LogHandler;
+import io.jenkins.plugins.util.LogHandler;
 import io.jenkins.plugins.util.JenkinsFacade;
 
 public class ParasoftTool
@@ -159,11 +160,18 @@ public class ParasoftTool
         }
     }
 
-    private static class LabelProvider
+   public static class LabelProvider
         extends IconLabelProvider
     {
 
         private static final String ICONS_PREFIX = "/plugin/parasoft-findings/icons/"; //$NON-NLS-1$
+
+        private JenkinsFacade jenkins = new JenkinsFacade();
+
+        @VisibleForTesting
+        public void setJenkinsFacade(final JenkinsFacade jenkinsFacade) {
+            this.jenkins = jenkinsFacade;
+        }
 
         LabelProvider()
         {
@@ -185,7 +193,7 @@ public class ParasoftTool
         @Override
         public DetailsTableModel getIssuesModel(Run<?, ?> build, String url, Report report)
         {
-            return new ParasoftTableModel(build, report, getFileNameRenderer(build), getAgeBuilder(build, url), this, new JenkinsFacade());
+            return new ParasoftTableModel(build, report, getFileNameRenderer(build), getAgeBuilder(build, url), this, jenkins);
         }
 
         @Override
