@@ -4,7 +4,7 @@ Parasoft Findings
 [![Jenkins Plugin](https://img.shields.io/jenkins/plugin/v/parasoft-findings.svg)](https://plugins.jenkins.io/parasoft-findings)
 [![GitHub release](https://img.shields.io/github/release/jenkinsci/parasoft-findings-plugin.svg?label=changelog)](https://github.com/jenkinsci/parasoft-findings-plugin/releases/latest)
 [![Jenkins Plugin Installs](https://img.shields.io/jenkins/plugin/i/parasoft-findings.svg?color=blue)](https://plugins.jenkins.io/parasoft-findings)
-
+[![Contribute with Gitpod](https://img.shields.io/badge/Contribute%20with-Gitpod-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/jenkinsci/parasoft-findings-plugin/)
 
 The Parasoft Findings Plugin for Jenkins allows you to visualize static
 analysis and test results in Jenkins. It converts XML reports generated
@@ -19,9 +19,9 @@ The plugin can consume the following report types:
     by 10.x and 2020.1+ versions of C/C++test, Jtest, and dotTest.
 
 
-Since 10.4.2 this plugin has been integrated with the [Warnings Next
+Since 10.4.2 this plugin has been integrated with the [Warnings Next
 Generation
-Plugin](https://wiki.jenkins.io/display/JENKINS/Warnings+Next+Generation+Plugin) to
+Plugin](https://wiki.jenkins.io/display/JENKINS/Warnings+Next+Generation+Plugin) to
 visualize static analysis results. Make a copy of all your job
 configuration settings prior to upgrading from a previous version of the
 Parasoft Findings Plugin for Jenkins. All settings from previous
