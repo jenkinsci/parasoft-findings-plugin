@@ -1,0 +1,22 @@
+tasks:
+  - init: |
+      mvn clean install
+
+github:
+  prebuilds:
+    pullRequestsFromForks: true
+    addBadge: true
+
+jetbrains:
+  intellij:
+    plugins:
+      - Stapler plugin for IntelliJ IDEA
+    prebuilds:
+      version: stable
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-pack
+
+image:
+  file: .gitpod/Dockerfile
