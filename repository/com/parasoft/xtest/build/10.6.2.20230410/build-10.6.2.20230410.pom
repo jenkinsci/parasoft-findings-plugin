@@ -1,0 +1,860 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.parasoft.xtest</groupId>
+    <artifactId>build</artifactId>
+    <version>10.6.2.20230410</version>
+    <packaging>pom</packaging>
+    
+    <url>http://parasoft.com</url>
+    
+    <issueManagement>
+        <system>Bugzilla</system>
+        <url>https://bugzilla.parasoft.com</url>
+    </issueManagement>
+    
+    <scm>
+        <connection>scm:git:ssh://trove.parasoft.com:7999/xtest/xtest.git</connection>
+        <developerConnection>scm:git:ssh://trove.parasoft.com:7999/xtest/xtest.git</developerConnection>
+        <url>scm:git:ssh://trove.parasoft.com:7999/xtest/xtest.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
+        <build-timestamp>${maven.build.timestamp}</build-timestamp>
+        <!-- used plugins versions -->
+        <tycho-version>0.21.0</tycho-version>
+        <build-helper-version>1.3</build-helper-version>
+        <p2-maven-plugin-version>1.2.0</p2-maven-plugin-version>
+        <versions-maven-plugin-version>2.7</versions-maven-plugin-version>
+        <maven-deploy-plugin-version>2.7</maven-deploy-plugin-version>
+        <maven-resources-plugin-version>2.6</maven-resources-plugin-version>
+        <maven-clean-plugin-version>2.5</maven-clean-plugin-version>
+        <maven-antrun-plugin-version>1.7</maven-antrun-plugin-version>
+        <maven-javadoc-plugin-version>3.2.0</maven-javadoc-plugin-version>
+        <maven-assembly-plugin-version>2.4</maven-assembly-plugin-version>
+        <maven-jar-plugin-version>3.2.0</maven-jar-plugin-version>
+        <wagon-ssh-version>2.10</wagon-ssh-version>
+        <!-- default environment setup (instead of default profile (because default 
+            profiles need disabling them)) -->
+        <build.os>win32</build.os>
+        <build.ws>win32</build.ws>
+        <build.arch>x86_64</build.arch>
+        <!-- repositories pattern -->
+        <repo-relative-dir>${product-name}/${product-branch}/repos/${repo-name}/${repo-version}</repo-relative-dir>
+        <repo-deploy-dir>${parasoft-buildserver-dir}/${repo-relative-dir}</repo-deploy-dir>
+        <package-relative-dir>${product-name}/${product-branch}/packages/${package-version}</package-relative-dir>
+        <package-deploy-dir>${parasoft-buildserver-dir}/${package-relative-dir}</package-deploy-dir>
+
+        <!-- one, new, universal, build path param -->
+        <xtest-build-path>passed-in-top-parent-job</xtest-build-path>
+
+        <!-- default encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
+        <cbi-jdt-repo.url>https://repo.eclipse.org/content/repositories/eclipse-staging/</cbi-jdt-repo.url>
+        <cbi-jdt-version>3.10.0.v20140316-0146</cbi-jdt-version>
+
+        <!-- Eclipse p2 repository URLs -->
+        <eclipse.repository.base.url>http://builder.parasoft.com.pl:8081/nexus/content/repositories</eclipse.repository.base.url>
+        <eclipse.juno.repository.url>${eclipse.repository.base.url}/eclipse_38_juno</eclipse.juno.repository.url>
+        <eclipse.kepler.repository.url>${eclipse.repository.base.url}/eclipse_43_kepler</eclipse.kepler.repository.url>
+        <eclipse.luna.repository.url>${eclipse.repository.base.url}/eclipse_44_luna</eclipse.luna.repository.url>
+        <eclipse.neon.repository.url>${eclipse.repository.base.url}/eclipse-neon-releases</eclipse.neon.repository.url>
+        <eclipse.photon.repository.url>${eclipse.repository.base.url}/eclipse-48_photon</eclipse.photon.repository.url>
+        <eclipse.4_18.repository.url>${eclipse.repository.base.url}/eclipse-2020-12-releases</eclipse.4_18.repository.url>
+        <!-- eclipse.current-target-platform.repository.url>file:/C:/home/nightly/target-platform-cdt</eclipse.current-target-platform.repository.url>
+        <eclipse.current-target-platform-jdt.repository.url>file:/C:/home/nightly/target-platform-jdt</eclipse.current-target-platform-jdt.repository.url -->
+        <eclipse.current-target-platform.repository.url>${eclipse.neon.repository.url}</eclipse.current-target-platform.repository.url><!-- based on e.g. CDT distribution used when compile the 'common' part -->
+        <eclipse.current-target-platform-jdt.repository.url>${eclipse.neon.repository.url}</eclipse.current-target-platform-jdt.repository.url><!-- used when compiling the 'eclipse' part, with JDT  currenlty NOT USED - commented out in eclipse/pom.xml -->
+        <!--
+          In some places we use a property to control a phase because...
+              ...some plugins don't have working "skip" options.
+              ...it lets us change phases (for example:  package might become pre-package)
+              ...we can set them in profiles (profiles get resolved before anything with a phase happens)
+          NOTE:
+              ending all these properties with ".phase" makes them easy to track
+              use "none" or "never" if you want something to NOT happen by default
+                  an empty string actually means the default, which may not be what you want
+                  if the default is "none" then consider a comment indicating the common alternative
+          These properties are listed in the order they most often happen...
+              ...it makes them easier to understand when there are a lot of them.
+         -->
+        <custom.assembly.phase                  >install</custom.assembly.phase>
+        <custom.deployment.phase                >install</custom.deployment.phase>
+        <copy.to.isolated.libs.repository.phase >none</copy.to.isolated.libs.repository.phase><!-- "install" -->
+       
+        <xtest.libs.osgi.deploy>true</xtest.libs.osgi.deploy>
+        <xtest.libs.repository.url>http://${parasoft-buildserver-deploy-base-uri}/builds/${product-name}/${xtest-build-path}/com.parasoft.xtest.libs/</xtest.libs.repository.url>
+
+        <!--
+          modules that don't have tests should still have the same surefire version and dependencies, for build stability reasons
+            so these are declared with "pluginManagment" can use them
+        -->
+        <junit.version>4.13.2</junit.version>
+        <junit.jupiter.version>5.8.2</junit.jupiter.version>
+        <junit.vintage.version>${junit.jupiter.version}</junit.vintage.version>
+        <junit.platform.version>1.8.2</junit.platform.version>
+        <surefire.version>2.22.2</surefire.version>
+        <surefire.memory.settings>-Xmx4096m</surefire.memory.settings>
+        <surefire.fork.mode></surefire.fork.mode>
+        <surefire.fork.count>1</surefire.fork.count>
+        <surefire.fork.reuse>true</surefire.fork.reuse>
+        <surefire.trimstack>true</surefire.trimstack>
+        <surefire.use.system.classloader>true</surefire.use.system.classloader>
+        
+        <parasoft-keystore>${env.PARASOFT_KEYSTORE}</parasoft-keystore>
+
+        <intellij.version>2020.1</intellij.version>
+        
+        <!-- dependencyManagement versions used twice or more, in related libs  -->
+        <log4j.version>2.17.2</log4j.version>
+        <httpclient.version>4.5.13</httpclient.version>
+        <parasoft.license.core.version>1.0.0.202304042141</parasoft.license.core.version>
+
+        <jdk.version>1.8</jdk.version>
+        <jdk.test.version>11</jdk.test.version>
+        <toolchains.version>3.0.0</toolchains.version>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>arch.win32_86</id>
+            <properties>
+                <build.os>win32</build.os>
+                <build.ws>win32</build.ws>
+                <build.arch>x86</build.arch>
+            </properties>
+        </profile>
+        <profile>
+            <id>arch.win32_x86_64</id>
+            <properties>
+                <build.os>win32</build.os>
+                <build.ws>win32</build.ws>
+                <build.arch>x86_64</build.arch>
+            </properties>
+        </profile>
+        <profile>
+            <id>arch.linux_x86</id>
+            <properties>
+                <build.os>linux</build.os>
+                <build.ws>gtk</build.ws>
+                <build.arch>x86</build.arch>
+            </properties>
+        </profile>
+        <profile>
+            <id>arch.linux_x86_64</id>
+            <properties>
+                <build.os>linux</build.os>
+                <build.ws>gtk</build.ws>
+                <build.arch>x86_64</build.arch>
+            </properties>
+        </profile>
+        <profile>
+            <id>arch.macosx</id>
+            <properties>
+                <build.os>macosx</build.os>
+                <build.ws>cocoa</build.ws>
+                <build.arch>x86_64</build.arch>
+            </properties>
+        </profile>
+        
+        <profile>
+            <!-- eclipse 3.8 (also known as 4.2!) -->
+            <id>eclipse.juno</id>
+            <repositories>
+                <repository>
+                    <id>eclipse-juno</id>
+                    <!--  url>http://download.eclipse.org/releases/juno</url -->
+                    <url>${eclipse.juno.repository.url}</url>
+                    <layout>p2</layout>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <!-- eclipse 4.3 -->
+            <id>eclipse.kepler</id>
+            <repositories>
+                <repository>
+                    <id>eclipse-kepler</id>
+                    <!--  url>http://download.eclipse.org/releases/kepler</url -->
+                    <url>${eclipse.kepler.repository.url}</url>
+                    <layout>p2</layout>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <!-- eclipse 4.4 -->
+            <id>eclipse.luna</id>
+            <repositories>
+                <repository>
+                    <id>eclipse-luna</id>
+                    <!-- url>http://download.eclipse.org/releases/luna</url -->
+                    <url>${eclipse.luna.repository.url}</url>
+                    <layout>p2</layout>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <!-- eclipse 4.6 -->
+            <id>eclipse.neon</id>
+            <repositories>
+                <repository>
+                    <id>eclipse-neon</id>
+                    <!-- url>http://download.eclipse.org/releases/neon</url -->
+                    <url>${eclipse.neon.repository.url}</url>
+                    <layout>p2</layout>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <!-- eclipse 4.18 aka 2020-12 -->
+            <id>eclipse.4_18</id>
+            <repositories>
+                <repository>
+                    <id>eclipse-4_18</id>
+                    <url>${eclipse.4_18.repository.url}</url>
+                    <layout>p2</layout>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <!-- eclipse currently being used as target platform -->
+            <id>eclipse.target-platform</id>
+            <repositories>
+                <repository>
+                    <id>eclipse-current-target-platform</id>
+                    <url>${eclipse.current-target-platform.repository.url}</url>
+                    <layout>p2</layout>
+                </repository>
+            </repositories>
+        </profile>
+
+        <profile>
+            <id>build.nexus</id>
+            <repositories>
+                <repository>
+                    <id>ParasoftNexusRepoPL</id>
+                    <url>${parasoft-maven-public-url}</url>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <id>build.tools</id>
+            <modules>
+                <module>builder</module>
+            </modules>
+        </profile>
+        <profile><!--  a post release action- uploading artifacts to the Parasoft Public Maven Repo to be run like: `mvn -Pxtest.release.public.repo validate`  -->
+            <id>xtest.release.public.repo</id>
+            <build>
+            <plugins>
+            <plugin>
+               <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <executions>
+                  <execution>
+                    <phase>validate</phase>
+                    <goals>
+                      <goal>execute</goal>
+                    </goals>
+                  </execution>
+                </executions>
+                <configuration>
+                    <properties>
+                      <property>
+                          <name>xtest_build_path</name><!-- Groovy would fail on dashes in such property name -->
+                          <value>${xtest-build-path}</value>
+                      </property>
+                      <property>
+                          <name>XTEST_PROPS_FILE</name>
+                          <value>${XTEST_PROPS_FILE}</value>
+                      </property>
+                      <property>
+                          <name>SCRIPTS_DIR</name>
+                          <value>${SCRIPTS_DIR}</value>
+                      </property>
+                    </properties>
+                    <scripts>
+                        <script>file:///${project.basedir}/scripts/deploy-api-jars.gy</script>
+                    </scripts>
+                </configuration>
+            </plugin>
+            </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>xtest.release.md5sums</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>compute_md5</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                    <echo message="Generating md5sums at the builds server"/>
+                                    <!-- TO FIX command should using ${parasoft-buildserver-deploy-base-uri} -->
+                                    <sshexec host="xtest.parasoft.com.pl" username="builder"
+                                            password="build%pass" trust="true"
+                                            command="cd /builds/htdocs/builds/xtest/${xtest-build-path} &amp;&amp; md5sum parasoft_* &gt; release.md5 &amp;&amp; sha256sum parasoft_* &gt; release.sha256 &amp;&amp; md5sum xtest_*  &gt;&gt; release.md5 &amp;&amp; sha256sum xtest_*  &gt;&gt; release.sha256"
+                                            />
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.ant</groupId>
+                                <artifactId>ant-commons-net</artifactId>
+                                <version>1.9.2</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>commons-net</groupId>
+                                <artifactId>commons-net</artifactId>
+                                <version>3.3</version>
+                            </dependency>
+                            <!-- dependency>
+                                <groupId>org.apache.ant</groupId>
+                                <artifactId>ant-nodeps</artifactId>
+                                <version>1.8.1</version>
+                            </dependency -->
+                            <dependency>
+                              <groupId>org.apache.ant</groupId>
+                              <artifactId>ant-jsch</artifactId>
+                              <version>1.9.10</version>
+                            </dependency>
+                            <dependency>
+                              <groupId>com.jcraft</groupId>
+                              <artifactId>jsch</artifactId>
+                              <version>0.1.54</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>build-zone-monrovia</id>
+            <properties>
+                <eclipse.repository.base.url>http://nexus.parasoft.com:8081/nexus/content/repositories</eclipse.repository.base.url>
+                <eclipse.galileo.repository.url>${eclipse.repository.base.url}/eclipse-galileo-releases</eclipse.galileo.repository.url>
+                <eclipse.helios.repository.url>${eclipse.repository.base.url}/eclipse-helios-releases</eclipse.helios.repository.url>
+                <eclipse.indigo.repository.url>${eclipse.repository.base.url}/eclipse-indigo-releases</eclipse.indigo.repository.url>
+                <eclipse.juno.repository.url>${eclipse.repository.base.url}/eclipse-juno-releases</eclipse.juno.repository.url>
+                <eclipse.kepler.repository.url>${eclipse.repository.base.url}/eclipse-kepler-releases</eclipse.kepler.repository.url>
+                <eclipse.luna.repository.url>${eclipse.repository.base.url}/eclipse-luna-releases</eclipse.luna.repository.url>
+                <eclipse.neon.repository.url>${eclipse.repository.base.url}/eclipse-neon-releases</eclipse.neon.repository.url>
+                <eclipse.4_18.repository.url>${eclipse.repository.base.url}/eclipse-2020-12-releases</eclipse.4_18.repository.url>
+                <!--
+                <eclipse.mars.repository.url>${eclipse.repository.base.url}/eclipse-mars-releases</eclipse.mars.repository.url>
+                <eclipse.neon.repository.url>${eclipse.repository.base.url}/eclipse-neon-releases</eclipse.neon.repository.url>
+                <eclipse.oxygen.repository.url>${eclipse.repository.base.url}/eclipse-oxygen-releases</eclipse.oxygen.repository.url>
+                -->
+            </properties>
+        </profile>
+        <profile>
+            <id>isolated.build</id>
+            <!--
+              there is an extension to this profile in
+                  build/xtest.maven/tools/pom.xml
+             -->
+            <activation>
+                <property>
+                    <name>env.ACTVATE_ISOLATED_BUILD</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <properties>
+              <xtest.libs.osgi.deploy>false</xtest.libs.osgi.deploy>
+              <xtest.libs.repository.dir>${env.WORKSPACE}/p2-osgi-libs</xtest.libs.repository.dir>
+
+              <xtest.libs.repository.url>file:///${xtest.libs.repository.dir}</xtest.libs.repository.url>
+              <copy.to.isolated.libs.repository.phase>install</copy.to.isolated.libs.repository.phase>
+              <custom.deployment.phase>none</custom.deployment.phase>
+
+              <workspace-dir                    >${env.WORKSPACE}</workspace-dir>
+              <SCRIPTS_DIR                      >${env.WORKSPACE}/build/scripts</SCRIPTS_DIR>
+
+              <xtest-release-version            >${env.XTEST_RELEASE_VERSION}</xtest-release-version>
+              <xtest-release-version-qualifier  >${env.XTEST_RELEASE_VERSION_QUALIFIER}</xtest-release-version-qualifier>
+              <xtest-build-timestamp            >${env.XTEST_BUILD_TIMESTAMP}</xtest-build-timestamp>
+              <parasoft-keystore                >${user.home}/.ssh/signing-files/parasoft-sha384.pfx</parasoft-keystore>
+              <parasoft-keypass                 >${env.PARASOFT_STOREPASS}</parasoft-keypass>
+              <parasoft-sign-alias              >${env.PARASOFT_SIGN_ALIAS}</parasoft-sign-alias>
+
+              <!-- take XTEST_PROPS_FILE from the environment by default (a command line set will still override this) -->
+              <XTEST_PROPS_FILE                 >${env.XTEST_PROPS_FILE}</XTEST_PROPS_FILE>
+
+              <!-- This is about all the memory Monrovia's test machine can provide -->
+              <surefire.memory.settings>-Xmx2048m</surefire.memory.settings>
+              <!-- we want to see the full stack in the log -->
+              <surefire.trimstack>false</surefire.trimstack>
+            </properties>
+        </profile>
+        <profile>
+            <id>surefire-3.x.x</id>
+            <properties>
+              <!--
+                Maven 3.1.0 or later is required to use this.
+                    some tests in "common ui exec" do not yet work with Maven 3.1 or later
+               -->
+              <surefire.version>3.0.0-M3</surefire.version>
+              <surefire.use.system.classloader>false</surefire.use.system.classloader>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <!-- main Tycho plugin -->
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-maven-plugin</artifactId>
+                <version>${tycho-version}</version>
+            </plugin>
+            <!-- Target Platform definition -->
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>target-platform-configuration</artifactId>
+                <version>${tycho-version}</version>
+                <configuration>
+                    <environments>
+                        <environment>
+                            <os>${build.os}</os>
+                            <ws>${build.ws}</ws>
+                            <arch>${build.arch}</arch>
+                        </environment>
+                    </environments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin-version}</version>
+                <configuration>
+                    <includes></includes>
+                </configuration>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+            <plugin>
+               <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>2.1.0</version>
+                <dependencies>
+                    <dependency>
+                      <groupId>org.codehaus.groovy</groupId>
+                      <artifactId>groovy</artifactId>
+                      <version>3.0.15</version>
+                    </dependency>
+                    <dependency>
+                      <groupId>org.codehaus.groovy</groupId>
+                      <artifactId>groovy-ant</artifactId>
+                      <version>3.0.15</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+                 <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-toolchains-plugin</artifactId>
+                     <version>${toolchains.version}</version>
+                     <executions>
+                         <execution>
+                             <goals>
+                                 <goal>toolchain</goal>
+                             </goals>
+                         </execution>
+                     </executions>
+                     <configuration>
+                         <toolchains>
+                             <jdk>
+                                 <version>${jdk.version}</version>
+                             </jdk>
+                         </toolchains>
+                     </configuration>
+                 </plugin>
+                <plugin>
+                    <!--
+                      Some projects which don't have tests still trigger Surefire...
+                          for stability, they should use the same Surefire the actual test projects use.
+                          but the configuration for testing is still in another pom.
+                     -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${surefire.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>junit</groupId>
+                            <artifactId>junit</artifactId>
+                            <version>${junit.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.junit.jupiter</groupId>
+                            <artifactId>junit-jupiter-engine</artifactId>
+                            <version>${junit.jupiter.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.junit.vintage</groupId>
+                            <artifactId>junit-vintage-engine</artifactId>
+                            <version>${junit.vintage.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.eclipse.tycho</groupId>
+                    <artifactId>tycho-maven-plugin</artifactId>
+                    <version>${tycho-version}</version>
+                    <extensions>true</extensions>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${build-helper-version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.reficio</groupId>
+                    <artifactId>p2-maven-plugin</artifactId>
+                    <version>${p2-maven-plugin-version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven-deploy-plugin-version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin-version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven-clean-plugin-version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven-antrun-plugin-version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin-version}</version>
+                    <configuration>
+                        <doclint>none</doclint>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin-version}</version>
+                </plugin>
+                <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin-version}</version>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+            </plugins>
+        </pluginManagement>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>${wagon-ssh-version}</version>
+            </extension>
+        </extensions>
+    </build>
+
+    <!-- pluginRepositories>
+        <pluginRepository>
+            <id>reficio</id>
+            <url>http://repo.reficio.org/maven/</url>
+        </pluginRepository>
+    </pluginRepositories -->
+
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>ParasoftNexusRepoPL</id>
+            <name>Parasoft Nexus Release Repository</name>
+            <url>${parasoft-maven-releases-url}</url>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>ParasoftNexusRepoPL</id>
+            <name>Parasoft Nexus Release Repository</name>
+            <url>${parasoft-maven-snapshots-url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!-- Global dependencies for POMs means for Dependency Tracking, informational, verification. Doesn't affect the main Tycho/p2 build -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- third party libs -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <!-- dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.2</version>
+            </dependency -->
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>fop</artifactId>
+                <version>2.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bc-fips</artifactId>
+                <version>1.0.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bctls-fips</artifactId>
+                <version>1.0.13</version>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi.core</artifactId>
+                <version>6.0.0</version><!-- seems to be from the same epoch as oldest Eclipse we support -->
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>xmlgraphics-commons</artifactId>
+                <version>2.7</version>
+            </dependency>
+            <dependency>
+                <groupId>com.microsoft.azure</groupId>
+                <artifactId>applicationinsights-core</artifactId>
+                <version>2.6.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-vfs2</artifactId>
+                <version>2.7.0</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>2.6</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.15</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>fluent-hc</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient-cache</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpmime</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>4.4.14</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jfree</groupId>
+                <artifactId>jfreechart</artifactId>
+                <version>1.0.19</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jfree</groupId>
+                <artifactId>jcommon</artifactId>
+                <version>1.0.24</version>
+            </dependency>
+            <dependency>
+                <groupId>de.ruedigermoeller</groupId>
+                <artifactId>fst</artifactId>
+                <version>1.63</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.javassist</groupId>
+                        <artifactId>javassist</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.swinglabs.swingx</groupId>
+                <artifactId>swingx-all</artifactId>
+                <version>1.6.4</version>
+            </dependency>
+            <dependency><!-- NOTICE: in the reports->sonar project we've got different version - 1.7.5
+            						 in the testimpact project we've got different version - 1.7.25' -->
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.12</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.trove4j</groupId>
+                <artifactId>trove4j</artifactId>
+                <version>3.0.3</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.pragmatists</groupId>
+                <artifactId>JUnitParams</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlgraphics</groupId>
+                <artifactId>batik-all</artifactId>
+                <version>1.16</version>
+            </dependency>
+
+            <!-- Libs currently missing in Central Repo -->
+            <dependency>
+                <groupId>com.parasoft.xtest.libs</groupId><!-- available in https://nexus.pentaho.org/content/groups/omni/ -->
+                <artifactId>trilead-ssh2</artifactId>
+                <version>build213</version>
+            </dependency>
+            <dependency><!-- probably unchanged copy of: org.mozilla.intl:chardet:1.0 available in https://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/-->
+                <groupId>com.parasoft.adhoc.mozilla</groupId>
+                <artifactId>chardet</artifactId>
+                <version>0.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.parasoft.xtest.libs</groupId>
+                <artifactId>unikey</artifactId>
+                <version>5.8.4</version>
+            </dependency>
+            <dependency> <!-- for the scontrol.tfs proj -->
+                <groupId>com.parasoft.xtest.libs</groupId>
+                <artifactId>com.microsoft.tfs.sdk</artifactId>
+                <version>14.134.0</version>
+            </dependency>
+
+            <!-- Parasoft/Xtest patched libs -->
+            <dependency>
+                <groupId>com.parasoft.xtest.libs</groupId><!-- previously only hosted in Parasoft Nexus(es) because that particular version is missing in Central Repo -->
+                <artifactId>saxon</artifactId>
+                <version>6.5.5</version>
+            </dependency>
+            <dependency>
+                <groupId>com.parasoft.xtest.libs</groupId>
+                <artifactId>cvslib</artifactId>
+                <version>1.9</version>
+            </dependency>
+            <dependency><!-- see README file common/com.parasoft.xtest.repository/lib/README -->
+                <groupId>com.parasoft.xtest.libs</groupId>
+                <artifactId>truezip</artifactId>
+                <version>6.8.4</version>
+            </dependency>
+            <!-- Parasoft proprietary libs -->
+            <dependency>
+                <groupId>com.parasoft.dtp</groupId>
+                <artifactId>com.parasoft.dtp.shared</artifactId>
+                <version>2020.07.29</version>
+            </dependency>
+            <dependency>
+                <groupId>com.parasoft.license.core</groupId>
+                <artifactId>licvalj</artifactId>
+                <version>${parasoft.license.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.parasoft.license.core</groupId>
+                <artifactId>licclientj</artifactId>
+                <version>${parasoft.license.core.version}</version>
+            </dependency>
+
+            <!-- Parasoft signed libs/the OSGi libs -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.14.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.14.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.14.2</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>1.1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.8.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>javax.mail</artifactId>
+                <version>1.6.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.activation</groupId>
+                <artifactId>javax.activation</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jvnet.hudson</groupId>
+                <artifactId>org.suigeneris.jrcs.diff</artifactId>
+                <version>0.4.2</version>
+            </dependency>
+            <dependency><!-- missing in Central repo -->
+                <groupId>com.parasoft.xtest.libs</groupId>
+                <artifactId>javanet.staxutils</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency><!-- missing in Central repo -->
+                <groupId>com.parasoft.xtest.libs</groupId>
+                <artifactId>org.codehaus.stax2</artifactId>
+                <version>3.2.4</version>
+            </dependency>
+             <dependency><!-- missing in Central repo -->
+                <groupId>com.parasoft.xtest.libs</groupId>
+                <artifactId>org.apache.jcs</artifactId>
+                <version>1.3.4</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

@@ -23,7 +23,7 @@
     <jenkins.version>2.387.1</jenkins.version>
     <java.level>8</java.level>
     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
-    <xtest.version>10.6.1.20221021</xtest.version>
+    <xtest.version>10.6.2.20230410</xtest.version>
   </properties>
 
   <developers>
@@ -236,12 +236,7 @@
           <groupId>commons-codec</groupId>
           <artifactId>commons-codec</artifactId>
         </exclusion>
-        <!--  shared by xtest(2.13.4) and warnings-ng(2.14.2) - synchronize with xtest(2.13.4)
-        Work around the following require upper bound dependencies errors:
-          * com.fasterxml.jackson.core:jackson-core:2.13.4
-          * com.fasterxml.jackson.core:jackson-annotations:2.13.4
-          * com.fasterxml.jackson.core:jackson-databind:2.13.4.2
-        -->
+        <!--  shared by xtest and warnings-ng - synchronize with xtest -->
         <exclusion>
           <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-core</artifactId>
@@ -256,6 +251,7 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <!-- these artifacts versions are defined in com.parasoft.xtest:build pom -->
     <!--  shared by xtest and warnings-ng - synchronize with xtest -->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
@@ -496,11 +492,6 @@
     <dependency>
       <groupId>com.parasoft.xtest.common</groupId>
       <artifactId>com.parasoft.xtest.share.api</artifactId>
-      <version>${xtest.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.share</artifactId>
       <version>${xtest.version}</version>
     </dependency>
     <!-- these are needed only in runtime -->
