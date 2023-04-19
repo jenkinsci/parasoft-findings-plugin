@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Apr 11 10:26:29 CEST 2023
+com.parasoft.xtest.scontrol.api-10.6.2.20230410.pom>=
+com.parasoft.xtest.scontrol.api-10.6.2.20230410-sources.jar>=
+com.parasoft.xtest.scontrol.api-10.6.2.20230410.jar>=

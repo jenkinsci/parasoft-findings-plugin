@@ -56,8 +56,6 @@ import com.parasoft.xtest.results.xapi.IResultsInitManager;
 import com.parasoft.xtest.results.xapi.xml.IViolationXmlStorage;
 import com.parasoft.xtest.results.xml.DefaultCodingStandardsViolationStorage;
 import com.parasoft.xtest.services.api.ServiceUtil;
-import com.parasoft.xtest.share.api.ISharingRepository;
-import com.parasoft.xtest.share.internal.dtp.DTPRepositoriesServiceFactory;
 
 
 /** 
@@ -99,7 +97,6 @@ public final class JenkinsServicesProvider
         registerService(IResultPostProcessorService.class, new SuppressionsProcessor());
         registerService(IResultPostProcessorService.class, new RulesProcessor());
         registerService(IRuleDescriptionUpdateService.class, new RuleDescriptionUpdateService());
-        registerService(ISharingRepository.Factory.class, new DTPRepositoriesServiceFactory());
         registerService(IDtpServiceRegistry.Factory.class, new DtpServiceRegistryFactory());
         registerService(IResultsInitManager.class, new ResultsInitManager());
         registerService(IPreferencesService.class, new DtpAutoconfPreferencesService());

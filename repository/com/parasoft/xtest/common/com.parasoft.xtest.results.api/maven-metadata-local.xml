@@ -3,10 +3,10 @@
   <groupId>com.parasoft.xtest.common</groupId>
   <artifactId>com.parasoft.xtest.results.api</artifactId>
   <versioning>
-    <release>10.6.1.20221021</release>
+    <release>10.6.2.20230410</release>
     <versions>
-      <version>10.6.1.20221021</version>
+      <version>10.6.2.20230410</version>
     </versions>
-    <lastUpdated>20221021103309</lastUpdated>
+    <lastUpdated>20230411082629</lastUpdated>
   </versioning>
 </metadata>
