@@ -19,9 +19,9 @@ The plugin can consume the following report types:
     by 10.x and 2020.1+ versions of C/C++test, Jtest, and dotTest.
 
 
-Since 10.4.2 this plugin has been integrated with the [Warnings Next
+Since 10.4.2 this plugin has been integrated with the [Warnings Next
 Generation
-Plugin](https://wiki.jenkins.io/display/JENKINS/Warnings+Next+Generation+Plugin) to
+Plugin](https://wiki.jenkins.io/display/JENKINS/Warnings+Next+Generation+Plugin) to
 visualize static analysis results. Make a copy of all your job
 configuration settings prior to upgrading from a previous version of the
 Parasoft Findings Plugin for Jenkins. All settings from previous
