@@ -27,6 +27,9 @@ import com.parasoft.findings.jenkins.parser.FlowIssueAdditionalProperties;
 import com.parasoft.findings.jenkins.parser.ParasoftIssueAdditionalProperties;
 import com.parasoft.findings.jenkins.parser.ParasoftParser;
 import edu.hm.hafner.util.VisibleForTesting;
+import hudson.init.InitMilestone;
+import hudson.init.Initializer;
+import hudson.model.Items;
 import org.apache.commons.lang3.StringUtils;
 import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -126,6 +129,13 @@ public class ParasoftTool
     public static class Descriptor
         extends ReportScanningToolDescriptor
     {
+        // Maintain backward compatibility.
+        @Initializer(before = InitMilestone.PLUGINS_STARTED)
+        public static void addAliases() {
+            Items.XSTREAM2.addCompatibilityAlias("com.parasoft.xtest.reports.jenkins.tool.ParasoftTool",
+                    ParasoftTool.class);
+        }
+
         public Descriptor()
         {
             super(PLUGIN_ID);
