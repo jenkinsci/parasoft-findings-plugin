@@ -14,14 +14,14 @@
   <publishers>
     <io.jenkins.plugins.analysis.core.steps.IssuesRecorder plugin="warnings-ng@WNG_version">
       <analysisTools>
-        <com.parasoft.xtest.reports.jenkins.tool.ParasoftTool plugin="parasoft-findings@FINDINGS_version">
+        <com.parasoft.findings.jenkins.tool.ParasoftTool plugin="parasoft-findings@FINDINGS_version">
           <id></id>
           <name></name>
           <pattern></pattern>
           <reportEncoding></reportEncoding>
           <skipSymbolicLinks>false</skipSymbolicLinks>
           <__localSettingsPath>$JENKINS_HOME/workspace/$JOB_NAME/settings.properties</__localSettingsPath>
-        </com.parasoft.xtest.reports.jenkins.tool.ParasoftTool>
+        </com.parasoft.findings.jenkins.tool.ParasoftTool>
       </analysisTools>
       <sourceCodeEncoding></sourceCodeEncoding>
       <sourceDirectory></sourceDirectory>
