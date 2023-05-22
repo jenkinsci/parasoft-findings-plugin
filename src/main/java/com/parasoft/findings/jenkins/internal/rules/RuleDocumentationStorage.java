@@ -130,23 +130,7 @@ public class RuleDocumentationStorage
     private void storeRuleDoc(FilePath rootDir, String ruleDocDir, String analyzer, String ruleId, String contents)
     {
         try {
-            rootDir.act(new FileCallable<Boolean>()
-            {
-                private static final long serialVersionUID = 1L;
-
-                @Override
-                public Boolean invoke(File file, VirtualChannel channel)
-                    throws IOException, InterruptedException
-                {
-                    internalStoreRuleDoc(file, RuleDocumentationReader.getRuleDocRelativePath(ruleDocDir, analyzer, ruleId), contents);
-                    return Boolean.TRUE;
-                }
-
-                @Override
-                public void checkRoles(RoleChecker arg0)
-                    throws SecurityException
-                {}
-            });
+            rootDir.act(new InternalStoreRuleDocFileCallable(ruleDocDir, analyzer, ruleId, contents));
         } catch (IOException e) {
             Logger.getLogger().errorTrace(e);
         } catch (InterruptedException e) {
@@ -154,7 +138,37 @@ public class RuleDocumentationStorage
         }
     }
 
-    private void internalStoreRuleDoc(File rootDir, String ruleDocFile, String contents)
+    private static final class InternalStoreRuleDocFileCallable implements FileCallable<Boolean> {
+
+        private static final long serialVersionUID = 1L;
+
+        private final String ruleDocDir;
+        private final String analyzer;
+        private final String ruleId;
+        private final String contents;
+
+        InternalStoreRuleDocFileCallable(String ruleDocDir, String analyzer, String ruleId, String contents) {
+            this.ruleDocDir = ruleDocDir;
+            this.analyzer = analyzer;
+            this.ruleId = ruleId;
+            this.contents = contents;
+        }
+
+        @Override
+        public Boolean invoke(File file, VirtualChannel channel)
+                throws IOException, InterruptedException
+        {
+            internalStoreRuleDoc(file, RuleDocumentationReader.getRuleDocRelativePath(ruleDocDir, analyzer, ruleId), contents);
+            return Boolean.TRUE;
+        }
+
+        @Override
+        public void checkRoles(RoleChecker arg0)
+                throws SecurityException
+        {}
+    }
+
+    private static void internalStoreRuleDoc(File rootDir, String ruleDocFile, String contents)
     {
         Writer writer = null;
         try {
