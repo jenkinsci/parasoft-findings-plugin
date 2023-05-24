@@ -48,24 +48,7 @@ public final class FilePathUtil
     {
         boolean result = false;
         try {
-            result = file.act(new FileCallable<Boolean>()
-            {
-                private static final long serialVersionUID = 1L;
-
-                public Boolean invoke(File f, VirtualChannel channel)
-                    throws IOException, InterruptedException
-                {
-                    return f.isAbsolute();
-                }
-
-                @Override
-                public void checkRoles(RoleChecker arg0)
-                    throws SecurityException
-                {
-                    // TODO Auto-generated method stub
-                    
-                }
-            });
+            result = file.act(new IsAbsoluteFileCallable());
         } catch (IOException e) {
             Logger.getLogger().errorTrace(e);
         } catch (InterruptedException e) {
@@ -82,32 +65,7 @@ public final class FilePathUtil
     {
         Properties props = null;
         try {
-            props = file.act(new FileCallable<Properties>()
-            {
-                private static final long serialVersionUID = -286350596197180650L;
-
-                public Properties invoke(File f, VirtualChannel channel)
-                    throws IOException, InterruptedException
-                {
-                    Logger.getLogger().info("File path is " + f.getAbsolutePath());   //$NON-NLS-1$
-                    InputStream input = new FileInputStream(f);
-                    try {
-                        Properties properties = new Properties();
-                        properties.load(input);
-                        return properties;
-                    } finally {
-                        IOUtils.closeQuietly(input);
-                    }
-                }
-
-                @Override
-                public void checkRoles(RoleChecker arg0)
-                    throws SecurityException
-                {
-                    // TODO Auto-generated method stub
-                    
-                }
-            });
+            props = file.act(new LoadPropertiesFileCallable());
         } catch (IOException e) {
             Logger.getLogger().error("Localsettings file not found", e); //$NON-NLS-1$
         } catch (InterruptedException e) {
@@ -118,6 +76,52 @@ public final class FilePathUtil
             Logger.getLogger().info("No properties loaded"); //$NON-NLS-1$
         }
         return props;
+    }
+
+    private static final class IsAbsoluteFileCallable implements FileCallable<Boolean> {
+
+        private static final long serialVersionUID = 1L;
+
+        public Boolean invoke(File f, VirtualChannel channel)
+                throws IOException, InterruptedException
+        {
+            return f.isAbsolute();
+        }
+
+        @Override
+        public void checkRoles(RoleChecker arg0)
+                throws SecurityException
+        {
+            // TODO Auto-generated method stub
+
+        }
+    }
+
+    private static final class LoadPropertiesFileCallable implements FileCallable<Properties> {
+
+        private static final long serialVersionUID = -286350596197180650L;
+
+        public Properties invoke(File f, VirtualChannel channel)
+                throws IOException, InterruptedException
+        {
+            Logger.getLogger().info("File path is " + f.getAbsolutePath());   //$NON-NLS-1$
+            InputStream input = new FileInputStream(f);
+            try {
+                Properties properties = new Properties();
+                properties.load(input);
+                return properties;
+            } finally {
+                IOUtils.closeQuietly(input);
+            }
+        }
+
+        @Override
+        public void checkRoles(RoleChecker arg0)
+                throws SecurityException
+        {
+            // TODO Auto-generated method stub
+
+        }
     }
 }
     

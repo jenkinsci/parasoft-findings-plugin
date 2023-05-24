@@ -38,6 +38,7 @@ import org.kohsuke.stapler.DataBoundSetter;
 import com.parasoft.findings.jenkins.html.IHtmlTags;
 import com.parasoft.findings.jenkins.internal.rules.JenkinsRulesUtil;
 import com.parasoft.findings.jenkins.internal.rules.RuleDocumentationStorage;
+import com.parasoft.findings.jenkins.internal.services.JenkinsServicesProvider;
 import com.parasoft.findings.jenkins.internal.variables.JenkinsVariablesResolver;
 
 import edu.hm.hafner.analysis.Issue;
@@ -96,6 +97,7 @@ public class ParasoftTool
 
         Iterator<Issue> issues = report.iterator();
 
+        JenkinsServicesProvider.init();
         RuleDocumentationStorage storage = new RuleDocumentationStorage(run.getRootDir(), _settings);
         while (issues.hasNext()) {
 
