@@ -15,19 +15,17 @@
  */
 package com.parasoft.findings.jenkins;
 
-import com.icl.saxon.TransformerFactoryImpl;
 import com.parasoft.xtest.common.UIO;
 import com.parasoft.xtest.common.io.FileUtil;
+import org.jenkinsci.lib.dtkit.util.converter.ConversionException;
+import org.jenkinsci.lib.dtkit.util.converter.ConversionService;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import javax.xml.transform.Result;
 import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -50,14 +48,14 @@ class XUnitTransformer
 
             printContents(outputFile);
             validateAgainstXslSchemas(outputFile);
-        } catch (TransformerException | SAXException | IOException e) {
+        } catch (ConversionException | SAXException | IOException e) {
             Logger.getLogger().error(e);
             doFail(e);
         }
     }
 
     static File transform(String reportFileName, String outputFileName, String pathToXslSchema)
-        throws MalformedURLException, TransformerException
+        throws MalformedURLException, ConversionException
     {
         URL report = new File(reportFileName).toURI().toURL();
         URL resource = new File(pathToXslSchema).toURI().toURL();
@@ -99,18 +97,17 @@ class XUnitTransformer
     }
 
     static void transform(URL inputUrl, URL xslURL, File outputFile)
-        throws TransformerException
+        throws ConversionException
     {
         InputStream inputStream = null;
         InputStream xslStream = null;
         try {
             inputStream = inputUrl.openStream();
-            Source xmlInput = new StreamSource(inputStream);
+            InputSource inputSource = new InputSource(inputStream);
             xslStream = xslURL.openStream();
-            Source xsl = new StreamSource(xslStream);
-            Result xmlOutput = new StreamResult(outputFile);
-            Transformer newTransformer = TransformerFactoryImpl.newInstance().newTransformer(xsl);
-            newTransformer.transform(xmlInput, xmlOutput);
+            StreamSource xslSource = new StreamSource(xslStream);
+            ConversionService conversionService = new ConversionService();
+            conversionService.convert(xslSource, inputSource, outputFile, null);
         } catch (IOException ex) {
             Logger.getLogger().error(ex);
             doFail(ex);
