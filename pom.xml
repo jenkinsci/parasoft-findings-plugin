@@ -69,7 +69,6 @@
     </resources>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <additionalClasspathElements>
@@ -101,7 +100,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
@@ -138,7 +136,6 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
           <checkModificationExcludes>
@@ -171,30 +168,47 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- Work around "Require upper bound dependencies error for io.jenkins.plugins:javax-activation-api:1.2.0-3" for warnings-ng. -->
       <dependency>
-        <groupId>io.jenkins.plugins</groupId>
-        <artifactId>javax-activation-api</artifactId>
-        <version>1.2.0-5</version>
+        <groupId>org.jvnet.hudson.plugins</groupId>
+        <artifactId>analysis-pom</artifactId>
+        <version>6.8.0</version>
+        <scope>import</scope>
+        <type>pom</type>
       </dependency>
-      <!-- Work around "Require upper bound dependencies error for net.minidev:json-smart:2.4.8" for warnings-ng. -->
+      <!-- Work around "Require upper bound dependencies error" for warnings-ng. -->
       <dependency>
         <groupId>net.minidev</groupId>
         <artifactId>json-smart</artifactId>
         <version>2.4.10</version>
       </dependency>
-      <!-- Work around "Require upper bound dependencies error for org.jsoup:jsoup:1.15.3" for warnings-ng. -->
+      <!-- shared by warnings-ng and code-coverage-api - synchronize with code-coverage-api. -->
       <dependency>
         <groupId>org.jsoup</groupId>
         <artifactId>jsoup</artifactId>
-        <version>1.15.4</version>
+        <version>1.16.1</version>
       </dependency>
-      <!-- shared by xunit and warnings-ng - synchronize with warnings-ng
-      Work around "Require upper bound dependencies error for io.jenkins.plugins:jaxb:2.3.6-1" for warnings-ng. -->
+      <!-- shared by warnings-ng and code-coverage-api - synchronize with code-coverage-api. -->
       <dependency>
         <groupId>io.jenkins.plugins</groupId>
-        <artifactId>jaxb</artifactId>
-        <version>2.3.8-1</version>
+        <artifactId>prism-api</artifactId>
+        <version>1.29.0-6</version>
+      </dependency>
+      <!-- shared by warnings-ng, code-coverage-api and xunit - synchronize with code-coverage-api. -->
+      <dependency>
+        <groupId>io.jenkins.plugins</groupId>
+        <artifactId>echarts-api</artifactId>
+        <version>5.4.0-4</version>
+      </dependency>
+      <!-- Fix some transitive vulnerable dependency warnings for warnings-ng -->
+      <dependency>
+        <groupId>com.beust</groupId>
+        <artifactId>jcommander</artifactId>
+        <version>1.82</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.bcel</groupId>
+        <artifactId>bcel</artifactId>
+        <version>6.7.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -293,6 +307,11 @@
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>xunit</artifactId>
       <version>3.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>code-coverage-api</artifactId>
+      <version>4.6.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
