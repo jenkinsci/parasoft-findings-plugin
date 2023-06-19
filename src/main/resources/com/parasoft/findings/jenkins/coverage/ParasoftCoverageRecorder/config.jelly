@@ -7,7 +7,7 @@
 
     <f:entry title="${%title.pattern}" field="pattern"
              description="${%description.pattern('https://ant.apache.org/manual/Types/fileset.html')}">
-        <f:textbox/>
+        <f:textbox default="${descriptor.defaultPattern()}" placeholder="${descriptor.defaultPattern()}"/>
     </f:entry>
 
 </j:jelly>

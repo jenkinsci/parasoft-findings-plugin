@@ -38,9 +38,11 @@ import java.util.List;
 
 public class ParasoftCoverageRecorder extends Recorder {
 
-    private String pattern = StringUtils.EMPTY;
     private static final String PARASOFT_COVERAGE_ID = "parasoft-coverage";
     private static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage";
+    private static final String DEFAULT_PATTERN = "**/coverage.xml";
+
+    private String pattern = StringUtils.EMPTY;
 
     @DataBoundConstructor
     public ParasoftCoverageRecorder() {
@@ -50,7 +52,7 @@ public class ParasoftCoverageRecorder extends Recorder {
 
     @DataBoundSetter
     public void setPattern(final String pattern) {
-        this.pattern = pattern;
+        this.pattern = StringUtils.defaultIfBlank(pattern, DEFAULT_PATTERN);
     }
 
     @CheckForNull
@@ -71,8 +73,8 @@ public class ParasoftCoverageRecorder extends Recorder {
     }
 
     @Override
-    public Descriptor getDescriptor() {
-        return (Descriptor) super.getDescriptor();
+    public ParasoftCoverageDescriptor getDescriptor() {
+        return (ParasoftCoverageDescriptor) super.getDescriptor();
     }
 
     private static CoverageRecorder setUpCoverageRecorder(final String pattern) {
@@ -87,7 +89,7 @@ public class ParasoftCoverageRecorder extends Recorder {
     }
 
     @Extension
-    public static class Descriptor extends BuildStepDescriptor<Publisher> {
+    public static class ParasoftCoverageDescriptor extends BuildStepDescriptor<Publisher> {
 
         @NonNull
         @Override
@@ -98,6 +100,11 @@ public class ParasoftCoverageRecorder extends Recorder {
         @Override
         public boolean isApplicable(Class<? extends AbstractProject> jobType) {
             return true;
+        }
+
+        // Used in jelly file.
+        public String defaultPattern() {
+            return DEFAULT_PATTERN;
         }
     }
 }
