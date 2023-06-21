@@ -28,6 +28,7 @@ import com.parasoft.xtest.common.dtp.DtpPreferencesFactory;
 import com.parasoft.xtest.common.dtp.DtpServiceRegistryFactory;
 import com.parasoft.xtest.common.dtp.IDtpPreferences;
 import com.parasoft.xtest.common.dtp.IDtpServiceRegistry;
+import com.parasoft.xtest.common.locations.ILocationAttributes;
 import com.parasoft.xtest.common.parallel.ParallelExecutor;
 import com.parasoft.xtest.common.preferences.ConfigurationPreferencesFactory;
 import com.parasoft.xtest.common.preferences.IConfigurationPreferences;
@@ -65,6 +66,7 @@ public final class JenkinsServicesProvider
     extends DefaultServicesProvider
 {
     private static JenkinsServicesProvider INSTANCE;
+    private Properties properties;
     
     private JenkinsServicesProvider() { }
      
@@ -91,7 +93,9 @@ public final class JenkinsServicesProvider
         registerService(IViolationXmlStorage.class, new DupcodeViolationStorage());
         registerService(IViolationXmlStorage.class, new MetricsViolationStorage());
         registerService(IResultPostProcessorService.class, new SourceControlProcessor());
-        registerService(IResultPostProcessorService.class, new ResultLocationProcessor());
+        properties = new Properties();
+        properties.setProperty(IResultPostProcessorService.POST_PROCESSOR_ID_PROPERTY, ILocationAttributes.POST_PROCESSOR_ID);
+        registerService(IResultPostProcessorService.class, new ResultLocationProcessor(), properties);
         registerService(IResultFactory.class, new DefaultSetupProblemsResultFactory());
         registerService(IResultFactory.class, new DefaultScopeResultFactory());
         registerService(IResultPostProcessorService.class, new SuppressionsProcessor());
@@ -101,7 +105,7 @@ public final class JenkinsServicesProvider
         registerService(IResultsInitManager.class, new ResultsInitManager());
         registerService(IPreferencesService.class, new DtpAutoconfPreferencesService());
         registerService(ISystemService.Factory.class, new SystemServiceFactory());
-        Properties properties = new Properties();
+        properties = new Properties();
         properties.setProperty(PreferencesServiceUtil.PREFERENCES_ID_PROPERTY, IDtpPreferences.PREFERENCES_ID);
         registerService(IPreferences.Factory.class, new DtpPreferencesFactory(), properties);
         properties = new Properties();
