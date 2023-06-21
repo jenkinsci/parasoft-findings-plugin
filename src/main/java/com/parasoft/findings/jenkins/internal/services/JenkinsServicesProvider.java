@@ -20,6 +20,7 @@ import java.util.Properties;
 
 import com.parasoft.xtest.common.SystemServiceFactory;
 import com.parasoft.xtest.common.api.ISystemService;
+import com.parasoft.xtest.common.api.io.IFileInfoService;
 import com.parasoft.xtest.common.api.parallel.IParallelRunner;
 import com.parasoft.xtest.common.application.IApplication;
 import com.parasoft.xtest.common.application.OSGiApplication;
@@ -28,6 +29,7 @@ import com.parasoft.xtest.common.dtp.DtpPreferencesFactory;
 import com.parasoft.xtest.common.dtp.DtpServiceRegistryFactory;
 import com.parasoft.xtest.common.dtp.IDtpPreferences;
 import com.parasoft.xtest.common.dtp.IDtpServiceRegistry;
+import com.parasoft.xtest.common.io.FileInfoServiceFactory;
 import com.parasoft.xtest.common.locations.ILocationAttributes;
 import com.parasoft.xtest.common.parallel.ParallelExecutor;
 import com.parasoft.xtest.common.preferences.ConfigurationPreferencesFactory;
@@ -96,6 +98,7 @@ public final class JenkinsServicesProvider
         properties = new Properties();
         properties.setProperty(IResultPostProcessorService.POST_PROCESSOR_ID_PROPERTY, ILocationAttributes.POST_PROCESSOR_ID);
         registerService(IResultPostProcessorService.class, new ResultLocationProcessor(), properties);
+        registerService(IFileInfoService.Factory.class, new FileInfoServiceFactory());
         registerService(IResultFactory.class, new DefaultSetupProblemsResultFactory());
         registerService(IResultFactory.class, new DefaultScopeResultFactory());
         registerService(IResultPostProcessorService.class, new SuppressionsProcessor());
