@@ -68,7 +68,6 @@ public final class JenkinsServicesProvider
     extends DefaultServicesProvider
 {
     private static JenkinsServicesProvider INSTANCE;
-    private Properties properties;
     
     private JenkinsServicesProvider() { }
      
@@ -86,6 +85,7 @@ public final class JenkinsServicesProvider
 
     private void initialize()
     {
+        Properties properties;
         registerService(IViolationImporterService.Factory.class, new ViolationImporterServiceFactory());
         registerService(IApplication.class, new OSGiApplication());
         registerService(IParallelRunner.class, new ParallelExecutor(null));
