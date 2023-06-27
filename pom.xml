@@ -217,9 +217,8 @@
     <!-- Remove "o.k.s.f.adjunct.AdjunctsInPage#findNeeded: No such adjunct found: io.jenkins.plugins.popper2" warning and related stacktrace in Jenkins log. -->
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
-      <artifactId>popper2-api</artifactId>
-      <version>2.11.6-2</version>
-      <scope>runtime</scope>
+      <artifactId>bootstrap5-api</artifactId>
+      <version>5.2.3-1</version>
     </dependency>
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
