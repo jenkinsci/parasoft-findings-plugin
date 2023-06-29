@@ -15,8 +15,8 @@ public class GlobalUtils {
         dashboardPage.clickNewItemLink();
 
         NewItemPage newItemPage = new NewItemPage(driver);
-        newItemPage.setItemNameField(jobName);
-        newItemPage.clickFreestyleProjectElement();
+        newItemPage.setItemNameInput(jobName);
+        newItemPage.clickFreestyleProjectText();
         newItemPage.clickOKButton();
     }
 
@@ -28,26 +28,26 @@ public class GlobalUtils {
         ConfigPage configPage = new ConfigPage(driver);
         configPage.clickSourceCodeManagementButton();
         configPage.clickGitRadio();
-        configPage.setUrlField(projectGitUrl);
+        configPage.setRepositoryUrlInput(projectGitUrl);
         configPage.clickBuildStepsButton();
-        configPage.clickAddBuildStepDropdown();
+        configPage.clickAddBuildStepButton();
         configPage.clickExecuteWindowsBatchCommandLink();
-        configPage.setCommandField(command);
+        configPage.setCommandInput(command);
         configPage.clickPostBuildActionsButton();
-        configPage.clickAddPostBuildActionDropdown();
+        configPage.clickAddPostBuildActionButton();
         configPage.clickRecordCompilerWarningsAndStaticAnalysisResultsLink();
         configPage.clickPostBuildActionsButton();
         configPage.selectToolDropdown(Properties.PARASOFT_FINDINGS_PLUGIN_DROPDOWN_OPTION);
-        configPage.setLocalSettingsPathField(Properties.PARASOFT_FINDINGS_PLUGIN_SETTINGS_TEXT);
+        configPage.setLocalSettingsPathInput(Properties.PARASOFT_FINDINGS_PLUGIN_SETTINGS_TEXT);
         configPage.clickApplyButton();
     }
 
-    public static void buildProject(WebDriver driver, String projectName) {
+    public static JobDetailPage buildProject(WebDriver driver, String projectName) {
         switchToPage(driver, Properties.DASHBOARD_PAGE + "/job/" + projectName + "/");
         JobDetailPage jobDetailPage = new JobDetailPage(driver);
         jobDetailPage.clickBuildNowLink();
         jobDetailPage.waitBuildFinished(driver);
-        jobDetailPage.clickParasoftWarningsLink();
+        return jobDetailPage;
     }
 
     public static void deleteProject(WebDriver driver, String projectName) {

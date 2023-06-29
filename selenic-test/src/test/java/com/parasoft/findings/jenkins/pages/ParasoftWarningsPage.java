@@ -9,25 +9,25 @@ import com.parasoft.findings.jenkins.common.Properties;
 
 public class ParasoftWarningsPage {
     @FindBy(id = "moduleName_info")
-    private WebElement moduleInfo;
+    private WebElement moduleInfoText;
 
     @FindBy(id = "folder_info")
-    private WebElement folderInfo;
+    private WebElement folderInfoText;
 
     @FindBy(id = "packageName_info")
-    private WebElement packageInfo;
+    private WebElement packageInfoText;
 
     @FindBy(id = "fileName_info")
-    private WebElement fileInfo;
+    private WebElement fileInfoText;
 
     @FindBy(id = "category_info")
-    private WebElement categoryInfo;
+    private WebElement categoryInfoText;
 
     @FindBy(id = "type_info")
-    private WebElement typeInfo;
+    private WebElement typeInfoText;
 
     @FindBy(id = "issues_info")
-    private WebElement issuesInfo;
+    private WebElement issuesInfoText;
 
     @FindBy(linkText = "Modules")
     private WebElement modulesLink;
@@ -56,6 +56,15 @@ public class ParasoftWarningsPage {
     @FindBy(id = "issues_paginate")
     private WebElement issuesPaginate;
 
+    @FindBy(xpath = "//*[@id='issues']//tr[1]/td[1]/div")
+    private WebElement openIcon;
+
+    @FindBy(xpath = "//*[@id='issues']//tr[2]//strong")
+    private WebElement ruleDetailsText;
+
+    @FindBy(css = ".container-fluid h1")
+    private WebElement ruleTitleText;
+
     private final WebDriver driver;
 
     public ParasoftWarningsPage(WebDriver driver) {
@@ -71,9 +80,9 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, modulesLink);
     }
 
-    public String getModulesInfo() {
-        ElementUtils.waitUntilElementTextAppear(driver, moduleInfo, moduleInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return moduleInfo.getText();
+    public String getModulesInfoText() {
+        ElementUtils.waitUntilElementTextAppear(driver, moduleInfoText, moduleInfoText.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return moduleInfoText.getText();
     }
 
     public void clickNamespacesLink() {
@@ -82,9 +91,9 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, namespacesLink);
     }
 
-    public String getNamespacesInfo() {
-        ElementUtils.waitUntilElementTextAppear(driver, packageInfo, packageInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return packageInfo.getText();
+    public String getNamespacesInfoText() {
+        ElementUtils.waitUntilElementTextAppear(driver, packageInfoText, packageInfoText.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return packageInfoText.getText();
     }
 
     public void clickFoldersLink() {
@@ -93,9 +102,9 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, foldersLink);
     }
 
-    public String getFolderInfo() {
-        ElementUtils.waitUntilElementTextAppear(driver, folderInfo, folderInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return folderInfo.getText();
+    public String getFolderInfoText() {
+        ElementUtils.waitUntilElementTextAppear(driver, folderInfoText, folderInfoText.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return folderInfoText.getText();
     }
 
     public void clickPackagesLink() {
@@ -104,9 +113,9 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, packagesLink);
     }
 
-    public String getPackageInfo() {
-        ElementUtils.waitUntilElementTextAppear(driver, packageInfo, packageInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return packageInfo.getText();
+    public String getPackageInfoText() {
+        ElementUtils.waitUntilElementTextAppear(driver, packageInfoText, packageInfoText.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return packageInfoText.getText();
     }
 
     public void clickFilesLink() {
@@ -114,9 +123,9 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, filesLink);
     }
 
-    public String getFileInfo() {
-        ElementUtils.waitUntilElementTextAppear(driver, fileInfo, fileInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return fileInfo.getText();
+    public String getFileInfoText() {
+        ElementUtils.waitUntilElementTextAppear(driver, fileInfoText, fileInfoText.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return fileInfoText.getText();
     }
 
     public void clickCategoriesLink() {
@@ -124,9 +133,9 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, categoriesLink);
     }
 
-    public String getCategoryInfo() {
-        ElementUtils.waitUntilElementTextAppear(driver, categoryInfo, categoryInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return categoryInfo.getText();
+    public String getCategoryInfoText() {
+        ElementUtils.waitUntilElementTextAppear(driver, categoryInfoText, categoryInfoText.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return categoryInfoText.getText();
     }
 
     public void clickTypesLink() {
@@ -134,9 +143,9 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, typesLink);
     }
 
-    public String getTypeInfo() {
-        ElementUtils.waitUntilElementTextAppear(driver, typeInfo, typeInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return typeInfo.getText();
+    public String getTypeInfoText() {
+        ElementUtils.waitUntilElementTextAppear(driver, typeInfoText, typeInfoText.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return typeInfoText.getText();
     }
 
     public void clickIssuesLink() {
@@ -144,9 +153,33 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, issuesLink);
     }
 
-    public String getIssuesInfo() {
+    public String getIssuesInfoText() {
         ElementUtils.waitUntilVisible(driver, issuesPaginate, Properties.WAIT_FOR_TIMEOUT);
-        ElementUtils.waitUntilElementTextAppear(driver, issuesInfo, issuesInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return issuesInfo.getText();
+        ElementUtils.waitUntilElementTextAppear(driver, issuesInfoText, issuesInfoText.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return issuesInfoText.getText();
+    }
+
+    public void clickRuleTypeLink(String ruleType) {
+        WebElement ruleTypeLink = driver.findElement(By.xpath("//*[@id='type']//a[text()='" + ruleType + "']"));
+        ElementUtils.waitUntilVisible(driver, ruleTypeLink, Properties.WAIT_FOR_TIMEOUT);
+        ElementUtils.clickElementUseJs(driver, ruleTypeLink);
+    }
+
+    public String getRuleTitleText() {
+        ElementUtils.waitUntilVisible(driver, ruleTitleText, Properties.WAIT_FOR_TIMEOUT);
+        ElementUtils.waitUntilElementTextAppear(driver, ruleTitleText, ruleTitleText.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return ruleTitleText.getText();
+    }
+
+    public void clickOpenIconButton() {
+        ElementUtils.scrollTo(openIcon, driver);
+        ElementUtils.waitUntilVisible(driver, openIcon, Properties.WAIT_FOR_TIMEOUT);
+        ElementUtils.clickElementUseJs(driver, openIcon);
+    }
+
+    public String getRuleDetailsText() {
+        ElementUtils.waitUntilVisible(driver, ruleDetailsText, Properties.WAIT_FOR_TIMEOUT);
+        ElementUtils.waitUntilElementTextAppear(driver, ruleDetailsText, ruleDetailsText.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return ruleDetailsText.getText();
     }
 }

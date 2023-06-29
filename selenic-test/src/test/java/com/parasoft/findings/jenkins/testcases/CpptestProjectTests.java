@@ -1,6 +1,6 @@
 package com.parasoft.findings.jenkins.testcases;
 
-import com.parasoft.findings.jenkins.common.ElementUtils;
+import com.parasoft.findings.jenkins.pages.JobDetailPage;
 import com.parasoft.findings.jenkins.pages.ParasoftWarningsPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,26 +34,34 @@ public class CpptestProjectTests {
     public void testParasoftFindingsPlugin() {
         GlobalUtils.createJob(driver, projectName);
         GlobalUtils.configureTestProject(driver, Properties.CPPTEST_PROJECT_GIT_URL, Properties.CPPTEST_PROJECT_COMMAND);
-        GlobalUtils.buildProject(driver, projectName);
+        JobDetailPage jobDetailPage = GlobalUtils.buildProject(driver, projectName);
+        jobDetailPage.clickParasoftWarningsLink();
 
         // Check test information in warnings page
         ParasoftWarningsPage parasoftWarningsPage = new ParasoftWarningsPage(driver);
         parasoftWarningsPage.clickModulesLink();
-        assertTrue(parasoftWarningsPage.getModulesInfo().contains(Properties.CPPTEST_MODULES_ENTRIES_ASSERTATION));
+        assertTrue(parasoftWarningsPage.getModulesInfoText().contains(Properties.CPPTEST_MODULES_ENTRIES_ASSERTATION));
 
         parasoftWarningsPage.clickFoldersLink();
-        assertTrue(parasoftWarningsPage.getFolderInfo().contains(Properties.CPPTEST_FOLDERS_ENTRIES_ASSERTATION));
+        assertTrue(parasoftWarningsPage.getFolderInfoText().contains(Properties.CPPTEST_FOLDERS_ENTRIES_ASSERTATION));
 
         parasoftWarningsPage.clickCategoriesLink();
-        assertTrue(parasoftWarningsPage.getCategoryInfo().contains(Properties.CPPTEST_CATEGORIES_ENTRIES_ASSERTATION));
+        assertTrue(parasoftWarningsPage.getCategoryInfoText().contains(Properties.CPPTEST_CATEGORIES_ENTRIES_ASSERTATION));
 
         parasoftWarningsPage.clickFilesLink();
-        assertTrue(parasoftWarningsPage.getFileInfo().contains(Properties.CPPTEST_FILES_ENTRIES_ASSERTATION));
-
-        parasoftWarningsPage.clickTypesLink();
-        assertTrue(parasoftWarningsPage.getTypeInfo().contains(Properties.CPPTEST_TYPES_ENTRIES_ASSERTATION));
+        assertTrue(parasoftWarningsPage.getFileInfoText().contains(Properties.CPPTEST_FILES_ENTRIES_ASSERTATION));
 
         parasoftWarningsPage.clickIssuesLink();
-        assertTrue(parasoftWarningsPage.getIssuesInfo().contains(Properties.CPPTEST_ISSUES_ENTRIES_ASSERTATION));
+        assertTrue(parasoftWarningsPage.getIssuesInfoText().contains(Properties.CPPTEST_ISSUES_ENTRIES_ASSERTATION));
+
+        parasoftWarningsPage.clickTypesLink();
+        assertTrue(parasoftWarningsPage.getTypeInfoText().contains(Properties.CPPTEST_TYPES_ENTRIES_ASSERTATION));
+
+        parasoftWarningsPage.clickRuleTypeLink("APSC_DV-003110-a");
+        assertEquals(parasoftWarningsPage.getRuleTitleText(), Properties.CPPTEST_RULE_TYPE_ASSERTATION);
+
+        parasoftWarningsPage.clickIssuesLink();
+        parasoftWarningsPage.clickOpenIconButton();
+        assertFalse(parasoftWarningsPage.getRuleDetailsText().isEmpty());
     }
 }

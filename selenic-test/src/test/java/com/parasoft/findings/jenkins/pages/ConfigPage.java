@@ -13,10 +13,10 @@ public class ConfigPage {
     private WebElement sourceCodeManagementButton;
 
     @FindBy(xpath = "//label[text()='Git']")
-    private WebElement git;
+    private WebElement gitRadioLabel;
 
     @FindBy(name = "_.url")
-    private WebElement urlField;
+    private WebElement repositoryUrlInput;
 
     @FindBy(css = "button[data-section-id='build-steps']")
     private WebElement buildStepsButton;
@@ -28,7 +28,7 @@ public class ConfigPage {
     private WebElement executeWindowsBatchCommandLink;
 
     @FindBy(name = "command")
-    private WebElement commandField;
+    private WebElement commandTextarea;
 
     @FindBy(css = "button[data-section-id='post-build-actions']")
     private WebElement postBuildActionsButton;
@@ -43,12 +43,12 @@ public class ConfigPage {
     private WebElement toolDropdown;
 
     @FindBy(name = "_.localSettingsPath")
-    private WebElement localSettingsPathField;
+    private WebElement localSettingsPathInput;
 
     @FindBy(name = "Apply")
     private WebElement applyButton;
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public ConfigPage(WebDriver driver) {
         this.driver = driver;
@@ -63,13 +63,13 @@ public class ConfigPage {
     }
 
     public void clickGitRadio() {
-        ElementUtils.waitUntilVisible(driver, git, Properties.WAIT_FOR_TIMEOUT);
-        ElementUtils.clickElementUseJs(driver, git);
+        ElementUtils.waitUntilVisible(driver, gitRadioLabel, Properties.WAIT_FOR_TIMEOUT);
+        ElementUtils.clickElementUseJs(driver, gitRadioLabel);
     }
 
-    public void setUrlField(String text) {
-        ElementUtils.waitUntilVisible(driver, urlField, Properties.WAIT_FOR_TIMEOUT).clear();
-        urlField.sendKeys(text);
+    public void setRepositoryUrlInput(String text) {
+        ElementUtils.waitUntilVisible(driver, repositoryUrlInput, Properties.WAIT_FOR_TIMEOUT).clear();
+        repositoryUrlInput.sendKeys(text);
     }
 
     public void clickBuildStepsButton() {
@@ -78,7 +78,7 @@ public class ConfigPage {
         ElementUtils.clickElementUseJs(driver, buildStepsButton);
     }
 
-    public void clickAddBuildStepDropdown() {
+    public void clickAddBuildStepButton() {
         ElementUtils.waitUntilClickable(driver, addBuildStepButton, Properties.WAIT_FOR_TIMEOUT).click();
         ElementUtils.waitUntilVisible(driver, addBuildStepButton, Properties.WAIT_FOR_TIMEOUT);
     }
@@ -88,9 +88,9 @@ public class ConfigPage {
         ElementUtils.clickElementUseJs(driver, executeWindowsBatchCommandLink);
     }
 
-    public void setCommandField(String text) {
-        ElementUtils.waitUntilVisible(driver, commandField, Properties.WAIT_FOR_TIMEOUT).clear();
-        commandField.sendKeys(text);
+    public void setCommandInput(String text) {
+        ElementUtils.waitUntilVisible(driver, commandTextarea, Properties.WAIT_FOR_TIMEOUT).clear();
+        commandTextarea.sendKeys(text);
     }
 
     public void clickPostBuildActionsButton() {
@@ -98,7 +98,7 @@ public class ConfigPage {
         ElementUtils.clickElementUseJs(driver, postBuildActionsButton);
     }
 
-    public void clickAddPostBuildActionDropdown() {
+    public void clickAddPostBuildActionButton() {
         ElementUtils.waitUntilClickable(driver, addPostBuildActionButton, Properties.WAIT_FOR_TIMEOUT).click();
         ElementUtils.waitUntilVisible(driver, addPostBuildActionButton, Properties.WAIT_FOR_TIMEOUT);
     }
@@ -115,9 +115,9 @@ public class ConfigPage {
         dropdown.selectByVisibleText(text);
     }
 
-    public void setLocalSettingsPathField(String text) {
-        ElementUtils.waitUntilVisible(driver, localSettingsPathField, Properties.WAIT_FOR_TIMEOUT).clear();
-        localSettingsPathField.sendKeys(text);
+    public void setLocalSettingsPathInput(String text) {
+        ElementUtils.waitUntilVisible(driver, localSettingsPathInput, Properties.WAIT_FOR_TIMEOUT).clear();
+        localSettingsPathInput.sendKeys(text);
     }
 
     public void clickApplyButton() {

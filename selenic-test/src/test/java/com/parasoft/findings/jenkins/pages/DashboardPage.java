@@ -11,7 +11,7 @@ public class DashboardPage {
     @FindBy(linkText = "New Item")
     private WebElement newItemLink;
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
