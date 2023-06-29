@@ -19,8 +19,8 @@ public class JobDetailPage {
     @FindBy(linkText = "Delete Project")
     private WebElement deleteProjectLink;
 
-    @FindBy(xpath = "//*[@id='breadcrumbs']/li[3]/a")
-    private WebElement projectNameLink;
+    @FindBy(linkText = "Status")
+    private WebElement projectStatusLink;
 
     private final WebDriver driver;
 
@@ -49,7 +49,7 @@ public class JobDetailPage {
     public void waitBuildFinished(WebDriver driver) {
         try {
             Thread.sleep(Properties.WAIT_FOR_BUILF_FINISHED_TIMEOUT);
-            ElementUtils.clickElementUseJs(driver, projectNameLink);
+            ElementUtils.clickElementUseJs(driver, projectStatusLink);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

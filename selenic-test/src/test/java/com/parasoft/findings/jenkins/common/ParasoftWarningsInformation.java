@@ -2,36 +2,43 @@ package com.parasoft.findings.jenkins.common;
 
 public class ParasoftWarningsInformation {
     String projectName;
-    String packagesTotalNumber;
-    String filesTotalNumber;
-    String typesTotalNumber;
-    String issuesInfo;
+    String modulesEntries;
+    String packagesEntries;
+    String filesEntries;
+    String typesEntries;
+    String issuesEntries;
 
-    public ParasoftWarningsInformation(String projectName, String packagesTotalNumber, String filesTotalNumber, String typesTotalNumber, String issuesInfo) {
+    public ParasoftWarningsInformation(String projectName, String modulesEntries, String packagesEntries,
+                                       String filesEntries, String typesEntries, String issuesEntries) {
         this.projectName = projectName;
-        this.packagesTotalNumber = packagesTotalNumber;
-        this.filesTotalNumber = filesTotalNumber;
-        this.typesTotalNumber = typesTotalNumber;
-        this.issuesInfo = issuesInfo;
+        this.modulesEntries = modulesEntries;
+        this.packagesEntries = packagesEntries;
+        this.filesEntries = filesEntries;
+        this.typesEntries = typesEntries;
+        this.issuesEntries = issuesEntries;
     }
 
     public String getProjectName() {
         return projectName;
     }
 
-    public String getPackagesTotalNumber() {
-        return packagesTotalNumber;
+    public String getModulesEntries() {
+        return modulesEntries;
     }
 
-    public String getFilesTotalNumber() {
-        return filesTotalNumber;
+    public String getPackagesEntries() {
+        return packagesEntries;
     }
 
-    public String getTypesTotalNumber() {
-        return typesTotalNumber;
+    public String getFilesEntries() {
+        return filesEntries;
     }
 
-    public String getIssuesInfo() {
-        return issuesInfo;
+    public String getTypesEntries() {
+        return typesEntries;
+    }
+
+    public String getIssuesEntries() {
+        return issuesEntries;
     }
 }

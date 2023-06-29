@@ -9,19 +9,19 @@ import com.parasoft.findings.jenkins.common.ElementUtils;
 import com.parasoft.findings.jenkins.common.Properties;
 
 public class ConfigPage {
-    @FindBy(xpath = "//*[@id='tasks']/div[2]/span/button")
+    @FindBy(css = "button[data-section-id='source-code-management']")
     private WebElement sourceCodeManagementButton;
 
-    @FindBy(xpath = "//*[@id='main-panel']/form/div[1]/div[6]/div[3]/div[1]/div/div/label['Git']")
+    @FindBy(xpath = "//label[text()='Git']")
     private WebElement git;
 
     @FindBy(name = "_.url")
     private WebElement urlField;
 
-    @FindBy(xpath = "//*[@id='tasks']/div[5]/span/button/span['Build Steps']")
+    @FindBy(css = "button[data-section-id='build-steps']")
     private WebElement buildStepsButton;
 
-    @FindBy(xpath = "//*[@id='main-panel']/form/div[1]/div[9]/div[2]/div/div/div[2]/span/span/button['Add build step']")
+    @FindBy(xpath = "//button[text()='Add build step']")
     private WebElement addBuildStepButton;
 
     @FindBy(linkText = "Execute Windows batch command")
@@ -30,10 +30,10 @@ public class ConfigPage {
     @FindBy(name = "command")
     private WebElement commandField;
 
-    @FindBy(xpath = "//*[@id='tasks']/div[6]/span/button/span['Post-build Actions']")
+    @FindBy(css = "button[data-section-id='post-build-actions']")
     private WebElement postBuildActionsButton;
 
-    @FindBy(xpath = "//*[@id='main-panel']/form/div[1]/div[10]/div[2]/div/div/div[2]/span/span/button['Add post-build action']")
+    @FindBy(xpath = "//button[text()='Add post-build action']")
     private WebElement addPostBuildActionButton;
 
     @FindBy(linkText = "Record compiler warnings and static analysis results")

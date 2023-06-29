@@ -1,6 +1,5 @@
 package com.parasoft.findings.jenkins.common;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -51,42 +50,6 @@ public class GlobalUtils {
         jobDetailPage.clickParasoftWarningsLink();
     }
 
-    public static void checkTestInfo (WebDriver driver, String toolName, ParasoftWarningsInformation parasoftWarningsInformation) {
-        ParasoftWarningsPage parasoftWarningsPage = new ParasoftWarningsPage(driver);
-
-        if(!parasoftWarningsInformation.getPackagesTotalNumber().equals("")) {
-            switch (toolName) {
-                case "jtest":
-                    parasoftWarningsPage.clickPackagesLink();
-                    assertEquals(parasoftWarningsInformation.getPackagesTotalNumber(), parasoftWarningsPage.getPackagesTotalNumber());
-                    break;
-                case "cpptest":
-                    parasoftWarningsPage.clickFoldersLink();
-                    assertEquals(parasoftWarningsInformation.getPackagesTotalNumber(), parasoftWarningsPage.getFoldersTotalNumber());
-                    break;
-                case "dottest":
-                    parasoftWarningsPage.clickNamespacesLink();
-                    assertEquals(parasoftWarningsInformation.getPackagesTotalNumber(), parasoftWarningsPage.getNamespacesTotalNumber());
-                    break;
-            }
-        }
-
-        if(!parasoftWarningsInformation.getFilesTotalNumber().equals("")) {
-            parasoftWarningsPage.clickFilesLink();
-            assertEquals(parasoftWarningsInformation.getFilesTotalNumber(), parasoftWarningsPage.getFilesTotalNumber());
-        }
-
-        if(!parasoftWarningsInformation.getTypesTotalNumber().equals("")) {
-            parasoftWarningsPage.clickTypesLink();
-            assertEquals(parasoftWarningsInformation.getTypesTotalNumber(), parasoftWarningsPage.getTypesTotalNumber());
-        }
-
-        if(!parasoftWarningsInformation.getIssuesInfo().equals("")) {
-            parasoftWarningsPage.clickIssuesLink();
-            assertEquals(parasoftWarningsInformation.getIssuesInfo(), parasoftWarningsPage.getIssuesInfo());
-        }
-    }
-
     public static void deleteProject(WebDriver driver, String projectName) {
         WebDriverWait wait = new WebDriverWait(driver, Properties.WAIT_FOR_TIMEOUT);
         String currentUrl = driver.getCurrentUrl();
@@ -104,7 +67,7 @@ public class GlobalUtils {
 
         wait.until(alertIsPresent());
         Alert projectDeleteAlert = driver.switchTo().alert();
-        Assertions.assertEquals("Delete the Project ‘" + projectName + "’?", projectDeleteAlert.getText());
+        assertEquals("Delete the Project ‘" + projectName + "’?", projectDeleteAlert.getText());
         projectDeleteAlert.accept();
     }
 }

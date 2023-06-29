@@ -8,23 +8,29 @@ import com.parasoft.findings.jenkins.common.ElementUtils;
 import com.parasoft.findings.jenkins.common.Properties;
 
 public class ParasoftWarningsPage {
-    @FindBy(xpath = "//*[@id='packageName']/tfoot/tr/td[2]")
-    private WebElement namespacesTotalNumber;
+    @FindBy(id = "moduleName_info")
+    private WebElement moduleInfo;
 
-    @FindBy(xpath = "//*[@id='folder']/tfoot/tr/td[2]")
-    private WebElement foldersTotalNumber;
+    @FindBy(id = "folder_info")
+    private WebElement folderInfo;
 
-    @FindBy(xpath = "//*[@id='package']/tfoot/tr/td[2]")
-    private WebElement packagesTotalNumber;
+    @FindBy(id = "packageName_info")
+    private WebElement packageInfo;
 
-    @FindBy(xpath = "//*[@id='fileName']/tfoot/tr/td[2]")
-    private WebElement filesTotalNumber;
+    @FindBy(id = "fileName_info")
+    private WebElement fileInfo;
 
-    @FindBy(xpath = "//*[@id='type']/tfoot/tr/td[2]")
-    private WebElement typesTotalNumber;
+    @FindBy(id = "category_info")
+    private WebElement categoryInfo;
 
-    @FindBy(xpath = "//*[@id='issues_info']")
+    @FindBy(id = "type_info")
+    private WebElement typeInfo;
+
+    @FindBy(id = "issues_info")
     private WebElement issuesInfo;
+
+    @FindBy(linkText = "Modules")
+    private WebElement modulesLink;
 
     @FindBy(linkText = "Namespaces")
     private WebElement namespacesLink;
@@ -38,13 +44,16 @@ public class ParasoftWarningsPage {
     @FindBy(linkText = "Files")
     private WebElement filesLink;
 
+    @FindBy(linkText = "Categories")
+    private WebElement categoriesLink;
+
     @FindBy(linkText = "Types")
     private WebElement typesLink;
 
     @FindBy(linkText = "Issues")
     private WebElement issuesLink;
 
-    @FindBy(xpath = "//*[@id='issues_paginate']")
+    @FindBy(id = "issues_paginate")
     private WebElement issuesPaginate;
 
     private final WebDriver driver;
@@ -56,15 +65,26 @@ public class ParasoftWarningsPage {
         PageFactory.initElements(driver, this);
     }
 
+    public void clickModulesLink() {
+        ElementUtils.scrollTo(modulesLink, driver);
+        ElementUtils.waitUntilVisible(driver, modulesLink, Properties.WAIT_FOR_TIMEOUT);
+        ElementUtils.clickElementUseJs(driver, modulesLink);
+    }
+
+    public String getModulesInfo() {
+        ElementUtils.waitUntilElementTextAppear(driver, moduleInfo, moduleInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return moduleInfo.getText();
+    }
+
     public void clickNamespacesLink() {
         ElementUtils.scrollTo(namespacesLink, driver);
         ElementUtils.waitUntilVisible(driver, namespacesLink, Properties.WAIT_FOR_TIMEOUT);
         ElementUtils.clickElementUseJs(driver, namespacesLink);
     }
 
-    public String getNamespacesTotalNumber() {
-        ElementUtils.waitUntilElementTextAppear(driver, namespacesTotalNumber, namespacesTotalNumber.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return namespacesTotalNumber.getText();
+    public String getNamespacesInfo() {
+        ElementUtils.waitUntilElementTextAppear(driver, packageInfo, packageInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return packageInfo.getText();
     }
 
     public void clickFoldersLink() {
@@ -73,9 +93,9 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, foldersLink);
     }
 
-    public String getFoldersTotalNumber() {
-        ElementUtils.waitUntilElementTextAppear(driver, foldersTotalNumber, foldersTotalNumber.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return foldersTotalNumber.getText();
+    public String getFolderInfo() {
+        ElementUtils.waitUntilElementTextAppear(driver, folderInfo, folderInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return folderInfo.getText();
     }
 
     public void clickPackagesLink() {
@@ -84,9 +104,9 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, packagesLink);
     }
 
-    public String getPackagesTotalNumber() {
-        ElementUtils.waitUntilElementTextAppear(driver, packagesTotalNumber, packagesTotalNumber.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return packagesTotalNumber.getText();
+    public String getPackageInfo() {
+        ElementUtils.waitUntilElementTextAppear(driver, packageInfo, packageInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return packageInfo.getText();
     }
 
     public void clickFilesLink() {
@@ -94,9 +114,19 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, filesLink);
     }
 
-    public String getFilesTotalNumber() {
-        ElementUtils.waitUntilElementTextAppear(driver, filesTotalNumber, filesTotalNumber.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return filesTotalNumber.getText();
+    public String getFileInfo() {
+        ElementUtils.waitUntilElementTextAppear(driver, fileInfo, fileInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return fileInfo.getText();
+    }
+
+    public void clickCategoriesLink() {
+        ElementUtils.waitUntilVisible(driver, categoriesLink, Properties.WAIT_FOR_TIMEOUT);
+        ElementUtils.clickElementUseJs(driver, categoriesLink);
+    }
+
+    public String getCategoryInfo() {
+        ElementUtils.waitUntilElementTextAppear(driver, categoryInfo, categoryInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return categoryInfo.getText();
     }
 
     public void clickTypesLink() {
@@ -104,9 +134,9 @@ public class ParasoftWarningsPage {
         ElementUtils.clickElementUseJs(driver, typesLink);
     }
 
-    public String getTypesTotalNumber() {
-        ElementUtils.waitUntilElementTextAppear(driver, typesTotalNumber, typesTotalNumber.getText(), Properties.WAIT_FOR_TIMEOUT);
-        return typesTotalNumber.getText();
+    public String getTypeInfo() {
+        ElementUtils.waitUntilElementTextAppear(driver, typeInfo, typeInfo.getText(), Properties.WAIT_FOR_TIMEOUT);
+        return typeInfo.getText();
     }
 
     public void clickIssuesLink() {
