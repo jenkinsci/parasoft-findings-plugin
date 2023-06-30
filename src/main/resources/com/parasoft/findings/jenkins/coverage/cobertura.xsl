@@ -34,10 +34,20 @@
                 </xsl:variable>
                 <xsl:if test="$lineRateForPacakgeTag != -1">
                     <xsl:element name="package">
+                        <xsl:variable name="isExternalReport" select="string($pipelineBuildWorkingDirectory) = '' or not(contains(@uri, translate(string($pipelineBuildWorkingDirectory), '\', '/')))"/>
                         <xsl:variable name="packageName">
-                            <xsl:call-template name="getPackageName">
-                                <xsl:with-param name="projectPath" select="substring-after(@uri, concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/'))"/>
-                            </xsl:call-template>
+                            <xsl:choose>
+                                <xsl:when test="$isExternalReport">
+                                    <xsl:call-template name="getPackageName">
+                                        <xsl:with-param name="projectPath" select="@uri"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:call-template name="getPackageName">
+                                        <xsl:with-param name="projectPath" select="substring-after(@uri, concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/'))"/>
+                                    </xsl:call-template>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:variable>
                         <xsl:attribute name="name">
                             <xsl:value-of select="$packageName"/>
@@ -48,7 +58,14 @@
                         <xsl:element name="classes">
                             <xsl:for-each select="current-group()">
                                 <xsl:variable name="filePath">
-                                <xsl:value-of select="substring-after(@uri, concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/'))"/>
+                                    <xsl:choose>
+                                        <xsl:when test="$isExternalReport">
+                                            <xsl:value-of select="@uri"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                           <xsl:value-of select="substring-after(@uri, concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/'))"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </xsl:variable>
                                 <xsl:variable name="locRef" select="@locRef"/>
                                 <xsl:variable name="cvgDataNode" select="//CvgData[@locRef=$locRef]"/>

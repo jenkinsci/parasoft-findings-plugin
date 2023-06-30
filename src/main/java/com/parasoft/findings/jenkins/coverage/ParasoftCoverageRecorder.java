@@ -30,6 +30,7 @@ import hudson.tasks.Recorder;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
 import io.jenkins.plugins.util.*;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -38,8 +39,12 @@ import org.kohsuke.stapler.DataBoundSetter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ParasoftCoverageRecorder extends Recorder {
 
@@ -80,10 +85,15 @@ public class ParasoftCoverageRecorder extends Recorder {
         LogHandler logHandler = new LogHandler(listener, PARASOFT_COVERAGE_NAME);
         FilteredLog log = new FilteredLog("Errors while recording Parasoft code coverage:");
         log.logInfo("Recording Parasoft coverage results");
-        String coberturaPattern = convertParasoftCoverageToCoberturaCoverage(build, workspace, resultHandler, log,
-                logHandler);
-        CoverageRecorder recorder = setUpCoverageRecorder(coberturaPattern);
-        return recorder.perform(build, launcher, listener);
+        List<String> coberturaPatterns = convertParasoftCoverageToCoberturaCoverage(build, workspace, resultHandler,
+                log, logHandler);
+
+        CoverageRecorder recorder = setUpCoverageRecorder(String.join(FILE_PATTERN_SEPARATOR, coberturaPatterns));
+        recorder.perform(build, launcher, listener);
+
+        deleteTemporaryCoverageFiles(workspace, coberturaPatterns, logHandler);
+
+        return true;
     }
 
     @Override
@@ -102,10 +112,10 @@ public class ParasoftCoverageRecorder extends Recorder {
         return recorder;
     }
 
-    private String convertParasoftCoverageToCoberturaCoverage(final Run<?, ?> run, final FilePath workspace,
-                                                              final StageResultHandler resultHandler,
-                                                              final FilteredLog log,
-                                                              final LogHandler logHandler) throws InterruptedException {
+    private List<String> convertParasoftCoverageToCoberturaCoverage(final Run<?, ?> run, final FilePath workspace,
+                                                                    final StageResultHandler resultHandler,
+                                                                    final FilteredLog log,
+                                                                    final LogHandler logHandler) throws InterruptedException {
         List<String> results = new ArrayList<>();
 
         String expandedPattern = expandPattern(run, pattern);
@@ -143,18 +153,19 @@ public class ParasoftCoverageRecorder extends Recorder {
 
         logHandler.log(log);
 
-        return String.join(FILE_PATTERN_SEPARATOR, results);
+        return results;
     }
 
-    private String expandPattern(final Run<?, ?> run, final String actualPattern) {
+    // Resolves build parameters in the pattern.
+    private String expandPattern(final Run<?, ?> run, final String pattern) {
         try {
             EnvironmentResolver environmentResolver = new EnvironmentResolver();
 
             return environmentResolver.expandEnvironmentVariables(
-                    run.getEnvironment(TaskListener.NULL), actualPattern);
+                    run.getEnvironment(TaskListener.NULL), pattern);
         }
         catch (IOException | InterruptedException ignore) {
-            return actualPattern; // fallback, no expansion
+            return pattern; // fallback, no expansion
         }
     }
 
@@ -165,6 +176,33 @@ public class ParasoftCoverageRecorder extends Recorder {
             }
             return IOUtils.toString(coberturaXslInput, StandardCharsets.UTF_8);
         }
+    }
+
+    private void deleteTemporaryCoverageFiles(final FilePath workspace, final List<String> coberturaPatterns,
+                                              final LogHandler logHandler)
+            throws InterruptedException {
+        logHandler.log("Deleting temporary coverage files");
+
+        Set<String> tempCoverageDirs = new HashSet<>();
+        for (String coberturaPattern : coberturaPatterns) {
+            Path coberturaPath = Paths.get(coberturaPattern);
+            // The path getting from cobertura pattern has at least 3 name elements,
+            // in a format like `<relative-path-to-workspace>/generatedCoverageFiles/<uuid>/cobertura.xml`.
+            // See ParasoftCoverageReportScanner#createGeneratedCoverageDir method for details.
+            Path generatedCoverageDir = coberturaPath.subpath(0, coberturaPath.getNameCount() - 2);
+            tempCoverageDirs.add(FilenameUtils.separatorsToUnix(generatedCoverageDir.toString()));
+        }
+
+        FilteredLog log = new FilteredLog("Errors while deleting temporary coverage files:");
+        for (String tempCoverageDir : tempCoverageDirs) {
+            try {
+                workspace.child(tempCoverageDir).deleteRecursive();
+            } catch (IOException exception) {
+                log.logException(exception, "Deleting of directory '%s' failed due to an exception:", tempCoverageDir);
+            }
+        }
+
+        logHandler.log(log);
     }
 
     @Extension
