@@ -32,11 +32,9 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
-public class ParasoftCoverageReportScanner extends AgentFileVisitor<String> {
+public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessFileResult> {
 
     private static final long serialVersionUID = 6940864958150044554L;
 
@@ -51,6 +49,8 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<String> {
     private final String xslContent;
     private final String workspaceLoc;
 
+    private final Map<String, String> generatedCoverageDirsMap = new HashMap<>();
+
     public ParasoftCoverageReportScanner(final String filePattern, final String xslContent, final String workspaceLoc,
                                          final String encoding, final boolean followSymbolicLinks) {
         super(filePattern, encoding, followSymbolicLinks, true);
@@ -60,19 +60,20 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<String> {
     }
 
     @Override
-    protected Optional<String> processFile(Path file, Charset charset, FilteredLog log) {
+    protected Optional<ProcessFileResult> processFile(Path file, Charset charset, FilteredLog log) {
         try {
-            Path generatedCoverageDir = createGeneratedCoverageDir(file);
-            Path processedParasoftReport = generatedCoverageDir.resolve(file.getFileName()
+            Path generatedCoverageBuildDir = createGeneratedCoverageFileDir(file);
+            Path processedParasoftReport = generatedCoverageBuildDir.resolve(file.getFileName()
                     + MODIFIED_PARASOFT_REPORT_NAME_SUFFIX);
             processParasoftReport(file, charset, processedParasoftReport);
-            Path outputCoberturaReport = generatedCoverageDir.resolve(file.getFileName()
+            Path outputCoberturaReport = generatedCoverageBuildDir.resolve(file.getFileName()
                     + GENERATED_COBERTURA_REPORT_NAME_SUFFIX);
             ConversionService conversionService = new ConversionService();
             conversionService.convert(new StreamSource(new StringReader(xslContent)),
                     processedParasoftReport.toFile(), outputCoberturaReport.toFile());
             log.logInfo("Successfully parsed file '%s'", PATH_UTIL.getAbsolutePath(file));
-            return Optional.of(PATH_UTIL.getRelativePath(Paths.get(workspaceLoc), outputCoberturaReport));
+            return Optional.of(new ProcessFileResult(PATH_UTIL.getRelativePath(Paths.get(workspaceLoc),
+                    outputCoberturaReport), generatedCoverageBuildDir.toString()));
         } catch (IOException | NoSuchElementException | ConversionException exception) {
             log.logException(exception, "Parsing of file '%s' failed due to an exception:", file);
             return Optional.empty();
@@ -102,10 +103,16 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<String> {
         }
     }
 
-    private static Path createGeneratedCoverageDir(Path file) throws IOException {
-        Path generatedCoverageDir = file.resolveSibling(GENERATED_COVERAGE_DIR).resolve(UUID.randomUUID().toString());
-        Files.deleteIfExists(generatedCoverageDir);
-        Files.createDirectories(generatedCoverageDir);
-        return generatedCoverageDir;
+    private Path createGeneratedCoverageFileDir(Path file) throws IOException {
+        Path generatedCoverageDir = file.resolveSibling(GENERATED_COVERAGE_DIR);
+        Path generatedCoverageFileDir;
+        if (generatedCoverageDirsMap.containsKey(generatedCoverageDir.toString())) {
+            generatedCoverageFileDir = Paths.get(generatedCoverageDirsMap.get(generatedCoverageDir.toString()));
+        } else {
+            generatedCoverageFileDir = generatedCoverageDir.resolve(UUID.randomUUID().toString());
+            generatedCoverageDirsMap.put(generatedCoverageDir.toString(), generatedCoverageFileDir.toString());
+        }
+        Files.createDirectories(generatedCoverageFileDir);
+        return generatedCoverageFileDir;
     }
 }
