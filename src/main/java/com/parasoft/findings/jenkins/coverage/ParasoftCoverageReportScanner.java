@@ -105,14 +105,16 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
 
     private Path createGeneratedCoverageFileDir(Path file) throws IOException {
         Path generatedCoverageDir = file.resolveSibling(GENERATED_COVERAGE_DIR);
-        Path generatedCoverageFileDir;
+        Path generatedCoverageBuildDir;
+        // If there are multiple Parasoft coverage files in the same directory,
+        // the generated coverage files are put in the same subdirectory(use UUID as name) for this build.
         if (generatedCoverageDirsMap.containsKey(generatedCoverageDir.toString())) {
-            generatedCoverageFileDir = Paths.get(generatedCoverageDirsMap.get(generatedCoverageDir.toString()));
+            generatedCoverageBuildDir = Paths.get(generatedCoverageDirsMap.get(generatedCoverageDir.toString()));
         } else {
-            generatedCoverageFileDir = generatedCoverageDir.resolve(UUID.randomUUID().toString());
-            generatedCoverageDirsMap.put(generatedCoverageDir.toString(), generatedCoverageFileDir.toString());
+            generatedCoverageBuildDir = generatedCoverageDir.resolve(UUID.randomUUID().toString());
+            generatedCoverageDirsMap.put(generatedCoverageDir.toString(), generatedCoverageBuildDir.toString());
         }
-        Files.createDirectories(generatedCoverageFileDir);
-        return generatedCoverageFileDir;
+        Files.createDirectories(generatedCoverageBuildDir);
+        return generatedCoverageBuildDir;
     }
 }

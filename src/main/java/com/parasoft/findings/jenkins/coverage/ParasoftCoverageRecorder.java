@@ -32,7 +32,6 @@ import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.tuple.Pair;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
@@ -82,21 +81,21 @@ public class ParasoftCoverageRecorder extends Recorder {
         }
 
         LogHandler logHandler = new LogHandler(listener, PARASOFT_COVERAGE_NAME);
-        Pair<String, Set<String>> resultPair = performCoverageReportConversion(build, workspace, logHandler,
+        CoverageConversionResult coverageResult = performCoverageReportConversion(build, workspace, logHandler,
                 new RunResultHandler(build));
 
-        CoverageRecorder recorder = setUpCoverageRecorder(resultPair.getLeft());
+        CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern());
         recorder.perform(build, launcher, listener);
 
-        deleteTemporaryCoverageDirs(workspace, resultPair.getRight(), logHandler);
+        deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
 
         return true;
     }
 
     // Return Cobertura patterns and temporary coverage directories for this build.
-    Pair<String, Set<String>> performCoverageReportConversion(final Run<?, ?> run, final FilePath workspace,
-                                                              final LogHandler logHandler,
-                                                              final StageResultHandler resultHandler)
+    CoverageConversionResult performCoverageReportConversion(final Run<?, ?> run, final FilePath workspace,
+                                                             final LogHandler logHandler,
+                                                             final StageResultHandler resultHandler)
             throws InterruptedException {
         FilteredLog log = new FilteredLog("Errors while recording Parasoft code coverage:");
         log.logInfo("Recording Parasoft coverage results");
@@ -120,10 +119,10 @@ public class ParasoftCoverageRecorder extends Recorder {
         return recorder;
     }
 
-    private Pair<String, Set<String>> convertCoverageReport(final Run<?, ?> run, final FilePath workspace,
-                                                          final StageResultHandler resultHandler,
-                                                          final FilteredLog log,
-                                                          final LogHandler logHandler) throws InterruptedException {
+    private CoverageConversionResult convertCoverageReport(final Run<?, ?> run, final FilePath workspace,
+                                                           final StageResultHandler resultHandler,
+                                                           final FilteredLog log,
+                                                           final LogHandler logHandler) throws InterruptedException {
         String expandedPattern = expandPattern(run, pattern);
         if (!expandedPattern.equals(pattern)) {
             log.logInfo("Expanded pattern '%s' to '%s'", pattern, expandedPattern);
@@ -167,7 +166,8 @@ public class ParasoftCoverageRecorder extends Recorder {
 
         logHandler.log(log);
 
-        return Pair.of(StringUtils.join(coberturaPatterns, FILE_PATTERN_SEPARATOR), generatedCoverageBuildDirs);
+        return new CoverageConversionResult(StringUtils.join(coberturaPatterns, FILE_PATTERN_SEPARATOR),
+                generatedCoverageBuildDirs);
     }
 
     // Resolves build parameters in the pattern.
@@ -225,6 +225,24 @@ public class ParasoftCoverageRecorder extends Recorder {
         // Used in jelly file.
         public String defaultPattern() {
             return DEFAULT_PATTERN;
+        }
+    }
+
+    static class CoverageConversionResult {
+        private final String coberturaPattern;
+        private final Set<String> generatedCoverageBuildDirs;
+
+        public CoverageConversionResult(String coberturaPattern, Set<String> generatedCoverageBuildDirs) {
+            this.coberturaPattern = coberturaPattern;
+            this.generatedCoverageBuildDirs = generatedCoverageBuildDirs;
+        }
+
+        public String getCoberturaPattern() {
+            return coberturaPattern;
+        }
+
+        public Set<String> getGeneratedCoverageBuildDirs() {
+            return generatedCoverageBuildDirs;
         }
     }
 }
