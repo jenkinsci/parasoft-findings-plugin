@@ -126,7 +126,7 @@ public class ParasoftCoverageRecorder extends Recorder {
                                                           final LogHandler logHandler) throws InterruptedException {
         String expandedPattern = expandPattern(run, pattern);
         if (!expandedPattern.equals(pattern)) {
-            log.logInfo("Expanding pattern '%s' to '%s'", pattern, expandedPattern);
+            log.logInfo("Expanded pattern '%s' to '%s'", pattern, expandedPattern);
         }
 
         if (StringUtils.isBlank(expandedPattern)) {
@@ -139,20 +139,20 @@ public class ParasoftCoverageRecorder extends Recorder {
 
         boolean failTheBuild = false;
         try {
-            AgentFileVisitor.FileVisitorResult<ProcessFileResult> result = workspace.act(
+            AgentFileVisitor.FileVisitorResult<ProcessedFileResult> result = workspace.act(
                     new ParasoftCoverageReportScanner(expandedPattern, getCoberturaXslContent(), workspace.getRemote(),
                             StandardCharsets.UTF_8.name(), false));
             log.merge(result.getLog());
 
-            List<ProcessFileResult> coverageResults = result.getResults();
+            List<ProcessedFileResult> coverageResults = result.getResults();
             if (result.hasErrors()) {
                 failTheBuild = true;
             }
             coberturaPatterns.addAll(coverageResults.stream()
-                    .map(ProcessFileResult::getCoberturaPattern)
+                    .map(ProcessedFileResult::getCoberturaPattern)
                     .collect(Collectors.toSet()));
             generatedCoverageBuildDirs.addAll(coverageResults.stream()
-                    .map(ProcessFileResult::getGeneratedCoverageBuildDir)
+                    .map(ProcessedFileResult::getGeneratedCoverageBuildDir)
                     .collect(Collectors.toSet()));
         } catch (IOException exception) {
             log.logException(exception, "Exception while converting Parasoft coverage to Cobertura coverage");
@@ -201,7 +201,7 @@ public class ParasoftCoverageRecorder extends Recorder {
             try {
                 Objects.requireNonNull(workspace.child(tempCoverageDir).getParent()).deleteRecursive();
             } catch (IOException exception) {
-                log.logException(exception, "Deleting of directory '%s' failed due to an exception:", tempCoverageDir);
+                log.logException(exception, "Failed to delete directory '%s' due to an exception: ", tempCoverageDir);
             }
         }
 

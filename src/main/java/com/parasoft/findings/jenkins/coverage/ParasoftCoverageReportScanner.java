@@ -34,7 +34,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessFileResult> {
+public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFileResult> {
 
     private static final long serialVersionUID = 6940864958150044554L;
 
@@ -60,7 +60,7 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessFileR
     }
 
     @Override
-    protected Optional<ProcessFileResult> processFile(Path file, Charset charset, FilteredLog log) {
+    protected Optional<ProcessedFileResult> processFile(Path file, Charset charset, FilteredLog log) {
         try {
             Path generatedCoverageBuildDir = createGeneratedCoverageFileDir(file);
             Path processedParasoftReport = generatedCoverageBuildDir.resolve(file.getFileName()
@@ -72,7 +72,7 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessFileR
             conversionService.convert(new StreamSource(new StringReader(xslContent)),
                     processedParasoftReport.toFile(), outputCoberturaReport.toFile());
             log.logInfo("Successfully parsed file '%s'", PATH_UTIL.getAbsolutePath(file));
-            return Optional.of(new ProcessFileResult(PATH_UTIL.getRelativePath(Paths.get(workspaceLoc),
+            return Optional.of(new ProcessedFileResult(PATH_UTIL.getRelativePath(Paths.get(workspaceLoc),
                     outputCoberturaReport), generatedCoverageBuildDir.toString()));
         } catch (IOException | NoSuchElementException | ConversionException exception) {
             log.logException(exception, "Parsing of file '%s' failed due to an exception:", file);
