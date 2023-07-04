@@ -32,6 +32,7 @@ import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.tools.ant.types.FileSet;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
@@ -128,31 +129,33 @@ public class ParasoftCoverageRecorder extends Recorder {
             log.logInfo("Expanded pattern '%s' to '%s'", pattern, expandedPattern);
         }
 
-        if (StringUtils.isBlank(expandedPattern)) {
-            log.logInfo("Using default pattern '%s' since user defined pattern is not set", DEFAULT_PATTERN);
-            expandedPattern = DEFAULT_PATTERN;
-        }
-
         Set<String> coberturaPatterns = new HashSet<>();
         Set<String> generatedCoverageBuildDirs = new HashSet<>();
 
         boolean failTheBuild = false;
         try {
-            AgentFileVisitor.FileVisitorResult<ProcessedFileResult> result = workspace.act(
-                    new ParasoftCoverageReportScanner(expandedPattern, getCoberturaXslContent(), workspace.getRemote(),
-                            StandardCharsets.UTF_8.name(), false));
-            log.merge(result.getLog());
-
-            List<ProcessedFileResult> coverageResults = result.getResults();
-            if (result.hasErrors()) {
-                failTheBuild = true;
+            String[] patterns = formatExpandedPattern(expandedPattern);
+            if (patterns == null) {
+                log.logInfo("Using default pattern '%s' since user defined pattern is not set", DEFAULT_PATTERN);
+                patterns = new String[]{DEFAULT_PATTERN};
             }
-            coberturaPatterns.addAll(coverageResults.stream()
-                    .map(ProcessedFileResult::getCoberturaPattern)
-                    .collect(Collectors.toSet()));
-            generatedCoverageBuildDirs.addAll(coverageResults.stream()
-                    .map(ProcessedFileResult::getGeneratedCoverageBuildDir)
-                    .collect(Collectors.toSet()));
+            for(String pattern: patterns) {
+                AgentFileVisitor.FileVisitorResult<ProcessedFileResult> result = workspace.act(
+                        new ParasoftCoverageReportScanner(pattern, getCoberturaXslContent(), workspace.getRemote(),
+                                StandardCharsets.UTF_8.name(), false));
+                log.merge(result.getLog());
+
+                List<ProcessedFileResult> coverageResults = result.getResults();
+                if (result.hasErrors()) {
+                    failTheBuild = true;
+                }
+                coberturaPatterns.addAll(coverageResults.stream()
+                        .map(ProcessedFileResult::getCoberturaPattern)
+                        .collect(Collectors.toSet()));
+                generatedCoverageBuildDirs.addAll(coverageResults.stream()
+                        .map(ProcessedFileResult::getGeneratedCoverageBuildDir)
+                        .collect(Collectors.toSet()));
+            }
         } catch (IOException exception) {
             log.logException(exception, "Exception while converting Parasoft coverage to Cobertura coverage");
             failTheBuild = true;
@@ -206,6 +209,13 @@ public class ParasoftCoverageRecorder extends Recorder {
         }
 
         logHandler.log(log);
+    }
+
+    private String[] formatExpandedPattern(String expandedPattern) {
+        FileSet fileSet = new FileSet();
+        org.apache.tools.ant.Project antProject = new org.apache.tools.ant.Project();
+        fileSet.setIncludes(expandedPattern);
+        return fileSet.mergeIncludes(antProject);
     }
 
     @Extension

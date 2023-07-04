@@ -43,6 +43,8 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
     private static final String GENERATED_COBERTURA_REPORT_NAME_SUFFIX = "-cobertura.xml";
     private static final String COVERAGE_TAG_START = "<Coverage ";
     private static final String WORKING_DIRECTORY_ATTR_FORMAT = "pipelineBuildWorkingDirectory=\"%s\" ";
+    private static final String XML_EXTENSION = ".xml";
+    private static final String COVERAGE_ATTRIBUTE = "ver";
 
     private static final PathUtil PATH_UTIL = new PathUtil();
 
@@ -62,6 +64,9 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
     @Override
     protected Optional<ProcessedFileResult> processFile(Path file, Charset charset, FilteredLog log) {
         try {
+            if (!PATH_UTIL.getAbsolutePath(file).endsWith(XML_EXTENSION)) {
+                throw new IOException("Unrecognized report file '" + file + "'");
+            }
             Path generatedCoverageBuildDir = createGeneratedCoverageFileDir(file);
             Path processedParasoftReport = generatedCoverageBuildDir.resolve(file.getFileName()
                     + MODIFIED_PARASOFT_REPORT_NAME_SUFFIX);
@@ -87,7 +92,7 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
             boolean attrAdded = false;
             String line;
             while ((line = reader.readLine()) != null) {
-                if (!attrAdded && StringUtils.contains(line, COVERAGE_TAG_START)) {
+                if (!attrAdded && StringUtils.contains(line, COVERAGE_TAG_START) && StringUtils.contains(line, COVERAGE_ATTRIBUTE)) {
                     writer.append(StringUtils.replaceOnce(line, COVERAGE_TAG_START,
                             COVERAGE_TAG_START + String.format(WORKING_DIRECTORY_ATTR_FORMAT, workspaceLoc)));
                     attrAdded = true;
