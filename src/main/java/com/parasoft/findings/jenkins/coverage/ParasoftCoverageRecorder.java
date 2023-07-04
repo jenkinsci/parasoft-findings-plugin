@@ -16,31 +16,38 @@
 
 package com.parasoft.findings.jenkins.coverage;
 
+import edu.hm.hafner.util.FilteredLog;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
+import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.AbstractBuild;
-import hudson.model.AbstractProject;
-import hudson.model.BuildListener;
+import hudson.model.*;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
+import io.jenkins.plugins.util.*;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ParasoftCoverageRecorder extends Recorder {
 
     private static final String PARASOFT_COVERAGE_ID = "parasoft-coverage";
     private static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage";
     private static final String DEFAULT_PATTERN = "**/coverage.xml";
+    private static final String COBERTURA_XSL_NAME = "cobertura.xsl";
+    private static final String FILE_PATTERN_SEPARATOR = ",";
 
     private String pattern = StringUtils.EMPTY;
 
@@ -68,8 +75,32 @@ public class ParasoftCoverageRecorder extends Recorder {
     @Override
     public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
             throws InterruptedException, IOException {
-        CoverageRecorder recorder = setUpCoverageRecorder(pattern);
-        return recorder.perform(build, launcher, listener);
+        FilePath workspace = build.getWorkspace();
+        if (workspace == null) {
+            throw new IOException("No workspace found for " + build);
+        }
+
+        LogHandler logHandler = new LogHandler(listener, PARASOFT_COVERAGE_NAME);
+        CoverageConversionResult coverageResult = performCoverageReportConversion(build, workspace, logHandler,
+                new RunResultHandler(build));
+
+        CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern());
+        recorder.perform(build, launcher, listener);
+
+        deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
+
+        return true;
+    }
+
+    // Return Cobertura patterns and temporary coverage directories for this build.
+    CoverageConversionResult performCoverageReportConversion(final Run<?, ?> run, final FilePath workspace,
+                                                             final LogHandler logHandler,
+                                                             final StageResultHandler resultHandler)
+            throws InterruptedException {
+        FilteredLog log = new FilteredLog("Errors while recording Parasoft code coverage:");
+        log.logInfo("Recording Parasoft coverage results");
+        return convertCoverageReport(run, workspace, resultHandler,
+                log, logHandler);
     }
 
     @Override
@@ -86,6 +117,95 @@ public class ParasoftCoverageRecorder extends Recorder {
         recorder.setId(PARASOFT_COVERAGE_ID);
         recorder.setName(PARASOFT_COVERAGE_NAME);
         return recorder;
+    }
+
+    private CoverageConversionResult convertCoverageReport(final Run<?, ?> run, final FilePath workspace,
+                                                           final StageResultHandler resultHandler,
+                                                           final FilteredLog log,
+                                                           final LogHandler logHandler) throws InterruptedException {
+        String expandedPattern = expandPattern(run, pattern);
+        if (!expandedPattern.equals(pattern)) {
+            log.logInfo("Expanded pattern '%s' to '%s'", pattern, expandedPattern);
+        }
+
+        if (StringUtils.isBlank(expandedPattern)) {
+            log.logInfo("Using default pattern '%s' since user defined pattern is not set", DEFAULT_PATTERN);
+            expandedPattern = DEFAULT_PATTERN;
+        }
+
+        Set<String> coberturaPatterns = new HashSet<>();
+        Set<String> generatedCoverageBuildDirs = new HashSet<>();
+
+        boolean failTheBuild = false;
+        try {
+            AgentFileVisitor.FileVisitorResult<ProcessedFileResult> result = workspace.act(
+                    new ParasoftCoverageReportScanner(expandedPattern, getCoberturaXslContent(), workspace.getRemote(),
+                            StandardCharsets.UTF_8.name(), false));
+            log.merge(result.getLog());
+
+            List<ProcessedFileResult> coverageResults = result.getResults();
+            if (result.hasErrors()) {
+                failTheBuild = true;
+            }
+            coberturaPatterns.addAll(coverageResults.stream()
+                    .map(ProcessedFileResult::getCoberturaPattern)
+                    .collect(Collectors.toSet()));
+            generatedCoverageBuildDirs.addAll(coverageResults.stream()
+                    .map(ProcessedFileResult::getGeneratedCoverageBuildDir)
+                    .collect(Collectors.toSet()));
+        } catch (IOException exception) {
+            log.logException(exception, "Exception while converting Parasoft coverage to Cobertura coverage");
+            failTheBuild = true;
+        }
+
+        if (failTheBuild) {
+            String errorMessage = "Failing build due to some errors during recording of the Parasoft coverage";
+            log.logInfo(errorMessage);
+            resultHandler.setResult(Result.FAILURE, errorMessage);
+        }
+
+        logHandler.log(log);
+
+        return new CoverageConversionResult(StringUtils.join(coberturaPatterns, FILE_PATTERN_SEPARATOR),
+                generatedCoverageBuildDirs);
+    }
+
+    // Resolves build parameters in the pattern.
+    private String expandPattern(final Run<?, ?> run, final String pattern) {
+        try {
+            EnvironmentResolver environmentResolver = new EnvironmentResolver();
+
+            return environmentResolver.expandEnvironmentVariables(
+                    run.getEnvironment(TaskListener.NULL), pattern);
+        }
+        catch (IOException | InterruptedException ignore) {
+            return pattern; // fallback, no expansion
+        }
+    }
+
+    private String getCoberturaXslContent() throws IOException {
+        try (InputStream coberturaXslInput = this.getClass().getResourceAsStream(COBERTURA_XSL_NAME)) {
+            if (coberturaXslInput == null) {
+                throw new IOException("Failed to read Cobertura XSL.");
+            }
+            return IOUtils.toString(coberturaXslInput, StandardCharsets.UTF_8);
+        }
+    }
+
+    private void deleteTemporaryCoverageDirs(final FilePath workspace, final Set<String> tempCoverageDirs,
+                                             final LogHandler logHandler)
+            throws InterruptedException {
+        logHandler.log("Deleting temporary coverage files");
+        FilteredLog log = new FilteredLog("Errors while deleting temporary coverage files:");
+        for (String tempCoverageDir : tempCoverageDirs) {
+            try {
+                Objects.requireNonNull(workspace.child(tempCoverageDir).getParent()).deleteRecursive();
+            } catch (IOException exception) {
+                log.logException(exception, "Failed to delete directory '%s' due to an exception: ", tempCoverageDir);
+            }
+        }
+
+        logHandler.log(log);
     }
 
     @Extension
@@ -105,6 +225,24 @@ public class ParasoftCoverageRecorder extends Recorder {
         // Used in jelly file.
         public String defaultPattern() {
             return DEFAULT_PATTERN;
+        }
+    }
+
+    static class CoverageConversionResult {
+        private final String coberturaPattern;
+        private final Set<String> generatedCoverageBuildDirs;
+
+        public CoverageConversionResult(String coberturaPattern, Set<String> generatedCoverageBuildDirs) {
+            this.coberturaPattern = coberturaPattern;
+            this.generatedCoverageBuildDirs = generatedCoverageBuildDirs;
+        }
+
+        public String getCoberturaPattern() {
+            return coberturaPattern;
+        }
+
+        public Set<String> getGeneratedCoverageBuildDirs() {
+            return generatedCoverageBuildDirs;
         }
     }
 }
