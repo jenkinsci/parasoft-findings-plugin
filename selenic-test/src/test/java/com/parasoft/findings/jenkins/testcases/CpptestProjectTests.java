@@ -5,10 +5,12 @@ import com.parasoft.findings.jenkins.pages.ParasoftWarningsPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import com.parasoft.findings.jenkins.common.GlobalUtils;
 import com.parasoft.findings.jenkins.common.Properties;
 import com.parasoft.findings.jenkins.common.WebDriverInitialization;
+import org.openqa.selenium.WebElement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -62,6 +64,8 @@ public class CpptestProjectTests {
 
         parasoftWarningsPage.clickIssuesLink();
         parasoftWarningsPage.clickOpenIconButton();
-        assertFalse(parasoftWarningsPage.getRuleDetailsText().isEmpty());
+        WebElement ruleDetailsText = driver.findElement(By.xpath("//*[@id='issues']/tbody/tr[2]/td/strong[1]"));
+        assertFalse(parasoftWarningsPage.getRuleDetailsText(ruleDetailsText).isEmpty());
+        assertTrue(parasoftWarningsPage.getRuleDetailsText(ruleDetailsText).contains("APSC_DV-003110-a"));
     }
 }

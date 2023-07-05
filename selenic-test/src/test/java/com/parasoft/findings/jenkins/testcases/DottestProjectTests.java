@@ -5,10 +5,12 @@ import com.parasoft.findings.jenkins.pages.ParasoftWarningsPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import com.parasoft.findings.jenkins.common.GlobalUtils;
 import com.parasoft.findings.jenkins.common.Properties;
 import com.parasoft.findings.jenkins.common.WebDriverInitialization;
+import org.openqa.selenium.WebElement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,11 +56,13 @@ public class DottestProjectTests {
         parasoftWarningsPage.clickTypesLink();
         assertTrue(parasoftWarningsPage.getTypeInfoText().contains(Properties.DOTTEST_TYPES_ENTRIES_ASSERTATION));
 
-        parasoftWarningsPage.clickRuleTypeLink("BD.EXCEPT.NR");
+        parasoftWarningsPage.clickRuleTypeLink("BRM.CMT.MSC");
         assertEquals(parasoftWarningsPage.getRuleTitleText(), Properties.DOTTEST_RULE_TYPE_ASSERTATION);
 
         parasoftWarningsPage.clickIssuesLink();
         parasoftWarningsPage.clickOpenIconButton();
-        assertFalse(parasoftWarningsPage.getRuleDetailsText().isEmpty());
+        WebElement ruleDetailsText = driver.findElement(By.xpath("//*[@id='issues']//tr[2]/td/div[1]/div[2]/h1"));
+        assertFalse(parasoftWarningsPage.getRuleDetailsText(ruleDetailsText).isEmpty());
+        assertTrue(parasoftWarningsPage.getRuleDetailsText(ruleDetailsText).contains("BRM.CMT.MSC"));
     }
 }

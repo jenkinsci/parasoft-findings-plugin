@@ -6,3 +6,5 @@
 xtest.diagnostics.txt
 .arcconfig
 .idea
+/selenic-test/target/
+/selenic-test/selenic-test.iml

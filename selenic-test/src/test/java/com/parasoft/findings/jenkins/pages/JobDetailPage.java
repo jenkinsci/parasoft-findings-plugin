@@ -1,5 +1,6 @@
 package com.parasoft.findings.jenkins.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,7 +49,7 @@ public class JobDetailPage {
 
     public void waitBuildFinished(WebDriver driver) {
         try {
-            Thread.sleep(Properties.WAIT_FOR_BUILF_FINISHED_TIMEOUT);
+            Thread.sleep(Properties.WAIT_FOR_BUILD_FINISHED_TIMEOUT);
             ElementUtils.clickElementUseJs(driver, projectStatusLink);
         } catch (Exception e) {
             System.out.println(e.getMessage());

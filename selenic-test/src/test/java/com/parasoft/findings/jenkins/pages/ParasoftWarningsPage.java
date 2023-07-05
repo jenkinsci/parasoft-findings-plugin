@@ -59,9 +59,6 @@ public class ParasoftWarningsPage {
     @FindBy(xpath = "//*[@id='issues']//tr[1]/td[1]/div")
     private WebElement openIcon;
 
-    @FindBy(xpath = "//*[@id='issues']//tr[2]//strong")
-    private WebElement ruleDetailsText;
-
     @FindBy(css = ".container-fluid h1")
     private WebElement ruleTitleText;
 
@@ -151,16 +148,17 @@ public class ParasoftWarningsPage {
     public void clickIssuesLink() {
         ElementUtils.waitUntilVisible(driver, issuesLink, Properties.WAIT_FOR_TIMEOUT);
         ElementUtils.clickElementUseJs(driver, issuesLink);
+        ElementUtils.waitUntilVisible(driver, issuesPaginate, Properties.WAIT_FOR_TIMEOUT);
     }
 
     public String getIssuesInfoText() {
-        ElementUtils.waitUntilVisible(driver, issuesPaginate, Properties.WAIT_FOR_TIMEOUT);
         ElementUtils.waitUntilElementTextAppear(driver, issuesInfoText, issuesInfoText.getText(), Properties.WAIT_FOR_TIMEOUT);
         return issuesInfoText.getText();
     }
 
     public void clickRuleTypeLink(String ruleType) {
         WebElement ruleTypeLink = driver.findElement(By.xpath("//*[@id='type']//a[text()='" + ruleType + "']"));
+        ElementUtils.scrollTo(ruleTypeLink, driver);
         ElementUtils.waitUntilVisible(driver, ruleTypeLink, Properties.WAIT_FOR_TIMEOUT);
         ElementUtils.clickElementUseJs(driver, ruleTypeLink);
     }
@@ -173,11 +171,10 @@ public class ParasoftWarningsPage {
 
     public void clickOpenIconButton() {
         ElementUtils.scrollTo(openIcon, driver);
-        ElementUtils.waitUntilVisible(driver, openIcon, Properties.WAIT_FOR_TIMEOUT);
-        ElementUtils.clickElementUseJs(driver, openIcon);
+        ElementUtils.waitUntilVisible(driver, openIcon, Properties.WAIT_FOR_TIMEOUT).click();
     }
 
-    public String getRuleDetailsText() {
+    public String getRuleDetailsText(WebElement ruleDetailsText) {
         ElementUtils.waitUntilVisible(driver, ruleDetailsText, Properties.WAIT_FOR_TIMEOUT);
         ElementUtils.waitUntilElementTextAppear(driver, ruleDetailsText, ruleDetailsText.getText(), Properties.WAIT_FOR_TIMEOUT);
         return ruleDetailsText.getText();

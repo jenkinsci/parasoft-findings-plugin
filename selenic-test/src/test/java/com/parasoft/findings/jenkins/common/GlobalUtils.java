@@ -1,16 +1,18 @@
 package com.parasoft.findings.jenkins.common;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.parasoft.findings.jenkins.pages.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 public class GlobalUtils {
     public static void createJob(WebDriver driver, String jobName) {
-        switchToPage(driver, Properties.DASHBOARD_PAGE);
+        switchToPage(driver, Properties.BASE_URL);
         DashboardPage dashboardPage = new DashboardPage(driver);
         dashboardPage.clickNewItemLink();
 
@@ -43,7 +45,7 @@ public class GlobalUtils {
     }
 
     public static JobDetailPage buildProject(WebDriver driver, String projectName) {
-        switchToPage(driver, Properties.DASHBOARD_PAGE + "/job/" + projectName + "/");
+        switchToPage(driver, Properties.BASE_URL + "/job/" + projectName + "/");
         JobDetailPage jobDetailPage = new JobDetailPage(driver);
         jobDetailPage.clickBuildNowLink();
         jobDetailPage.waitBuildFinished(driver);
@@ -53,7 +55,7 @@ public class GlobalUtils {
     public static void deleteProject(WebDriver driver, String projectName) {
         WebDriverWait wait = new WebDriverWait(driver, Properties.WAIT_FOR_TIMEOUT);
         String currentUrl = driver.getCurrentUrl();
-        switchToPage(driver, Properties.DASHBOARD_PAGE + "/job/" + projectName + "/");
+        switchToPage(driver, Properties.BASE_URL + "/job/" + projectName + "/");
 
         // If failed in config page, there is a alert when return to other page
         if(currentUrl.contains("/configure")) {
@@ -69,5 +71,13 @@ public class GlobalUtils {
         Alert projectDeleteAlert = driver.switchTo().alert();
         assertEquals("Delete the Project ‘" + projectName + "’?", projectDeleteAlert.getText());
         projectDeleteAlert.accept();
+
+        // Make sure the project is deleted
+        assertEquals(driver.getCurrentUrl(), Properties.BASE_URL + "/");
+        try {
+            driver.findElement(By.linkText(projectName));
+        } catch (Exception e){
+            assertTrue(e.getMessage().contains("no such element: Unable to locate element"));
+        }
     }
 }
