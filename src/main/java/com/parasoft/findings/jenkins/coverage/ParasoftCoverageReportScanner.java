@@ -92,6 +92,7 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
             boolean attrAdded = false;
             String line;
             while ((line = reader.readLine()) != null) {
+                // "COVERAGE_ATTRIBUTE" check is required to differentiate <Coverage> in coverage.xml with <Coverage> inside <Exec> in report.xml
                 if (!attrAdded && StringUtils.contains(line, COVERAGE_TAG_START) && StringUtils.contains(line, COVERAGE_ATTRIBUTE)) {
                     writer.append(StringUtils.replaceOnce(line, COVERAGE_TAG_START,
                             COVERAGE_TAG_START + String.format(WORKING_DIRECTORY_ATTR_FORMAT, workspaceLoc)));

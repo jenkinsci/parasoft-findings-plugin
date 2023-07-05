@@ -124,8 +124,11 @@ public class ParasoftCoverageRecorder extends Recorder {
                                                            final StageResultHandler resultHandler,
                                                            final FilteredLog log,
                                                            final LogHandler logHandler) throws InterruptedException {
-        String expandedPattern = expandPattern(run, pattern);
-        if (!expandedPattern.equals(pattern)) {
+        String expandedPattern = formatExpandedPattern(expandPattern(run, pattern));
+        if (StringUtils.isBlank(expandedPattern)) {
+            log.logInfo("Using default pattern '%s' for '%s' since specified pattern is empty", DEFAULT_PATTERN, pattern);
+            expandedPattern = DEFAULT_PATTERN;
+        } else if (!expandedPattern.equals(pattern)) {
             log.logInfo("Expanded pattern '%s' to '%s'", pattern, expandedPattern);
         }
 
@@ -134,28 +137,21 @@ public class ParasoftCoverageRecorder extends Recorder {
 
         boolean failTheBuild = false;
         try {
-            String[] patterns = formatExpandedPattern(expandedPattern);
-            if (patterns == null) {
-                log.logInfo("Using default pattern '%s' since user defined pattern is not set", DEFAULT_PATTERN);
-                patterns = new String[]{DEFAULT_PATTERN};
-            }
-            for(String pattern: patterns) {
-                AgentFileVisitor.FileVisitorResult<ProcessedFileResult> result = workspace.act(
-                        new ParasoftCoverageReportScanner(pattern, getCoberturaXslContent(), workspace.getRemote(),
-                                StandardCharsets.UTF_8.name(), false));
-                log.merge(result.getLog());
+            AgentFileVisitor.FileVisitorResult<ProcessedFileResult> result = workspace.act(
+                    new ParasoftCoverageReportScanner(expandedPattern, getCoberturaXslContent(), workspace.getRemote(),
+                            StandardCharsets.UTF_8.name(), false));
+            log.merge(result.getLog());
 
-                List<ProcessedFileResult> coverageResults = result.getResults();
-                if (result.hasErrors()) {
-                    failTheBuild = true;
-                }
-                coberturaPatterns.addAll(coverageResults.stream()
-                        .map(ProcessedFileResult::getCoberturaPattern)
-                        .collect(Collectors.toSet()));
-                generatedCoverageBuildDirs.addAll(coverageResults.stream()
-                        .map(ProcessedFileResult::getGeneratedCoverageBuildDir)
-                        .collect(Collectors.toSet()));
+            List<ProcessedFileResult> coverageResults = result.getResults();
+            if (result.hasErrors()) {
+                failTheBuild = true;
             }
+            coberturaPatterns.addAll(coverageResults.stream()
+                    .map(ProcessedFileResult::getCoberturaPattern)
+                    .collect(Collectors.toSet()));
+            generatedCoverageBuildDirs.addAll(coverageResults.stream()
+                    .map(ProcessedFileResult::getGeneratedCoverageBuildDir)
+                    .collect(Collectors.toSet()));
         } catch (IOException exception) {
             log.logException(exception, "Exception while converting Parasoft coverage to Cobertura coverage");
             failTheBuild = true;
@@ -211,11 +207,18 @@ public class ParasoftCoverageRecorder extends Recorder {
         logHandler.log(log);
     }
 
-    private String[] formatExpandedPattern(String expandedPattern) {
+    private String formatExpandedPattern(String expandedPattern) {
         FileSet fileSet = new FileSet();
         org.apache.tools.ant.Project antProject = new org.apache.tools.ant.Project();
         fileSet.setIncludes(expandedPattern);
-        return fileSet.mergeIncludes(antProject);
+        String[] matchedFiles = fileSet.mergeIncludes(antProject);
+        if (matchedFiles == null || matchedFiles.length == 0) {
+            return "";
+        }
+        List<String> nonEmptyPatterns = Arrays.stream(matchedFiles)
+                .filter(pattern -> !pattern.isEmpty())
+                .collect(Collectors.toList());
+        return String.join(", ", nonEmptyPatterns);
     }
 
     @Extension
