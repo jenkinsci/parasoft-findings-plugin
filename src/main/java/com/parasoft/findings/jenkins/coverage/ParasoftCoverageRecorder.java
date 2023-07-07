@@ -16,6 +16,7 @@
 
 package com.parasoft.findings.jenkins.coverage;
 
+import coverage.Messages;
 import edu.hm.hafner.util.FilteredLog;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
@@ -32,6 +33,7 @@ import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
@@ -209,6 +211,7 @@ public class ParasoftCoverageRecorder extends Recorder {
     }
 
     @Extension
+    @Symbol("parasoftCoverage")
     public static class ParasoftCoverageDescriptor extends BuildStepDescriptor<Publisher> {
 
         @NonNull
