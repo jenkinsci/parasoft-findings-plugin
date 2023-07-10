@@ -16,7 +16,6 @@
 
 package com.parasoft.findings.jenkins.coverage;
 
-import coverage.Messages;
 import edu.hm.hafner.util.FilteredLog;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
@@ -33,9 +32,10 @@ import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.jenkinsci.Symbol;
+import org.apache.tools.ant.types.FileSet;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
+import org.jenkinsci.Symbol;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -125,14 +125,12 @@ public class ParasoftCoverageRecorder extends Recorder {
                                                            final StageResultHandler resultHandler,
                                                            final FilteredLog log,
                                                            final LogHandler logHandler) throws InterruptedException {
-        String expandedPattern = expandPattern(run, pattern);
-        if (!expandedPattern.equals(pattern)) {
-            log.logInfo("Expanded pattern '%s' to '%s'", pattern, expandedPattern);
-        }
-
+        String expandedPattern = formatExpandedPattern(expandPattern(run, pattern));
         if (StringUtils.isBlank(expandedPattern)) {
-            log.logInfo("Using default pattern '%s' since user defined pattern is not set", DEFAULT_PATTERN);
+            log.logInfo("Using default pattern '%s' for '%s' since specified pattern is empty", DEFAULT_PATTERN, pattern);
             expandedPattern = DEFAULT_PATTERN;
+        } else if (!expandedPattern.equals(pattern)) {
+            log.logInfo("Expanded pattern '%s' to '%s'", pattern, expandedPattern);
         }
 
         Set<String> coberturaPatterns = new HashSet<>();
@@ -208,6 +206,20 @@ public class ParasoftCoverageRecorder extends Recorder {
         }
 
         logHandler.log(log);
+    }
+
+    private String formatExpandedPattern(String expandedPattern) {
+        FileSet fileSet = new FileSet();
+        org.apache.tools.ant.Project antProject = new org.apache.tools.ant.Project();
+        fileSet.setIncludes(expandedPattern);
+        String[] matchedFiles = fileSet.mergeIncludes(antProject);
+        if (matchedFiles == null || matchedFiles.length == 0) {
+            return "";
+        }
+        List<String> nonEmptyPatterns = Arrays.stream(matchedFiles)
+                .filter(pattern -> !pattern.isEmpty())
+                .collect(Collectors.toList());
+        return String.join(", ", nonEmptyPatterns);
     }
 
     @Extension

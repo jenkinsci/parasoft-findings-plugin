@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"  standalone="yes"?>
 <xsl:stylesheet version="3.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:map="http://www.w3.org/2005/xpath-functions/map">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:map="http://www.w3.org/2005/xpath-functions/map">
     <xsl:variable name="toolName" select="/Coverage/@toolId"/>
-    <xsl:variable name="pipelineBuildWorkingDirectory" select="/Coverage/@pipelineBuildWorkingDirectory"/>
+    <xsl:param name="pipelineBuildWorkingDirectory"><xsl:value-of select="/Coverage/@pipelineBuildWorkingDirectory"/></xsl:param>
     <xsl:template match="/">
         <xsl:element name="coverage">
             <xsl:variable name="lineRateForCoverageTag">
@@ -63,7 +63,7 @@
                                             <xsl:value-of select="@uri"/>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                           <xsl:value-of select="substring-after(@uri, concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/'))"/>
+                                            <xsl:value-of select="substring-after(@uri, concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/'))"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
@@ -116,9 +116,9 @@
         <xsl:variable name="coverableLines" as="xs:integer*">
             <xsl:for-each select="$parentsOfLines">
                 <xsl:variable name="lineNumbers" as="xs:string*">
-                        <xsl:variable name="locRefValue" select="@locRef"/>
-                        <xsl:variable name="statCvgElems" select="string-join(/Coverage/CoverageData/CvgData[@locRef = $locRefValue]/Static/StatCvg/@elems, ' ')"/>
-                        <xsl:sequence select="distinct-values(tokenize($statCvgElems, '\s+'))"/>
+                    <xsl:variable name="locRefValue" select="@locRef"/>
+                    <xsl:variable name="statCvgElems" select="string-join(/Coverage/CoverageData/CvgData[@locRef = $locRefValue]/Static/StatCvg/@elems, ' ')"/>
+                    <xsl:sequence select="distinct-values(tokenize($statCvgElems, '\s+'))"/>
                 </xsl:variable>
                 <xsl:sequence select="count($lineNumbers)"/>
             </xsl:for-each>
@@ -155,7 +155,7 @@
         <xsl:choose>
             <xsl:when test="count($segments) > 1">
                 <xsl:variable name="filename">
-                     <xsl:value-of select="$segments[last()]"/>
+                    <xsl:value-of select="$segments[last()]"/>
                 </xsl:variable>
                 <xsl:choose>
                     <!--    Jtest    -->
