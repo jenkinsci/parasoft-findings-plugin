@@ -19,7 +19,7 @@ public class JtestProjectTests {
     private final String projectName = Properties.JTEST_JOB_NAME;
 
     @BeforeEach
-    public void beforeTest() {
+    public void beforeTest() throws Exception {
         driver = WebDriverInitialization.init();
         driver.manage().window().maximize();
     }
@@ -61,7 +61,8 @@ public class JtestProjectTests {
 
         parasoftWarningsPage.clickIssuesLink();
         parasoftWarningsPage.clickOpenIconButton();
-        WebElement ruleDetailsText = driver.findElement(By.xpath("//*[@id='issues']//tr[2]//strong"));
+        WebElement ruleDetailsText = driver.findElement(By.xpath("//*[@id='issues']/tbody/tr[2]/td/strong[1]"));
         assertFalse(parasoftWarningsPage.getRuleDetailsText(ruleDetailsText).isEmpty());
+        assertTrue(parasoftWarningsPage.getRuleDetailsText(ruleDetailsText).contains("APSC_DV.001460.SIO"));
     }
 }

@@ -1,10 +1,15 @@
 package com.parasoft.findings.jenkins.common;
 
 public class Properties {
-    public static final String BASE_URL = System.getProperty("BASE_URL", "http://localhost:8080/jenkins");
-    public static final String DOTNET_HOME = System.getProperty("DOTNET_HOME", "C:/Program Files/dotnet");
-    public static final String DOTTEST_INSTALL_DIR = System.getProperty("DOTTEST_INSTALL_DIR", "C:/ParasoftTools/dottest");
-    public static final String CPPTEST_STD_INSTALL_DIR = System.getProperty("CPPTEST_STD_INSTALL_DIR", "C:/ParasoftTools/cpptest_std");
+    public static final String BASE_URL = System.getProperty("base.url");
+    public static final String DOTNET_HOME = System.getProperty("dotnet.home");
+    public static final String DOTTEST_INSTALL_DIR = System.getProperty("dottest.install.dir");
+    public static final String CPPTEST_STD_INSTALL_DIR = System.getProperty("cpptest.std.install.dir");
+
+    public static final String BASE_URL_ERROR_MESSAGE = "-Dbase.url attribute value is invalid";
+    public static final String DOTNET_HOME_ERROR_MESSAGE = "-Ddotnet.home attribute value is invalid";
+    public static final String DOTTEST_INSTALL_ERROR_DIR_MESSAGE = "-Ddottest.install.dir attribute value is invalid";
+    public static final String CPPTEST_STD_INSTALL_ERROR_DIR_MESSAGE = "-Dcpptest.std.install.dir attribute value is invalid";
 
     public static final String DOTTEST_JOB_NAME = "cicd.findings.dottest.FunctionalTest";
     public static final String JTEST_JOB_NAME = "cicd.findings.jtest.FunctionalTest";

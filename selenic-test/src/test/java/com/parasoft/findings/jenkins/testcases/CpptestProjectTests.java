@@ -19,7 +19,7 @@ public class CpptestProjectTests {
     private final String projectName = Properties.CPPTEST_JOB_NAME;
 
     @BeforeEach
-    public void beforeTest() {
+    public void beforeTest() throws Exception {
         driver = WebDriverInitialization.init();
         driver.manage().window().maximize();
     }

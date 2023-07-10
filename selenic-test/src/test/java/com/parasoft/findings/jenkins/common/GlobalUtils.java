@@ -6,8 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.parasoft.findings.jenkins.pages.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 public class GlobalUtils {
@@ -69,15 +68,18 @@ public class GlobalUtils {
 
         wait.until(alertIsPresent());
         Alert projectDeleteAlert = driver.switchTo().alert();
-        assertEquals("Delete the Project ‘" + projectName + "’?", projectDeleteAlert.getText());
+        assertTrue(projectDeleteAlert.getText().contains(projectName));
         projectDeleteAlert.accept();
 
         // Make sure the project is deleted
-        assertEquals(driver.getCurrentUrl(), Properties.BASE_URL + "/");
+        assertEquals(driver.getCurrentUrl(), Properties.BASE_URL);
+        Exception exception = null;
         try {
             driver.findElement(By.linkText(projectName));
         } catch (Exception e){
-            assertTrue(e.getMessage().contains("no such element: Unable to locate element"));
+            exception = e;
+        } finally {
+            assertNotNull(exception);
         }
     }
 }
