@@ -34,7 +34,32 @@
                 </xsl:variable>
                 <xsl:if test="$lineRateForPacakgeTag != -1">
                     <xsl:element name="package">
-                        <xsl:variable name="isExternalReport" select="string($pipelineBuildWorkingDirectory) = '' or not(contains(@uri, translate(string($pipelineBuildWorkingDirectory), '\', '/')))"/>
+                        <xsl:variable name="uncodedPipelineBuildWorkingDirectory">
+                            <xsl:if test="string($pipelineBuildWorkingDirectory) != ''">
+                                <xsl:value-of select="concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/')"/>
+                            </xsl:if>
+                        </xsl:variable>
+                        <xsl:variable name="encodedPipelineBuildWorkingDirectory">
+                            <xsl:if test="string($uncodedPipelineBuildWorkingDirectory) != ''">
+                                <!-- Replace % to %25 and space to %20 to get an encoded path-->
+                                <xsl:value-of select="replace(replace($uncodedPipelineBuildWorkingDirectory, '%', '%25'), ' ', '%20')"/>
+                            </xsl:if>
+                        </xsl:variable>
+                        <xsl:variable name="processedPipelineBuildWorkingDirectory">
+                            <xsl:choose>
+                                <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $uncodedPipelineBuildWorkingDirectory)">
+                                    <xsl:value-of select="$uncodedPipelineBuildWorkingDirectory"/>
+                                </xsl:when>
+                                <!-- Using encoded pipeline build working directory when the uri arrtibute of <Loc> tag in Parasoft tool report(e.g. jtest report) is encoded -->
+                                <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $encodedPipelineBuildWorkingDirectory)">
+                                    <xsl:value-of select="$encodedPipelineBuildWorkingDirectory"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="''"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
+                        <xsl:variable name="isExternalReport" select="$processedPipelineBuildWorkingDirectory = ''"/>
                         <xsl:variable name="packageName">
                             <xsl:choose>
                                 <xsl:when test="$isExternalReport">
@@ -44,7 +69,8 @@
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:call-template name="getPackageName">
-                                        <xsl:with-param name="projectPath" select="substring-after(@uri, concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/'))"/>
+                                        <!-- Get relative source file path -->
+                                        <xsl:with-param name="projectPath" select="substring-after(@uri, $processedPipelineBuildWorkingDirectory)"/>
                                     </xsl:call-template>
                                 </xsl:otherwise>
                             </xsl:choose>
@@ -63,7 +89,8 @@
                                             <xsl:value-of select="@uri"/>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            <xsl:value-of select="substring-after(@uri, concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/'))"/>
+                                            <!-- Get relative source file path -->
+                                            <xsl:value-of select="substring-after(@uri, $processedPipelineBuildWorkingDirectory)"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
