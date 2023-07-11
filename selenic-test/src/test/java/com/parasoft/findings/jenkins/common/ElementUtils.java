@@ -31,6 +31,24 @@ public class ElementUtils {
         wait.until(visibilityOf(element));
     }
 
+    public static void waitUntilElementAttributeNotContains(WebDriver driver, By locator, String key, String value, long timeOutInSeconds, boolean ignoreStaleElementReferenceException) {
+        WebDriverWait wait = new WebDriverWait(driver,timeOutInSeconds);
+        doWaitUntilElementAttributeNotContains(driver, wait, locator, key, value, ignoreStaleElementReferenceException);
+    }
+
+    private static void doWaitUntilElementAttributeNotContains(WebDriver driver, WebDriverWait wait, By locator, String key, String value, boolean ignoreStaleElementReferenceException) {
+        try {
+            wait.until(visibilityOf(driver.findElement(locator)));
+            wait.until(not(ExpectedConditions.attributeContains(locator, key, value)));
+        } catch (StaleElementReferenceException e) {
+            if (ignoreStaleElementReferenceException) {
+                doWaitUntilElementAttributeNotContains(driver, wait, locator, key, value, true);
+            } else {
+                throw e;
+            }
+        }
+    }
+
     public static void scrollTo(WebElement element, WebDriver driver) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].scrollIntoView(false);", element);
