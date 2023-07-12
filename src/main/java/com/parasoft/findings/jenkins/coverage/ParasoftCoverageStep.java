@@ -6,29 +6,26 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.model.*;
-import io.jenkins.plugins.coverage.metrics.steps.CoverageStep;
-import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
+
+import hudson.util.ReflectionUtils;
+import io.jenkins.plugins.coverage.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.util.AbstractExecution;
 import io.jenkins.plugins.util.LogHandler;
 import io.jenkins.plugins.util.RunResultHandler;
-import org.apache.commons.lang3.StringUtils;
+import io.jenkins.plugins.util.StageResultHandler;
 import org.jenkinsci.plugins.workflow.graph.FlowNode;
-import org.jenkinsci.plugins.workflow.steps.Step;
-import org.jenkinsci.plugins.workflow.steps.StepContext;
-import org.jenkinsci.plugins.workflow.steps.StepDescriptor;
-import org.jenkinsci.plugins.workflow.steps.StepExecution;
+import org.jenkinsci.plugins.workflow.steps.*;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import java.io.Serializable;
-import java.util.List;
+import java.lang.reflect.Method;
+import java.util.Objects;
 import java.util.Set;
 
+import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.*;
 public class ParasoftCoverageStep extends Step implements Serializable {
     private static final long serialVersionUID = -2235239576082380147L;
-    private String pattern = StringUtils.EMPTY;
-    private static final String DEFAULT_PATTERN = "**/coverage.xml";
-    private static final String PARASOFT_COVERAGE_ID = "parasoft-coverage";
-    private static final String PARASOFT_COVERAGE_NAME = "parasoft-coverage";
+    private String pattern;
 
     @DataBoundConstructor
     public ParasoftCoverageStep(String pattern){
@@ -50,38 +47,39 @@ public class ParasoftCoverageStep extends Step implements Serializable {
         private static final long serialVersionUID = -6177818067217577567L;
         private static final Void UNUSED = null;
         private final ParasoftCoverageStep step;
-        private final StepContext stepContext;
+
 
         Execution(@NonNull final StepContext context, final ParasoftCoverageStep step) throws Exception {
             super(context);
             this.step = step;
-            this.stepContext = context;
         }
 
         @Override
         @CheckForNull
         protected Void run() throws Exception {
-            CoverageTool tool = new CoverageTool();
+            Run<?, ?> run = getRun();
+            FilePath workspace = getWorkspace();
+            TaskListener taskListener = getTaskListener();
+            RunResultHandler runResultHandler = new RunResultHandler(run);
             var parasoftCoverageRecorder = new ParasoftCoverageRecorder();
             parasoftCoverageRecorder.setPattern(step.getPattern());
-            LogHandler logHandler = new LogHandler(getTaskListener(), PARASOFT_COVERAGE_NAME);
+            LogHandler logHandler = new LogHandler(taskListener, PARASOFT_COVERAGE_NAME);
             ParasoftCoverageRecorder.CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
-                    getRun(), getWorkspace(), logHandler, new RunResultHandler(getRun()));
-            tool.setParser(CoverageTool.Parser.COBERTURA);
-            tool.setPattern(coverageResult.getCoberturaPattern());
-            CoverageStep coverageStep = new CoverageStep();
-            coverageStep.start(stepContext).getContext().get(TaskListener.class);
-            coverageStep.setTools(List.of(tool));
-            coverageStep.setId(PARASOFT_COVERAGE_ID);
-            coverageStep.setName(PARASOFT_COVERAGE_NAME);
-            StepExecution execution = coverageStep.start(stepContext);
-            execution.start();
+                    run, workspace, logHandler, runResultHandler);
+            CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern());
+            Method performMethod =
+                    ReflectionUtils.findMethod(CoverageRecorder.class, "perform", Run.class, FilePath.class,
+                            TaskListener.class, StageResultHandler.class);
+            ReflectionUtils.makeAccessible(Objects.requireNonNull(performMethod));
+            ReflectionUtils.invokeMethod(performMethod, recorder, run, workspace, taskListener,
+                    runResultHandler);
+            parasoftCoverageRecorder.deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
             return UNUSED;
         }
     }
 
     @Extension
-    public static class Descriptor extends StepDescriptor {
+    public static class ParasoftCoverageStepDescriptor extends StepDescriptor {
 
         @Override
         public Set<? extends Class<?>> getRequiredContext() {
@@ -90,13 +88,13 @@ public class ParasoftCoverageStep extends Step implements Serializable {
 
         @Override
         public String getFunctionName() {
-            return "parasoftCoverage";
+            return "recordParasoftCoverage";
         }
 
         @NonNull
         @Override
         public String getDisplayName() {
-            return "Record Parasoft code coverage results";
+            return Messages.Recorder_Name();
         }
 
         // Used in jelly file.

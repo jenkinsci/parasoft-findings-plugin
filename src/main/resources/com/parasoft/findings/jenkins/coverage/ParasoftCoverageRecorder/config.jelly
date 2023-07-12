@@ -1,13 +1,6 @@
 <?jelly escape-by-default='true'?>
-<j:jelly xmlns:st="jelly:stapler" xmlns:j="jelly:core" xmlns:f="/lib/form">
+<j:jelly xmlns:j="jelly:core" xmlns:cov="/parasoftCoverage">
 
-    <st:documentation>
-        Provides the configuration for the Parasoft coverage recorder and step.
-    </st:documentation>
-
-    <f:entry title="${%title.pattern}" field="pattern"
-             description="${%description.pattern('https://ant.apache.org/manual/Types/fileset.html')}">
-        <f:textbox default="${descriptor.defaultPattern()}" placeholder="${descriptor.defaultPattern()}"/>
-    </f:entry>
+    <cov:configuration/>
 
 </j:jelly>

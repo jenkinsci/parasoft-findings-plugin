@@ -45,9 +45,9 @@ import java.util.stream.Collectors;
 
 public class ParasoftCoverageRecorder extends Recorder {
 
-    private static final String PARASOFT_COVERAGE_ID = "parasoft-coverage";
-    private static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage";
-    private static final String DEFAULT_PATTERN = "**/coverage.xml";
+    static final String PARASOFT_COVERAGE_ID = "parasoft-coverage";
+    static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage";
+    static final String DEFAULT_PATTERN = "**/coverage.xml";
     private static final String COBERTURA_XSL_NAME = "cobertura.xsl";
     private static final String FILE_PATTERN_SEPARATOR = ",";
 
@@ -110,7 +110,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         return (ParasoftCoverageDescriptor) super.getDescriptor();
     }
 
-    private static CoverageRecorder setUpCoverageRecorder(final String pattern) {
+    static CoverageRecorder setUpCoverageRecorder(final String pattern) {
         CoverageRecorder recorder = new CoverageRecorder();
         CoverageTool tool = new CoverageTool();
         tool.setParser(CoverageTool.Parser.COBERTURA);
@@ -192,7 +192,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         }
     }
 
-    private void deleteTemporaryCoverageDirs(final FilePath workspace, final Set<String> tempCoverageDirs,
+    void deleteTemporaryCoverageDirs(final FilePath workspace, final Set<String> tempCoverageDirs,
                                              final LogHandler logHandler)
             throws InterruptedException {
         logHandler.log("Deleting temporary coverage files");
@@ -223,7 +223,7 @@ public class ParasoftCoverageRecorder extends Recorder {
     }
 
     @Extension
-    @Symbol("parasoftCoverage")
+    @Symbol("recordParasoftCoverage")
     public static class ParasoftCoverageDescriptor extends BuildStepDescriptor<Publisher> {
 
         @NonNull
