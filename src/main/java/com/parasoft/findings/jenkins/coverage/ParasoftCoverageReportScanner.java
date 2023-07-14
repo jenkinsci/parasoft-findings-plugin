@@ -16,16 +16,19 @@
 
 package com.parasoft.findings.jenkins.coverage;
 
+import com.parasoft.findings.jenkins.coverage.converter.ConversionException;
+import com.parasoft.findings.jenkins.coverage.converter.ConversionServiceFactory;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.PathUtil;
 import io.jenkins.plugins.util.AgentFileVisitor;
+import net.sf.saxon.s9api.QName;
+import net.sf.saxon.s9api.XdmAtomicValue;
+import net.sf.saxon.s9api.XdmValue;
 import org.apache.commons.lang3.StringUtils;
-import org.jenkinsci.lib.dtkit.util.converter.ConversionException;
-import org.jenkinsci.lib.dtkit.util.converter.ConversionService;
 
 import javax.xml.transform.stream.StreamSource;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.Charset;
@@ -39,10 +42,9 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
     private static final long serialVersionUID = 6940864958150044554L;
 
     private static final String GENERATED_COVERAGE_DIR = "generatedCoverageFiles";
-    private static final String MODIFIED_PARASOFT_REPORT_NAME_SUFFIX = "-processed.xml";
     private static final String GENERATED_COBERTURA_REPORT_NAME_SUFFIX = "-cobertura.xml";
     private static final String COVERAGE_TAG_START = "<Coverage ";
-    private static final String WORKING_DIRECTORY_ATTR_FORMAT = "pipelineBuildWorkingDirectory=\"%s\" ";
+    private static final String WORKING_DIRECTORY_PARAM = "pipelineBuildWorkingDirectory";
     private static final String XML_EXTENSION = ".xml";
     private static final String COVERAGE_ATTRIBUTE = "ver";
 
@@ -67,15 +69,16 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
             if (!PATH_UTIL.getAbsolutePath(file).endsWith(XML_EXTENSION)) {
                 throw new IOException("Unrecognized report file '" + file + "'");
             }
+            validateParasoftReport(file, charset);
             Path generatedCoverageBuildDir = createGeneratedCoverageFileDir(file);
-            Path processedParasoftReport = generatedCoverageBuildDir.resolve(file.getFileName()
-                    + MODIFIED_PARASOFT_REPORT_NAME_SUFFIX);
-            processParasoftReport(file, charset, processedParasoftReport);
             Path outputCoberturaReport = generatedCoverageBuildDir.resolve(file.getFileName()
                     + GENERATED_COBERTURA_REPORT_NAME_SUFFIX);
-            ConversionService conversionService = new ConversionService();
-            conversionService.convert(new StreamSource(new StringReader(xslContent)),
-                    processedParasoftReport.toFile(), outputCoberturaReport.toFile());
+            Map<QName, XdmValue> params = new HashMap<>();
+            String workspaceCanonicalPath = StringUtils.removeEnd(new File(workspaceLoc).getCanonicalPath(),
+                    File.separator);
+            params.put(new QName(WORKING_DIRECTORY_PARAM), new XdmAtomicValue(workspaceCanonicalPath));
+            ConversionServiceFactory.getInstance().convert(new StreamSource(new StringReader(xslContent)),
+                    file.toFile(), outputCoberturaReport.toFile(), params);
             log.logInfo("Successfully parsed file '%s'", PATH_UTIL.getAbsolutePath(file));
             return Optional.of(new ProcessedFileResult(PATH_UTIL.getRelativePath(Paths.get(workspaceLoc),
                     outputCoberturaReport), generatedCoverageBuildDir.toString()));
@@ -85,25 +88,19 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
         }
     }
 
-    private void processParasoftReport(Path originalParasoftReport, Charset charset,
-                                       Path processedParasoftReport) throws IOException {
-        try (BufferedReader reader = Files.newBufferedReader(originalParasoftReport, charset);
-             BufferedWriter writer = Files.newBufferedWriter(processedParasoftReport)) {
-            boolean attrAdded = false;
+    private static void validateParasoftReport(Path parasoftReport, Charset charset) throws IOException {
+        try (BufferedReader reader = Files.newBufferedReader(parasoftReport, charset)) {
+            boolean hasCoverageTagAttr = false;
             String line;
             while ((line = reader.readLine()) != null) {
                 // "COVERAGE_ATTRIBUTE" check is required to differentiate <Coverage> in coverage.xml with <Coverage> inside <Exec> in report.xml
-                if (!attrAdded && StringUtils.contains(line, COVERAGE_TAG_START) && StringUtils.contains(line, COVERAGE_ATTRIBUTE)) {
-                    writer.append(StringUtils.replaceOnce(line, COVERAGE_TAG_START,
-                            COVERAGE_TAG_START + String.format(WORKING_DIRECTORY_ATTR_FORMAT, workspaceLoc)));
-                    attrAdded = true;
-                } else {
-                    writer.append(line);
+                if (StringUtils.contains(line, COVERAGE_TAG_START) && StringUtils.contains(line, COVERAGE_ATTRIBUTE)) {
+                    hasCoverageTagAttr = true;
+                    break;
                 }
-                writer.newLine();
             }
 
-            if (!attrAdded) {
+            if (!hasCoverageTagAttr) {
                 throw new NoSuchElementException("No Parasoft coverage information found in the specified file.");
             }
         }

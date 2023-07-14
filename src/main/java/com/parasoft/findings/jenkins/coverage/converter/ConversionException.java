@@ -14,27 +14,27 @@
  * limitations under the License.
  */
 
-package com.parasoft.findings.jenkins.coverage;
+package com.parasoft.findings.jenkins.coverage.converter;
 
 import java.io.Serializable;
 
-public class ProcessedFileResult implements Serializable {
-    private static final long serialVersionUID = 2393265115219226404L;
+public class ConversionException extends RuntimeException implements Serializable {
+    private static final long serialVersionUID = 4783376869849404067L;
 
-    private final String coberturaPattern;
-
-    private final String generatedCoverageBuildDir;
-
-    public ProcessedFileResult(String coberturaPattern, String generatedCoverageBuildDir) {
-        this.coberturaPattern = coberturaPattern;
-        this.generatedCoverageBuildDir = generatedCoverageBuildDir;
+    public ConversionException() {
+        super();
     }
 
-    public String getCoberturaPattern() {
-        return coberturaPattern;
+    public ConversionException(String message) {
+        super(message);
     }
 
-    public String getGeneratedCoverageBuildDir() {
-        return generatedCoverageBuildDir;
+    public ConversionException(Throwable cause) {
+        super(cause);
     }
+
+    public ConversionException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }
