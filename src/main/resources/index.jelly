@@ -1,4 +1,4 @@
 <div>
-  This plug-in collects the <a href="http://www.parasoft.com">Parasoft</a> analysis
-  results and visualizes found warnings.
+  This plug-in collects and visualizes static analysis, code coverage and test results from the
+  <a href="http://www.parasoft.com">Parasoft</a> report XML files.
 </div>
