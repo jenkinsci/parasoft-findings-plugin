@@ -29,6 +29,7 @@ import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
+import io.jenkins.plugins.coverage.metrics.steps.Messages;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -49,8 +50,10 @@ public class ParasoftCoverageRecorder extends Recorder {
     private static final String DEFAULT_PATTERN = "**/coverage.xml";
     private static final String COBERTURA_XSL_NAME = "cobertura.xsl";
     private static final String FILE_PATTERN_SEPARATOR = ",";
+    private static final String DEFAULT_SOURCE_CODE_ENCODING = StandardCharsets.UTF_8.name();
 
     private String pattern = StringUtils.EMPTY;
+    private String sourceCodeEncoding = StringUtils.EMPTY;
 
     @DataBoundConstructor
     public ParasoftCoverageRecorder() {
@@ -66,6 +69,16 @@ public class ParasoftCoverageRecorder extends Recorder {
     @CheckForNull
     public String getPattern() {
         return pattern;
+    }
+
+    @DataBoundSetter
+    public void setSourceCodeEncoding(final String sourceCodeEncoding) {
+        this.sourceCodeEncoding = StringUtils.defaultIfBlank(sourceCodeEncoding, DEFAULT_SOURCE_CODE_ENCODING);
+    }
+
+    @CheckForNull
+    public String getSourceCodeEncoding() {
+        return sourceCodeEncoding;
     }
 
     @Override
@@ -85,7 +98,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         CoverageConversionResult coverageResult = performCoverageReportConversion(build, workspace, logHandler,
                 new RunResultHandler(build));
 
-        CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern());
+        CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), coverageResult.getSourceCodeEncoding());
         recorder.perform(build, launcher, listener);
 
         deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
@@ -109,7 +122,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         return (ParasoftCoverageDescriptor) super.getDescriptor();
     }
 
-    private static CoverageRecorder setUpCoverageRecorder(final String pattern) {
+    private static CoverageRecorder setUpCoverageRecorder(final String pattern, final String sourceCodeEncoding) {
         CoverageRecorder recorder = new CoverageRecorder();
         CoverageTool tool = new CoverageTool();
         tool.setParser(CoverageTool.Parser.COBERTURA);
@@ -117,6 +130,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         recorder.setTools(List.of(tool));
         recorder.setId(PARASOFT_COVERAGE_ID);
         recorder.setName(PARASOFT_COVERAGE_NAME);
+        recorder.setSourceCodeEncoding(sourceCodeEncoding);
         return recorder;
     }
 
@@ -166,7 +180,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         logHandler.log(log);
 
         return new CoverageConversionResult(StringUtils.join(coberturaPatterns, FILE_PATTERN_SEPARATOR),
-                generatedCoverageBuildDirs);
+                generatedCoverageBuildDirs, sourceCodeEncoding);
     }
 
     // Resolves build parameters in the pattern.
@@ -239,19 +253,31 @@ public class ParasoftCoverageRecorder extends Recorder {
         public String defaultPattern() {
             return DEFAULT_PATTERN;
         }
+
+        // Used in jelly file.
+        public String defaultSourceCodeEncoding() {
+            return DEFAULT_SOURCE_CODE_ENCODING;
+        }
+
     }
 
     static class CoverageConversionResult {
         private final String coberturaPattern;
         private final Set<String> generatedCoverageBuildDirs;
+        private final String sourceCodeEncoding;
 
-        public CoverageConversionResult(String coberturaPattern, Set<String> generatedCoverageBuildDirs) {
+        public CoverageConversionResult(String coberturaPattern, Set<String> generatedCoverageBuildDirs, String sourceCodeEncoding) {
             this.coberturaPattern = coberturaPattern;
             this.generatedCoverageBuildDirs = generatedCoverageBuildDirs;
+            this.sourceCodeEncoding = sourceCodeEncoding;
         }
 
         public String getCoberturaPattern() {
             return coberturaPattern;
+        }
+
+        public String getSourceCodeEncoding() {
+            return sourceCodeEncoding;
         }
 
         public Set<String> getGeneratedCoverageBuildDirs() {
