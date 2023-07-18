@@ -29,13 +29,13 @@ import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
-import io.jenkins.plugins.coverage.metrics.steps.Messages;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tools.ant.types.FileSet;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
+import org.jenkinsci.Symbol;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,12 +45,12 @@ import java.util.stream.Collectors;
 
 public class ParasoftCoverageRecorder extends Recorder {
 
-    private static final String PARASOFT_COVERAGE_ID = "parasoft-coverage";
-    private static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage";
-    private static final String DEFAULT_PATTERN = "**/coverage.xml";
-    private static final String COBERTURA_XSL_NAME = "cobertura.xsl";
-    private static final String FILE_PATTERN_SEPARATOR = ",";
-    private static final String DEFAULT_SOURCE_CODE_ENCODING = StandardCharsets.UTF_8.name();
+    static final String PARASOFT_COVERAGE_ID = "parasoft-coverage"; // $NON-NLS-1$
+    static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage"; // $NON-NLS-1$
+    static final String DEFAULT_PATTERN = "**/coverage.xml"; // $NON-NLS-1$
+    static final String DEFAULT_SOURCE_CODE_ENCODING = StandardCharsets.UTF_8.name(); // $NON-NLS-1$
+    private static final String COBERTURA_XSL_NAME = "cobertura.xsl"; // $NON-NLS-1$
+    private static final String FILE_PATTERN_SEPARATOR = ","; // $NON-NLS-1$
 
     private String pattern = StringUtils.EMPTY;
     private String sourceCodeEncoding = StringUtils.EMPTY;
@@ -91,7 +91,7 @@ public class ParasoftCoverageRecorder extends Recorder {
             throws InterruptedException, IOException {
         FilePath workspace = build.getWorkspace();
         if (workspace == null) {
-            throw new IOException("No workspace found for " + build);
+            throw new IOException("No workspace found for " + build); // $NON-NLS-1$
         }
 
         LogHandler logHandler = new LogHandler(listener, PARASOFT_COVERAGE_NAME);
@@ -111,8 +111,8 @@ public class ParasoftCoverageRecorder extends Recorder {
                                                              final LogHandler logHandler,
                                                              final StageResultHandler resultHandler)
             throws InterruptedException {
-        FilteredLog log = new FilteredLog("Errors while recording Parasoft code coverage:");
-        log.logInfo("Recording Parasoft coverage results");
+        FilteredLog log = new FilteredLog("Errors while recording Parasoft code coverage:"); // $NON-NLS-1$
+        log.logInfo("Recording Parasoft coverage results"); // $NON-NLS-1$
         return convertCoverageReport(run, workspace, resultHandler,
                 log, logHandler);
     }
@@ -122,7 +122,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         return (ParasoftCoverageDescriptor) super.getDescriptor();
     }
 
-    private static CoverageRecorder setUpCoverageRecorder(final String pattern, final String sourceCodeEncoding) {
+    static CoverageRecorder setUpCoverageRecorder(final String pattern, final String sourceCodeEncoding) {
         CoverageRecorder recorder = new CoverageRecorder();
         CoverageTool tool = new CoverageTool();
         tool.setParser(CoverageTool.Parser.COBERTURA);
@@ -140,10 +140,10 @@ public class ParasoftCoverageRecorder extends Recorder {
                                                            final LogHandler logHandler) throws InterruptedException {
         String expandedPattern = formatExpandedPattern(expandPattern(run, pattern));
         if (StringUtils.isBlank(expandedPattern)) {
-            log.logInfo("Using default pattern '%s' for '%s' since specified pattern is empty", DEFAULT_PATTERN, pattern);
+            log.logInfo("Using default pattern '%s' for '%s' since specified pattern is empty", DEFAULT_PATTERN, pattern); // $NON-NLS-1$
             expandedPattern = DEFAULT_PATTERN;
         } else if (!expandedPattern.equals(pattern)) {
-            log.logInfo("Expanded pattern '%s' to '%s'", pattern, expandedPattern);
+            log.logInfo("Expanded pattern '%s' to '%s'", pattern, expandedPattern); // $NON-NLS-1$
         }
 
         Set<String> coberturaPatterns = new HashSet<>();
@@ -167,12 +167,12 @@ public class ParasoftCoverageRecorder extends Recorder {
                     .map(ProcessedFileResult::getGeneratedCoverageBuildDir)
                     .collect(Collectors.toSet()));
         } catch (IOException exception) {
-            log.logException(exception, "Exception while converting Parasoft coverage to Cobertura coverage");
+            log.logException(exception, "Exception while converting Parasoft coverage to Cobertura coverage"); // $NON-NLS-1$
             failTheBuild = true;
         }
 
         if (failTheBuild) {
-            String errorMessage = "Failing build due to some errors during recording of the Parasoft coverage";
+            String errorMessage = "Failing build due to some errors during recording of the Parasoft coverage"; // $NON-NLS-1$
             log.logInfo(errorMessage);
             resultHandler.setResult(Result.FAILURE, errorMessage);
         }
@@ -199,22 +199,22 @@ public class ParasoftCoverageRecorder extends Recorder {
     private String getCoberturaXslContent() throws IOException {
         try (InputStream coberturaXslInput = this.getClass().getResourceAsStream(COBERTURA_XSL_NAME)) {
             if (coberturaXslInput == null) {
-                throw new IOException("Failed to read Cobertura XSL.");
+                throw new IOException("Failed to read Cobertura XSL."); // $NON-NLS-1$
             }
             return IOUtils.toString(coberturaXslInput, StandardCharsets.UTF_8);
         }
     }
 
-    private void deleteTemporaryCoverageDirs(final FilePath workspace, final Set<String> tempCoverageDirs,
+    void deleteTemporaryCoverageDirs(final FilePath workspace, final Set<String> tempCoverageDirs,
                                              final LogHandler logHandler)
             throws InterruptedException {
-        logHandler.log("Deleting temporary coverage files");
-        FilteredLog log = new FilteredLog("Errors while deleting temporary coverage files:");
+        logHandler.log("Deleting temporary coverage files"); // $NON-NLS-1$
+        FilteredLog log = new FilteredLog("Errors while deleting temporary coverage files:"); // $NON-NLS-1$
         for (String tempCoverageDir : tempCoverageDirs) {
             try {
                 Objects.requireNonNull(workspace.child(tempCoverageDir).getParent()).deleteRecursive();
             } catch (IOException exception) {
-                log.logException(exception, "Failed to delete directory '%s' due to an exception: ", tempCoverageDir);
+                log.logException(exception, "Failed to delete directory '%s' due to an exception: ", tempCoverageDir); // $NON-NLS-1$
             }
         }
 
@@ -236,6 +236,7 @@ public class ParasoftCoverageRecorder extends Recorder {
     }
 
     @Extension
+    @Symbol("recordParasoftCoverage") // $NON-NLS-1$
     public static class ParasoftCoverageDescriptor extends BuildStepDescriptor<Publisher> {
 
         @NonNull
