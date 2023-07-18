@@ -67,9 +67,12 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             ParasoftCoverageRecorder.CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
                     run, workspace, logHandler, runResultHandler);
             CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern());
+
+            //We use reflect here, because we must call 'perform' method of CoverageRecorder.class,
+            //but we can not pass argument AbstractBuild<?, ?> for it.
             Method performMethod =
                     ReflectionUtils.findMethod(CoverageRecorder.class, "perform", Run.class, FilePath.class,
-                            TaskListener.class, StageResultHandler.class);
+                            TaskListener.class, StageResultHandler.class); // $NON-NLS-1$
             ReflectionUtils.makeAccessible(Objects.requireNonNull(performMethod));
             ReflectionUtils.invokeMethod(performMethod, recorder, run, workspace, taskListener,
                     runResultHandler);
@@ -88,7 +91,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
 
         @Override
         public String getFunctionName() {
-            return "recordParasoftCoverage";
+            return "recordParasoftCoverage"; // $NON-NLS-1$
         }
 
         @NonNull
