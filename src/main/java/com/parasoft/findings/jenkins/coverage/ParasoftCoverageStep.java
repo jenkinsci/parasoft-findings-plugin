@@ -68,8 +68,8 @@ public class ParasoftCoverageStep extends Step implements Serializable {
                     run, workspace, logHandler, runResultHandler);
             CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern());
 
-            //We use reflect here, because we must call 'perform' method of CoverageRecorder.class,
-            //but we can not pass argument AbstractBuild<?, ?> for it.
+            // Using reflection for calling the 'perform' method of the 'CoverageRecorder' class.
+            // Argument 'AbstractBuild<?, ?>' cannot be directly passed in.
             Method performMethod =
                     ReflectionUtils.findMethod(CoverageRecorder.class, "perform", Run.class, FilePath.class,
                             TaskListener.class, StageResultHandler.class); // $NON-NLS-1$
