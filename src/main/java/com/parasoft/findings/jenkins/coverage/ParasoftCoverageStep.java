@@ -26,10 +26,12 @@ import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.*;
 public class ParasoftCoverageStep extends Step implements Serializable {
     private static final long serialVersionUID = -2235239576082380147L;
     private String pattern;
+    private String sourceCodeEncoding;
 
     @DataBoundConstructor
-    public ParasoftCoverageStep(String pattern){
+    public ParasoftCoverageStep(String pattern, String sourceCodeEncoding){
         this.pattern = pattern;
+        this.sourceCodeEncoding = sourceCodeEncoding;
     }
 
     @Override
@@ -40,6 +42,11 @@ public class ParasoftCoverageStep extends Step implements Serializable {
     @CheckForNull
     public String getPattern() {
         return pattern;
+    }
+
+    @CheckForNull
+    public String getSourceCodeEncoding() {
+        return sourceCodeEncoding;
     }
 
     @SuppressFBWarnings(value = "THROWS", justification = "false positive")
@@ -63,10 +70,11 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             RunResultHandler runResultHandler = new RunResultHandler(run);
             var parasoftCoverageRecorder = new ParasoftCoverageRecorder();
             parasoftCoverageRecorder.setPattern(step.getPattern());
+            parasoftCoverageRecorder.setSourceCodeEncoding(step.getSourceCodeEncoding());
             LogHandler logHandler = new LogHandler(taskListener, PARASOFT_COVERAGE_NAME);
             ParasoftCoverageRecorder.CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
                     run, workspace, logHandler, runResultHandler);
-            CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern());
+            CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), coverageResult.getSourceCodeEncoding());
 
             // Using reflection for calling the 'perform' method of the 'CoverageRecorder' class.
             // Argument 'AbstractBuild<?, ?>' cannot be directly passed in.
@@ -103,6 +111,11 @@ public class ParasoftCoverageStep extends Step implements Serializable {
         // Used in jelly file.
         public String defaultPattern() {
             return DEFAULT_PATTERN;
+        }
+
+        // Used in jelly file.
+        public String defaultSourceCodeEncoding() {
+            return DEFAULT_SOURCE_CODE_ENCODING;
         }
     }
 
