@@ -17,7 +17,7 @@
 package com.parasoft.findings.jenkins.coverage;
 
 import com.parasoft.findings.jenkins.coverage.converter.ConversionException;
-import com.parasoft.findings.jenkins.coverage.converter.ConversionServiceFactory;
+import com.parasoft.findings.jenkins.coverage.converter.ConversionService;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.PathUtil;
 import io.jenkins.plugins.util.AgentFileVisitor;
@@ -77,7 +77,7 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
             String workspaceCanonicalPath = StringUtils.removeEnd(new File(workspaceLoc).getCanonicalPath(),
                     File.separator);
             params.put(new QName(WORKING_DIRECTORY_PARAM), new XdmAtomicValue(workspaceCanonicalPath));
-            ConversionServiceFactory.getInstance().convert(new StreamSource(new StringReader(xslContent)),
+            new ConversionService().convert(new StreamSource(new StringReader(xslContent)),
                     file.toFile(), outputCoberturaReport.toFile(), params);
             log.logInfo("Successfully parsed file '%s'", PATH_UTIL.getAbsolutePath(file));
             return Optional.of(new ProcessedFileResult(PATH_UTIL.getRelativePath(Paths.get(workspaceLoc),

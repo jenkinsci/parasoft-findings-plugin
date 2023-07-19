@@ -28,6 +28,7 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.util.Map;
 
+// Adapted from: https://github.com/jenkinsci/libdtkit/blob/dtkit-frmk-3.0.0/dtkit-metrics-util/src/main/java/org/jenkinsci/lib/dtkit/util/converter/ConversionService.java
 public class ConversionService implements Serializable {
 
     /**
@@ -110,10 +111,10 @@ public class ConversionService implements Serializable {
         } else if (e instanceof IOException) {
             return new ConversionException("Conversion Error", e);
         } else if (e instanceof SaxonApiException) {
-            throw new ConversionException("Error to convert the input XML document", e);
+            return new ConversionException("Error to convert the input XML document", e);
         } else if (e instanceof SAXException || e instanceof ParserConfigurationException) {
-            // verify that this kind of message agree with the exception reason
-            throw new ConversionException("Error to convert - A file not found", e);
+            // TODO verify that this kind of message agree with the exception reason
+            return new ConversionException("Error to convert - A file not found", e);
         } else {
             return new ConversionException(e);
         }
