@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Coverage ver="2" toolVer="2022.1.0" execEnv="win32_x86_64" hasViols="false" project="" buildId="2023-06-14" climode="true" toolDispName="Jtest" prjModule="com.parasoft:parabank" toolId="jtest" machine="DESKTOP-DCD46AU" tag="Unit Tests-com.parasoft:parabank-${scontrol_branch}-win32_x86_64" time="2023-06-14T13:57:05+08:00" id="1685969422086" lang="en_US" user="devtest" toolName="DTP Engine for Java">
+    <TestConfig machine="DESKTOP-DCD46AU" pseudoUrl="builtin://Unit Tests" name="Unit Tests" user="devtest" />
+    <VersionInfos>
+        <VersionInfo id="LC" ver="1" />
+    </VersionInfos>
+    <Repositories />
+    <Locations>
+        <Loc locRef="1" projId="com.parasoft:parabank" covId="-1528580615" project="com.parasoft:parabank" resProjPath="src/main/java/com/parasoft/bookstore2/TempBook.java" uri="src/main/java/com/parasoft/bookstore2/TempBook.java" projPath="/com.parasoft:parabank" hash="-614490927" />
+    </Locations>
+    <CoverageData type="LC">
+        <CvgData locRef="1">
+            <Stats>
+                <Item itemRef="1" id="TempBook.java#TempBook" name="TempBook">
+                    <Item itemRef="2" id="TempBook.java#TempBook#&lt;init>#()V" name="TempBook()" />
+                    <Item itemRef="3" id="TempBook.java#TempBook#setBook#(Lcom/parasoft/bookstore2/Book;)V" name="setBook( com.parasoft.bookstore2.Book )" />
+                    <Item itemRef="4" id="TempBook.java#TempBook#setTimestamp#(J)V" name="setTimestamp( long )" />
+                    <Item itemRef="5" id="TempBook.java#TempBook#getTimestamp#()J" name="getTimestamp()" />
+                    <Item itemRef="6" id="TempBook.java#TempBook#refreshTimestamp#()V" name="refreshTimestamp()" />
+                    <Item itemRef="7" id="TempBook.java#TempBook#&lt;init>#(Lcom/parasoft/bookstore2/Book;J)V" name="TempBook( com.parasoft.bookstore2.Book, long )" />
+                    <Item itemRef="8" id="TempBook.java#TempBook#getBook#()Lcom/parasoft/bookstore2/Book;" name="getBook()" />
+                </Item>
+            </Stats>
+            <Static>
+                <StatCvg itemRef="2" elems="7 9" hashes="523000816 30537853" />
+                <StatCvg itemRef="3" elems="29 30" hashes="-2109657112 30537853" />
+                <StatCvg itemRef="4" elems="21 22" hashes="-1557795390 30537853" />
+                <StatCvg itemRef="5" elems="17" hashes="1327687381" />
+                <StatCvg itemRef="6" elems="33 34" hashes="-601322144 30537853" />
+                <StatCvg itemRef="7" elems="11 12 13 14" hashes="1413806034 -2109657112 -1557795390 30537853" />
+                <StatCvg itemRef="8" elems="25" hashes="-1542594686" />
+            </Static>
+        </CvgData>
+    </CoverageData>
+</Coverage>
