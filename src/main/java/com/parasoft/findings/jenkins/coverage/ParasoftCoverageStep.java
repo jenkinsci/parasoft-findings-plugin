@@ -7,15 +7,19 @@ import hudson.Extension;
 import hudson.FilePath;
 import hudson.model.*;
 
+import hudson.util.ComboBoxModel;
+import hudson.util.FormValidation;
 import hudson.util.ReflectionUtils;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageRecorder;
-import io.jenkins.plugins.util.AbstractExecution;
-import io.jenkins.plugins.util.LogHandler;
-import io.jenkins.plugins.util.RunResultHandler;
-import io.jenkins.plugins.util.StageResultHandler;
+import io.jenkins.plugins.util.*;
+import org.apache.commons.lang3.StringUtils;
 import org.jenkinsci.plugins.workflow.graph.FlowNode;
 import org.jenkinsci.plugins.workflow.steps.*;
+import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.DataBoundSetter;
+import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.verb.POST;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
@@ -25,13 +29,15 @@ import java.util.Set;
 import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.*;
 public class ParasoftCoverageStep extends Step implements Serializable {
     private static final long serialVersionUID = -2235239576082380147L;
+    private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
     private String pattern;
-    private String sourceCodeEncoding;
+    private String sourceCodeEncoding = StringUtils.EMPTY;
 
     @DataBoundConstructor
-    public ParasoftCoverageStep(String pattern, String sourceCodeEncoding){
-        this.pattern = pattern;
-        this.sourceCodeEncoding = sourceCodeEncoding;
+    public ParasoftCoverageStep(){
+        super();
+
+        // empty constructor required for Stapler
     }
 
     @Override
@@ -39,12 +45,22 @@ public class ParasoftCoverageStep extends Step implements Serializable {
         return new Execution(context, this);
     }
 
+    @DataBoundSetter
+    public void setPattern(final String pattern) {
+        this.pattern = StringUtils.defaultIfBlank(pattern, DEFAULT_PATTERN);
+    }
+
     @CheckForNull
     public String getPattern() {
         return pattern;
     }
 
-    @CheckForNull
+
+    @DataBoundSetter
+    public void setSourceCodeEncoding(final String sourceCodeEncoding) {
+        this.sourceCodeEncoding = sourceCodeEncoding;
+    }
+
     public String getSourceCodeEncoding() {
         return sourceCodeEncoding;
     }
@@ -70,11 +86,10 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             RunResultHandler runResultHandler = new RunResultHandler(run);
             var parasoftCoverageRecorder = new ParasoftCoverageRecorder();
             parasoftCoverageRecorder.setPattern(step.getPattern());
-            parasoftCoverageRecorder.setSourceCodeEncoding(step.getSourceCodeEncoding());
             LogHandler logHandler = new LogHandler(taskListener, PARASOFT_COVERAGE_NAME);
-            ParasoftCoverageRecorder.CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
+            CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
                     run, workspace, logHandler, runResultHandler);
-            CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), coverageResult.getSourceCodeEncoding());
+            CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), step.getSourceCodeEncoding());
 
             // Using reflection for calling the 'perform' method of the 'CoverageRecorder' class.
             // Argument 'AbstractBuild<?, ?>' cannot be directly passed in.
@@ -91,6 +106,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
 
     @Extension
     public static class ParasoftCoverageStepDescriptor extends StepDescriptor {
+        private static final JenkinsFacade JENKINS = new JenkinsFacade();
 
         @Override
         public Set<? extends Class<?>> getRequiredContext() {
@@ -113,9 +129,24 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             return DEFAULT_PATTERN;
         }
 
-        // Used in jelly file.
-        public String defaultSourceCodeEncoding() {
-            return DEFAULT_SOURCE_CODE_ENCODING;
+        @POST
+        @SuppressWarnings("unused") // used by Stapler view data binding
+        public ComboBoxModel doFillSourceCodeEncodingItems(@AncestorInPath final AbstractProject<?, ?> project) {
+            if (JENKINS.hasPermission(Item.CONFIGURE, project)) {
+                return VALIDATION_UTILITIES.getAllCharsets();
+            }
+            return new ComboBoxModel();
+        }
+
+        @POST
+        @SuppressWarnings("unused") // used by Stapler view data binding
+        public FormValidation doCheckSourceCodeEncoding(@AncestorInPath final AbstractProject<?, ?> project,
+                                                        @QueryParameter final String sourceCodeEncoding) {
+            if (!JENKINS.hasPermission(Item.CONFIGURE, project)) {
+                return FormValidation.ok();
+            }
+
+            return VALIDATION_UTILITIES.validateCharset(sourceCodeEncoding);
         }
     }
 

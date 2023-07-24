@@ -13,7 +13,7 @@
     <f:advanced>
         <f:entry title="${%title.sourceCodeEncoding}" field="sourceCodeEncoding"
                  description="${%description.sourceCodeEncoding}">
-            <f:textbox default="${descriptor.defaultSourceCodeEncoding()}" placeholder="${descriptor.defaultSourceCodeEncoding()}"/>
+            <f:combobox/>
         </f:entry>
     </f:advanced>
 

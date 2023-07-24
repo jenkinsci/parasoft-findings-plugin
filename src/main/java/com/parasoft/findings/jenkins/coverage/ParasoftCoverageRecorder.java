@@ -27,15 +27,20 @@ import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.BuildStepMonitor;
 import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
+import hudson.util.ComboBoxModel;
+import hudson.util.FormValidation;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tools.ant.types.FileSet;
+import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.jenkinsci.Symbol;
+import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.verb.POST;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,9 +53,9 @@ public class ParasoftCoverageRecorder extends Recorder {
     static final String PARASOFT_COVERAGE_ID = "parasoft-coverage"; // $NON-NLS-1$
     static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage"; // $NON-NLS-1$
     static final String DEFAULT_PATTERN = "**/coverage.xml"; // $NON-NLS-1$
-    static final String DEFAULT_SOURCE_CODE_ENCODING = StandardCharsets.UTF_8.name(); // $NON-NLS-1$
     private static final String COBERTURA_XSL_NAME = "cobertura.xsl"; // $NON-NLS-1$
     private static final String FILE_PATTERN_SEPARATOR = ","; // $NON-NLS-1$
+    private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
 
     private String pattern = StringUtils.EMPTY;
     private String sourceCodeEncoding = StringUtils.EMPTY;
@@ -73,10 +78,9 @@ public class ParasoftCoverageRecorder extends Recorder {
 
     @DataBoundSetter
     public void setSourceCodeEncoding(final String sourceCodeEncoding) {
-        this.sourceCodeEncoding = StringUtils.defaultIfBlank(sourceCodeEncoding, DEFAULT_SOURCE_CODE_ENCODING);
+        this.sourceCodeEncoding = sourceCodeEncoding;
     }
 
-    @CheckForNull
     public String getSourceCodeEncoding() {
         return sourceCodeEncoding;
     }
@@ -98,7 +102,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         CoverageConversionResult coverageResult = performCoverageReportConversion(build, workspace, logHandler,
                 new RunResultHandler(build));
 
-        CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), coverageResult.getSourceCodeEncoding());
+        CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), getSourceCodeEncoding());
         recorder.perform(build, launcher, listener);
 
         deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
@@ -130,7 +134,9 @@ public class ParasoftCoverageRecorder extends Recorder {
         recorder.setTools(List.of(tool));
         recorder.setId(PARASOFT_COVERAGE_ID);
         recorder.setName(PARASOFT_COVERAGE_NAME);
-        recorder.setSourceCodeEncoding(sourceCodeEncoding);
+        if (!sourceCodeEncoding.isEmpty()) {
+            recorder.setSourceCodeEncoding(sourceCodeEncoding);
+        }
         return recorder;
     }
 
@@ -180,7 +186,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         logHandler.log(log);
 
         return new CoverageConversionResult(StringUtils.join(coberturaPatterns, FILE_PATTERN_SEPARATOR),
-                generatedCoverageBuildDirs, sourceCodeEncoding);
+                generatedCoverageBuildDirs);
     }
 
     // Resolves build parameters in the pattern.
@@ -238,6 +244,7 @@ public class ParasoftCoverageRecorder extends Recorder {
     @Extension
     @Symbol("recordParasoftCoverage") // $NON-NLS-1$
     public static class ParasoftCoverageDescriptor extends BuildStepDescriptor<Publisher> {
+        private static final JenkinsFacade JENKINS = new JenkinsFacade();
 
         @NonNull
         @Override
@@ -255,30 +262,38 @@ public class ParasoftCoverageRecorder extends Recorder {
             return DEFAULT_PATTERN;
         }
 
-        // Used in jelly file.
-        public String defaultSourceCodeEncoding() {
-            return DEFAULT_SOURCE_CODE_ENCODING;
+        @POST
+        @SuppressWarnings("unused") // used by Stapler view data binding
+        public ComboBoxModel doFillSourceCodeEncodingItems(@AncestorInPath final AbstractProject<?, ?> project) {
+            if (JENKINS.hasPermission(Item.CONFIGURE, project)) {
+                return VALIDATION_UTILITIES.getAllCharsets();
+            }
+            return new ComboBoxModel();
         }
 
+        @POST
+        @SuppressWarnings("unused") // used by Stapler view data binding
+        public FormValidation doCheckSourceCodeEncoding(@AncestorInPath final AbstractProject<?, ?> project,
+                                                        @QueryParameter final String sourceCodeEncoding) {
+            if (!JENKINS.hasPermission(Item.CONFIGURE, project)) {
+                return FormValidation.ok();
+            }
+
+            return VALIDATION_UTILITIES.validateCharset(sourceCodeEncoding);
+        }
     }
 
     static class CoverageConversionResult {
         private final String coberturaPattern;
         private final Set<String> generatedCoverageBuildDirs;
-        private final String sourceCodeEncoding;
 
-        public CoverageConversionResult(String coberturaPattern, Set<String> generatedCoverageBuildDirs, String sourceCodeEncoding) {
+        public CoverageConversionResult(String coberturaPattern, Set<String> generatedCoverageBuildDirs) {
             this.coberturaPattern = coberturaPattern;
             this.generatedCoverageBuildDirs = generatedCoverageBuildDirs;
-            this.sourceCodeEncoding = sourceCodeEncoding;
         }
 
         public String getCoberturaPattern() {
             return coberturaPattern;
-        }
-
-        public String getSourceCodeEncoding() {
-            return sourceCodeEncoding;
         }
 
         public Set<String> getGeneratedCoverageBuildDirs() {
