@@ -311,6 +311,13 @@
       <artifactId>code-coverage-api</artifactId>
       <version>4.6.0</version>
     </dependency>
+    <!-- Include Saxon-HE as a direct dependency to be packaged into hpi(like dtkit-api, code-coverage-api and analysis-model-api),
+    to fix class loading error of entityResolverClass when record coverage with Built-In Node. -->
+    <dependency>
+      <groupId>net.sf.saxon</groupId>
+      <artifactId>Saxon-HE</artifactId>
+      <version>12.2</version>
+    </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
