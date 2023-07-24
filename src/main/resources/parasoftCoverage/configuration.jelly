@@ -10,4 +10,11 @@
         <f:textbox default="${descriptor.defaultPattern()}" placeholder="${descriptor.defaultPattern()}"/>
     </f:entry>
 
+    <f:advanced>
+        <f:entry title="${%title.sourceCodeEncoding}" field="sourceCodeEncoding"
+                 description="${%description.sourceCodeEncoding}">
+            <f:combobox/>
+        </f:entry>
+    </f:advanced>
+
 </j:jelly>
