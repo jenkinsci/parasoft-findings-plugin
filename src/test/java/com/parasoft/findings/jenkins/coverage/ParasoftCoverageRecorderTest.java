@@ -71,6 +71,7 @@ public class ParasoftCoverageRecorderTest {
     }
 
     private String runPlugin(ParasoftCoverageRecorder parasoftCoverageRecorder, boolean setXML) throws Exception {
+        parasoftCoverageRecorder.setSourceCodeEncoding("UTF-8");
         FreeStyleProject project = jenkinsRule.createFreeStyleProject();
         if(setXML) {
             project.setScm(new SingleFileSCM("coverage.xml", getClass().getResource("/coverage.xml")));
