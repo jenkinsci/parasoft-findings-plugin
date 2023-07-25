@@ -42,11 +42,12 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
     private static final long serialVersionUID = 6940864958150044554L;
 
     private static final String GENERATED_COVERAGE_DIR = "generatedCoverageFiles";
-    private static final String GENERATED_COBERTURA_REPORT_NAME_SUFFIX = "-cobertura.xml";
+    private static final String GENERATED_COBERTURA_REPORT_FILE_NAME_FORMAT = "%s-cobertura_%s.xml";
     private static final String COVERAGE_TAG_START = "<Coverage ";
     private static final String WORKING_DIRECTORY_PARAM = "pipelineBuildWorkingDirectory";
     private static final String XML_EXTENSION = ".xml";
     private static final String COVERAGE_ATTRIBUTE = "ver";
+    private static final String QUESTION_MARK = "?";
 
     private static final PathUtil PATH_UTIL = new PathUtil();
 
@@ -71,8 +72,9 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
             }
             validateParasoftReport(file, charset);
             Path generatedCoverageBuildDir = createGeneratedCoverageFileDir(file);
-            Path outputCoberturaReport = generatedCoverageBuildDir.resolve(file.getFileName()
-                    + GENERATED_COBERTURA_REPORT_NAME_SUFFIX);
+            Path outputCoberturaReport = generatedCoverageBuildDir.resolve(
+                    String.format(GENERATED_COBERTURA_REPORT_FILE_NAME_FORMAT, file.getFileName(),
+                            UUID.randomUUID()));
             Map<QName, XdmValue> params = new HashMap<>();
             String workspaceCanonicalPath = StringUtils.removeEnd(new File(workspaceLoc).getCanonicalPath(),
                     File.separator);
@@ -80,8 +82,9 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
             new ConversionService().convert(new StreamSource(new StringReader(xslContent)),
                     file.toFile(), outputCoberturaReport.toFile(), params);
             log.logInfo("Successfully parsed file '%s'", PATH_UTIL.getAbsolutePath(file));
-            return Optional.of(new ProcessedFileResult(PATH_UTIL.getRelativePath(Paths.get(workspaceLoc),
-                    outputCoberturaReport), generatedCoverageBuildDir.toString()));
+            String coberturaPattern = StringUtils.replace(PATH_UTIL.getRelativePath(Paths.get(workspaceLoc),
+                    outputCoberturaReport), StringUtils.SPACE, QUESTION_MARK);
+            return Optional.of(new ProcessedFileResult(coberturaPattern, generatedCoverageBuildDir.toString()));
         } catch (IOException | NoSuchElementException | ConversionException exception) {
             log.logException(exception, "Parsing of file '%s' failed due to an exception:", file);
             return Optional.empty();
