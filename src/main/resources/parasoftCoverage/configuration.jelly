@@ -6,13 +6,15 @@
     </st:documentation>
 
     <f:entry title="${%title.pattern}" field="pattern"
-             description="${%description.pattern('https://ant.apache.org/manual/Types/fileset.html')}">
+             description="${%description.pattern('https://ant.apache.org/manual/Types/fileset.html')}"
+             help="/plugin/parasoft-findings/help/parasoftCoverage/help-pattern.html">
         <f:textbox default="${descriptor.defaultPattern()}" placeholder="${descriptor.defaultPattern()}"/>
     </f:entry>
 
     <f:advanced>
         <f:entry title="${%title.sourceCodeEncoding}" field="sourceCodeEncoding"
-                 description="${%description.sourceCodeEncoding}">
+                 description="${%description.sourceCodeEncoding}"
+                 help="/plugin/parasoft-findings/help/parasoftCoverage/help-sourceCodeEncoding.html">
             <f:combobox/>
         </f:entry>
     </f:advanced>
