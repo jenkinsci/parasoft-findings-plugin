@@ -59,6 +59,7 @@ public class ParasoftCoverageRecorder extends Recorder {
 
     private String pattern = StringUtils.EMPTY;
     private String sourceCodeEncoding = StringUtils.EMPTY;
+    private List<ParasoftCoverageQualityGate> qualityGates = new ArrayList<>();
 
     @DataBoundConstructor
     public ParasoftCoverageRecorder() {
@@ -83,6 +84,17 @@ public class ParasoftCoverageRecorder extends Recorder {
 
     public String getSourceCodeEncoding() {
         return sourceCodeEncoding;
+    }
+
+    @SuppressWarnings("unused")
+    @DataBoundSetter
+    public void setQualityGates(final List<ParasoftCoverageQualityGate> qualityGates) {
+        this.qualityGates = List.copyOf(qualityGates);
+    }
+
+    @SuppressWarnings("unused")
+    public List<ParasoftCoverageQualityGate> getQualityGates() {
+        return qualityGates;
     }
 
     @Override
