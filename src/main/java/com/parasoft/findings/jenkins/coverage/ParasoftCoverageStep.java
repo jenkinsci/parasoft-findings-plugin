@@ -23,6 +23,8 @@ import org.kohsuke.stapler.verb.POST;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,6 +34,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
     private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
     private String pattern;
     private String sourceCodeEncoding = StringUtils.EMPTY;
+    private final List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates = new ArrayList<>();
 
     @DataBoundConstructor
     public ParasoftCoverageStep(){
@@ -89,7 +92,8 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             LogHandler logHandler = new LogHandler(taskListener, PARASOFT_COVERAGE_NAME);
             CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
                     run, workspace, logHandler, runResultHandler);
-            CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), step.getSourceCodeEncoding());
+            CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), step.getSourceCodeEncoding(),
+                    step.parasoftCoverageQualityGates);
 
             // Using reflection for calling the 'perform' method of the 'CoverageRecorder' class.
             // Argument 'AbstractBuild<?, ?>' cannot be directly passed in.

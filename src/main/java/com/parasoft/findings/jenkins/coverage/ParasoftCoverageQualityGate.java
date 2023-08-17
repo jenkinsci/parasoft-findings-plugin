@@ -10,6 +10,7 @@ import io.jenkins.plugins.coverage.metrics.model.Baseline;
 import io.jenkins.plugins.util.JenkinsFacade;
 import io.jenkins.plugins.util.QualityGate;
 import org.kohsuke.stapler.AncestorInPath;
+import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.verb.POST;
 
@@ -20,7 +21,8 @@ public class ParasoftCoverageQualityGate extends QualityGate {
     private Baseline baseline = Baseline.PROJECT;
     private Metric metric;
 
-    ParasoftCoverageQualityGate(final double threshold, final Metric metric,
+    @DataBoundConstructor
+    public ParasoftCoverageQualityGate(final double threshold, final Metric metric,
                                 final Baseline baseline, final QualityGateCriticality criticality) {
         super(threshold);
         setMetric(metric);
