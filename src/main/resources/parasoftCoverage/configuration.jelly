@@ -11,6 +11,18 @@
         <f:textbox default="${descriptor.defaultPattern()}" placeholder="${descriptor.defaultPattern()}"/>
     </f:entry>
 
+    <f:entry title="${%title.qualityGates}" description="${%description.qualityGates}">
+        <div id="qualityGates">
+            <f:repeatableProperty field="qualityGates" add="${%qualityGate.add}">
+                <f:entry title="">
+                    <div align="right">
+                        <f:repeatableDeleteButton/>
+                    </div>
+                </f:entry>
+            </f:repeatableProperty>
+        </div>
+    </f:entry>
+
     <f:advanced>
         <f:entry title="${%title.sourceCodeEncoding}" field="sourceCodeEncoding"
                  description="${%description.sourceCodeEncoding}"
