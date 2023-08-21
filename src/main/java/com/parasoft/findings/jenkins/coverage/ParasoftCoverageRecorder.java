@@ -29,6 +29,7 @@ import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
 import hudson.util.ComboBoxModel;
 import hudson.util.FormValidation;
+import io.jenkins.plugins.coverage.metrics.steps.CoverageQualityGate;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
 import io.jenkins.plugins.util.*;
@@ -59,7 +60,7 @@ public class ParasoftCoverageRecorder extends Recorder {
 
     private String pattern = StringUtils.EMPTY;
     private String sourceCodeEncoding = StringUtils.EMPTY;
-    private List<ParasoftCoverageQualityGate> qualityGates = new ArrayList<>();
+    private List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates = new ArrayList<>();
 
     @DataBoundConstructor
     public ParasoftCoverageRecorder() {
@@ -88,13 +89,17 @@ public class ParasoftCoverageRecorder extends Recorder {
 
     @SuppressWarnings("unused")
     @DataBoundSetter
-    public void setQualityGates(final List<ParasoftCoverageQualityGate> qualityGates) {
-        this.qualityGates = List.copyOf(qualityGates);
+    public void setParasoftCoverageQualityGates(final List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates) {
+        if (parasoftCoverageQualityGates != null && !parasoftCoverageQualityGates.isEmpty()) {
+            this.parasoftCoverageQualityGates = List.copyOf(parasoftCoverageQualityGates);
+        } else {
+            this.parasoftCoverageQualityGates = new ArrayList<>();
+        }
     }
 
     @SuppressWarnings("unused")
-    public List<ParasoftCoverageQualityGate> getQualityGates() {
-        return qualityGates;
+    public List<ParasoftCoverageQualityGate> getParasoftCoverageQualityGates() {
+        return parasoftCoverageQualityGates;
     }
 
     @Override
@@ -114,7 +119,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         CoverageConversionResult coverageResult = performCoverageReportConversion(build, workspace, logHandler,
                 new RunResultHandler(build));
 
-        CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), getSourceCodeEncoding());
+        CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), getSourceCodeEncoding(), getParasoftCoverageQualityGates());
         recorder.perform(build, launcher, listener);
 
         deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
@@ -138,7 +143,8 @@ public class ParasoftCoverageRecorder extends Recorder {
         return (ParasoftCoverageDescriptor) super.getDescriptor();
     }
 
-    static CoverageRecorder setUpCoverageRecorder(final String pattern, final String sourceCodeEncoding) {
+    static CoverageRecorder setUpCoverageRecorder(final String pattern, final String sourceCodeEncoding,
+                                                  final List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates) {
         CoverageRecorder recorder = new CoverageRecorder();
         CoverageTool tool = new CoverageTool();
         tool.setParser(CoverageTool.Parser.COBERTURA);
@@ -146,6 +152,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         recorder.setTools(List.of(tool));
         recorder.setId(PARASOFT_COVERAGE_ID);
         recorder.setName(PARASOFT_COVERAGE_NAME);
+        recorder.setQualityGates(convertToCoverageQualityGates(parasoftCoverageQualityGates));
         if (!sourceCodeEncoding.isEmpty()) {
             recorder.setSourceCodeEncoding(sourceCodeEncoding);
         }
@@ -251,6 +258,19 @@ public class ParasoftCoverageRecorder extends Recorder {
                 .filter(pattern -> !pattern.isEmpty())
                 .collect(Collectors.toList());
         return String.join(", ", nonEmptyPatterns);
+    }
+
+    private static List<CoverageQualityGate> convertToCoverageQualityGates(final List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates) {
+        List<CoverageQualityGate> coverageQualityGates = new ArrayList<>();
+        if (parasoftCoverageQualityGates != null && !parasoftCoverageQualityGates.isEmpty()) {
+            for (ParasoftCoverageQualityGate parasoftCoverageQualityGate : parasoftCoverageQualityGates) {
+                CoverageQualityGate coverageQualityGate = new CoverageQualityGate(parasoftCoverageQualityGate.getThreshold(), parasoftCoverageQualityGate.getMetric());
+                coverageQualityGate.setBaseline(parasoftCoverageQualityGate.getBaseline());
+                coverageQualityGate.setCriticality(parasoftCoverageQualityGate.getCriticality());
+                coverageQualityGates.add(coverageQualityGate);
+            }
+        }
+        return coverageQualityGates;
     }
 
     @Extension
