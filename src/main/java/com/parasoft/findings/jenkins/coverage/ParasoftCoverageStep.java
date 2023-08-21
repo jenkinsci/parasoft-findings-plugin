@@ -34,7 +34,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
     private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
     private String pattern;
     private String sourceCodeEncoding = StringUtils.EMPTY;
-    private final List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates = new ArrayList<>();
+    private List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates = new ArrayList<>();
 
     @DataBoundConstructor
     public ParasoftCoverageStep(){
@@ -68,6 +68,20 @@ public class ParasoftCoverageStep extends Step implements Serializable {
         return sourceCodeEncoding;
     }
 
+    @SuppressWarnings("unused") // used by Stapler view data binding
+    @DataBoundSetter
+    public void setParasoftCoverageQualityGates(final List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates) {
+        if (parasoftCoverageQualityGates != null && !parasoftCoverageQualityGates.isEmpty()) {
+            this.parasoftCoverageQualityGates = List.copyOf(parasoftCoverageQualityGates);
+        } else {
+            this.parasoftCoverageQualityGates = new ArrayList<>();
+        }
+    }
+
+    public List<ParasoftCoverageQualityGate> getParasoftCoverageQualityGates() {
+        return parasoftCoverageQualityGates;
+    }
+
     @SuppressFBWarnings(value = "THROWS", justification = "false positive")
     static class Execution extends AbstractExecution<Void> {
         private static final long serialVersionUID = -6177818067217577567L;
@@ -93,7 +107,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
                     run, workspace, logHandler, runResultHandler);
             CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), step.getSourceCodeEncoding(),
-                    step.parasoftCoverageQualityGates);
+                    step.getParasoftCoverageQualityGates());
 
             // Using reflection for calling the 'perform' method of the 'CoverageRecorder' class.
             // Argument 'AbstractBuild<?, ?>' cannot be directly passed in.
