@@ -7,17 +7,27 @@
     <xsl:param name="pipelineBuildWorkingDirectory"><xsl:value-of select="/Coverage/@pipelineBuildWorkingDirectory"/></xsl:param>
     <xsl:template match="/">
         <xsl:element name="coverage">
-            <xsl:variable name="lineRateForCoverageTag">
-                <xsl:call-template name="getLineRateForClassOrPackage">
-                    <xsl:with-param name="parentsOfLines" select="/Coverage/Locations/Loc"/>
+            <xsl:variable name="allLocNodes" select="/Coverage/Locations/Loc"/>
+            <xsl:variable name="linesValid">
+                <xsl:call-template name="getCoverableLineNumber">
+                    <xsl:with-param name="locNodesToCalcute" select="$allLocNodes"/>
                 </xsl:call-template>
             </xsl:variable>
-            <xsl:if test="$lineRateForCoverageTag != -1">
+            <xsl:if test="$linesValid > 0">
+                <xsl:variable name="linesCovered">
+                    <xsl:call-template name="getCoveredLineNumber">
+                        <xsl:with-param name="locNodesToCalcute" select="$allLocNodes"/>
+                    </xsl:call-template>
+                </xsl:variable>
                 <xsl:attribute name="line-rate">
-                    <xsl:value-of select="$lineRateForCoverageTag"/>
+                    <xsl:value-of select="$linesCovered div $linesValid"/>
                 </xsl:attribute>
-                <xsl:attribute name="lines-covered">6</xsl:attribute><!-- dummy value for required attribute -->
-                <xsl:attribute name="lines-valid">7</xsl:attribute><!-- dummy value for required attribute -->
+                <xsl:attribute name="lines-covered">
+                    <xsl:value-of select="$linesCovered"/>
+                </xsl:attribute>
+                <xsl:attribute name="lines-valid">
+                    <xsl:value-of select="$linesValid"/>
+                </xsl:attribute>
                 <xsl:attribute name="version">gcovr 6.0</xsl:attribute>
                 <xsl:call-template name="packages"/>
             </xsl:if>
@@ -26,10 +36,11 @@
 
     <xsl:template name="packages">
         <xsl:element name="packages">
+            <!--             Group by the parent path of uri-->
             <xsl:for-each-group select="/Coverage/Locations/Loc" group-by="substring-before(@uri, tokenize(@uri, '/')[last()])">
                 <xsl:variable name="lineRateForPacakgeTag">
-                    <xsl:call-template name="getLineRateForClassOrPackage">
-                        <xsl:with-param name="parentsOfLines" select="current-group()"/>
+                    <xsl:call-template name="getLineRateForPackage">
+                        <xsl:with-param name="locNodesToCalcute" select="current-group()"/>
                     </xsl:call-template>
                 </xsl:variable>
                 <xsl:if test="$lineRateForPacakgeTag != -1">
@@ -138,10 +149,33 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template name="getLineRateForClassOrPackage">
-        <xsl:param name="parentsOfLines"/>
-        <xsl:variable name="coverableLines" as="xs:integer*">
-            <xsl:for-each select="$parentsOfLines">
+    <xsl:template name="getLineRateForPackage">
+        <xsl:param name="locNodesToCalcute"/>
+        <xsl:variable name="linesValid">
+            <xsl:call-template name="getCoverableLineNumber">
+                <xsl:with-param name="locNodesToCalcute" select="$locNodesToCalcute"/>
+            </xsl:call-template>
+        </xsl:variable>
+
+        <xsl:choose>
+            <xsl:when test="$linesValid > 0">
+                <xsl:variable name="linesCovered">
+                    <xsl:call-template name="getCoveredLineNumber">
+                        <xsl:with-param name="locNodesToCalcute" select="$locNodesToCalcute"/>
+                    </xsl:call-template>
+                </xsl:variable>
+                <xsl:value-of select="$linesCovered div $linesValid"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="-1"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="getCoverableLineNumber">
+        <xsl:param name="locNodesToCalcute"/>
+        <xsl:variable name="linesValid" as="xs:integer*">
+            <xsl:for-each select="$locNodesToCalcute">
                 <xsl:variable name="lineNumbers" as="xs:string*">
                     <xsl:variable name="locRefValue" select="@locRef"/>
                     <xsl:variable name="statCvgElems" select="string-join(/Coverage/CoverageData/CvgData[@locRef = $locRefValue]/Static/StatCvg/@elems, ' ')"/>
@@ -150,9 +184,13 @@
                 <xsl:sequence select="count($lineNumbers)"/>
             </xsl:for-each>
         </xsl:variable>
+        <xsl:value-of select="sum($linesValid)"/>
+    </xsl:template>
 
-        <xsl:variable name="coveredLines" as="xs:integer*">
-            <xsl:for-each select="$parentsOfLines">
+    <xsl:template name="getCoveredLineNumber">
+        <xsl:param name="locNodesToCalcute"/>
+        <xsl:variable name="linesCovered" as="xs:integer*">
+            <xsl:for-each select="$locNodesToCalcute">
                 <xsl:variable name="coveredLineNumbers" as="xs:string*">
                     <xsl:variable name="locRefValue" select="@locRef"/>
                     <xsl:variable name="coveredLinesSeq" as="xs:string*">
@@ -165,14 +203,7 @@
                 <xsl:sequence select="count(distinct-values($coveredLineNumbers))"/>
             </xsl:for-each>
         </xsl:variable>
-        <xsl:choose>
-            <xsl:when test="sum($coverableLines) > 0">
-                <xsl:value-of select="sum($coveredLines) div sum($coverableLines)"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="-1"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:value-of select="sum($linesCovered)"/>
     </xsl:template>
 
     <xsl:template name="getPackageName">
