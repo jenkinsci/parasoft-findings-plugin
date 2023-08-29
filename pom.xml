@@ -147,7 +147,7 @@
   </build>
 
   <repositories>
-    <!-- get every artifact through repo.jenkins-ci.org, which proxies all 
+    <!-- get every artifact through repo.jenkins-ci.org, which proxies all
       the artifacts that we need -->
     <repository>
       <id>repo.jenkins-ci.org</id>
@@ -180,19 +180,19 @@
         <artifactId>json-smart</artifactId>
         <version>2.4.10</version>
       </dependency>
-      <!-- shared by warnings-ng and code-coverage-api - synchronize with code-coverage-api. -->
+      <!-- shared by warnings-ng. -->
       <dependency>
         <groupId>org.jsoup</groupId>
         <artifactId>jsoup</artifactId>
         <version>1.16.1</version>
       </dependency>
-      <!-- shared by warnings-ng and code-coverage-api - synchronize with code-coverage-api. -->
+      <!-- shared by warnings-ng. -->
       <dependency>
         <groupId>io.jenkins.plugins</groupId>
         <artifactId>prism-api</artifactId>
         <version>1.29.0-6</version>
       </dependency>
-      <!-- shared by warnings-ng, code-coverage-api and xunit - synchronize with code-coverage-api. -->
+      <!-- shared by warnings-ng. -->
       <dependency>
         <groupId>io.jenkins.plugins</groupId>
         <artifactId>echarts-api</artifactId>
@@ -305,11 +305,6 @@
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>xunit</artifactId>
       <version>3.1.2</version>
-    </dependency>
-    <dependency>
-      <groupId>io.jenkins.plugins</groupId>
-      <artifactId>code-coverage-api</artifactId>
-      <version>4.6.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
