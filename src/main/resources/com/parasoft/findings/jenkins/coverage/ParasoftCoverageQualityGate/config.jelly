@@ -3,7 +3,8 @@
 
     <f:entry title="${%title.threshold}" field="threshold"
              help="/plugin/parasoft-findings/help/parasoftCoverage/help-threshold.html">
-        <f:number/>
+        <input type="number" class="jenkins-input" name="_.threshold" placeholder="default: 0.0"
+               value="${instance.threshold ?: 0.0}"/>
     </f:entry>
 
     <f:entry title="${%title.baseline}" field="baseline"
