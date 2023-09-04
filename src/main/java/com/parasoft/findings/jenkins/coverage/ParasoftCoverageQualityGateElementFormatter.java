@@ -1,6 +1,5 @@
 package com.parasoft.findings.jenkins.coverage;
 
-import edu.hm.hafner.coverage.Metric;
 import hudson.util.ListBoxModel;
 import io.jenkins.plugins.coverage.metrics.model.Baseline;
 import io.jenkins.plugins.util.QualityGate;
@@ -13,7 +12,6 @@ public final class ParasoftCoverageQualityGateElementFormatter {
         add(options, Baseline.PROJECT);
         add(options, Baseline.MODIFIED_LINES);
         add(options, Baseline.PROJECT_DELTA);
-        add(options, Baseline.MODIFIED_LINES_DELTA);
         return options;
     }
 
@@ -25,29 +23,13 @@ public final class ParasoftCoverageQualityGateElementFormatter {
                 return Messages.Baseline_MODIFIED_LINES();
             case PROJECT_DELTA:
                 return Messages.Baseline_PROJECT_DELTA();
-            case MODIFIED_LINES_DELTA:
-                return Messages.Baseline_MODIFIED_LINES_DELTA();
             default:
                 throw new NoSuchElementException("No display name found for baseline " + baseline);
         }
     }
 
-    public ListBoxModel getMetricItems() {
-        ListBoxModel options = new ListBoxModel();
-        add(options, Metric.FILE);
-        add(options, Metric.LINE);
-        return options;
-    }
-
-    public String getDisplayName(final Metric metric) {
-        switch (metric) {
-            case FILE:
-                return Messages.Metric_FILE();
-            case LINE:
-                return Messages.Metric_LINE();
-            default:
-                throw new NoSuchElementException("No display name found for metric " + metric);
-        }
+    public String getMetricLineDisplayName() {
+        return Messages.Metric_LINE();
     }
 
     public ListBoxModel getCriticalityItems() {
@@ -70,10 +52,6 @@ public final class ParasoftCoverageQualityGateElementFormatter {
 
     private void add(final ListBoxModel options, final Baseline baseline) {
         options.add(getDisplayName(baseline), baseline.name());
-    }
-
-    private void add(final ListBoxModel options, final Metric metric) {
-        options.add(getDisplayName(metric), metric.name());
     }
 
     private void add(final ListBoxModel options, final QualityGate.QualityGateCriticality criticality) {

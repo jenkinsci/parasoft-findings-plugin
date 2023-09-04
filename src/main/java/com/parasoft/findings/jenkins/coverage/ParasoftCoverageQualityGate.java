@@ -1,6 +1,5 @@
 package com.parasoft.findings.jenkins.coverage;
 
-import edu.hm.hafner.coverage.Metric;
 import edu.hm.hafner.util.VisibleForTesting;
 import hudson.Extension;
 import hudson.model.AbstractProject;
@@ -19,13 +18,11 @@ public class ParasoftCoverageQualityGate extends QualityGate {
     private static final ParasoftCoverageQualityGateElementFormatter FORMATTER = new ParasoftCoverageQualityGateElementFormatter();
 
     private Baseline baseline = Baseline.PROJECT;
-    private Metric metric;
 
     @DataBoundConstructor
-    public ParasoftCoverageQualityGate(final double threshold, final Metric metric,
-                                final Baseline baseline, final QualityGateCriticality criticality) {
+    public ParasoftCoverageQualityGate(final double threshold,
+                                       final Baseline baseline, final QualityGateCriticality criticality) {
         super(threshold);
-        setMetric(metric);
         setBaseline(baseline);
         setCriticality(criticality);
     }
@@ -35,19 +32,9 @@ public class ParasoftCoverageQualityGate extends QualityGate {
         this.baseline = baseline;
     }
 
-    @DataBoundSetter
-    public void setMetric(final Metric metric) {
-        this.metric = metric;
-    }
-
     @Override
     public String getName() {
-        return String.format("%s - %s", FORMATTER.getDisplayName(this.getBaseline()),
-                FORMATTER.getDisplayName(this.getMetric()));
-    }
-
-    public Metric getMetric() {
-        return metric;
+        return String.format("%s - %s", FORMATTER.getDisplayName(this.getBaseline()), FORMATTER.getMetricLineDisplayName());
     }
 
     public Baseline getBaseline() {
@@ -74,15 +61,6 @@ public class ParasoftCoverageQualityGate extends QualityGate {
         public ListBoxModel doFillBaselineItems(@AncestorInPath final AbstractProject<?, ?> project) {
             if (JENKINS.hasPermission(Item.CONFIGURE, project)) {
                 return FORMATTER.getBaselineItems();
-            }
-            return new ListBoxModel();
-        }
-
-        @POST
-        @SuppressWarnings("unused") // used by Stapler view data binding
-        public ListBoxModel doFillMetricItems(@AncestorInPath final AbstractProject<?, ?> project) {
-            if (JENKINS.hasPermission(Item.CONFIGURE, project)) {
-                return FORMATTER.getMetricItems();
             }
             return new ListBoxModel();
         }

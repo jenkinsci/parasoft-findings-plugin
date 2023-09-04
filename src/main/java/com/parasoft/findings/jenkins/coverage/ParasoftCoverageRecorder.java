@@ -16,6 +16,7 @@
 
 package com.parasoft.findings.jenkins.coverage;
 
+import edu.hm.hafner.coverage.Metric;
 import edu.hm.hafner.util.FilteredLog;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
@@ -264,7 +265,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         List<CoverageQualityGate> coverageQualityGates = new ArrayList<>();
         if (parasoftCoverageQualityGates != null && !parasoftCoverageQualityGates.isEmpty()) {
             for (ParasoftCoverageQualityGate parasoftCoverageQualityGate : parasoftCoverageQualityGates) {
-                CoverageQualityGate coverageQualityGate = new CoverageQualityGate(parasoftCoverageQualityGate.getThreshold(), parasoftCoverageQualityGate.getMetric());
+                CoverageQualityGate coverageQualityGate = new CoverageQualityGate(parasoftCoverageQualityGate.getThreshold(), Metric.LINE);
                 coverageQualityGate.setBaseline(parasoftCoverageQualityGate.getBaseline());
                 coverageQualityGate.setCriticality(parasoftCoverageQualityGate.getCriticality());
                 coverageQualityGates.add(coverageQualityGate);
