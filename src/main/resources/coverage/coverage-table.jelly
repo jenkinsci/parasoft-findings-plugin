@@ -17,7 +17,7 @@
     </st:attribute>
   </st:documentation>
 
-  <st:adjunct includes="io.jenkins.plugins.coverage.metrics.cell-style"/>
+  <st:adjunct includes="com.parasoft.findings.jenkins.coverage.api.metrics.cell-style"/>
 
   <div class="row">
     <j:choose>

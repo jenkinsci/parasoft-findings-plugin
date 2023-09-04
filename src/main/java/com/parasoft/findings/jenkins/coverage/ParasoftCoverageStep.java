@@ -10,7 +10,7 @@ import hudson.model.*;
 import hudson.util.ComboBoxModel;
 import hudson.util.FormValidation;
 import hudson.util.ReflectionUtils;
-import io.jenkins.plugins.coverage.metrics.steps.CoverageRecorder;
+import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.jenkinsci.plugins.workflow.graph.FlowNode;

@@ -186,13 +186,13 @@
         <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
         <configuration>
           <packages combine.children="append">
-            <package>io.jenkins.plugins.coverage.metrics</package>
+            <package>com.parasoft.findings.jenkins.coverage.api.metrics</package>
           </packages>
           <excludes combine.children="append">
             <exclude>.*ITest.*</exclude>
             <exclude>.*CoverageXmlStream.*</exclude>
           </excludes>
-          <entryPointClassPackage>io.jenkins.plugins.coverage.metrics</entryPointClassPackage>
+          <entryPointClassPackage>com.parasoft.findings.jenkins.coverage.api.metrics</entryPointClassPackage>
         </configuration>
       </plugin>
     </plugins>

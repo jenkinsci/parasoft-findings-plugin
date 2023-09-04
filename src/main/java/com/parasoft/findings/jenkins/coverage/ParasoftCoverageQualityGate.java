@@ -5,7 +5,7 @@ import hudson.Extension;
 import hudson.model.AbstractProject;
 import hudson.model.Item;
 import hudson.util.ListBoxModel;
-import io.jenkins.plugins.coverage.metrics.model.Baseline;
+import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import io.jenkins.plugins.util.JenkinsFacade;
 import io.jenkins.plugins.util.QualityGate;
 import org.kohsuke.stapler.AncestorInPath;

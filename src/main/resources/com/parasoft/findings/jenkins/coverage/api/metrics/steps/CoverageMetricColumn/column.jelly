@@ -1,21 +1,19 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler">
+  <st:adjunct includes="com.parasoft.findings.jenkins.coverage.api.metrics.cell-style"/>
 
-  <st:documentation>
-    Provides a the summary for a given coverage baseline.
-    <st:attribute name="baseline" type="com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline">
-      The baseline to show.
-    </st:attribute>
-  </st:documentation>
+  <j:set var="coverageText" value="${it.getCoverageText(job)}"/>
+  <j:set var="coverageValue" value="${it.getCoverageValue(job)}"/>
 
-  <j:if test="${it.hasBaselineResult(baseline)}">
-    <li>
-      <a href="${it.urlName}/#${baseline.url}">${it.getTitle(baseline)}</a>
-      <div class="${baseline}-summary">
-        <j:set var="values" value="${it.getAllValues(baseline)}"/>
-        <j:set var="formatter" value="${it.formatter}"/>
+  <j:choose>
+    <j:when test="${coverageValue.isPresent()}">
+
+      <td align="right">
         <j:set var="tooltip">
-          <!-- This is an exact copy of the tooltip in CoverageMetricColumn -->
+          <j:set var="baseline" value="${it.baseline}"/>
+          <!-- This is an exact copy of the tooltip in coverage-summary.jelly -->
+          <j:set var="values" value="${it.getAllValues(job)}"/>
+          <j:set var="formatter" value="${it.formatter}"/>
           <div class="jenkins-tooltip healthReportDetails jenkins-tooltip--table-wrapper">
             <table class="jenkins-table">
               <thead>
@@ -55,27 +53,31 @@
 
         </j:set>
 
-        <ul tooltip="${tooltip}" data-html-tooltip="${tooltip}">
-          <j:forEach var="value" items="${it.getValues(baseline)}">
-            <li>${formatter.formatValueWithMetric(value)}
-              <j:if test="${it.hasDelta(baseline, value.metric)}">
-                <j:choose>
-                  <j:when test="${it.isPositiveTrend(baseline, value.metric)}">
-                    <j:set var="color" value="var(--green)"/>
-                  </j:when>
-                  <j:otherwise>
-                    <j:set var="color" value="var(--red)"/>
-                  </j:otherwise>
-                </j:choose>
-                <span style="color: ${color}">(${it.formatDelta(baseline, value.metric)})</span>
-              </j:if>
-            </li>
-          </j:forEach>
-        </ul>
-      </div>
+        <j:set var="displayColors" value="${it.getDisplayColors(job, coverageValue)}"/>
+        <j:set var="backgroundColor" value="${displayColors.getFillColorAsRGBAHex(80)}"/>
+        <j:set var="url" value="${it.getRelativeCoverageUrl(job)}"/>
+        <j:set var="fillPercentage" value="${it.getBackgroundColorFillPercentage(coverageText)}"/>
 
-    </li>
-  </j:if>
+        <div class="coverage-cell-outer jenkins-table__link" tooltip="${tooltip}" data-html-tooltip="${tooltip}">
+          <div class="coverage-cell-inner" style="background-image: linear-gradient(90deg, ${backgroundColor} ${fillPercentage}, transparent ${fillPercentage});">
+            <j:set var="url" value="${it.getRelativeCoverageUrl(job)}"/>
+            <j:choose>
+              <j:when test="${url.isEmpty()}">
+                ${coverageText}
+              </j:when>
+              <j:otherwise>
+                <a class="coverage-cell-link" href="${rootURL}/${job.url}lastSuccessfulBuild/${url}">${coverageText}</a>
+              </j:otherwise>
+            </j:choose>
+          </div>
+        </div>
+      </td>
+    </j:when>
+    <j:otherwise>
+      <td align="right">
+        ${coverageText}
+      </td>
+    </j:otherwise>
+  </j:choose>
 
 </j:jelly>
-
