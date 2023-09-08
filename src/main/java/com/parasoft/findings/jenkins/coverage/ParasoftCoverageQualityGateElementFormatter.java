@@ -1,7 +1,7 @@
 package com.parasoft.findings.jenkins.coverage;
 
 import hudson.util.ListBoxModel;
-import io.jenkins.plugins.coverage.metrics.model.Baseline;
+import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import io.jenkins.plugins.util.QualityGate;
 
 import java.util.NoSuchElementException;

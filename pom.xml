@@ -24,6 +24,31 @@
     <java.level>8</java.level>
     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
     <xtest.version>10.6.2.20230410</xtest.version>
+
+    <!-- start properties of code-coverage-api -->
+    <trove4j.version>3.0.3</trove4j.version>
+    <saxon-he.version>12.2</saxon-he.version>
+    <gson.version>2.10.1</gson.version>
+
+    <xmlunit.version>2.9.1</xmlunit.version>
+    <jsoup.version>1.16.1</jsoup.version>
+    <testcontainers.version>1.18.1</testcontainers.version>
+    <job-dsl.version>1.83</job-dsl.version>
+
+    <coverage-model.version>0.24.0</coverage-model.version>
+    <git-forensics.version>2.0.0</git-forensics.version>
+    <prism-api.version>1.29.0-6</prism-api.version>
+    <pull-request-monitoring.version>1.7.8</pull-request-monitoring.version>
+
+    <equalsverifier.version>3.14.1</equalsverifier.version>
+    <junit-pioneer.version>2.0.1</junit-pioneer.version>
+    <assertj.version>3.24.2</assertj.version>
+    <archunit.version>1.0.1</archunit.version>
+    <json-unit-fluent.version>2.37.0</json-unit-fluent.version>
+
+    <assertj-assertions-generator-maven-plugin.version>2.2.0</assertj-assertions-generator-maven-plugin.version>
+    <maven-surefire.plugin>3.1.0</maven-surefire.plugin>
+    <!-- end properties of code-coverage-api -->
   </properties>
 
   <developers>
@@ -70,11 +95,24 @@
     <plugins>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire.plugin}</version>
         <configuration>
           <additionalClasspathElements>
             <additionalClasspathElement>src/test/java</additionalClasspathElement>
           </additionalClasspathElements>
+          <trimStackTrace>false</trimStackTrace> <!-- SUREFIRE-1798 -->
+          <excludes>
+            <exclude>**/*ITest.*</exclude>
+            <exclude>**/InjectedTest.*</exclude>
+          </excludes>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5-engine</artifactId>
+            <version>${archunit.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
@@ -143,7 +181,55 @@
           </checkModificationExcludes>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
+        <configuration>
+          <packages combine.children="append">
+            <package>com.parasoft.findings.jenkins.coverage.api.metrics</package>
+          </packages>
+          <excludes combine.children="append">
+            <exclude>.*ITest.*</exclude>
+            <exclude>.*CoverageXmlStream.*</exclude>
+          </excludes>
+          <entryPointClassPackage>com.parasoft.findings.jenkins.coverage.api.metrics</entryPointClassPackage>
+        </configuration>
+      </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.assertj</groupId>
+          <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
+          <version>${assertj-assertions-generator-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>generate-assertions</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <excludes>
+              <exclude>.*ITest</exclude>
+              <exclude>.*Action</exclude>
+            </excludes>
+            <cleanTargetDir>true</cleanTargetDir>
+            <hierarchical>false</hierarchical>
+            <generateBddAssertions>false</generateBddAssertions>
+            <generateJUnitSoftAssertions>false</generateJUnitSoftAssertions>
+            <quiet>true</quiet>
+            <templates>
+              <templatesDirectory>${project.basedir}/etc/assertj-templates/</templatesDirectory>
+              <assertionsEntryPointClass>assertions_entry_point_class_template.txt</assertionsEntryPointClass>
+              <softEntryPointAssertionClass>soft_assertions_entry_point_class_template.txt
+              </softEntryPointAssertionClass>
+              <objectAssertion>has_assertion_template.txt</objectAssertion>
+            </templates>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 
   <repositories>
@@ -179,24 +265,6 @@
         <groupId>net.minidev</groupId>
         <artifactId>json-smart</artifactId>
         <version>2.4.10</version>
-      </dependency>
-      <!-- shared by warnings-ng and code-coverage-api - synchronize with code-coverage-api. -->
-      <dependency>
-        <groupId>org.jsoup</groupId>
-        <artifactId>jsoup</artifactId>
-        <version>1.16.1</version>
-      </dependency>
-      <!-- shared by warnings-ng and code-coverage-api - synchronize with code-coverage-api. -->
-      <dependency>
-        <groupId>io.jenkins.plugins</groupId>
-        <artifactId>prism-api</artifactId>
-        <version>1.29.0-6</version>
-      </dependency>
-      <!-- shared by warnings-ng, code-coverage-api and xunit - synchronize with code-coverage-api. -->
-      <dependency>
-        <groupId>io.jenkins.plugins</groupId>
-        <artifactId>echarts-api</artifactId>
-        <version>5.4.0-4</version>
       </dependency>
       <!-- Fix some transitive vulnerable dependency warnings for warnings-ng -->
       <dependency>
@@ -269,17 +337,17 @@
       </exclusions>
     </dependency>
     <!-- these artifacts versions are defined in com.parasoft.xtest:build pom -->
-    <!--  shared by xtest and warnings-ng - synchronize with xtest -->
+    <!--  shared by xtest, warnings-ng and org.jenkins-ci.plugins:git-client - synchronize with org.jenkins-ci.plugins:git-client -->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
-      <version>4.5.13</version>
+      <version>4.5.14</version>
     </dependency>
-    <!--  shared by xtest and warnings-ng - synchronize with xtest -->
+    <!--  shared by xtest, warnings-ng and org.jenkins-ci.plugins:git-client - synchronize with org.jenkins-ci.plugins:git-client -->
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpcore</artifactId>
-      <version>4.4.14</version>
+      <version>4.4.16</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -306,18 +374,330 @@
       <artifactId>xunit</artifactId>
       <version>3.1.2</version>
     </dependency>
+    <!-- start dependencies of code-coverage-api -->
+    <dependency>
+      <groupId>edu.hm.hafner</groupId>
+      <artifactId>coverage-model</artifactId>
+      <version>${coverage-model.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>edu.hm.hafner</groupId>
+          <artifactId>codingstyle</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-annotations</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.errorprone</groupId>
+          <artifactId>error_prone_annotations</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-text</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>one.util</groupId>
+          <artifactId>streamex</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.annotation</groupId>
+          <artifactId>javax.annotation-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
-      <artifactId>code-coverage-api</artifactId>
-      <version>4.6.0</version>
+      <artifactId>ionicons-api</artifactId>
     </dependency>
-    <!-- Include Saxon-HE as a direct dependency to be packaged into hpi(like dtkit-api, code-coverage-api and analysis-model-api),
-    to fix class loading error of entityResolverClass when record coverage with Built-In Node. -->
+    <dependency>
+      <groupId>net.sf.trove4j</groupId>
+      <artifactId>trove4j</artifactId>
+      <version>${trove4j.version}</version>
+      <type>jar</type>
+    </dependency>
     <dependency>
       <groupId>net.sf.saxon</groupId>
       <artifactId>Saxon-HE</artifactId>
-      <version>12.2</version>
+      <version>${saxon-he.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>httpclient</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>httpcore</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${gson.version}</version>
+    </dependency>
+
+    <!-- Plugin Dependencies -->
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-multibranch</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-step-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>jackson2-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>checks-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>display-url-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>echarts-api</artifactId>
+      <version>5.4.0-4</version>
+    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>io.jenkins.plugins</groupId>-->
+<!--      <artifactId>bootstrap5-api</artifactId>-->
+<!--    </dependency>-->
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>jquery3-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>data-tables-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>forensics-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>plugin-util-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>font-awesome-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>prism-api</artifactId>
+      <version>${prism-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>${jsoup.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>pull-request-monitoring</artifactId>
+      <version>${pull-request-monitoring.version}</version>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- Test Dependencies -->
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>plugin-util-api</artifactId>
+      <classifier>tests</classifier>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.xmlunit</groupId>
+      <artifactId>xmlunit-core</artifactId>
+      <version>${xmlunit.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>net.bytebuddy</groupId>
+          <artifactId>byte-buddy</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>jakarta.xml.bind</groupId>
+          <artifactId>jakarta.xml.bind-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.xmlunit</groupId>
+      <artifactId>xmlunit-assertj</artifactId>
+      <version>${xmlunit.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>net.bytebuddy</groupId>
+          <artifactId>byte-buddy</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>jakarta.xml.bind</groupId>
+          <artifactId>jakarta.xml.bind-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-cps</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-job</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-basic-steps</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-durable-task-step</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-support</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkinsci.plugins</groupId>
+      <artifactId>pipeline-model-definition</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jenkins-ci.plugins</groupId>
+          <artifactId>cloudbees-folder</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>credentials</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>git</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>git-client</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>git-forensics</artifactId>
+      <version>${git-forensics.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>timestamper</artifactId>
+      <version>1.25</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>ssh-credentials</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>ssh-slaves</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-compress</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins</groupId>
+      <artifactId>configuration-as-code</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>job-dsl</artifactId>
+      <version>${job-dsl.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>xmlunit</artifactId>
+          <groupId>xmlunit</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>nl.jqno.equalsverifier</groupId>
+      <artifactId>equalsverifier</artifactId>
+      <version>${equalsverifier.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit-pioneer</groupId>
+      <artifactId>junit-pioneer</artifactId>
+      <version>${junit-pioneer.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit-junit5</artifactId>
+      <version>${archunit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.javacrumbs.json-unit</groupId>
+      <artifactId>json-unit-assertj</artifactId>
+      <version>${json-unit-fluent.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.ow2.asm</groupId>
+          <artifactId>asm</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- end dependencies of code-coverage-api -->
     <dependency>
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
@@ -540,7 +920,6 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>3.0.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
