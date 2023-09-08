@@ -1,56 +1,31 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
+import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
+import edu.hm.hafner.coverage.ModuleNode;
+import edu.hm.hafner.coverage.Node;
+import edu.hm.hafner.util.FilteredLog;
+import edu.hm.hafner.util.TreeStringBuilder;
+import hudson.FilePath;
+import hudson.Launcher;
+import hudson.model.*;
+import hudson.tasks.BuildStepMonitor;
+import hudson.tasks.Recorder;
+import hudson.tools.ToolDescriptor;
+import hudson.util.FormValidation.Kind;
+import io.jenkins.plugins.prism.SourceCodeDirectory;
+import io.jenkins.plugins.prism.SourceCodeRetention;
+import io.jenkins.plugins.util.AgentFileVisitor.FileVisitorResult;
+import io.jenkins.plugins.util.*;
+import org.apache.commons.lang3.StringUtils;
+import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.DataBoundSetter;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import org.apache.commons.lang3.StringUtils;
-
-import edu.hm.hafner.coverage.ModuleNode;
-import edu.hm.hafner.coverage.Node;
-import edu.hm.hafner.util.FilteredLog;
-import edu.hm.hafner.util.TreeStringBuilder;
-import edu.umd.cs.findbugs.annotations.NonNull;
-
-import org.kohsuke.stapler.AncestorInPath;
-import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.DataBoundSetter;
-import org.kohsuke.stapler.QueryParameter;
-import org.kohsuke.stapler.verb.POST;
-import org.jenkinsci.Symbol;
-import hudson.Extension;
-import hudson.FilePath;
-import hudson.Launcher;
-import hudson.model.AbstractBuild;
-import hudson.model.AbstractProject;
-import hudson.model.BuildListener;
-import hudson.model.Item;
-import hudson.model.Result;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-import hudson.tasks.BuildStepDescriptor;
-import hudson.tasks.BuildStepMonitor;
-import hudson.tasks.Publisher;
-import hudson.tasks.Recorder;
-import hudson.tools.ToolDescriptor;
-import hudson.util.ComboBoxModel;
-import hudson.util.FormValidation;
-import hudson.util.FormValidation.Kind;
-import hudson.util.ListBoxModel;
-
-import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
-import io.jenkins.plugins.prism.SourceCodeDirectory;
-import io.jenkins.plugins.prism.SourceCodeRetention;
-import io.jenkins.plugins.util.AgentFileVisitor.FileVisitorResult;
-import io.jenkins.plugins.util.EnvironmentResolver;
-import io.jenkins.plugins.util.JenkinsFacade;
-import io.jenkins.plugins.util.LogHandler;
-import io.jenkins.plugins.util.RunResultHandler;
-import io.jenkins.plugins.util.StageResultHandler;
-import io.jenkins.plugins.util.ValidationUtilities;
 
 /**
  * A pipeline {@code Step} or Freestyle or Maven {@link Recorder} that reads and parses coverage results in a build and
@@ -496,123 +471,6 @@ public class CoverageRecorder extends Recorder {
         }
     }
 
-    @Override
-    public Descriptor getDescriptor() {
-        return (Descriptor) super.getDescriptor();
-    }
-
-    /**
-     * Descriptor for this step: defines the context and the UI elements.
-     */
-    @Extension
-    @Symbol("recordCoverage")
-    public static class Descriptor extends BuildStepDescriptor<Publisher> {
-        private static final JenkinsFacade JENKINS = new JenkinsFacade();
-
-        @NonNull
-        @Override
-        public String getDisplayName() {
-            return Messages.Recorder_Name();
-        }
-
-        @Override
-        public boolean isApplicable(final Class<? extends AbstractProject> jobType) {
-            return true;
-        }
-
-        /**
-         * Returns a model with all {@link SourceCodeRetention} strategies.
-         *
-         * @param project
-         *         the project that is configured
-         *
-         * @return a model with all {@link SourceCodeRetention} strategies.
-         */
-        @POST
-        @SuppressWarnings("unused") // used by Stapler view data binding
-        public ListBoxModel doFillSourceCodeRetentionItems(@AncestorInPath final AbstractProject<?, ?> project) {
-            if (JENKINS.hasPermission(Item.CONFIGURE, project)) {
-                return SourceCodeRetention.fillItems();
-            }
-            return new ListBoxModel();
-        }
-
-        /**
-         * Returns a model with all {@link ChecksAnnotationScope} scopes.
-         *
-         * @param project
-         *         the project that is configured
-         *
-         * @return a model with all {@link ChecksAnnotationScope} scopes.
-         */
-        @POST
-        @SuppressWarnings("unused") // used by Stapler view data binding
-        public ListBoxModel doFillChecksAnnotationScopeItems(@AncestorInPath final AbstractProject<?, ?> project) {
-            if (JENKINS.hasPermission(Item.CONFIGURE, project)) {
-                return ChecksAnnotationScope.fillItems();
-            }
-            return new ListBoxModel();
-        }
-
-        /**
-         * Returns a model with all available charsets.
-         *
-         * @param project
-         *         the project that is configured
-         *
-         * @return a model with all available charsets
-         */
-        @POST
-        @SuppressWarnings("unused") // used by Stapler view data binding
-        public ComboBoxModel doFillSourceCodeEncodingItems(@AncestorInPath final AbstractProject<?, ?> project) {
-            if (JENKINS.hasPermission(Item.CONFIGURE, project)) {
-                return VALIDATION_UTILITIES.getAllCharsets();
-            }
-            return new ComboBoxModel();
-        }
-
-        /**
-         * Performs on-the-fly validation on the character encoding.
-         *
-         * @param project
-         *         the project that is configured
-         * @param sourceCodeEncoding
-         *         the character encoding
-         *
-         * @return the validation result
-         */
-        @POST
-        @SuppressWarnings("unused") // used by Stapler view data binding
-        public FormValidation doCheckSourceCodeEncoding(@AncestorInPath final AbstractProject<?, ?> project,
-                @QueryParameter final String sourceCodeEncoding) {
-            if (!JENKINS.hasPermission(Item.CONFIGURE, project)) {
-                return FormValidation.ok();
-            }
-
-            return VALIDATION_UTILITIES.validateCharset(sourceCodeEncoding);
-        }
-
-        /**
-         * Performs on-the-fly validation of the ID.
-         *
-         * @param project
-         *         the project that is configured
-         * @param id
-         *         the ID of the tool
-         *
-         * @return the validation result
-         */
-        @POST
-        public FormValidation doCheckId(@AncestorInPath final AbstractProject<?, ?> project,
-                @QueryParameter final String id) {
-            if (!JENKINS.hasPermission(Item.CONFIGURE, project)) {
-                return FormValidation.ok();
-            }
-
-            return VALIDATION_UTILITIES.validateId(id);
-        }
-    }
-
     /**
      * Defines the scope of SCM checks annotations.
      */
@@ -623,13 +481,5 @@ public class CoverageRecorder extends Recorder {
         MODIFIED_LINES,
         /** All lines are annotated. */
         ALL_LINES;
-
-        static ListBoxModel fillItems() {
-            ListBoxModel items = new ListBoxModel();
-            items.add(Messages.ChecksAnnotationScope_Skip(), ChecksAnnotationScope.SKIP.name());
-            items.add(Messages.ChecksAnnotationScope_ModifiedLines(), ChecksAnnotationScope.MODIFIED_LINES.name());
-            items.add(Messages.ChecksAnnotationScope_AllLines(), ChecksAnnotationScope.ALL_LINES.name());
-            return items;
-        }
     }
 }
