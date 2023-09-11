@@ -4,15 +4,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import edu.hm.hafner.coverage.Coverage;
 import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.Metric;
 import edu.hm.hafner.coverage.Node;
 
 import hudson.Functions;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider;
-import io.jenkins.plugins.datatables.DetailedCell;
 
 /**
  * A base class for coverage table models that handle the changes to a result of a reference build.
@@ -60,25 +57,6 @@ abstract class ChangesTableModel extends CoverageTableModel {
 
         FileNode getOriginalFile() {
             return originalFile;
-        }
-
-        @Override
-        public DetailedCell<?> getLineCoverageDelta() {
-            return createColoredModifiedLinesCoverageDeltaColumn(Metric.LINE);
-        }
-
-        @Override
-        public DetailedCell<?> getBranchCoverageDelta() {
-            return createColoredModifiedLinesCoverageDeltaColumn(Metric.BRANCH);
-        }
-
-        DetailedCell<?> createColoredModifiedLinesCoverageDeltaColumn(final Metric metric) {
-            Coverage modifiedLinesCoverage = getFile().getTypedValue(metric, Coverage.nullObject(metric));
-            if (modifiedLinesCoverage.isSet()) {
-                return createColoredCoverageDeltaColumn(metric,
-                        modifiedLinesCoverage.delta(originalFile.getTypedValue(metric, Coverage.nullObject(metric))));
-            }
-            return NO_COVERAGE;
         }
     }
 }
