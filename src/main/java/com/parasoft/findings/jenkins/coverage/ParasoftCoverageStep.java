@@ -9,7 +9,6 @@ import hudson.model.*;
 
 import hudson.util.ComboBoxModel;
 import hudson.util.FormValidation;
-import hudson.util.ReflectionUtils;
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.lang3.StringUtils;
@@ -22,10 +21,8 @@ import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.verb.POST;
 
 import java.io.Serializable;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.*;
@@ -109,14 +106,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), step.getSourceCodeEncoding(),
                     step.getParasoftCoverageQualityGates());
 
-            // Using reflection for calling the 'perform' method of the 'CoverageRecorder' class.
-            // Argument 'AbstractBuild<?, ?>' cannot be directly passed in.
-            Method performMethod =
-                    ReflectionUtils.findMethod(CoverageRecorder.class, "perform", Run.class, FilePath.class,
-                            TaskListener.class, StageResultHandler.class); // $NON-NLS-1$
-            ReflectionUtils.makeAccessible(Objects.requireNonNull(performMethod));
-            ReflectionUtils.invokeMethod(performMethod, recorder, run, workspace, taskListener,
-                    runResultHandler);
+            recorder.perform(run, workspace, taskListener, runResultHandler);
             parasoftCoverageRecorder.deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
             return UNUSED;
         }

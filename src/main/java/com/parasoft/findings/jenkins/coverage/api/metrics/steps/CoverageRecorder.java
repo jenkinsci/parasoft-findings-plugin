@@ -336,7 +336,7 @@ public class CoverageRecorder extends Recorder {
         return true;
     }
 
-    void perform(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
+    public void perform(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
             final StageResultHandler resultHandler) throws InterruptedException {
         Result overallResult = run.getResult();
         LogHandler logHandler = new LogHandler(taskListener, "Coverage");
