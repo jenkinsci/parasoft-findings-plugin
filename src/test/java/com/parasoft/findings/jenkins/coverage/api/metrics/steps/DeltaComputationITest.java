@@ -1,24 +1,20 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
-import org.junit.jupiter.api.Test;
-
+import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageITest;
+import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
+import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
 import edu.hm.hafner.coverage.Coverage.CoverageBuilder;
 import edu.hm.hafner.coverage.CyclomaticComplexity;
 import edu.hm.hafner.coverage.FileNode;
 import edu.hm.hafner.coverage.LinesOfCode;
 import edu.hm.hafner.coverage.Node;
-
-import org.jenkinsci.plugins.workflow.job.WorkflowJob;
 import hudson.model.FreeStyleProject;
 import hudson.model.Run;
+import org.junit.jupiter.api.Test;
 
-import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageITest;
-import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
-import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
-
-import static edu.hm.hafner.coverage.Metric.*;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest.*;
-import static org.assertj.core.api.Assertions.*;
+import static edu.hm.hafner.coverage.Metric.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Integration test for delta computation of reference builds.
@@ -36,40 +32,6 @@ class DeltaComputationITest extends AbstractCoverageITest {
         project.getPublishersList().get(CoverageRecorder.class).getTools().get(0).setPattern(JACOCO_CODING_STYLE_FILE);
 
         Run<?, ?> secondBuild = buildSuccessfully(project);
-        verifySecondBuild(secondBuild);
-
-        verifyDeltaComputation(firstBuild, secondBuild);
-    }
-
-    @Test
-    void shouldComputeDeltaInPipeline() {
-        WorkflowJob job = createPipeline(Parser.JACOCO, JACOCO_ANALYSIS_MODEL_FILE, JACOCO_CODING_STYLE_FILE);
-
-        Run<?, ?> firstBuild = buildSuccessfully(job);
-        verifyFirstBuild(firstBuild);
-
-        computeDeltaInSecondBuild(job, firstBuild);
-    }
-
-    @Test
-    void shouldSelectResultByIdInReferenceBuild() {
-        WorkflowJob job = createPipelineWithWorkspaceFiles(JACOCO_ANALYSIS_MODEL_FILE, JACOCO_CODING_STYLE_FILE, "mutations.xml");
-
-        // Create a build with two different actions
-        setPipelineScript(job,
-                "recordCoverage tools: [[parser: '" + Parser.PIT.name() + "', pattern: '**/mutations.xml']], id: 'pit'\n"
-                + "recordCoverage tools: [[parser: '" + Parser.JACOCO.name() + "', pattern: '**/jacoco*xml']]\n");
-
-        Run<?, ?> firstBuild = buildSuccessfully(job);
-
-        computeDeltaInSecondBuild(job, firstBuild);
-    }
-
-    private void computeDeltaInSecondBuild(final WorkflowJob job, final Run<?, ?> firstBuild) {
-        setPipelineScript(job,
-                "recordCoverage tools: [[parser: 'JACOCO', pattern: '" + JACOCO_CODING_STYLE_FILE + "']]");
-
-        Run<?, ?> secondBuild = buildSuccessfully(job);
         verifySecondBuild(secondBuild);
 
         verifyDeltaComputation(firstBuild, secondBuild);

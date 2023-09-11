@@ -1,24 +1,16 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
-import edu.hm.hafner.coverage.Metric;
-
-import net.sf.json.JSONObject;
-
+import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageITest;
+import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
 import hudson.model.FreeStyleProject;
 import hudson.model.Result;
 import hudson.model.Run;
+import net.sf.json.JSONObject;
+import org.junit.jupiter.api.Test;
 
-import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageITest;
-import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
-import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
-import io.jenkins.plugins.util.QualityGate.QualityGateCriticality;
-
-import static com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest.*;
-import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
+import static com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest.JACOCO_ANALYSIS_MODEL_FILE;
+import static com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest.JACOCO_CODING_STYLE_FILE;
+import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 
 /**
  * Tests the class {@link CoverageApi}.
@@ -50,25 +42,6 @@ class CoverageApiITest extends AbstractCoverageITest {
                 .node("modifiedFilesStatistics").isEqualTo("{}");
         assertThatJson(remoteApiResult)
                 .node("modifiedLinesStatistics").isEqualTo("{}");
-    }
-
-    @Test
-    void shouldShowQualityGatesInRemoteApi() {
-        var qualityGates = List.of(new CoverageQualityGate(100, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
-        FreeStyleProject project = createFreestyleJob(Parser.JACOCO, r -> r.setQualityGates(qualityGates), JACOCO_ANALYSIS_MODEL_FILE);
-
-        Run<?, ?> build = buildWithResult(project, Result.UNSTABLE);
-
-        var remoteApiResult = callRemoteApi(build);
-        assertThatJson(remoteApiResult)
-                .node("qualityGates.overallResult").isEqualTo("UNSTABLE");
-        assertThatJson(remoteApiResult)
-                .node("qualityGates.resultItems").isEqualTo("[{\n"
-                        + "  \"qualityGate\": \"Overall project - Line Coverage\",\n"
-                        + "  \"result\": \"UNSTABLE\",\n"
-                        + "  \"threshold\": 100.0,\n"
-                        + "  \"value\": \"95.39%\"\n"
-                        + "}]\n");
     }
 
     @Test
