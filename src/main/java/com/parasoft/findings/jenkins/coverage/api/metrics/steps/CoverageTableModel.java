@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.math.Fraction;
-
 import edu.hm.hafner.coverage.Coverage;
 import edu.hm.hafner.coverage.CyclomaticComplexity;
 import edu.hm.hafner.coverage.FileNode;
@@ -20,7 +18,6 @@ import hudson.Functions;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider.DisplayColors;
-import com.parasoft.findings.jenkins.coverage.api.metrics.color.CoverageChangeTendency;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.CoverageLevel;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.ElementFormatter;
 import com.parasoft.findings.jenkins.coverage.api.metrics.source.SourceCodeFacade;
@@ -110,12 +107,9 @@ class CoverageTableModel extends TableModel {
                 .build();
         columns.add(packageName);
 
-        configureValueColumn("lineCoverage", Metric.LINE, Messages.Column_LineCoverage(),
-                Messages.Column_DeltaLineCoverage("Δ"), columns);
-        configureValueColumn("branchCoverage", Metric.BRANCH, Messages.Column_BranchCoverage(),
-                Messages.Column_DeltaBranchCoverage("Δ"), columns);
-        configureValueColumn("mutationCoverage", Metric.MUTATION, Messages.Column_MutationCoverage(),
-                Messages.Column_DeltaMutationCoverage("Δ"), columns);
+        configureValueColumn("lineCoverage", Metric.LINE, Messages.Column_LineCoverage(), columns);
+        configureValueColumn("branchCoverage", Metric.BRANCH, Messages.Column_BranchCoverage(), columns);
+        configureValueColumn("mutationCoverage", Metric.MUTATION, Messages.Column_MutationCoverage(), columns);
         TableColumn loc = new ColumnBuilder().withHeaderLabel(Messages.Column_LinesOfCode())
                 .withDataPropertyKey("loc")
                 .withResponsivePriority(200)
@@ -150,8 +144,7 @@ class CoverageTableModel extends TableModel {
         return columns;
     }
 
-    private void configureValueColumn(final String key, final Metric metric, final String headerLabel,
-            final String deltaHeaderLabel, final List<TableColumn> columns) {
+    private void configureValueColumn(final String key, final Metric metric, final String headerLabel, final List<TableColumn> columns) {
         if (root.containsMetric(metric)) {
             TableColumn lineCoverage = new ColumnBuilder().withHeaderLabel(headerLabel)
                     .withDataPropertyKey(key)
@@ -160,13 +153,6 @@ class CoverageTableModel extends TableModel {
                     .withResponsivePriority(1)
                     .build();
             columns.add(lineCoverage);
-            TableColumn lineCoverageDelta = new ColumnBuilder().withHeaderLabel(deltaHeaderLabel)
-                    .withDataPropertyKey(key + "Delta")
-                    .withDetailedCell()
-                    .withType(ColumnType.NUMBER)
-                    .withResponsivePriority(2)
-                    .build();
-            columns.add(lineCoverageDelta);
         }
     }
 
@@ -243,18 +229,6 @@ class CoverageTableModel extends TableModel {
             return file.getTypedValue(metric, Coverage.nullObject(metric));
         }
 
-        public DetailedCell<?> getLineCoverageDelta() {
-            return createColoredFileCoverageDeltaColumn(Metric.LINE);
-        }
-
-        public DetailedCell<?> getBranchCoverageDelta() {
-            return createColoredFileCoverageDeltaColumn(Metric.BRANCH);
-        }
-
-        public DetailedCell<?> getMutationCoverageDelta() {
-            return createColoredFileCoverageDeltaColumn(Metric.MUTATION);
-        }
-
         public int getLoc() {
             return file.getTypedValue(Metric.LOC, ZERO_LOC).getValue();
         }
@@ -303,46 +277,8 @@ class CoverageTableModel extends TableModel {
             return NO_COVERAGE;
         }
 
-        /**
-         * Creates a table cell which colorizes the tendency of the shown coverage delta.
-         *
-         * @param metric
-         *         the metric to use
-         * @param delta
-         *         The coverage delta as percentage
-         *
-         * @return the created {@link DetailedCell}
-         */
-        protected DetailedCell<?> createColoredCoverageDeltaColumn(final Metric metric, final Fraction delta) {
-            double percentage = delta.doubleValue() * 100.0;
-            DisplayColors colors = CoverageChangeTendency.getDisplayColorsForTendency(percentage, colorProvider);
-            String cell = div().withClasses(COVERAGE_COLUMN_OUTER).with(
-                            div().withClasses(COVERAGE_COLUMN_INNER)
-                                    .withStyle(String.format("background-color:%s;", colors.getFillColorAsRGBAHex(
-                                            TABLE_COVERAGE_COLOR_ALPHA)))
-                                    .withText(FORMATTER.formatDelta(delta, metric, browserLocale)))
-                    .render();
-            return new DetailedCell<>(cell, percentage);
-        }
-
         protected FileNode getFile() {
             return file;
-        }
-
-        /**
-         * Creates a colored column for visualizing the file coverage delta against a reference for the passed
-         * {@link Metric}.
-         *
-         * @param metric
-         *         the coverage metric
-         *
-         * @return the created {@link DetailedCell}
-         */
-        private DetailedCell<?> createColoredFileCoverageDeltaColumn(final Metric metric) {
-            if (file.hasDelta(metric)) {
-                return createColoredCoverageDeltaColumn(metric, file.getDelta(metric));
-            }
-            return NO_COVERAGE;
         }
     }
 
