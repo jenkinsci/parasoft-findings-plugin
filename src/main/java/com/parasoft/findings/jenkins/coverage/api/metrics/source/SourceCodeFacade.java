@@ -201,37 +201,6 @@ public class SourceCodeFacade {
     }
 
     /**
-     * Filters the sourcecode coverage highlighting for analyzing indirect coverage changes only.
-     *
-     * @param content
-     *         The original HTML content
-     * @param fileNode
-     *         The {@link FileNode node} which represents the coverage of the file
-     *
-     * @return the filtered HTML sourcecode view
-     */
-    public String calculateIndirectCoverageChangesSourceCode(final String content, final FileNode fileNode) {
-        Map<Integer, Integer> lines = fileNode.getIndirectCoverageChanges();
-        Map<String, String> indirectCoverageChangesAsText = lines.entrySet().stream()
-                .collect(Collectors
-                        .toMap(entry -> String.valueOf(entry.getKey()), entry -> String.valueOf(entry.getValue())));
-        Document doc = Jsoup.parse(content, Parser.xmlParser());
-        int maxLine = Integer.parseInt(Objects.requireNonNull(
-                doc.select("tr").last()).select("a").text());
-        Map<String, Boolean> linesMapping = calculateLineMapping(lines.keySet(), maxLine);
-        doc.select("tr").forEach(element -> {
-            String line = element.select("td > a").text();
-            if (linesMapping.containsKey(line)) {
-                colorIndirectCoverageChangeLine(element, line, linesMapping, indirectCoverageChangesAsText);
-            }
-            else {
-                element.remove();
-            }
-        });
-        return doc.html();
-    }
-
-    /**
      * Highlights a line to be a skip line which represents a bunch of not visible lines.
      *
      * @param element
@@ -243,41 +212,6 @@ public class SourceCodeFacade {
         Objects.requireNonNull(element.select("td.line").first()).text("..");
         Objects.requireNonNull(element.select("td.hits").first()).text("");
         Objects.requireNonNull(element.select("td.code").first()).text("");
-    }
-
-    /**
-     * Colors one line within the indirect coverage changes code view.
-     *
-     * @param element
-     *         The HTML element which represents the line
-     * @param line
-     *         The line number
-     * @param linesMapping
-     *         The mapping which classifies how the line should be treated
-     * @param indirectCoverageChangesAsText
-     *         The indirect coverage changes mapping
-     */
-    private void colorIndirectCoverageChangeLine(final Element element, final String line,
-            final Map<String, Boolean> linesMapping, final Map<String, String> indirectCoverageChangesAsText) {
-        if (linesMapping.get(line)) {
-            changeCodeToSkipLine(element);
-        }
-        else if (indirectCoverageChangesAsText.containsKey(line)) {
-            element.removeClass(element.className());
-            String hits = indirectCoverageChangesAsText.get(line);
-            if (hits.startsWith("-")) {
-                element.addClass("coverNone");
-            }
-            else {
-                element.addClass("coverFull");
-            }
-            Objects.requireNonNull(element.select("td.hits").first()).text(hits);
-        }
-        else {
-            element.removeClass(element.className());
-            element.addClass("noCover");
-            Objects.requireNonNull(element.select("td.hits").first()).text("");
-        }
     }
 
     /**

@@ -154,7 +154,6 @@ class GitForensicsITest extends AbstractCoverageITest {
     private void verifyCoverage(final CoverageBuildAction action) {
         verifyOverallCoverage(action);
         verifyModifiedLinesCoverage(action);
-        verifyIndirectCoverageChanges(action);
     }
 
     /**
@@ -180,25 +179,6 @@ class GitForensicsITest extends AbstractCoverageITest {
         var builder = new CoverageBuilder();
         assertThat(action.getAllValues(Baseline.MODIFIED_LINES)).contains(
                 builder.setMetric(LINE).setCovered(1).setMissed(1).build());
-    }
-
-    /**
-     * Verifies the calculated indirect coverage changes.
-     *
-     * @param action
-     *         The created Jenkins action
-     */
-    private void verifyIndirectCoverageChanges(final CoverageBuildAction action) {
-        assertThat(action.getAllValues(Baseline.INDIRECT))
-                .filteredOn(coverage -> coverage.getMetric().equals(LINE))
-                .first()
-                .isInstanceOfSatisfying(Coverage.class, coverage -> {
-                    assertThat(coverage.getCovered()).isEqualTo(4);
-                    assertThat(coverage.getMissed()).isEqualTo(0);
-                });
-        assertThat(action.getAllValues(Baseline.INDIRECT))
-                .filteredOn(coverage -> coverage.getMetric().equals(BRANCH))
-                .isEmpty();
     }
 
     private void verifyCodeDelta(final CoverageBuildAction action) {

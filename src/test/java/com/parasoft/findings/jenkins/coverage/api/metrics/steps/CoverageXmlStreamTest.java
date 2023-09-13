@@ -228,7 +228,7 @@ class CoverageXmlStreamTest extends SerializableTest<Node> {
                 StringUtils.EMPTY,
                 tree, new QualityGateResult(), new FilteredLog("Test"), "-",
                 new TreeMap<>(), List.of(), new TreeMap<>(), List.of(),
-                new TreeMap<>(), List.of(), false);
+                new TreeMap<>(), false);
     }
 
     private static class TestXmlStream extends CoverageXmlStream {

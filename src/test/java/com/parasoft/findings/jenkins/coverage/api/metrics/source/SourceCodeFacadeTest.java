@@ -37,18 +37,6 @@ class SourceCodeFacadeTest extends ResourceTest {
         assertThat(modifiedLinesCoverageHtml).isEqualTo(requiredHtml);
     }
 
-    @Test
-    void shouldCalculateSourcecodeForIndirectCoverageChanges() throws IOException {
-        SourceCodeFacade sourceCodeFacade = createSourceCodeFacade();
-        String originalHtml = readHtml(WHOLE_SOURCE_CODE);
-        FileNode node = createFileCoverageNode();
-
-        String requiredHtml = Jsoup.parse(readHtml(INDIRECT_COVERAGE_SOURCE_CODE), Parser.xmlParser()).html();
-
-        String modifiedLinesCoverageHtml = sourceCodeFacade.calculateIndirectCoverageChangesSourceCode(originalHtml, node);
-        assertThat(modifiedLinesCoverageHtml).isEqualTo(requiredHtml);
-    }
-
     /**
      * Creates an instance of {@link SourceCodeFacade}.
      *

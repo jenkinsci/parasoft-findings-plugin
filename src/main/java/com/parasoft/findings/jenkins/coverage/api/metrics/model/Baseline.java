@@ -43,12 +43,7 @@ public enum Baseline {
      * Difference between the project coverage and the modified file coverage of the current build. Teams can use this delta
      * value to ensure that the coverage of pull requests is better than the whole project coverage.
      */
-    MODIFIED_FILES_DELTA(Messages._Baseline_MODIFIED_FILES_DELTA(), "modifiedFilesCoverage", CoverageChangeTendency::getDisplayColorsForTendency),
-    /**
-     * Indirect changes of the overall code coverage that are not part of the changed code. These changes might occur,
-     * if new tests will be added without touching the underlying code under test.
-     */
-    INDIRECT(Messages._Baseline_INDIRECT(), "indirectCoverage", CoverageLevel::getDisplayColorsOfCoverageLevel);
+    MODIFIED_FILES_DELTA(Messages._Baseline_MODIFIED_FILES_DELTA(), "modifiedFilesCoverage", CoverageChangeTendency::getDisplayColorsForTendency);
 
     private final Localizable title;
     private final String url;

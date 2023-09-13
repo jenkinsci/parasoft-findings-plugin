@@ -116,10 +116,6 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
         column.setBaseline(Baseline.MODIFIED_FILES_DELTA);
         assertThat(column.getBaseline()).isEqualTo(Baseline.MODIFIED_FILES_DELTA);
         assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#modifiedFilesCoverage");
-
-        column.setBaseline(Baseline.INDIRECT);
-        assertThat(column.getBaseline()).isEqualTo(Baseline.INDIRECT);
-        assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#indirectCoverage");
     }
 
     @Test
@@ -223,7 +219,7 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
         CoverageBuildAction coverageBuildAction =
                 new CoverageBuildAction(run, "coverage", "Code Coverage", StringUtils.EMPTY,
                         node, new QualityGateResult(), new FilteredLog("Test"),
-                        "-", delta, List.of(), new TreeMap<>(), List.of(), new TreeMap<>(), List.of(), false);
+                        "-", delta, List.of(), new TreeMap<>(), List.of(), new TreeMap<>(), false);
         when(run.getAction(CoverageBuildAction.class)).thenReturn(coverageBuildAction);
         when(run.getActions(CoverageBuildAction.class)).thenReturn(Collections.singletonList(coverageBuildAction));
 

@@ -221,7 +221,7 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
                         Metric.MODULE, Fraction.ZERO,
                         Metric.PACKAGE, Fraction.ONE_HALF.negate())),
                 List.of(testCoverage), new TreeMap<>(Map.of(Metric.LINE, Fraction.ONE_HALF)), List.of(testCoverage),
-                new TreeMap<>(Map.of(Metric.LINE, Fraction.ONE_HALF)), List.of(testCoverage), false);
+                new TreeMap<>(Map.of(Metric.LINE, Fraction.ONE_HALF)), false);
     }
 
     private CoverageBuildAction createActionWithoutDelta(final Node result) {
@@ -234,6 +234,6 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
 
         return new CoverageBuildAction(run, COVERAGE_ID, REPORT_NAME, StringUtils.EMPTY, result,
                 qualityGateResult, null, "refId",
-                new TreeMap<>(), List.of(), new TreeMap<>(), List.of(), new TreeMap<>(), List.of(), false);
+                new TreeMap<>(), List.of(), new TreeMap<>(), List.of(), new TreeMap<>(), false);
     }
 }

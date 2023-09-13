@@ -127,26 +127,6 @@ class FileChangesProcessorTest extends AbstractCoverageTest {
         assertThat(file.getDelta(Metric.FILE)).isEqualTo(Fraction.ZERO);
     }
 
-    @Test
-    void shouldAttachIndirectCoverageChanges() {
-        FileChangesProcessor fileChangesProcessor = createFileChangesProcessor();
-        Node reference = readJacocoResult(TEST_REPORT_BEFORE);
-        Node tree = readJacocoResult(TEST_REPORT_AFTER);
-        fileChangesProcessor.attachIndirectCoveragesChanges(tree, reference, CODE_CHANGES, OLD_PATH_MAPPING);
-
-        assertThat(tree.findByHashCode(Metric.FILE, TEST_FILE_1_PATH.hashCode()))
-                .isNotEmpty()
-                .satisfies(node -> {
-                    assertThat(node.get()).isInstanceOf(FileNode.class);
-                    FileNode file = (FileNode) node.get();
-                    assertThat(file.getIndirectCoverageChanges()).containsExactly(
-                            new SimpleEntry<>(11, -1),
-                            new SimpleEntry<>(29, -1),
-                            new SimpleEntry<>(31, 1)
-                    );
-                });
-    }
-
     /**
      * Creates an instance of {@link FileChangesProcessor}.
      *

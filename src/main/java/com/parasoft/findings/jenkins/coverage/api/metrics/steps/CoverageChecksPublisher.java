@@ -328,7 +328,7 @@ class CoverageChecksPublisher {
     }
 
     private List<Baseline> getBaselines() {
-        return List.of(Baseline.PROJECT, Baseline.MODIFIED_FILES, Baseline.MODIFIED_LINES, Baseline.INDIRECT);
+        return List.of(Baseline.PROJECT, Baseline.MODIFIED_FILES, Baseline.MODIFIED_LINES);
     }
 
     private String getOverallCoverageSummary() {
