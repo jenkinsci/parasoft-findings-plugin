@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import io.jenkins.plugins.util.QualityGate;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.Fraction;
 
@@ -527,14 +528,32 @@ public final class ElementFormatter {
         ListBoxModel options = new ListBoxModel();
         add(options, Baseline.PROJECT);
         add(options, Baseline.MODIFIED_LINES);
-        add(options, Baseline.MODIFIED_FILES);
-        add(options, Baseline.PROJECT_DELTA);
-        add(options, Baseline.MODIFIED_LINES_DELTA);
-        add(options, Baseline.MODIFIED_FILES_DELTA);
         return options;
     }
 
     private void add(final ListBoxModel options, final Baseline baseline) {
         options.add(getDisplayName(baseline), baseline.name());
+    }
+
+    public ListBoxModel getCriticalityItems() {
+        ListBoxModel options = new ListBoxModel();
+        add(options, QualityGate.QualityGateCriticality.UNSTABLE);
+        add(options, QualityGate.QualityGateCriticality.FAILURE);
+        return options;
+    }
+
+    private void add(final ListBoxModel options, final QualityGate.QualityGateCriticality criticality) {
+        options.add(getDisplayName(criticality), criticality.name());
+    }
+
+    public String getDisplayName(QualityGate.QualityGateCriticality criticality) {
+        switch (criticality) {
+            case UNSTABLE:
+                return Messages.Criticality_UNSTABLE();
+            case FAILURE:
+                return Messages.Criticality_FAILURE();
+            default:
+                throw new NoSuchElementException("No display name found for criticality " + criticality);
+        }
     }
 }

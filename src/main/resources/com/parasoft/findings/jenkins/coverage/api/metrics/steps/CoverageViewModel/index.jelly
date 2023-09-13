@@ -49,7 +49,7 @@
       </div>
 
       <div role="tabpanel" id="fileCoverage" class="tab-pane fade" aria-labelledby="fileCoverage-tab">
-        <cov:coverage-table showChangedToggle="true" id="absolute-coverage" title="${%Coverage of all files}" symbol="symbol-regular/file-lines plugin-font-awesome-api"/>
+        <cov:coverage-table id="absolute-coverage" title="${%Coverage of all files}" symbol="symbol-regular/file-lines plugin-font-awesome-api"/>
       </div>
 
       <j:if test="${hasModifiedLinesCoverage}">

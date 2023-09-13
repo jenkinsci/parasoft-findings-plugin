@@ -90,11 +90,6 @@ class CoverageTableModel extends TableModel {
                 .withHeaderClass(ColumnCss.HIDDEN)
                 .build();
         columns.add(fileHash);
-        TableColumn modified = new ColumnBuilder().withHeaderLabel("Modified")
-                .withDataPropertyKey("modified")
-                .withHeaderClass(ColumnCss.HIDDEN)
-                .build();
-        columns.add(modified);
         TableColumn fileName = new ColumnBuilder().withHeaderLabel(Messages.Column_File())
                 .withDataPropertyKey("fileName")
                 .withDetailedCell()
@@ -198,11 +193,6 @@ class CoverageTableModel extends TableModel {
 
         public String getFileHash() {
             return String.valueOf(file.getRelativePath().hashCode());
-        }
-
-        @SuppressWarnings("PMD.BooleanGetMethodName")
-        public boolean getModified() {
-            return file.hasModifiedLines();
         }
 
         public DetailedCell<?> getFileName() {

@@ -323,14 +323,6 @@ const CoverageChartGenerator = function ($) {
         $(document).ready(function () {
             initializeSourceCodeSelection('absolute-coverage');
             initializeSourceCodeSelection('change-coverage');
-
-            $('input[name="changed"]').on('change', function () {
-                const showChanged = $(this).prop('checked');
-                $('table.data-table').each(function () {
-                    const table = $(this).DataTable();
-                    table.column(1).search(showChanged ? 'true' : '').draw();
-                });
-            });
         });
     }
 };
