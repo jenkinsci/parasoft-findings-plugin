@@ -29,7 +29,6 @@ public class CoverageQualityGate extends QualityGate {
 
     private static final ElementFormatter FORMATTER = new ElementFormatter();
 
-    private final Metric metric;
     private Baseline baseline = Baseline.PROJECT;
 
     /**
@@ -37,19 +36,10 @@ public class CoverageQualityGate extends QualityGate {
      *
      * @param threshold
      *         minimum or maximum value that triggers this quality gate
-     * @param metric
-     *         the metric to compare
      */
     @DataBoundConstructor
-    public CoverageQualityGate(final double threshold, final Metric metric) {
+    public CoverageQualityGate(final double threshold, final Metric metric, final Baseline baseline, final QualityGateCriticality criticality) {
         super(threshold);
-
-        this.metric = metric;
-    }
-
-    CoverageQualityGate(final double threshold, final Metric metric,
-            final Baseline baseline, final QualityGateCriticality criticality) {
-        this(threshold, metric);
 
         setBaseline(baseline);
         setCriticality(criticality);
@@ -78,7 +68,7 @@ public class CoverageQualityGate extends QualityGate {
     }
 
     public Metric getMetric() {
-        return metric;
+        return Metric.LINE;
     }
 
     public Baseline getBaseline() {
@@ -117,26 +107,18 @@ public class CoverageQualityGate extends QualityGate {
          */
         @POST
         @SuppressWarnings("unused") // used by Stapler view data binding
-        public ListBoxModel doFillMetricItems(@AncestorInPath final AbstractProject<?, ?> project) {
+        public ListBoxModel doFillBaselineItems(@AncestorInPath final AbstractProject<?, ?> project) {
             if (jenkins.hasPermission(Item.CONFIGURE, project)) {
-                return FORMATTER.getMetricItems();
+                return FORMATTER.getBaselineItems();
             }
             return new ListBoxModel();
         }
 
-        /**
-         * Returns a model with all {@link Metric metrics} that can be used in quality gates.
-         *
-         * @param project
-         *         the project that is configured
-         *
-         * @return a model with all {@link Metric metrics}.
-         */
         @POST
         @SuppressWarnings("unused") // used by Stapler view data binding
-        public ListBoxModel doFillBaselineItems(@AncestorInPath final AbstractProject<?, ?> project) {
+        public ListBoxModel doFillCriticalityItems(@AncestorInPath final AbstractProject<?, ?> project) {
             if (jenkins.hasPermission(Item.CONFIGURE, project)) {
-                return FORMATTER.getBaselineItems();
+                return FORMATTER.getCriticalityItems();
             }
             return new ListBoxModel();
         }

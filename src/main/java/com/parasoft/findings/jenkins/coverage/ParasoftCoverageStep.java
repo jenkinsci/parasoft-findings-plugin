@@ -1,5 +1,6 @@
 package com.parasoft.findings.jenkins.coverage;
 
+import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageQualityGate;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -31,7 +32,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
     private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
     private String pattern;
     private String sourceCodeEncoding = StringUtils.EMPTY;
-    private List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates = new ArrayList<>();
+    private List<CoverageQualityGate> CoverageQualityGates = new ArrayList<>();
 
     @DataBoundConstructor
     public ParasoftCoverageStep(){
@@ -67,16 +68,16 @@ public class ParasoftCoverageStep extends Step implements Serializable {
 
     @SuppressWarnings("unused") // used by Stapler view data binding
     @DataBoundSetter
-    public void setParasoftCoverageQualityGates(final List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates) {
-        if (parasoftCoverageQualityGates != null && !parasoftCoverageQualityGates.isEmpty()) {
-            this.parasoftCoverageQualityGates = List.copyOf(parasoftCoverageQualityGates);
+    public void setParasoftCoverageQualityGates(final List<CoverageQualityGate> CoverageQualityGates) {
+        if (CoverageQualityGates != null && !CoverageQualityGates.isEmpty()) {
+            this.CoverageQualityGates = List.copyOf(CoverageQualityGates);
         } else {
-            this.parasoftCoverageQualityGates = new ArrayList<>();
+            this.CoverageQualityGates = new ArrayList<>();
         }
     }
 
-    public List<ParasoftCoverageQualityGate> getParasoftCoverageQualityGates() {
-        return parasoftCoverageQualityGates;
+    public List<CoverageQualityGate> getCoverageQualityGates() {
+        return CoverageQualityGates;
     }
 
     @SuppressFBWarnings(value = "THROWS", justification = "false positive")
@@ -104,7 +105,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
                     run, workspace, logHandler, runResultHandler);
             CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), step.getSourceCodeEncoding(),
-                    step.getParasoftCoverageQualityGates());
+                    step.getCoverageQualityGates());
 
             recorder.perform(run, workspace, taskListener, runResultHandler);
             parasoftCoverageRecorder.deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
