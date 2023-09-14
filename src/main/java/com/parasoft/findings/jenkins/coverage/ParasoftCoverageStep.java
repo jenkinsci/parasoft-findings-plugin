@@ -68,7 +68,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
 
     @SuppressWarnings("unused") // used by Stapler view data binding
     @DataBoundSetter
-    public void setParasoftCoverageQualityGates(final List<CoverageQualityGate> CoverageQualityGates) {
+    public void setCoverageQualityGates(final List<CoverageQualityGate> CoverageQualityGates) {
         if (CoverageQualityGates != null && !CoverageQualityGates.isEmpty()) {
             this.CoverageQualityGates = List.copyOf(CoverageQualityGates);
         } else {
