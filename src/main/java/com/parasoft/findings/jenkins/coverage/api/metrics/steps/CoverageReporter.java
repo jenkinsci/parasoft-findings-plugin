@@ -98,8 +98,7 @@ public class CoverageReporter {
             action = new CoverageBuildAction(build, id, optionalName, icon, rootNode, qualityGateResult, log,
                     referenceAction.getOwner().getExternalizableId(), coverageDelta,
                     modifiedLinesCoverageRoot.aggregateValues(), modifiedLinesCoverageDelta,
-                    aggregatedModifiedFilesCoverage, modifiedFilesCoverageDelta,
-                    rootNode.filterByIndirectChanges().aggregateValues());
+                    aggregatedModifiedFilesCoverage, modifiedFilesCoverageDelta);
         }
         else {
             QualityGateResult qualityGateStatus = evaluateQualityGates(rootNode, log,
@@ -137,18 +136,13 @@ public class CoverageReporter {
             log.logInfo("Obtaining code changes for files...");
             fileChangesProcessor.attachChangedCodeLines(rootNode, mappedChanges);
 
-            log.logInfo("Obtaining indirect coverage changes...");
-            fileChangesProcessor.attachIndirectCoveragesChanges(rootNode, referenceRoot,
-                    mappedChanges, oldPathMapping);
-
             log.logInfo("Obtaining coverage delta for files...");
             fileChangesProcessor.attachFileCoverageDeltas(rootNode, referenceRoot, oldPathMapping);
         }
         catch (IllegalStateException exception) {
             log.logError("An error occurred while processing code and coverage changes:");
             log.logError("-> Message: " + exception.getMessage());
-            log.logError("-> Skipping calculating modified lines coverage, modified files coverage"
-                    + " and indirect coverage changes");
+            log.logError("-> Skipping calculating modified lines coverage and modified files coverage");
         }
     }
 

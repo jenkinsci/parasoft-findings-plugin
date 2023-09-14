@@ -13,7 +13,6 @@ getJenkinsColors = function (colors) {
 };
 
 const CoverageChartGenerator = function ($) {
-    var selectedTreeNode;
 
     function printPercentage(value, minimumFractionDigits = 2) {
         return Number(value / 100.0).toLocaleString(undefined, {style: 'percent', minimumFractionDigits: minimumFractionDigits});
@@ -166,130 +165,6 @@ const CoverageChartGenerator = function ($) {
         summaryChart.resize();
     }
 
-    function createFilesTreeMap(coverageTree, id, coverageMetric) {
-        function getLevelOption() {
-            return [
-                {
-                    itemStyle: {
-                        borderWidth: 0,
-                        gapWidth: 5,
-                    },
-                    upperLabel: {
-                        show: false
-                    }
-                },
-                {
-                    itemStyle: {
-                        gapWidth: 3,
-                    }
-                },
-                {
-                    itemStyle: {
-                        gapWidth: 1,
-                    }
-                },
-                {
-                    itemStyle: {
-                        gapWidth: 1,
-                    }
-                },
-                {
-                    itemStyle: {
-                        gapWidth: 1,
-                    }
-                },
-                {
-                    itemStyle: {
-                        gapWidth: 1,
-                    }
-                },
-                {
-                    itemStyle: {
-                        gapWidth: 1,
-                    }
-                },
-                {
-                    itemStyle: {
-                        gapWidth: 1,
-                    }
-                },
-                {
-                    itemStyle: {
-                        gapWidth: 1,
-                    }
-                },
-                {
-                    itemStyle: {
-                        gapWidth: 1,
-                    }
-                },
-            ];
-        }
-
-        const treeChartDiv = $('#' + id);
-        const treeChart = echarts.init(treeChartDiv[0]);
-        treeChartDiv[0].echart = treeChart;
-
-        const formatUtil = echarts.format;
-
-        const option = {
-            tooltip: {
-                formatter: function (info) {
-                    const treePathInfo = info.treePathInfo;
-                    const treePath = [];
-                    for (let i = 2; i < treePathInfo.length; i++) {
-                        treePath.push(treePathInfo[i].name);
-                    }
-                    selectedTreeNode = info.id;
-                    const values = info.value;
-                    const total = values[0];
-                    const tooltip = values[1];
-
-                    const title = '<div class="jenkins-tooltip healthReportDetails jenkins-tooltip--table-wrapper">' + formatUtil.encodeHTML(treePath.join('.')) + '</div>';
-                    if (total === 0) {
-                        return [title, coverageMetric + ': n/a',].join('');
-                    }
-                    return [title, tooltip].join('');
-                }
-            },
-            series: [
-                {
-                    name: coverageMetric,
-                    type: 'treemap',
-                    breadcrumb: {
-                        itemStyle: {
-                            color: '#A4A4A4'
-                        },
-                        emphasis: {
-                            itemStyle: {
-                                opacity: 0.6
-                            },
-                        }
-                    },
-                    width: '100%',
-                    height: '100%',
-                    top: 'top',
-                    label: {
-                        show: true,
-                        formatter: '{b}',
-                    },
-                    upperLabel: {
-                        show: true,
-                        height: 30,
-                    },
-                    itemStyle: {
-                        shadowColor: '#000',
-                        shadowBlur: 3,
-                    },
-                    levels: getLevelOption(),
-                    data: [coverageTree]
-                }
-            ]
-        };
-        treeChart.setOption(option);
-        treeChart.resize();
-    }
-
     this.populateDetailsCharts = function (jenkinsColors) {
         /**
          * Activate the tab that has been visited the last time. If there is no such tab, highlight the first one.
@@ -352,14 +227,6 @@ const CoverageChartGenerator = function ($) {
             viewProxy.getOverview(function (t) {
                 createOverview(t.responseObject(), 'coverage-overview');
             });
-
-            $('.tree-chart').each(function () {
-                const id = $(this).attr('id');
-                const name = $(this).attr('data-item-name');
-                viewProxy.getCoverageTree(id, function (t) {
-                    createFilesTreeMap(t.responseObject(), id, name);
-                });
-            });
         }
 
         function resizeChartOf(selector) {
@@ -381,10 +248,6 @@ const CoverageChartGenerator = function ($) {
             renderTrendChart(); // re-render since the configuration might have changed
 
             resizeChartOf('#coverage-overview');
-
-            $('.tree-chart').each(function () {
-                $(this)[0].echart.resize();
-            });
         }
 
         function registerTrendChartConfiguration() {
@@ -460,7 +323,6 @@ const CoverageChartGenerator = function ($) {
         $(document).ready(function () {
             initializeSourceCodeSelection('absolute-coverage');
             initializeSourceCodeSelection('change-coverage');
-            initializeSourceCodeSelection('indirect-coverage');
         });
     }
 };

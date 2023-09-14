@@ -74,7 +74,6 @@ class CoverageXmlStream extends AbstractXmlStream<Node> {
 
         xStream.registerLocalConverter(FileNode.class, "coveredPerLine", new IntegerLineMapConverter());
         xStream.registerLocalConverter(FileNode.class, "missedPerLine", new IntegerLineMapConverter());
-        xStream.registerLocalConverter(FileNode.class, "indirectCoverageChanges", new IntegerLineMapConverter());
 
         xStream.registerLocalConverter(FileNode.class, "changedLines", new IntegerSetConverter());
         xStream.registerLocalConverter(FileNode.class, "coverageDelta", new MetricFractionMapConverter());

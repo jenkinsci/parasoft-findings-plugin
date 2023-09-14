@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NavigableSet;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
@@ -25,7 +24,6 @@ import edu.hm.hafner.coverage.FileNode;
 import edu.hm.hafner.coverage.Metric;
 import edu.hm.hafner.coverage.Node;
 import edu.hm.hafner.coverage.Percentage;
-import edu.hm.hafner.echarts.LabeledTreeMapNode;
 import edu.hm.hafner.util.FilteredLog;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 
@@ -37,7 +35,6 @@ import hudson.model.ModelObject;
 import hudson.model.Run;
 
 import io.jenkins.plugins.bootstrap5.MessagesViewModel;
-import com.parasoft.findings.jenkins.coverage.api.metrics.charts.TreeMapNodeConverter;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProviderFactory;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.CoverageColorJenkinsId;
@@ -62,18 +59,14 @@ import io.jenkins.plugins.util.QualityGateResult;
  */
 @SuppressWarnings({"PMD.GodClass", "PMD.ExcessivePublicCount", "checkstyle:ClassDataAbstractionCoupling", "checkstyle:ClassFanOutComplexity"})
 public class CoverageViewModel extends DefaultAsyncTableContentProvider implements ModelObject {
-    private static final TreeMapNodeConverter TREE_MAP_NODE_CONVERTER = new TreeMapNodeConverter();
     private static final BuildResultNavigator NAVIGATOR = new BuildResultNavigator();
     private static final SourceCodeFacade SOURCE_CODE_FACADE = new SourceCodeFacade();
 
     static final String ABSOLUTE_COVERAGE_TABLE_ID = "absolute-coverage-table";
     static final String MODIFIED_LINES_COVERAGE_TABLE_ID = "modified-lines-coverage-table";
-    static final String INDIRECT_COVERAGE_TABLE_ID = "indirect-coverage-table";
     private static final String INLINE_SUFFIX = "-inline";
     private static final String INFO_MESSAGES_VIEW_URL = "info";
 
-    private static final ElementFormatter FORMATTER = new ElementFormatter();
-    private static final Set<Metric> TREE_METRICS = Set.of(Metric.LINE, Metric.INSTRUCTION, Metric.BRANCH, Metric.MUTATION);
     private static final String UNDEFINED = "-";
     private final Run<?, ?> owner;
     private final String optionalName;
@@ -85,7 +78,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
     private final String id;
 
     private final Node modifiedLinesCoverageTreeRoot;
-    private final Node indirectCoverageChangesTreeRoot;
     private final Function<String, String> trendChartFunction;
 
     private ColorProvider colorProvider = ColorProviderFactory.createDefaultColorProvider();
@@ -110,7 +102,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
 
         // initialize filtered coverage trees so that they will not be calculated multiple times
         modifiedLinesCoverageTreeRoot = node.filterByModifiedLines();
-        indirectCoverageChangesTreeRoot = node.filterByIndirectChanges();
         this.trendChartFunction = trendChartFunction;
     }
 
@@ -124,21 +115,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
 
     public Node getNode() {
         return node;
-    }
-
-    public ElementFormatter getFormatter() {
-        return FORMATTER;
-    }
-
-    /**
-     * Returns the value metrics that should be visualized in a tree map.
-     *
-     * @return the value metrics
-     */
-    public NavigableSet<Metric> getTreeMetrics() {
-        var valueMetrics = node.getValueMetrics();
-        valueMetrics.retainAll(TREE_METRICS);
-        return valueMetrics;
     }
 
     @Override
@@ -226,53 +202,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
     }
 
     /**
-     * Returns the root of the tree of nodes for the ECharts treemap. This tree is used as model for the chart on the
-     * client side.
-     *
-     * @param coverageMetric
-     *         the used coverage metric (line, branch, instruction, mutation)
-     *
-     * @return the tree of nodes for the ECharts treemap
-     */
-    @JavaScriptMethod
-    @SuppressWarnings("unused")
-    public LabeledTreeMapNode getCoverageTree(final String coverageMetric) {
-        Metric metric = getCoverageMetricFromText(coverageMetric);
-        return TREE_MAP_NODE_CONVERTER.toTreeChartModel(getNode(), metric, colorProvider);
-    }
-
-    /**
-     * Gets the {@link Metric} from a String representation used in the frontend. Only 'Line' and 'Branch' is possible.
-     * 'Line' is used as a default.
-     *
-     * @param text
-     *         The coverage metric as String
-     *
-     * @return the coverage metric
-     */
-    private Metric getCoverageMetricFromText(final String text) {
-        if (text.contains("line")) {
-            return Metric.LINE;
-        }
-        if (text.contains("branch")) {
-            return Metric.BRANCH;
-        }
-        if (text.contains("instruction")) {
-            return Metric.INSTRUCTION;
-        }
-        if (text.contains("mutation")) {
-            return Metric.MUTATION;
-        }
-        if (text.contains("loc")) {
-            return Metric.LOC;
-        }
-        if (text.contains("density")) {
-            return Metric.COMPLEXITY_DENSITY;
-        }
-        return Metric.COMPLEXITY;
-    }
-
-    /**
      * Returns the table model that matches with the passed table ID and shows the files along with the branch and line
      * coverage.
      *
@@ -291,9 +220,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
                 return new CoverageTableModel(tableId, getNode(), renderer, colorProvider);
             case MODIFIED_LINES_COVERAGE_TABLE_ID:
                 return new ModifiedLinesCoverageTableModel(tableId, getNode(), modifiedLinesCoverageTreeRoot, renderer,
-                        colorProvider);
-            case INDIRECT_COVERAGE_TABLE_ID:
-                return new IndirectCoverageChangesTable(tableId, getNode(), indirectCoverageChangesTreeRoot, renderer,
                         colorProvider);
             default:
                 throw new NoSuchElementException("No such table with id " + actualId);
@@ -383,9 +309,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
             if (MODIFIED_LINES_COVERAGE_TABLE_ID.equals(cleanTableId)) {
                 return SOURCE_CODE_FACADE.calculateModifiedLinesCoverageSourceCode(content, sourceNode);
             }
-            else if (INDIRECT_COVERAGE_TABLE_ID.equals(cleanTableId)) {
-                return SOURCE_CODE_FACADE.calculateIndirectCoverageChangesSourceCode(content, sourceNode);
-            }
             else {
                 return content;
             }
@@ -410,15 +333,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
      */
     public boolean hasModifiedLinesCoverage() {
         return !modifiedLinesCoverageTreeRoot.isEmpty();
-    }
-
-    /**
-     * Checks whether indirect coverage changes exist.
-     *
-     * @return {@code true} whether indirect coverage changes exist, else {@code false}
-     */
-    public boolean hasIndirectCoverageChanges() {
-        return !indirectCoverageChangesTreeRoot.isEmpty();
     }
 
     /**

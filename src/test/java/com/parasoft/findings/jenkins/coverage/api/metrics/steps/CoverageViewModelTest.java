@@ -36,7 +36,6 @@ class CoverageViewModelTest extends AbstractCoverageTest {
         String hash = String.valueOf("PathUtil.java".hashCode());
         assertThat(model.getSourceCode(hash, ABSOLUTE_COVERAGE_TABLE_ID)).isEqualTo("n/a");
         assertThat(model.getSourceCode(hash, MODIFIED_LINES_COVERAGE_TABLE_ID)).isEqualTo("n/a");
-        assertThat(model.getSourceCode(hash, INDIRECT_COVERAGE_TABLE_ID)).isEqualTo("n/a");
     }
 
     @Test
@@ -67,33 +66,9 @@ class CoverageViewModelTest extends AbstractCoverageTest {
     }
 
     @Test
-    void shouldProvideIndirectCoverageChanges() {
-        Node node = createIndirectCoverageChangesNode();
-
-        CoverageViewModel model = createModel(node);
-
-        assertThat(model.hasIndirectCoverageChanges()).isTrue();
-    }
-
-    private Node createIndirectCoverageChangesNode() {
-        var root = new ModuleNode("root");
-        for (int file = 0; file < 5; file++) {
-            var fileNode = new FileNode("File-" + file, "path");
-
-            for (int line = 0; line < 2; line++) {
-                fileNode.addCounters(10 + line, 1, 1);
-                fileNode.addIndirectCoverageChange(10 + line, 2);
-            }
-            root.addChild(fileNode);
-        }
-        return root;
-    }
-
-    @Test
     void shouldProvideRightTableModelById() {
         CoverageViewModel model = createModelFromCodingStyleReport();
         assertThat(model.getTableModel(MODIFIED_LINES_COVERAGE_TABLE_ID)).isInstanceOf(ModifiedLinesCoverageTableModel.class);
-        assertThat(model.getTableModel(INDIRECT_COVERAGE_TABLE_ID)).isInstanceOf(IndirectCoverageChangesTable.class);
         assertThat(model.getTableModel(ABSOLUTE_COVERAGE_TABLE_ID)).isInstanceOf(CoverageTableModel.class);
 
         assertThatExceptionOfType(NoSuchElementException.class)
