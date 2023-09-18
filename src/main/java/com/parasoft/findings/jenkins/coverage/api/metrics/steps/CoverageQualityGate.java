@@ -143,13 +143,5 @@ public class CoverageQualityGate extends QualityGate {
             }
             return new ListBoxModel();
         }
-
-        // Used in jelly file.
-        @SuppressWarnings("unused")
-        public String defaultReferenceBuild() {
-            // The Simplified Chinese display name is provided by the "Localization: Chinese (Simplified)" plugin.
-            // See: https://github.com/jenkinsci/localization-zh-cn-plugin/blob/fd4622d1bded6979c02ed611524fda9b2c0415f3/core/src/main/resources/hudson/model/Messages_zh_CN.properties#L304C12-L304C12
-            return DEFAULT_REFERENCE_BUILD.getDisplayName();
-        }
     }
 }

@@ -14,7 +14,7 @@
 
     <f:entry title="${%title.referenceBuild}" field="referenceBuild"
              help="/plugin/parasoft-findings/help/parasoftCoverage/help-referenceBuild.html">
-        <f:textbox placeholder="${descriptor.defaultReferenceBuild()}"/>
+        <f:textbox placeholder="${%Permalink.LastSuccessfulBuild}"/>
     </f:entry>
 
     <f:entry title="${%title.criticality}" field="criticality"
