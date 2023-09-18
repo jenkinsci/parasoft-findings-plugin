@@ -11,6 +11,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.Fraction;
 import org.junit.jupiter.api.Test;
@@ -224,7 +225,7 @@ class CoverageXmlStreamTest extends SerializableTest<Node> {
     CoverageBuildAction createAction() {
         var tree = createSerializable();
 
-        return new CoverageBuildAction(mock(FreeStyleBuild.class), CoverageRecorder.DEFAULT_ID, StringUtils.EMPTY,
+        return new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID, StringUtils.EMPTY,
                 StringUtils.EMPTY,
                 tree, new QualityGateResult(), new FilteredLog("Test"), "-",
                 new TreeMap<>(), List.of(), new TreeMap<>(), List.of(),

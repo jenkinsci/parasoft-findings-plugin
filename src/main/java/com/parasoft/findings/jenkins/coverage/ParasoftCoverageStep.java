@@ -10,7 +10,6 @@ import hudson.model.*;
 
 import hudson.util.ComboBoxModel;
 import hudson.util.FormValidation;
-import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.jenkinsci.plugins.workflow.graph.FlowNode;
@@ -104,7 +103,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             LogHandler logHandler = new LogHandler(taskListener, PARASOFT_COVERAGE_NAME);
             CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
                     run, workspace, logHandler, runResultHandler);
-            CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), step.getSourceCodeEncoding(),
+            ParasoftCoverageRecorder recorder = setUpCoverageRecorder(step.getSourceCodeEncoding(),
                     step.getCoverageQualityGates());
 
             recorder.perform(run, workspace, taskListener, runResultHandler);
@@ -159,4 +158,13 @@ public class ParasoftCoverageStep extends Step implements Serializable {
         }
     }
 
+    static ParasoftCoverageRecorder setUpCoverageRecorder(final String sourceCodeEncoding,
+                                                          final List<CoverageQualityGate> coverageQualityGates) {
+        ParasoftCoverageRecorder recorder = new ParasoftCoverageRecorder();
+        recorder.setCoverageQualityGates(coverageQualityGates);
+        if (!sourceCodeEncoding.isEmpty()) {
+            recorder.setSourceCodeEncoding(sourceCodeEncoding);
+        }
+        return recorder;
+    }
 }

@@ -15,6 +15,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.ChecksAnnotationScope;
 import org.apache.commons.lang3.StringUtils;
 
 import edu.hm.hafner.coverage.FileNode;
@@ -37,7 +38,6 @@ import io.jenkins.plugins.checks.api.ChecksPublisherFactory;
 import io.jenkins.plugins.checks.api.ChecksStatus;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.ElementFormatter;
-import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageRecorder.ChecksAnnotationScope;
 import io.jenkins.plugins.util.JenkinsFacade;
 import io.jenkins.plugins.util.QualityGateStatus;
 
@@ -47,6 +47,7 @@ import io.jenkins.plugins.util.QualityGateStatus;
  * @author Florian Orendi
  */
 @SuppressWarnings("PMD.GodClass")
+public
 class CoverageChecksPublisher {
     private static final ElementFormatter FORMATTER = new ElementFormatter();
     private static final int TITLE_HEADER_LEVEL = 4;
@@ -60,8 +61,8 @@ class CoverageChecksPublisher {
     private final String checksName;
     private final ChecksAnnotationScope annotationScope;
 
-    CoverageChecksPublisher(final CoverageBuildAction action, final Node rootNode, final String checksName,
-            final ChecksAnnotationScope annotationScope) {
+    public CoverageChecksPublisher(final CoverageBuildAction action, final Node rootNode, final String checksName,
+                                   final ChecksAnnotationScope annotationScope) {
         this(action, rootNode, checksName, annotationScope, new JenkinsFacade());
     }
 
@@ -81,7 +82,7 @@ class CoverageChecksPublisher {
      * @param listener
      *         The task listener
      */
-    void publishCoverageReport(final TaskListener listener) {
+    public void publishCoverageReport(final TaskListener listener) {
         var publisher = ChecksPublisherFactory.fromRun(action.getOwner(), listener);
         publisher.publish(extractChecksDetails());
     }
