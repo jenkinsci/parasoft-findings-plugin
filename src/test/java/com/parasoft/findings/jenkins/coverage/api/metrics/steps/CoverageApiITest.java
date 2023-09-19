@@ -28,13 +28,13 @@ class CoverageApiITest extends AbstractCoverageITest {
         assertThatJson(remoteApiResult)
                 .node("projectStatistics").isEqualTo("{\n"
                         + "  \"branch\": \"88.28%\",\n"
-                        + "  \"complexity\": \"2558\",\n"
+                        + "  \"complexity\": \"24057/2558\",\n"
                         + "  \"complexity-density\": \"+44.12%\",\n"
-                        + "  \"complexity-maximum\": \"21\",\n"
+                        + "  \"complexity-maximum\": \"24057/21\",\n"
                         + "  \"file\": \"99.67%\",\n"
                         + "  \"instruction\": \"96.11%\",\n"
                         + "  \"line\": \"95.39%\",\n"
-                        + "  \"loc\": \"5798\",\n"
+                        + "  \"loc\": \"24057/5798\",\n"
                         + "  \"method\": \"97.29%\",\n"
                         + "  \"module\": \"100.00%\",\n"
                         + "  \"package\": \"100.00%\"}");

@@ -8,9 +8,18 @@
       <a id="coverage-action-link-${it.urlName}" href="${it.urlName}/">${it.displayName}</a>
       <fa:image-button label="${%Open log messages}" name="circle-info" tooltip="${%icon.info.tooltip}" url="${it.urlName}/info"/>
       <ul>
-        <j:forEach var="baseline" items="${it.baselines}">
-          <cov:coverage-summary baseline="${baseline}" />
-        </j:forEach>
+        <j:if test="${it.hasBaselineResult(it.projectBaseline)}">
+          <li>
+            <a href="${it.urlName}/#${it.projectBaseline.url}">${it.getTitle(it.projectBaseline)}</a>
+            <div class="${it.projectBaseline}-summary">
+              <ul>
+                <j:forEach var="value" items="${it.getValues(it.projectBaseline)}">
+                  <li>${it.formatter.formatValueWithMetric(value)}</li>
+                </j:forEach>
+              </ul>
+            </div>
+          </li>
+        </j:if>
         <j:if test="${it.referenceBuild.present}">
           <span id="coverage-reference">
             <li>
