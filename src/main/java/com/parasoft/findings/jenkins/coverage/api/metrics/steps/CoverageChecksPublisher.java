@@ -47,8 +47,7 @@ import io.jenkins.plugins.util.QualityGateStatus;
  * @author Florian Orendi
  */
 @SuppressWarnings("PMD.GodClass")
-public
-class CoverageChecksPublisher {
+public class CoverageChecksPublisher {
     private static final ElementFormatter FORMATTER = new ElementFormatter();
     private static final int TITLE_HEADER_LEVEL = 4;
     private static final char NEW_LINE = '\n';

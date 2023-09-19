@@ -60,7 +60,6 @@ public class ParasoftCoverageRecorder extends Recorder {
     private static final String FILE_PATTERN_SEPARATOR = ","; // $NON-NLS-1$
     private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
 
-    private boolean failOnError = false;
     private String pattern = StringUtils.EMPTY;
     private String sourceCodeEncoding = StringUtils.EMPTY;
     private List<CoverageQualityGate> coverageQualityGates = new ArrayList<>();
@@ -77,22 +76,6 @@ public class ParasoftCoverageRecorder extends Recorder {
 
     public String getName() {
         return PARASOFT_COVERAGE_NAME;
-    }
-
-    @DataBoundSetter
-    @SuppressWarnings("unused") // Used by Stapler
-    public void setFailOnError(final boolean failOnError) {
-        this.failOnError = failOnError;
-    }
-
-    public boolean isFailOnError() {
-        return failOnError;
-    }
-
-    private Set<String> getSourceDirectoriesPaths() {
-        Set<String> paths = new HashSet<>();
-        paths.add("src/main/java");
-        return paths;
     }
 
     @DataBoundSetter
@@ -142,13 +125,7 @@ public class ParasoftCoverageRecorder extends Recorder {
             throw new IOException("No workspace found for " + build); // $NON-NLS-1$
         }
 
-        LogHandler logHandler = new LogHandler(listener, PARASOFT_COVERAGE_NAME);
-        CoverageConversionResult coverageResult = performCoverageReportConversion(build, workspace, logHandler,
-                new RunResultHandler(build));
-
         perform(build, workspace, listener, new RunResultHandler(build));
-
-        deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
 
         return true;
     }
@@ -160,11 +137,6 @@ public class ParasoftCoverageRecorder extends Recorder {
         if (overallResult == null || overallResult.isBetterOrEqualTo(Result.UNSTABLE)) {
             FilteredLog log = new FilteredLog("Errors while recording code coverage:");
             log.logInfo("Recording coverage results");
-
-            var validation = VALIDATION_UTILITIES.validateId(getId());
-            if (validation.kind != FormValidation.Kind.OK) {
-                failStage(resultHandler, logHandler, log, validation.getLocalizedMessage());
-            }
 
             perform(run, workspace, taskListener, resultHandler, log, logHandler);
         }
@@ -182,8 +154,6 @@ public class ParasoftCoverageRecorder extends Recorder {
             var rootNode = Node.merge(results);
 
             var sources = rootNode.getSourceFolders();
-            sources.addAll(getSourceDirectoriesPaths());
-
             resolveAbsolutePaths(rootNode, workspace, sources, log);
             logHandler.log(log);
 
@@ -194,13 +164,6 @@ public class ParasoftCoverageRecorder extends Recorder {
             var checksPublisher = new CoverageChecksPublisher(action, rootNode, getName(), ChecksAnnotationScope.MODIFIED_LINES);
             checksPublisher.publishCoverageReport(taskListener);
         }
-    }
-
-    private static void failStage(final StageResultHandler resultHandler, final LogHandler logHandler,
-                                  final FilteredLog log, final String message) {
-        log.logError(message);
-        resultHandler.setResult(Result.FAILURE, message);
-        logHandler.log(log);
     }
 
     private List<Node> recordCoverageResults(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
@@ -216,23 +179,14 @@ public class ParasoftCoverageRecorder extends Recorder {
             log.merge(result.getLog());
 
             var coverageResults = result.getResults();
-            if (result.hasErrors()) {
-                if (isFailOnError()) {
-                    var errorMessage = "Failing build due to some errors during recording of the coverage";
-                    log.logInfo(errorMessage);
-                    resultHandler.setResult(Result.FAILURE, errorMessage);
-                }
-                else {
-                    log.logInfo("Ignore errors and continue processing");
-                }
-            }
             results.addAll(coverageResults);
         }
         catch (IOException exception) {
-            log.logException(exception, "Exception while parsing with tool " + CoverageTool.Parser.COBERTURA);
+            log.logException(exception, "Exception while parsing with " + CoverageTool.Parser.COBERTURA);
         }
 
         logHandler.log(log);
+        deleteTemporaryCoverageDirs(workspace, coverageConversionResult.getGeneratedCoverageBuildDirs(), logHandler);
 
         return results;
     }
