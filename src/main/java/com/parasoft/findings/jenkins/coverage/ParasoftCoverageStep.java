@@ -98,16 +98,10 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             FilePath workspace = getWorkspace();
             TaskListener taskListener = getTaskListener();
             RunResultHandler runResultHandler = new RunResultHandler(run);
-            var parasoftCoverageRecorder = new ParasoftCoverageRecorder();
-            parasoftCoverageRecorder.setPattern(step.getPattern());
-            LogHandler logHandler = new LogHandler(taskListener, PARASOFT_COVERAGE_NAME);
-            CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
-                    run, workspace, logHandler, runResultHandler);
-            ParasoftCoverageRecorder recorder = setUpCoverageRecorder(step.getSourceCodeEncoding(),
+            ParasoftCoverageRecorder recorder = setUpCoverageRecorder(step.getPattern(), step.getSourceCodeEncoding(),
                     step.getCoverageQualityGates());
 
             recorder.perform(run, workspace, taskListener, runResultHandler);
-            parasoftCoverageRecorder.deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
             return UNUSED;
         }
     }
@@ -158,9 +152,10 @@ public class ParasoftCoverageStep extends Step implements Serializable {
         }
     }
 
-    static ParasoftCoverageRecorder setUpCoverageRecorder(final String sourceCodeEncoding,
+    static ParasoftCoverageRecorder setUpCoverageRecorder(final String pattern, final String sourceCodeEncoding,
                                                           final List<CoverageQualityGate> coverageQualityGates) {
         ParasoftCoverageRecorder recorder = new ParasoftCoverageRecorder();
+        recorder.setPattern(pattern);
         recorder.setCoverageQualityGates(coverageQualityGates);
         if (!sourceCodeEncoding.isEmpty()) {
             recorder.setSourceCodeEncoding(sourceCodeEncoding);

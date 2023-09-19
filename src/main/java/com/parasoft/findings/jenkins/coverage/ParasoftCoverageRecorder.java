@@ -135,7 +135,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         Result overallResult = run.getResult();
         LogHandler logHandler = new LogHandler(taskListener, PARASOFT_COVERAGE_NAME);
         if (overallResult == null || overallResult.isBetterOrEqualTo(Result.UNSTABLE)) {
-            FilteredLog log = new FilteredLog("Errors while recording code coverage:");
+            FilteredLog log = new FilteredLog("Errors while recording Parasoft code coverage:");
             log.logInfo("Recording coverage results");
 
             perform(run, workspace, taskListener, resultHandler, log, logHandler);
@@ -147,7 +147,7 @@ public class ParasoftCoverageRecorder extends Recorder {
 
     private void perform(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
                          final StageResultHandler resultHandler, final FilteredLog log, final LogHandler logHandler) throws InterruptedException {
-        List<edu.hm.hafner.coverage.Node> results = recordCoverageResults(run, workspace, taskListener, resultHandler, log);
+        List<edu.hm.hafner.coverage.Node> results = recordCoverageResults(run, workspace, taskListener, logHandler, log);
 
         if (!results.isEmpty()) {
             CoverageReporter reporter = new CoverageReporter();
@@ -158,7 +158,7 @@ public class ParasoftCoverageRecorder extends Recorder {
             logHandler.log(log);
 
             var action = reporter.publishAction(getId(), getName(), getIcon(), rootNode, run,
-                    workspace, taskListener, getCoverageQualityGates(), "",
+                    workspace, taskListener, getCoverageQualityGates(), StringUtils.EMPTY,
                     getSourceCodeEncoding(), SourceCodeRetention.LAST_BUILD, resultHandler);
 
             var checksPublisher = new CoverageChecksPublisher(action, rootNode, getName(), ChecksAnnotationScope.MODIFIED_LINES);
@@ -167,11 +167,10 @@ public class ParasoftCoverageRecorder extends Recorder {
     }
 
     private List<Node> recordCoverageResults(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
-                                             final StageResultHandler resultHandler, final FilteredLog log) throws InterruptedException {
+                                             final LogHandler logHandler, final FilteredLog log) throws InterruptedException {
         List<Node> results = new ArrayList<>();
-        LogHandler logHandler = new LogHandler(taskListener, PARASOFT_COVERAGE_NAME);
         CoverageConversionResult coverageConversionResult = performCoverageReportConversion(run, workspace, logHandler,
-                new RunResultHandler(run));
+                new RunResultHandler(run), log);
 
         try {
             AgentFileVisitor.FileVisitorResult<ModuleNode> result = workspace.act(
@@ -186,7 +185,7 @@ public class ParasoftCoverageRecorder extends Recorder {
         }
 
         logHandler.log(log);
-        deleteTemporaryCoverageDirs(workspace, coverageConversionResult.getGeneratedCoverageBuildDirs(), logHandler);
+        deleteTemporaryCoverageDirs(workspace, coverageConversionResult.getGeneratedCoverageBuildDirs(), logHandler, log);
 
         return results;
     }
@@ -213,9 +212,9 @@ public class ParasoftCoverageRecorder extends Recorder {
     // Return Cobertura patterns and temporary coverage directories for this build.
     CoverageConversionResult performCoverageReportConversion(final Run<?, ?> run, final FilePath workspace,
                                                              final LogHandler logHandler,
-                                                             final StageResultHandler resultHandler)
+                                                             final StageResultHandler resultHandler,
+                                                             final FilteredLog log)
             throws InterruptedException {
-        FilteredLog log = new FilteredLog("Errors while recording Parasoft code coverage:"); // $NON-NLS-1$
         log.logInfo("Recording Parasoft coverage results"); // $NON-NLS-1$
         return convertCoverageReport(run, workspace, resultHandler,
                 log, logHandler);
@@ -298,10 +297,9 @@ public class ParasoftCoverageRecorder extends Recorder {
     }
 
     void deleteTemporaryCoverageDirs(final FilePath workspace, final Set<String> tempCoverageDirs,
-                                             final LogHandler logHandler)
+                                             final LogHandler logHandler, final FilteredLog log)
             throws InterruptedException {
         logHandler.log("Deleting temporary coverage files"); // $NON-NLS-1$
-        FilteredLog log = new FilteredLog("Errors while deleting temporary coverage files:"); // $NON-NLS-1$
         for (String tempCoverageDir : tempCoverageDirs) {
             try {
                 Objects.requireNonNull(workspace.child(tempCoverageDir).getParent()).deleteRecursive();
