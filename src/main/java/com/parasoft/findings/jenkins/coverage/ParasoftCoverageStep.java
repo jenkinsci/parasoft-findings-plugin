@@ -10,7 +10,6 @@ import hudson.model.*;
 
 import hudson.util.ComboBoxModel;
 import hudson.util.FormValidation;
-import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.jenkinsci.plugins.workflow.graph.FlowNode;
@@ -99,16 +98,10 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             FilePath workspace = getWorkspace();
             TaskListener taskListener = getTaskListener();
             RunResultHandler runResultHandler = new RunResultHandler(run);
-            var parasoftCoverageRecorder = new ParasoftCoverageRecorder();
-            parasoftCoverageRecorder.setPattern(step.getPattern());
-            LogHandler logHandler = new LogHandler(taskListener, PARASOFT_COVERAGE_NAME);
-            CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
-                    run, workspace, logHandler, runResultHandler);
-            CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), step.getSourceCodeEncoding(),
+            ParasoftCoverageRecorder recorder = setUpCoverageRecorder(step.getPattern(), step.getSourceCodeEncoding(),
                     step.getCoverageQualityGates());
 
             recorder.perform(run, workspace, taskListener, runResultHandler);
-            parasoftCoverageRecorder.deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
             return UNUSED;
         }
     }
@@ -159,4 +152,14 @@ public class ParasoftCoverageStep extends Step implements Serializable {
         }
     }
 
+    static ParasoftCoverageRecorder setUpCoverageRecorder(final String pattern, final String sourceCodeEncoding,
+                                                          final List<CoverageQualityGate> coverageQualityGates) {
+        ParasoftCoverageRecorder recorder = new ParasoftCoverageRecorder();
+        recorder.setPattern(pattern);
+        recorder.setCoverageQualityGates(coverageQualityGates);
+        if (!sourceCodeEncoding.isEmpty()) {
+            recorder.setSourceCodeEncoding(sourceCodeEncoding);
+        }
+        return recorder;
+    }
 }

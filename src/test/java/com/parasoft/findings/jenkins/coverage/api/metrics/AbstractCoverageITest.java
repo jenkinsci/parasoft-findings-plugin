@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder;
 import org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition;
 import org.jenkinsci.plugins.workflow.job.WorkflowJob;
 import hudson.model.FreeStyleProject;
 
-import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageRecorder;
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
 import io.jenkins.plugins.util.IntegrationTestWithJenkinsPerSuite;
 
@@ -23,7 +23,7 @@ public abstract class AbstractCoverageITest extends IntegrationTestWithJenkinsPe
     }
 
     protected FreeStyleProject createFreestyleJob(final Parser parser,
-            final Consumer<CoverageRecorder> configuration, final String... fileNames) {
+                                                  final Consumer<ParasoftCoverageRecorder> configuration, final String... fileNames) {
         FreeStyleProject project = createFreeStyleProjectWithWorkspaceFiles(fileNames);
 
         addCoverageRecorder(project, parser, "**/*xml", configuration);
@@ -37,18 +37,13 @@ public abstract class AbstractCoverageITest extends IntegrationTestWithJenkinsPe
     }
 
     void addCoverageRecorder(final FreeStyleProject project,
-            final Parser parser, final String pattern, final Consumer<CoverageRecorder> configuration) {
-        CoverageRecorder recorder = new CoverageRecorder();
-
-        var tool = new com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool();
-        tool.setParser(parser);
-        tool.setPattern(pattern);
-        recorder.setTools(List.of(tool));
+            final Parser parser, final String pattern, final Consumer<ParasoftCoverageRecorder> configuration) {
+        ParasoftCoverageRecorder recorder = new ParasoftCoverageRecorder();
 
         configuration.accept(recorder);
 
         try {
-            project.getPublishersList().remove(CoverageRecorder.class);
+            project.getPublishersList().remove(ParasoftCoverageRecorder.class);
         }
         catch (IOException exception) {
             // ignore and continue

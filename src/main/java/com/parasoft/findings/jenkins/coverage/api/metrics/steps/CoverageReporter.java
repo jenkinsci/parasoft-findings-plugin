@@ -39,10 +39,10 @@ import io.jenkins.plugins.util.StageResultHandler;
 @SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
 public class CoverageReporter {
     @SuppressWarnings("checkstyle:ParameterNumber")
-    CoverageBuildAction publishAction(final String id, final String optionalName, final String icon, final Node rootNode,
-            final Run<?, ?> build, final FilePath workspace, final TaskListener listener,
-            final List<CoverageQualityGate> qualityGates, final String scm, final String sourceCodeEncoding,
-            final SourceCodeRetention sourceCodeRetention, final StageResultHandler resultHandler)
+    public CoverageBuildAction publishAction(final String id, final String optionalName, final String icon, final Node rootNode,
+                                             final Run<?, ?> build, final FilePath workspace, final TaskListener listener,
+                                             final List<CoverageQualityGate> qualityGates, final String scm, final String sourceCodeEncoding,
+                                             final SourceCodeRetention sourceCodeRetention, final StageResultHandler resultHandler)
             throws InterruptedException {
         FilteredLog log = new FilteredLog("Errors while reporting code coverage results:");
 
