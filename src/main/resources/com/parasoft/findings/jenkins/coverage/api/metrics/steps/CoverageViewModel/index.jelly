@@ -36,13 +36,8 @@
       <div role="tabpanel" id="overview" class="tab-pane fade" aria-labelledby="overview-tab" >
         <div class="row">
           <div class="col-5">
-            <bs:card title="${%Total coverage overview}" fontAwesomeIcon="chart-bar">
+            <bs:card title="${%Parasoft Coverage}" fontAwesomeIcon="chart-bar">
               <div id="coverage-overview" class="graph-cursor-pointer overview-chart h-100"/>
-            </bs:card>
-          </div>
-          <div class="col-7">
-            <bs:card title="${%Coverage trend}" fontAwesomeIcon="chart-line">
-              <div id="coverage-trend" class="graph-cursor-pointer overview-chart h-100"/>
             </bs:card>
           </div>
         </div>

@@ -222,7 +222,6 @@ const CoverageChartGenerator = function ($) {
          */
         // TODO: maybe it would make sense to render only visible charts
         function initializeCharts() {
-            renderTrendChart();
 
             viewProxy.getOverview(function (t) {
                 createOverview(t.responseObject(), 'coverage-overview');
@@ -233,19 +232,10 @@ const CoverageChartGenerator = function ($) {
             $(selector)[0].echart.resize();
         }
 
-        function renderTrendChart() {
-            const configuration = JSON.stringify(echartsJenkinsApi.readFromLocalStorage('jenkins-echarts-chart-configuration-coverage-history'));
-            viewProxy.getTrendChart(configuration, function (t) {
-                echartsJenkinsApi.renderConfigurableZoomableTrendChart('coverage-trend', t.responseJSON, 'chart-configuration-coverage-history', openBuild);
-                resizeChartOf('#coverage-trend');
-            });
-        }
-
         /**
          * Event handler to resizes all charts.
          */
         function redrawCharts() {
-            renderTrendChart(); // re-render since the configuration might have changed
 
             resizeChartOf('#coverage-overview');
         }
