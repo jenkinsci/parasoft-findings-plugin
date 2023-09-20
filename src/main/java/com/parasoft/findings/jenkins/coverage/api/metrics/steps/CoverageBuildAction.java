@@ -59,7 +59,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     private static final long serialVersionUID = -6023811049340671399L;
 
     private static final ElementFormatter FORMATTER = new ElementFormatter();
-    private static final String NO_REFERENCE_BUILD = "-";
+    static final String NO_REFERENCE_BUILD = "-";
 
     private final String id;
     private final String name;

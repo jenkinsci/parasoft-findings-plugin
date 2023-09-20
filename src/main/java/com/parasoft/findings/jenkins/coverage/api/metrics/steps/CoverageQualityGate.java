@@ -19,6 +19,7 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.ElementFormatter
 import io.jenkins.plugins.util.JenkinsFacade;
 import io.jenkins.plugins.util.QualityGate;
 
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageBuildAction.NO_REFERENCE_BUILD;
 import static hudson.model.PermalinkProjectAction.Permalink.LAST_SUCCESSFUL_BUILD;
 
 /**
@@ -31,7 +32,7 @@ import static hudson.model.PermalinkProjectAction.Permalink.LAST_SUCCESSFUL_BUIL
 public class CoverageQualityGate extends QualityGate {
     private static final long serialVersionUID = -397278599489426668L;
 
-    private static final PermalinkProjectAction.Permalink DEFAULT_REFERENCE_BUILD = LAST_SUCCESSFUL_BUILD;
+    static final PermalinkProjectAction.Permalink DEFAULT_REFERENCE_BUILD = LAST_SUCCESSFUL_BUILD;
 
     private static final ElementFormatter FORMATTER = new ElementFormatter();
 
@@ -66,7 +67,11 @@ public class CoverageQualityGate extends QualityGate {
 
     @DataBoundSetter
     public void setReferenceBuild(String referenceBuild) {
-        this.referenceBuild = referenceBuild;
+        if (Baseline.PROJECT.equals(getBaseline())) {
+            this.referenceBuild = NO_REFERENCE_BUILD;
+        } else {
+            this.referenceBuild = referenceBuild;
+        }
     }
 
     public String getReferenceBuild() {
