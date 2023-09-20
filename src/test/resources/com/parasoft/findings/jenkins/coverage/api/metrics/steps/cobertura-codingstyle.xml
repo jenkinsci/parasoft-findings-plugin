@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage line-rate="0.77777777777777777778" branch-rate="0.5" lines-covered="6" lines-valid="7"
+          branches-covered="1" version="gcovr 6.0">
+    <packages>
+        <package name="&lt;default&gt;" line-rate="1">
+            <classes>
+                <class filename="src/main/java/Calculator.java" name="Calculator" line-rate="1">
+                    <lines>
+                        <line number="3" hits="2" />
+                        <line number="5" hits="2" />
+                        <line number="7" hits="1" />
+                        <line number="8" hits="1" />
+                        <line number="9" hits="1" />
+                    </lines>
+                </class>
+                <class filename="src/main/java/Calculator.java" name="Calculator#Screen" line-rate="1">
+                    <lines>
+                        <line number="15" hits="2" />
+                        <line number="16" hits="2" />
+                        <line number="17" hits="2" />
+                        <line number="20" hits="1" />
+                        <line number="21" hits="1" />
+                    </lines>
+                </class>
+                <class filename="src/main/java/Calculator.java" name="Calculator#Screen#Brightness"
+                       line-rate="1">
+                    <lines>
+                        <line number="23" hits="2" />
+                        <line number="24" hits="1" />
+                    </lines>
+                </class>
+            </classes>
+        </package>
+        <package name="com.parasoft" line-rate="0.66666666666666666667">
+            <classes>
+                <class filename="src/main/java/com/parasoft/Convertor.java" name="com.parasoft.Convertor"
+                       line-rate="0.66666666666666666667">
+                    <lines>
+                        <line number="12" hits="0" />
+                        <line number="5" hits="3" />
+                        <line number="7" hits="3" />
+                    </lines>
+                </class>
+            </classes>
+        </package>
+        <package name="com.parasoft.another" line-rate="1">
+            <classes>
+                <class filename="src/main/java/com/parasoft/another/Convertor.java"
+                       name="com.parasoft.another.Convertor" line-rate="1">
+                    <lines>
+                        <line number="12" hits="1" />
+                        <line number="5" hits="2" />
+                        <line number="7" hits="1" />
+                    </lines>
+                </class>
+            </classes>
+        </package>
+        <package name="com.parasoft.interfaces2" line-rate="1">
+            <classes>
+                <class filename="src/main/java/com/parasoft/interfaces2/ICalculator.java"
+                       name="com.parasoft.interfaces2.ICalculator" line-rate="1">
+                    <lines>
+                        <line number="5" hits="1" />
+                    </lines>
+                </class>
+            </classes>
+        </package>
+        <package name="com.parasoft.nested" line-rate="0.58823529411764705882">
+            <classes>
+                <class filename="src/main/java/com/parasoft/nested/PhoneFactory.java"
+                       name="com.parasoft.nested.PhoneFactory" line-rate="0.5">
+                    <lines>
+                        <line number="6" hits="0" />
+                        <line number="9" hits="1" />
+                    </lines>
+                </class>
+                <class filename="src/main/java/com/parasoft/nested/PhoneFactory.java"
+                       name="com.parasoft.nested.PhoneFactory#Phone" line-rate="0.53846153846153846154">
+                    <lines>
+                        <line number="24" hits="0" />
+                        <line number="25" hits="0" />
+                        <line number="26" hits="0" />
+                        <line number="27" hits="0" />
+                        <line number="29" hits="1" />
+                        <line number="30" hits="1" />
+                        <line number="31" hits="1" />
+                        <line number="32" hits="1" />
+                        <line number="35" hits="0" />
+                        <line number="36" hits="0" />
+                        <line number="39" hits="1" />
+                        <line number="43" hits="1" />
+                        <line number="47" hits="1" />
+                    </lines>
+                </class>
+                <class filename="src/main/java/com/parasoft/nested/PhoneFactory.java"
+                       name="com.parasoft.nested.PhoneFactory#Brand" line-rate="1">
+                    <lines>
+                        <line number="12" hits="2" />
+                        <line number="13" hits="1" />
+                    </lines>
+                </class>
+            </classes>
+        </package>
+    </packages>
+</coverage>
