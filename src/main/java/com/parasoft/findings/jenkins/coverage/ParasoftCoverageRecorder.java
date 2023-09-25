@@ -51,6 +51,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static hudson.model.PermalinkProjectAction.Permalink.LAST_SUCCESSFUL_BUILD;
+
 public class ParasoftCoverageRecorder extends Recorder {
 
     public static final String PARASOFT_COVERAGE_ID = "parasoft-coverage"; // $NON-NLS-1$
@@ -59,10 +61,12 @@ public class ParasoftCoverageRecorder extends Recorder {
     private static final String COBERTURA_XSL_NAME = "cobertura.xsl"; // $NON-NLS-1$
     private static final String FILE_PATTERN_SEPARATOR = ","; // $NON-NLS-1$
     private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
+    private static final PermalinkProjectAction.Permalink DEFAULT_REFERENCE_BUILD = LAST_SUCCESSFUL_BUILD;
 
     private String pattern = StringUtils.EMPTY;
     private String sourceCodeEncoding = StringUtils.EMPTY;
     private List<CoverageQualityGate> coverageQualityGates = new ArrayList<>();
+    private String referenceBuild = StringUtils.EMPTY;
 
     @DataBoundConstructor
     public ParasoftCoverageRecorder() {
@@ -110,6 +114,19 @@ public class ParasoftCoverageRecorder extends Recorder {
     @SuppressWarnings("unused")
     public List<CoverageQualityGate> getCoverageQualityGates() {
         return coverageQualityGates;
+    }
+
+    @DataBoundSetter
+    public void setReferenceBuild(String referenceBuild) {
+        this.referenceBuild = referenceBuild;
+    }
+
+    public String getReferenceBuild() {
+        return referenceBuild;
+    }
+
+    public String getActualReferenceBuild() {
+        return StringUtils.defaultIfBlank(referenceBuild, DEFAULT_REFERENCE_BUILD.getId());
     }
 
     @Override
