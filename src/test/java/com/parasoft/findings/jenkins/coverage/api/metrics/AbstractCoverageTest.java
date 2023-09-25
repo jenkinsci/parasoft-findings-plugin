@@ -31,17 +31,7 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.CoverageStatisti
 @DefaultLocale("en")
 @SuppressWarnings("checkstyle:JavadocVariable")
 public abstract class AbstractCoverageTest extends ResourceTest {
-    public static final String JACOCO_ANALYSIS_MODEL_FILE = "jacoco-analysis-model.xml";
-    public static final int JACOCO_ANALYSIS_MODEL_COVERED = 5531;
-    public static final int JACOCO_ANALYSIS_MODEL_MISSED = 267;
-    public static final int JACOCO_ANALYSIS_MODEL_TOTAL
-            = JACOCO_ANALYSIS_MODEL_COVERED + JACOCO_ANALYSIS_MODEL_MISSED;
-
     public static final String JACOCO_CODING_STYLE_FILE = "jacoco-codingstyle.xml";
-    public static final int JACOCO_CODING_STYLE_COVERED = 294;
-    public static final int JACOCO_CODING_STYLE_MISSED = 29;
-    public static final int JACOCO_CODING_STYLE_TOTAL
-            = JACOCO_CODING_STYLE_COVERED + JACOCO_CODING_STYLE_MISSED;
     private final FilteredLog log = new FilteredLog("Errors");
 
     /**
@@ -77,19 +67,13 @@ public abstract class AbstractCoverageTest extends ResourceTest {
         }
     }
 
-    protected FilteredLog getLog() {
-        return log;
-    }
-
     /**
      * Creates coverage statistics that can be used in test cases.
      *
      * @return the coverage statistics
      */
     public static CoverageStatistics createStatistics() {
-        return new CoverageStatistics(fillValues(), fillDeltas(),
-                fillValues(), fillDeltas(),
-                fillValues(), fillDeltas());
+        return new CoverageStatistics(fillValues(), fillValues());
     }
 
     /**
@@ -98,8 +82,7 @@ public abstract class AbstractCoverageTest extends ResourceTest {
      * @return the coverage statistics
      */
     public static CoverageStatistics createOnlyProjectStatistics() {
-        return new CoverageStatistics(fillValues(),
-                new TreeMap<>(), List.of(), new TreeMap<>(), List.of(), new TreeMap<>());
+        return new CoverageStatistics(fillValues(), List.of());
     }
 
     private static List<Value> fillValues() {

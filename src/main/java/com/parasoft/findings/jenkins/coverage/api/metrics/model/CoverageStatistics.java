@@ -19,42 +19,21 @@ import edu.hm.hafner.coverage.Value;
  */
 public class CoverageStatistics {
     private final List<Value> projectValueMapping;
-    private final NavigableMap<Metric, Value> projectDelta;
     private final List<Value> changeValueMapping;
-    private final NavigableMap<Metric, Value> changeDelta;
-    private final List<Value> fileValueMapping;
-    private final NavigableMap<Metric, Value> fileDelta;
 
     /**
      * Creates a new instance of {@link CoverageStatistics}.
      *
      * @param projectValueMapping
      *         mapping of metrics to values for {@link Baseline#PROJECT}
-     * @param projectDeltaMapping
-     *         mapping of metrics to delta values for {@link Baseline#PROJECT_DELTA}
      * @param modifiedLinesValueMapping
      *         mapping of metrics to values for {@link Baseline#MODIFIED_LINES}
-     * @param modifiedLinesDeltaMapping
-     *         mapping of metrics to delta values for {@link Baseline#MODIFIED_LINES_DELTA}
-     * @param modifiedFilesValueMapping
-     *         mapping of metrics to values for {@link Baseline#MODIFIED_FILES}
-     * @param modifiedFilesDeltaMapping
-     *         mapping of metrics to delta values for {@link Baseline#MODIFIED_FILES_DELTA}
      */
     public CoverageStatistics(
             final List<? extends Value> projectValueMapping,
-            final NavigableMap<Metric, Fraction> projectDeltaMapping,
-            final List<? extends Value> modifiedLinesValueMapping,
-            final NavigableMap<Metric, Fraction> modifiedLinesDeltaMapping,
-            final List<? extends Value> modifiedFilesValueMapping,
-            final NavigableMap<Metric, Fraction> modifiedFilesDeltaMapping) {
+            final List<? extends Value> modifiedLinesValueMapping) {
         this.projectValueMapping = List.copyOf(projectValueMapping);
         this.changeValueMapping = List.copyOf(modifiedLinesValueMapping);
-        this.fileValueMapping = List.copyOf(modifiedFilesValueMapping);
-
-        this.projectDelta = asValueMap(projectDeltaMapping);
-        this.changeDelta = asValueMap(modifiedLinesDeltaMapping);
-        this.fileDelta = asValueMap(modifiedFilesDeltaMapping);
     }
 
     private static NavigableMap<Metric, Value> asValueMap(final NavigableMap<Metric, Fraction> projectDelta) {
@@ -77,22 +56,9 @@ public class CoverageStatistics {
         if (baseline == Baseline.PROJECT) {
             return Value.findValue(metric, projectValueMapping);
         }
-        if (baseline == Baseline.MODIFIED_FILES) {
-            return Value.findValue(metric, fileValueMapping);
-        }
         if (baseline == Baseline.MODIFIED_LINES) {
             return Value.findValue(metric, changeValueMapping);
         }
-        if (baseline == Baseline.PROJECT_DELTA) {
-            return getValue(metric, projectDelta);
-        }
-        if (baseline == Baseline.MODIFIED_LINES_DELTA) {
-            return getValue(metric, changeDelta);
-        }
-        if (baseline == Baseline.MODIFIED_FILES_DELTA) {
-            return getValue(metric, fileDelta);
-        }
-
         throw new NoSuchElementException("No such baseline: " + baseline);
     }
 
