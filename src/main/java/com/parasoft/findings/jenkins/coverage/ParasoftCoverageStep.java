@@ -26,12 +26,14 @@ import java.util.List;
 import java.util.Set;
 
 import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.*;
+
 public class ParasoftCoverageStep extends Step implements Serializable {
     private static final long serialVersionUID = -2235239576082380147L;
     private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
     private String pattern;
-    private String sourceCodeEncoding = StringUtils.EMPTY;
+    private String sourceCodeEncoding;
     private List<CoverageQualityGate> CoverageQualityGates = new ArrayList<>();
+    private String referenceBuild;
 
     @DataBoundConstructor
     public ParasoftCoverageStep(){
@@ -43,6 +45,15 @@ public class ParasoftCoverageStep extends Step implements Serializable {
     @Override
     public StepExecution start(StepContext context) throws Exception {
         return new Execution(context, this);
+    }
+
+    @DataBoundSetter
+    public void setReferenceBuild(String referenceBuild) {
+        this.referenceBuild = referenceBuild;
+    }
+
+    public String getReferenceBuild() {
+        return referenceBuild;
     }
 
     @DataBoundSetter
@@ -99,7 +110,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             TaskListener taskListener = getTaskListener();
             RunResultHandler runResultHandler = new RunResultHandler(run);
             ParasoftCoverageRecorder recorder = setUpCoverageRecorder(step.getPattern(), step.getSourceCodeEncoding(),
-                    step.getCoverageQualityGates());
+                    step.getCoverageQualityGates(), step.getReferenceBuild());
 
             recorder.perform(run, workspace, taskListener, runResultHandler);
             return UNUSED;
@@ -153,11 +164,14 @@ public class ParasoftCoverageStep extends Step implements Serializable {
     }
 
     static ParasoftCoverageRecorder setUpCoverageRecorder(final String pattern, final String sourceCodeEncoding,
-                                                          final List<CoverageQualityGate> coverageQualityGates) {
+                                                          final List<CoverageQualityGate> coverageQualityGates, final String referenceBuild) {
         ParasoftCoverageRecorder recorder = new ParasoftCoverageRecorder();
         recorder.setPattern(pattern);
         recorder.setCoverageQualityGates(coverageQualityGates);
-        if (!sourceCodeEncoding.isEmpty()) {
+        if (referenceBuild != null && !referenceBuild.isEmpty()) {
+            recorder.setReferenceBuild(referenceBuild);
+        }
+        if (sourceCodeEncoding != null && !sourceCodeEncoding.isEmpty()) {
             recorder.setSourceCodeEncoding(sourceCodeEncoding);
         }
         return recorder;
