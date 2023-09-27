@@ -51,17 +51,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static hudson.model.PermalinkProjectAction.Permalink.LAST_SUCCESSFUL_BUILD;
-
 public class ParasoftCoverageRecorder extends Recorder {
 
     public static final String PARASOFT_COVERAGE_ID = "parasoft-coverage"; // $NON-NLS-1$
-    static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage"; // $NON-NLS-1$
+    public static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage"; // $NON-NLS-1$
     static final String DEFAULT_PATTERN = "**/coverage.xml"; // $NON-NLS-1$
     private static final String COBERTURA_XSL_NAME = "cobertura.xsl"; // $NON-NLS-1$
     private static final String FILE_PATTERN_SEPARATOR = ","; // $NON-NLS-1$
     private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
-    private static final PermalinkProjectAction.Permalink DEFAULT_REFERENCE_BUILD = LAST_SUCCESSFUL_BUILD;
 
     private String pattern = StringUtils.EMPTY;
     private String sourceCodeEncoding = StringUtils.EMPTY;
@@ -125,10 +122,6 @@ public class ParasoftCoverageRecorder extends Recorder {
         return referenceBuild;
     }
 
-    public String getActualReferenceBuild() {
-        return StringUtils.defaultIfBlank(referenceBuild, DEFAULT_REFERENCE_BUILD.getId());
-    }
-
     @Override
     public BuildStepMonitor getRequiredMonitorService() {
         return BuildStepMonitor.NONE;
@@ -175,7 +168,7 @@ public class ParasoftCoverageRecorder extends Recorder {
             logHandler.log(log);
 
             var action = reporter.publishAction(getId(), getName(), getIcon(), rootNode, run,
-                    workspace, taskListener, getCoverageQualityGates(), StringUtils.EMPTY,
+                    workspace, taskListener, getReferenceBuild(), getCoverageQualityGates(), StringUtils.EMPTY,
                     getSourceCodeEncoding(), SourceCodeRetention.LAST_BUILD, resultHandler);
 
             var checksPublisher = new CoverageChecksPublisher(action, rootNode, getName(), ChecksAnnotationScope.MODIFIED_LINES);
