@@ -17,6 +17,7 @@ import edu.hm.hafner.coverage.Metric;
 import edu.hm.hafner.coverage.Node;
 import edu.hm.hafner.coverage.Value;
 import edu.hm.hafner.coverage.parser.JacocoParser;
+import edu.hm.hafner.coverage.parser.CoberturaParser;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.ResourceTest;
 import edu.hm.hafner.util.SecureXmlParserFactory.ParsingException;
@@ -31,17 +32,10 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.CoverageStatisti
 @DefaultLocale("en")
 @SuppressWarnings("checkstyle:JavadocVariable")
 public abstract class AbstractCoverageTest extends ResourceTest {
-    public static final String JACOCO_ANALYSIS_MODEL_FILE = "jacoco-analysis-model.xml";
-    public static final int JACOCO_ANALYSIS_MODEL_COVERED = 5531;
-    public static final int JACOCO_ANALYSIS_MODEL_MISSED = 267;
-    public static final int JACOCO_ANALYSIS_MODEL_TOTAL
-            = JACOCO_ANALYSIS_MODEL_COVERED + JACOCO_ANALYSIS_MODEL_MISSED;
+    public static final String COBERTURA_CODING_STYLE_FILE = "cobertura-codingstyle.xml";
 
-    public static final String JACOCO_CODING_STYLE_FILE = "jacoco-codingstyle.xml";
-    public static final int JACOCO_CODING_STYLE_COVERED = 294;
-    public static final int JACOCO_CODING_STYLE_MISSED = 29;
-    public static final int JACOCO_CODING_STYLE_TOTAL
-            = JACOCO_CODING_STYLE_COVERED + JACOCO_CODING_STYLE_MISSED;
+    public static final String COBERTURA_CODING_STYLE_NO_DATA_FILE = "cobertura-codingstyle-no-data.xml";
+
     private final FilteredLog log = new FilteredLog("Errors");
 
     /**
@@ -57,7 +51,19 @@ public abstract class AbstractCoverageTest extends ResourceTest {
     }
 
     /**
-     * Reads and parses a JaCoCo coverage report.
+     * Reads and parses a cobertura coverage report.
+     *
+     * @param fileName
+     *         the name of the coverage report file
+     *
+     * @return the parsed coverage tree
+     */
+    protected Node readCoberturaResult(final String fileName) {
+        return readResult(fileName, new CoberturaParser());
+    }
+
+    /**
+     * Reads and parses a coverage report.
      *
      * @param fileName
      *         the name of the coverage report file
