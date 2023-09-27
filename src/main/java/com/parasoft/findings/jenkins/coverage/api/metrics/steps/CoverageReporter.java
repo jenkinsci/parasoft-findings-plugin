@@ -58,7 +58,7 @@ public class CoverageReporter {
 
             Node modifiedLinesCoverageRoot = rootNode.filterByModifiedLines();
 
-            if (rootNode.hasModifiedLines()) {
+            if (!hasModifiedLinesCoverage(modifiedLinesCoverageRoot) && rootNode.hasModifiedLines()) {
                 log.logInfo("No detected code changes affect the code coverage");
             }
 
@@ -149,6 +149,20 @@ public class CoverageReporter {
         }
         return qualityGateStatus;
     }
+
+    private boolean hasModifiedLinesCoverage(final Node modifiedLinesCoverageRoot) {
+        Optional<Value> lineCoverage = modifiedLinesCoverageRoot.getValue(Metric.LINE);
+        if (lineCoverage.isPresent() && hasLineCoverageSet(lineCoverage.get())) {
+            return true;
+        }
+        Optional<Value> branchCoverage = modifiedLinesCoverageRoot.getValue(Metric.BRANCH);
+        return branchCoverage.filter(this::hasLineCoverageSet).isPresent();
+    }
+
+    private boolean hasLineCoverageSet(final Value value) {
+        return ((edu.hm.hafner.coverage.Coverage) value).isSet();
+    }
+
     private Optional<CoverageBuildAction> getReferenceBuildAction(final Run<?, ?> build, final String id, final FilteredLog log) {
         log.logInfo("Obtaining action of reference build");
 

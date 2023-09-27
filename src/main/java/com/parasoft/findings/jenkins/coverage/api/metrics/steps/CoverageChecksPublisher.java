@@ -385,15 +385,6 @@ public class CoverageChecksPublisher {
             builder.append(getMetricStream()
                     .map(metric -> action.formatValue(baseline, metric))
                     .collect(asColumn()));
-
-            var deltaBaseline = action.getDeltaBaseline(baseline);
-            if (deltaBaseline != baseline) {
-                builder.append(String.format("%s **%s**|", Icon.CHART_UPWARDS_TREND.markdown,
-                        FORMATTER.getDisplayName(deltaBaseline)));
-                builder.append(getMetricStream()
-                        .map(metric -> getFormatDelta(baseline, metric))
-                        .collect(asColumn()));
-            }
         }
 
         return builder.toString();

@@ -2,23 +2,17 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NavigableMap;
 import java.util.NavigableSet;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.Fraction;
 
 import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Metric.MetricTendency;
 import edu.hm.hafner.coverage.Node;
 import edu.hm.hafner.coverage.Value;
 import edu.hm.hafner.echarts.ChartModelConfiguration;
@@ -26,17 +20,14 @@ import edu.hm.hafner.echarts.JacksonFacade;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.NonNull;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import org.kohsuke.stapler.StaplerProxy;
-import hudson.Functions;
 import hudson.model.Run;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.charts.CoverageTrendChart;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.CoverageStatistics;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.ElementFormatter;
-import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageXmlStream.MetricFractionMapConverter;
 import com.parasoft.findings.jenkins.coverage.api.model.Messages;
 import io.jenkins.plugins.echarts.GenericBuildActionIterator.BuildActionIterable;
 import io.jenkins.plugins.forensics.reference.ReferenceBuild;
@@ -77,13 +68,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
 
     static {
         CoverageXmlStream.registerConverters(XSTREAM2);
-        registerMapConverter("difference");
-        registerMapConverter("modifiedLinesCoverageDifference");
-    }
-
-    private static void registerMapConverter(final String difference) {
-        XSTREAM2.registerLocalConverter(CoverageBuildAction.class, difference,
-                new MetricFractionMapConverter());
     }
 
     /**
@@ -283,19 +267,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
             return modifiedLinesCoverage.stream();
         }
         throw new NoSuchElementException("No such baseline: " + baseline);
-    }
-
-    /**
-     * Returns whether a delta metric for the specified baseline exists.
-     *
-     * @param baseline
-     *         the baseline to use
-     *
-     * @return {@code true} if a delta is available for the specified baseline, {@code false} otherwise
-     */
-    @SuppressWarnings("unused") // Called by jelly view
-    public boolean hasDelta(final Baseline baseline) {
-        return baseline == Baseline.PROJECT || baseline == Baseline.MODIFIED_LINES;
     }
 
     /**
