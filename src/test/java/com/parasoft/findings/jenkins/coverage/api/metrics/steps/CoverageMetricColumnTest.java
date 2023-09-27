@@ -83,8 +83,6 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
         CoverageMetricColumn column = createColumn();
 
         assertThat(column.getColumnName()).isEqualTo(COLUMN_NAME);
-        assertThat(column.getBaseline()).isEqualTo(Baseline.PROJECT);
-        assertThat(column.getMetric()).isEqualTo(COVERAGE_METRIC);
         assertThat(column.getRelativeCoverageUrl(mock(Job.class))).isEmpty();
     }
 
@@ -94,27 +92,21 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
         Job<?, ?> job = createJobWithCoverageAction();
 
         column.setBaseline(Baseline.PROJECT);
-        assertThat(column.getBaseline()).isEqualTo(Baseline.PROJECT);
         assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#overview");
 
         column.setBaseline(Baseline.PROJECT_DELTA);
-        assertThat(column.getBaseline()).isEqualTo(Baseline.PROJECT_DELTA);
         assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#overview");
 
         column.setBaseline(Baseline.MODIFIED_LINES);
-        assertThat(column.getBaseline()).isEqualTo(Baseline.MODIFIED_LINES);
         assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#modifiedLinesCoverage");
 
         column.setBaseline(Baseline.MODIFIED_LINES_DELTA);
-        assertThat(column.getBaseline()).isEqualTo(Baseline.MODIFIED_LINES_DELTA);
         assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#modifiedLinesCoverage");
 
         column.setBaseline(Baseline.MODIFIED_FILES);
-        assertThat(column.getBaseline()).isEqualTo(Baseline.MODIFIED_FILES);
         assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#modifiedFilesCoverage");
 
         column.setBaseline(Baseline.MODIFIED_FILES_DELTA);
-        assertThat(column.getBaseline()).isEqualTo(Baseline.MODIFIED_FILES_DELTA);
         assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#modifiedFilesCoverage");
     }
 

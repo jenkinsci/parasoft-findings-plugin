@@ -254,8 +254,8 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      * @return all supported baselines
      */
     @SuppressWarnings("unused") // Called by jelly view
-    public List<Baseline> getBaselines() {
-        return List.of(Baseline.PROJECT, Baseline.MODIFIED_FILES, Baseline.MODIFIED_LINES);
+    public Baseline getProjectBaseline() {
+        return Baseline.PROJECT;
     }
 
     /**
@@ -286,12 +286,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
         if (baseline == Baseline.PROJECT) {
             return Baseline.PROJECT_DELTA;
         }
-        if (baseline == Baseline.MODIFIED_LINES) {
-            return Baseline.MODIFIED_LINES_DELTA;
-        }
-        if (baseline == Baseline.MODIFIED_FILES) {
-            return Baseline.MODIFIED_FILES_DELTA;
-        }
         throw new NoSuchElementException("No delta baseline for this baseline: " + baseline);
     }
 
@@ -304,12 +298,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      * @return the title
      */
     public String getTitle(final Baseline baseline) {
-        if (hasDelta(baseline)) {
-            return getDeltaBaseline(baseline).getTitle();
-        }
-        else {
-            return baseline.getTitle();
-        }
+        return baseline.getTitle();
     }
 
     /**

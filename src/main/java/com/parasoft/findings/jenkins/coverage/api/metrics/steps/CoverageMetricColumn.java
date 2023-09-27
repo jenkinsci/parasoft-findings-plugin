@@ -1,6 +1,5 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
-import java.util.List;
 import java.util.Optional;
 
 import edu.hm.hafner.coverage.Metric;
@@ -49,10 +48,6 @@ public class CoverageMetricColumn extends ListViewColumn {
         super();
     }
 
-    public ElementFormatter getFormatter() {
-        return FORMATTER;
-    }
-
     /**
      * Sets the display name of the column.
      *
@@ -79,10 +74,6 @@ public class CoverageMetricColumn extends ListViewColumn {
         this.baseline = baseline;
     }
 
-    public Baseline getBaseline() {
-        return baseline;
-    }
-
     /**
      * Sets the metric of the values that will be shown.
      *
@@ -92,49 +83,6 @@ public class CoverageMetricColumn extends ListViewColumn {
     @DataBoundSetter
     public void setMetric(final Metric metric) {
         this.metric = metric;
-    }
-
-    public Metric getMetric() {
-        return metric;
-    }
-
-    /**
-     * Returns all available values for the specified baseline.
-     *
-     * @param job
-     *         the job in the current row
-     *
-     * @return the available values
-     */
-    // Called by jelly view
-    public List<Value> getAllValues(final Job<?, ?> job) {
-        return findAction(job).map(a -> a.getAllValues(baseline)).orElse(List.of());
-    }
-
-    /**
-     * Returns a formatted and localized String representation of the specified value (without metric).
-     *
-     * @param value
-     *         the value to format
-     *
-     * @return the value formatted as a string
-     */
-    @SuppressWarnings("unused") // Called by jelly view
-    public String formatMetric(final Value value) {
-        return FORMATTER.getDisplayName(value.getMetric());
-    }
-
-    /**
-     * Returns a formatted and localized String representation of the specified value (without metric).
-     *
-     * @param value
-     *         the value to format
-     *
-     * @return the value formatted as a string
-     */
-    @SuppressWarnings("unused") // Called by jelly view
-    public String formatValue(final Value value) {
-        return FORMATTER.formatDetails(value, Functions.getCurrentLocale());
     }
 
     /**
@@ -162,7 +110,7 @@ public class CoverageMetricColumn extends ListViewColumn {
      * @return the coverage percentage
      */
     public Optional<? extends Value> getCoverageValue(final Job<?, ?> job) {
-        return findAction(job).flatMap(action -> action.getStatistics().getValue(getBaseline(), metric));
+        return findAction(job).flatMap(action -> action.getStatistics().getValue(baseline, metric));
     }
 
     private static Optional<CoverageBuildAction> findAction(final Job<?, ?> job) {

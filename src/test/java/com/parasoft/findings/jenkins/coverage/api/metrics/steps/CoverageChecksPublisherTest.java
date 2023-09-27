@@ -46,7 +46,7 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
         var publisher = new CoverageChecksPublisher(createActionWithoutDelta(result), result, REPORT_NAME,
                 ChecksAnnotationScope.SKIP, createJenkins());
 
-        assertThatTitleIs(publisher, "Line Coverage: 91.02%, Branch Coverage: 93.97%");
+        assertThatTitleIs(publisher, "Coverage: 91.02%, Branch Coverage: 93.97%");
     }
 
     @Test
@@ -56,7 +56,7 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
         var publisher = new CoverageChecksPublisher(createActionWithoutDelta(result), result, REPORT_NAME,
                 ChecksAnnotationScope.SKIP, createJenkins());
 
-        assertThatTitleIs(publisher, "Line Coverage: 93.84%, Mutation Coverage: 90.24%");
+        assertThatTitleIs(publisher, "Coverage: 93.84%, Mutation Coverage: 90.24%");
     }
 
     @ParameterizedTest(name = "should create checks (scope = {0}, expected annotations = {1})")
@@ -121,7 +121,7 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
         assertThat(checkDetails.getOutput()).isPresent().get().satisfies(output -> {
             assertThat(output.getTitle()).isPresent()
                     .get()
-                    .isEqualTo("Line Coverage: 50.00% (+50.00%)");
+                    .isEqualTo("Coverage: 50.00% (+50.00%)");
             var expectedDetails = toString("coverage-publisher-details.checks-expected-result");
             assertThat(output.getText()).isPresent().get().asString().isEqualToNormalizingWhitespace(expectedDetails);
             assertChecksAnnotations(output, expectedAnnotations);
