@@ -33,6 +33,7 @@ import io.jenkins.plugins.util.LogHandler;
 import io.jenkins.plugins.util.QualityGateResult;
 import io.jenkins.plugins.util.StageResultHandler;
 
+import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.PARASOFT_COVERAGE_NAME;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.*;
 
@@ -123,7 +124,7 @@ public class CoverageReporter {
 
         log.logInfo("Finished coverage processing - adding the action to the build...");
 
-        LogHandler logHandler = new LogHandler(listener, "Coverage");
+        LogHandler logHandler = new LogHandler(listener, PARASOFT_COVERAGE_NAME);
         logHandler.log(log);
 
         build.addAction(action);
@@ -198,7 +199,7 @@ public class CoverageReporter {
     private ReferenceBuildActionResult getReferenceBuildActionResult(final String configRefBuild, final Run<?, ?> build,
                                                                      final String id, final FilteredLog log) {
         if (StringUtils.isBlank(configRefBuild)) {
-            log.logInfo("Using default reference build(last successful build with coverage data) " +
+            log.logInfo("Using default reference build(last successful build with code coverage data) " +
                     "since user defined reference build is not set");
             return getDefaultReferenceBuildAction(build, id, log);
         } else {
@@ -215,13 +216,13 @@ public class CoverageReporter {
             for (Run<?, ?> b = previousSuccessfulBuild; b != null; b = b.getPreviousSuccessfulBuild()) {
                 previousSuccessfulResult = getPreviousResult(id, b);
                 if (previousSuccessfulResult.isPresent()) {
-                    log.logInfo("-> Found reference result in build '%s'", b);
+                    log.logInfo("-> Found reference code coverage result in build '%s'", b);
                     return new ReferenceBuildActionResult(previousSuccessfulResult,
                             new ReferenceResult(ReferenceResult.ReferenceStatus.OK, b.getExternalizableId()));
                 }
             }
 
-            log.logInfo("-> Found no reference result in all previous successful builds");
+            log.logInfo("-> Found no reference code coverage result in all previous successful builds");
             return new ReferenceBuildActionResult(Optional.empty(),
                     new ReferenceResult(NO_CVG_DATA_IN_REF_BUILD, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
         } else {
@@ -248,12 +249,12 @@ public class CoverageReporter {
                 Optional<CoverageBuildAction> previousResult = getPreviousResult(id, referenceBuild);
 
                 if (previousResult.isEmpty()) {
-                    log.logInfo("-> Found no reference result in build '%s'", referenceBuild);
+                    log.logInfo("-> Found no reference code coverage result in build '%s'", referenceBuild);
                     return new ReferenceBuildActionResult(Optional.empty(),
                             new ReferenceResult(NO_CVG_DATA_IN_REF_BUILD, referenceBuild.getExternalizableId()));
                 }
 
-                log.logInfo("-> Found reference result in build '%s'", referenceBuild);
+                log.logInfo("-> Found reference code coverage result in build '%s'", referenceBuild);
                 return new ReferenceBuildActionResult(previousResult,
                         new ReferenceResult(OK, referenceBuild.getExternalizableId()));
             } else {

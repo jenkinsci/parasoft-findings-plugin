@@ -54,7 +54,7 @@ import java.util.stream.Collectors;
 public class ParasoftCoverageRecorder extends Recorder {
 
     public static final String PARASOFT_COVERAGE_ID = "parasoft-coverage"; // $NON-NLS-1$
-    static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage"; // $NON-NLS-1$
+    public static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage"; // $NON-NLS-1$
     static final String DEFAULT_PATTERN = "**/coverage.xml"; // $NON-NLS-1$
     private static final String COBERTURA_XSL_NAME = "cobertura.xsl"; // $NON-NLS-1$
     private static final String FILE_PATTERN_SEPARATOR = ","; // $NON-NLS-1$
