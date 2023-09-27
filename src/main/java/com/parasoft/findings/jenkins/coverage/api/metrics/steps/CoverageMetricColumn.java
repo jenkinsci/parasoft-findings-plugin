@@ -7,18 +7,12 @@ import edu.hm.hafner.coverage.Value;
 import edu.hm.hafner.util.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.NonNull;
 
-import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.DataBoundSetter;
-import org.kohsuke.stapler.verb.POST;
 import org.jenkinsci.Symbol;
 import hudson.Extension;
 import hudson.Functions;
-import hudson.model.AbstractProject;
-import hudson.model.Item;
 import hudson.model.Job;
 import hudson.model.Run;
-import hudson.util.ListBoxModel;
 import hudson.views.ListViewColumn;
 import hudson.views.ListViewColumnDescriptor;
 
@@ -35,10 +29,8 @@ import io.jenkins.plugins.util.JenkinsFacade;
  */
 public class CoverageMetricColumn extends ListViewColumn {
     private static final ElementFormatter FORMATTER = new ElementFormatter();
-
-    private String columnName = Messages.Coverage_Column();
-    private Metric metric = Metric.LINE;
-    private Baseline baseline = Baseline.PROJECT;
+    private final Metric metric = Metric.LINE;
+    private final Baseline baseline = Baseline.PROJECT;
 
     /**
      * Creates a new column.
@@ -48,41 +40,8 @@ public class CoverageMetricColumn extends ListViewColumn {
         super();
     }
 
-    /**
-     * Sets the display name of the column.
-     *
-     * @param columnName
-     *         the human-readable name of the column
-     */
-    @DataBoundSetter
-    public void setColumnName(final String columnName) {
-        this.columnName = columnName;
-    }
-
     public String getColumnName() {
-        return columnName;
-    }
-
-    /**
-     * Sets the baseline of the values that will be shown.
-     *
-     * @param baseline
-     *         the baseline to use
-     */
-    @DataBoundSetter
-    public void setBaseline(final Baseline baseline) {
-        this.baseline = baseline;
-    }
-
-    /**
-     * Sets the metric of the values that will be shown.
-     *
-     * @param metric
-     *         the metric to use
-     */
-    @DataBoundSetter
-    public void setMetric(final Metric metric) {
-        this.metric = metric;
+        return Messages.Coverage_Column();
     }
 
     /**
@@ -208,40 +167,6 @@ public class CoverageMetricColumn extends ListViewColumn {
         @Override
         public String getDisplayName() {
             return Messages.Coverage_Column();
-        }
-
-        /**
-         * Returns a model with all {@link Metric metrics} that can be used in quality gates.
-         *
-         * @param project
-         *         the project that is configured
-         *
-         * @return a model with all {@link Metric metrics}.
-         */
-        @POST
-        @SuppressWarnings("unused") // used by Stapler view data binding
-        public ListBoxModel doFillMetricItems(@AncestorInPath final AbstractProject<?, ?> project) {
-            if (jenkins.hasPermission(Item.CONFIGURE, project)) {
-                return FORMATTER.getMetricItems();
-            }
-            return new ListBoxModel();
-        }
-
-        /**
-         * Returns a model with all {@link Metric metrics} that can be used in quality gates.
-         *
-         * @param project
-         *         the project that is configured
-         *
-         * @return a model with all {@link Metric metrics}.
-         */
-        @POST
-        @SuppressWarnings("unused") // used by Stapler view data binding
-        public ListBoxModel doFillBaselineItems(@AncestorInPath final AbstractProject<?, ?> project) {
-            if (jenkins.hasPermission(Item.CONFIGURE, project)) {
-                return FORMATTER.getBaselineItems();
-            }
-            return new ListBoxModel();
         }
     }
 }

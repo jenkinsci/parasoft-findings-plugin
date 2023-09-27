@@ -19,8 +19,6 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.ElementFormatter
 import io.jenkins.plugins.util.JenkinsFacade;
 import io.jenkins.plugins.util.QualityGate;
 
-import static hudson.model.PermalinkProjectAction.Permalink.LAST_SUCCESSFUL_BUILD;
-
 /**
  * Defines a quality gate based on a specific threshold of code coverage in the current build. After a build has been
  * finished, a set of {@link CoverageQualityGate quality gates} will be evaluated and the overall quality gate status will be
