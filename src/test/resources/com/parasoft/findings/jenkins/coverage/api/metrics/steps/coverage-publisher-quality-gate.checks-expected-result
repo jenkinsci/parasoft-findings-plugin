@@ -1,7 +1,7 @@
 #### Quality Gates Summary
 
 Overall result: Failed
-- Overall project - Line Coverage: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)
-- Overall project - Line Coverage: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)
-- Modified code lines - Line Coverage: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)
-- Modified code lines - Line Coverage: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)
+- Overall project - Coverage: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)
+- Overall project - Coverage: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)
+- Modified code lines - Coverage: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)
+- Modified code lines - Coverage: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)

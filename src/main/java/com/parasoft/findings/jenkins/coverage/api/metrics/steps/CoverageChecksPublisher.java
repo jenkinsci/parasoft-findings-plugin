@@ -378,12 +378,20 @@ public class CoverageChecksPublisher {
         builder.append(getMetricStream()
                 .map(i -> ":---:")
                 .collect(asColumn()));
-        for (Baseline baseline : action.getBaselines()) {
-            if (action.hasBaselineResult(baseline)) {
-                builder.append(String.format("%s **%s**|", Icon.FEET.markdown,
-                        FORMATTER.getDisplayName(baseline)));
+        Baseline baseline = action.getProjectBaseline();
+        if (action.hasBaselineResult(baseline)) {
+            builder.append(String.format("%s **%s**|", Icon.FEET.markdown,
+                    FORMATTER.getDisplayName(baseline)));
+            builder.append(getMetricStream()
+                    .map(metric -> action.formatValue(baseline, metric))
+                    .collect(asColumn()));
+
+            var deltaBaseline = action.getDeltaBaseline(baseline);
+            if (deltaBaseline != baseline) {
+                builder.append(String.format("%s **%s**|", Icon.CHART_UPWARDS_TREND.markdown,
+                        FORMATTER.getDisplayName(deltaBaseline)));
                 builder.append(getMetricStream()
-                        .map(metric -> action.formatValue(baseline, metric))
+                        .map(metric -> getFormatDelta(baseline, metric))
                         .collect(asColumn()));
             }
         }

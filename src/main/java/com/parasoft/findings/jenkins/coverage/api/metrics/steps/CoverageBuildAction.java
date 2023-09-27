@@ -61,8 +61,11 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
 
     private final String id;
     private final String name;
+
     private final String referenceBuildId;
+
     private final QualityGateResult qualityGateResult;
+
     private final String icon;
     private final FilteredLog log;
 
@@ -193,8 +196,8 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      * @return all supported baselines
      */
     @SuppressWarnings("unused") // Called by jelly view
-    public List<Baseline> getBaselines() {
-        return List.of(Baseline.PROJECT, Baseline.MODIFIED_LINES);
+    public Baseline getProjectBaseline() {
+        return Baseline.PROJECT;
     }
 
     /**
@@ -210,26 +213,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
         return !getValues(baseline).isEmpty();
     }
 
-    /**
-     * Returns the associate delta baseline for the specified baseline.
-     *
-     * @param baseline
-     *         the baseline to get the delta baseline for
-     *
-     * @return the delta baseline
-     * @throws NoSuchElementException
-     *         if this baseline does not provide a delta baseline
-     */
-    @SuppressWarnings("unused") // Called by jelly view
-    public Baseline getDeltaBaseline(final Baseline baseline) {
-        if (baseline == Baseline.PROJECT) {
-            return Baseline.PROJECT_DELTA;
-        }
-        if (baseline == Baseline.MODIFIED_LINES) {
-            return Baseline.MODIFIED_LINES_DELTA;
-        }
-        throw new NoSuchElementException("No delta baseline for this baseline: " + baseline);
-    }
 
     /**
      * Returns the title text for the specified baseline.
@@ -240,12 +223,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      * @return the title
      */
     public String getTitle(final Baseline baseline) {
-        if (hasDelta(baseline)) {
-            return getDeltaBaseline(baseline).getTitle();
-        }
-        else {
-            return baseline.getTitle();
-        }
+        return baseline.getTitle();
     }
 
     /**

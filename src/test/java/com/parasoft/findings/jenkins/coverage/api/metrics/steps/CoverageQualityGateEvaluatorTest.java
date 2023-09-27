@@ -40,8 +40,8 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.PASSED).isSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Line Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Modified code lines - Line Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)");
+                "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
+                "-> [Modified code lines - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)");
     }
 
     @Test
@@ -57,7 +57,7 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.INACTIVE).isInactive().hasMessages(
-                "-> [Modified code lines - Line Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)");
+                "-> [Modified code lines - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)");
     }
 
     @Test
@@ -71,8 +71,8 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.WARNING).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified code lines - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)");
+                "-> [Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)",
+                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 
     @Test
@@ -87,9 +87,9 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.WARNING).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 149.00)",
-                "-> [Overall project - Line Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 14.00)",
-                "-> [Modified code lines - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 999.00)");
+                "-> [Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 149.00)",
+                "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 14.00)",
+                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 999.00)");
     }
 
     @Test
@@ -111,8 +111,8 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = createQualityGateResult();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.FAILED).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Line Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified code lines - Line Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
+                "-> [Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
+                "-> [Modified code lines - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 
     static QualityGateResult createQualityGateResult() {
@@ -148,6 +148,6 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     private static void assertThatStatusWillBeOverwritten(final CoverageQualityGateEvaluator evaluator) {
         QualityGateResult result = evaluator.evaluate();
         assertThat(result).hasOverallStatus(QualityGateStatus.FAILED).isNotSuccessful().hasMessages(
-                "-> [Overall project - Line Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
+                "-> [Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 }

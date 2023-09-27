@@ -5,7 +5,6 @@ import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import io.jenkins.plugins.util.QualityGate;
 import org.apache.commons.lang3.StringUtils;
@@ -37,20 +36,7 @@ public final class ElementFormatter {
     private static final Fraction HUNDRED = Fraction.getFraction("100.0");
     private static final String NO_COVERAGE_AVAILABLE = "-";
     private static final Pattern PERCENTAGE = Pattern.compile("\\d+(\\.\\d+)?%");
-
-    /**
-     * Formats a generic value using a specific rendering method. The type of the given {@link Value} instance is used
-     * to select the best matching rendering method. This non-object-oriented approach is required since the
-     * {@link Value} instances are provided by a library that is not capable of localizing these values for the user.
-     *
-     * @param value
-     *         the value to format
-     *
-     * @return the formatted value as plain text
-     */
-    public String getTooltip(final Value value) {
-        return formatValueWithMetric(value) + " (" + formatAdditionalInformation(value) + ")";
-    }
+    private int covered;
 
     /**
      * Formats a generic value using a specific rendering method. The type of the given {@link Value} instance is used
@@ -80,10 +66,12 @@ public final class ElementFormatter {
      */
     public String format(final Value value, final Locale locale) {
         if (value instanceof Coverage) {
-            return formatPercentage((Coverage) value, locale);
+            var coverage = (Coverage) value;
+            covered = coverage.getCovered();
+            return formatPercentage(coverage, locale);
         }
         if (value instanceof IntegerValue) {
-            return String.valueOf(((IntegerValue) value).getValue());
+            return String.format("%d/%d", covered, ((IntegerValue) value).getValue());
         }
         if (value instanceof FractionValue) {
             return formatDelta(((FractionValue) value).getFraction(), value.getMetric(), locale);
@@ -164,18 +152,6 @@ public final class ElementFormatter {
     private static String formatCoverage(final Coverage coverage, final String coveredText, final String missedText) {
         return String.format("%s: %d - %s: %d", coveredText, coverage.getCovered(),
                 missedText, coverage.getMissed());
-    }
-
-    /**
-     * Returns whether the value should be rendered by using a color badge.
-     *
-     * @param value
-     *         the value to render
-     *
-     * @return {@code true} if the value should be rendered by using a color badge, {@code false} otherwise
-     */
-    public boolean showColors(final Value value) {
-        return value instanceof Coverage;
     }
 
     /**
@@ -315,23 +291,6 @@ public final class ElementFormatter {
     }
 
     /**
-     * Formats a coverage given by covered and total elements as a percentage number. The shown value is multiplied by
-     * 100 and * rounded by two decimals.
-     *
-     * @param covered
-     *         the number of covered items
-     * @param total
-     *         the number of total items
-     * @param locale
-     *         the locale to use to render the values
-     *
-     * @return the formatted percentage as plain text
-     */
-    public String formatPercentage(final int covered, final int total, final Locale locale) {
-        return formatPercentage(Percentage.valueOf(covered, total), locale);
-    }
-
-    /**
      * Formats a delta percentage to its plain text representation with a leading sign and rounds the value to two
      * decimals.
      *
@@ -377,7 +336,7 @@ public final class ElementFormatter {
             case METHOD:
                 return Messages.Metric_METHOD();
             case LINE:
-                return Messages.Metric_LINE();
+                return Messages.Metric_COVERAGE();
             case BRANCH:
                 return Messages.Metric_BRANCH();
             case INSTRUCTION:
@@ -391,7 +350,7 @@ public final class ElementFormatter {
             case COMPLEXITY_DENSITY:
                 return Messages.Metric_COMPLEXITY_DENSITY();
             case LOC:
-                return Messages.Metric_LOC();
+                return Messages.Metric_LINES_COVERED();
             default:
                 throw new NoSuchElementException("No display name found for metric " + metric);
         }
@@ -408,19 +367,6 @@ public final class ElementFormatter {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Formats a stream of values to their display representation by using the given locale.
-     *
-     * @param values
-     *         The values to be formatted
-     * @param locale
-     *         The locale to be used for formatting
-     *
-     * @return the formatted values in the origin order of the stream
-     */
-    public List<String> getFormattedValues(final Stream<? extends Value> values, final Locale locale) {
-        return values.map(value -> formatDetails(value, locale)).collect(Collectors.toList());
-    }
 
     /**
      * Returns a localized human-readable label for the specified metric.

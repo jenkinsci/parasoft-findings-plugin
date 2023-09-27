@@ -5,15 +5,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.TreeMap;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.Fraction;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
 import edu.hm.hafner.coverage.Coverage.CoverageBuilder;
-import edu.hm.hafner.coverage.FractionValue;
 import edu.hm.hafner.coverage.Metric;
 import edu.hm.hafner.coverage.Value;
 import edu.hm.hafner.util.FilteredLog;
@@ -25,7 +22,6 @@ import hudson.model.Run;
 import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProviderFactory;
-import com.parasoft.findings.jenkins.coverage.api.metrics.color.CoverageChangeTendency;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import io.jenkins.plugins.util.QualityGateResult;
 
@@ -83,8 +79,6 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
         CoverageMetricColumn column = createColumn();
 
         assertThat(column.getColumnName()).isEqualTo(COLUMN_NAME);
-        assertThat(column.getBaseline()).isEqualTo(Baseline.PROJECT);
-        assertThat(column.getMetric()).isEqualTo(COVERAGE_METRIC);
         assertThat(column.getRelativeCoverageUrl(mock(Job.class))).isEmpty();
     }
 
@@ -94,11 +88,9 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
         Job<?, ?> job = createJobWithCoverageAction();
 
         column.setBaseline(Baseline.PROJECT);
-        assertThat(column.getBaseline()).isEqualTo(Baseline.PROJECT);
         assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#overview");
 
         column.setBaseline(Baseline.MODIFIED_LINES);
-        assertThat(column.getBaseline()).isEqualTo(Baseline.MODIFIED_LINES);
         assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#modifiedLinesCoverage");
     }
 
@@ -174,8 +166,6 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
     private Job<?, ?> createJobWithCoverageAction() {
         var node = readJacocoResult(JACOCO_CODING_STYLE_FILE);
         var run = mock(Run.class);
-        var delta = new TreeMap<Metric, Fraction>();
-        delta.put(Metric.BRANCH, Fraction.getFraction("0.05"));
         CoverageBuildAction coverageBuildAction =
                 new CoverageBuildAction(run, "coverage", "Code Coverage", StringUtils.EMPTY,
                         node, new QualityGateResult(), new FilteredLog("Test"),

@@ -1,6 +1,5 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
-import edu.hm.hafner.coverage.Metric;
 import hudson.model.View;
 import hudson.views.ListViewColumn;
 import io.jenkins.plugins.casc.ConfigurationAsCode;
@@ -30,12 +29,6 @@ class JobDslITest extends IntegrationTestWithJenkinsPerTest {
         assertThat(view.getColumns())
                 .extracting(ListViewColumn::getColumnCaption)
                 .contains(new CoverageMetricColumn().getColumnCaption());
-
-        assertThat(view.getColumns()).first()
-                .isInstanceOfSatisfying(CoverageMetricColumn.class,
-                        c -> assertThat(c)
-                                .hasColumnCaption(Messages.Coverage_Column())
-                                .hasMetric(Metric.LINE));
     }
 
     /**
