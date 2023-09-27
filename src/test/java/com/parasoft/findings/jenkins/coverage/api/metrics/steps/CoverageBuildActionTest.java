@@ -3,6 +3,7 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 import java.util.List;
 import java.util.TreeMap;
 
+import com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.Fraction;
 import org.junit.jupiter.api.Test;
@@ -48,7 +49,7 @@ class CoverageBuildActionTest {
         deltas.put(Metric.BRANCH, branchDelta);
 
         var coverages = List.of(percent50, percent80);
-        var action = spy(new CoverageBuildAction(mock(FreeStyleBuild.class), CoverageRecorder.DEFAULT_ID,
+        var action = spy(new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
                 StringUtils.EMPTY, StringUtils.EMPTY, module, new QualityGateResult(),
                 createLog(), "-", deltas, coverages, deltas, coverages, deltas, false));
 
@@ -71,7 +72,7 @@ class CoverageBuildActionTest {
     }
 
     private static CoverageBuildAction createEmptyAction(final Node module) {
-        return new CoverageBuildAction(mock(FreeStyleBuild.class), CoverageRecorder.DEFAULT_ID,
+        return new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
                 StringUtils.EMPTY, StringUtils.EMPTY, module, new QualityGateResult(), createLog(), "-",
                 new TreeMap<>(), List.of(), new TreeMap<>(), List.of(), new TreeMap<>(), false);
     }

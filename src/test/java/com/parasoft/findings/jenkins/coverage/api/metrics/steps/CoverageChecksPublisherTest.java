@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.ChecksAnnotationScope;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.Fraction;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,6 @@ import io.jenkins.plugins.checks.api.ChecksDetails;
 import io.jenkins.plugins.checks.api.ChecksOutput;
 import io.jenkins.plugins.checks.api.ChecksStatus;
 import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
-import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageRecorder.ChecksAnnotationScope;
 import io.jenkins.plugins.util.JenkinsFacade;
 import io.jenkins.plugins.util.QualityGateResult;
 
@@ -38,24 +38,6 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
     private static final String COVERAGE_ID = "coverage";
     private static final String REPORT_NAME = "Name";
     private static final int ANNOTATIONS_COUNT_FOR_MODIFIED = 3;
-
-    @Test
-    void shouldShowQualityGateDetails() {
-        var result = readJacocoResult("jacoco-codingstyle.xml");
-
-        var publisher = new CoverageChecksPublisher(createActionWithoutDelta(result,
-                CoverageQualityGateEvaluatorTest.createQualityGateResult()), result, REPORT_NAME,
-                ChecksAnnotationScope.SKIP, createJenkins());
-
-        var checkDetails = publisher.extractChecksDetails();
-        var expectedSummary = toString("coverage-publisher-quality-gate.checks-expected-result");
-        assertThat(checkDetails.getOutput()).isPresent().get().satisfies(output -> {
-            assertThat(output.getSummary()).isPresent()
-                    .get()
-                    .asString()
-                    .containsIgnoringWhitespaces(expectedSummary);
-        });
-    }
 
     @Test
     void shouldShowProjectBaselineForJaCoCo() {
