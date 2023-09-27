@@ -52,18 +52,18 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.PASSED).isSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Line Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Overall project - Line Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Modified code lines - Line Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Modified code lines - Line Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Modified files - Line Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Modified files - Line Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Overall project (difference to reference job) - Line Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
-                "-> [Overall project (difference to reference job) - Line Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
-                "-> [Modified code lines (difference to modified files) - Line Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
-                "-> [Modified code lines (difference to modified files) - Line Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
-                "-> [Modified files (difference to overall project) - Line Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
-                "-> [Modified files (difference to overall project) - Line Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)");
+                "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
+                "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
+                "-> [Modified code lines - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
+                "-> [Modified code lines - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
+                "-> [Modified files - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
+                "-> [Modified files - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
+                "-> [Overall project (difference to reference job) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
+                "-> [Overall project (difference to reference job) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
+                "-> [Modified code lines (difference to modified files) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
+                "-> [Modified code lines (difference to modified files) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
+                "-> [Modified files (difference to overall project) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
+                "-> [Modified files (difference to overall project) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)");
     }
 
     @Test
@@ -83,11 +83,11 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.INACTIVE).isInactive().hasMessages(
-                "-> [Modified code lines - Line Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
-                "-> [Modified files - Line Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
-                "-> [Overall project (difference to reference job) - Line Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
-                "-> [Modified code lines (difference to modified files) - Line Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
-                "-> [Modified files (difference to overall project) - Line Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)");
+                "-> [Modified code lines - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
+                "-> [Modified files - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
+                "-> [Overall project (difference to reference job) - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
+                "-> [Modified code lines (difference to modified files) - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
+                "-> [Modified files (difference to overall project) - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)");
     }
 
     @Test
@@ -105,12 +105,12 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.WARNING).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
-                "-> [Overall project - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified code lines - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
-                "-> [Modified code lines - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified files - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
-                "-> [Modified files - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)");
+                "-> [Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
+                "-> [Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)",
+                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
+                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)",
+                "-> [Modified files - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
+                "-> [Modified files - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 
     @Test
@@ -143,9 +143,9 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.WARNING).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 149.00)",
-                "-> [Overall project - Line Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 14.00)",
-                "-> [Modified code lines - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 999.00)");
+                "-> [Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 149.00)",
+                "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 14.00)",
+                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 999.00)");
     }
 
     @Test
@@ -167,18 +167,18 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = createQualityGateResult();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.FAILED).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Line Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)",
-                "-> [Overall project - Line Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified code lines - Line Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)",
-                "-> [Modified code lines - Line Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified files - Line Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)",
-                "-> [Modified files - Line Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Overall project (difference to reference job) - Line Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
-                "-> [Overall project (difference to reference job) - Line Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
-                "-> [Modified code lines (difference to modified files) - Line Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
-                "-> [Modified code lines (difference to modified files) - Line Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
-                "-> [Modified files (difference to overall project) - Line Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
-                "-> [Modified files (difference to overall project) - Line Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)");
+                "-> [Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)",
+                "-> [Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
+                "-> [Modified code lines - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)",
+                "-> [Modified code lines - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
+                "-> [Modified files - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)",
+                "-> [Modified files - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
+                "-> [Overall project (difference to reference job) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
+                "-> [Overall project (difference to reference job) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
+                "-> [Modified code lines (difference to modified files) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
+                "-> [Modified code lines (difference to modified files) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
+                "-> [Modified files (difference to overall project) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
+                "-> [Modified files (difference to overall project) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)");
     }
 
     static QualityGateResult createQualityGateResult() {
@@ -229,7 +229,7 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     private static void assertThatStatusWillBeOverwritten(final CoverageQualityGateEvaluator evaluator) {
         QualityGateResult result = evaluator.evaluate();
         assertThat(result).hasOverallStatus(QualityGateStatus.FAILED).isNotSuccessful().hasMessages(
-                "-> [Overall project - Line Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
-                "-> [Overall project - Line Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
+                "-> [Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
+                "-> [Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 }

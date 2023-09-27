@@ -31,13 +31,9 @@ import static hudson.model.PermalinkProjectAction.Permalink.LAST_SUCCESSFUL_BUIL
 public class CoverageQualityGate extends QualityGate {
     private static final long serialVersionUID = -397278599489426668L;
 
-    private static final PermalinkProjectAction.Permalink DEFAULT_REFERENCE_BUILD = LAST_SUCCESSFUL_BUILD;
-
     private static final ElementFormatter FORMATTER = new ElementFormatter();
 
     private Baseline baseline = Baseline.PROJECT;
-
-    private String referenceBuild = StringUtils.EMPTY;
 
     /**
      * Creates a new instance of {@link CoverageQualityGate}.
@@ -62,19 +58,6 @@ public class CoverageQualityGate extends QualityGate {
     @DataBoundSetter
     public final void setBaseline(final Baseline baseline) {
         this.baseline = baseline;
-    }
-
-    @DataBoundSetter
-    public void setReferenceBuild(String referenceBuild) {
-        this.referenceBuild = referenceBuild;
-    }
-
-    public String getReferenceBuild() {
-        return referenceBuild;
-    }
-
-    public String getActualReferenceBuild() {
-        return StringUtils.defaultIfBlank(referenceBuild, DEFAULT_REFERENCE_BUILD.getId());
     }
 
     /**

@@ -12,11 +12,6 @@
                value="${instance.threshold ?: 0.0}"/>
     </f:entry>
 
-    <f:entry title="${%title.referenceBuild}" field="referenceBuild"
-             help="/plugin/parasoft-findings/help/parasoftCoverage/help-referenceBuild.html">
-        <f:textbox placeholder="${%Permalink.LastSuccessfulBuild}"/>
-    </f:entry>
-
     <f:entry title="${%title.criticality}" field="criticality"
              help="/plugin/parasoft-findings/help/parasoftCoverage/help-criticality.html">
         <f:select/>

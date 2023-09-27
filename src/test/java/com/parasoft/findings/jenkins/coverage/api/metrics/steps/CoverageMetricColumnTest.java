@@ -122,7 +122,7 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
     }
 
     @Test
-    void shouldShowNoResultForEmptyFormat() {
+    void shouldShowNoResultForEmptyReport() {
         CoverageMetricColumn column = createColumn();
         var node = readCoberturaResult(COBERTURA_CODING_STYLE_NO_DATA_FILE);
 

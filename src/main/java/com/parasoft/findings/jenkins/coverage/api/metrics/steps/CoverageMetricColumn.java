@@ -1,6 +1,5 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
-import java.util.List;
 import java.util.Optional;
 
 import edu.hm.hafner.coverage.Metric;
@@ -41,52 +40,8 @@ public class CoverageMetricColumn extends ListViewColumn {
         super();
     }
 
-    public ElementFormatter getFormatter() {
-        return FORMATTER;
-    }
-
     public String getColumnName() {
         return Messages.Coverage_Column();
-    }
-
-
-    /**
-     * Returns all available values for the specified baseline.
-     *
-     * @param job
-     *         the job in the current row
-     *
-     * @return the available values
-     */
-    // Called by jelly view
-    public List<Value> getAllValues(final Job<?, ?> job) {
-        return findAction(job).map(a -> a.getAllValues(baseline)).orElse(List.of());
-    }
-
-    /**
-     * Returns a formatted and localized String representation of the specified value (without metric).
-     *
-     * @param value
-     *         the value to format
-     *
-     * @return the value formatted as a string
-     */
-    @SuppressWarnings("unused") // Called by jelly view
-    public String formatMetric(final Value value) {
-        return FORMATTER.getDisplayName(value.getMetric());
-    }
-
-    /**
-     * Returns a formatted and localized String representation of the specified value (without metric).
-     *
-     * @param value
-     *         the value to format
-     *
-     * @return the value formatted as a string
-     */
-    @SuppressWarnings("unused") // Called by jelly view
-    public String formatValue(final Value value) {
-        return FORMATTER.formatDetails(value, Functions.getCurrentLocale());
     }
 
     /**
