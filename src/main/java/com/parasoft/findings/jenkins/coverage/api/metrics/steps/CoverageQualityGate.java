@@ -3,8 +3,6 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 import edu.hm.hafner.coverage.Metric;
 import edu.hm.hafner.util.VisibleForTesting;
 
-import hudson.model.PermalinkProjectAction;
-import org.apache.commons.lang3.StringUtils;
 import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
@@ -31,7 +29,7 @@ public class CoverageQualityGate extends QualityGate {
 
     private static final ElementFormatter FORMATTER = new ElementFormatter();
 
-    private Baseline baseline = Baseline.PROJECT;
+    private Baseline type = Baseline.PROJECT;
 
     /**
      * Creates a new instance of {@link CoverageQualityGate}.
@@ -40,22 +38,22 @@ public class CoverageQualityGate extends QualityGate {
      *         minimum or maximum value that triggers this quality gate
      */
     @DataBoundConstructor
-    public CoverageQualityGate(final double threshold, final Metric metric, final Baseline baseline, final QualityGateCriticality criticality) {
+    public CoverageQualityGate(final double threshold, final Baseline type, final QualityGateCriticality criticality) {
         super(threshold);
 
-        setBaseline(baseline);
+        setType(type);
         setCriticality(criticality);
     }
 
     /**
      * Sets the baseline that will be used for the quality gate evaluation.
      *
-     * @param baseline
+     * @param type
      *         the baseline to use
      */
     @DataBoundSetter
-    public final void setBaseline(final Baseline baseline) {
-        this.baseline = baseline;
+    public final void setType(final Baseline type) {
+        this.type = type;
     }
 
     /**
@@ -65,7 +63,7 @@ public class CoverageQualityGate extends QualityGate {
      */
     @Override
     public String getName() {
-        return String.format("%s - %s", FORMATTER.getDisplayName(getBaseline()),
+        return String.format("%s - %s", FORMATTER.getDisplayName(getType()),
                 FORMATTER.getDisplayName(getMetric()));
     }
 
@@ -73,8 +71,8 @@ public class CoverageQualityGate extends QualityGate {
         return Metric.LINE;
     }
 
-    public Baseline getBaseline() {
-        return baseline;
+    public Baseline getType() {
+        return type;
     }
 
     /**
@@ -109,9 +107,9 @@ public class CoverageQualityGate extends QualityGate {
          */
         @POST
         @SuppressWarnings("unused") // used by Stapler view data binding
-        public ListBoxModel doFillBaselineItems(@AncestorInPath final AbstractProject<?, ?> project) {
+        public ListBoxModel doFillTypeItems(@AncestorInPath final AbstractProject<?, ?> project) {
             if (jenkins.hasPermission(Item.CONFIGURE, project)) {
-                return FORMATTER.getBaselineItems();
+                return FORMATTER.getTypeItems();
             }
             return new ListBoxModel();
         }

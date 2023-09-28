@@ -470,7 +470,7 @@ public final class ElementFormatter {
      *
      * @return the baselines in a {@link ListBoxModel}
      */
-    public ListBoxModel getBaselineItems() {
+    public ListBoxModel getTypeItems() {
         ListBoxModel options = new ListBoxModel();
         add(options, Baseline.PROJECT);
         add(options, Baseline.MODIFIED_LINES);
