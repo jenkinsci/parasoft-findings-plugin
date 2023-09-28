@@ -228,8 +228,7 @@ class CoverageXmlStreamTest extends SerializableTest<Node> {
         return new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID, StringUtils.EMPTY,
                 StringUtils.EMPTY,
                 tree, new QualityGateResult(), new FilteredLog("Test"), "-",
-                new TreeMap<>(), List.of(), new TreeMap<>(), List.of(),
-                new TreeMap<>(), false);
+                List.of(), false);
     }
 
     private static class TestXmlStream extends CoverageXmlStream {

@@ -1,12 +1,9 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.ChecksAnnotationScope;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.Fraction;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -121,7 +118,7 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
         assertThat(checkDetails.getOutput()).isPresent().get().satisfies(output -> {
             assertThat(output.getTitle()).isPresent()
                     .get()
-                    .isEqualTo("Coverage: 50.00% (+50.00%)");
+                    .isEqualTo("Coverage: 50.00%");
             var expectedDetails = toString("coverage-publisher-details.checks-expected-result");
             assertThat(output.getText()).isPresent().get().asString().isEqualToNormalizingWhitespace(expectedDetails);
             assertChecksAnnotations(output, expectedAnnotations);
@@ -198,12 +195,7 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
 
         return new CoverageBuildAction(run, COVERAGE_ID, REPORT_NAME, StringUtils.EMPTY, result,
                 new QualityGateResult(), null, "refId",
-                new TreeMap<>(Map.of(
-                        Metric.LINE, Fraction.ONE_HALF,
-                        Metric.MODULE, Fraction.ZERO,
-                        Metric.PACKAGE, Fraction.ONE_HALF.negate())),
-                List.of(testCoverage), new TreeMap<>(Map.of(Metric.LINE, Fraction.ONE_HALF)), List.of(testCoverage),
-                new TreeMap<>(Map.of(Metric.LINE, Fraction.ONE_HALF)), false);
+                List.of(testCoverage), false);
     }
 
     private CoverageBuildAction createActionWithoutDelta(final Node result) {
@@ -216,6 +208,6 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
 
         return new CoverageBuildAction(run, COVERAGE_ID, REPORT_NAME, StringUtils.EMPTY, result,
                 qualityGateResult, null, "refId",
-                new TreeMap<>(), List.of(), new TreeMap<>(), List.of(), new TreeMap<>(), false);
+                List.of(), false);
     }
 }

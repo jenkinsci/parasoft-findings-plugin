@@ -5,14 +5,12 @@
 #### Overview by baseline
 
 * **[Overall project](http://127.0.0.1:8080/job/pipeline-coding-style/job/5/coverage#overview)**
-            * Coverage: 91.02% (294/323) - Delta: +50.00%
-            * Branch Coverage: 93.97% (109/116)
-            * Complexity Density: 0.50%
-            * Lines covered: 323
-* **[Modified files](http://127.0.0.1:8080/job/pipeline-coding-style/job/5/coverage#modifiedFilesCoverage)**
-            * Coverage: 50.00% (1/2) - Delta: +50.00%
+  * Coverage: 91.02% (294/323)
+  * Branch Coverage: 93.97% (109/116)
+  * Complexity Density: 0.50%
+  * Lines covered: 323
 * **[Modified code lines](http://127.0.0.1:8080/job/pipeline-coding-style/job/5/coverage#modifiedLinesCoverage)**
-            * Coverage: 50.00% (1/2) - Delta: +50.00%
+  * Coverage: 50.00% (1/2)
 
 #### Quality Gates Summary
 

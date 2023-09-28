@@ -2,23 +2,17 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NavigableMap;
 import java.util.NavigableSet;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.Fraction;
 
 import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Metric.MetricTendency;
 import edu.hm.hafner.coverage.Node;
 import edu.hm.hafner.coverage.Value;
 import edu.hm.hafner.echarts.ChartModelConfiguration;
@@ -26,17 +20,14 @@ import edu.hm.hafner.echarts.JacksonFacade;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.NonNull;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 import org.kohsuke.stapler.StaplerProxy;
-import hudson.Functions;
 import hudson.model.Run;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.charts.CoverageTrendChart;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.CoverageStatistics;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.ElementFormatter;
-import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageXmlStream.MetricFractionMapConverter;
 import com.parasoft.findings.jenkins.coverage.api.model.Messages;
 import io.jenkins.plugins.echarts.GenericBuildActionIterator.BuildActionIterable;
 import io.jenkins.plugins.forensics.reference.ReferenceBuild;
@@ -51,8 +42,6 @@ import static hudson.model.Run.*;
  * Controls the life cycle of the coverage results in a job. This action persists the results of a build and displays a
  * summary on the build page. The actual visualization of the results is defined in the matching {@code summary.jelly}
  * file. This action also provides access to the coverage details: these are rendered using a new view instance.
- *
- * @author Ullrich Hafner
  */
 @SuppressWarnings({"PMD.GodClass", "checkstyle:ClassDataAbstractionCoupling", "checkstyle:ClassFanOutComplexity"})
 public final class CoverageBuildAction extends BuildAction<Node> implements StaplerProxy {
@@ -69,37 +58,16 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     private final QualityGateResult qualityGateResult;
 
     private final String icon;
-    // FIXME: Rethink if we need a separate result object that stores all data?
     private final FilteredLog log;
 
     /** The aggregated values of the result for the root of the tree. */
     private final List<? extends Value> projectValues;
 
-    /** The delta of this build's coverages with respect to the reference build. */
-    private NavigableMap<Metric, Fraction> difference;
-
     /** The coverages filtered by modified lines of the associated change request. */
     private final List<? extends Value> modifiedLinesCoverage;
 
-    /** The coverage delta of the associated change request with respect to the reference build. */
-    private NavigableMap<Metric, Fraction> modifiedLinesCoverageDifference;
-
-    /** The coverage of the modified lines. */
-    private final List<? extends Value> modifiedFilesCoverage;
-
-    /** The coverage delta of the modified lines. */
-    private NavigableMap<Metric, Fraction> modifiedFilesCoverageDifference;
-
     static {
         CoverageXmlStream.registerConverters(XSTREAM2);
-        registerMapConverter("difference");
-        registerMapConverter("modifiedLinesCoverageDifference");
-        registerMapConverter("modifiedFilesCoverageDifference");
-    }
-
-    private static void registerMapConverter(final String difference) {
-        XSTREAM2.registerLocalConverter(CoverageBuildAction.class, difference,
-                new MetricFractionMapConverter());
     }
 
     /**
@@ -123,7 +91,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     public CoverageBuildAction(final Run<?, ?> owner, final String id, final String optionalName, final String icon,
             final Node result, final QualityGateResult qualityGateResult, final FilteredLog log) {
         this(owner, id, optionalName, icon, result, qualityGateResult, log, NO_REFERENCE_BUILD,
-                new TreeMap<>(), List.of(), new TreeMap<>(), List.of(), new TreeMap<>());
+                List.of());
     }
 
     /**
@@ -145,30 +113,16 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      *         the logging statements of the recording step
      * @param referenceBuildId
      *         the ID of the reference build
-     * @param delta
-     *         delta of this build's coverages with respect to the reference build
      * @param modifiedLinesCoverage
      *         the coverages filtered by modified lines of the associated change request
-     * @param modifiedLinesCoverageDifference
-     *         difference between the project coverage and the modified lines coverage of the current build
-     * @param modifiedFilesCoverage
-     *         the coverages filtered by changed files of the associated change request
-     * @param modifiedFilesCoverageDifference
-     *         difference between the project coverage and the modified files coverage of the current build
      */
     @SuppressWarnings("checkstyle:ParameterNumber")
     public CoverageBuildAction(final Run<?, ?> owner, final String id, final String optionalName, final String icon,
             final Node result, final QualityGateResult qualityGateResult, final FilteredLog log,
             final String referenceBuildId,
-            final NavigableMap<Metric, Fraction> delta,
-            final List<? extends Value> modifiedLinesCoverage,
-            final NavigableMap<Metric, Fraction> modifiedLinesCoverageDifference,
-            final List<? extends Value> modifiedFilesCoverage,
-            final NavigableMap<Metric, Fraction> modifiedFilesCoverageDifference) {
-        this(owner, id, optionalName, icon, result, qualityGateResult, log, referenceBuildId, delta,
-                modifiedLinesCoverage,
-                modifiedLinesCoverageDifference, modifiedFilesCoverage, modifiedFilesCoverageDifference,
-                true);
+            final List<? extends Value> modifiedLinesCoverage) {
+        this(owner, id, optionalName, icon, result, qualityGateResult, log, referenceBuildId,
+                modifiedLinesCoverage, true);
     }
 
     @VisibleForTesting
@@ -176,11 +130,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     CoverageBuildAction(final Run<?, ?> owner, final String id, final String name, final String icon,
             final Node result, final QualityGateResult qualityGateResult, final FilteredLog log,
             final String referenceBuildId,
-            final NavigableMap<Metric, Fraction> delta,
             final List<? extends Value> modifiedLinesCoverage,
-            final NavigableMap<Metric, Fraction> modifiedLinesCoverageDifference,
-            final List<? extends Value> modifiedFilesCoverage,
-            final NavigableMap<Metric, Fraction> modifiedFilesCoverageDifference,
             final boolean canSerialize) {
         super(owner, result, false);
 
@@ -191,35 +141,12 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
 
         projectValues = result.aggregateValues();
         this.qualityGateResult = qualityGateResult;
-        difference = delta;
         this.modifiedLinesCoverage = new ArrayList<>(modifiedLinesCoverage);
-        this.modifiedLinesCoverageDifference = modifiedLinesCoverageDifference;
-        this.modifiedFilesCoverage = new ArrayList<>(modifiedFilesCoverage);
-        this.modifiedFilesCoverageDifference = modifiedFilesCoverageDifference;
         this.referenceBuildId = referenceBuildId;
 
         if (canSerialize) {
             createXmlStream().write(owner.getRootDir().toPath().resolve(getBuildResultBaseName()), result);
         }
-    }
-
-    @Override @SuppressFBWarnings(value = "CRLF_INJECTION_LOGS", justification = "getOwner().toString() is under our control")
-    protected Object readResolve() {
-        super.readResolve();
-        if (difference == null) {
-            difference = new TreeMap<>();
-            Logger.getLogger(CoverageBuildAction.class.getName()).log(Level.FINE, "Difference serialization was null: " + getOwner().getDisplayName());
-        }
-        if (modifiedLinesCoverageDifference == null) {
-            modifiedLinesCoverageDifference = new TreeMap<>();
-            Logger.getLogger(CoverageBuildAction.class.getName()).log(Level.FINE, "Modified lines serialization was null: " + getOwner().getDisplayName());
-        }
-        if (modifiedFilesCoverageDifference == null) {
-            modifiedFilesCoverageDifference = new TreeMap<>();
-            Logger.getLogger(CoverageBuildAction.class.getName()).log(Level.FINE, "Modified files serialization was null: " + getOwner().getDisplayName());
-        }
-
-        return this;
     }
 
     /**
@@ -244,8 +171,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     }
 
     public CoverageStatistics getStatistics() {
-        return new CoverageStatistics(projectValues, difference, modifiedLinesCoverage, modifiedLinesCoverageDifference,
-                modifiedFilesCoverage, modifiedFilesCoverageDifference);
+        return new CoverageStatistics(projectValues, modifiedLinesCoverage);
     }
 
     /**
@@ -271,23 +197,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
         return !getValues(baseline).isEmpty();
     }
 
-    /**
-     * Returns the associate delta baseline for the specified baseline.
-     *
-     * @param baseline
-     *         the baseline to get the delta baseline for
-     *
-     * @return the delta baseline
-     * @throws NoSuchElementException
-     *         if this baseline does not provide a delta baseline
-     */
-    @SuppressWarnings("unused") // Called by jelly view
-    public Baseline getDeltaBaseline(final Baseline baseline) {
-        if (baseline == Baseline.PROJECT) {
-            return Baseline.PROJECT_DELTA;
-        }
-        throw new NoSuchElementException("No delta baseline for this baseline: " + baseline);
-    }
 
     /**
      * Returns the title text for the specified baseline.
@@ -311,32 +220,8 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      * @throws NoSuchElementException
      *         if this baseline does not provide values
      */
-    // Called by jelly view
     public List<Value> getAllValues(final Baseline baseline) {
         return getValueStream(baseline).collect(Collectors.toList());
-    }
-
-    /**
-     * Returns all available deltas for the specified baseline.
-     *
-     * @param baseline
-     *         the baseline to get the deltas for
-     *
-     * @return the available values
-     * @throws NoSuchElementException
-     *         if this baseline does not provide deltas
-     */
-    public NavigableMap<Metric, Fraction> getAllDeltas(final Baseline baseline) {
-        if (baseline == Baseline.PROJECT_DELTA) {
-            return difference;
-        }
-        else if (baseline == Baseline.MODIFIED_LINES_DELTA) {
-            return modifiedLinesCoverageDifference;
-        }
-        else if (baseline == Baseline.MODIFIED_FILES_DELTA) {
-            return modifiedFilesCoverageDifference;
-        }
-        throw new NoSuchElementException("No delta baseline: " + baseline);
     }
 
     /**
@@ -349,7 +234,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      * @throws NoSuchElementException
      *         if this baseline does not provide values
      */
-    // Called by jelly view
     public List<Value> getValues(final Baseline baseline) {
         return filterImportantMetrics(getValueStream(baseline));
     }
@@ -382,87 +266,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
         if (baseline == Baseline.MODIFIED_LINES) {
             return modifiedLinesCoverage.stream();
         }
-        if (baseline == Baseline.MODIFIED_FILES) {
-            return modifiedFilesCoverage.stream();
-        }
         throw new NoSuchElementException("No such baseline: " + baseline);
-    }
-
-    /**
-     * Returns whether a delta metric for the specified baseline exists.
-     *
-     * @param baseline
-     *         the baseline to use
-     *
-     * @return {@code true} if a delta is available for the specified baseline, {@code false} otherwise
-     */
-    @SuppressWarnings("unused") // Called by jelly view
-    public boolean hasDelta(final Baseline baseline) {
-        return baseline == Baseline.PROJECT || baseline == Baseline.MODIFIED_LINES
-                || baseline == Baseline.MODIFIED_FILES;
-    }
-
-    /**
-     * Returns whether a delta metric for the specified metric exists.
-     *
-     * @param baseline
-     *         the baseline to use
-     * @param metric
-     *         the metric to check
-     *
-     * @return {@code true} if a delta is available for the specified metric, {@code false} otherwise
-     */
-    public boolean hasDelta(final Baseline baseline, final Metric metric) {
-        if (baseline == Baseline.PROJECT) {
-            return difference.containsKey(metric);
-        }
-        if (baseline == Baseline.MODIFIED_LINES) {
-            return modifiedLinesCoverageDifference.containsKey(metric)
-                    && Set.of(Metric.BRANCH, Metric.LINE).contains(metric);
-        }
-        if (baseline == Baseline.MODIFIED_FILES) {
-            return modifiedFilesCoverageDifference.containsKey(metric)
-                    && Set.of(Metric.BRANCH, Metric.LINE).contains(metric);
-        }
-        throw new NoSuchElementException("No such baseline: " + baseline);
-    }
-
-    /**
-     * Returns whether a delta metric for the specified metric exists.
-     *
-     * @param baseline
-     *         the baseline to use
-     * @param metric
-     *         the metric to check
-     *
-     * @return {@code true} if a delta is available for the specified metric, {@code false} otherwise
-     */
-    public Optional<Fraction> getDelta(final Baseline baseline, final Metric metric) {
-        if (baseline == Baseline.PROJECT) {
-            return Optional.ofNullable(difference.get(metric));
-        }
-        if (baseline == Baseline.MODIFIED_LINES) {
-            return Optional.ofNullable(modifiedLinesCoverageDifference.get(metric));
-        }
-        if (baseline == Baseline.MODIFIED_FILES) {
-            return Optional.ofNullable(modifiedFilesCoverageDifference.get(metric));
-        }
-        return Optional.empty();
-    }
-
-    /**
-     * Returns whether a value for the specified metric exists.
-     *
-     * @param baseline
-     *         the baseline to use
-     * @param metric
-     *         the metric to check
-     *
-     * @return {@code true} if a value is available for the specified metric, {@code false} otherwise
-     */
-    public boolean hasValue(final Baseline baseline, final Metric metric) {
-        return getAllValues(baseline).stream()
-                .anyMatch(v -> v.getMetric() == metric);
     }
 
     /**
@@ -479,54 +283,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     public String formatValue(final Baseline baseline, final Metric metric) {
         var value = getValueForMetric(baseline, metric);
         return value.isPresent() ? FORMATTER.formatValue(value.get()) : Messages.Coverage_Not_Available();
-    }
-
-    /**
-     * Returns a formatted and localized String representation of the delta for the specified metric (with respect to
-     * the given baseline).
-     *
-     * @param baseline
-     *         the baseline to use
-     * @param metric
-     *         the metric to get the delta for
-     *
-     * @return the delta metric
-     */
-    @SuppressWarnings("unused") // Called by jelly view
-    public String formatDelta(final Baseline baseline, final Metric metric) {
-        var currentLocale = Functions.getCurrentLocale();
-        if (baseline == Baseline.PROJECT && hasDelta(baseline, metric)) {
-            return FORMATTER.formatDelta(difference.get(metric), metric, currentLocale);
-        }
-        if (baseline == Baseline.MODIFIED_LINES && hasDelta(baseline, metric)) {
-            return FORMATTER.formatDelta(modifiedLinesCoverageDifference.get(metric), metric, currentLocale);
-        }
-        if (baseline == Baseline.MODIFIED_FILES && hasDelta(baseline, metric)) {
-            return FORMATTER.formatDelta(modifiedFilesCoverageDifference.get(metric), metric, currentLocale);
-        }
-        return Messages.Coverage_Not_Available();
-    }
-
-    /**
-     * Returns whether the trend of the values for the specific metric is positive or negative.
-     *
-     * @param baseline
-     *         the baseline to use
-     * @param metric
-     *         the metric to check
-     *
-     * @return {@code true} if the trend is positive, {@code false} otherwise
-     */
-    @SuppressWarnings("unused") // Called by jelly view
-    public boolean isPositiveTrend(final Baseline baseline, final Metric metric) {
-        var delta = getDelta(baseline, metric);
-        if (delta.isPresent()) {
-            if (delta.get().compareTo(Fraction.ZERO) > 0) {
-                return metric.getTendency() == MetricTendency.LARGER_IS_BETTER;
-            }
-            return metric.getTendency() == MetricTendency.SMALLER_IS_BETTER;
-        }
-        return true;
     }
 
     /**
@@ -585,7 +341,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     }
 
     private String createChartModel(final String configuration) {
-        // FIXME: add without optional
         var iterable = new BuildActionIterable<>(CoverageBuildAction.class, Optional.of(this),
                 action -> getUrlName().equals(action.getUrlName()), CoverageBuildAction::getStatistics);
         return new JacksonFacade().toJson(

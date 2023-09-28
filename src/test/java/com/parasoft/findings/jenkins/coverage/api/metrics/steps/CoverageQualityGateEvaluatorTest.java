@@ -30,20 +30,8 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     void shouldPassForTooLowThresholds() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
-        qualityGates.add(new CoverageQualityGate(0, Metric.FILE, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(0, Metric.FILE, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
         qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(0, Metric.FILE, Baseline.MODIFIED_FILES, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.MODIFIED_FILES, QualityGateCriticality.UNSTABLE));
-
-        var minimum = -10;
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.FILE, Baseline.PROJECT_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.LINE, Baseline.PROJECT_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.FILE, Baseline.MODIFIED_LINES_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.LINE, Baseline.MODIFIED_LINES_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.FILE, Baseline.MODIFIED_FILES_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.LINE, Baseline.MODIFIED_FILES_DELTA, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
 
@@ -53,28 +41,14 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
 
         assertThat(result).hasOverallStatus(QualityGateStatus.PASSED).isSuccessful().isNotInactive().hasMessages(
                 "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Modified code lines - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Modified code lines - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Modified files - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Modified files - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Overall project (difference to reference job) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
-                "-> [Overall project (difference to reference job) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
-                "-> [Modified code lines (difference to modified files) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
-                "-> [Modified code lines (difference to modified files) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
-                "-> [Modified files (difference to overall project) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)",
-                "-> [Modified files (difference to overall project) - Coverage]: ≪Success≫ - (Actual value: +5.00%, Quality gate: -10.00)");
+                "-> [Modified code lines - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)");
     }
 
     @Test
     void shouldSkipIfValueNotDefined() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
-        qualityGates.add(new CoverageQualityGate(0, Metric.FILE, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(0, Metric.FILE, Baseline.MODIFIED_FILES, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.PROJECT_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(0, Metric.FILE, Baseline.MODIFIED_LINES_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.MODIFIED_FILES_DELTA, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createOnlyProjectStatistics());
 
@@ -83,52 +57,22 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.INACTIVE).isInactive().hasMessages(
-                "-> [Modified code lines - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
-                "-> [Modified files - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
-                "-> [Overall project (difference to reference job) - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
-                "-> [Modified code lines (difference to modified files) - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)",
-                "-> [Modified files (difference to overall project) - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)");
+                "-> [Modified code lines - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)");
     }
 
     @Test
     void shouldReportUnstableIfBelowThreshold() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
-        qualityGates.add(new CoverageQualityGate(76.0, Metric.FILE, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
         qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(76.0, Metric.FILE, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
         qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(76.0, Metric.FILE, Baseline.MODIFIED_FILES, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.MODIFIED_FILES, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.WARNING).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
                 "-> [Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
-                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified files - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
-                "-> [Modified files - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)");
-    }
-
-    @Test
-    void shouldReportUnstableIfWorseAndSuccessIfBetter() {
-        Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
-
-        var minimum = 0;
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.FILE, Baseline.PROJECT_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.LINE, Baseline.PROJECT_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.FILE, Baseline.MODIFIED_LINES_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.LINE, Baseline.MODIFIED_LINES_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.FILE, Baseline.MODIFIED_FILES_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.LINE, Baseline.MODIFIED_FILES_DELTA, QualityGateCriticality.UNSTABLE));
-
-        CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
-        QualityGateResult result = evaluator.evaluate();
-
-        assertThat(result).hasOverallStatus(QualityGateStatus.PASSED);
+                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 
     @Test
@@ -153,8 +97,8 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
         var minimum = 0;
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.COMPLEXITY, Baseline.PROJECT_DELTA, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.LOC, Baseline.PROJECT_DELTA, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(minimum, Metric.COMPLEXITY, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(minimum, Metric.LOC, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
         QualityGateResult result = evaluator.evaluate();
@@ -167,37 +111,14 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = createQualityGateResult();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.FAILED).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)",
                 "-> [Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified code lines - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)",
-                "-> [Modified code lines - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified files - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 76.00)",
-                "-> [Modified files - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Overall project (difference to reference job) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
-                "-> [Overall project (difference to reference job) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
-                "-> [Modified code lines (difference to modified files) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
-                "-> [Modified code lines (difference to modified files) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
-                "-> [Modified files (difference to overall project) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)",
-                "-> [Modified files (difference to overall project) - Coverage]: ≪Failed≫ - (Actual value: +5.00%, Quality gate: 10.00)");
+                "-> [Modified code lines - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 
     static QualityGateResult createQualityGateResult() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
-
-        qualityGates.add(new CoverageQualityGate(76.0, Metric.FILE, Baseline.PROJECT, QualityGateCriticality.FAILURE));
         qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.FAILURE));
-        qualityGates.add(new CoverageQualityGate(76.0, Metric.FILE, Baseline.MODIFIED_LINES, QualityGateCriticality.FAILURE));
         qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.MODIFIED_LINES, QualityGateCriticality.FAILURE));
-        qualityGates.add(new CoverageQualityGate(76.0, Metric.FILE, Baseline.MODIFIED_FILES, QualityGateCriticality.FAILURE));
-        qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.MODIFIED_FILES, QualityGateCriticality.FAILURE));
-
-        var minimum = 10;
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.FILE, Baseline.PROJECT_DELTA, QualityGateCriticality.FAILURE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.LINE, Baseline.PROJECT_DELTA, QualityGateCriticality.FAILURE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.FILE, Baseline.MODIFIED_LINES_DELTA, QualityGateCriticality.FAILURE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.LINE, Baseline.MODIFIED_LINES_DELTA, QualityGateCriticality.FAILURE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.FILE, Baseline.MODIFIED_FILES_DELTA, QualityGateCriticality.FAILURE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.LINE, Baseline.MODIFIED_FILES_DELTA, QualityGateCriticality.FAILURE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
 
@@ -208,7 +129,6 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     void shouldOverwriteStatus() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
-        qualityGates.add(new CoverageQualityGate(76.0, Metric.FILE, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
         qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.FAILURE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
@@ -218,7 +138,6 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     @Test
     void shouldAddAllQualityGates() {
         Collection<CoverageQualityGate> qualityGates = List.of(
-                new CoverageQualityGate(76.0, Metric.FILE, Baseline.PROJECT, QualityGateCriticality.UNSTABLE),
                 new CoverageQualityGate(51.0, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.FAILURE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
@@ -229,7 +148,6 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     private static void assertThatStatusWillBeOverwritten(final CoverageQualityGateEvaluator evaluator) {
         QualityGateResult result = evaluator.evaluate();
         assertThat(result).hasOverallStatus(QualityGateStatus.FAILED).isNotSuccessful().hasMessages(
-                "-> [Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 76.00)",
                 "-> [Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 }

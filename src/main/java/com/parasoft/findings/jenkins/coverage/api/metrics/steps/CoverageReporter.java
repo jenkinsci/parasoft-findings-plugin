@@ -1,17 +1,13 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.NavigableMap;
 import java.util.Optional;
 import java.util.Set;
-import java.util.TreeMap;
 
 import hudson.model.Result;
 import io.jenkins.plugins.util.EnvironmentResolver;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.Fraction;
 
 import edu.hm.hafner.coverage.FileNode;
 import edu.hm.hafner.coverage.Metric;
@@ -71,29 +67,12 @@ public class CoverageReporter {
 
             Node modifiedLinesCoverageRoot = rootNode.filterByModifiedLines();
 
-            NavigableMap<Metric, Fraction> modifiedLinesCoverageDelta;
-            List<Value> aggregatedModifiedFilesCoverage;
-            NavigableMap<Metric, Fraction> modifiedFilesCoverageDelta;
-            if (hasModifiedLinesCoverage(modifiedLinesCoverageRoot)) {
-                Node modifiedFilesCoverageRoot = rootNode.filterByModifiedFiles();
-                aggregatedModifiedFilesCoverage = modifiedFilesCoverageRoot.aggregateValues();
-                modifiedFilesCoverageDelta = modifiedFilesCoverageRoot.computeDelta(rootNode);
-                modifiedLinesCoverageDelta = modifiedLinesCoverageRoot.computeDelta(modifiedFilesCoverageRoot);
+            if (!hasModifiedLinesCoverage(modifiedLinesCoverageRoot) && rootNode.hasModifiedLines()) {
+                log.logInfo("No detected code changes affect the code coverage");
             }
-            else {
-                modifiedLinesCoverageDelta = new TreeMap<>();
-                aggregatedModifiedFilesCoverage = new ArrayList<>();
-                modifiedFilesCoverageDelta = new TreeMap<>();
-                if (rootNode.hasModifiedLines()) {
-                    log.logInfo("No detected code changes affect the code coverage");
-                }
-            }
-
-            NavigableMap<Metric, Fraction> coverageDelta = rootNode.computeDelta(referenceRoot);
 
             QualityGateResult qualityGateResult = evaluateQualityGates(rootNode, log,
-                    modifiedLinesCoverageRoot.aggregateValues(), modifiedLinesCoverageDelta, coverageDelta,
-                    resultHandler, qualityGates);
+                    modifiedLinesCoverageRoot.aggregateValues(), resultHandler, qualityGates);
 
             if (sourceCodeRetention == SourceCodeRetention.MODIFIED) {
                 filesToStore = modifiedLinesCoverageRoot.getAllFileNodes();
@@ -104,13 +83,11 @@ public class CoverageReporter {
             }
 
             action = new CoverageBuildAction(build, id, optionalName, icon, rootNode, qualityGateResult, log,
-                    referenceAction.getOwner().getExternalizableId(), coverageDelta,
-                    modifiedLinesCoverageRoot.aggregateValues(), modifiedLinesCoverageDelta,
-                    aggregatedModifiedFilesCoverage, modifiedFilesCoverageDelta);
+                    referenceAction.getOwner().getExternalizableId(), modifiedLinesCoverageRoot.aggregateValues());
         }
         else {
             QualityGateResult qualityGateStatus = evaluateQualityGates(rootNode, log,
-                    List.of(), new TreeMap<>(), new TreeMap<>(), resultHandler, qualityGates);
+                    List.of(), resultHandler, qualityGates);
 
             filesToStore = rootNode.getAllFileNodes();
 
@@ -132,7 +109,7 @@ public class CoverageReporter {
     }
 
     private void createDeltaReports(final Node rootNode, final FilteredLog log, final Node referenceRoot,
-            final CodeDeltaCalculator codeDeltaCalculator, final Delta delta) {
+                                    final CodeDeltaCalculator codeDeltaCalculator, final Delta delta) {
         FileChangesProcessor fileChangesProcessor = new FileChangesProcessor();
 
         try {
@@ -155,12 +132,11 @@ public class CoverageReporter {
     }
 
     private QualityGateResult evaluateQualityGates(final Node rootNode, final FilteredLog log,
-            final List<Value> modifiedLinesCoverageDistribution,
-            final NavigableMap<Metric, Fraction> modifiedLinesCoverageDelta,
-            final NavigableMap<Metric, Fraction> coverageDelta, final StageResultHandler resultHandler,
-            final List<CoverageQualityGate> qualityGates) {
-        var statistics = new CoverageStatistics(rootNode.aggregateValues(), coverageDelta,
-                modifiedLinesCoverageDistribution, modifiedLinesCoverageDelta, List.of(), new TreeMap<>());
+                                                   final List<Value> modifiedLinesCoverageDistribution,
+                                                   final StageResultHandler resultHandler,
+                                                   final List<CoverageQualityGate> qualityGates) {
+        var statistics = new CoverageStatistics(rootNode.aggregateValues(),
+                modifiedLinesCoverageDistribution);
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, statistics);
         var qualityGateStatus = evaluator.evaluate();
         if (qualityGateStatus.isInactive()) {
@@ -218,7 +194,7 @@ public class CoverageReporter {
                 if (previousSuccessfulResult.isPresent()) {
                     log.logInfo("-> Found reference code coverage result in build '%s'", b);
                     return new ReferenceBuildActionResult(previousSuccessfulResult,
-                            new ReferenceResult(ReferenceResult.ReferenceStatus.OK, b.getExternalizableId()));
+                            new ReferenceResult(OK, b.getExternalizableId()));
                 }
             }
 

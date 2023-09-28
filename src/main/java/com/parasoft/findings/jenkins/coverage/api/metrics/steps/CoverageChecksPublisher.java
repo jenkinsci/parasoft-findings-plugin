@@ -114,7 +114,7 @@ public class CoverageChecksPublisher {
     private Optional<String> format(final Metric metric) {
         var baseline = selectBaseline();
         return action.getValueForMetric(baseline, metric)
-                .map(value -> formatValue(baseline, metric, value));
+                .map(value -> formatValue(metric, value));
 
     }
 
@@ -125,16 +125,9 @@ public class CoverageChecksPublisher {
         return Baseline.PROJECT;
     }
 
-    private String formatValue(final Baseline baseline, final Metric metric, final Value value) {
-        return String.format("%s: %s%s",
-                FORMATTER.getDisplayName(metric), FORMATTER.format(value), getDeltaDetails(baseline, metric));
-    }
-
-    private String getDeltaDetails(final Baseline baseline, final Metric metric) {
-        if (action.hasDelta(baseline, metric)) {
-            return String.format(" (%s)", action.formatDelta(baseline, metric));
-        }
-        return StringUtils.EMPTY;
+    private String formatValue(final Metric metric, final Value value) {
+        return String.format("%s: %s",
+                FORMATTER.getDisplayName(metric), FORMATTER.format(value));
     }
 
     private NavigableSet<Metric> getMetricsForTitle() {
@@ -328,7 +321,7 @@ public class CoverageChecksPublisher {
     }
 
     private List<Baseline> getBaselines() {
-        return List.of(Baseline.PROJECT, Baseline.MODIFIED_FILES, Baseline.MODIFIED_LINES);
+        return List.of(Baseline.PROJECT, Baseline.MODIFIED_LINES);
     }
 
     private String getOverallCoverageSummary() {
@@ -341,9 +334,6 @@ public class CoverageChecksPublisher {
                                 getUrlText(action.getTitle(baseline), getBaseUrl() + baseline.getUrl()))));
                 for (Value value : action.getValues(baseline)) {
                     String display = FORMATTER.formatDetailedValueWithMetric(value);
-                    if (action.hasDelta(baseline, value.getMetric())) {
-                        display += String.format(" - Delta: %s", action.formatDelta(baseline, value.getMetric()));
-                    }
                     description.append(getBulletListItem(TITLE_HEADER_LEVEL, display));
                 }
             }
@@ -395,23 +385,9 @@ public class CoverageChecksPublisher {
             builder.append(getMetricStream()
                     .map(metric -> action.formatValue(baseline, metric))
                     .collect(asColumn()));
-
-            var deltaBaseline = action.getDeltaBaseline(baseline);
-            if (deltaBaseline != baseline) {
-                builder.append(String.format("%s **%s**|", Icon.CHART_UPWARDS_TREND.markdown,
-                        FORMATTER.getDisplayName(deltaBaseline)));
-                builder.append(getMetricStream()
-                        .map(metric -> getFormatDelta(baseline, metric))
-                        .collect(asColumn()));
-            }
         }
 
         return builder.toString();
-    }
-
-    private String getFormatDelta(final Baseline baseline, final Metric metric) {
-        var delta = action.formatDelta(baseline, metric);
-        return delta + getTrendIcon(delta);
     }
 
     private Stream<Metric> getMetricStream() {

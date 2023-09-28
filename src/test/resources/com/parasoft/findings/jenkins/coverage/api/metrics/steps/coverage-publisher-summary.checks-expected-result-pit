@@ -5,13 +5,11 @@
 #### Overview by baseline
 
 * **[Overall project](http://127.0.0.1:8080/job/pipeline-coding-style/job/5/coverage#overview)**
-            * Coverage: 93.84% (198/211) - Delta: +50.00%
-            * Mutation Coverage: 90.24% (222/246)
-            * Lines covered: 211
-* **[Modified files](http://127.0.0.1:8080/job/pipeline-coding-style/job/5/coverage#modifiedFilesCoverage)**
-            * Coverage: 50.00% (1/2) - Delta: +50.00%
+  * Coverage: 93.84% (198/211)
+  * Mutation Coverage: 90.24% (222/246)
+  * Lines covered: 211
 * **[Modified code lines](http://127.0.0.1:8080/job/pipeline-coding-style/job/5/coverage#modifiedLinesCoverage)**
-            * Coverage: 50.00% (1/2) - Delta: +50.00%
+  * Coverage: 50.00% (1/2)
 
 #### Quality Gates Summary
 

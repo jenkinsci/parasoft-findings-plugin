@@ -83,19 +83,13 @@ public abstract class AbstractCoverageTest extends ResourceTest {
         }
     }
 
-    protected FilteredLog getLog() {
-        return log;
-    }
-
     /**
      * Creates coverage statistics that can be used in test cases.
      *
      * @return the coverage statistics
      */
     public static CoverageStatistics createStatistics() {
-        return new CoverageStatistics(fillValues(), fillDeltas(),
-                fillValues(), fillDeltas(),
-                fillValues(), fillDeltas());
+        return new CoverageStatistics(fillValues(), fillValues());
     }
 
     /**
@@ -104,8 +98,7 @@ public abstract class AbstractCoverageTest extends ResourceTest {
      * @return the coverage statistics
      */
     public static CoverageStatistics createOnlyProjectStatistics() {
-        return new CoverageStatistics(fillValues(),
-                new TreeMap<>(), List.of(), new TreeMap<>(), List.of(), new TreeMap<>());
+        return new CoverageStatistics(fillValues(), List.of());
     }
 
     private static List<Value> fillValues() {
