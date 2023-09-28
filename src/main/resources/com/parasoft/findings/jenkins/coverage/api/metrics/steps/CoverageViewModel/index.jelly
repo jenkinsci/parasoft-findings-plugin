@@ -21,11 +21,11 @@
           <a class="nav-link" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="false">Overview</a>
         </li>
         <li class="nav-item tab" role="presentation">
-          <a class="nav-link" id="fileCoverage-tab" data-bs-toggle="tab" data-bs-target="#fileCoverage" type="button" role="tab" aria-controls="fileCoverage" aria-selected="false">File Coverage</a>
+          <a class="nav-link" id="fileCoverage-tab" data-bs-toggle="tab" data-bs-target="#fileCoverage" type="button" role="tab" aria-controls="fileCoverage" aria-selected="false">Overall Code Coverage</a>
         </li>
         <j:if test="${hasModifiedLinesCoverage}">
           <li class="nav-item tab" role="presentation">
-            <a class="nav-link" id="changeCoverage-tab" data-bs-toggle="tab" data-bs-target="#changeCoverage" type="button" role="tab" aria-controls="changeCoverage" aria-selected="false">Modified Lines Coverage</a>
+            <a class="nav-link" id="changeCoverage-tab" data-bs-toggle="tab" data-bs-target="#changeCoverage" type="button" role="tab" aria-controls="changeCoverage" aria-selected="false">Modified Code Coverage</a>
           </li>
         </j:if>
       </ul>
