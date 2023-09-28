@@ -1,10 +1,8 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
-import java.util.AbstractMap.SimpleEntry;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.math.Fraction;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -49,12 +47,6 @@ class FileChangesProcessorTest extends AbstractCoverageTest {
     private static final Map<String, FileChanges> CODE_CHANGES = new HashMap<>();
 
     /**
-     * The mapping of the used paths between the generation of {@link #TEST_REPORT_BEFORE} and {@link
-     * #TEST_REPORT_AFTER}.
-     */
-    private static final Map<String, String> OLD_PATH_MAPPING = new HashMap<>();
-
-    /**
      * Initializes a map with the inserted {@link #CODE_CHANGES}.
      */
     @BeforeAll
@@ -74,7 +66,6 @@ class FileChangesProcessorTest extends AbstractCoverageTest {
         CODE_CHANGES.put(TEST_FILE_1_PATH, fileChanges);
         CODE_CHANGES.put(TEST_FILE_2,
                 new FileChanges("empty", "empty", "", FileEditType.MODIFY, new HashMap<>()));
-        OLD_PATH_MAPPING.put(TEST_FILE_1_PATH, TEST_FILE_1_PATH_OLD);
     }
 
     @Test
@@ -94,37 +85,6 @@ class FileChangesProcessorTest extends AbstractCoverageTest {
                 .satisfies(node -> assertThat(node.get())
                             .isInstanceOfSatisfying(FileNode.class, f -> assertThat(f.getModifiedLines())
                             .isEmpty()));
-    }
-
-    @Test
-    void shouldAttachFileCoverageDelta() {
-        FileChangesProcessor fileChangesProcessor = createFileChangesProcessor();
-        Node reference = readJacocoResult(TEST_REPORT_BEFORE);
-        Node tree = readJacocoResult(TEST_REPORT_AFTER);
-        fileChangesProcessor.attachFileCoverageDeltas(tree, reference, OLD_PATH_MAPPING);
-
-        assertThat(tree.findByHashCode(Metric.FILE, TEST_FILE_1_PATH.hashCode()))
-                .isNotEmpty()
-                .satisfies(node -> {
-                    assertThat(node.get()).isInstanceOf(FileNode.class);
-                    verifyFileCoverageDeltaOfTestFile1((FileNode) node.get());
-                });
-    }
-
-    /**
-     * Verifies the file coverage delta of {@link #TEST_FILE_1}.
-     *
-     * @param file
-     *         The referencing coverage tree {@link FileNode node}
-     */
-    private void verifyFileCoverageDeltaOfTestFile1(final FileNode file) {
-        assertThat(file.getName()).isEqualTo(TEST_FILE_1);
-        assertThat(file.getDelta(Metric.LINE)).isEqualTo(Fraction.getFraction(3, 117));
-        assertThat(file.getDelta(Metric.BRANCH)).isEqualTo(Fraction.getFraction(3, 24));
-        assertThat(file.getDelta(Metric.INSTRUCTION)).isEqualTo(Fraction.getFraction(90, 999));
-        assertThat(file.getDelta(Metric.METHOD)).isEqualTo(Fraction.getFraction(-4, 30));
-        assertThat(file.getDelta(Metric.CLASS)).isEqualTo(Fraction.ZERO);
-        assertThat(file.getDelta(Metric.FILE)).isEqualTo(Fraction.ZERO);
     }
 
     /**
