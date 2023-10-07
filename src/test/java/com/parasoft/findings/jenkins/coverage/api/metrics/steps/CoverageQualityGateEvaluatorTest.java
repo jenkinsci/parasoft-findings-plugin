@@ -30,8 +30,8 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     void shouldPassForTooLowThresholds() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
-        qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(0, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));qualityGates.add(new CoverageQualityGate(0, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(0, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
 
@@ -48,7 +48,7 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     void shouldSkipIfValueNotDefined() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
-        qualityGates.add(new CoverageQualityGate(0, Metric.LINE, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(0, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createOnlyProjectStatistics());
 
@@ -64,8 +64,8 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     void shouldReportUnstableIfBelowThreshold() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
-        qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(51.0, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(51.0, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
         QualityGateResult result = evaluator.evaluate();
@@ -79,9 +79,9 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     void shouldReportUnstableIfLargerThanThreshold() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
-        qualityGates.add(new CoverageQualityGate(149.0, Metric.COMPLEXITY, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(14, Metric.COMPLEXITY_MAXIMUM, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(999, Metric.LOC, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(149.0, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(14, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(999, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
         QualityGateResult result = evaluator.evaluate();
@@ -97,8 +97,8 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
         var minimum = 0;
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.COMPLEXITY, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
-        qualityGates.add(new CoverageQualityGate(minimum, Metric.LOC, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(minimum, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(minimum, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
         QualityGateResult result = evaluator.evaluate();
@@ -117,8 +117,8 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
 
     static QualityGateResult createQualityGateResult() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
-        qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.FAILURE));
-        qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.MODIFIED_LINES, QualityGateCriticality.FAILURE));
+        qualityGates.add(new CoverageQualityGate(51.0, Baseline.PROJECT, QualityGateCriticality.FAILURE));
+        qualityGates.add(new CoverageQualityGate(51.0, Baseline.MODIFIED_LINES, QualityGateCriticality.FAILURE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
 
@@ -129,7 +129,7 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     void shouldOverwriteStatus() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
-        qualityGates.add(new CoverageQualityGate(51.0, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.FAILURE));
+        qualityGates.add(new CoverageQualityGate(51.0, Baseline.PROJECT, QualityGateCriticality.FAILURE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
         assertThatStatusWillBeOverwritten(evaluator);
@@ -138,7 +138,7 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     @Test
     void shouldAddAllQualityGates() {
         Collection<CoverageQualityGate> qualityGates = List.of(
-                new CoverageQualityGate(51.0, Metric.LINE, Baseline.PROJECT, QualityGateCriticality.FAILURE));
+                new CoverageQualityGate(51.0, Baseline.PROJECT, QualityGateCriticality.FAILURE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
 

@@ -26,7 +26,7 @@ class CoverageQualityGateEvaluator extends QualityGateEvaluator<CoverageQualityG
 
     @Override
     protected void evaluate(final CoverageQualityGate qualityGate, final QualityGateResult result) {
-        var baseline = qualityGate.getBaseline();
+        var baseline = qualityGate.getType();
         var possibleValue = statistics.getValue(baseline, qualityGate.getMetric());
         if (possibleValue.isPresent()) {
             var actualValue = possibleValue.get();
