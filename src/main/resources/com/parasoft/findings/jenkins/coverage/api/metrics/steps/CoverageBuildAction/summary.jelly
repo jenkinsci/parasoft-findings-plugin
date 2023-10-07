@@ -20,14 +20,19 @@
             </div>
           </li>
         </j:if>
-        <j:if test="${it.referenceBuild.present}">
+        <j:choose>
           <span id="coverage-reference">
             <li>
               Reference build:
-              <j:out value="${it.referenceBuildLink}"/>
+              <j:when test="${it.referenceBuildWarningMessage.isEmpty()}">
+                <j:out value="${it.referenceBuildLink}"/>
+              </j:when>
+              <j:otherwise>
+                <j:out value="${it.referenceBuildWarningMessage}"/>
+              </j:otherwise>
             </li>
           </span>
-        </j:if>
+        </j:choose>
         <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:l="/lib/layout">
           <j:set var="result" value="${it.qualityGateResult}"/>
           <j:set var="status" value="${result.overallStatus}"/>

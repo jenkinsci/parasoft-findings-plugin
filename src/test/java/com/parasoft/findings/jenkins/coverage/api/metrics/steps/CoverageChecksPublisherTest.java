@@ -25,6 +25,8 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
 import io.jenkins.plugins.util.JenkinsFacade;
 import io.jenkins.plugins.util.QualityGateResult;
 
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.OK;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -195,7 +197,7 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
 
         return new CoverageBuildAction(run, COVERAGE_ID, REPORT_NAME, StringUtils.EMPTY, result,
                 new QualityGateResult(), null, "refId",
-                List.of(testCoverage), false);
+                List.of(testCoverage), false, new ReferenceResult(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
     }
 
     private CoverageBuildAction createActionWithoutDelta(final Node result) {
@@ -208,6 +210,6 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
 
         return new CoverageBuildAction(run, COVERAGE_ID, REPORT_NAME, StringUtils.EMPTY, result,
                 qualityGateResult, null, "refId",
-                List.of(), false);
+                List.of(), false, new ReferenceResult(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
     }
 }

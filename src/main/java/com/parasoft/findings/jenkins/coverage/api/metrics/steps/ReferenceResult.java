@@ -24,6 +24,7 @@ public class ReferenceResult {
     public enum ReferenceStatus {
         OK,
         NO_REF_BUILD,
+        NO_PREVIOUS_BUILD_WAS_FOUND,
         REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE,
         NO_CVG_DATA_IN_REF_BUILD;
     }
