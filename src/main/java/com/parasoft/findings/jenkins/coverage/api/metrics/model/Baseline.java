@@ -6,7 +6,6 @@ import org.jvnet.localizer.Localizable;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider.DisplayColors;
-import com.parasoft.findings.jenkins.coverage.api.metrics.color.CoverageChangeTendency;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.CoverageLevel;
 
 /**
@@ -18,32 +17,10 @@ public enum Baseline {
      */
     PROJECT(Messages._Baseline_PROJECT(), "overview", CoverageLevel::getDisplayColorsOfCoverageLevel),
     /**
-     * Difference between the project coverages of the current build and the reference build. Teams can use this delta
-     * value to ensure that the coverage will not decrease.
-     */
-    PROJECT_DELTA(Messages._Baseline_PROJECT_DELTA(), "overview",
-            CoverageChangeTendency::getDisplayColorsForTendency),
-    /**
      * Coverage of the modified lines (e.g., within the modified lines of a pull or merge request) will focus on new or
      * modified code only.
      */
-    MODIFIED_LINES(Messages._Baseline_MODIFIED_LINES(), "modifiedLinesCoverage", CoverageLevel::getDisplayColorsOfCoverageLevel),
-    /**
-     * Difference between the project coverage and the modified lines coverage of the current build. Teams can use this delta
-     * value to ensure that the coverage of pull requests is better than the whole project coverage.
-     */
-    MODIFIED_LINES_DELTA(Messages._Baseline_MODIFIED_LINES_DELTA(), "modifiedLinesCoverage",
-            CoverageChangeTendency::getDisplayColorsForTendency),
-    /**
-     * Coverage of the modified files (e.g., within the files that have been touched in a pull or merge request) will
-     * focus on new or modified code only.
-     */
-    MODIFIED_FILES(Messages._Baseline_MODIFIED_FILES(), "modifiedFilesCoverage", CoverageLevel::getDisplayColorsOfCoverageLevel),
-    /**
-     * Difference between the project coverage and the modified file coverage of the current build. Teams can use this delta
-     * value to ensure that the coverage of pull requests is better than the whole project coverage.
-     */
-    MODIFIED_FILES_DELTA(Messages._Baseline_MODIFIED_FILES_DELTA(), "modifiedFilesCoverage", CoverageChangeTendency::getDisplayColorsForTendency);
+    MODIFIED_LINES(Messages._Baseline_MODIFIED_LINES(), "modifiedLinesCoverage", CoverageLevel::getDisplayColorsOfCoverageLevel);
 
     private final Localizable title;
     private final String url;

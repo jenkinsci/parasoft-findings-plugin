@@ -1,21 +1,17 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics.model;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import io.jenkins.plugins.util.QualityGate;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.Fraction;
 
 import edu.hm.hafner.coverage.Coverage;
 import edu.hm.hafner.coverage.FractionValue;
 import edu.hm.hafner.coverage.IntegerValue;
 import edu.hm.hafner.coverage.Metric;
 import edu.hm.hafner.coverage.Percentage;
-import edu.hm.hafner.coverage.SafeFraction;
 import edu.hm.hafner.coverage.Value;
 
 import hudson.Functions;
@@ -33,7 +29,6 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProviderFac
 // TODO: create instances for the different types
 @SuppressWarnings({"PMD.GodClass", "PMD.CyclomaticComplexity"})
 public final class ElementFormatter {
-    private static final Fraction HUNDRED = Fraction.getFraction("100.0");
     private static final String NO_COVERAGE_AVAILABLE = "-";
     private static final Pattern PERCENTAGE = Pattern.compile("\\d+(\\.\\d+)?%");
     private int covered;
@@ -73,24 +68,7 @@ public final class ElementFormatter {
         if (value instanceof IntegerValue) {
             return String.format("%d/%d", covered, ((IntegerValue) value).getValue());
         }
-        if (value instanceof FractionValue) {
-            return formatDelta(((FractionValue) value).getFraction(), value.getMetric(), locale);
-        }
         return value.toString();
-    }
-
-    /**
-     * Formats a generic value using a specific rendering method. The type of the given {@link Value} instance is used
-     * to select the best matching rendering method. This non-object-oriented approach is required since the
-     * {@link Value} instances are provided by a library that is not capable of localizing these values for the user.
-     *
-     * @param value
-     *         the value to format
-     *
-     * @return the formatted value as plain text
-     */
-    public String formatDetails(final Value value) {
-        return formatDetails(value, Functions.getCurrentLocale());
     }
 
     /**
@@ -291,28 +269,6 @@ public final class ElementFormatter {
     }
 
     /**
-     * Formats a delta percentage to its plain text representation with a leading sign and rounds the value to two
-     * decimals.
-     *
-     * @param fraction
-     *         the value of the delta
-     * @param metric
-     *         the metric of the value
-     * @param locale
-     *         the locale to use to render the values
-     *
-     * @return the formatted delta percentage as plain text with a leading sign
-     */
-    public String formatDelta(final Fraction fraction, final Metric metric, final Locale locale) {
-        if (metric.equals(Metric.COMPLEXITY)
-                || metric.equals(Metric.COMPLEXITY_MAXIMUM)
-                || metric.equals(Metric.LOC)) {
-            return String.format(locale, "%+d", fraction.intValue());
-        }
-        return String.format(locale, "%+.2f%%", new SafeFraction(fraction).multiplyBy(HUNDRED).doubleValue());
-    }
-
-    /**
      * Returns a localized human-readable name for the specified metric.
      *
      * @param metric
@@ -355,18 +311,6 @@ public final class ElementFormatter {
                 throw new NoSuchElementException("No display name found for metric " + metric);
         }
     }
-
-    /**
-     * Gets the display names of the existing {@link Metric coverage metrics}, sorted by the metrics ordinal.
-     *
-     * @return the sorted metric display names
-     */
-    public List<String> getSortedCoverageDisplayNames() {
-        return Metric.getCoverageMetrics().stream()
-                .map(this::getDisplayName)
-                .collect(Collectors.toList());
-    }
-
 
     /**
      * Returns a localized human-readable label for the specified metric.
@@ -426,43 +370,9 @@ public final class ElementFormatter {
                 return Messages.Baseline_PROJECT();
             case MODIFIED_LINES:
                 return Messages.Baseline_MODIFIED_LINES();
-            case MODIFIED_FILES:
-                return Messages.Baseline_MODIFIED_FILES();
-            case PROJECT_DELTA:
-                return Messages.Baseline_PROJECT_DELTA();
-            case MODIFIED_LINES_DELTA:
-                return Messages.Baseline_MODIFIED_LINES_DELTA();
-            case MODIFIED_FILES_DELTA:
-                return Messages.Baseline_MODIFIED_FILES_DELTA();
             default:
                 throw new NoSuchElementException("No display name found for baseline " + baseline);
         }
-    }
-
-    /**
-     * Returns all available metrics as a {@link ListBoxModel}.
-     *
-     * @return the metrics in a {@link ListBoxModel}
-     */
-    public ListBoxModel getMetricItems() {
-        ListBoxModel options = new ListBoxModel();
-        add(options, Metric.MODULE);
-        add(options, Metric.PACKAGE);
-        add(options, Metric.FILE);
-        add(options, Metric.CLASS);
-        add(options, Metric.METHOD);
-        add(options, Metric.LINE);
-        add(options, Metric.BRANCH);
-        add(options, Metric.INSTRUCTION);
-        add(options, Metric.MUTATION);
-        add(options, Metric.COMPLEXITY);
-        add(options, Metric.COMPLEXITY_MAXIMUM);
-        add(options, Metric.LOC);
-        return options;
-    }
-
-    private void add(final ListBoxModel options, final Metric metric) {
-        options.add(getDisplayName(metric), metric.name());
     }
 
     /**

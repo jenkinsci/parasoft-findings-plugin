@@ -30,7 +30,6 @@ import edu.umd.cs.findbugs.annotations.CheckForNull;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 import org.kohsuke.stapler.bind.JavaScriptMethod;
-import hudson.model.Api;
 import hudson.model.ModelObject;
 import hudson.model.Run;
 
@@ -38,7 +37,6 @@ import io.jenkins.plugins.bootstrap5.MessagesViewModel;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProviderFactory;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.CoverageColorJenkinsId;
-import com.parasoft.findings.jenkins.coverage.api.metrics.model.CoverageStatistics;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.ElementFormatter;
 import com.parasoft.findings.jenkins.coverage.api.metrics.source.SourceCodeFacade;
 import com.parasoft.findings.jenkins.coverage.api.metrics.source.SourceViewModel;
@@ -48,7 +46,6 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTableMod
 import io.jenkins.plugins.datatables.DefaultAsyncTableContentProvider;
 import io.jenkins.plugins.datatables.TableModel;
 import io.jenkins.plugins.util.BuildResultNavigator;
-import io.jenkins.plugins.util.QualityGateResult;
 
 /**
  * Server side model that provides the data for the details view of the coverage results. The layout of the associated
@@ -70,9 +67,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
     private static final String UNDEFINED = "-";
     private final Run<?, ?> owner;
     private final String optionalName;
-    private final CoverageStatistics statistics;
-    private final QualityGateResult qualityGateResult;
-    private final String referenceBuild;
     private final FilteredLog log;
     private final Node node;
     private final String id;
@@ -84,8 +78,7 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
 
     @SuppressWarnings("checkstyle:ParameterNumber")
     CoverageViewModel(final Run<?, ?> owner, final String id, final String optionalName, final Node node,
-            final CoverageStatistics statistics, final QualityGateResult qualityGateResult,
-            final String referenceBuild, final FilteredLog log, final Function<String, String> trendChartFunction) {
+                      final FilteredLog log, final Function<String, String> trendChartFunction) {
         super();
 
         this.owner = owner;
@@ -94,9 +87,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
         this.optionalName = optionalName;
 
         this.node = node;
-        this.statistics = statistics;
-        this.qualityGateResult = qualityGateResult;
-        this.referenceBuild = referenceBuild;
 
         this.log = log;
 
@@ -129,15 +119,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
             return Messages.Coverage_Title(node.getName());
         }
         return String.format("%s: %s", optionalName, node.getName());
-    }
-
-    /**
-     * Gets the remote API for this action. Depending on the path, a different result is selected.
-     *
-     * @return the remote API
-     */
-    public Api getApi() {
-        return new Api(new CoverageApi(statistics, qualityGateResult, referenceBuild));
     }
 
     /**
