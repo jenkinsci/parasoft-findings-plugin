@@ -113,14 +113,8 @@ public final class ElementFormatter {
         if (value instanceof Coverage) {
             var coverage = (Coverage) value;
             if (coverage.isSet()) {
-                if (coverage.getMetric() == Metric.MUTATION) {
-                    return formatCoverage(coverage, Messages.Metric_MUTATION_Killed(),
-                            Messages.Metric_MUTATION_Survived());
-                }
-                else {
-                    return formatCoverage(coverage, Messages.Metric_Coverage_Covered(),
-                            Messages.Metric_Coverage_Missed());
-                }
+                return formatCoverage(coverage, Messages.Metric_Coverage_Covered(),
+                        Messages.Metric_Coverage_Missed());
             }
             return StringUtils.EMPTY;
         }
@@ -297,14 +291,6 @@ public final class ElementFormatter {
                 return Messages.Metric_BRANCH();
             case INSTRUCTION:
                 return Messages.Metric_INSTRUCTION();
-            case MUTATION:
-                return Messages.Metric_MUTATION();
-            case COMPLEXITY:
-                return Messages.Metric_COMPLEXITY();
-            case COMPLEXITY_MAXIMUM:
-                return Messages.Metric_COMPLEXITY_MAXIMUM();
-            case COMPLEXITY_DENSITY:
-                return Messages.Metric_COMPLEXITY_DENSITY();
             case LOC:
                 return Messages.Metric_LINES_COVERED();
             default:
@@ -341,14 +327,6 @@ public final class ElementFormatter {
                 return Messages.Metric_Short_BRANCH();
             case INSTRUCTION:
                 return Messages.Metric_Short_INSTRUCTION();
-            case MUTATION:
-                return Messages.Metric_Short_MUTATION();
-            case COMPLEXITY:
-                return Messages.Metric_Short_COMPLEXITY();
-            case COMPLEXITY_MAXIMUM:
-                return Messages.Metric_Short_COMPLEXITY_MAXIMUM();
-            case COMPLEXITY_DENSITY:
-                return Messages.Metric_Short_COMPLEXITY_DENSITY();
             case LOC:
                 return Messages.Metric_Short_LOC();
             default:

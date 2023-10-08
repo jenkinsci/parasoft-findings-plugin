@@ -389,13 +389,4 @@ public class ParasoftCoverageRecorder extends Recorder {
             return generatedCoverageBuildDirs;
         }
     }
-
-    public enum ChecksAnnotationScope {
-        /** No annotations are created. */
-        SKIP,
-        /** Only changed lines are annotated. */
-        MODIFIED_LINES,
-        /** All lines are annotated. */
-        ALL_LINES;
-    }
 }
