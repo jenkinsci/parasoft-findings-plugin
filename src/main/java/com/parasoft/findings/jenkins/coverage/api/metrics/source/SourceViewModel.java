@@ -9,6 +9,8 @@ import edu.hm.hafner.coverage.FileNode;
 import hudson.model.ModelObject;
 import hudson.model.Run;
 
+import static com.parasoft.findings.jenkins.coverage.api.metrics.source.CoverageSourcePrinter.*;
+
 /**
  * Server side model that provides the data for the source code view of the coverage results. The layout of the
  * associated view is defined corresponding jelly view 'index.jelly'.
@@ -54,7 +56,13 @@ public class SourceViewModel implements ModelObject {
     @SuppressWarnings("unused") // Called by jelly view
     public String getSourceFileContent() {
         try {
-            return SOURCE_CODE_FACADE.read(getOwner().getRootDir(), id, getNode().getRelativePath());
+            String sourceFileContent = SOURCE_CODE_FACADE.read(getOwner().getRootDir(), id, getNode().getRelativePath());
+            // Localizing "tooltip" in source code.
+            sourceFileContent = sourceFileContent.replaceAll(PARASOFT_COVERAGE_ALL_BRANCHES_COVERED, Messages.All_Branches_Covered());
+            sourceFileContent = sourceFileContent.replaceAll(PARASOFT_COVERAGE_PARTIALLY_COVERED_AND_BRANCH_COVERAGE, Messages.Partially_Covered_And_Branch_Coverage());
+            sourceFileContent = sourceFileContent.replaceAll(PARASOFT_COVERAGE_COVERED_AT_LEAST_ONCE, Messages.Covered_At_Least_Once());
+            sourceFileContent = sourceFileContent.replaceAll(PARASOFT_COVERAGE_NOT_COVERED, Messages.Not_Covered());
+            return sourceFileContent;
         }
         catch (IOException | InterruptedException exception) {
             return ExceptionUtils.getStackTrace(exception);

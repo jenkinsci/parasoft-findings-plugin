@@ -23,7 +23,7 @@
         <j:if test="${it.referenceBuild.present}">
           <span id="coverage-reference">
             <li>
-              Reference build:
+              ${%reference.build}:
               <j:out value="${it.referenceBuildLink}"/>
             </li>
           </span>
@@ -32,7 +32,10 @@
           <j:set var="result" value="${it.qualityGateResult}"/>
           <j:set var="status" value="${result.overallStatus}"/>
           <j:if test="${status.name() != 'INACTIVE'}">
-            <li>${%quality.gate.title}: ${status.description}
+            <li>${%quality.gate.title}:
+              <j:if test="${status.name() == 'PASSED'}">${%quality.gate.status.success}</j:if>
+              <j:if test="${status.name() == 'WARNING'}">${%quality.gate.status.unstable}</j:if>
+              <j:if test="${status.name() == 'FAILED'}">${%quality.gate.status.failed}</j:if>
               <l:icon style="width: 16px; height: 16px; margin-left: 0; position: relative; top: -0.1rem;" alt="${status.description}" class="${status.iconClass} icon-sm"/>
             </li>
             <table class="jenkins-table">

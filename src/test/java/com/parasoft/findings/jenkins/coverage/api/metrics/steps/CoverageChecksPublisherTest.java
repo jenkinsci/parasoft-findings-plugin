@@ -193,7 +193,7 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
                     file.addModifiedLines(251);
                 });
 
-        return new CoverageBuildAction(run, COVERAGE_ID, REPORT_NAME, StringUtils.EMPTY, result,
+        return new CoverageBuildAction(run, COVERAGE_ID, StringUtils.EMPTY, result,
                 new QualityGateResult(), null, "refId",
                 List.of(testCoverage), false);
     }
@@ -206,7 +206,7 @@ class CoverageChecksPublisherTest extends AbstractCoverageTest {
         var run = mock(Run.class);
         when(run.getUrl()).thenReturn(BUILD_LINK);
 
-        return new CoverageBuildAction(run, COVERAGE_ID, REPORT_NAME, StringUtils.EMPTY, result,
+        return new CoverageBuildAction(run, COVERAGE_ID, StringUtils.EMPTY, result,
                 qualityGateResult, null, "refId",
                 List.of(), false);
     }

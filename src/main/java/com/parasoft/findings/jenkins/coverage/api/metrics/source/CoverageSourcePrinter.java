@@ -31,6 +31,11 @@ class CoverageSourcePrinter implements Serializable {
 
     private final int[] missedPerLine;
 
+    public static final String PARASOFT_COVERAGE_ALL_BRANCHES_COVERED = "Parasoft coverage all branches covered";
+    public static final String PARASOFT_COVERAGE_PARTIALLY_COVERED_AND_BRANCH_COVERAGE = "Parasoft coverage partially covered and branch coverage";
+    public static final String PARASOFT_COVERAGE_COVERED_AT_LEAST_ONCE = "Parasoft coverage covered at least once";
+    public static final String PARASOFT_COVERAGE_NOT_COVERED = "Parasoft coverage not covered";
+
     CoverageSourcePrinter(final FileNode file) {
         path = file.getRelativePath();
 
@@ -82,15 +87,15 @@ class CoverageSourcePrinter implements Serializable {
         var missed = getMissed(line);
         if (covered + missed > 1) {
             if (missed == 0) {
-                return "All branches covered";
+                return PARASOFT_COVERAGE_ALL_BRANCHES_COVERED;
             }
-            return String.format("Partially covered, branch coverage: %d/%d", covered, covered + missed);
+            return PARASOFT_COVERAGE_PARTIALLY_COVERED_AND_BRANCH_COVERAGE + String.format(": %d/%d", covered, covered + missed);
         }
         else if (covered == 1) {
-            return "Covered at least once";
+            return PARASOFT_COVERAGE_COVERED_AT_LEAST_ONCE;
         }
         else {
-            return "Not covered";
+            return PARASOFT_COVERAGE_NOT_COVERED;
         }
     }
 

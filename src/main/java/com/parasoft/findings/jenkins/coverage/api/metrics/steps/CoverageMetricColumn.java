@@ -41,7 +41,7 @@ public class CoverageMetricColumn extends ListViewColumn {
     }
 
     public String getColumnName() {
-        return Messages.Coverage_Column();
+        return Messages.Parasoft_Coverage();
     }
 
     /**
@@ -166,7 +166,7 @@ public class CoverageMetricColumn extends ListViewColumn {
         @NonNull
         @Override
         public String getDisplayName() {
-            return Messages.Coverage_Column();
+            return Messages.Parasoft_Coverage();
         }
     }
 }

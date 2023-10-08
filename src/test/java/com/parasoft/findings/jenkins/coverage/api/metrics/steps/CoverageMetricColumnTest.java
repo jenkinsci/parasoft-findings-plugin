@@ -157,7 +157,7 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
     private Job<?, ?> createJobWithCoverageAction(Node node) {
         var run = mock(Run.class);
         CoverageBuildAction coverageBuildAction =
-                new CoverageBuildAction(run, "coverage", "Code Coverage", StringUtils.EMPTY,
+                new CoverageBuildAction(run, "coverage", "Code Coverage",
                         node, new QualityGateResult(), new FilteredLog("Test"),
                         "-", List.of(), false);
         when(run.getAction(CoverageBuildAction.class)).thenReturn(coverageBuildAction);

@@ -399,6 +399,15 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
                     .collect(Collectors.toList());
         }
 
+        @SuppressWarnings("unused") // Called by view-model.js
+        public String getCoverageCoveredText() {
+            return Messages.Coverage_Covered();
+        }
+        @SuppressWarnings("unused") // Called by view-model.js
+        public String getCoverageMissedText() {
+            return Messages.Coverage_Missed();
+        }
+
         private Stream<Coverage> sortCoverages() {
             return getSortedCoverageValues()
                     .filter(c -> c.getTotal() > 1); // ignore elements that have a total of 1

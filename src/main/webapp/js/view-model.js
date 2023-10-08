@@ -25,7 +25,7 @@ const CoverageChartGenerator = function ($) {
             }
         });
     };
-    function createOverview(overview, id) {
+    function createOverview(overview, id, coverageCoveredText, coverageMissedText) {
         const missedColor = echartsJenkinsApi.resolveJenkinsColor("--red");
         const missedText = echartsJenkinsApi.resolveJenkinsColor("--white");
         const coveredColor = echartsJenkinsApi.resolveJenkinsColor("--green");
@@ -65,7 +65,7 @@ const CoverageChartGenerator = function ($) {
                 }
             },
             legend: {
-                data: ['Covered', 'Missed'],
+                data: [coverageCoveredText, coverageMissedText],
                 x: 'center',
                 y: 'top',
                 textStyle: {
@@ -120,7 +120,7 @@ const CoverageChartGenerator = function ($) {
             }],
             series: [
                 {
-                    name: 'Covered',
+                    name: coverageCoveredText,
                     type: 'bar',
                     stack: 'sum',
                     itemStyle: {
@@ -140,7 +140,7 @@ const CoverageChartGenerator = function ($) {
                     data: overview.coveredPercentages
                 },
                 {
-                    name: 'Missed',
+                    name: coverageMissedText,
                     type: 'bar',
                     stack: 'sum',
                     itemStyle: {
@@ -223,9 +223,8 @@ const CoverageChartGenerator = function ($) {
         // TODO: maybe it would make sense to render only visible charts
         function initializeCharts() {
             renderTrendChart();
-
             viewProxy.getOverview(function (t) {
-                createOverview(t.responseObject(), 'coverage-overview');
+                createOverview(t.responseObject(), 'coverage-overview', t.responseJSON.coverageCoveredText, t.responseJSON.coverageMissedText);
             });
         }
 

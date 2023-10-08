@@ -166,7 +166,7 @@ public class ParasoftCoverageRecorder extends Recorder {
             resolveAbsolutePaths(rootNode, workspace, sources, log);
             logHandler.log(log);
 
-            var action = reporter.publishAction(getId(), getName(), getIcon(), rootNode, run, workspace, taskListener,
+            var action = reporter.publishAction(getId(), getIcon(), rootNode, run, workspace, taskListener,
                     getReferenceBuild(), getCoverageQualityGates(), getSourceCodeEncoding(), resultHandler);
 
             var checksPublisher = new CoverageChecksPublisher(action, rootNode, getName(), ChecksAnnotationScope.MODIFIED_LINES);

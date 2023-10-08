@@ -10,8 +10,6 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang3.StringUtils;
-
 import edu.hm.hafner.coverage.Metric;
 import edu.hm.hafner.coverage.Node;
 import edu.hm.hafner.coverage.Value;
@@ -28,7 +26,6 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.charts.CoverageTrendCh
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.CoverageStatistics;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.ElementFormatter;
-import com.parasoft.findings.jenkins.coverage.api.model.Messages;
 import io.jenkins.plugins.echarts.GenericBuildActionIterator.BuildActionIterable;
 import io.jenkins.plugins.forensics.reference.ReferenceBuild;
 import io.jenkins.plugins.util.AbstractXmlStream;
@@ -51,7 +48,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     private static final String NO_REFERENCE_BUILD = "-";
 
     private final String id;
-    private final String name;
 
     private final String referenceBuildId;
 
@@ -77,8 +73,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      *         the associated build that created the statistics
      * @param id
      *         ID (URL) of the results
-     * @param optionalName
-     *         optional name that overrides the default name of the results
      * @param icon
      *         name of the icon that should be used in actions and views
      * @param result
@@ -88,9 +82,9 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      * @param log
      *         the logging statements of the recording step
      */
-    public CoverageBuildAction(final Run<?, ?> owner, final String id, final String optionalName, final String icon,
+    public CoverageBuildAction(final Run<?, ?> owner, final String id, final String icon,
             final Node result, final QualityGateResult qualityGateResult, final FilteredLog log) {
-        this(owner, id, optionalName, icon, result, qualityGateResult, log, NO_REFERENCE_BUILD,
+        this(owner, id, icon, result, qualityGateResult, log, NO_REFERENCE_BUILD,
                 List.of());
     }
 
@@ -101,8 +95,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      *         the associated build that created the statistics
      * @param id
      *         ID (URL) of the results
-     * @param optionalName
-     *         optional name that overrides the default name of the results
      * @param icon
      *         name of the icon that should be used in actions and views
      * @param result
@@ -117,17 +109,17 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      *         the coverages filtered by modified lines of the associated change request
      */
     @SuppressWarnings("checkstyle:ParameterNumber")
-    public CoverageBuildAction(final Run<?, ?> owner, final String id, final String optionalName, final String icon,
+    public CoverageBuildAction(final Run<?, ?> owner, final String id, final String icon,
             final Node result, final QualityGateResult qualityGateResult, final FilteredLog log,
             final String referenceBuildId,
             final List<? extends Value> modifiedLinesCoverage) {
-        this(owner, id, optionalName, icon, result, qualityGateResult, log, referenceBuildId,
+        this(owner, id, icon, result, qualityGateResult, log, referenceBuildId,
                 modifiedLinesCoverage, true);
     }
 
     @VisibleForTesting
     @SuppressWarnings("checkstyle:ParameterNumber")
-    CoverageBuildAction(final Run<?, ?> owner, final String id, final String name, final String icon,
+    CoverageBuildAction(final Run<?, ?> owner, final String id, final String icon,
             final Node result, final QualityGateResult qualityGateResult, final FilteredLog log,
             final String referenceBuildId,
             final List<? extends Value> modifiedLinesCoverage,
@@ -135,7 +127,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
         super(owner, result, false);
 
         this.id = id;
-        this.name = name;
         this.icon = icon;
         this.log = log;
 
@@ -149,14 +140,6 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
         }
     }
 
-    /**
-     * Returns the actual name of the tool. If no user-defined name is given, then the default name is returned.
-     *
-     * @return the name
-     */
-    private String getActualName() {
-        return StringUtils.defaultIfBlank(name, Messages.Coverage_Link_Name());
-    }
 
     public FilteredLog getLog() {
         return log;
@@ -326,7 +309,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
 
     @Override
     protected CoverageJobAction createProjectAction() {
-        return new CoverageJobAction(getOwner().getParent(), getUrlName(), name, icon);
+        return new CoverageJobAction(getOwner().getParent(), getUrlName(), getDisplayName(), icon);
     }
 
     @Override
@@ -336,7 +319,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
 
     @Override
     public CoverageViewModel getTarget() {
-        return new CoverageViewModel(getOwner(), getUrlName(), name, getResult(),
+        return new CoverageViewModel(getOwner(), getUrlName(), getDisplayName(), getResult(),
                 getStatistics(), getQualityGateResult(), getReferenceBuildLink(), log, this::createChartModel);
     }
 
@@ -356,7 +339,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     @NonNull
     @Override
     public String getDisplayName() {
-        return getActualName();
+        return Messages.Parasoft_Coverage();
     }
 
     @NonNull
