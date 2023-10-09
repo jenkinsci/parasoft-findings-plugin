@@ -51,21 +51,7 @@ public class CoverageTrendChart {
             model.useContinuousRangeAxis();
             model.setRangeMax(100);
             model.setRangeMin(dataSet.getMinimumValue());
-
-            addSecondSeries(dataSet, model, Messages.Metric_BRANCH(), CoverageSeriesBuilder.BRANCH_COVERAGE);
-            addSecondSeries(dataSet, model, Messages.Metric_MUTATION(), CoverageSeriesBuilder.MUTATION_COVERAGE);
         }
         return model;
-    }
-
-    private static void addSecondSeries(final LinesDataSet dataSet, final LinesChartModel model,
-            final String name, final String seriesId) {
-        if (dataSet.containsSeries(seriesId)) {
-            LineSeries branchSeries = new LineSeries(name,
-                    BRANCH_COVERAGE_COLOR, StackedMode.SEPARATE_LINES, FilledMode.FILLED,
-                    dataSet.getSeries(seriesId));
-
-            model.addSeries(branchSeries);
-        }
     }
 }
