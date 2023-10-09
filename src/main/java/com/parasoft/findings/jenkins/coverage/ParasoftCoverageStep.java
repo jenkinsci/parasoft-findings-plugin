@@ -30,10 +30,10 @@ import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.*;
 public class ParasoftCoverageStep extends Step implements Serializable {
     private static final long serialVersionUID = -2235239576082380147L;
     private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
-    private String pattern;
-    private String sourceCodeEncoding;
+    private String pattern = StringUtils.EMPTY;
+    private String sourceCodeEncoding = StringUtils.EMPTY;
     private List<CoverageQualityGate> CoverageQualityGates = new ArrayList<>();
-    private String referenceBuild;
+    private String referenceBuild = StringUtils.EMPTY;
 
     @DataBoundConstructor
     public ParasoftCoverageStep(){

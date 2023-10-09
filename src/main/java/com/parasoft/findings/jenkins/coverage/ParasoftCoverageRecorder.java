@@ -33,7 +33,6 @@ import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
 import hudson.util.ComboBoxModel;
 import hudson.util.FormValidation;
-import io.jenkins.plugins.prism.SourceCodeRetention;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -167,9 +166,8 @@ public class ParasoftCoverageRecorder extends Recorder {
             resolveAbsolutePaths(rootNode, workspace, sources, log);
             logHandler.log(log);
 
-            var action = reporter.publishAction(getId(), getName(), getIcon(), rootNode, run,
-                    workspace, taskListener, getReferenceBuild(), getCoverageQualityGates(), StringUtils.EMPTY,
-                    getSourceCodeEncoding(), SourceCodeRetention.LAST_BUILD, resultHandler);
+            var action = reporter.publishAction(getId(), getName(), getIcon(), rootNode, run, workspace, taskListener,
+                    getReferenceBuild(), getCoverageQualityGates(), getSourceCodeEncoding(), resultHandler);
 
             var checksPublisher = new CoverageChecksPublisher(action, rootNode, getName(), ChecksAnnotationScope.MODIFIED_LINES);
             checksPublisher.publishCoverageReport(taskListener);
