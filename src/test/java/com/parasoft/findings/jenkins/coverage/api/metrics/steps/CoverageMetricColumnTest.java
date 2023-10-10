@@ -24,6 +24,8 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider;
 import io.jenkins.plugins.util.QualityGateResult;
 
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.OK;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -159,7 +161,7 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
         CoverageBuildAction coverageBuildAction =
                 new CoverageBuildAction(run, "coverage", "Code Coverage", StringUtils.EMPTY,
                         node, new QualityGateResult(), new FilteredLog("Test"),
-                        "-", List.of(), false);
+                        "-", List.of(), false, new ReferenceResult(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
         when(run.getAction(CoverageBuildAction.class)).thenReturn(coverageBuildAction);
         when(run.getActions(CoverageBuildAction.class)).thenReturn(Collections.singletonList(coverageBuildAction));
 

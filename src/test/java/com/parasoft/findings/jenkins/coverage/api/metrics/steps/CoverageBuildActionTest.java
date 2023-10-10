@@ -21,6 +21,8 @@ import hudson.model.FreeStyleBuild;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import io.jenkins.plugins.util.QualityGateResult;
 
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.OK;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -51,11 +53,10 @@ class CoverageBuildActionTest {
         var coverages = List.of(percent50, percent80);
         var action = spy(new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
                 StringUtils.EMPTY, StringUtils.EMPTY, module, new QualityGateResult(),
-                createLog(), "-", coverages, false));
+                createLog(), "-", coverages, false, new ReferenceResult(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER)));
 
         when(action.getResult()).thenThrow(new IllegalStateException("Result should not be accessed with getResult() when getting a coverage metric that is persisted in the build"));
 
-        assertThat(action.getReferenceBuild()).isEmpty();
 
         assertThat(action.getStatistics().getValue(Baseline.PROJECT, Metric.BRANCH)).hasValue(percent50);
         assertThat(action.getStatistics().getValue(Baseline.PROJECT, Metric.LINE)).hasValue(percent80);
@@ -68,7 +69,7 @@ class CoverageBuildActionTest {
     private static CoverageBuildAction createEmptyAction(final Node module) {
         return new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
                 StringUtils.EMPTY, StringUtils.EMPTY, module, new QualityGateResult(), createLog(), "-",
-                List.of(), false);
+                List.of(), false, new ReferenceResult(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
     }
 
     private static FilteredLog createLog() {
