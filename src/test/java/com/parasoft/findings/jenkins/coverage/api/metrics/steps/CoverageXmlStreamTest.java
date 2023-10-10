@@ -35,6 +35,8 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageXmlStrea
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageXmlStream.MetricFractionMapConverter;
 import io.jenkins.plugins.util.QualityGateResult;
 
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.OK;
 import static edu.hm.hafner.coverage.Metric.*;
 import static org.assertj.core.api.BDDAssertions.*;
 import static org.mockito.Mockito.*;
@@ -228,7 +230,7 @@ class CoverageXmlStreamTest extends SerializableTest<Node> {
         return new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
                 StringUtils.EMPTY,
                 tree, new QualityGateResult(), new FilteredLog("Test"), "-",
-                List.of(), false);
+                List.of(), false, new ReferenceResult(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
     }
 
     private static class TestXmlStream extends CoverageXmlStream {

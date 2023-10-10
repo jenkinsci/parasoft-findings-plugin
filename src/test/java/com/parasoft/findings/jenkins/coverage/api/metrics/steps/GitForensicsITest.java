@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import edu.hm.hafner.coverage.Coverage;
 import edu.hm.hafner.coverage.Coverage.CoverageBuilder;
 import edu.hm.hafner.coverage.FileNode;
 
@@ -91,11 +90,11 @@ class GitForensicsITest extends AbstractCoverageITest {
         assumeThat(isWindows()).as("Running on Windows").isFalse();
 
         Node agent = createDockerAgent(AGENT_CONTAINER);
-        FreeStyleProject project = createFreestyleJob(Parser.JACOCO);
+        FreeStyleProject project = createFreestyleJob(Parser.COBERTURA);
         project.setAssignedNode(agent);
 
         configureGit(project, COMMIT_REFERENCE);
-        addCoverageRecorder(project, Parser.JACOCO, JACOCO_REFERENCE_FILE);
+        addCoverageRecorder(project, Parser.COBERTURA, JACOCO_REFERENCE_FILE);
 
         copySingleFileToAgentWorkspace(agent, project, JACOCO_FILE, JACOCO_FILE);
         copySingleFileToAgentWorkspace(agent, project, JACOCO_REFERENCE_FILE, JACOCO_REFERENCE_FILE);
@@ -103,7 +102,7 @@ class GitForensicsITest extends AbstractCoverageITest {
         Run<?, ?> referenceBuild = buildSuccessfully(project);
 
         configureGit(project, COMMIT);
-        addCoverageRecorder(project, Parser.JACOCO, JACOCO_FILE);
+        addCoverageRecorder(project, Parser.COBERTURA, JACOCO_FILE);
 
         Run<?, ?> build = buildSuccessfully(project);
 
@@ -136,11 +135,6 @@ class GitForensicsITest extends AbstractCoverageITest {
     private void verifyGitIntegration(final Run<?, ?> build, final Run<?, ?> referenceBuild) {
         CoverageBuildAction action = build.getAction(CoverageBuildAction.class);
         assertThat(action).isNotNull();
-        assertThat(action.getReferenceBuild())
-                .isPresent()
-                .satisfies(reference ->
-                        assertThat(reference.get().getExternalizableId()).isEqualTo(
-                                referenceBuild.getExternalizableId()));
         verifyCodeDelta(action);
         verifyCoverage(action);
     }

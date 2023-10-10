@@ -33,6 +33,8 @@ import io.jenkins.plugins.util.BuildAction;
 import io.jenkins.plugins.util.JenkinsFacade;
 import io.jenkins.plugins.util.QualityGateResult;
 
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.*;
 import static hudson.model.Run.*;
 
 /**
@@ -62,6 +64,8 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     /** The coverages filtered by modified lines of the associated change request. */
     private final List<? extends Value> modifiedLinesCoverage;
 
+    private final ReferenceResult referenceResult;
+
     static {
         CoverageXmlStream.registerConverters(XSTREAM2);
     }
@@ -83,9 +87,9 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      *         the logging statements of the recording step
      */
     public CoverageBuildAction(final Run<?, ?> owner, final String id, final String icon,
-            final Node result, final QualityGateResult qualityGateResult, final FilteredLog log) {
+            final Node result, final QualityGateResult qualityGateResult, final FilteredLog log, final ReferenceResult referenceResult) {
         this(owner, id, icon, result, qualityGateResult, log, NO_REFERENCE_BUILD,
-                List.of());
+                List.of(), referenceResult);
     }
 
     /**
@@ -112,9 +116,10 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     public CoverageBuildAction(final Run<?, ?> owner, final String id, final String icon,
             final Node result, final QualityGateResult qualityGateResult, final FilteredLog log,
             final String referenceBuildId,
-            final List<? extends Value> modifiedLinesCoverage) {
+            final List<? extends Value> modifiedLinesCoverage,
+            final ReferenceResult referenceResult) {
         this(owner, id, icon, result, qualityGateResult, log, referenceBuildId,
-                modifiedLinesCoverage, true);
+                modifiedLinesCoverage, true, referenceResult);
     }
 
     @VisibleForTesting
@@ -123,7 +128,8 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
             final Node result, final QualityGateResult qualityGateResult, final FilteredLog log,
             final String referenceBuildId,
             final List<? extends Value> modifiedLinesCoverage,
-            final boolean canSerialize) {
+            final boolean canSerialize,
+            final ReferenceResult referenceResult) {
         super(owner, result, false);
 
         this.id = id;
@@ -134,6 +140,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
         this.qualityGateResult = qualityGateResult;
         this.modifiedLinesCoverage = new ArrayList<>(modifiedLinesCoverage);
         this.referenceBuildId = referenceBuildId;
+        this.referenceResult = referenceResult;
 
         if (canSerialize) {
             createXmlStream().write(owner.getRootDir().toPath().resolve(getBuildResultBaseName()), result);
@@ -276,30 +283,39 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     @VisibleForTesting
     NavigableSet<Metric> getMetricsForSummary() {
         return new TreeSet<>(
-                Set.of(Metric.LINE, Metric.LOC, Metric.BRANCH, Metric.COMPLEXITY_DENSITY, Metric.MUTATION));
-    }
-
-    /**
-     * Returns the possible reference build that has been used to compute the coverage delta.
-     *
-     * @return the reference build, if available
-     */
-    public Optional<Run<?, ?>> getReferenceBuild() {
-        if (NO_REFERENCE_BUILD.equals(referenceBuildId)) {
-            return Optional.empty();
-        }
-        return new JenkinsFacade().getBuild(referenceBuildId);
+                Set.of(Metric.LINE, Metric.LOC));
     }
 
     /**
      * Renders the reference build as HTML-link.
      *
      * @return the reference build
-     * @see #getReferenceBuild()
      */
     @SuppressWarnings("unused") // Called by jelly view
     public String getReferenceBuildLink() {
         return ReferenceBuild.getReferenceBuildLink(referenceBuildId);
+    }
+
+    @SuppressWarnings("unused")// Called by jelly view
+    public String getReferenceBuildWarningMessage() {
+        ReferenceResult.ReferenceStatus status = referenceResult.getStatus();
+        String referenceBuild = referenceResult.getReferenceBuild();
+        if (status == NO_REF_BUILD) {
+            if (referenceBuild.equals(DEFAULT_REFERENCE_BUILD_IDENTIFIER)) {
+                return Messages.Reference_Build_Warning_Message_NO_REF_BUILD();
+            }
+            return Messages.Reference_Build_Warning_Message_NO_SPECIFIED_REF_BUILD(referenceBuild);
+        } else if (status == NO_CVG_DATA_IN_REF_BUILD) {
+            if (referenceBuild.equals(DEFAULT_REFERENCE_BUILD_IDENTIFIER)) {
+                return Messages.Reference_Build_Warning_Message_NO_CVG_DATA_IN_PREVIOUS_SUCCESSFUL_BUILDS();
+            }
+            return Messages.Reference_Build_Warning_Message_NO_CVG_DATA_IN_REF_BUILD(referenceBuild);
+        } else if (status == REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE) {
+            return Messages.Reference_Build_Warning_Message_REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE(referenceBuild);
+        } else if (status == NO_PREVIOUS_BUILD_WAS_FOUND) {
+            return Messages.Reference_Build_Warning_Message_NO_PREVIOUS_BUILD_WAS_FOUND();
+        }
+        return "";
     }
 
     @Override
@@ -319,8 +335,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
 
     @Override
     public CoverageViewModel getTarget() {
-        return new CoverageViewModel(getOwner(), getUrlName(), getDisplayName(), getResult(),
-                getStatistics(), getQualityGateResult(), getReferenceBuildLink(), log, this::createChartModel);
+        return new CoverageViewModel(getOwner(), getUrlName(), getResult(), log, this::createChartModel);
     }
 
     private String createChartModel(final String configuration) {

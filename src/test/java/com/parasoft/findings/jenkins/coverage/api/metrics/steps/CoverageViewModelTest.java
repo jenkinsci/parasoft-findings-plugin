@@ -6,15 +6,12 @@ import java.util.NoSuchElementException;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.ModuleNode;
 import edu.hm.hafner.coverage.Node;
 import edu.hm.hafner.util.FilteredLog;
 
 import hudson.model.Run;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
-import io.jenkins.plugins.util.QualityGateResult;
 
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageViewModel.*;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
@@ -82,8 +79,6 @@ class CoverageViewModelTest extends AbstractCoverageTest {
     }
 
     private CoverageViewModel createModel(final Node node) {
-        return new CoverageViewModel(mock(Run.class), "id", StringUtils.EMPTY,
-                node, AbstractCoverageTest.createStatistics(), new QualityGateResult(), "-", new FilteredLog("Errors"),
-                i -> i);
+        return new CoverageViewModel(mock(Run.class), "id", StringUtils.EMPTY, node, new FilteredLog("Errors"), i -> i);
     }
 }

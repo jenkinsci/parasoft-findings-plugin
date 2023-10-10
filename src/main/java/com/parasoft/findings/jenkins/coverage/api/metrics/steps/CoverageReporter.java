@@ -50,6 +50,7 @@ public class CoverageReporter {
 
         ReferenceBuildActionResult referenceBuildActionResult = getReferenceBuildActionResult(configRefBuild, build, id, log);
         Optional<CoverageBuildAction> possibleReferenceResult = referenceBuildActionResult.getPossibleReferenceResult();
+        ReferenceResult referenceResult = referenceBuildActionResult.getReferenceResult();
 
         CoverageBuildAction action;
         if (possibleReferenceResult.isPresent()) {
@@ -69,13 +70,13 @@ public class CoverageReporter {
                     modifiedLinesCoverageRoot.aggregateValues(), resultHandler, qualityGates);
 
             action = new CoverageBuildAction(build, id, icon, rootNode, qualityGateResult, log,
-                    referenceAction.getOwner().getExternalizableId(), modifiedLinesCoverageRoot.aggregateValues());
+                    referenceAction.getOwner().getExternalizableId(), modifiedLinesCoverageRoot.aggregateValues(), referenceResult);
         }
         else {
             QualityGateResult qualityGateStatus = evaluateQualityGates(rootNode, log,
                     List.of(), resultHandler, qualityGates);
 
-            action = new CoverageBuildAction(build, id, icon, rootNode, qualityGateStatus, log);
+            action = new CoverageBuildAction(build, id, icon, rootNode, qualityGateStatus, log, referenceResult);
         }
 
         log.logInfo("Executing source code painting...");
@@ -165,6 +166,11 @@ public class CoverageReporter {
 
     private ReferenceBuildActionResult getDefaultReferenceBuildAction(final Run<?, ?> build, final String id,
                                                                       final FilteredLog log) {
+        if (build.getPreviousBuild() == null) {
+            log.logInfo("-> No previous build was found");
+            return new ReferenceBuildActionResult(Optional.empty(),
+                    new ReferenceResult(NO_PREVIOUS_BUILD_WAS_FOUND, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
+        }
         Run<?, ?> previousSuccessfulBuild = build.getPreviousSuccessfulBuild();
         if (previousSuccessfulBuild != null) {
             Optional<CoverageBuildAction> previousSuccessfulResult;
