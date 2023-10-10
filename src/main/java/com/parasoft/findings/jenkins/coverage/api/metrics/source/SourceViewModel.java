@@ -9,6 +9,11 @@ import edu.hm.hafner.coverage.FileNode;
 import hudson.model.ModelObject;
 import hudson.model.Run;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.jsoup.parser.Parser;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.source.CoverageSourcePrinter.*;
 
 /**
@@ -57,12 +62,29 @@ public class SourceViewModel implements ModelObject {
     public String getSourceFileContent() {
         try {
             String sourceFileContent = SOURCE_CODE_FACADE.read(getOwner().getRootDir(), id, getNode().getRelativePath());
+            // Check if the environment is in English
+            if (ALL_BRANCHES_COVERED.equals(Messages.All_Branches_Covered())) {
+                return sourceFileContent;
+            }
             // Localizing "tooltip" in source code.
-            sourceFileContent = sourceFileContent.replaceAll(PARASOFT_COVERAGE_ALL_BRANCHES_COVERED, Messages.All_Branches_Covered());
-            sourceFileContent = sourceFileContent.replaceAll(PARASOFT_COVERAGE_PARTIALLY_COVERED_AND_BRANCH_COVERAGE, Messages.Partially_Covered_And_Branch_Coverage());
-            sourceFileContent = sourceFileContent.replaceAll(PARASOFT_COVERAGE_COVERED_AT_LEAST_ONCE, Messages.Covered_At_Least_Once());
-            sourceFileContent = sourceFileContent.replaceAll(PARASOFT_COVERAGE_NOT_COVERED, Messages.Not_Covered());
-            return sourceFileContent;
+            Document doc = Jsoup.parse(sourceFileContent, Parser.xmlParser());
+            Elements trTags = doc.select("tr");
+            for (Element tag : trTags) {
+                String tooltipValue = tag.attr(TOOLTIP_ATTR);
+                if (tooltipValue.isEmpty()){
+                    continue;
+                }
+                if (tooltipValue.equals(ALL_BRANCHES_COVERED)) {
+                    tag.attr(TOOLTIP_ATTR, Messages.All_Branches_Covered());
+                } else if (tooltipValue.equals(PARTIALLY_COVERED_AND_BRANCH_COVERAGE)) {
+                    tag.attr(TOOLTIP_ATTR, Messages.Partially_Covered_And_Branch_Coverage());
+                } else if (tooltipValue.equals(COVERED_AT_LEAST_ONCE)) {
+                    tag.attr(TOOLTIP_ATTR, Messages.Covered_At_Least_Once());
+                } else if (tooltipValue.equals(NOT_COVERED)) {
+                    tag.attr(TOOLTIP_ATTR, Messages.Not_Covered());
+                }
+            }
+            return doc.html();
         }
         catch (IOException | InterruptedException exception) {
             return ExceptionUtils.getStackTrace(exception);

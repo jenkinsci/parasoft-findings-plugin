@@ -25,7 +25,7 @@ const CoverageChartGenerator = function ($) {
             }
         });
     };
-    function createOverview(overview, id, coverageCoveredText, coverageMissedText) {
+    function createOverview(overview, id) {
         const missedColor = echartsJenkinsApi.resolveJenkinsColor("--red");
         const missedText = echartsJenkinsApi.resolveJenkinsColor("--white");
         const coveredColor = echartsJenkinsApi.resolveJenkinsColor("--green");
@@ -65,7 +65,7 @@ const CoverageChartGenerator = function ($) {
                 }
             },
             legend: {
-                data: [coverageCoveredText, coverageMissedText],
+                data: [overview.coverageCoveredText, overview.coverageMissedText],
                 x: 'center',
                 y: 'top',
                 textStyle: {
@@ -120,7 +120,7 @@ const CoverageChartGenerator = function ($) {
             }],
             series: [
                 {
-                    name: coverageCoveredText,
+                    name: overview.coverageCoveredText,
                     type: 'bar',
                     stack: 'sum',
                     itemStyle: {
@@ -140,7 +140,7 @@ const CoverageChartGenerator = function ($) {
                     data: overview.coveredPercentages
                 },
                 {
-                    name: coverageMissedText,
+                    name: overview.coverageMissedText,
                     type: 'bar',
                     stack: 'sum',
                     itemStyle: {
@@ -224,7 +224,7 @@ const CoverageChartGenerator = function ($) {
         function initializeCharts() {
             renderTrendChart();
             viewProxy.getOverview(function (t) {
-                createOverview(t.responseObject(), 'coverage-overview', t.responseJSON.coverageCoveredText, t.responseJSON.coverageMissedText);
+                createOverview(t.responseObject(), 'coverage-overview');
             });
         }
 
