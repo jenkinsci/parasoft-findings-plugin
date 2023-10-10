@@ -167,7 +167,7 @@ public class CoverageReporter {
     private ReferenceBuildActionResult getDefaultReferenceBuildAction(final Run<?, ?> build, final String id,
                                                                       final FilteredLog log) {
         if (build.getPreviousBuild() == null) {
-            log.logInfo("-> No reference build and current build is first");
+            log.logInfo("-> No previous build was found");
             return new ReferenceBuildActionResult(Optional.empty(),
                     new ReferenceResult(NO_PREVIOUS_BUILD_WAS_FOUND, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
         }
