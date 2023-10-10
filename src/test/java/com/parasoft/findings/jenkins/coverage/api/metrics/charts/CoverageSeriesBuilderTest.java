@@ -51,14 +51,6 @@ class CoverageSeriesBuilderTest extends ResourceTest {
         LinesChartModel lineCoverage = trendChart.create(Collections.singletonList(smallLineCoverage),
                 createConfiguration());
         verifySeriesDetails(lineCoverage);
-
-        BuildResult<CoverageStatistics> smallBranchCoverage = createResult(1,
-                new CoverageBuilder().setMetric(Metric.LINE).setCovered(3).setMissed(1).build(),
-                new CoverageBuilder().setMetric(Metric.BRANCH).setCovered(1).setMissed(1).build());
-
-        LinesChartModel branchCoverage = trendChart.create(Collections.singletonList(smallBranchCoverage),
-                createConfiguration());
-        verifySeriesDetails(branchCoverage);
     }
 
     @VisibleForTesting
@@ -73,7 +65,7 @@ class CoverageSeriesBuilderTest extends ResourceTest {
 
     private void verifySeriesDetails(final LinesChartModel lineCoverage) {
         assertThat(lineCoverage.getBuildNumbers()).containsExactly(1);
-        assertThat(lineCoverage.getSeries()).hasSize(2);
+        assertThat(lineCoverage.getSeries()).hasSize(1);
         assertThat(lineCoverage.getRangeMax()).isEqualTo(100.0);
         assertThat(lineCoverage.getRangeMin()).isEqualTo(50.0);
     }
@@ -92,11 +84,9 @@ class CoverageSeriesBuilderTest extends ResourceTest {
         assertThat(dataSet.getDomainAxisLabels()).containsExactly("#1");
 
         assertThat(dataSet.getDataSetIds()).containsExactlyInAnyOrder(
-                CoverageSeriesBuilder.LINE_COVERAGE,
-                CoverageSeriesBuilder.BRANCH_COVERAGE);
+                CoverageSeriesBuilder.LINE_COVERAGE);
 
         assertThat(dataSet.getSeries(CoverageSeriesBuilder.LINE_COVERAGE)).containsExactly(50.0);
-        assertThat(dataSet.getSeries(CoverageSeriesBuilder.BRANCH_COVERAGE)).containsExactly(75.0);
     }
 
     @Test
@@ -116,13 +106,10 @@ class CoverageSeriesBuilderTest extends ResourceTest {
         assertThat(dataSet.getDomainAxisLabels()).containsExactly("#1", "#2");
 
         assertThat(dataSet.getDataSetIds()).containsExactlyInAnyOrder(
-                CoverageSeriesBuilder.LINE_COVERAGE,
-                CoverageSeriesBuilder.BRANCH_COVERAGE);
+                CoverageSeriesBuilder.LINE_COVERAGE);
 
         assertThat(dataSet.getSeries(CoverageSeriesBuilder.LINE_COVERAGE))
                 .containsExactly(50.0, 25.0);
-        assertThat(dataSet.getSeries(CoverageSeriesBuilder.BRANCH_COVERAGE))
-                .containsExactly(75.0, 25.0);
 
         CoverageTrendChart trendChart = new CoverageTrendChart();
         var model = trendChart.create(List.of(first, second), createConfiguration());

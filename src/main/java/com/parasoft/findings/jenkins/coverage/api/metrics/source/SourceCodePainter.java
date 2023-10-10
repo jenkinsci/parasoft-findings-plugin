@@ -76,7 +76,7 @@ public class SourceCodePainter {
         SourceCodeFacade sourceCodeFacade = new SourceCodeFacade();
         if (sourceCodeRetention != SourceCodeRetention.NEVER) {
             var paintedFiles = files.stream()
-                    .map(f -> createFileModel(rootNode, f))
+                    .map(this::createFileModel)
                     .collect(Collectors.toList());
             log.logInfo("Painting %d source files on agent", paintedFiles.size());
 
@@ -88,13 +88,8 @@ public class SourceCodePainter {
         sourceCodeRetention.cleanup(build, sourceCodeFacade.getCoverageSourcesDirectory(), log);
     }
 
-    private CoverageSourcePrinter createFileModel(final Node rootNode, final FileNode fileNode) {
-        if (rootNode.getValue(Metric.MUTATION).isPresent()) {
-            return new MutationSourcePrinter(fileNode);
-        }
-        else {
-            return new CoverageSourcePrinter(fileNode);
-        }
+    private CoverageSourcePrinter createFileModel(final FileNode fileNode) {
+        return new CoverageSourcePrinter(fileNode);
     }
 
     private void paintFilesOnAgent(final List<? extends CoverageSourcePrinter> paintedFiles,

@@ -299,7 +299,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     @VisibleForTesting
     NavigableSet<Metric> getMetricsForSummary() {
         return new TreeSet<>(
-                Set.of(Metric.LINE, Metric.LOC, Metric.BRANCH, Metric.COMPLEXITY_DENSITY, Metric.MUTATION));
+                Set.of(Metric.LINE, Metric.LOC));
     }
 
     /**
@@ -351,8 +351,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
 
     @Override
     public CoverageViewModel getTarget() {
-        return new CoverageViewModel(getOwner(), getUrlName(), name, getResult(),
-                getStatistics(), getQualityGateResult(), getReferenceBuildLink(), log, this::createChartModel);
+        return new CoverageViewModel(getOwner(), getUrlName(), name, getResult(), log, this::createChartModel);
     }
 
     private String createChartModel(final String configuration) {
