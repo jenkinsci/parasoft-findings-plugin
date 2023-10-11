@@ -294,7 +294,7 @@ const CoverageChartGenerator = function ($) {
                     const rowData = datatable.rows(indexes).data().toArray();
                     viewProxy.getSourceCode(rowData[0].fileHash, tableId + '-table', function (t) {
                         const sourceCode = t.responseObject();
-                        if (sourceCode === "n/a") {
+                        if (sourceCode === "N/A") {
                             showNoSourceCode();
                         }
                         else {
