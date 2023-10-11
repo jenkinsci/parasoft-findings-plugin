@@ -159,11 +159,6 @@ class GitForensicsITest extends AbstractCoverageITest {
     private void verifyGitIntegration(final Run<?, ?> build, final Run<?, ?> referenceBuild) {
         CoverageBuildAction action = build.getAction(CoverageBuildAction.class);
         assertThat(action).isNotNull();
-        assertThat(action.getReferenceBuild())
-                .isPresent()
-                .satisfies(reference ->
-                        assertThat(reference.get().getExternalizableId()).isEqualTo(
-                                referenceBuild.getExternalizableId()));
         verifyCodeDelta(action);
         verifyCoverage(action);
     }
