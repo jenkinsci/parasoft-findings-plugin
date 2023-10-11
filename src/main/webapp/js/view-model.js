@@ -322,7 +322,7 @@ const CoverageChartGenerator = function ($) {
 
         $(document).ready(function () {
             initializeSourceCodeSelection('absolute-coverage');
-            initializeSourceCodeSelection('change-coverage');
+            initializeSourceCodeSelection('modified-lines-coverage');
         });
     }
 };
