@@ -189,7 +189,7 @@ const CoverageChartGenerator = function ($) {
         summaryChart.resize();
     }
 
-    this.populateDetailsCharts = function (jenkinsColors) {
+    this.populateDetailsCharts = function (jenkinsColors, setupText) {
         /**
          * Activate the tab that has been visited the last time. If there is no such tab, highlight the first one.
          * If the user selects the tab using an #anchor prefer this tab.
@@ -260,6 +260,15 @@ const CoverageChartGenerator = function ($) {
             const configuration = JSON.stringify(echartsJenkinsApi.readFromLocalStorage('jenkins-echarts-chart-configuration-coverage-history'));
             viewProxy.getTrendChart(configuration, function (t) {
                 echartsJenkinsApi.renderConfigurableZoomableTrendChart('coverage-trend', t.responseJSON, 'chart-configuration-coverage-history', openBuild);
+                $('#coverage-trend')[0].echart.setOption({
+                    toolbox: {
+                        feature: {
+                            myTool1: {
+                                title: setupText
+                            }
+                        }
+                    }
+                });
                 resizeChartOf('#coverage-trend');
             });
         }

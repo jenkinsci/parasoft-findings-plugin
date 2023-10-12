@@ -23,7 +23,7 @@
  -->
 
 <?jelly escape-by-default='true'?>
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:bs="/bootstrap5" xmlns:cov="/parasoftCoverage" xmlns:c="/charts">
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:bs="/bootstrap5" xmlns:cov="/parasoftCoverage" xmlns:c="/parasoftCoverage">
 
   <st:header name="Content-Type" value="text/html;charset=UTF-8"/>
 
@@ -49,7 +49,7 @@
         </li>
         <j:if test="${hasModifiedLinesCoverage}">
           <li class="nav-item tab" role="presentation">
-            <a class="nav-link" id="changeCoverage-tab" data-bs-toggle="tab" data-bs-target="#changeCoverage" type="button" role="tab" aria-controls="changeCoverage" aria-selected="false">${%tab.modified.code.coverage}</a>
+            <a class="nav-link" id="changeCoverage-tab" data-bs-toggle="tab" data-bs-target="#changeCoverage" type="button" role="tab" aria-controls="changeCoverage" aria-selected="false">${%tab.modified.line.coverage}</a>
           </li>
         </j:if>
       </ul>
@@ -94,7 +94,7 @@
         const jenkinsColors = getJenkinsColors(colors.responseObject());
         const colorJson = JSON.stringify(Object.fromEntries(jenkinsColors));
         viewProxy.setJenkinsColors(colorJson, function(t) {});
-        coverageChartGenerator.populateDetailsCharts(jenkinsColors);
+        coverageChartGenerator.populateDetailsCharts(jenkinsColors, '${%setup.text}');
     });
   </script>
 
