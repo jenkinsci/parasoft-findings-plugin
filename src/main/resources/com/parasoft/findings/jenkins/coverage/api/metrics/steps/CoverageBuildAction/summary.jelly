@@ -80,8 +80,8 @@
                     <l:icon style="width: 16px; height: 16px; margin-left: 0; position: relative; top: -0.1rem;" alt="${item.status.description}" class="${item.status.iconClass} icon-sm"/>
                   </td>
                   <td align="left" style="white-space: nowrap;">${item.qualityGate.name}</td>
-                  <td align="right" style="white-space: nowrap;">${item.qualityGate.threshold}%</td>
-                  <td align="right" style="white-space: nowrap;">${item.actualValue}</td>
+                  <td align="left" style="white-space: nowrap;">${item.qualityGate.threshold}%</td>
+                  <td align="left" style="white-space: nowrap;">${item.actualValue}</td>
                 </tr>
               </j:forEach>
             </tbody>
