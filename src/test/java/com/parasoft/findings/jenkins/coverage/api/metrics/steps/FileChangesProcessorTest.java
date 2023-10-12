@@ -54,18 +54,13 @@ class FileChangesProcessorTest extends AbstractCoverageTest {
     private static final String TEST_FILE_1_PATH_OLD = "test/example/old/" + TEST_FILE_1;
 
     /**
-     * A JaCoCo report which contains the code coverage of a test project <b>before</b> the {@link #CODE_CHANGES} has
-     * been inserted.
-     */
-    private static final String TEST_REPORT_BEFORE = "file-changes-test-before.xml";
-    /**
      * A JaCoCo report which contains the code coverage of a test project <b>after</b> the {@link #CODE_CHANGES} has
      * been inserted.
      */
     private static final String TEST_REPORT_AFTER = "file-changes-test-after.xml";
 
     /**
-     * The code changes that took place between the generation of {@link #TEST_REPORT_BEFORE} and {@link
+     * The code changes that took place between the generation of {@link
      * #TEST_REPORT_AFTER}.
      */
     private static final Map<String, FileChanges> CODE_CHANGES = new HashMap<>();

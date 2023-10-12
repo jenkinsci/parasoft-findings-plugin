@@ -38,7 +38,6 @@
     <equalsverifier.version>3.14.1</equalsverifier.version>
     <junit-pioneer.version>2.0.1</junit-pioneer.version>
     <assertj.version>3.24.2</assertj.version>
-    <archunit.version>1.0.1</archunit.version>
     <json-unit-fluent.version>2.37.0</json-unit-fluent.version>
 
     <assertj-assertions-generator-maven-plugin.version>2.2.0</assertj-assertions-generator-maven-plugin.version>
@@ -101,13 +100,6 @@
             <exclude>**/InjectedTest.*</exclude>
           </excludes>
         </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>com.tngtech.archunit</groupId>
-            <artifactId>archunit-junit5-engine</artifactId>
-            <version>${archunit.version}</version>
-          </dependency>
-        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
@@ -620,12 +612,6 @@
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <version>${assertj.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.tngtech.archunit</groupId>
-      <artifactId>archunit-junit5</artifactId>
-      <version>${archunit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
