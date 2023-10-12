@@ -60,7 +60,7 @@ class CoverageQualityGateEvaluator extends QualityGateEvaluator<CoverageQualityG
             result.add(qualityGate, status, FORMATTER.format(actualValue, Locale.ENGLISH));
         }
         else {
-            result.add(qualityGate, QualityGateStatus.INACTIVE, "n/a");
+            result.add(qualityGate, QualityGateStatus.INACTIVE, Messages.Coverage_Not_Available());
         }
     }
 }

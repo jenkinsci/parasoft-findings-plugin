@@ -81,7 +81,7 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.INACTIVE).isInactive().hasMessages(
-                "-> [Modified code lines - Coverage]: ≪Not built≫ - (Actual value: n/a, Quality gate: 0.00)");
+                "-> [Modified code lines - Coverage]: ≪Not built≫ - (Actual value: N/A, Quality gate: 0.00)");
     }
 
     @Test
