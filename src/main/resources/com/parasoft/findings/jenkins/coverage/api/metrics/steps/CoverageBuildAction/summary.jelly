@@ -1,5 +1,29 @@
+<!--
+   MIT License
+
+   Copyright (c) 2018 Shenyu Zheng and other Jenkins contributors
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+ -->
+
 <?jelly escape-by-default='true'?>
-<j:jelly xmlns:j="jelly:core" xmlns:t="/lib/hudson" xmlns:fa="/font-awesome" xmlns:cov="/coverage" xmlns:st="jelly:stapler" xmlns:c="/controls">
+<j:jelly xmlns:j="jelly:core" xmlns:t="/lib/hudson" xmlns:fa="/font-awesome" xmlns:cov="/coverage" xmlns:st="jelly:stapler" xmlns:c="/controls" xmlns:l="/lib/layout">
   <t:summary icon="${it.iconFileName}">
     <st:adjunct includes="com.parasoft.findings.jenkins.coverage.api.metrics.cell-style"/>
 
@@ -20,45 +44,49 @@
             </div>
           </li>
         </j:if>
-        <j:if test="${it.referenceBuild.present}">
+        <j:choose>
           <span id="coverage-reference">
             <li>
               Reference build:
-              <j:out value="${it.referenceBuildLink}"/>
+              <j:when test="${it.referenceBuildWarningMessage.isEmpty()}">
+                <j:out value="${it.referenceBuildLink}"/>
+              </j:when>
+              <j:otherwise>
+                <l:icon style="width: 16px; height: 16px; margin-left: 2px; margin-right: 4px; position: relative; top: -0.1rem;" class="icon-yellow icon-sm"/>
+                <j:out value="${it.referenceBuildWarningMessage}"/>
+              </j:otherwise>
             </li>
           </span>
-        </j:if>
-        <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:l="/lib/layout">
-          <j:set var="result" value="${it.qualityGateResult}"/>
-          <j:set var="status" value="${result.overallStatus}"/>
-          <j:if test="${status.name() != 'INACTIVE'}">
-            <li>${%quality.gate.title}: ${status.description}
-              <l:icon style="width: 16px; height: 16px; margin-left: 0; position: relative; top: -0.1rem;" alt="${status.description}" class="${status.iconClass} icon-sm"/>
-            </li>
-            <table class="jenkins-table">
-              <thead>
+        </j:choose>
+        <j:set var="result" value="${it.qualityGateResult}"/>
+        <j:set var="status" value="${result.overallStatus}"/>
+        <j:if test="${status.name() != 'INACTIVE'}">
+          <li>${%quality.gate.title}:
+            <l:icon style="width: 16px; height: 16px; margin-left: 2px; margin-right: 4px; position: relative; top: -0.1rem;" alt="${status.description}" class="${status.iconClass} icon-sm"/>${status.description}
+          </li>
+          <table class="jenkins-table">
+            <thead>
+              <tr>
+                <th align="left">${%table.title.status}</th>
+                <th align="left">${%table.title.quality.gate}</th>
+                <th align="left">${%table.title.threshold}</th>
+                <th align="left">${%table.title.actual}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <j:forEach var="item" items="${result.resultItems}">
                 <tr>
-                  <th align="left">${%table.title.status}</th>
-                  <th align="left">${%table.title.quality.gate}</th>
-                  <th align="left">${%table.title.threshold}</th>
-                  <th align="left">${%table.title.actual}</th>
+                  <td align="left">
+                    <l:icon style="width: 16px; height: 16px; margin-left: 0; position: relative; top: -0.1rem;" alt="${item.status.description}" class="${item.status.iconClass} icon-sm"/>
+                  </td>
+                  <td align="left" style="white-space: nowrap;">${item.qualityGate.name}</td>
+                  <td align="left" style="white-space: nowrap;">${item.qualityGate.threshold}%</td>
+                  <td align="left" style="white-space: nowrap;">${item.actualValue}</td>
                 </tr>
-              </thead>
-              <tbody>
-                <j:forEach var="item" items="${result.resultItems}">
-                  <tr>
-                    <td align="left">
-                      <l:icon style="width: 16px; height: 16px; margin-left: 0; position: relative; top: -0.1rem;" alt="${item.status.description}" class="${item.status.iconClass} icon-sm"/>
-                    </td>
-                    <td align="left" style="white-space: nowrap;">${item.qualityGate.name}</td>
-                    <td align="right" style="white-space: nowrap;">${item.qualityGate.threshold}%</td>
-                    <td align="right" style="white-space: nowrap;">${item.actualValue}</td>
-                  </tr>
-                </j:forEach>
-              </tbody>
-            </table>
-          </j:if>
-        </j:jelly>
+              </j:forEach>
+            </tbody>
+          </table>
+        </j:if>
       </ul>
     </div>
   </t:summary>

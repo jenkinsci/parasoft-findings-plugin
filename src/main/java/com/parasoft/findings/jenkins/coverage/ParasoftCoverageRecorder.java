@@ -166,11 +166,8 @@ public class ParasoftCoverageRecorder extends Recorder {
             resolveAbsolutePaths(rootNode, workspace, sources, log);
             logHandler.log(log);
 
-            var action = reporter.publishAction(getId(), getName(), getIcon(), rootNode, run, workspace, taskListener,
+            reporter.publishAction(getId(), getName(), getIcon(), rootNode, run, workspace, taskListener,
                     getReferenceBuild(), getCoverageQualityGates(), getSourceCodeEncoding(), resultHandler);
-
-            var checksPublisher = new CoverageChecksPublisher(action, rootNode, getName(), ChecksAnnotationScope.MODIFIED_LINES);
-            checksPublisher.publishCoverageReport(taskListener);
         }
     }
 
@@ -391,14 +388,5 @@ public class ParasoftCoverageRecorder extends Recorder {
         public Set<String> getGeneratedCoverageBuildDirs() {
             return generatedCoverageBuildDirs;
         }
-    }
-
-    public enum ChecksAnnotationScope {
-        /** No annotations are created. */
-        SKIP,
-        /** Only changed lines are annotated. */
-        MODIFIED_LINES,
-        /** All lines are annotated. */
-        ALL_LINES;
     }
 }

@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Shenyu Zheng and other Jenkins contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.io.IOException;
@@ -87,15 +111,11 @@ class CoverageJobActionTest {
 
         assertThatJson(chart).node("buildNumbers").isArray().hasSize(1).containsExactly(buildNumber);
         assertThatJson(chart).node("domainAxisLabels").isArray().hasSize(1).containsExactly("#15");
-        assertThatJson(chart).node("series").isArray().hasSize(2);
+        assertThatJson(chart).node("series").isArray().hasSize(1);
 
         assertThatJson(chart.getSeries().get(0)).satisfies(series -> {
             assertThatJson(series).node("name").isEqualTo("Line Coverage");
             assertThatJson(series).node("data").isArray().containsExactly("50.0");
-        });
-        assertThatJson(chart.getSeries().get(1)).satisfies(series -> {
-            assertThatJson(series).node("name").isEqualTo("Branch Coverage");
-            assertThatJson(series).node("data").isArray().containsExactly("90.0");
         });
     }
 

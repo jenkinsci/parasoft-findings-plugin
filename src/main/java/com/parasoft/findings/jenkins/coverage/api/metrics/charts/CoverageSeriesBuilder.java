@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Shenyu Zheng and other Jenkins contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.parasoft.findings.jenkins.coverage.api.metrics.charts;
 
 import java.util.HashMap;
@@ -17,20 +41,12 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.CoverageStatisti
  */
 public class CoverageSeriesBuilder extends SeriesBuilder<CoverageStatistics> {
     static final String LINE_COVERAGE = "line";
-    static final String BRANCH_COVERAGE = "branch";
-    static final String MUTATION_COVERAGE = "mutation";
 
     @Override
     protected Map<String, Double> computeSeries(final CoverageStatistics statistics) {
         Map<String, Double> series = new HashMap<>();
 
         series.put(LINE_COVERAGE, getRoundedPercentage(statistics, Metric.LINE));
-        if (statistics.containsValue(Baseline.PROJECT, Metric.BRANCH)) {
-            series.put(BRANCH_COVERAGE, getRoundedPercentage(statistics, Metric.BRANCH));
-        }
-        if (statistics.containsValue(Baseline.PROJECT, Metric.MUTATION)) {
-            series.put(MUTATION_COVERAGE, getRoundedPercentage(statistics, Metric.MUTATION));
-        }
         return series;
     }
 

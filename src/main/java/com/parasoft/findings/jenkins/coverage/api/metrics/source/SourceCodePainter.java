@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Shenyu Zheng and other Jenkins contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.parasoft.findings.jenkins.coverage.api.metrics.source;
 
 import java.io.BufferedWriter;
@@ -76,7 +100,7 @@ public class SourceCodePainter {
         SourceCodeFacade sourceCodeFacade = new SourceCodeFacade();
         if (sourceCodeRetention != SourceCodeRetention.NEVER) {
             var paintedFiles = files.stream()
-                    .map(f -> createFileModel(rootNode, f))
+                    .map(this::createFileModel)
                     .collect(Collectors.toList());
             log.logInfo("Painting %d source files on agent", paintedFiles.size());
 
@@ -88,13 +112,8 @@ public class SourceCodePainter {
         sourceCodeRetention.cleanup(build, sourceCodeFacade.getCoverageSourcesDirectory(), log);
     }
 
-    private CoverageSourcePrinter createFileModel(final Node rootNode, final FileNode fileNode) {
-        if (rootNode.getValue(Metric.MUTATION).isPresent()) {
-            return new MutationSourcePrinter(fileNode);
-        }
-        else {
-            return new CoverageSourcePrinter(fileNode);
-        }
+    private CoverageSourcePrinter createFileModel(final FileNode fileNode) {
+        return new CoverageSourcePrinter(fileNode);
     }
 
     private void paintFilesOnAgent(final List<? extends CoverageSourcePrinter> paintedFiles,

@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Shenyu Zheng and other Jenkins contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.io.File;
@@ -30,7 +54,6 @@ import edu.umd.cs.findbugs.annotations.CheckForNull;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 import org.kohsuke.stapler.bind.JavaScriptMethod;
-import hudson.model.Api;
 import hudson.model.ModelObject;
 import hudson.model.Run;
 
@@ -38,7 +61,6 @@ import io.jenkins.plugins.bootstrap5.MessagesViewModel;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProviderFactory;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.CoverageColorJenkinsId;
-import com.parasoft.findings.jenkins.coverage.api.metrics.model.CoverageStatistics;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.ElementFormatter;
 import com.parasoft.findings.jenkins.coverage.api.metrics.source.SourceCodeFacade;
 import com.parasoft.findings.jenkins.coverage.api.metrics.source.SourceViewModel;
@@ -48,7 +70,6 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTableMod
 import io.jenkins.plugins.datatables.DefaultAsyncTableContentProvider;
 import io.jenkins.plugins.datatables.TableModel;
 import io.jenkins.plugins.util.BuildResultNavigator;
-import io.jenkins.plugins.util.QualityGateResult;
 
 /**
  * Server side model that provides the data for the details view of the coverage results. The layout of the associated
@@ -70,9 +91,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
     private static final String UNDEFINED = "-";
     private final Run<?, ?> owner;
     private final String optionalName;
-    private final CoverageStatistics statistics;
-    private final QualityGateResult qualityGateResult;
-    private final String referenceBuild;
     private final FilteredLog log;
     private final Node node;
     private final String id;
@@ -84,8 +102,7 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
 
     @SuppressWarnings("checkstyle:ParameterNumber")
     CoverageViewModel(final Run<?, ?> owner, final String id, final String optionalName, final Node node,
-            final CoverageStatistics statistics, final QualityGateResult qualityGateResult,
-            final String referenceBuild, final FilteredLog log, final Function<String, String> trendChartFunction) {
+                      final FilteredLog log, final Function<String, String> trendChartFunction) {
         super();
 
         this.owner = owner;
@@ -94,9 +111,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
         this.optionalName = optionalName;
 
         this.node = node;
-        this.statistics = statistics;
-        this.qualityGateResult = qualityGateResult;
-        this.referenceBuild = referenceBuild;
 
         this.log = log;
 
@@ -129,15 +143,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
             return Messages.Coverage_Title(node.getName());
         }
         return String.format("%s: %s", optionalName, node.getName());
-    }
-
-    /**
-     * Gets the remote API for this action. Depending on the path, a different result is selected.
-     *
-     * @return the remote API
-     */
-    public Api getApi() {
-        return new Api(new CoverageApi(statistics, qualityGateResult, referenceBuild));
     }
 
     /**

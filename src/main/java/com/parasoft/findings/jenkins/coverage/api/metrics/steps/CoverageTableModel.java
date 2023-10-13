@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Shenyu Zheng and other Jenkins contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.io.File;
@@ -9,7 +33,6 @@ import java.util.stream.Collectors;
 import edu.hm.hafner.coverage.Coverage;
 import edu.hm.hafner.coverage.CyclomaticComplexity;
 import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.FractionValue;
 import edu.hm.hafner.coverage.LinesOfCode;
 import edu.hm.hafner.coverage.Metric;
 import edu.hm.hafner.coverage.Node;
@@ -103,39 +126,12 @@ class CoverageTableModel extends TableModel {
         columns.add(packageName);
 
         configureValueColumn("lineCoverage", Metric.LINE, Messages.Column_LineCoverage(), columns);
-        configureValueColumn("branchCoverage", Metric.BRANCH, Messages.Column_BranchCoverage(), columns);
-        configureValueColumn("mutationCoverage", Metric.MUTATION, Messages.Column_MutationCoverage(), columns);
         TableColumn loc = new ColumnBuilder().withHeaderLabel(Messages.Column_LinesOfCode())
                 .withDataPropertyKey("loc")
                 .withResponsivePriority(200)
                 .withType(ColumnType.NUMBER)
                 .build();
         columns.add(loc);
-        if (root.containsMetric(Metric.COMPLEXITY)) {
-            TableColumn complexity = new ColumnBuilder().withHeaderLabel(Messages.Column_Complexity())
-                    .withDataPropertyKey("complexity")
-                    .withResponsivePriority(500)
-                    .withType(ColumnType.NUMBER)
-                    .build();
-            columns.add(complexity);
-        }
-        if (root.containsMetric(Metric.COMPLEXITY_MAXIMUM)) {
-            TableColumn maxComplexity = new ColumnBuilder().withHeaderLabel(Messages.Column_MaxComplexity())
-                    .withDataPropertyKey("maxComplexity")
-                    .withResponsivePriority(900)
-                    .withType(ColumnType.NUMBER)
-                    .build();
-            columns.add(maxComplexity);
-        }
-        if (root.containsMetric(Metric.COMPLEXITY_DENSITY)) {
-            TableColumn complexity = new ColumnBuilder().withHeaderLabel(Messages.Column_ComplexityDensity())
-                    .withDataPropertyKey("density")
-                    .withDetailedCell()
-                    .withResponsivePriority(700)
-                    .withType(ColumnType.NUMBER)
-                    .build();
-            columns.add(complexity);
-        }
         return columns;
     }
 
@@ -174,7 +170,6 @@ class CoverageTableModel extends TableModel {
         private static final String COVERAGE_COLUMN_OUTER = "coverage-cell-outer float-end";
         private static final String COVERAGE_COLUMN_INNER = "coverage-jenkins-cell-inner";
         private static final ElementFormatter FORMATTER = new ElementFormatter();
-        private static final FractionValue ZERO_DENSITY = new FractionValue(Metric.COMPLEXITY_DENSITY, 0, 1);
         private static final LinesOfCode ZERO_LOC = new LinesOfCode(0);
         private static final CyclomaticComplexity ZERO_COMPLEXITY = new CyclomaticComplexity(0);
 
@@ -207,14 +202,6 @@ class CoverageTableModel extends TableModel {
             return createColoredCoverageColumn(getCoverageOfNode(Metric.LINE));
         }
 
-        public DetailedCell<?> getBranchCoverage() {
-            return createColoredCoverageColumn(getCoverageOfNode(Metric.BRANCH));
-        }
-
-        public DetailedCell<?> getMutationCoverage() {
-            return createColoredCoverageColumn(getCoverageOfNode(Metric.MUTATION));
-        }
-
         Coverage getCoverageOfNode(final Metric metric) {
             return file.getTypedValue(metric, Coverage.nullObject(metric));
         }
@@ -225,17 +212,6 @@ class CoverageTableModel extends TableModel {
 
         public int getComplexity() {
             return file.getTypedValue(Metric.COMPLEXITY, ZERO_COMPLEXITY).getValue();
-        }
-
-        public int getMaxComplexity() {
-            return file.getTypedValue(Metric.COMPLEXITY_MAXIMUM, ZERO_COMPLEXITY).getValue();
-        }
-
-        public DetailedCell<?> getDensity() {
-            double complexityDensity = file.getTypedValue(Metric.COMPLEXITY_DENSITY, ZERO_DENSITY)
-                    .getFraction()
-                    .doubleValue();
-            return new DetailedCell<>(String.format("%.2f", complexityDensity), complexityDensity);
         }
 
         /**

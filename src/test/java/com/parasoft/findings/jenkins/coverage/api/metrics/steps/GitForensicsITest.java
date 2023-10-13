@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Shenyu Zheng and other Jenkins contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.io.IOException;
@@ -12,7 +36,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import edu.hm.hafner.coverage.Coverage;
 import edu.hm.hafner.coverage.Coverage.CoverageBuilder;
 import edu.hm.hafner.coverage.FileNode;
 
@@ -91,11 +114,11 @@ class GitForensicsITest extends AbstractCoverageITest {
         assumeThat(isWindows()).as("Running on Windows").isFalse();
 
         Node agent = createDockerAgent(AGENT_CONTAINER);
-        FreeStyleProject project = createFreestyleJob(Parser.JACOCO);
+        FreeStyleProject project = createFreestyleJob(Parser.COBERTURA);
         project.setAssignedNode(agent);
 
         configureGit(project, COMMIT_REFERENCE);
-        addCoverageRecorder(project, Parser.JACOCO, JACOCO_REFERENCE_FILE);
+        addCoverageRecorder(project, Parser.COBERTURA, JACOCO_REFERENCE_FILE);
 
         copySingleFileToAgentWorkspace(agent, project, JACOCO_FILE, JACOCO_FILE);
         copySingleFileToAgentWorkspace(agent, project, JACOCO_REFERENCE_FILE, JACOCO_REFERENCE_FILE);
@@ -103,7 +126,7 @@ class GitForensicsITest extends AbstractCoverageITest {
         Run<?, ?> referenceBuild = buildSuccessfully(project);
 
         configureGit(project, COMMIT);
-        addCoverageRecorder(project, Parser.JACOCO, JACOCO_FILE);
+        addCoverageRecorder(project, Parser.COBERTURA, JACOCO_FILE);
 
         Run<?, ?> build = buildSuccessfully(project);
 
@@ -136,11 +159,6 @@ class GitForensicsITest extends AbstractCoverageITest {
     private void verifyGitIntegration(final Run<?, ?> build, final Run<?, ?> referenceBuild) {
         CoverageBuildAction action = build.getAction(CoverageBuildAction.class);
         assertThat(action).isNotNull();
-        assertThat(action.getReferenceBuild())
-                .isPresent()
-                .satisfies(reference ->
-                        assertThat(reference.get().getExternalizableId()).isEqualTo(
-                                referenceBuild.getExternalizableId()));
         verifyCodeDelta(action);
         verifyCoverage(action);
     }
