@@ -332,7 +332,11 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
      */
     @SuppressWarnings("unused") // Called by jelly view
     public String getReferenceBuildLink() {
-        return ReferenceBuild.getReferenceBuildLink(referenceBuildId);
+        String referenceBuildLink = ReferenceBuild.getReferenceBuildLink(referenceBuildId);
+        if (referenceBuildLink.equals(String.format("#%s", referenceBuildId))) {
+            return String.format("%s%s",referenceBuildId, Messages.Reference_Build_Removed());
+        }
+        return referenceBuildLink;
     }
 
     @SuppressWarnings("unused")// Called by jelly view

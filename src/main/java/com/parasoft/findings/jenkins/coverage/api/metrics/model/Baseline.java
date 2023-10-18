@@ -39,7 +39,7 @@ public enum Baseline {
     /**
      * Coverage of the whole project. This is an absolute value that might not change much from build to build.
      */
-    PROJECT(Messages._Baseline_PROJECT(), "overview", CoverageLevel::getDisplayColorsOfCoverageLevel),
+    PROJECT(Messages._Baseline_PROJECT(), "fileCoverage", CoverageLevel::getDisplayColorsOfCoverageLevel),
     /**
      * Coverage of the modified lines (e.g., within the modified lines of a pull or merge request) will focus on new or
      * modified code only.

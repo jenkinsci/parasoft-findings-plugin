@@ -108,7 +108,7 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
         var node = readCoberturaResult(COBERTURA_CODING_STYLE_FILE);
         Job<?, ?> job = createJobWithCoverageAction(node);
 
-        assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#overview");
+        assertThat(column.getRelativeCoverageUrl(job)).isEqualTo("coverage/#fileCoverage");
     }
 
     @Test

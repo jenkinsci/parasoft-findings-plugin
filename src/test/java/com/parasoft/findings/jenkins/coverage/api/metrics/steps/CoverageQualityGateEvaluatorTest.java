@@ -103,7 +103,7 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     void shouldReportUnstableIfLargerThanThreshold() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
 
-        qualityGates.add(new CoverageQualityGate(149.0, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
+        qualityGates.add(new CoverageQualityGate(-149.0, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
         qualityGates.add(new CoverageQualityGate(14, Baseline.PROJECT, QualityGateCriticality.UNSTABLE));
         qualityGates.add(new CoverageQualityGate(999, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
 
@@ -111,9 +111,9 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = evaluator.evaluate();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.WARNING).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 149.00)",
+                "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
                 "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 14.00)",
-                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 999.00)");
+                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 100.00)");
     }
 
     @Test

@@ -32,8 +32,8 @@
 
     <f:entry title="${%title.threshold}" field="threshold"
              help="/plugin/parasoft-findings/help/parasoftCoverage/help-threshold.html">
-        <input type="number" class="jenkins-input" name="_.threshold" placeholder="default: 0.0"
-               value="${instance.threshold ?: 0.0}"/>
+        <input type="number" class="jenkins-input" name="_.threshold" placeholder="Default: 0.0(range: 0~100)"
+               value="${instance.threshold ?: 0.0}" min="0" max="100"/>
     </f:entry>
 
     <f:entry title="${%title.criticality}" field="criticality"
