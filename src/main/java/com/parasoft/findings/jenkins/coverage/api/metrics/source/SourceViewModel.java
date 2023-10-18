@@ -33,6 +33,13 @@ import edu.hm.hafner.coverage.FileNode;
 import hudson.model.ModelObject;
 import hudson.model.Run;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.jsoup.parser.Parser;
+import static com.parasoft.findings.jenkins.coverage.api.metrics.source.CoverageSourcePrinter.*;
+
 /**
  * Server side model that provides the data for the source code view of the coverage results. The layout of the
  * associated view is defined corresponding jelly view 'index.jelly'.
@@ -78,7 +85,30 @@ public class SourceViewModel implements ModelObject {
     @SuppressWarnings("unused") // Called by jelly view
     public String getSourceFileContent() {
         try {
-            return SOURCE_CODE_FACADE.read(getOwner().getRootDir(), id, getNode().getRelativePath());
+            String sourceFileContent = SOURCE_CODE_FACADE.read(getOwner().getRootDir(), id, getNode().getRelativePath());
+            // Check if the environment is in English
+            if (ALL_BRANCHES_COVERED.equals(Messages.All_Branches_Covered())) {
+                return sourceFileContent;
+            }
+            // Localizing "tooltip" in source code.
+            Document doc = Jsoup.parse(sourceFileContent, Parser.xmlParser());
+            Elements trTags = doc.select("tr");
+            for (Element tag : trTags) {
+                String tooltipValue = tag.attr(TOOLTIP_ATTR);
+                if (tooltipValue.isEmpty()){
+                    continue;
+                }
+                if (tooltipValue.equals(ALL_BRANCHES_COVERED)) {
+                    tag.attr(TOOLTIP_ATTR, Messages.All_Branches_Covered());
+                } else if (tooltipValue.equals(PARTIALLY_COVERED_AND_BRANCH_COVERAGE)) {
+                    tag.attr(TOOLTIP_ATTR, Messages.Partially_Covered_And_Branch_Coverage());
+                } else if (tooltipValue.equals(COVERED_AT_LEAST_ONCE)) {
+                    tag.attr(TOOLTIP_ATTR, Messages.Covered_At_Least_Once());
+                } else if (tooltipValue.equals(NOT_COVERED)) {
+                    tag.attr(TOOLTIP_ATTR, Messages.Not_Covered());
+                }
+            }
+            return doc.html();
         }
         catch (IOException | InterruptedException exception) {
             return ExceptionUtils.getStackTrace(exception);

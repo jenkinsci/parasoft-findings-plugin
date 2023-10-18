@@ -65,7 +65,7 @@ import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.Reference
 @SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
 public class CoverageReporter {
     @SuppressWarnings("checkstyle:ParameterNumber")
-    public CoverageBuildAction publishAction(final String id, final String optionalName, final String icon, final Node rootNode,
+    public CoverageBuildAction publishAction(final String id, final String icon, final Node rootNode,
                                              final Run<?, ?> build, final FilePath workspace, final TaskListener listener,
                                              final String configRefBuild, final List<CoverageQualityGate> qualityGates,
                                              final String sourceCodeEncoding, final StageResultHandler resultHandler)
@@ -93,14 +93,14 @@ public class CoverageReporter {
             QualityGateResult qualityGateResult = evaluateQualityGates(rootNode, log,
                     modifiedLinesCoverageRoot.aggregateValues(), resultHandler, qualityGates);
 
-            action = new CoverageBuildAction(build, id, optionalName, icon, rootNode, qualityGateResult, log,
+            action = new CoverageBuildAction(build, id, icon, rootNode, qualityGateResult, log,
                     referenceAction.getOwner().getExternalizableId(), modifiedLinesCoverageRoot.aggregateValues(), referenceResult);
         }
         else {
             QualityGateResult qualityGateStatus = evaluateQualityGates(rootNode, log,
                     List.of(), resultHandler, qualityGates);
 
-            action = new CoverageBuildAction(build, id, optionalName, icon, rootNode, qualityGateStatus, log, referenceResult);
+            action = new CoverageBuildAction(build, id, icon, rootNode, qualityGateStatus, log, referenceResult);
         }
 
         log.logInfo("Executing source code painting...");

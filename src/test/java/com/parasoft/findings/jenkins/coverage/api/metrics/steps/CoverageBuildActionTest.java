@@ -76,7 +76,7 @@ class CoverageBuildActionTest {
 
         var coverages = List.of(percent50, percent80);
         var action = spy(new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
-                StringUtils.EMPTY, StringUtils.EMPTY, module, new QualityGateResult(),
+                StringUtils.EMPTY, module, new QualityGateResult(),
                 createLog(), "-", coverages, false, new ReferenceResult(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER)));
 
         when(action.getResult()).thenThrow(new IllegalStateException("Result should not be accessed with getResult() when getting a coverage metric that is persisted in the build"));
@@ -92,7 +92,7 @@ class CoverageBuildActionTest {
 
     private static CoverageBuildAction createEmptyAction(final Node module) {
         return new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
-                StringUtils.EMPTY, StringUtils.EMPTY, module, new QualityGateResult(), createLog(), "-",
+                StringUtils.EMPTY, module, new QualityGateResult(), createLog(), "-",
                 List.of(), false, new ReferenceResult(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
     }
 

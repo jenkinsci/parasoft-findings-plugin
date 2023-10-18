@@ -52,6 +52,7 @@ import io.jenkins.plugins.datatables.TableColumn.ColumnType;
 import io.jenkins.plugins.datatables.TableConfiguration;
 import io.jenkins.plugins.datatables.TableConfiguration.SelectStyle;
 import io.jenkins.plugins.datatables.TableModel;
+import org.jvnet.localizer.LocaleProvider;
 
 import static j2html.TagCreator.*;
 
@@ -95,13 +96,21 @@ class CoverageTableModel extends TableModel {
 
     @Override
     public TableConfiguration getTableConfiguration() {
-        TableConfiguration tableConfiguration = new TableConfiguration();
-        tableConfiguration.responsive();
+        CustomTableConfiguration customTableConfiguration = new CustomTableConfiguration();
+        customTableConfiguration.responsive();
         if (getId().contains("inline")) {
-            tableConfiguration.select(SelectStyle.SINGLE);
+            customTableConfiguration.select(SelectStyle.SINGLE);
         }
-        renderer.configureTable(tableConfiguration);
-        return tableConfiguration;
+
+        customTableConfiguration.loadConfiguration();
+        Locale languageCode = LocaleProvider.getLocale();
+        String i18nFileBasename = null;
+        if (languageCode.equals(Locale.SIMPLIFIED_CHINESE)) {
+            i18nFileBasename = "zh";
+        }
+        customTableConfiguration.language(i18nFileBasename);
+        renderer.configureTable(customTableConfiguration);
+        return customTableConfiguration;
     }
 
     @Override

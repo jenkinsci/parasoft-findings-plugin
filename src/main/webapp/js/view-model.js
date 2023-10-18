@@ -89,7 +89,7 @@ const CoverageChartGenerator = function ($) {
                 }
             },
             legend: {
-                data: ['Covered', 'Missed'],
+                data: [overview.coverageCoveredText, overview.coverageMissedText],
                 x: 'center',
                 y: 'top',
                 textStyle: {
@@ -144,7 +144,7 @@ const CoverageChartGenerator = function ($) {
             }],
             series: [
                 {
-                    name: 'Covered',
+                    name: overview.coverageCoveredText,
                     type: 'bar',
                     stack: 'sum',
                     itemStyle: {
@@ -164,7 +164,7 @@ const CoverageChartGenerator = function ($) {
                     data: overview.coveredPercentages
                 },
                 {
-                    name: 'Missed',
+                    name: overview.coverageMissedText,
                     type: 'bar',
                     stack: 'sum',
                     itemStyle: {
@@ -189,7 +189,7 @@ const CoverageChartGenerator = function ($) {
         summaryChart.resize();
     }
 
-    this.populateDetailsCharts = function (jenkinsColors) {
+    this.populateDetailsCharts = function (jenkinsColors, setupText) {
         /**
          * Activate the tab that has been visited the last time. If there is no such tab, highlight the first one.
          * If the user selects the tab using an #anchor prefer this tab.
@@ -247,7 +247,6 @@ const CoverageChartGenerator = function ($) {
         // TODO: maybe it would make sense to render only visible charts
         function initializeCharts() {
             renderTrendChart();
-
             viewProxy.getOverview(function (t) {
                 createOverview(t.responseObject(), 'coverage-overview');
             });
@@ -261,6 +260,15 @@ const CoverageChartGenerator = function ($) {
             const configuration = JSON.stringify(echartsJenkinsApi.readFromLocalStorage('jenkins-echarts-chart-configuration-coverage-history'));
             viewProxy.getTrendChart(configuration, function (t) {
                 echartsJenkinsApi.renderConfigurableZoomableTrendChart('coverage-trend', t.responseJSON, 'chart-configuration-coverage-history', openBuild);
+                $('#coverage-trend')[0].echart.setOption({
+                    toolbox: {
+                        feature: {
+                            myTool1: {
+                                title: setupText
+                            }
+                        }
+                    }
+                });
                 resizeChartOf('#coverage-trend');
             });
         }
@@ -318,7 +326,7 @@ const CoverageChartGenerator = function ($) {
                     const rowData = datatable.rows(indexes).data().toArray();
                     viewProxy.getSourceCode(rowData[0].fileHash, tableId + '-table', function (t) {
                         const sourceCode = t.responseObject();
-                        if (sourceCode === "n/a") {
+                        if (sourceCode === "N/A") {
                             showNoSourceCode();
                         }
                         else {
@@ -346,7 +354,7 @@ const CoverageChartGenerator = function ($) {
 
         $(document).ready(function () {
             initializeSourceCodeSelection('absolute-coverage');
-            initializeSourceCodeSelection('change-coverage');
+            initializeSourceCodeSelection('modified-lines-coverage');
         });
     }
 };

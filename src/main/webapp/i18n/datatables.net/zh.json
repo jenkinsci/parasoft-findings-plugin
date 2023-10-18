@@ -1,0 +1,31 @@
+{
+  "search": "搜索:",
+  "loadingRecords": "正在加载...",
+  "processing": "正在处理...",
+  "emptyTable": "表中没有数据",
+  "searchPanes": {
+    "clearMessage": "全部清除",
+    "collapse": {
+      "0": "搜索面板",
+      "_": "搜索面板 (%d)"
+    },
+    "count": "{total}",
+    "countFiltered": "{shown} ({total})",
+    "emptyPanes": "没有搜索面板",
+    "loadMessage": "正在加载搜索面板...",
+    "title": "激活的筛选条件 - %d",
+    "showMessage": "全部显示",
+    "collapseMessage": "全部折叠"
+  },
+  "select": {
+    "rows": {
+      "1": "已选择 1 行",
+      "_": "已选择 %d 行"
+    }
+  },
+  "zeroRecords": "没有找到匹配的记录",
+  "info": "正在显示第 _START_ 至 _END_ 条记录，共 _TOTAL_ 条",
+  "infoEmpty": "正在显示第 0 至 0 条记录，共 0 条",
+  "infoFiltered": "(筛选自全部 _MAX_ 条记录)",
+  "lengthMenu": "显示 _MENU_ 条记录"
+}
