@@ -23,7 +23,7 @@
  -->
 
 <?jelly escape-by-default='true'?>
-<j:jelly xmlns:j="jelly:core" xmlns:t="/lib/hudson" xmlns:fa="/font-awesome" xmlns:cov="/coverage" xmlns:st="jelly:stapler" xmlns:c="/controls" xmlns:l="/lib/layout">
+<j:jelly xmlns:j="jelly:core" xmlns:t="/lib/hudson" xmlns:fa="/font-awesome" xmlns:st="jelly:stapler" xmlns:l="/lib/layout">
   <t:summary icon="${it.iconFileName}">
     <st:adjunct includes="com.parasoft.findings.jenkins.coverage.api.metrics.cell-style"/>
 
