@@ -57,7 +57,6 @@ import org.kohsuke.stapler.bind.JavaScriptMethod;
 import hudson.model.ModelObject;
 import hudson.model.Run;
 
-import io.jenkins.plugins.bootstrap5.MessagesViewModel;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProviderFactory;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.CoverageColorJenkinsId;
@@ -402,6 +401,15 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
                     .map(Coverage::getMetric)
                     .map(ELEMENT_FORMATTER::getLabel)
                     .collect(Collectors.toList());
+        }
+
+        @SuppressWarnings("unused") // Called by view-model.js
+        public String getCoverageCoveredText() {
+            return Messages.Coverage_Covered();
+        }
+        @SuppressWarnings("unused") // Called by view-model.js
+        public String getCoverageMissedText() {
+            return Messages.Coverage_Missed();
         }
 
         private Stream<Coverage> sortCoverages() {

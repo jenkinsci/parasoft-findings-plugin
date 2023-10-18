@@ -251,7 +251,7 @@ class CoverageXmlStreamTest extends SerializableTest<Node> {
     CoverageBuildAction createAction() {
         var tree = createSerializable();
 
-        return new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID, StringUtils.EMPTY,
+        return new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
                 StringUtils.EMPTY,
                 tree, new QualityGateResult(), new FilteredLog("Test"), "-",
                 List.of(), false, new ReferenceResult(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER));

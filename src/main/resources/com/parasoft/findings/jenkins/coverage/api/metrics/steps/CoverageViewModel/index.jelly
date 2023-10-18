@@ -23,7 +23,7 @@
  -->
 
 <?jelly escape-by-default='true'?>
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:bs="/bootstrap5" xmlns:cov="/parasoftCoverage" xmlns:c="/charts">
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:bs="/bootstrap5" xmlns:cov="/parasoftCoverage" xmlns:c="/parasoftCoverage">
 
   <st:header name="Content-Type" value="text/html;charset=UTF-8"/>
 
@@ -42,14 +42,14 @@
     <div class="tabBarFrame">
       <ul class="flex-wrap tabBar" role="tablist" id="tab-details">
         <li class="nav-item tab" role="presentation">
-          <a class="nav-link" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="false">Overview</a>
+          <a class="nav-link" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="false">${%tab.overview}</a>
         </li>
         <li class="nav-item tab" role="presentation">
-          <a class="nav-link" id="fileCoverage-tab" data-bs-toggle="tab" data-bs-target="#fileCoverage" type="button" role="tab" aria-controls="fileCoverage" aria-selected="false">Overall Code Coverage</a>
+          <a class="nav-link" id="fileCoverage-tab" data-bs-toggle="tab" data-bs-target="#fileCoverage" type="button" role="tab" aria-controls="fileCoverage" aria-selected="false">${%tab.overall.code.coverage}</a>
         </li>
         <j:if test="${hasModifiedLinesCoverage}">
           <li class="nav-item tab" role="presentation">
-            <a class="nav-link" id="changeCoverage-tab" data-bs-toggle="tab" data-bs-target="#changeCoverage" type="button" role="tab" aria-controls="changeCoverage" aria-selected="false">Modified Code Coverage</a>
+            <a class="nav-link" id="changeCoverage-tab" data-bs-toggle="tab" data-bs-target="#changeCoverage" type="button" role="tab" aria-controls="changeCoverage" aria-selected="false">${%tab.modified.line.coverage}</a>
           </li>
         </j:if>
       </ul>
@@ -60,12 +60,12 @@
       <div role="tabpanel" id="overview" class="tab-pane fade" aria-labelledby="overview-tab" >
         <div class="row">
           <div class="col-5">
-            <bs:card title="${%Total coverage overview}" fontAwesomeIcon="chart-bar">
+            <bs:card title="${%total.coverage.overview}" fontAwesomeIcon="chart-bar">
               <div id="coverage-overview" class="graph-cursor-pointer overview-chart h-100"/>
             </bs:card>
           </div>
           <div class="col-7">
-            <bs:card title="${%Coverage trend}" fontAwesomeIcon="chart-line">
+            <bs:card title="${%coverage.trend}" fontAwesomeIcon="chart-line">
               <div id="coverage-trend" class="graph-cursor-pointer overview-chart h-100"/>
             </bs:card>
           </div>
@@ -73,12 +73,12 @@
       </div>
 
       <div role="tabpanel" id="fileCoverage" class="tab-pane fade" aria-labelledby="fileCoverage-tab">
-        <cov:coverage-table id="absolute-coverage" title="${%Coverage of all files}" symbol="symbol-regular/file-lines plugin-font-awesome-api"/>
+        <cov:coverage-table id="absolute-coverage" title="${%coverage.of.all.files}" symbol="symbol-regular/file-lines plugin-font-awesome-api"/>
       </div>
 
       <j:if test="${hasModifiedLinesCoverage}">
         <div role="tabpanel" id="changeCoverage" class="tab-pane fade" aria-labelledby="changeCoverage-tab">
-          <cov:coverage-table id="modified-lines-coverage" title="${%Coverage of modified lines}" symbol="symbol-diff-stat plugin-forensics-api"/>
+          <cov:coverage-table id="modified-lines-coverage" title="${%coverage.of.modified.lines}" symbol="symbol-diff-stat plugin-forensics-api"/>
         </div>
       </j:if>
     </div>
@@ -94,7 +94,7 @@
         const jenkinsColors = getJenkinsColors(colors.responseObject());
         const colorJson = JSON.stringify(Object.fromEntries(jenkinsColors));
         viewProxy.setJenkinsColors(colorJson, function(t) {});
-        coverageChartGenerator.populateDetailsCharts(jenkinsColors);
+        coverageChartGenerator.populateDetailsCharts(jenkinsColors, '${%setup.text}');
     });
   </script>
 

@@ -26,6 +26,7 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.source;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -55,6 +56,12 @@ class CoverageSourcePrinter implements Serializable {
 
     private final int[] missedPerLine;
 
+    public static final String ALL_BRANCHES_COVERED = Messages._All_Branches_Covered().toString(Locale.ENGLISH);
+    public static final String PARTIALLY_COVERED_AND_BRANCH_COVERAGE = Messages._Partially_Covered_And_Branch_Coverage().toString(Locale.ENGLISH);
+    public static final String COVERED_AT_LEAST_ONCE = Messages._Covered_At_Least_Once().toString(Locale.ENGLISH);
+    public static final String NOT_COVERED = Messages._Not_Covered().toString(Locale.ENGLISH);
+    public static final String TOOLTIP_ATTR = "data-html-tooltip";
+
     CoverageSourcePrinter(final FileNode file) {
         path = file.getRelativePath();
 
@@ -67,7 +74,7 @@ class CoverageSourcePrinter implements Serializable {
         var isPainted = isPainted(line);
         return tr()
                 .withClass(isPainted ? getColorClass(line) : CoverageSourcePrinter.UNDEFINED)
-                .condAttr(isPainted, "data-html-tooltip", isPainted ? getTooltip(line) : StringUtils.EMPTY)
+                .condAttr(isPainted, TOOLTIP_ATTR, isPainted ? getTooltip(line) : StringUtils.EMPTY)
                 .with(
                         td().withClass("line")
                                 .with(a().withName(String.valueOf(line)).withText(String.valueOf(line))),
@@ -106,15 +113,15 @@ class CoverageSourcePrinter implements Serializable {
         var missed = getMissed(line);
         if (covered + missed > 1) {
             if (missed == 0) {
-                return "All branches covered";
+                return ALL_BRANCHES_COVERED;
             }
-            return String.format("Partially covered, branch coverage: %d/%d", covered, covered + missed);
+            return PARTIALLY_COVERED_AND_BRANCH_COVERAGE + String.format(": %d/%d", covered, covered + missed);
         }
         else if (covered == 1) {
-            return "Covered at least once";
+            return COVERED_AT_LEAST_ONCE;
         }
         else {
-            return "Not covered";
+            return NOT_COVERED;
         }
     }
 
