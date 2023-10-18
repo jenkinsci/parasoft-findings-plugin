@@ -35,7 +35,7 @@
 
       <div class="col">
         <div id="file-table">
-          <bs:card title="${%Source code view}" fontAwesomeIcon="file-code" fontAwesomeStyle="regular" class="flex-fill">
+          <bs:card title="${%source.code.view}" fontAwesomeIcon="file-code" fontAwesomeStyle="regular" class="flex-fill">
             <j:choose>
               <j:when test="${it.sourceFileAvailable}">
                 <div style="overflow-x:scroll;">
@@ -46,8 +46,8 @@
               </j:when>
               <j:otherwise>
                 <p>
-                  <b>${%Source code is unavailable.}</b>
-                  ${%Some possible reasons are:}
+                  <b>${%source.code.is.unavailable}</b>
+                  ${%some.possible.reasons.are}:
                   <ul>
                     <li>${%reason.1}</li>
                     <li>${%reason.2}</li>

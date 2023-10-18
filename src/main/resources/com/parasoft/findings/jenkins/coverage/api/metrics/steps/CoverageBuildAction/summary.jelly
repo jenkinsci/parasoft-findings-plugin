@@ -23,7 +23,7 @@
  -->
 
 <?jelly escape-by-default='true'?>
-<j:jelly xmlns:j="jelly:core" xmlns:t="/lib/hudson" xmlns:fa="/font-awesome" xmlns:cov="/coverage" xmlns:st="jelly:stapler" xmlns:c="/controls" xmlns:l="/lib/layout">
+<j:jelly xmlns:j="jelly:core" xmlns:t="/lib/hudson" xmlns:fa="/font-awesome" xmlns:st="jelly:stapler" xmlns:l="/lib/layout">
   <t:summary icon="${it.iconFileName}">
     <st:adjunct includes="com.parasoft.findings.jenkins.coverage.api.metrics.cell-style"/>
 
@@ -47,7 +47,7 @@
         <j:choose>
           <span id="coverage-reference">
             <li>
-              Reference build:
+              ${%reference.build}:
               <j:when test="${it.referenceBuildWarningMessage.isEmpty()}">
                 <j:out value="${it.referenceBuildLink}"/>
               </j:when>
@@ -62,7 +62,10 @@
         <j:set var="status" value="${result.overallStatus}"/>
         <j:if test="${status.name() != 'INACTIVE'}">
           <li>${%quality.gate.title}:
-            <l:icon style="width: 16px; height: 16px; margin-left: 2px; margin-right: 4px; position: relative; top: -0.1rem;" alt="${status.description}" class="${status.iconClass} icon-sm"/>${status.description}
+            <l:icon style="width: 16px; height: 16px; margin-left: 2px; margin-right: 4px; position: relative; top: -0.1rem;" alt="${status.description}" class="${status.iconClass} icon-sm"/>
+            <j:if test="${status.name() == 'PASSED'}">${%quality.gate.status.success}</j:if>
+            <j:if test="${status.name() == 'WARNING'}">${%quality.gate.status.unstable}</j:if>
+            <j:if test="${status.name() == 'FAILED'}">${%quality.gate.status.failed}</j:if>
           </li>
           <br/>
           <table class="jenkins-table">

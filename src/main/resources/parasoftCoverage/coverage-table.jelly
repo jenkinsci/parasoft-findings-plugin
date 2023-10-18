@@ -54,7 +54,7 @@
           </bs:card>
         </div>
         <div class="col-xxl-6 d-none d-xxl-block">
-          <bs:card title="${%Source code view}" symbol="symbol-regular/file-code plugin-font-awesome-api"
+          <bs:card title="${%source.code.view}" symbol="symbol-regular/file-code plugin-font-awesome-api"
                    class="flex-fill h-100">
             <div id="${id}-source-file-content">
               <table id="${id}-source-file" class="source">
@@ -65,7 +65,7 @@
                 <fa:svg-icon name="hand-point-left" class="no-selection-banner"/>
               </div>
               <div class="text-center">
-                <h5 class="card-title">${%Please select a file in the table to open the source code}</h5>
+                <h5 class="card-title">${%select.a.file.to.open.the.source.code}</h5>
               </div>
             </div>
             <div id="${id}-no-source">
@@ -73,7 +73,7 @@
                 <fa:svg-icon name="ban" class="no-selection-banner"/>
               </div>
               <div class="text-center">
-                <h5 class="card-title">${%No source code available for this file}</h5>
+                <h5 class="card-title">${%no.source.code.available.for.this.file}</h5>
               </div>
             </div>
           </bs:card>
