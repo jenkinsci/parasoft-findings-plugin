@@ -29,12 +29,12 @@
 
     <div id="coverage-summary-${it.urlName}">
       <j:set var="result" value="${it.result}"/>
-      <a id="coverage-action-link-${it.urlName}" href="${it.urlName}/">${it.displayName}</a>
+      <a id="coverage-action-link-${it.urlName}" href="${it.urlName}/#overview">${it.displayName}</a>
       <fa:image-button label="${%Open log messages}" name="circle-info" tooltip="${%icon.info.tooltip}" url="${it.urlName}/info"/>
       <ul>
         <j:if test="${it.hasBaselineResult(it.projectBaseline)}">
           <li>
-            <a href="${it.urlName}/#${it.projectBaseline.url}">${it.getTitle(it.projectBaseline)}</a>
+            <a href="${it.urlName}/${it.projectBaseline.url}">${it.getTitle(it.projectBaseline)}</a>
             <div class="${it.projectBaseline}-summary">
               <ul>
                 <j:forEach var="value" items="${it.getValues(it.projectBaseline)}">
@@ -67,6 +67,7 @@
             <j:if test="${status.name() == 'WARNING'}">${%quality.gate.status.unstable}</j:if>
             <j:if test="${status.name() == 'FAILED'}">${%quality.gate.status.failed}</j:if>
           </li>
+          <br/>
           <table class="jenkins-table">
             <thead>
               <tr>

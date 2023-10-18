@@ -63,7 +63,7 @@ public class CoverageQualityGate extends QualityGate {
      */
     @DataBoundConstructor
     public CoverageQualityGate(final double threshold, final Baseline type, final QualityGateCriticality criticality) {
-        super(threshold);
+        super(checkThresholdRange(threshold));
 
         setType(type);
         setCriticality(criticality);
@@ -146,5 +146,9 @@ public class CoverageQualityGate extends QualityGate {
             }
             return new ListBoxModel();
         }
+    }
+
+    private static double checkThresholdRange(double threshold) {
+        return threshold < 0 ? 0 : threshold > 100 ? 100 : threshold;
     }
 }
