@@ -318,7 +318,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     public String getReferenceBuildLink() {
         String referenceBuildLink = ReferenceBuild.getReferenceBuildLink(referenceBuildId);
         if (referenceBuildLink.equals(String.format("#%s", referenceBuildId))) {
-            return String.format("%s%s",referenceBuildId, Messages.Reference_Build_Removed());
+            return String.format("%s %s",referenceBuildId, Messages.Reference_Build_Removed());
         }
         return referenceBuildLink;
     }
