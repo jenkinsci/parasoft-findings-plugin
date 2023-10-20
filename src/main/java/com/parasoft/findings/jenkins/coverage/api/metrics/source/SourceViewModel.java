@@ -52,6 +52,7 @@ public class SourceViewModel implements ModelObject {
     private final Run<?, ?> owner;
     private final String id;
     private final FileNode fileNode;
+    private final CoverageScopeInSourceFile coverageScope;
 
     /**
      * Creates a new source view model instance.
@@ -63,10 +64,11 @@ public class SourceViewModel implements ModelObject {
      * @param fileNode
      *         the selected file node of the coverage tree
      */
-    public SourceViewModel(final Run<?, ?> owner, final String id, final FileNode fileNode) {
+    public SourceViewModel(final Run<?, ?> owner, final String id, final FileNode fileNode, CoverageScopeInSourceFile coverageScope) {
         this.owner = owner;
         this.id = id;
         this.fileNode = fileNode;
+        this.coverageScope = coverageScope;
     }
 
     public Run<?, ?> getOwner() {
@@ -86,6 +88,9 @@ public class SourceViewModel implements ModelObject {
     public String getSourceFileContent() {
         try {
             String sourceFileContent = SOURCE_CODE_FACADE.read(getOwner().getRootDir(), id, getNode().getRelativePath());
+            if (CoverageScopeInSourceFile.MODIFIED_COVERAGE == coverageScope) {
+                sourceFileContent = SOURCE_CODE_FACADE.calculateModifiedLinesCoverageSourceCode(sourceFileContent, getNode());
+            }
             // Check if the environment is in English
             if (ALL_BRANCHES_COVERED.equals(Messages.All_Branches_Covered())) {
                 return sourceFileContent;
@@ -128,5 +133,10 @@ public class SourceViewModel implements ModelObject {
     @Override
     public String getDisplayName() {
         return Messages.Coverage_Title(getNode().getName());
+    }
+
+    public enum CoverageScopeInSourceFile {
+        MODIFIED_COVERAGE,
+        OVERALL_COVERAGE
     }
 }

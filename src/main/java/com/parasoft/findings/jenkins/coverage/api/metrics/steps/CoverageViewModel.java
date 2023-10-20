@@ -99,6 +99,8 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
 
     private ColorProvider colorProvider = ColorProviderFactory.createDefaultColorProvider();
 
+    private static SourceViewModel.CoverageScopeInSourceFile coverageScope;
+
     @SuppressWarnings("checkstyle:ParameterNumber")
     CoverageViewModel(final Run<?, ?> owner, final String id, final String optionalName, final Node node,
                       final FilteredLog log, final Function<String, String> trendChartFunction) {
@@ -227,6 +229,14 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
                         colorProvider);
             default:
                 throw new NoSuchElementException("No such table with id " + actualId);
+        }
+    }
+    @JavaScriptMethod
+    public synchronized void setCoverageScopeInSourceFile(String type) {
+        if (SourceViewModel.CoverageScopeInSourceFile.MODIFIED_COVERAGE.toString().equals(type)) {
+            coverageScope = SourceViewModel.CoverageScopeInSourceFile.MODIFIED_COVERAGE;
+        } else {
+            coverageScope = SourceViewModel.CoverageScopeInSourceFile.OVERALL_COVERAGE;
         }
     }
 
@@ -375,7 +385,7 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
                 Optional<Node> targetResult
                         = getNode().findByHashCode(Metric.FILE, Integer.parseInt(link));
                 if (targetResult.isPresent() && targetResult.get() instanceof FileNode) {
-                    return new SourceViewModel(getOwner(), getId(), (FileNode) targetResult.get());
+                    return new SourceViewModel(getOwner(), getId(), (FileNode) targetResult.get(), coverageScope);
                 }
             }
             catch (NumberFormatException exception) {
