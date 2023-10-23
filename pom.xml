@@ -32,7 +32,6 @@
     <jsoup.version>1.16.1</jsoup.version>
     <testcontainers.version>1.18.1</testcontainers.version>
 
-    <coverage-model.version>0.24.0</coverage-model.version>
     <prism-api.version>1.29.0-6</prism-api.version>
 
     <equalsverifier.version>3.14.1</equalsverifier.version>
@@ -362,41 +361,6 @@
       <version>3.1.2</version>
     </dependency>
     <!-- start dependencies of code-coverage-api -->
-    <dependency>
-      <groupId>edu.hm.hafner</groupId>
-      <artifactId>coverage-model</artifactId>
-      <version>${coverage-model.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>edu.hm.hafner</groupId>
-          <artifactId>codingstyle</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.github.spotbugs</groupId>
-          <artifactId>spotbugs-annotations</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.google.errorprone</groupId>
-          <artifactId>error_prone_annotations</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.commons</groupId>
-          <artifactId>commons-lang3</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.commons</groupId>
-          <artifactId>commons-text</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>one.util</groupId>
-          <artifactId>streamex</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>javax.annotation</groupId>
-          <artifactId>javax.annotation-api</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>ionicons-api</artifactId>
