@@ -52,7 +52,7 @@ import hudson.XmlFile;
 import hudson.model.FreeStyleBuild;
 import hudson.util.XStream2;
 
-import com.parasoft.findings.jenkins.coverage.api.metrics.Assertions;
+import com.parasoft.findings.jenkins.coverage.Assertions;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageXmlStream.IntegerLineMapConverter;
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageXmlStream.IntegerSetConverter;

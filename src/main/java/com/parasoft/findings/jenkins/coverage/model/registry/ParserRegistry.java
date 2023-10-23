@@ -3,7 +3,6 @@ package com.parasoft.findings.jenkins.coverage.model.registry;
 import com.parasoft.findings.jenkins.coverage.model.CoverageParser;
 import com.parasoft.findings.jenkins.coverage.model.parser.CoberturaParser;
 import com.parasoft.findings.jenkins.coverage.model.parser.JacocoParser;
-import com.parasoft.findings.jenkins.coverage.model.parser.PitestParser;
 
 /**
  * Provides a registry for all available {@link CoverageParserType parsers}.
@@ -14,8 +13,7 @@ public class ParserRegistry {
     /** Supported parsers. */
     public enum CoverageParserType {
         COBERTURA,
-        JACOCO,
-        PIT
+        JACOCO
     }
 
     /**
@@ -44,8 +42,6 @@ public class ParserRegistry {
                 return new CoberturaParser();
             case JACOCO:
                 return new JacocoParser();
-            case PIT:
-                return new PitestParser();
         }
         throw new IllegalArgumentException("Unknown parser type: " + parser);
     }

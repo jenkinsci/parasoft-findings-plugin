@@ -173,12 +173,13 @@
         <configuration>
           <packages combine.children="append">
             <package>com.parasoft.findings.jenkins.coverage.api.metrics</package>
+            <package>com.parasoft.findings.jenkins.coverage.model</package>
           </packages>
           <excludes combine.children="append">
             <exclude>.*ITest.*</exclude>
             <exclude>.*CoverageXmlStream.*</exclude>
           </excludes>
-          <entryPointClassPackage>com.parasoft.findings.jenkins.coverage.api.metrics</entryPointClassPackage>
+          <entryPointClassPackage>com.parasoft.findings.jenkins.coverage</entryPointClassPackage>
         </configuration>
       </plugin>
     </plugins>
@@ -190,6 +191,7 @@
           <version>${assertj-assertions-generator-maven-plugin.version}</version>
           <executions>
             <execution>
+              <phase>generate-test-sources</phase>
               <goals>
                 <goal>generate-assertions</goal>
               </goals>
