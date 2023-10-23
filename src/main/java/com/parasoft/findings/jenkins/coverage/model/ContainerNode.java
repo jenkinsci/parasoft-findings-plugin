@@ -1,4 +1,4 @@
-package edu.hm.hafner.coverage;
+package com.parasoft.findings.jenkins.coverage.model;
 
 /**
  * A {@link Node} which represents the top level node in the tree. Typically, such a node aggregates all

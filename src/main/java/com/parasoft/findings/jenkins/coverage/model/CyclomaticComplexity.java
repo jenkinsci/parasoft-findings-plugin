@@ -1,4 +1,4 @@
-package edu.hm.hafner.coverage;
+package com.parasoft.findings.jenkins.coverage.model;
 
 /**
  * Represents the cyclomatic complexity in a particular code block.

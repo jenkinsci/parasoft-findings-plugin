@@ -1,4 +1,4 @@
-package edu.hm.hafner.coverage;
+package com.parasoft.findings.jenkins.coverage.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.Fraction;
 
-import edu.hm.hafner.coverage.Metric.MetricTendency;
+import com.parasoft.findings.jenkins.coverage.model.Metric.MetricTendency;
 import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 
 /**

@@ -1,4 +1,4 @@
-package edu.hm.hafner.coverage;
+package com.parasoft.findings.jenkins.coverage.model;
 
 /**
  * A {@link Node} for a specific class.

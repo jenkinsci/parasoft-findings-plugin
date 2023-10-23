@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.Node;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.Node;
 
 import hudson.Functions;
 

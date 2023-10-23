@@ -34,9 +34,9 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Node;
-import edu.hm.hafner.coverage.Value;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Node;
+import com.parasoft.findings.jenkins.coverage.model.Value;
 import edu.hm.hafner.echarts.ChartModelConfiguration;
 import edu.hm.hafner.echarts.JacksonFacade;
 import edu.hm.hafner.util.FilteredLog;

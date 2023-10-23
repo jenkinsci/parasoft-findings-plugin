@@ -559,6 +559,18 @@
       <version>${testcontainers.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>code-coverage-api</artifactId>
+      <version>4.6.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>git-forensics</artifactId>
+      <version>2.0.0</version>
+      <scope>test</scope>
+    </dependency>
 
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>

@@ -1,9 +1,9 @@
-package edu.hm.hafner.coverage.registry;
+package com.parasoft.findings.jenkins.coverage.model.registry;
 
-import edu.hm.hafner.coverage.CoverageParser;
-import edu.hm.hafner.coverage.parser.CoberturaParser;
-import edu.hm.hafner.coverage.parser.JacocoParser;
-import edu.hm.hafner.coverage.parser.PitestParser;
+import com.parasoft.findings.jenkins.coverage.model.CoverageParser;
+import com.parasoft.findings.jenkins.coverage.model.parser.CoberturaParser;
+import com.parasoft.findings.jenkins.coverage.model.parser.JacocoParser;
+import com.parasoft.findings.jenkins.coverage.model.parser.PitestParser;
 
 /**
  * Provides a registry for all available {@link CoverageParserType parsers}.

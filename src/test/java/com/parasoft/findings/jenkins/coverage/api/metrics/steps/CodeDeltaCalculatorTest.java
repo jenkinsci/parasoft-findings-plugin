@@ -36,8 +36,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.Node;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.Node;
 import edu.hm.hafner.util.FilteredLog;
 
 import hudson.FilePath;

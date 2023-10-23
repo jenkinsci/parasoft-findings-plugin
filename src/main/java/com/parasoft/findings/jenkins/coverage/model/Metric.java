@@ -1,4 +1,4 @@
-package edu.hm.hafner.coverage;
+package com.parasoft.findings.jenkins.coverage.model;
 
 import java.util.Locale;
 import java.util.NavigableSet;
@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import com.google.errorprone.annotations.Immutable;
 
-import edu.hm.hafner.coverage.Coverage.CoverageBuilder;
+import com.parasoft.findings.jenkins.coverage.model.Coverage.CoverageBuilder;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**

@@ -41,10 +41,10 @@ import org.apache.commons.lang3.math.Fraction;
 import org.junit.jupiter.api.Test;
 import org.xmlunit.builder.Input;
 
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Node;
-import edu.hm.hafner.coverage.Value;
-import edu.hm.hafner.coverage.parser.JacocoParser;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Node;
+import com.parasoft.findings.jenkins.coverage.model.Value;
+import com.parasoft.findings.jenkins.coverage.model.parser.JacocoParser;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.SerializableTest;
 
@@ -61,7 +61,7 @@ import io.jenkins.plugins.util.QualityGateResult;
 
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.OK;
-import static edu.hm.hafner.coverage.Metric.*;
+import static com.parasoft.findings.jenkins.coverage.model.Metric.*;
 import static org.assertj.core.api.BDDAssertions.*;
 import static org.mockito.Mockito.*;
 import static org.xmlunit.assertj.XmlAssert.assertThat;

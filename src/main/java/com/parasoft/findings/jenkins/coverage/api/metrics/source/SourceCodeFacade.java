@@ -45,7 +45,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
-import edu.hm.hafner.coverage.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
 import edu.hm.hafner.util.FilteredLog;
 
 import hudson.FilePath;

@@ -1,4 +1,4 @@
-package edu.hm.hafner.coverage.parser;
+package com.parasoft.findings.jenkins.coverage.model.parser;
 
 import java.io.Reader;
 import java.util.NoSuchElementException;
@@ -13,14 +13,14 @@ import javax.xml.stream.events.XMLEvent;
 
 import org.apache.commons.lang3.StringUtils;
 
-import edu.hm.hafner.coverage.Coverage.CoverageBuilder;
-import edu.hm.hafner.coverage.CoverageParser;
-import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.ModuleNode;
-import edu.hm.hafner.coverage.Mutation;
-import edu.hm.hafner.coverage.Mutation.MutationBuilder;
-import edu.hm.hafner.coverage.MutationStatus;
+import com.parasoft.findings.jenkins.coverage.model.Coverage.CoverageBuilder;
+import com.parasoft.findings.jenkins.coverage.model.CoverageParser;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
+import com.parasoft.findings.jenkins.coverage.model.Mutation;
+import com.parasoft.findings.jenkins.coverage.model.Mutation.MutationBuilder;
+import com.parasoft.findings.jenkins.coverage.model.MutationStatus;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.SecureXmlParserFactory;
 import edu.hm.hafner.util.SecureXmlParserFactory.ParsingException;

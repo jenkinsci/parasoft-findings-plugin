@@ -1,6 +1,6 @@
-package edu.hm.hafner.coverage;
+package com.parasoft.findings.jenkins.coverage.model;
 
-import static edu.hm.hafner.coverage.MutationStatus.LineCoverage.*;
+import static com.parasoft.findings.jenkins.coverage.model.MutationStatus.LineCoverage.*;
 
 /**
  * Represents all possible outcomes for mutations.

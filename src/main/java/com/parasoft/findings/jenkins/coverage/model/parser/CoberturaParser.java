@@ -1,4 +1,4 @@
-package edu.hm.hafner.coverage.parser;
+package com.parasoft.findings.jenkins.coverage.model.parser;
 
 import java.io.Reader;
 import java.nio.file.Paths;
@@ -10,15 +10,15 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
-import edu.hm.hafner.coverage.Coverage;
-import edu.hm.hafner.coverage.Coverage.CoverageBuilder;
-import edu.hm.hafner.coverage.CoverageParser;
-import edu.hm.hafner.coverage.CyclomaticComplexity;
-import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.MethodNode;
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.ModuleNode;
-import edu.hm.hafner.coverage.Node;
+import com.parasoft.findings.jenkins.coverage.model.Coverage;
+import com.parasoft.findings.jenkins.coverage.model.Coverage.CoverageBuilder;
+import com.parasoft.findings.jenkins.coverage.model.CoverageParser;
+import com.parasoft.findings.jenkins.coverage.model.CyclomaticComplexity;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.MethodNode;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
+import com.parasoft.findings.jenkins.coverage.model.Node;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.PathUtil;
 import edu.hm.hafner.util.SecureXmlParserFactory;

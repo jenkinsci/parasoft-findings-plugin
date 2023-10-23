@@ -1,4 +1,4 @@
-package edu.hm.hafner.coverage;
+package com.parasoft.findings.jenkins.coverage.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.Fraction;
 
-import edu.hm.hafner.coverage.Coverage.CoverageBuilder;
+import com.parasoft.findings.jenkins.coverage.model.Coverage.CoverageBuilder;
 import edu.hm.hafner.util.TreeString;
 
 /**

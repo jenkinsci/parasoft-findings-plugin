@@ -1,10 +1,10 @@
-package edu.hm.hafner.coverage;
+package com.parasoft.findings.jenkins.coverage.model;
 
 import java.util.Objects;
 
 import org.apache.commons.lang3.math.Fraction;
 
-import edu.hm.hafner.coverage.Metric.MetricTendency;
+import com.parasoft.findings.jenkins.coverage.model.Metric.MetricTendency;
 
 /**
  * Represents the value of a rational number based metric. Internally the rational number is stored using a

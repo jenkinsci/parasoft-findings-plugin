@@ -1,8 +1,8 @@
-package edu.hm.hafner.coverage;
+package com.parasoft.findings.jenkins.coverage.model;
 
 import org.apache.commons.lang3.math.Fraction;
 
-import static edu.hm.hafner.coverage.Percentage.*;
+import static com.parasoft.findings.jenkins.coverage.model.Percentage.*;
 
 /**
  * A small wrapper for {@link Fraction} instances that avoids an arithmetic overflow by using double based operations in

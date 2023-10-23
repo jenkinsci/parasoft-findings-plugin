@@ -1,4 +1,4 @@
-package edu.hm.hafner.coverage;
+package com.parasoft.findings.jenkins.coverage.model;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 
-import edu.hm.hafner.coverage.Coverage.CoverageBuilder;
+import com.parasoft.findings.jenkins.coverage.model.Coverage.CoverageBuilder;
 import edu.hm.hafner.util.TreeStringBuilder;
 
 /**

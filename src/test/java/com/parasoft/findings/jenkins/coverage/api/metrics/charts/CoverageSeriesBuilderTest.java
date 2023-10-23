@@ -30,9 +30,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import edu.hm.hafner.coverage.Coverage;
-import edu.hm.hafner.coverage.Coverage.CoverageBuilder;
-import edu.hm.hafner.coverage.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Coverage;
+import com.parasoft.findings.jenkins.coverage.model.Coverage.CoverageBuilder;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
 import edu.hm.hafner.echarts.Build;
 import edu.hm.hafner.echarts.BuildResult;
 import edu.hm.hafner.echarts.ChartModelConfiguration;

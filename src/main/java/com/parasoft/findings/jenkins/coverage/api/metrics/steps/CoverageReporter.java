@@ -33,9 +33,9 @@ import hudson.model.Result;
 import io.jenkins.plugins.util.EnvironmentResolver;
 import org.apache.commons.lang3.StringUtils;
 
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Node;
-import edu.hm.hafner.coverage.Value;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Node;
+import com.parasoft.findings.jenkins.coverage.model.Value;
 import edu.hm.hafner.util.FilteredLog;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 
@@ -173,7 +173,7 @@ public class CoverageReporter {
     }
 
     private boolean hasLineCoverageSet(final Value value) {
-        return ((edu.hm.hafner.coverage.Coverage) value).isSet();
+        return ((com.parasoft.findings.jenkins.coverage.model.Coverage) value).isSet();
     }
 
     private ReferenceBuildActionResult getReferenceBuildActionResult(final String configRefBuild, final Run<?, ?> build,

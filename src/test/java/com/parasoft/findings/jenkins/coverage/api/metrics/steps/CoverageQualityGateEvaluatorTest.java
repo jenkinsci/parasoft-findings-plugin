@@ -30,7 +30,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import edu.hm.hafner.coverage.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
