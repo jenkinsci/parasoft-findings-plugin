@@ -143,7 +143,7 @@ class CoverageXmlStreamTest extends SerializableTest<Node> {
                         "COMPLEXITY_DENSITY: 160/323",
                         "LOC: 323");
 
-        assertThat(Input.from(saved)).nodesByXPath("//" + ACTION_QUALIFIED_NAME + "/projectValues/coverage")
+        assertThat(Input.from(saved)).nodesByXPath("//" + ACTION_QUALIFIED_NAME + "/projectValues/com.parasoft.findings.jenkins.coverage.model.Coverage")
                 .hasSize(8).extractingText()
                 .containsExactly("MODULE: 1/1",
                         "PACKAGE: 1/1",
