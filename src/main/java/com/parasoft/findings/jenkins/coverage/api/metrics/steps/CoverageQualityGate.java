@@ -24,7 +24,7 @@
 
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
-import edu.hm.hafner.coverage.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
 import edu.hm.hafner.util.VisibleForTesting;
 
 import org.kohsuke.stapler.AncestorInPath;

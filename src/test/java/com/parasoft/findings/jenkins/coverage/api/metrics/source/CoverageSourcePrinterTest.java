@@ -28,7 +28,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.xmlunit.assertj.XmlAssert;
 
-import edu.hm.hafner.coverage.parser.JacocoParser;
+import com.parasoft.findings.jenkins.coverage.model.parser.JacocoParser;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
 

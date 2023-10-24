@@ -36,8 +36,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import edu.hm.hafner.coverage.Coverage.CoverageBuilder;
-import edu.hm.hafner.coverage.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.Coverage.CoverageBuilder;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
 
 import org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition;
 import org.jenkinsci.plugins.workflow.flow.FlowDefinition;
@@ -54,7 +54,7 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
 import io.jenkins.plugins.prism.SourceCodeRetention;
 
-import static edu.hm.hafner.coverage.Metric.*;
+import static com.parasoft.findings.jenkins.coverage.model.Metric.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assumptions.*;
 
@@ -200,7 +200,7 @@ class GitForensicsITest extends AbstractCoverageITest {
     }
 
     private void verifyCodeDelta(final CoverageBuildAction action) {
-        edu.hm.hafner.coverage.Node root = action.getResult();
+        com.parasoft.findings.jenkins.coverage.model.Node root = action.getResult();
         assertThat(root).isNotNull();
 
         List<FileNode> modifiedFiles = root.getAllFileNodes().stream()

@@ -30,9 +30,9 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Node;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Node;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
 import io.jenkins.plugins.forensics.delta.Change;

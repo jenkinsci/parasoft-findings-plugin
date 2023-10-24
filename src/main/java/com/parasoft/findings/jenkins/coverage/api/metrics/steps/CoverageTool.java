@@ -26,9 +26,9 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.io.Serializable;
 
-import edu.hm.hafner.coverage.CoverageParser;
-import edu.hm.hafner.coverage.Node;
-import edu.hm.hafner.coverage.registry.ParserRegistry;
+import com.parasoft.findings.jenkins.coverage.model.CoverageParser;
+import com.parasoft.findings.jenkins.coverage.model.Node;
+import com.parasoft.findings.jenkins.coverage.model.registry.ParserRegistry;
 
 import org.jvnet.localizer.Localizable;
 import hudson.model.AbstractDescribableImpl;

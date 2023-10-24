@@ -27,8 +27,8 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.charts;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.hm.hafner.coverage.Coverage;
-import edu.hm.hafner.coverage.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Coverage;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
 import edu.hm.hafner.echarts.line.SeriesBuilder;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;

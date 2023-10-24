@@ -26,8 +26,8 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.util.Optional;
 
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Value;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Value;
 import edu.hm.hafner.util.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.NonNull;
 
