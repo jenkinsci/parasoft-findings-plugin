@@ -30,12 +30,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import edu.hm.hafner.coverage.Coverage;
-import edu.hm.hafner.coverage.CyclomaticComplexity;
-import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.LinesOfCode;
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Node;
+import com.parasoft.findings.jenkins.coverage.model.Coverage;
+import com.parasoft.findings.jenkins.coverage.model.CyclomaticComplexity;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.LinesOfCode;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Node;
 
 import hudson.Functions;
 

@@ -33,7 +33,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.parser.Parser;
 import org.junit.jupiter.api.Test;
 
-import edu.hm.hafner.coverage.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
 import edu.hm.hafner.util.ResourceTest;
 
 import static org.assertj.core.api.Assertions.*;

@@ -38,9 +38,9 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 
-import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Node;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Node;
 import edu.hm.hafner.util.FilteredLog;
 import edu.umd.cs.findbugs.annotations.NonNull;
 

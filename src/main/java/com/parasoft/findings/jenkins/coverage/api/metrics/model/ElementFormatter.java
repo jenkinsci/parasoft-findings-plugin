@@ -31,12 +31,12 @@ import java.util.regex.Pattern;
 import io.jenkins.plugins.util.QualityGate;
 import org.apache.commons.lang3.StringUtils;
 
-import edu.hm.hafner.coverage.Coverage;
-import edu.hm.hafner.coverage.FractionValue;
-import edu.hm.hafner.coverage.IntegerValue;
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Percentage;
-import edu.hm.hafner.coverage.Value;
+import com.parasoft.findings.jenkins.coverage.model.Coverage;
+import com.parasoft.findings.jenkins.coverage.model.FractionValue;
+import com.parasoft.findings.jenkins.coverage.model.IntegerValue;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Percentage;
+import com.parasoft.findings.jenkins.coverage.model.Value;
 
 import hudson.Functions;
 import hudson.util.ListBoxModel;

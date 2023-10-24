@@ -30,7 +30,7 @@ import java.util.NoSuchElementException;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import edu.hm.hafner.coverage.Node;
+import com.parasoft.findings.jenkins.coverage.model.Node;
 import edu.hm.hafner.util.FilteredLog;
 
 import hudson.model.Run;

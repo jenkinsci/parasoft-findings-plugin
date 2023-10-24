@@ -30,8 +30,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import edu.hm.hafner.coverage.CoverageParser;
-import edu.hm.hafner.coverage.ModuleNode;
+import com.parasoft.findings.jenkins.coverage.model.CoverageParser;
+import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.PathUtil;
 import edu.hm.hafner.util.SecureXmlParserFactory.ParsingException;
