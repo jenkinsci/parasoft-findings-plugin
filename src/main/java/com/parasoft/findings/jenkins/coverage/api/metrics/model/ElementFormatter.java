@@ -409,7 +409,7 @@ public final class ElementFormatter {
             case UNSTABLE:
                 return Messages.Criticality_UNSTABLE();
             case FAILURE:
-                return Messages.Criticality_FAILURE();
+                return Messages.Criticality_FAILED();
             default:
                 throw new NoSuchElementException("No display name found for criticality " + criticality);
         }
