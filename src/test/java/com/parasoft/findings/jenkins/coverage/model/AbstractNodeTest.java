@@ -123,7 +123,7 @@ abstract class AbstractNodeTest extends SerializableTest<Node> {
         SingleTypeEqualsVerifierApi<? extends Node> equalsVerifier = EqualsVerifier.forClass(
                         createNode(NAME).getClass())
                 .withPrefabValues(Node.class, new PackageNode("src"), new PackageNode("test"))
-                .withIgnoredFields("parent")
+                .withIgnoredFields("parent", "parasoftToolName")
                 .withRedefinedSuperclass();
         configureEqualsVerifier(equalsVerifier);
         equalsVerifier.verify();

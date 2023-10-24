@@ -35,6 +35,7 @@ import com.parasoft.findings.jenkins.coverage.model.Coverage;
 import com.parasoft.findings.jenkins.coverage.model.FractionValue;
 import com.parasoft.findings.jenkins.coverage.model.IntegerValue;
 import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Node;
 import com.parasoft.findings.jenkins.coverage.model.Percentage;
 import com.parasoft.findings.jenkins.coverage.model.Value;
 
@@ -331,13 +332,20 @@ public final class ElementFormatter {
      * @return the display name
      */
     @SuppressWarnings("PMD.CyclomaticComplexity")
-    public String getLabel(final Metric metric) {
+    public String getLabel(final Metric metric, String parasoftToolName) {
         switch (metric) {
             case CONTAINER:
                 return Messages.Metric_Short_CONTAINER();
             case MODULE:
                 return Messages.Metric_Short_MODULE();
             case PACKAGE:
+                if(parasoftToolName != null && !parasoftToolName.isBlank()) {
+                    if(parasoftToolName.equals("C/C++test")) {
+                        return Messages.Metric_Short_FOLDER();
+                    } else if(parasoftToolName.equals("dotTEST")) {
+                        return Messages.Metric_Short_NAMESPACE();
+                    }
+                }
                 return Messages.Metric_Short_PACKAGE();
             case FILE:
                 return Messages.Metric_Short_FILE();

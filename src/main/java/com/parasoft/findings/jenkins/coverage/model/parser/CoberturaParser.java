@@ -59,6 +59,7 @@ public class CoberturaParser extends CoverageParser {
     private static final long serialVersionUID = -3625341318291829577L;
 
     private static final PathUtil PATH_UTIL = new PathUtil();
+    private static final QName COVERAGE = new QName("coverage");
     private static final QName SOURCE = new QName("source");
     private static final QName PACKAGE = new QName("package");
     private static final QName CLASS = new QName("class");
@@ -74,6 +75,7 @@ public class CoberturaParser extends CoverageParser {
     private static final QName HITS = new QName("hits");
     private static final QName COMPLEXITY = new QName("complexity");
     private static final QName NUMBER = new QName("number");
+    private static final QName VERSION = new QName("version");
 
     /** Not required attributes of the XML elements. */
     private static final QName BRANCH = new QName("branch");
@@ -101,7 +103,10 @@ public class CoberturaParser extends CoverageParser {
                 if (event.isStartElement()) {
                     var startElement = event.asStartElement();
                     var tagName = startElement.getName();
-                    if (SOURCE.equals(tagName)) {
+                    if(COVERAGE.equals(tagName)) {
+                        readCoverage(startElement, root);
+                    }
+                    else if (SOURCE.equals(tagName)) {
                         readSource(eventReader, root);
                     }
                     else if (PACKAGE.equals(tagName)) {
@@ -134,6 +139,7 @@ public class CoberturaParser extends CoverageParser {
                     var relativePath = PATH_UTIL.getRelativePath(fileName);
                     var fileNode = packageNode.findOrCreateFileNode(getFileName(fileName),
                             getTreeStringBuilder().intern(relativePath));
+                    fileNode.setParasoftToolName(root.getParasoftToolName());
                     readClassOrMethod(reader, fileNode, nextElement);
                 }
             }
@@ -254,5 +260,11 @@ public class CoberturaParser extends CoverageParser {
                     .build();
         }
         return Coverage.nullObject(Metric.BRANCH);
+    }
+
+    private void readCoverage(final StartElement currentElement, final ModuleNode root) throws XMLStreamException {
+        String version = getValueOf(currentElement, VERSION);
+        String parasoftTool = version.split(" ")[0];
+        root.setParasoftToolName(parasoftTool);
     }
 }

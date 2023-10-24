@@ -64,6 +64,7 @@ public abstract class Node implements Serializable {
     private final String name;
     private final List<Node> children = new ArrayList<>();
     private final List<Value> values = new ArrayList<>();
+    private String parasoftToolName;
 
     @CheckForNull
     private Node parent;
@@ -652,6 +653,14 @@ public abstract class Node implements Serializable {
             throw new IllegalArgumentException(
                     String.format("Cannot merge nodes with different names: %s - %s", this, other));
         }
+    }
+
+    public void setParasoftToolName(String toolName) {
+        this.parasoftToolName = toolName;
+    }
+
+    public String getParasoftToolName() {
+        return parasoftToolName;
     }
 
     private void mergeChildren(final Node other) {

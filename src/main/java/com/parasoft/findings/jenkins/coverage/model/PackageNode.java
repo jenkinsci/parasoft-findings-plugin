@@ -62,7 +62,7 @@ public final class PackageNode extends Node {
      *         the human-readable name of the node, see {@link #normalizePackageName(String)}
      */
     public PackageNode(@CheckForNull final String name) {
-        super(Metric.PACKAGE, normalizePackageName(name));
+        super(Metric.PACKAGE, name);
     }
 
     static PackageNode appendPackage(final PackageNode localChild, final PackageNode localParent) {

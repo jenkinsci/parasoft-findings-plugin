@@ -233,7 +233,7 @@ class CoberturaParserTest extends AbstractParserTest {
                 new LinesOfCode(61 + 19));
 
         assertThat(root.getChildren()).extracting(Node::getName)
-                .containsExactly("-");
+                .containsExactly("");
 
         verifyCoverageMetrics(root);
     }
