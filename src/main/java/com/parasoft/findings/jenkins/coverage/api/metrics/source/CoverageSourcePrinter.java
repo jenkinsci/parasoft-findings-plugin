@@ -30,7 +30,7 @@ import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 
-import edu.hm.hafner.coverage.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
 
 import io.jenkins.plugins.prism.Sanitizer;
 

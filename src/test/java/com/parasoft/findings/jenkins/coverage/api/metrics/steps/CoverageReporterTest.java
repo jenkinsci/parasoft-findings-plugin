@@ -2,7 +2,7 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
-import edu.hm.hafner.coverage.Node;
+import com.parasoft.findings.jenkins.coverage.model.Node;
 import hudson.FilePath;
 import hudson.model.*;
 import io.jenkins.plugins.util.QualityGate;

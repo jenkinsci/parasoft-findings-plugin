@@ -6,26 +6,19 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProviderFac
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTableModel.CoverageRow;
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTableModel.LinkedRowRenderer;
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTableModel.RowRenderer;
-import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Node;
+import com.parasoft.findings.jenkins.coverage.model.*;
 import hudson.Functions;
 import io.jenkins.plugins.datatables.DetailedCell;
 import io.jenkins.plugins.datatables.TableColumn;
 import io.jenkins.plugins.datatables.TableConfiguration;
-import io.jenkins.plugins.forensics.reference.ReferenceBuild;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.jvnet.localizer.LocaleProvider;
 
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mockStatic;
-import static org.mockito.Mockito.when;
 
 public class CoverageTableModelTest extends AbstractCoverageTest {
     CoverageTableModel coverageTableModel;

@@ -41,10 +41,10 @@ import org.apache.commons.lang3.math.Fraction;
 import org.junit.jupiter.api.Test;
 import org.xmlunit.builder.Input;
 
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.Node;
-import edu.hm.hafner.coverage.Value;
-import edu.hm.hafner.coverage.parser.JacocoParser;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.Node;
+import com.parasoft.findings.jenkins.coverage.model.Value;
+import com.parasoft.findings.jenkins.coverage.model.parser.JacocoParser;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.SerializableTest;
 
@@ -52,7 +52,7 @@ import hudson.XmlFile;
 import hudson.model.FreeStyleBuild;
 import hudson.util.XStream2;
 
-import com.parasoft.findings.jenkins.coverage.api.metrics.Assertions;
+import com.parasoft.findings.jenkins.coverage.Assertions;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageXmlStream.IntegerLineMapConverter;
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageXmlStream.IntegerSetConverter;
@@ -61,7 +61,7 @@ import io.jenkins.plugins.util.QualityGateResult;
 
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.OK;
-import static edu.hm.hafner.coverage.Metric.*;
+import static com.parasoft.findings.jenkins.coverage.model.Metric.*;
 import static org.assertj.core.api.BDDAssertions.*;
 import static org.mockito.Mockito.*;
 import static org.xmlunit.assertj.XmlAssert.assertThat;
@@ -143,7 +143,7 @@ class CoverageXmlStreamTest extends SerializableTest<Node> {
                         "COMPLEXITY_DENSITY: 160/323",
                         "LOC: 323");
 
-        assertThat(Input.from(saved)).nodesByXPath("//" + ACTION_QUALIFIED_NAME + "/projectValues/coverage")
+        assertThat(Input.from(saved)).nodesByXPath("//" + ACTION_QUALIFIED_NAME + "/projectValues/com.parasoft.findings.jenkins.coverage.model.Coverage")
                 .hasSize(8).extractingText()
                 .containsExactly("MODULE: 1/1",
                         "PACKAGE: 1/1",

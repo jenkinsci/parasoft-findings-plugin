@@ -17,8 +17,8 @@
 package com.parasoft.findings.jenkins.coverage;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.*;
-import edu.hm.hafner.coverage.ModuleNode;
-import edu.hm.hafner.coverage.Node;
+import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
+import com.parasoft.findings.jenkins.coverage.model.Node;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.TreeStringBuilder;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
@@ -156,7 +156,7 @@ public class ParasoftCoverageRecorder extends Recorder {
 
     private void perform(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
                          final StageResultHandler resultHandler, final FilteredLog log, final LogHandler logHandler) throws InterruptedException {
-        List<edu.hm.hafner.coverage.Node> results = recordCoverageResults(run, workspace, taskListener, logHandler, log);
+        List<com.parasoft.findings.jenkins.coverage.model.Node> results = recordCoverageResults(run, workspace, taskListener, logHandler, log);
 
         if (!results.isEmpty()) {
             CoverageReporter reporter = new CoverageReporter();

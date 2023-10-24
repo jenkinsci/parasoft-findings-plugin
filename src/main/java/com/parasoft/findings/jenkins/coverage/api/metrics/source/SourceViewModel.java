@@ -28,7 +28,7 @@ import java.io.IOException;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
-import edu.hm.hafner.coverage.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
 
 import hudson.model.ModelObject;
 import hudson.model.Run;

@@ -1,15 +1,17 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics.model;
 
-import edu.hm.hafner.coverage.*;
+import com.parasoft.findings.jenkins.coverage.model.*;
 import hudson.util.ListBoxModel;
 import org.apache.commons.lang3.math.Fraction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.DefaultLocale;
 
 import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DefaultLocale("en")
 public class ElementFormatterTest {
     private static final int COVERED_LINES = 28;
     private static final int MISSED_LINES = 8;

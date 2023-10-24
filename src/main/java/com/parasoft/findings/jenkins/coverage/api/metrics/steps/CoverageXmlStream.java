@@ -47,19 +47,19 @@ import com.thoughtworks.xstream.converters.UnmarshallingContext;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 
-import edu.hm.hafner.coverage.ClassNode;
-import edu.hm.hafner.coverage.ContainerNode;
-import edu.hm.hafner.coverage.Coverage;
-import edu.hm.hafner.coverage.CyclomaticComplexity;
-import edu.hm.hafner.coverage.FileNode;
-import edu.hm.hafner.coverage.FractionValue;
-import edu.hm.hafner.coverage.LinesOfCode;
-import edu.hm.hafner.coverage.MethodNode;
-import edu.hm.hafner.coverage.Metric;
-import edu.hm.hafner.coverage.ModuleNode;
-import edu.hm.hafner.coverage.Node;
-import edu.hm.hafner.coverage.PackageNode;
-import edu.hm.hafner.coverage.Value;
+import com.parasoft.findings.jenkins.coverage.model.ClassNode;
+import com.parasoft.findings.jenkins.coverage.model.ContainerNode;
+import com.parasoft.findings.jenkins.coverage.model.Coverage;
+import com.parasoft.findings.jenkins.coverage.model.CyclomaticComplexity;
+import com.parasoft.findings.jenkins.coverage.model.FileNode;
+import com.parasoft.findings.jenkins.coverage.model.FractionValue;
+import com.parasoft.findings.jenkins.coverage.model.LinesOfCode;
+import com.parasoft.findings.jenkins.coverage.model.MethodNode;
+import com.parasoft.findings.jenkins.coverage.model.Metric;
+import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
+import com.parasoft.findings.jenkins.coverage.model.Node;
+import com.parasoft.findings.jenkins.coverage.model.PackageNode;
+import com.parasoft.findings.jenkins.coverage.model.Value;
 
 import hudson.util.XStream2;
 
@@ -104,15 +104,15 @@ class CoverageXmlStream extends AbstractXmlStream<Node> {
     }
 
     static void registerConverters(final XStream2 xStream) {
-        xStream.alias("metric", Metric.class);
+        xStream.alias("com.parasoft.findings.jenkins.coverage.model.Metric", Metric.class);
 
-        xStream.alias("coverage", Coverage.class);
+        xStream.alias("com.parasoft.findings.jenkins.coverage.model.Coverage", Coverage.class);
         xStream.addImmutableType(Coverage.class, false);
-        xStream.alias("complexity", CyclomaticComplexity.class);
+        xStream.alias("com.parasoft.findings.jenkins.coverage.model.CyclomaticComplexity", CyclomaticComplexity.class);
         xStream.addImmutableType(CyclomaticComplexity.class, false);
-        xStream.alias("loc", LinesOfCode.class);
+        xStream.alias("com.parasoft.findings.jenkins.coverage.model.LinesOfCode", LinesOfCode.class);
         xStream.addImmutableType(LinesOfCode.class, false);
-        xStream.alias("fraction", FractionValue.class);
+        xStream.alias("com.parasoft.findings.jenkins.coverage.model.FractionValue", FractionValue.class);
         xStream.addImmutableType(FractionValue.class, false);
 
         xStream.registerConverter(new FractionConverter());
