@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"  standalone="yes"?>
 <xsl:stylesheet version="3.0"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:map="http://www.w3.org/2005/xpath-functions/map">
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:map="http://www.w3.org/2005/xpath-functions/map">
     <xsl:variable name="toolName" select="/Coverage/@toolId"/>
+    <xsl:variable name="toolVer" select="/Coverage/@toolVer"/>
+    <xsl:variable name="toolDispName" select="/Coverage/@toolDispName"/>
     <xsl:param name="pipelineBuildWorkingDirectory"><xsl:value-of select="/Coverage/@pipelineBuildWorkingDirectory"/></xsl:param>
     <xsl:template match="/">
         <xsl:element name="coverage">
@@ -28,7 +30,9 @@
                 <xsl:attribute name="lines-valid">
                     <xsl:value-of select="$linesValid"/>
                 </xsl:attribute>
-                <xsl:attribute name="version">gcovr 6.0</xsl:attribute>
+                <xsl:attribute name="version">
+                    <xsl:value-of select="$toolDispName"/><xsl:text> </xsl:text><xsl:value-of select="$toolVer"/>
+                </xsl:attribute>
                 <xsl:call-template name="packages"/>
             </xsl:if>
         </xsl:element>
@@ -36,7 +40,7 @@
 
     <xsl:template name="packages">
         <xsl:element name="packages">
-            <!--             Group by the parent path of uri-->
+<!--             Group by the parent path of uri-->
             <xsl:for-each-group select="/Coverage/Locations/Loc" group-by="substring-before(@uri, tokenize(@uri, '/')[last()])">
                 <xsl:variable name="lineRateForPacakgeTag">
                     <xsl:call-template name="getLineRateForPackage">
@@ -51,7 +55,7 @@
                             </xsl:if>
                         </xsl:variable>
                         <xsl:variable name="encodedPipelineBuildWorkingDirectory">
-                            <xsl:if test="string($uncodedPipelineBuildWorkingDirectory) != ''">
+                             <xsl:if test="string($uncodedPipelineBuildWorkingDirectory) != ''">
                                 <!-- Replace % to %25 and space to %20 to get an encoded path-->
                                 <xsl:value-of select="replace(replace($uncodedPipelineBuildWorkingDirectory, '%', '%25'), ' ', '%20')"/>
                             </xsl:if>
@@ -100,8 +104,8 @@
                                             <xsl:value-of select="@uri"/>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            <!-- Get relative source file path -->
-                                            <xsl:value-of select="substring-after(@uri, $processedPipelineBuildWorkingDirectory)"/>
+                                           <!-- Get relative source file path -->
+                                           <xsl:value-of select="substring-after(@uri, $processedPipelineBuildWorkingDirectory)"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
@@ -213,7 +217,7 @@
         <xsl:choose>
             <xsl:when test="count($segments) > 1">
                 <xsl:variable name="filename">
-                    <xsl:value-of select="$segments[last()]"/>
+                     <xsl:value-of select="$segments[last()]"/>
                 </xsl:variable>
                 <xsl:choose>
                     <!--    Jtest    -->

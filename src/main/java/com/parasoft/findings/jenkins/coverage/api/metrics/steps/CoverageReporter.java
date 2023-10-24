@@ -149,7 +149,7 @@ public class CoverageReporter {
         else {
             log.logInfo("Evaluating quality gates");
             if (qualityGateStatus.isSuccessful()) {
-                log.logInfo("-> All quality gates have been passed");
+                log.logInfo("-> All quality gates passed");
             }
             else {
                 var message = String.format("-> Some quality gates failed: overall result is %s",
