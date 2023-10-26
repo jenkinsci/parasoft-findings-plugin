@@ -128,7 +128,15 @@ class CoverageTableModel extends TableModel {
                 .withResponsivePriority(1)
                 .build();
         columns.add(fileName);
-        TableColumn packageName = new ColumnBuilder().withHeaderLabel(Messages.Column_Package())
+
+        String parasoftToolName = root.getParasoftToolName();
+        String packageHeaderLabel = Messages.Column_Folder();
+        if(parasoftToolName.equals("Jtest")) {
+            packageHeaderLabel = Messages.Column_Package();
+        } else if(parasoftToolName.equals("dotTEST")) {
+            packageHeaderLabel = Messages.Column_Namespace();
+        }
+        TableColumn packageName = new ColumnBuilder().withHeaderLabel(packageHeaderLabel)
                 .withDataPropertyKey("packageName")
                 .withResponsivePriority(50_000)
                 .build();

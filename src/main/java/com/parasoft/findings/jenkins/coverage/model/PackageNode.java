@@ -38,31 +38,13 @@ public final class PackageNode extends Node {
     private static final long serialVersionUID = 8236436628673022634L;
 
     /**
-     * Replace slashes and backslashes with a dot so that package names use the typical format of packages or
-     * namespaces.
-     *
-     * @param name
-     *         the package name to normalize
-     *
-     * @return the normalized name or "-" if the name is empty or {@code null}
-     */
-    public static String normalizePackageName(@CheckForNull final String name) {
-        if (StringUtils.isNotBlank(name)) {
-            return StringUtils.replaceEach(name, new String[] {"/", "\\"}, new String[] {".", "."});
-        }
-        else {
-            return Node.EMPTY_NAME;
-        }
-    }
-
-    /**
      * Creates a new coverage item node with the given name.
      *
      * @param name
-     *         the human-readable name of the node, see {@link #normalizePackageName(String)}
+     *         the human-readable name of the node
      */
     public PackageNode(@CheckForNull final String name) {
-        super(Metric.PACKAGE, normalizePackageName(name));
+        super(Metric.PACKAGE, name);
     }
 
     static PackageNode appendPackage(final PackageNode localChild, final PackageNode localParent) {

@@ -331,14 +331,21 @@ public final class ElementFormatter {
      * @return the display name
      */
     @SuppressWarnings("PMD.CyclomaticComplexity")
-    public String getLabel(final Metric metric) {
+    public String getLabel(final Metric metric, String parasoftToolName) {
         switch (metric) {
             case CONTAINER:
                 return Messages.Metric_Short_CONTAINER();
             case MODULE:
                 return Messages.Metric_Short_MODULE();
             case PACKAGE:
-                return Messages.Metric_Short_PACKAGE();
+                if(StringUtils.isNotBlank(parasoftToolName)) {
+                    if(parasoftToolName.equals("Jtest")) {
+                        return Messages.Metric_Short_PACKAGE();
+                    } else if(parasoftToolName.equals("dotTEST")) {
+                        return Messages.Metric_Short_NAMESPACE();
+                    }
+                }
+                return Messages.Metric_Short_FOLDER();
             case FILE:
                 return Messages.Metric_Short_FILE();
             case CLASS:

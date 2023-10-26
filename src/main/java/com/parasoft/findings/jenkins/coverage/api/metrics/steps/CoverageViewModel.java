@@ -409,7 +409,7 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
         public List<String> getMetrics() {
             return sortCoverages()
                     .map(Coverage::getMetric)
-                    .map(ELEMENT_FORMATTER::getLabel)
+                    .map(metric -> ELEMENT_FORMATTER.getLabel(metric, coverage.getParasoftToolName()))
                     .collect(Collectors.toList());
         }
 
