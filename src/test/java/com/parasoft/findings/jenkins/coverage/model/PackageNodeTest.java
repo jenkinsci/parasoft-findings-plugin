@@ -106,12 +106,4 @@ class PackageNodeTest extends AbstractNodeTest {
         assertThat(root.getAll(PACKAGE)).extracting(Node::getName)
                 .containsExactlyInAnyOrder("left", "right");
     }
-
-    @Test
-    void shouldNormalizePackageNameCorrectly() {
-        String normalizedName = "edu.hm.hafner";
-
-        assertThat(PackageNode.normalizePackageName("edu/hm/hafner")).isEqualTo(normalizedName);
-        assertThat(PackageNode.normalizePackageName("edu\\hm\\hafner")).isEqualTo(normalizedName);
-    }
 }

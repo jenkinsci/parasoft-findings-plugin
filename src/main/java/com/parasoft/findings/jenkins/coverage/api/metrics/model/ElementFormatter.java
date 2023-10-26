@@ -35,7 +35,6 @@ import com.parasoft.findings.jenkins.coverage.model.Coverage;
 import com.parasoft.findings.jenkins.coverage.model.FractionValue;
 import com.parasoft.findings.jenkins.coverage.model.IntegerValue;
 import com.parasoft.findings.jenkins.coverage.model.Metric;
-import com.parasoft.findings.jenkins.coverage.model.Node;
 import com.parasoft.findings.jenkins.coverage.model.Percentage;
 import com.parasoft.findings.jenkins.coverage.model.Value;
 
@@ -339,14 +338,14 @@ public final class ElementFormatter {
             case MODULE:
                 return Messages.Metric_Short_MODULE();
             case PACKAGE:
-                if(parasoftToolName != null && !parasoftToolName.isBlank()) {
-                    if(parasoftToolName.equals("C/C++test")) {
-                        return Messages.Metric_Short_FOLDER();
+                if(StringUtils.isNotBlank(parasoftToolName)) {
+                    if(parasoftToolName.equals("Jtest")) {
+                        return Messages.Metric_Short_PACKAGE();
                     } else if(parasoftToolName.equals("dotTEST")) {
                         return Messages.Metric_Short_NAMESPACE();
                     }
                 }
-                return Messages.Metric_Short_PACKAGE();
+                return Messages.Metric_Short_FOLDER();
             case FILE:
                 return Messages.Metric_Short_FILE();
             case CLASS:

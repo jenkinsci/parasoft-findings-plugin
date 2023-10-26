@@ -139,7 +139,6 @@ public class CoberturaParser extends CoverageParser {
                     var relativePath = PATH_UTIL.getRelativePath(fileName);
                     var fileNode = packageNode.findOrCreateFileNode(getFileName(fileName),
                             getTreeStringBuilder().intern(relativePath));
-                    fileNode.setParasoftToolName(root.getParasoftToolName());
                     readClassOrMethod(reader, fileNode, nextElement);
                 }
             }

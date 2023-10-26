@@ -42,7 +42,6 @@ class ModifiedLinesCoverageTableModel extends ChangesTableModel {
 
     @Override
     ModifiedLinesCoverageRow createRow(final FileNode file, final Locale browserLocale) {
-        file.setParasoftToolName(getOriginalNode(file).getParasoftToolName());
         return new ModifiedLinesCoverageRow(getOriginalNode(file), file,
                 browserLocale, getRenderer(), getColorProvider());
     }

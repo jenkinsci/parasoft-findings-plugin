@@ -115,7 +115,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
 
         // initialize filtered coverage trees so that they will not be calculated multiple times
         modifiedLinesCoverageTreeRoot = node.filterByModifiedLines();
-        modifiedLinesCoverageTreeRoot.setParasoftToolName(node.getParasoftToolName());
         this.trendChartFunction = trendChartFunction;
     }
 
@@ -391,11 +390,10 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
      */
     public static class CoverageOverview {
         private final Node coverage;
-        private static ElementFormatter ELEMENT_FORMATTER;
+        private static final ElementFormatter ELEMENT_FORMATTER = new ElementFormatter();
 
         CoverageOverview(final Node coverage) {
             this.coverage = coverage;
-            ELEMENT_FORMATTER = new ElementFormatter();
         }
 
         public List<String> getMetrics() {

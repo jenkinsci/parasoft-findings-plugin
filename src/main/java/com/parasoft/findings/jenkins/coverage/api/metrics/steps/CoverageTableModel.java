@@ -130,9 +130,9 @@ class CoverageTableModel extends TableModel {
         columns.add(fileName);
 
         String parasoftToolName = root.getParasoftToolName();
-        String packageHeaderLabel = Messages.Column_Package();
-        if(parasoftToolName.equals("C/C++test")) {
-            packageHeaderLabel = Messages.Column_Folder();
+        String packageHeaderLabel = Messages.Column_Folder();
+        if(parasoftToolName.equals("Jtest")) {
+            packageHeaderLabel = Messages.Column_Package();
         } else if(parasoftToolName.equals("dotTEST")) {
             packageHeaderLabel = Messages.Column_Namespace();
         }
