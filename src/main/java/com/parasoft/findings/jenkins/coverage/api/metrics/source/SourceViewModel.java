@@ -65,7 +65,7 @@ public class SourceViewModel implements ModelObject {
      * @param fileNode
      *         the selected file node of the coverage tree
      */
-    public SourceViewModel(final Run<?, ?> owner, final String id, final FileNode fileNode, String tableId) {
+    public SourceViewModel(final Run<?, ?> owner, final String id, final FileNode fileNode, final String tableId) {
         this.owner = owner;
         this.id = id;
         this.fileNode = fileNode;
