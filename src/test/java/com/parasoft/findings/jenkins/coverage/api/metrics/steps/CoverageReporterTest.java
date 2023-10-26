@@ -2,13 +2,15 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
+import com.parasoft.findings.jenkins.coverage.api.metrics.source.SourceCodePainter;
 import com.parasoft.findings.jenkins.coverage.model.Node;
 import hudson.FilePath;
-import hudson.model.*;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import io.jenkins.plugins.util.QualityGate;
 import io.jenkins.plugins.util.StageResultHandler;
 import org.junit.jupiter.api.Test;
-
+import org.mockito.MockedConstruction;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,8 +20,6 @@ import static io.jenkins.plugins.util.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 public class CoverageReporterTest extends AbstractCoverageTest {
-    private final Run<?, ?> build = mock(Run.class);
-
     @Test
     public void testPublishAction_invalid_reference_build() {
         CoverageBuildAction action = runPublishAction(new ArrayList<>(), "#1");
@@ -51,16 +51,24 @@ public class CoverageReporterTest extends AbstractCoverageTest {
         Node node = readCoberturaResult("cobertura-codingstyle.xml");
         CoverageReporter reporter = new CoverageReporter();
         CoverageBuildAction action = null;
-
-        doReturn(new File("com/parasoft/findings/jenkins/coverage/api/metrics/steps/test_project")).when(build).getRootDir();
+        Run<?, ?> build = mock(Run.class);
+        doReturn(new File("fake/workspace/path")).when(build).getRootDir();
+        MockedConstruction<SourceCodePainter> sourceCodePainterMockedConstruction = mockConstruction(SourceCodePainter.class);
+        MockedConstruction<CoverageXmlStream> coverageXmlStreamMockedConstruction = mockConstruction(CoverageXmlStream.class);
 
         try {
             action = reporter.publishAction("parasoft-coverage", "symbol-footsteps-outline plugin-ionicons-api",
                     node, build, new FilePath(new File("com/parasoft/findings/jenkins/coverage/api/metrics/steps/test_project")),
                     TaskListener.NULL, configRefBuild, coverageQualityGate, "UTF-8", mock(StageResultHandler.class));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
+
+        assertThat(coverageXmlStreamMockedConstruction.constructed().size()).isEqualTo(1);
+        assertThat(sourceCodePainterMockedConstruction.constructed().size()).isEqualTo(1);
+        sourceCodePainterMockedConstruction.close();
+        coverageXmlStreamMockedConstruction.close();
+
         return action;
     }
 }

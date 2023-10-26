@@ -117,8 +117,15 @@ public class CoverageTableModelTest extends AbstractCoverageTest {
 
     @Test
     public void testLinkedRowRenderer() {
-        RowRenderer linkedRowRenderer = new LinkedRowRenderer(new File("src/test/resources/com/parasoft/findings/jenkins/coverage/api"), "id");
-        String fileName = linkedRowRenderer.renderFileName("cobertura-codingstyle.xml", "metrics");
-        assertThat(fileName).isEqualTo("cobertura-codingstyle.xml");
+        RowRenderer linkedRowRenderer = new LinkedRowRenderer(new File("src/test/resources/com/parasoft/findings/jenkins/coverage/api/metrics/steps"), "");
+        String fileName = linkedRowRenderer.renderFileName("Calculator.java", "src_main_java_Calculator.java");
+        assertThat(fileName).isEqualTo("<a href=\"-839020164\">Calculator.java</a>");
+    }
+
+    @Test
+    public void testLinkedRowRenderer_noSourceCodeFile() {
+        RowRenderer linkedRowRenderer = new LinkedRowRenderer(new File("src/test/resources/com/parasoft/findings/jenkins/coverage/api/metrics/steps"), "");
+        String fileName = linkedRowRenderer.renderFileName("NoSourceCodeFile.java", "src_main_java_NoSourceCodeFile.java");
+        assertThat(fileName).isEqualTo("NoSourceCodeFile.java");
     }
 }

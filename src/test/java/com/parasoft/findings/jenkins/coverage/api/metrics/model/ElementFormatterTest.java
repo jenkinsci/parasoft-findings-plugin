@@ -141,6 +141,7 @@ public class ElementFormatterTest {
 
         result = formatter.formatValue(fractionValue);
         assertThat(result).isEqualTo("0.78%");
+
     }
 
     @Test

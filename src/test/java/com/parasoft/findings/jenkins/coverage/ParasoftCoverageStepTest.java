@@ -20,6 +20,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     private static final String SOURCECODE_ENCODING = "UTF-8";
     private static final int COVERED_LINES = 28;
     private static final int MISSED_LINES = 8;
+
     @Test
     void testJobWithAllParameters() {
         WorkflowJob job = createPipeline("1", COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
@@ -87,10 +88,43 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     private static void verifyAction(final CoverageBuildAction coverageResult) {
-        System.out.println(coverageResult.getAllValues(Baseline.PROJECT).toString());
         assertThat(coverageResult.getAllValues(Baseline.PROJECT))
                 .contains(new Coverage.CoverageBuilder().setMetric(Metric.LINE).setCovered(COVERED_LINES)
                         .setMissed(MISSED_LINES)
                         .build());
+    }
+
+    @Test
+    void testWhenReferenceBuildIsNotSet() {
+        WorkflowJob job = createPipeline(null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
+        buildSuccessfully(job);
+        Run<?, ?> currentBuild = buildSuccessfully(job);
+        var actions = currentBuild.getActions(CoverageBuildAction.class);
+        var result = actions.get(0);
+        assertThat(result.getLog().getInfoMessages().toString()).contains("Using default reference build(last successful build with code coverage data) ");
+    }
+
+    @Test
+    void testWhenReferenceBuildIsSet() {
+        WorkflowJob job = createPipeline("1", COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
+        buildSuccessfully(job);
+        Run<?, ?> currentBuild = buildSuccessfully(job);
+        var actions = currentBuild.getActions(CoverageBuildAction.class);
+        var result = actions.get(0);
+        assertThat(result.getLog().getInfoMessages().toString()).contains("Obtaining action of specified reference build");
+    }
+
+    @Test
+    void testWhenReferenceBuildIsFailed() {
+        WorkflowJob job = createPipelineWithWorkspaceFiles(COVERAGE_FILE, "parasoft_coverage_no_data.xml");
+        setPipelineScript(job,
+                "recordParasoftCoverage coverageQualityGates: [" + COVERAGE_QUALITY_GATE_SCRIPT + "], " + " referenceBuild: '1', pattern: '" + "parasoft_coverage_no_data.xml" + "', sourceCodeEncoding: '" + SOURCECODE_ENCODING + "'");
+        buildWithResult(job, Result.FAILURE);
+        setPipelineScript(job,
+                "recordParasoftCoverage coverageQualityGates: [" + COVERAGE_QUALITY_GATE_SCRIPT + "], " + " referenceBuild: '1', pattern: '" + COVERAGE_FILE + "', sourceCodeEncoding: '" + SOURCECODE_ENCODING + "'");
+        Run<?, ?> currentBuild = buildSuccessfully(job);
+        var actions = currentBuild.getActions(CoverageBuildAction.class);
+        var result = actions.get(0);
+        assertThat(result.getLog().getInfoMessages().toString()).contains("The reference build", "#1' is not successful or unstable");
     }
 }
