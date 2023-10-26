@@ -42,14 +42,14 @@
     <div class="tabBarFrame">
       <ul class="flex-wrap tabBar" role="tablist" id="tab-details">
         <li class="nav-item tab" role="presentation">
-          <a class="nav-link" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="false" onclick="setCoverageScopeInSourceFile('OVERALL_COVERAGE')">${%tab.overview}</a>
+          <a class="nav-link" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="false">${%tab.overview}</a>
         </li>
         <li class="nav-item tab" role="presentation">
-          <a class="nav-link" id="fileCoverage-tab" data-bs-toggle="tab" data-bs-target="#fileCoverage" type="button" role="tab" aria-controls="fileCoverage" aria-selected="false" onclick="setCoverageScopeInSourceFile('OVERALL_COVERAGE')">${%tab.overall.code.coverage}</a>
+          <a class="nav-link" id="fileCoverage-tab" data-bs-toggle="tab" data-bs-target="#fileCoverage" type="button" role="tab" aria-controls="fileCoverage" aria-selected="false">${%tab.overall.code.coverage}</a>
         </li>
         <j:if test="${hasModifiedLinesCoverage}">
           <li class="nav-item tab" role="presentation">
-            <a class="nav-link" id="changeCoverage-tab" data-bs-toggle="tab" data-bs-target="#changeCoverage" type="button" role="tab" aria-controls="changeCoverage" aria-selected="false" onclick="setCoverageScopeInSourceFile('MODIFIED_COVERAGE')">${%tab.modified.line.coverage}</a>
+            <a class="nav-link" id="changeCoverage-tab" data-bs-toggle="tab" data-bs-target="#changeCoverage" type="button" role="tab" aria-controls="changeCoverage" aria-selected="false">${%tab.modified.line.coverage}</a>
           </li>
         </j:if>
       </ul>

@@ -82,8 +82,9 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
     private static final BuildResultNavigator NAVIGATOR = new BuildResultNavigator();
     private static final SourceCodeFacade SOURCE_CODE_FACADE = new SourceCodeFacade();
 
-    static final String ABSOLUTE_COVERAGE_TABLE_ID = "absolute-coverage-table";
-    static final String MODIFIED_LINES_COVERAGE_TABLE_ID = "modified-lines-coverage-table";
+    public static final String TABLE_ID = "tableId";
+    public static final String ABSOLUTE_COVERAGE_TABLE_ID = "absolute-coverage-table";
+    public static final String MODIFIED_LINES_COVERAGE_TABLE_ID = "modified-lines-coverage-table";
     private static final String INLINE_SUFFIX = "-inline";
     private static final String INFO_MESSAGES_VIEW_URL = "info";
 
@@ -98,8 +99,6 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
     private final Function<String, String> trendChartFunction;
 
     private ColorProvider colorProvider = ColorProviderFactory.createDefaultColorProvider();
-
-    private static SourceViewModel.CoverageScopeInSourceFile coverageScope;
 
     @SuppressWarnings("checkstyle:ParameterNumber")
     CoverageViewModel(final Run<?, ?> owner, final String id, final String optionalName, final Node node,
@@ -231,22 +230,13 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
                 throw new NoSuchElementException("No such table with id " + actualId);
         }
     }
-    @JavaScriptMethod
-    public synchronized void setCoverageScopeInSourceFile(String type) {
-        if (SourceViewModel.CoverageScopeInSourceFile.MODIFIED_COVERAGE.toString().equals(type)) {
-            coverageScope = SourceViewModel.CoverageScopeInSourceFile.MODIFIED_COVERAGE;
-        } else {
-            coverageScope = SourceViewModel.CoverageScopeInSourceFile.OVERALL_COVERAGE;
-        }
-    }
-
     private RowRenderer createRenderer(final String tableId) {
         RowRenderer renderer;
         if (tableId.endsWith(INLINE_SUFFIX) && hasSourceCode()) {
             renderer = new InlineRowRenderer();
         }
         else {
-            renderer = new LinkedRowRenderer(getOwner().getRootDir(), getId());
+            renderer = new LinkedRowRenderer(getOwner().getRootDir(), getId(), tableId);
         }
         return renderer;
     }
@@ -385,7 +375,8 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
                 Optional<Node> targetResult
                         = getNode().findByHashCode(Metric.FILE, Integer.parseInt(link));
                 if (targetResult.isPresent() && targetResult.get() instanceof FileNode) {
-                    return new SourceViewModel(getOwner(), getId(), (FileNode) targetResult.get(), coverageScope);
+                    String tableId = request.getParameter(TABLE_ID);
+                    return new SourceViewModel(getOwner(), getId(), (FileNode) targetResult.get(), tableId);
                 }
             }
             catch (NumberFormatException exception) {
