@@ -107,4 +107,20 @@ public abstract class AbstractCoverageITest extends IntegrationTestWithJenkinsPe
                 + "}", true));
         return job;
     }
+
+    protected WorkflowJob createPipeline(final String referenceBuild, final String coverageQualityGates, final String sourceCodeEncoding, final String fileName) {
+        WorkflowJob job = createPipelineWithWorkspaceFiles("parasoft_coverage.xml", "parasoft_coverage_no_data.xml");
+        String pipelineScript = "recordParasoftCoverage coverageQualityGates: [" + coverageQualityGates + "], " + "referenceBuild: '" + referenceBuild + "' , pattern: '" + fileName + "', sourceCodeEncoding: '" + sourceCodeEncoding + "'";
+        if(referenceBuild == null) {
+            pipelineScript = "recordParasoftCoverage coverageQualityGates: [" + coverageQualityGates + "] , pattern: '" + fileName + "', sourceCodeEncoding: '" + sourceCodeEncoding + "'";
+        }
+        if(sourceCodeEncoding == null) {
+            pipelineScript = "recordParasoftCoverage coverageQualityGates: [" + coverageQualityGates + "], " + "referenceBuild: '" + referenceBuild + "' , pattern: '" + fileName + "'";
+        }
+        if(coverageQualityGates == null) {
+            pipelineScript = "recordParasoftCoverage coverageQualityGates: [], referenceBuild: '" + referenceBuild + "' , pattern: '" + fileName + "', sourceCodeEncoding: '" + sourceCodeEncoding + "'";
+        }
+        setPipelineScript(job, pipelineScript);
+        return job;
+    }
 }

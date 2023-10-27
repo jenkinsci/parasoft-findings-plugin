@@ -28,13 +28,13 @@ import java.util.List;
 import java.util.TreeMap;
 
 import com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder;
+import io.jenkins.plugins.forensics.reference.ReferenceBuild;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.Fraction;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
 import com.parasoft.findings.jenkins.coverage.model.Coverage.CoverageBuilder;
-import com.parasoft.findings.jenkins.coverage.model.FractionValue;
 import com.parasoft.findings.jenkins.coverage.model.Metric;
 import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
 import com.parasoft.findings.jenkins.coverage.model.Node;
@@ -46,7 +46,7 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import io.jenkins.plugins.util.QualityGateResult;
 
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
-import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.OK;
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -57,6 +57,8 @@ import static org.mockito.Mockito.*;
  */
 @DefaultLocale("en")
 class CoverageBuildActionTest {
+    public static final String NO_REFERENCE_BUILD = "-";
+
     @Test
     void shouldNotLoadResultIfCoverageValuesArePersistedInAction() {
         Node module = new ModuleNode("module");
@@ -75,9 +77,7 @@ class CoverageBuildActionTest {
         deltas.put(Metric.BRANCH, branchDelta);
 
         var coverages = List.of(percent50, percent80);
-        var action = spy(new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
-                StringUtils.EMPTY, module, new QualityGateResult(),
-                createLog(), "-", coverages, false, new ReferenceResult(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER)));
+        var action = createAction(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
 
         when(action.getResult()).thenThrow(new IllegalStateException("Result should not be accessed with getResult() when getting a coverage metric that is persisted in the build"));
 
@@ -92,12 +92,14 @@ class CoverageBuildActionTest {
 
     private static CoverageBuildAction createEmptyAction(final Node module) {
         return new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
-                StringUtils.EMPTY, module, new QualityGateResult(), createLog(), "-",
+                StringUtils.EMPTY, module, new QualityGateResult(), createLog(), NO_REFERENCE_BUILD,
                 List.of(), false, new ReferenceResult(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
     }
 
     private static FilteredLog createLog() {
-        return new FilteredLog("Errors");
+        FilteredLog filteredLog = new FilteredLog("Errors");
+        filteredLog.logInfo("This is a log message.");
+        return filteredLog;
     }
 
     @Test
@@ -107,5 +109,105 @@ class CoverageBuildActionTest {
 
         assertThat(action.getTarget()).extracting(CoverageViewModel::getNode).isSameAs(root);
         assertThat(action.getTarget()).extracting(CoverageViewModel::getOwner).isSameAs(action.getOwner());
+    }
+
+    @Test
+    void shouldGetVariables() {
+        var action = createAction(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
+
+        //Test getLog()
+        assertThat(action.getLog().getInfoMessages().toString()).isEqualTo("[This is a log message.]");
+        //Test getQualityGateResult()
+        assertThat(action.getQualityGateResult().getOverallStatus().toString()).isEqualTo("INACTIVE");
+        //Test getFormatter()
+        assertThat(action.getFormatter().getDisplayName(Metric.LINE)).isEqualTo("Coverage");
+        //Test getProjectBaseline()
+        assertThat(action.getProjectBaseline().getTitle()).isEqualTo("Overall project");
+        //Test hasBaselineResult()
+        assertThat(action.hasBaselineResult(Baseline.PROJECT)).isTrue();
+        //Test getTitle()
+        assertThat(action.getTitle(Baseline.MODIFIED_LINES)).isEqualTo("Modified code lines");
+        //Test getValues()
+        assertThat(action.getValues(Baseline.PROJECT).toString()).isEqualTo("[LINE: 80.00% (8/10), LOC: 10]");
+        assertThat(action.getValues(Baseline.MODIFIED_LINES).toString()).isEqualTo("[LINE: 80.00% (8/10)]");
+        //Test getValueForMetric()
+        assertThat(action.getValueForMetric(Baseline.PROJECT, Metric.LINE).toString()).isEqualTo("Optional[LINE: 80.00% (8/10)]");
+        //Test toString()
+        assertThat(action.toString()).isEqualTo("Parasoft Coverage (parasoft-coverage): [MODULE: 100.00% (1/1), LINE: 80.00% (8/10), BRANCH: 50.00% (1/2), LOC: 10]");
+        //Test getIconFileName()
+        assertThat(action.getIconFileName()).isEqualTo("");
+    }
+
+    @Test
+    void testGetReferenceBuildLink() {
+        var action = createAction(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
+        //No reference build
+        assertThat(action.getReferenceBuildLink()).isEqualTo(NO_REFERENCE_BUILD);
+
+        mockStatic(ReferenceBuild.class);
+
+        //Reference build removed
+        when(ReferenceBuild.getReferenceBuildLink(any())).thenReturn("#1");
+        action = createAction(OK, "1", "1");
+        assertThat(action.getReferenceBuildLink()).isEqualTo("1 (removed)");
+
+        //Valid reference build id
+        when(ReferenceBuild.getReferenceBuildLink(any())).thenReturn("Reference build link");
+        assertThat(action.getReferenceBuildLink()).isEqualTo("Reference build link");
+    }
+
+    @Test
+    void testFormatValue() {
+        var action = createAction(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
+
+        assertThat(action.formatValue(Baseline.PROJECT, Metric.LINE)).isEqualTo("80.00% (8/10)");
+        assertThat(action.formatValue(Baseline.MODIFIED_LINES, Metric.LOC)).isEqualTo("N/A");
+    }
+
+    @Test
+    void testGetReferenceBuildWarningMessage() {
+        //When referenceStatus is 'NO_REF_BUILD', and referenceBuild is DEFAULT_REFERENCE_BUILD_IDENTIFIER
+        var action = createAction(NO_REF_BUILD, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("No successful build was found");
+
+        //When referenceStatus is 'NO_REF_BUILD', and referenceBuild is not DEFAULT_REFERENCE_BUILD_IDENTIFIER
+        action = createAction(NO_REF_BUILD, "1", NO_REFERENCE_BUILD);
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("No reference build with the specified build number '1' was found");
+
+        //When referenceStatus is 'NO_CVG_DATA_IN_REF_BUILD', and referenceBuild is DEFAULT_REFERENCE_BUILD_IDENTIFIER
+        action = createAction(NO_CVG_DATA_IN_REF_BUILD, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("No code coverage result was found in any of the previous successful builds");
+
+        //When referenceStatus is 'NO_CVG_DATA_IN_REF_BUILD', and referenceBuild is not DEFAULT_REFERENCE_BUILD_IDENTIFIER
+        action = createAction(NO_CVG_DATA_IN_REF_BUILD, "1", NO_REFERENCE_BUILD);
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("No code coverage result was found in reference build '1'");
+
+        //When referenceStatus is 'REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE'
+        action = createAction(REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("The specified reference build 'default' cannot be used. Only successful or unstable builds are valid references");
+
+        //When referenceStatus is 'NO_PREVIOUS_BUILD_WAS_FOUND'
+        action = createAction(NO_PREVIOUS_BUILD_WAS_FOUND, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("No previous build was found");
+
+        //When referenceStatus is 'OK'
+        action = createAction(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("");
+    }
+
+    private CoverageBuildAction createAction(ReferenceResult.ReferenceStatus status, String referenceBuild, String referenceBuildId) {
+        Node module = new ModuleNode("module");
+        var coverageBuilder = new CoverageBuilder();
+        var percent50 = coverageBuilder.setMetric(Metric.BRANCH).setCovered(1).setMissed(1).build();
+        var percent80 = coverageBuilder.setMetric(Metric.LINE).setCovered(8).setMissed(2).build();
+        module.addValue(percent50);
+        module.addValue(percent80);
+
+        var coverages = List.of(percent50, percent80);
+
+        var action = spy(new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
+                StringUtils.EMPTY, module, new QualityGateResult(),
+                createLog(), referenceBuildId, coverages, false, new ReferenceResult(status, referenceBuild)));
+        return action;
     }
 }
