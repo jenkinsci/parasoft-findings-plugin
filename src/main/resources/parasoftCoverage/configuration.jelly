@@ -11,6 +11,11 @@
         <f:textbox default="${descriptor.defaultPattern()}" placeholder="${descriptor.defaultPattern()}"/>
     </f:entry>
 
+    <f:entry title="${%title.referenceJob}" field="referenceJob"
+             help="/plugin/parasoft-findings/help/parasoftCoverage/help-referenceJob.html">
+        <f:textbox placeholder="${%placeholder.referenceJob}"/>
+    </f:entry>
+
     <f:entry title="${%title.referenceBuild}" field="referenceBuild"
              help="/plugin/parasoft-findings/help/parasoftCoverage/help-referenceBuild.html">
         <f:textbox placeholder="${%Permalink.LastSuccessfulBuild}"/>

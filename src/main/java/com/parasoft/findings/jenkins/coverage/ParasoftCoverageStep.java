@@ -49,6 +49,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
     private String pattern = StringUtils.EMPTY;
     private String sourceCodeEncoding = StringUtils.EMPTY;
     private List<CoverageQualityGate> CoverageQualityGates = new ArrayList<>();
+    private String referenceJob = StringUtils.EMPTY;
     private String referenceBuild = StringUtils.EMPTY;
 
     @DataBoundConstructor
@@ -61,6 +62,15 @@ public class ParasoftCoverageStep extends Step implements Serializable {
     @Override
     public StepExecution start(StepContext context) throws Exception {
         return new Execution(context, this);
+    }
+
+    @DataBoundSetter
+    public void setReferenceJob(String referenceJob) {
+        this.referenceJob = referenceJob;
+    }
+
+    public String getReferenceJob() {
+        return referenceJob;
     }
 
     @DataBoundSetter
@@ -126,7 +136,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             TaskListener taskListener = getTaskListener();
             RunResultHandler runResultHandler = new RunResultHandler(run);
             ParasoftCoverageRecorder recorder = setUpCoverageRecorder(step.getPattern(), step.getSourceCodeEncoding(),
-                    step.getCoverageQualityGates(), step.getReferenceBuild());
+                    step.getCoverageQualityGates(), step.getReferenceJob(), step.getReferenceBuild());
 
             recorder.perform(run, workspace, taskListener, runResultHandler);
             return UNUSED;
@@ -180,10 +190,14 @@ public class ParasoftCoverageStep extends Step implements Serializable {
     }
 
     static ParasoftCoverageRecorder setUpCoverageRecorder(final String pattern, final String sourceCodeEncoding,
-                                                          final List<CoverageQualityGate> coverageQualityGates, final String referenceBuild) {
+                                                          final List<CoverageQualityGate> coverageQualityGates,
+                                                          final String referenceJob, final String referenceBuild) {
         ParasoftCoverageRecorder recorder = new ParasoftCoverageRecorder();
         recorder.setPattern(pattern);
         recorder.setCoverageQualityGates(coverageQualityGates);
+        if (referenceJob != null && !referenceJob.isEmpty()) {
+            recorder.setReferenceJob(referenceJob);
+        }
         if (referenceBuild != null && !referenceBuild.isEmpty()) {
             recorder.setReferenceBuild(referenceBuild);
         }
