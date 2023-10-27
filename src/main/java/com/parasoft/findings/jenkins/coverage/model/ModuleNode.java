@@ -170,8 +170,7 @@ public final class ModuleNode extends Node {
      * @see #createPackageNode(String)
      */
     public PackageNode findOrCreatePackageNode(final String packageName) {
-        var normalizedPackageName = PackageNode.normalizePackageName(packageName);
-        return findPackage(normalizedPackageName).orElseGet(() -> createPackageNode(normalizedPackageName));
+        return findPackage(packageName).orElseGet(() -> createPackageNode(packageName));
     }
 
     @Override

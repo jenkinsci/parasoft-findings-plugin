@@ -54,6 +54,7 @@ import io.jenkins.plugins.datatables.TableConfiguration.SelectStyle;
 import io.jenkins.plugins.datatables.TableModel;
 import org.jvnet.localizer.LocaleProvider;
 
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageViewModel.TABLE_ID;
 import static j2html.TagCreator.*;
 
 /**
@@ -128,7 +129,15 @@ class CoverageTableModel extends TableModel {
                 .withResponsivePriority(1)
                 .build();
         columns.add(fileName);
-        TableColumn packageName = new ColumnBuilder().withHeaderLabel(Messages.Column_Package())
+
+        String parasoftToolName = root.getParasoftToolName();
+        String packageHeaderLabel = Messages.Column_Folder();
+        if(parasoftToolName.equals("Jtest")) {
+            packageHeaderLabel = Messages.Column_Package();
+        } else if(parasoftToolName.equals("dotTEST")) {
+            packageHeaderLabel = Messages.Column_Namespace();
+        }
+        TableColumn packageName = new ColumnBuilder().withHeaderLabel(packageHeaderLabel)
                 .withDataPropertyKey("packageName")
                 .withResponsivePriority(50_000)
                 .build();
@@ -263,10 +272,12 @@ class CoverageTableModel extends TableModel {
     static class LinkedRowRenderer implements RowRenderer {
         private final File buildFolder;
         private final String resultsId;
+        private final String tableId;
 
-        LinkedRowRenderer(final File buildFolder, final String resultsId) {
+        LinkedRowRenderer(final File buildFolder, final String resultsId, String tableId) {
             this.buildFolder = buildFolder;
             this.resultsId = resultsId;
+            this.tableId = tableId;
         }
 
         @Override
@@ -277,7 +288,7 @@ class CoverageTableModel extends TableModel {
         @Override
         public String renderFileName(final String fileName, final String path) {
             if (SOURCE_CODE_FACADE.canRead(buildFolder, resultsId, path)) {
-                return a().withHref(String.valueOf(path.hashCode())).withText(fileName).render();
+                return a().withHref(path.hashCode() + "?" + TABLE_ID + "=" + this.tableId).withText(fileName).render();
             }
             return fileName;
         }

@@ -70,7 +70,7 @@ class JacocoParserTest extends AbstractParserTest {
                 .containsExactly("cli", "jenkins-core");
         assertThat(jenkinsRoot.getAll(PACKAGE)).hasSize(2)
                 .extracting(Node::getName)
-                .containsExactly("hudson.cli.client", "org.acegisecurity.context");
+                .containsExactly("hudson/cli/client", "org/acegisecurity/context");
 
         var builder = new CoverageBuilder().setMetric(LINE);
         assertThat(jenkinsRoot.getValue(LINE))
@@ -129,7 +129,7 @@ class JacocoParserTest extends AbstractParserTest {
 
         assertThat(tree.getChildren()).hasSize(1)
                 .element(0)
-                .satisfies(packageNode -> assertThat(packageNode).hasName("edu.hm.hafner.util"));
+                .satisfies(packageNode -> assertThat(packageNode).hasName("edu/hm/hafner/util"));
 
         Node any = tree.getAll(FILE)
                 .stream()
@@ -173,7 +173,7 @@ class JacocoParserTest extends AbstractParserTest {
         String fileName = "Ensure.java";
         assertThat(tree.find(FILE, fileName)).isNotEmpty()
                 .hasValueSatisfying(node -> assertThat(node).hasName(fileName)
-                        .hasParentName("edu.hm.hafner.util")
+                        .hasParentName("edu/hm/hafner/util")
                         .hasParent()
                         .isNotRoot());
 

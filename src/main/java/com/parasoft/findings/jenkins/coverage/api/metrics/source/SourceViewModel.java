@@ -39,6 +39,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.jsoup.parser.Parser;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.source.CoverageSourcePrinter.*;
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageViewModel.MODIFIED_LINES_COVERAGE_TABLE_ID;
 
 /**
  * Server side model that provides the data for the source code view of the coverage results. The layout of the
@@ -52,6 +53,7 @@ public class SourceViewModel implements ModelObject {
     private final Run<?, ?> owner;
     private final String id;
     private final FileNode fileNode;
+    private final String tableId;
 
     /**
      * Creates a new source view model instance.
@@ -63,10 +65,11 @@ public class SourceViewModel implements ModelObject {
      * @param fileNode
      *         the selected file node of the coverage tree
      */
-    public SourceViewModel(final Run<?, ?> owner, final String id, final FileNode fileNode) {
+    public SourceViewModel(final Run<?, ?> owner, final String id, final FileNode fileNode, final String tableId) {
         this.owner = owner;
         this.id = id;
         this.fileNode = fileNode;
+        this.tableId = tableId;
     }
 
     public Run<?, ?> getOwner() {
@@ -86,6 +89,9 @@ public class SourceViewModel implements ModelObject {
     public String getSourceFileContent() {
         try {
             String sourceFileContent = SOURCE_CODE_FACADE.read(getOwner().getRootDir(), id, getNode().getRelativePath());
+            if (MODIFIED_LINES_COVERAGE_TABLE_ID.equals(tableId)) {
+                sourceFileContent = SOURCE_CODE_FACADE.calculateModifiedLinesCoverageSourceCode(sourceFileContent, getNode());
+            }
             // Check if the environment is in English
             if (ALL_BRANCHES_COVERED.equals(Messages.All_Branches_Covered())) {
                 return sourceFileContent;

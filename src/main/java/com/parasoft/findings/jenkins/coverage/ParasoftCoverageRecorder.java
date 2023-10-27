@@ -62,6 +62,7 @@ public class ParasoftCoverageRecorder extends Recorder {
     private String pattern = StringUtils.EMPTY;
     private String sourceCodeEncoding = StringUtils.EMPTY;
     private List<CoverageQualityGate> coverageQualityGates = new ArrayList<>();
+    private String referenceJob = StringUtils.EMPTY;
     private String referenceBuild = StringUtils.EMPTY;
 
     @DataBoundConstructor
@@ -110,6 +111,15 @@ public class ParasoftCoverageRecorder extends Recorder {
     @SuppressWarnings("unused")
     public List<CoverageQualityGate> getCoverageQualityGates() {
         return coverageQualityGates;
+    }
+
+    @DataBoundSetter
+    public void setReferenceJob(String referenceJob) {
+        this.referenceJob = referenceJob;
+    }
+
+    public String getReferenceJob() {
+        return referenceJob;
     }
 
     @DataBoundSetter

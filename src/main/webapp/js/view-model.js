@@ -23,7 +23,6 @@
  */
 
 /* global jQuery3, viewProxy, echartsJenkinsApi, bootstrap5 */
-
 getJenkinsColors = function (colors) {
     // TODO: also handle HSL colors and parse them to hex in order to use dark mode colors
     const colorHexMapping = new Map;
@@ -208,7 +207,6 @@ const CoverageChartGenerator = function ($) {
                 if (selectedTab.length !== 0) {
                     const tab = new bootstrap5.Tab(selectedTab[0]);
                     tab.show();
-
                     return true;
                 }
                 return false
