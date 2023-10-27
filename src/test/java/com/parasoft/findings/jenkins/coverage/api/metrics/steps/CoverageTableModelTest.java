@@ -18,6 +18,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageViewModel.MODIFIED_LINES_COVERAGE_TABLE_ID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CoverageTableModelTest extends AbstractCoverageTest {
@@ -51,7 +52,7 @@ public class CoverageTableModelTest extends AbstractCoverageTest {
         assertThat(tableColumns.size()).isEqualTo(5);
         assertThat(tableColumns.get(0).getHeaderLabel()).isEqualTo("Hash");
         assertThat(tableColumns.get(1).getHeaderLabel()).isEqualTo("File");
-        assertThat(tableColumns.get(2).getHeaderLabel()).isEqualTo("Package");
+        assertThat(tableColumns.get(2).getHeaderLabel()).isEqualTo("Folder");
         assertThat(tableColumns.get(3).getHeaderLabel()).isEqualTo("Line");
         assertThat(tableColumns.get(4).getHeaderLabel()).isEqualTo("LOC");
     }
@@ -117,14 +118,14 @@ public class CoverageTableModelTest extends AbstractCoverageTest {
 
     @Test
     public void testLinkedRowRenderer() {
-        RowRenderer linkedRowRenderer = new LinkedRowRenderer(new File("src/test/resources/com/parasoft/findings/jenkins/coverage/api/metrics/steps"), "");
+        RowRenderer linkedRowRenderer = new LinkedRowRenderer(new File("src/test/resources/com/parasoft/findings/jenkins/coverage/api/metrics/steps"), "", MODIFIED_LINES_COVERAGE_TABLE_ID);
         String fileName = linkedRowRenderer.renderFileName("Calculator.java", "src_main_java_Calculator.java");
-        assertThat(fileName).isEqualTo("<a href=\"-839020164\">Calculator.java</a>");
+        assertThat(fileName).isEqualTo("<a href=\"-839020164?tableId=modified-lines-coverage-table\">Calculator.java</a>");
     }
 
     @Test
     public void testLinkedRowRenderer_noSourceCodeFile() {
-        RowRenderer linkedRowRenderer = new LinkedRowRenderer(new File("src/test/resources/com/parasoft/findings/jenkins/coverage/api/metrics/steps"), "");
+        RowRenderer linkedRowRenderer = new LinkedRowRenderer(new File("src/test/resources/com/parasoft/findings/jenkins/coverage/api/metrics/steps"), "", MODIFIED_LINES_COVERAGE_TABLE_ID);
         String fileName = linkedRowRenderer.renderFileName("NoSourceCodeFile.java", "src_main_java_NoSourceCodeFile.java");
         assertThat(fileName).isEqualTo("NoSourceCodeFile.java");
     }

@@ -74,38 +74,44 @@ public class ElementFormatterTest {
 
     @Test
     void testGetLabel() {
-        var label = formatter.getLabel(Metric.CONTAINER);
+        var label = formatter.getLabel(Metric.CONTAINER, null);
         assertThat(label).isEqualTo("Container");
 
-        label = formatter.getLabel(Metric.MODULE);
+        label = formatter.getLabel(Metric.MODULE, null);
         assertThat(label).isEqualTo("Module");
 
-        label = formatter.getLabel(Metric.PACKAGE);
+        label = formatter.getLabel(Metric.PACKAGE, null);
+        assertThat(label).isEqualTo("Folder");
+
+        label = formatter.getLabel(Metric.PACKAGE, "Jtest");
         assertThat(label).isEqualTo("Package");
 
-        label = formatter.getLabel(Metric.FILE);
+        label = formatter.getLabel(Metric.PACKAGE, "dotTEST");
+        assertThat(label).isEqualTo("Namespace");
+
+        label = formatter.getLabel(Metric.FILE, null);
         assertThat(label).isEqualTo("File");
 
-        label = formatter.getLabel(Metric.CLASS);
+        label = formatter.getLabel(Metric.CLASS, null);
         assertThat(label).isEqualTo("Class");
 
-        label = formatter.getLabel(Metric.METHOD);
+        label = formatter.getLabel(Metric.METHOD, null);
         assertThat(label).isEqualTo("Method");
 
-        label = formatter.getLabel(Metric.LINE);
+        label = formatter.getLabel(Metric.LINE, null);
         assertThat(label).isEqualTo("Line");
 
-        label = formatter.getLabel(Metric.BRANCH);
+        label = formatter.getLabel(Metric.BRANCH, null);
         assertThat(label).isEqualTo("Branch");
 
-        label = formatter.getLabel(Metric.INSTRUCTION);
+        label = formatter.getLabel(Metric.INSTRUCTION, null);
         assertThat(label).isEqualTo("Instruction");
 
-        label = formatter.getLabel(Metric.LOC);
+        label = formatter.getLabel(Metric.LOC, null);
         assertThat(label).isEqualTo("LOC");
 
         try {
-            formatter.getLabel(Metric.COMPLEXITY_DENSITY);
+            formatter.getLabel(Metric.COMPLEXITY_DENSITY, null);
         } catch (NoSuchElementException e) {
             assertThat(e).hasMessageContaining("No label found for metric COMPLEXITY_DENSITY");
         }
