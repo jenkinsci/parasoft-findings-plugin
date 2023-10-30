@@ -26,11 +26,14 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
+import hudson.model.Job;
 import hudson.model.Result;
 import io.jenkins.plugins.util.EnvironmentResolver;
+import io.jenkins.plugins.util.JenkinsFacade;
 import org.apache.commons.lang3.StringUtils;
 
 import com.parasoft.findings.jenkins.coverage.model.Metric;
@@ -51,6 +54,7 @@ import io.jenkins.plugins.prism.SourceCodeRetention;
 import io.jenkins.plugins.util.LogHandler;
 import io.jenkins.plugins.util.QualityGateResult;
 import io.jenkins.plugins.util.StageResultHandler;
+import org.jvnet.localizer.Localizable;
 
 import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.PARASOFT_COVERAGE_NAME;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
@@ -67,19 +71,18 @@ public class CoverageReporter {
     @SuppressWarnings("checkstyle:ParameterNumber")
     public CoverageBuildAction publishAction(final String id, final String icon, final Node rootNode,
                                              final Run<?, ?> build, final FilePath workspace, final TaskListener listener,
-                                             final String configRefBuild, final List<CoverageQualityGate> qualityGates,
+                                             final String configRefJob, final String configRefBuild,
+                                             final List<CoverageQualityGate> qualityGates,
                                              final String sourceCodeEncoding, final StageResultHandler resultHandler)
             throws InterruptedException {
-        FilteredLog log = new FilteredLog("Errors while reporting code coverage results:");
+        FilteredLog log = new FilteredLog("Errors while reporting Parasoft code coverage result:");
 
-        ReferenceBuildActionResult referenceBuildActionResult = getReferenceBuildActionResult(configRefBuild, build, id, log);
-        Optional<CoverageBuildAction> possibleReferenceResult = referenceBuildActionResult.getPossibleReferenceResult();
+        ReferenceBuildActionResult referenceBuildActionResult = getReferenceBuildActionResult(configRefJob, configRefBuild, build, id, log);
+        CoverageBuildAction referenceAction = referenceBuildActionResult.getCoverageBuildAction();
         ReferenceResult referenceResult = referenceBuildActionResult.getReferenceResult();
 
         CoverageBuildAction action;
-        if (possibleReferenceResult.isPresent()) {
-            CoverageBuildAction referenceAction = possibleReferenceResult.get();
-
+        if (referenceAction != null) {
             log.logInfo("Calculating the code delta...");
             CodeDeltaCalculator codeDeltaCalculator = new CodeDeltaCalculator(build, workspace, listener, StringUtils.EMPTY);
             Optional<Delta> delta = codeDeltaCalculator.calculateCodeDeltaToReference(referenceAction.getOwner(), log);
@@ -176,110 +179,140 @@ public class CoverageReporter {
         return ((com.parasoft.findings.jenkins.coverage.model.Coverage) value).isSet();
     }
 
-    private ReferenceBuildActionResult getReferenceBuildActionResult(final String configRefBuild, final Run<?, ?> build,
-                                                                     final String id, final FilteredLog log) {
-        if (StringUtils.isBlank(configRefBuild)) {
-            log.logInfo("Using default reference build(last successful build with code coverage data) " +
-                    "since user defined reference build is not set");
-            return getDefaultReferenceBuildAction(build, id, log);
+    private ReferenceBuildActionResult getReferenceBuildActionResult(final String configRefJob,
+                                                                     final String configRefBuild,
+                                                                     final Run<?, ?> build, final String id,
+                                                                     final FilteredLog log) {
+        log.logInfo("Obtaining action of reference build");
+        boolean isDefaultJob = StringUtils.isBlank(configRefJob);
+        Job<?,?> referenceJob;
+        if (isDefaultJob) {
+            referenceJob = build.getParent();
+            log.logInfo("-> No reference job has been set; using build in current job '%s' as reference",
+                    referenceJob.getFullName());
         } else {
-            log.logInfo("Obtaining action of specified reference build '%s'", configRefBuild);
-            return getSpecifiedReferenceBuildAction(configRefBuild, build, id, log);
-        }
-    }
-
-    private ReferenceBuildActionResult getDefaultReferenceBuildAction(final Run<?, ?> build, final String id,
-                                                                      final FilteredLog log) {
-        if (build.getPreviousBuild() == null) {
-            log.logInfo("-> No previous build was found");
-            return new ReferenceBuildActionResult(Optional.empty(),
-                    new ReferenceResult(NO_PREVIOUS_BUILD_WAS_FOUND, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
-        }
-        Run<?, ?> previousSuccessfulBuild = build.getPreviousSuccessfulBuild();
-        if (previousSuccessfulBuild != null) {
-            Optional<CoverageBuildAction> previousSuccessfulResult;
-            for (Run<?, ?> b = previousSuccessfulBuild; b != null; b = b.getPreviousSuccessfulBuild()) {
-                previousSuccessfulResult = getPreviousResult(id, b);
-                if (previousSuccessfulResult.isPresent()) {
-                    log.logInfo("-> Found reference code coverage result in build '%s'", b);
-                    return new ReferenceBuildActionResult(previousSuccessfulResult,
-                            new ReferenceResult(OK, b.getExternalizableId()));
-                }
+            String expandedRefJob = expandConfigValue(build, configRefJob);
+            if(!StringUtils.equals(expandedRefJob, configRefJob)) {
+                log.logInfo("-> Expanding specified reference job '%s' to '%s'", configRefJob, expandedRefJob);
             }
 
-            log.logInfo("-> Found no reference code coverage result in all previous successful builds");
-            return new ReferenceBuildActionResult(Optional.empty(),
-                    new ReferenceResult(NO_CVG_DATA_IN_REF_BUILD, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
+            Optional<Job<?, ?>> possibleReferenceJob = new JenkinsFacade().getJob(expandedRefJob);
+            if (possibleReferenceJob.isEmpty()) {
+                logWarningMessage(Messages._Reference_Build_Warning_Message_NO_REF_JOB(expandedRefJob), log);
+                return new ReferenceBuildActionResult(new ReferenceResult(NO_REF_JOB, expandedRefJob, configRefBuild));
+            }
+
+            referenceJob = possibleReferenceJob.get();
+        }
+
+        if (StringUtils.isBlank(configRefBuild)) {
+            log.logInfo("-> No reference build has been set; using the last successful build in job '%s' as reference",
+                    referenceJob.getFullName());
+            return getDefaultReferenceBuildAction(referenceJob, isDefaultJob, build, id, log);
         } else {
-            log.logInfo("-> Found no successful build");
-            return new ReferenceBuildActionResult(Optional.empty(),
-                    new ReferenceResult(NO_REF_BUILD, DEFAULT_REFERENCE_BUILD_IDENTIFIER));
+            return getSpecifiedReferenceBuildAction(referenceJob, configRefBuild, build, id, log);
         }
     }
 
-    private ReferenceBuildActionResult getSpecifiedReferenceBuildAction(final String configRefBuild, final Run<?, ?> build,
-                                                                        final String id, final FilteredLog log) {
-        String expandedRefBuild = expandReferenceBuild(build, configRefBuild);
+    private ReferenceBuildActionResult getDefaultReferenceBuildAction(final Job<?, ?> referenceJob,
+                                                                      final boolean isDefaultJob,
+                                                                      final Run<?, ?> build, final String id,
+                                                                      final FilteredLog log) {
+        boolean noPreviousBuild = isDefaultJob ? build.getPreviousBuild() == null : referenceJob.getLastBuild() == null;
+        if (noPreviousBuild) {
+            logWarningMessage(Messages._Reference_Build_Warning_Message_NO_PREVIOUS_BUILD_WAS_FOUND(
+                    referenceJob.getFullName()), log);
+            return new ReferenceBuildActionResult(new ReferenceResult(NO_PREVIOUS_BUILD_WAS_FOUND,
+                    referenceJob.getFullName(), DEFAULT_REFERENCE_BUILD_IDENTIFIER));
+        }
+
+        Run<?, ?> previousSuccessfulBuild = referenceJob.getLastSuccessfulBuild();
+        if (previousSuccessfulBuild == null) {
+            logWarningMessage(Messages._Reference_Build_Warning_Message_NO_REF_BUILD(referenceJob.getFullName()), log);
+            return new ReferenceBuildActionResult(new ReferenceResult(NO_REF_BUILD, referenceJob.getFullName(),
+                    DEFAULT_REFERENCE_BUILD_IDENTIFIER));
+        }
+
+        Optional<CoverageBuildAction> previousSuccessfulResult;
+        for (Run<?, ?> b = previousSuccessfulBuild; b != null; b = b.getPreviousSuccessfulBuild()) {
+            previousSuccessfulResult = getPreviousResult(id, b);
+            if (previousSuccessfulResult.isPresent()) {
+                log.logInfo("-> Set build '%s' as the default reference build", b);
+                return new ReferenceBuildActionResult(previousSuccessfulResult.get(),
+                        new ReferenceResult(OK, b.getExternalizableId()));
+            }
+        }
+
+        logWarningMessage(Messages._Reference_Build_Warning_Message_NO_CVG_DATA_IN_PREVIOUS_SUCCESSFUL_BUILDS(
+                referenceJob.getFullName()), log);
+        return new ReferenceBuildActionResult(new ReferenceResult(NO_CVG_DATA_IN_REF_BUILD, referenceJob.getFullName(),
+                DEFAULT_REFERENCE_BUILD_IDENTIFIER));
+    }
+
+    private ReferenceBuildActionResult getSpecifiedReferenceBuildAction(final Job<?, ?> referenceJob,
+                                                                        final String configRefBuild,
+                                                                        final Run<?, ?> build, final String id,
+                                                                        final FilteredLog log) {
+        String expandedRefBuild = expandConfigValue(build, configRefBuild);
         if(!StringUtils.equals(expandedRefBuild, configRefBuild)) {
             log.logInfo("-> Expanding specified reference build '%s' to '%s'", configRefBuild, expandedRefBuild);
         }
 
-        Optional<Run<?, ?>> reference = getSpecifiedReferenceBuild(build, expandedRefBuild, log);
-
-        if (reference.isPresent()) {
-            Run<?, ?> referenceBuild = reference.get();
-
-            Result result = referenceBuild.getResult();
-            if (result == Result.SUCCESS || result == Result.UNSTABLE) {
-                Optional<CoverageBuildAction> previousResult = getPreviousResult(id, referenceBuild);
-
-                if (previousResult.isEmpty()) {
-                    log.logInfo("-> Found no reference code coverage result in build '%s'", referenceBuild);
-                    return new ReferenceBuildActionResult(Optional.empty(),
-                            new ReferenceResult(NO_CVG_DATA_IN_REF_BUILD, referenceBuild.getExternalizableId()));
-                }
-
-                log.logInfo("-> Found reference code coverage result in build '%s'", referenceBuild);
-                return new ReferenceBuildActionResult(previousResult,
-                        new ReferenceResult(OK, referenceBuild.getExternalizableId()));
-            } else {
-                log.logInfo("-> The reference build '%s' is not successful or unstable", referenceBuild);
-                return new ReferenceBuildActionResult(Optional.empty(),
-                        new ReferenceResult(REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE, referenceBuild.getExternalizableId()));
-            }
-        } else {
-            return new ReferenceBuildActionResult(Optional.empty(),
-                    new ReferenceResult(NO_REF_BUILD, expandedRefBuild));
-        }
-    }
-
-    private Optional<Run<?, ?>> getSpecifiedReferenceBuild(final Run<?, ?> build, final String expandedRefBuild,
-                                                           final FilteredLog log) {
-        if (!StringUtils.isNumeric(expandedRefBuild)) {
-            log.logInfo("-> Invalid reference build number '%s'", expandedRefBuild);
-            return Optional.empty();
-        }
-
-        Run<?,?> referenceBuild;
-        try {
-            referenceBuild = build.getParent().getBuildByNumber(Integer.parseInt(expandedRefBuild));
-        } catch (NumberFormatException nfe) {
-            log.logInfo("-> Reference build number '%s' is out of range", expandedRefBuild);
-            return Optional.empty();
-        }
-
+        Run<?, ?> referenceBuild = getSpecifiedReferenceBuild(referenceJob, expandedRefBuild, log);
         if (referenceBuild == null) {
-            log.logInfo("-> Found no specified reference build '%s'", expandedRefBuild);
-            return Optional.empty();
+            logWarningMessage(Messages._Reference_Build_Warning_Message_NO_SPECIFIED_REF_BUILD(expandedRefBuild,
+                    referenceJob.getFullName()), log);
+            return new ReferenceBuildActionResult(new ReferenceResult(NO_REF_BUILD, referenceJob.getFullName(),
+                    expandedRefBuild));
         }
 
         if (StringUtils.equals(build.getExternalizableId(), referenceBuild.getExternalizableId())) {
-            log.logInfo("-> Reference build '%s' was ignored since the build number set is same as the current build",
-                    referenceBuild.getExternalizableId());
-            return Optional.empty();
+            logWarningMessage(Messages._Reference_Build_Warning_Message_REF_BUILD_IS_CURRENT_BUILD(
+                    referenceBuild), log);
+            return new ReferenceBuildActionResult(new ReferenceResult(REF_BUILD_IS_CURRENT_BUILD,
+                    referenceBuild.getExternalizableId()));
         }
 
-        return Optional.of(referenceBuild);
+        return getReferenceBuildAction(referenceBuild, id, log);
+    }
+
+    private ReferenceBuildActionResult getReferenceBuildAction(final Run<?, ?> referenceBuild, final String id,
+                                                               final FilteredLog log) {
+        Result result = referenceBuild.getResult();
+        if (result == Result.SUCCESS || result == Result.UNSTABLE) {
+            Optional<CoverageBuildAction> previousResult = getPreviousResult(id, referenceBuild);
+
+            if (previousResult.isEmpty()) {
+                logWarningMessage(Messages._Reference_Build_Warning_Message_NO_CVG_DATA_IN_REF_BUILD(
+                        referenceBuild), log);
+                return new ReferenceBuildActionResult(new ReferenceResult(NO_CVG_DATA_IN_REF_BUILD,
+                        referenceBuild.getExternalizableId()));
+            }
+
+            log.logInfo("-> Retrieved Parasoft code coverage result from the reference build '%s'", referenceBuild);
+            return new ReferenceBuildActionResult(previousResult.get(),
+                    new ReferenceResult(OK, referenceBuild.getExternalizableId()));
+        } else {
+            logWarningMessage(Messages._Reference_Build_Warning_Message_REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE(
+                    referenceBuild), log);
+            return new ReferenceBuildActionResult(new ReferenceResult(REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE,
+                    referenceBuild.getExternalizableId()));
+        }
+    }
+
+    private Run<?, ?> getSpecifiedReferenceBuild(final Job<?, ?> job, final String expandedRefBuild,
+                                                 final FilteredLog log) {
+        if (!StringUtils.isNumeric(expandedRefBuild)) {
+            log.logInfo("-> The specified reference build number '%s' is invalid", expandedRefBuild);
+            return null;
+        }
+
+        try {
+            return job.getBuildByNumber(Integer.parseInt(expandedRefBuild));
+        } catch (NumberFormatException nfe) {
+            log.logInfo("-> The specified reference build number '%s' is out of range", expandedRefBuild);
+            return null;
+        }
     }
 
     private Optional<CoverageBuildAction> getPreviousResult(final String id, @CheckForNull final Run<?, ?> build) {
@@ -295,15 +328,18 @@ public class CoverageReporter {
         return Optional.empty();
     }
 
-    private String expandReferenceBuild(final Run<?, ?> run, final String configRefBuild) {
+    private String expandConfigValue(final Run<?, ?> run, final String configValue) {
         try {
             EnvironmentResolver environmentResolver = new EnvironmentResolver();
 
             return environmentResolver.expandEnvironmentVariables(
-                    run.getEnvironment(TaskListener.NULL), configRefBuild);
+                    run.getEnvironment(TaskListener.NULL), configValue);
         } catch (IOException | InterruptedException ignore) {
-            return configRefBuild; // fallback, no expansion
+            return configValue; // fallback, no expansion
         }
     }
 
+    private static void logWarningMessage(Localizable message, final FilteredLog log) {
+        log.logInfo("-> %s", message.toString(Locale.ROOT));
+    }
 }

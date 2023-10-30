@@ -176,7 +176,7 @@ public class ParasoftCoverageRecorder extends Recorder {
             resolveAbsolutePaths(rootNode, workspace, sources, log);
             logHandler.log(log);
 
-            reporter.publishAction(getId(), getIcon(), rootNode, run, workspace, taskListener,
+            reporter.publishAction(getId(), getIcon(), rootNode, run, workspace, taskListener, getReferenceJob(),
                     getReferenceBuild(), getCoverageQualityGates(), getSourceCodeEncoding(), resultHandler);
         }
     }
