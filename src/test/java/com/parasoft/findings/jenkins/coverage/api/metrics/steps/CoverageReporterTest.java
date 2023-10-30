@@ -5,6 +5,7 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import com.parasoft.findings.jenkins.coverage.api.metrics.source.SourceCodePainter;
 import com.parasoft.findings.jenkins.coverage.model.Node;
 import hudson.FilePath;
+import hudson.model.Job;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import io.jenkins.plugins.util.QualityGate;
@@ -24,7 +25,7 @@ public class CoverageReporterTest extends AbstractCoverageTest {
     public void testPublishAction_invalid_reference_build() {
         CoverageBuildAction action = runPublishAction(new ArrayList<>(), "#1");
         assertThat(action).isNotNull();
-        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo(Messages.Reference_Build_Warning_Message_NO_SPECIFIED_REF_BUILD("#1"));
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo(Messages.Reference_Build_Warning_Message_NO_SPECIFIED_REF_BUILD("#1", "test_project"));
     }
 
     @Test
@@ -53,13 +54,16 @@ public class CoverageReporterTest extends AbstractCoverageTest {
         CoverageBuildAction action = null;
         Run<?, ?> build = mock(Run.class);
         doReturn(new File("fake/workspace/path")).when(build).getRootDir();
+        Job<?,?> job = mock(Job.class);
+        doReturn("test_project").when(job).getFullName();
+        doReturn(job).when(build).getParent();
         MockedConstruction<SourceCodePainter> sourceCodePainterMockedConstruction = mockConstruction(SourceCodePainter.class);
         MockedConstruction<CoverageXmlStream> coverageXmlStreamMockedConstruction = mockConstruction(CoverageXmlStream.class);
 
         try {
             action = reporter.publishAction("parasoft-coverage", "symbol-footsteps-outline plugin-ionicons-api",
                     node, build, new FilePath(new File("com/parasoft/findings/jenkins/coverage/api/metrics/steps/test_project")),
-                    TaskListener.NULL, configRefBuild, coverageQualityGate, "UTF-8", mock(StageResultHandler.class));
+                    TaskListener.NULL, "", configRefBuild, coverageQualityGate, "UTF-8", mock(StageResultHandler.class));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -52,7 +52,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
 
         verifyAction(build.getAction(CoverageBuildAction.class));
         assertThat(getConsoleLog(build)).contains("Some quality gates failed: overall result is UNSTABLE");
-        assertThat(getConsoleLog(build)).contains("Found no specified reference build '7'");
+        assertThat(getConsoleLog(build)).contains(String.format("The specified reference build '7' could not be found in job '%s'", build.getParent().getFullName()));
         assertThat(getConsoleLog(build)).contains("Source file '/workspace/test0/com/parasoft/interfaces2/ICalculator.java' not found");
     }
 
@@ -62,7 +62,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         Run<?, ?> build = buildWithResult(job, Result.UNSTABLE);
 
         verifyAction(build.getAction(CoverageBuildAction.class));
-        assertThat(getConsoleLog(build)).contains("Invalid reference build number 'abc'");
+        assertThat(getConsoleLog(build)).contains("The specified reference build number 'abc' is invalid");
     }
 
     @Test
@@ -95,13 +95,13 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
-    void testWhenReferenceBuildIsNotSet() {
+    void testWhenReferenceJobIsNotSet() {
         WorkflowJob job = createPipeline(null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         buildSuccessfully(job);
         Run<?, ?> currentBuild = buildSuccessfully(job);
         var actions = currentBuild.getActions(CoverageBuildAction.class);
         var result = actions.get(0);
-        assertThat(result.getLog().getInfoMessages().toString()).contains("Using default reference build(last successful build with code coverage data) ");
+        assertThat(result.getLog().getInfoMessages().toString()).contains(String.format("No reference job has been set; using build in current job '%s' as reference", currentBuild.getParent().getFullName()));
     }
 
     @Test
@@ -111,7 +111,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         Run<?, ?> currentBuild = buildSuccessfully(job);
         var actions = currentBuild.getActions(CoverageBuildAction.class);
         var result = actions.get(0);
-        assertThat(result.getLog().getInfoMessages().toString()).contains("Obtaining action of specified reference build");
+        assertThat(result.getLog().getInfoMessages().toString()).contains("Obtaining action of reference build");
     }
 
     @Test
@@ -125,6 +125,6 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         Run<?, ?> currentBuild = buildSuccessfully(job);
         var actions = currentBuild.getActions(CoverageBuildAction.class);
         var result = actions.get(0);
-        assertThat(result.getLog().getInfoMessages().toString()).contains("The reference build", "#1' is not successful or unstable");
+        assertThat(result.getLog().getInfoMessages().toString()).contains(String.format("The reference build '%s #1' cannot be used. Only successful or unstable builds are valid references", currentBuild.getParent().getFullName()));
     }
 }

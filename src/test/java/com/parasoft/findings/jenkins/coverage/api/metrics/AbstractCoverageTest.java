@@ -137,12 +137,4 @@ public abstract class AbstractCoverageTest extends ResourceTest {
         );
     }
 
-    private static NavigableMap<Metric, Fraction> fillDeltas() {
-        final NavigableMap<Metric, Fraction> deltaMapping = new TreeMap<>();
-        deltaMapping.put(Metric.FILE, Fraction.getFraction(-10, 100));
-        deltaMapping.put(Metric.LINE, Fraction.getFraction(5, 100));
-        deltaMapping.put(Metric.COMPLEXITY, Fraction.getFraction(-10, 1));
-        deltaMapping.put(Metric.LOC, Fraction.getFraction(5, 1));
-        return deltaMapping;
-    }
 }
