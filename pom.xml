@@ -222,7 +222,7 @@
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>warnings-ng</artifactId>
-      <version>10.0.3</version>
+      <version>10.5.1</version>
       <exclusions>
         <exclusion>
           <groupId>org.slf4j</groupId>
