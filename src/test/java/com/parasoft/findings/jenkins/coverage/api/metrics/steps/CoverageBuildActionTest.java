@@ -166,8 +166,14 @@ class CoverageBuildActionTest {
 
     @Test
     void testGetReferenceBuildWarningMessage() {
+        //When referenceStatus is 'NO_REF_JOB'
+        var action = createAction(NO_REF_JOB, "not-existing-job", DEFAULT_REFERENCE_BUILD_IDENTIFIER,
+                NO_REFERENCE_BUILD);
+        assertThat(action.getReferenceBuildWarningMessage())
+                .isEqualTo("The specified reference job 'not-existing-job' could not be found");
+
         //When referenceStatus is 'NO_REF_BUILD', and referenceBuild is DEFAULT_REFERENCE_BUILD_IDENTIFIER
-        var action = createAction(NO_REF_BUILD, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
+        action = createAction(NO_REF_BUILD, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
         assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("No successful build was found in job 'test_project'");
 
         //When referenceStatus is 'NO_REF_BUILD', and referenceBuild is not DEFAULT_REFERENCE_BUILD_IDENTIFIER
@@ -179,12 +185,16 @@ class CoverageBuildActionTest {
         assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("No Parasoft code coverage result was found in any of the previous successful builds in job 'test_project'");
 
         //When referenceStatus is 'NO_CVG_DATA_IN_REF_BUILD', and referenceBuild is not DEFAULT_REFERENCE_BUILD_IDENTIFIER
-        action = createAction(NO_CVG_DATA_IN_REF_BUILD, "1", NO_REFERENCE_BUILD);
-        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("No Parasoft code coverage result was found in reference build '1'");
+        action = createAction(NO_CVG_DATA_IN_REF_BUILD, "test_project#1", NO_REFERENCE_BUILD);
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("No Parasoft code coverage result was found in reference build 'test_project#1'");
 
         //When referenceStatus is 'REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE'
-        action = createAction(REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE, "1", NO_REFERENCE_BUILD);
-        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("The reference build '1' cannot be used. Only successful or unstable builds are valid references");
+        action = createAction(REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE, "test_project#1", NO_REFERENCE_BUILD);
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("The reference build 'test_project#1' cannot be used. Only successful or unstable builds are valid references");
+
+        //When referenceStatus is 'REF_BUILD_IS_CURRENT_BUILD'
+        action = createAction(REF_BUILD_IS_CURRENT_BUILD, "test_project#1", NO_REFERENCE_BUILD);
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("The reference build 'test_project#1' was ignored since the build number set is same as the current build");
 
         //When referenceStatus is 'NO_PREVIOUS_BUILD_WAS_FOUND'
         action = createAction(NO_PREVIOUS_BUILD_WAS_FOUND, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
@@ -195,7 +205,13 @@ class CoverageBuildActionTest {
         assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("");
     }
 
-    private CoverageBuildAction createAction(ReferenceResult.ReferenceStatus status, String referenceBuild, String referenceBuildId) {
+    private CoverageBuildAction createAction(ReferenceResult.ReferenceStatus status, String referenceBuild,
+                                             String referenceBuildId) {
+        return createAction(status, "test_project", referenceBuild, referenceBuildId);
+    }
+
+    private CoverageBuildAction createAction(ReferenceResult.ReferenceStatus status, String referenceJob,
+                                             String referenceBuild, String referenceBuildId) {
         Node module = new ModuleNode("module");
         var coverageBuilder = new CoverageBuilder();
         var percent50 = coverageBuilder.setMetric(Metric.BRANCH).setCovered(1).setMissed(1).build();
@@ -206,7 +222,7 @@ class CoverageBuildActionTest {
         var coverages = List.of(percent50, percent80);
 
         return spy(new CoverageBuildAction(mock(FreeStyleBuild.class), ParasoftCoverageRecorder.PARASOFT_COVERAGE_ID,
-                StringUtils.EMPTY, module, new QualityGateResult(),
-                createLog(), referenceBuildId, coverages, false, new ReferenceResult(status, "test_project", referenceBuild)));
+                StringUtils.EMPTY, module, new QualityGateResult(), createLog(), referenceBuildId, coverages,
+                false, new ReferenceResult(status, referenceJob, referenceBuild)));
     }
 }

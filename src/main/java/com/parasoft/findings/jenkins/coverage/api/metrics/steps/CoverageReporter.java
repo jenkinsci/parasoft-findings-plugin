@@ -235,7 +235,7 @@ public class CoverageReporter {
 
         Optional<CoverageBuildAction> previousSuccessfulResult;
         for (Run<?, ?> b = previousSuccessfulBuild; b != null; b = b.getPreviousSuccessfulBuild()) {
-            previousSuccessfulResult = getPreviousResult(id, b);
+            previousSuccessfulResult = getCoverageResult(id, b);
             if (previousSuccessfulResult.isPresent()) {
                 log.logInfo("-> Set build '%s' as the default reference build", b);
                 return new ReferenceBuildActionResult(previousSuccessfulResult.get(),
@@ -280,9 +280,9 @@ public class CoverageReporter {
                                                                final FilteredLog log) {
         Result result = referenceBuild.getResult();
         if (result == Result.SUCCESS || result == Result.UNSTABLE) {
-            Optional<CoverageBuildAction> previousResult = getPreviousResult(id, referenceBuild);
+            Optional<CoverageBuildAction> coverageResult = getCoverageResult(id, referenceBuild);
 
-            if (previousResult.isEmpty()) {
+            if (coverageResult.isEmpty()) {
                 logWarningMessage(Messages._Reference_Build_Warning_Message_NO_CVG_DATA_IN_REF_BUILD(
                         referenceBuild), log);
                 return new ReferenceBuildActionResult(new ReferenceResult(NO_CVG_DATA_IN_REF_BUILD,
@@ -290,7 +290,7 @@ public class CoverageReporter {
             }
 
             log.logInfo("-> Retrieved Parasoft code coverage result from the reference build '%s'", referenceBuild);
-            return new ReferenceBuildActionResult(previousResult.get(),
+            return new ReferenceBuildActionResult(coverageResult.get(),
                     new ReferenceResult(OK, referenceBuild.getExternalizableId()));
         } else {
             logWarningMessage(Messages._Reference_Build_Warning_Message_REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE(
@@ -315,7 +315,7 @@ public class CoverageReporter {
         }
     }
 
-    private Optional<CoverageBuildAction> getPreviousResult(final String id, @CheckForNull final Run<?, ?> build) {
+    private Optional<CoverageBuildAction> getCoverageResult(final String id, @CheckForNull final Run<?, ?> build) {
         if (build == null) {
             return Optional.empty();
         }

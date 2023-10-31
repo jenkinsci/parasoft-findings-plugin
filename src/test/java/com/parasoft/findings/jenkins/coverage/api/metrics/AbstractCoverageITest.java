@@ -25,7 +25,6 @@
 package com.parasoft.findings.jenkins.coverage.api.metrics;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.function.Consumer;
 
 import com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder;
@@ -75,15 +74,6 @@ public abstract class AbstractCoverageITest extends IntegrationTestWithJenkinsPe
         project.getPublishersList().add(recorder);
     }
 
-    protected WorkflowJob createPipeline(final Parser parser, final String... fileNames) {
-        WorkflowJob job = createPipelineWithWorkspaceFiles(fileNames);
-
-        setPipelineScript(job,
-                "recordCoverage tools: [[parser: '" + parser.name() + "', pattern: '**/*xml']]");
-
-        return job;
-    }
-
     protected void setPipelineScript(final WorkflowJob job, final String recorderSnippet) {
         job.setDefinition(new CpsFlowDefinition(
                 "node {\n"
@@ -91,24 +81,11 @@ public abstract class AbstractCoverageITest extends IntegrationTestWithJenkinsPe
                         + " }\n", true));
     }
 
-    protected WorkflowJob createDeclarativePipeline(final Parser parser, final String... fileNames) {
-        WorkflowJob job = createPipelineWithWorkspaceFiles(fileNames);
-
-        job.setDefinition(new CpsFlowDefinition("pipeline {\n"
-                + "    agent any\n"
-                + "    stages {\n"
-                + "        stage('Test') {\n"
-                + "            steps {\n"
-                + "                    recordCoverage(\n"
-                + "                        tools: [[parser: '" + parser.name() + "', pattern: '**/*xml']]"
-                + "            )}\n"
-                + "        }\n"
-                + "    }\n"
-                + "}", true));
-        return job;
+    protected WorkflowJob createPipeline(final String referenceBuild, final String coverageQualityGates, final String sourceCodeEncoding, final String fileName) {
+        return createPipeline(null, referenceBuild, coverageQualityGates, sourceCodeEncoding, fileName);
     }
 
-    protected WorkflowJob createPipeline(final String referenceBuild, final String coverageQualityGates, final String sourceCodeEncoding, final String fileName) {
+    protected WorkflowJob createPipeline(final String referenceJob, final String referenceBuild, final String coverageQualityGates, final String sourceCodeEncoding, final String fileName) {
         WorkflowJob job = createPipelineWithWorkspaceFiles("parasoft_coverage.xml", "parasoft_coverage_no_data.xml");
         String pipelineScript = "recordParasoftCoverage coverageQualityGates: [" + coverageQualityGates + "], " + "referenceBuild: '" + referenceBuild + "' , pattern: '" + fileName + "', sourceCodeEncoding: '" + sourceCodeEncoding + "'";
         if(referenceBuild == null) {
@@ -119,6 +96,9 @@ public abstract class AbstractCoverageITest extends IntegrationTestWithJenkinsPe
         }
         if(coverageQualityGates == null) {
             pipelineScript = "recordParasoftCoverage coverageQualityGates: [], referenceBuild: '" + referenceBuild + "' , pattern: '" + fileName + "', sourceCodeEncoding: '" + sourceCodeEncoding + "'";
+        }
+        if (referenceJob != null) {
+            pipelineScript += String.format(", referenceJob: '%s'", referenceJob);
         }
         setPipelineScript(job, pipelineScript);
         return job;
