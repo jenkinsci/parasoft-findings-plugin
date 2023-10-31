@@ -28,6 +28,12 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
+    void testJobWithOutReferenceJob() {
+        WorkflowJob job = createPipeline(null, null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
+        verifyResult(job);
+    }
+
+    @Test
     void testJobWithOutReferenceBuild() {
         WorkflowJob job = createPipeline(null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         verifyResult(job);
@@ -52,17 +58,27 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
 
         verifyAction(build.getAction(CoverageBuildAction.class));
         assertThat(getConsoleLog(build)).contains("Some quality gates failed: overall result is UNSTABLE");
-        assertThat(getConsoleLog(build)).contains("Found no specified reference build '7'");
+        assertThat(getConsoleLog(build)).contains(String.format("The specified reference build '7' could not be found in job '%s'", build.getParent().getFullName()));
         assertThat(getConsoleLog(build)).contains("Source file '/workspace/test0/com/parasoft/interfaces2/ICalculator.java' not found");
     }
 
     @Test
-    void testInvalidReferenceBuild() {
-        WorkflowJob job = createPipeline("abc", UNSTABLE_COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
+    void testInvalidReferenceBuildNumber() {
+        final String invalidReferenceBuildNumber = "abc";
+        WorkflowJob job = createPipeline(invalidReferenceBuildNumber, UNSTABLE_COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         Run<?, ?> build = buildWithResult(job, Result.UNSTABLE);
 
         verifyAction(build.getAction(CoverageBuildAction.class));
-        assertThat(getConsoleLog(build)).contains("Invalid reference build number 'abc'");
+        assertThat(getConsoleLog(build)).contains(
+                String.format("The specified reference build number '%s' is invalid", invalidReferenceBuildNumber));
+
+        final String outOfRangeReferenceBuildNumber = String.valueOf((long) Integer.MAX_VALUE + 1);
+        WorkflowJob job1 = createPipeline(outOfRangeReferenceBuildNumber, UNSTABLE_COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
+        Run<?, ?> build1 = buildWithResult(job1, Result.UNSTABLE);
+
+        verifyAction(build1.getAction(CoverageBuildAction.class));
+        assertThat(getConsoleLog(build1)).contains(
+                String.format("The specified reference build number '%s' is out of range", outOfRangeReferenceBuildNumber));
     }
 
     @Test
@@ -71,6 +87,13 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         Run<?, ?> build = buildWithResult(job, Result.FAILURE);
 
         assertThat(getConsoleLog(build)).contains("[-ERROR-] No files found for pattern 'wrongFile.xml'. Configuration error?");
+
+        WorkflowJob currentJob = createPipeline(job.getFullName(), null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
+        Run<?, ?> currentBuild = buildSuccessfully(currentJob);
+        var actions = currentBuild.getActions(CoverageBuildAction.class);
+        var result = actions.get(0);
+        assertThat(result.getLog().getInfoMessages().toString()).contains(
+                String.format("No successful build was found in job '%s'", job.getFullName()));
     }
 
     @Test
@@ -79,6 +102,28 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         Run<?, ?> build = buildWithResult(job, Result.FAILURE);
 
         assertThat(getConsoleLog(build)).contains("No Parasoft coverage information found in the specified file.");
+    }
+
+    @Test
+    void testNoCoverageDataInReferenceBuild() {
+        WorkflowJob referenceJob = createPipeline();
+        setPipelineScript(referenceJob, "");
+        Run<?, ?> referenceBuild = buildSuccessfully(referenceJob);
+
+        WorkflowJob job1 = createPipeline(referenceJob.getFullName(), null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
+        Run<?, ?> build1 = buildSuccessfully(job1);
+        var actions1 = build1.getActions(CoverageBuildAction.class);
+        var result1 = actions1.get(0);
+        assertThat(result1.getLog().getInfoMessages().toString()).contains(
+                String.format("No Parasoft code coverage result was found in any of the previous successful builds in job '%s'",
+                        referenceJob.getFullName()));
+
+        WorkflowJob job2 = createPipeline(referenceJob.getFullName(), referenceBuild.getId(), COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
+        Run<?, ?> build2 = buildSuccessfully(job2);
+        var actions2 = build2.getActions(CoverageBuildAction.class);
+        var result2 = actions2.get(0);
+        assertThat(result2.getLog().getInfoMessages().toString()).contains(
+                String.format("No Parasoft code coverage result was found in reference build '%s'", referenceBuild));
     }
 
     private void verifyResult(final ParameterizedJobMixIn.ParameterizedJob<?, ?> project) {
@@ -95,23 +140,60 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
-    void testWhenReferenceBuildIsNotSet() {
+    void testWhenBothReferenceJobAndReferenceBuildAreNotSet() {
         WorkflowJob job = createPipeline(null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
-        buildSuccessfully(job);
+        Run<?, ?> previousBuild = buildSuccessfully(job);
+        var previousActions = previousBuild.getActions(CoverageBuildAction.class);
+        var previousResult = previousActions.get(0);
+        assertThat(previousResult.getLog().getInfoMessages().toString()).contains(
+                String.format("No reference job has been set; using build in current job '%s' as reference",
+                        job.getFullName()),
+                String.format("No reference build has been set; using the last successful build in job '%s' as reference",
+                        job.getFullName()),
+                String.format("No previous build was found in job '%s'", job.getFullName()));
+
         Run<?, ?> currentBuild = buildSuccessfully(job);
         var actions = currentBuild.getActions(CoverageBuildAction.class);
         var result = actions.get(0);
-        assertThat(result.getLog().getInfoMessages().toString()).contains("Using default reference build(last successful build with code coverage data) ");
+        assertThat(result.getLog().getInfoMessages().toString()).contains(
+                String.format("Set build '%s' as the default reference build", previousBuild));
     }
 
     @Test
-    void testWhenReferenceBuildIsSet() {
-        WorkflowJob job = createPipeline("1", COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
-        buildSuccessfully(job);
+    void testWhenBothReferenceJobAndReferenceBuildAreSet() {
+        final String notExistJobName = "not-exist-job";
+        WorkflowJob referenceJob = createPipeline(notExistJobName, null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
+        Run<?, ?> referenceBuild = buildSuccessfully(referenceJob);
+        var referenceActions = referenceBuild.getActions(CoverageBuildAction.class);
+        var referenceResult = referenceActions.get(0);
+        assertThat(referenceResult.getLog().getInfoMessages().toString()).contains(
+                String.format("The specified reference job '%s' could not be found", notExistJobName));
+
+        WorkflowJob job = createPipeline(referenceJob.getFullName(), referenceBuild.getId(), COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         Run<?, ?> currentBuild = buildSuccessfully(job);
         var actions = currentBuild.getActions(CoverageBuildAction.class);
         var result = actions.get(0);
-        assertThat(result.getLog().getInfoMessages().toString()).contains("Obtaining action of specified reference build");
+        assertThat(result.getLog().getInfoMessages().toString()).contains(
+                String.format("Retrieved Parasoft code coverage result from the reference build '%s'", referenceBuild));
+    }
+
+    @Test
+    void testWhenOnlyReferenceJobOrReferenceBuildIsSet() {
+        final String specifiedReferenceBuildNumber = "1";
+        WorkflowJob referenceJob = createPipeline(specifiedReferenceBuildNumber, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
+        Run<?, ?> referenceBuild = buildSuccessfully(referenceJob);
+        var referenceActions = referenceBuild.getActions(CoverageBuildAction.class);
+        var referenceResult = referenceActions.get(0);
+        assertThat(referenceResult.getLog().getInfoMessages().toString()).contains(
+                String.format("The reference build '%s' was ignored since the build number set is same as the current build",
+                        referenceBuild));
+
+        WorkflowJob job = createPipeline(referenceJob.getFullName(), null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
+        Run<?, ?> currentBuild = buildSuccessfully(job);
+        var actions = currentBuild.getActions(CoverageBuildAction.class);
+        var result = actions.get(0);
+        assertThat(result.getLog().getInfoMessages().toString()).contains(
+                String.format("Set build '%s' as the default reference build", referenceBuild));
     }
 
     @Test
@@ -125,6 +207,6 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         Run<?, ?> currentBuild = buildSuccessfully(job);
         var actions = currentBuild.getActions(CoverageBuildAction.class);
         var result = actions.get(0);
-        assertThat(result.getLog().getInfoMessages().toString()).contains("The reference build", "#1' is not successful or unstable");
+        assertThat(result.getLog().getInfoMessages().toString()).contains(String.format("The reference build '%s #1' cannot be used. Only successful or unstable builds are valid references", currentBuild.getParent().getFullName()));
     }
 }

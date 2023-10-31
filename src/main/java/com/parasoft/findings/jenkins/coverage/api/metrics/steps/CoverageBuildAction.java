@@ -57,7 +57,6 @@ import io.jenkins.plugins.util.BuildAction;
 import io.jenkins.plugins.util.QualityGateResult;
 
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
-import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.*;
 import static hudson.model.Run.*;
 
 /**
@@ -326,23 +325,37 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     @SuppressWarnings("unused")// Called by jelly view
     public String getReferenceBuildWarningMessage() {
         ReferenceResult.ReferenceStatus status = referenceResult.getStatus();
+        String referenceJob = referenceResult.getReferenceJob();
         String referenceBuild = referenceResult.getReferenceBuild();
-        if (status == NO_REF_BUILD) {
-            if (referenceBuild.equals(DEFAULT_REFERENCE_BUILD_IDENTIFIER)) {
-                return Messages.Reference_Build_Warning_Message_NO_REF_BUILD();
+        switch (status) {
+            case NO_REF_JOB: {
+                return Messages.Reference_Build_Warning_Message_NO_REF_JOB(referenceJob);
             }
-            return Messages.Reference_Build_Warning_Message_NO_SPECIFIED_REF_BUILD(referenceBuild);
-        } else if (status == NO_CVG_DATA_IN_REF_BUILD) {
-            if (referenceBuild.equals(DEFAULT_REFERENCE_BUILD_IDENTIFIER)) {
-                return Messages.Reference_Build_Warning_Message_NO_CVG_DATA_IN_PREVIOUS_SUCCESSFUL_BUILDS();
+            case NO_REF_BUILD: {
+                if (referenceBuild.equals(DEFAULT_REFERENCE_BUILD_IDENTIFIER)) {
+                    return Messages.Reference_Build_Warning_Message_NO_REF_BUILD(referenceJob);
+                }
+                return Messages.Reference_Build_Warning_Message_NO_SPECIFIED_REF_BUILD(referenceBuild, referenceJob);
             }
-            return Messages.Reference_Build_Warning_Message_NO_CVG_DATA_IN_REF_BUILD(referenceBuild);
-        } else if (status == REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE) {
-            return Messages.Reference_Build_Warning_Message_REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE(referenceBuild);
-        } else if (status == NO_PREVIOUS_BUILD_WAS_FOUND) {
-            return Messages.Reference_Build_Warning_Message_NO_PREVIOUS_BUILD_WAS_FOUND();
+            case NO_PREVIOUS_BUILD_WAS_FOUND: {
+                return Messages.Reference_Build_Warning_Message_NO_PREVIOUS_BUILD_WAS_FOUND(referenceJob);
+            }
+            case REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE: {
+                return Messages.Reference_Build_Warning_Message_REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE(referenceBuild);
+            }
+            case REF_BUILD_IS_CURRENT_BUILD: {
+                return Messages.Reference_Build_Warning_Message_REF_BUILD_IS_CURRENT_BUILD(referenceBuild);
+            }
+            case NO_CVG_DATA_IN_REF_BUILD: {
+                if (referenceBuild.equals(DEFAULT_REFERENCE_BUILD_IDENTIFIER)) {
+                    return Messages.Reference_Build_Warning_Message_NO_CVG_DATA_IN_PREVIOUS_SUCCESSFUL_BUILDS(referenceJob);
+                }
+                return Messages.Reference_Build_Warning_Message_NO_CVG_DATA_IN_REF_BUILD(referenceBuild);
+            }
+            default: {
+                return "";
+            }
         }
-        return "";
     }
 
     @Override
