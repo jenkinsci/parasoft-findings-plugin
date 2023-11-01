@@ -226,7 +226,7 @@ public class CoverageReporter {
                     referenceJob.getFullName(), DEFAULT_REFERENCE_BUILD_IDENTIFIER));
         }
 
-        Run<?, ?> previousSuccessfulBuild = referenceJob.getLastSuccessfulBuild();
+        Run<?, ?> previousSuccessfulBuild = referenceJob.getLastStableBuild();
         if (previousSuccessfulBuild == null) {
             logWarningMessage(Messages._Reference_Build_Warning_Message_NO_REF_BUILD(referenceJob.getFullName()), log);
             return new ReferenceBuildActionResult(new ReferenceResult(NO_REF_BUILD, referenceJob.getFullName(),
