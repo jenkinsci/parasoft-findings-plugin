@@ -487,7 +487,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- ================= replace the all occurrences of 'replace' to 'by' in 'text' ================== -->
+    <!-- ================= replace all the 'replace' with 'by' in 'text' ================== -->
     <xsl:template name="string-replace-all">
         <xsl:param name="text" />
         <xsl:param name="replace" />

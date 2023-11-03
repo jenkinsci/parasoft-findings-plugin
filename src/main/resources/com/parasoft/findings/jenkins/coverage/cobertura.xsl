@@ -56,7 +56,7 @@
                         </xsl:variable>
                         <xsl:variable name="encodedPipelineBuildWorkingDirectory">
                              <xsl:if test="string($uncodedPipelineBuildWorkingDirectory) != ''">
-                                <!-- Replace % to %25 and space to %20 to get an encoded path-->
+                                <!-- Replace % with %25 and space with %20 to get an encoded path-->
                                 <xsl:value-of select="replace(replace($uncodedPipelineBuildWorkingDirectory, '%', '%25'), ' ', '%20')"/>
                             </xsl:if>
                         </xsl:variable>
@@ -65,7 +65,7 @@
                                 <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $uncodedPipelineBuildWorkingDirectory)">
                                     <xsl:value-of select="$uncodedPipelineBuildWorkingDirectory"/>
                                 </xsl:when>
-                                <!-- Using encoded pipeline build working directory when the uri arrtibute of <Loc> tag in Parasoft tool report(e.g. jtest report) is encoded -->
+                                <!-- Using encoded pipeline build working directory when the uri attribute of <Loc> tag in Parasoft tool report(e.g. jtest report) is encoded -->
                                 <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $encodedPipelineBuildWorkingDirectory)">
                                     <xsl:value-of select="$encodedPipelineBuildWorkingDirectory"/>
                                 </xsl:when>
@@ -268,19 +268,19 @@
     </xsl:template>
 
     <xsl:template name="generateClassElementByItemRefs">
-        <!-- All itemRef from /CoverageData/CvgData/Stats/Item which belong to current class -->
+        <!-- All itemRef from /CoverageData/CvgData/Stats/Item which belong to the current class -->
         <xsl:param name="itemRefs"/>
         <xsl:param name="cvgDataNode"/>
         <xsl:param name="className"/>
         <xsl:param name="filePath"/>
 
-        <!-- Generate string which contains unique line numbers of the current class(referenced by itemRefs) -->
+        <!-- Generate string which contains unique line numbers of the current class (referenced by itemRefs) -->
         <xsl:variable name="itemRefsString" select="concat(' ', string-join($itemRefs, ' '), ' ')"/>
         <xsl:variable name="statCvgElems" select="$cvgDataNode/Static/StatCvg[contains($itemRefsString, concat(' ', @itemRef, ' '))]/@elems"/>
         <xsl:variable name="statCvgElemsString" select="string-join($statCvgElems, ' ')"/>
         <xsl:variable name="lineNumbers" select="distinct-values(tokenize($statCvgElemsString, '\s+'))"/>
 
-        <!-- This map is used to store unique line numbers. key: line number, value: coverd times -->
+        <!-- This map is used to store unique line numbers. key: line number, value: covered times -->
         <xsl:variable name="linesMap" as="map(xs:string, xs:integer)">
             <xsl:map>
                 <xsl:for-each select="$lineNumbers">
