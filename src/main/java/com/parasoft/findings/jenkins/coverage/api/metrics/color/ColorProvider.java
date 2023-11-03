@@ -94,10 +94,10 @@ public class ColorProvider {
             final double weight1, final double weight2) {
         if (weight1 >= 0 && weight2 >= 0) {
             final double total = weight1 + weight2;
-            final int r = (int) ((color1.getRed() * weight1 + color2.getRed() * weight2) / total);
-            final int g = (int) ((color1.getGreen() * weight1 + color2.getGreen() * weight2) / total);
-            final int b = (int) ((color1.getBlue() * weight1 + color2.getBlue() * weight2) / total);
-            final int a = (int) ((color1.getAlpha() * weight1 + color2.getAlpha() * weight2) / total);
+            final int r = (int) Math.min(Math.max(((color1.getRed() * weight1 + color2.getRed() * weight2) / total), Integer.MIN_VALUE), Integer.MAX_VALUE);
+            final int g = (int) Math.min(Math.max(((color1.getGreen() * weight1 + color2.getGreen() * weight2) / total), Integer.MIN_VALUE), Integer.MAX_VALUE);
+            final int b = (int) Math.min(Math.max(((color1.getBlue() * weight1 + color2.getBlue() * weight2) / total), Integer.MIN_VALUE), Integer.MAX_VALUE);
+            final int a = (int) Math.min(Math.max(((color1.getAlpha() * weight1 + color2.getAlpha() * weight2) / total), Integer.MIN_VALUE), Integer.MAX_VALUE);
             return new Color(r, g, b, a);
         }
         throw new IllegalArgumentException(BLEND_COLOR_ERROR_MESSAGE);
