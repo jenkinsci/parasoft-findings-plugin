@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.56</version> <!-- or later -->
+    <version>4.65</version> <!-- or later -->
   </parent>
 
   <groupId>com.parasoft</groupId>
@@ -20,7 +20,7 @@
   </organization>
 
   <properties>
-    <jenkins.version>2.387.1</jenkins.version>
+    <jenkins.version>2.387.3</jenkins.version>
     <java.level>8</java.level>
     <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
     <xtest.version>10.6.2.20230410</xtest.version>
@@ -170,44 +170,9 @@
       <dependency>
         <groupId>org.jvnet.hudson.plugins</groupId>
         <artifactId>analysis-pom</artifactId>
-        <version>6.8.0</version>
+        <version>6.10.0</version>
         <scope>import</scope>
         <type>pom</type>
-      </dependency>
-      <!-- Work around "Require upper bound dependencies error" for warnings-ng. -->
-      <dependency>
-        <groupId>net.minidev</groupId>
-        <artifactId>json-smart</artifactId>
-        <version>2.4.10</version>
-      </dependency>
-      <!-- shared by warnings-ng and code-coverage-api - synchronize with code-coverage-api. -->
-      <dependency>
-        <groupId>org.jsoup</groupId>
-        <artifactId>jsoup</artifactId>
-        <version>1.16.1</version>
-      </dependency>
-      <!-- shared by warnings-ng and code-coverage-api - synchronize with code-coverage-api. -->
-      <dependency>
-        <groupId>io.jenkins.plugins</groupId>
-        <artifactId>prism-api</artifactId>
-        <version>1.29.0-6</version>
-      </dependency>
-      <!-- shared by warnings-ng, code-coverage-api and xunit - synchronize with code-coverage-api. -->
-      <dependency>
-        <groupId>io.jenkins.plugins</groupId>
-        <artifactId>echarts-api</artifactId>
-        <version>5.4.0-4</version>
-      </dependency>
-      <!-- Fix some transitive vulnerable dependency warnings for warnings-ng -->
-      <dependency>
-        <groupId>com.beust</groupId>
-        <artifactId>jcommander</artifactId>
-        <version>1.82</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.bcel</groupId>
-        <artifactId>bcel</artifactId>
-        <version>6.7.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
