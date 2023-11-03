@@ -66,7 +66,8 @@ public class ParserRegistry {
                 return new CoberturaParser();
             case JACOCO:
                 return new JacocoParser();
+            default:
+                throw new IllegalArgumentException("Unknown parser type: " + parser);
         }
-        throw new IllegalArgumentException("Unknown parser type: " + parser);
     }
 }
