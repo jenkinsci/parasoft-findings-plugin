@@ -38,6 +38,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.jsoup.parser.Parser;
+import org.kohsuke.stapler.bind.JavaScriptMethod;
+
 import static com.parasoft.findings.jenkins.coverage.api.metrics.source.CoverageSourcePrinter.*;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageViewModel.MODIFIED_LINES_COVERAGE_TABLE_ID;
 
@@ -78,6 +80,12 @@ public class SourceViewModel implements ModelObject {
 
     public FileNode getNode() {
         return fileNode;
+    }
+
+    @JavaScriptMethod
+    @SuppressWarnings("unused")
+    public String getTableId() {
+        return tableId;
     }
 
     /**
@@ -133,6 +141,9 @@ public class SourceViewModel implements ModelObject {
 
     @Override
     public String getDisplayName() {
+        if (MODIFIED_LINES_COVERAGE_TABLE_ID.equals(tableId)) {
+            return Messages.Modified_Code_Coverage_Title(getNode().getName());
+        }
         return Messages.Coverage_Title(getNode().getName());
     }
 }

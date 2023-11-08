@@ -30,6 +30,7 @@
   <bs:page it="${it}">
 
     <link rel="stylesheet" href="${resURL}/plugin/parasoft-findings/css/view-model.css"/>
+    <script type="text/javascript" src="${resURL}/plugin/parasoft-findings/js/view-model.js"/>
 
     <div class="row py-3 flex-nowrap">
 
@@ -66,5 +67,10 @@
 
 
   </bs:page>
+
+  <script>
+    const viewProxy = <st:bind value="${it}"/>;
+    modifyHrefAttrForSourceFileNav(jQuery3);
+  </script>
 
 </j:jelly>
