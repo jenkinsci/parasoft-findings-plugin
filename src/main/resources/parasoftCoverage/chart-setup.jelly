@@ -27,7 +27,7 @@ SOFTWARE.-->
     Provides a generic chart configuration dialog.
 
     <st:attribute name="id" type="String" use="required">
-      ID for the this chart configuration dialog.
+      ID for this chart configuration dialog.
     </st:attribute>
 
   </st:documentation>
