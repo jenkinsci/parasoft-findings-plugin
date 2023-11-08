@@ -93,7 +93,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         var actions = currentBuild.getActions(CoverageBuildAction.class);
         var result = actions.get(0);
         assertThat(result.getLog().getInfoMessages().toString()).contains(
-                String.format("No successful build was found in job '%s'", job.getFullName()));
+                String.format("No stable build was found in job '%s'", job.getFullName()));
     }
 
     @Test
@@ -115,7 +115,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         var actions1 = build1.getActions(CoverageBuildAction.class);
         var result1 = actions1.get(0);
         assertThat(result1.getLog().getInfoMessages().toString()).contains(
-                String.format("No Parasoft code coverage result was found in any of the previous successful builds in job '%s'",
+                String.format("No Parasoft code coverage result was found in any of the previous stable builds in job '%s'",
                         referenceJob.getFullName()));
 
         WorkflowJob job2 = createPipeline(referenceJob.getFullName(), referenceBuild.getId(), COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
@@ -148,7 +148,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         assertThat(previousResult.getLog().getInfoMessages().toString()).contains(
                 String.format("No reference job has been set; using build in current job '%s' as reference",
                         job.getFullName()),
-                String.format("No reference build has been set; using the last successful build in job '%s' as reference",
+                String.format("No reference build has been set; using the last stable build in job '%s' as reference",
                         job.getFullName()),
                 String.format("No previous build was found in job '%s'", job.getFullName()));
 
@@ -207,6 +207,6 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         Run<?, ?> currentBuild = buildSuccessfully(job);
         var actions = currentBuild.getActions(CoverageBuildAction.class);
         var result = actions.get(0);
-        assertThat(result.getLog().getInfoMessages().toString()).contains(String.format("The reference build '%s #1' cannot be used. Only successful or unstable builds are valid references", currentBuild.getParent().getFullName()));
+        assertThat(result.getLog().getInfoMessages().toString()).contains(String.format("The reference build '%s #1' cannot be used. Only stable or unstable builds are valid references", currentBuild.getParent().getFullName()));
     }
 }

@@ -203,7 +203,7 @@ public class CoverageReporter {
         }
 
         if (StringUtils.isBlank(configRefBuild)) {
-            log.logInfo("-> No reference build has been set; using the last successful build in job '%s' as reference",
+            log.logInfo("-> No reference build has been set; using the last stable build in job '%s' as reference",
                     referenceJob.getFullName());
             return getDefaultReferenceBuildAction(referenceJob, isDefaultJob, build, id, log);
         } else {
