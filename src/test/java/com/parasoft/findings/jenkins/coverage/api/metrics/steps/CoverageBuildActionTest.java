@@ -194,7 +194,7 @@ class CoverageBuildActionTest {
 
         //When referenceStatus is 'REF_BUILD_IS_CURRENT_BUILD'
         action = createAction(REF_BUILD_IS_CURRENT_BUILD, "test_project#1", NO_REFERENCE_BUILD);
-        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("The reference build 'test_project#1' was ignored since the build number set is same as the current build");
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("The reference build 'test_project#1' was ignored since the build number set is the same as the current build");
 
         //When referenceStatus is 'NO_PREVIOUS_BUILD_WAS_FOUND'
         action = createAction(NO_PREVIOUS_BUILD_WAS_FOUND, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);

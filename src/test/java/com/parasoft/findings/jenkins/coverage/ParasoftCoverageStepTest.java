@@ -185,7 +185,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         var referenceActions = referenceBuild.getActions(CoverageBuildAction.class);
         var referenceResult = referenceActions.get(0);
         assertThat(referenceResult.getLog().getInfoMessages().toString()).contains(
-                String.format("The reference build '%s' was ignored since the build number set is same as the current build",
+                String.format("The reference build '%s' was ignored since the build number set is the same as the current build",
                         referenceBuild));
 
         WorkflowJob job = createPipeline(referenceJob.getFullName(), null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
