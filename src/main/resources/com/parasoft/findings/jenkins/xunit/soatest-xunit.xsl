@@ -461,7 +461,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- ================= replace the last occurrence of 'replace' to 'by' in 'text' ================== -->
+    <!-- ================= replace the last occurrence of 'replace' with 'by' in 'text' ================== -->
     <xsl:template name="replace-last">
         <xsl:param name="text" />
         <xsl:param name="replace" />
@@ -487,7 +487,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- ================= replace the all occurrences of 'replace' to 'by' in 'text' ================== -->
+    <!-- ================= replace all the occurrences of 'replace' with 'by' in 'text' ================== -->
     <xsl:template name="string-replace-all">
         <xsl:param name="text" />
         <xsl:param name="replace" />

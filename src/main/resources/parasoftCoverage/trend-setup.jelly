@@ -27,7 +27,7 @@ SOFTWARE.-->
     Provides a generic trend chart configuration dialog.
 
     <st:attribute name="suffix" type="String" use="required">
-      Suffix for the this configuration dialog's IDs.
+      Suffix for this configuration dialog's IDs.
     </st:attribute>
 
   </st:documentation>
