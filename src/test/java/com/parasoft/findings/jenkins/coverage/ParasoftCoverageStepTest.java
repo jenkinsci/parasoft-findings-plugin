@@ -207,6 +207,6 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
         Run<?, ?> currentBuild = buildSuccessfully(job);
         var actions = currentBuild.getActions(CoverageBuildAction.class);
         var result = actions.get(0);
-        assertThat(result.getLog().getInfoMessages().toString()).contains(String.format("The reference build '%s #1' cannot be used. Only successful or unstable builds are valid references", currentBuild.getParent().getFullName()));
+        assertThat(result.getLog().getInfoMessages().toString()).contains(String.format("The reference build '%s #1' cannot be used. Only stable or unstable builds are valid references", currentBuild.getParent().getFullName()));
     }
 }

@@ -190,7 +190,7 @@ class CoverageBuildActionTest {
 
         //When referenceStatus is 'REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE'
         action = createAction(REF_BUILD_NOT_SUCCESSFUL_OR_UNSTABLE, "test_project#1", NO_REFERENCE_BUILD);
-        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("The reference build 'test_project#1' cannot be used. Only successful or unstable builds are valid references");
+        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("The reference build 'test_project#1' cannot be used. Only stable or unstable builds are valid references");
 
         //When referenceStatus is 'REF_BUILD_IS_CURRENT_BUILD'
         action = createAction(REF_BUILD_IS_CURRENT_BUILD, "test_project#1", NO_REFERENCE_BUILD);
