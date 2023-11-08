@@ -91,7 +91,7 @@ public enum CoverageLevel {
                     return colorProvider.getDisplayColorsOf(level.colorizationId);
                 }
                 double distanceLevel = coveragePercentage - level.level;
-                if (distanceLevel == 0) {
+                if (Double.valueOf(distanceLevel).equals((double) 0)) {
                     return colorProvider.getDisplayColorsOf(level.colorizationId);
                 }
                 CoverageLevel upperLevel = values()[i - 1];

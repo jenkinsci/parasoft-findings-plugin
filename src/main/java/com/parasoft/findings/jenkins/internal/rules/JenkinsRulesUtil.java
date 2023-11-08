@@ -69,7 +69,9 @@ public class JenkinsRulesUtil
             return new Properties();
         }
         FilePath localSettingsFile = null;
+        // parasoft-begin-suppress BD.EXCEPT.NP "'UString.isEmpty(settingsPath)' includes the check of null"
         File localPath = new File(settingsPath);
+        // parasoft-end-suppress BD.EXCEPT.NP
         if (localPath.isAbsolute() && localPath.exists()) {
             localSettingsFile = new FilePath(localPath);
         } else {
