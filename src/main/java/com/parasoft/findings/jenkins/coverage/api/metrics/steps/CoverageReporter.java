@@ -33,7 +33,7 @@ import java.util.Set;
 import hudson.model.Job;
 import hudson.model.Result;
 import io.jenkins.plugins.util.EnvironmentResolver;
-import io.jenkins.plugins.util.JenkinsFacade;
+import jenkins.model.Jenkins;
 import org.apache.commons.lang3.StringUtils;
 
 import com.parasoft.findings.jenkins.coverage.model.Metric;
@@ -195,14 +195,11 @@ public class CoverageReporter {
             if(!StringUtils.equals(expandedRefJob, configRefJob)) {
                 log.logInfo("-> Expanding specified reference job '%s' to '%s'", configRefJob, expandedRefJob);
             }
-
-            Optional<Job<?, ?>> possibleReferenceJob = new JenkinsFacade().getJob(expandedRefJob);
-            if (possibleReferenceJob.isEmpty()) {
+            referenceJob = Jenkins.get().getItem(expandedRefJob, build.getParent(), Job.class);
+            if (referenceJob == null) {
                 logWarningMessage(Messages._Reference_Build_Warning_Message_NO_REF_JOB(expandedRefJob), log);
                 return new ReferenceBuildActionResult(new ReferenceResult(NO_REF_JOB, expandedRefJob, configRefBuild));
             }
-
-            referenceJob = possibleReferenceJob.get();
         }
 
         if (StringUtils.isBlank(configRefBuild)) {
