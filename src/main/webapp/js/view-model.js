@@ -35,6 +35,14 @@ getJenkinsColors = function (colors) {
     return colorHexMapping;
 };
 
+modifyHrefAttrForSourceFileNav = function ($) {
+    viewProxy.getTableId(function (tableId) {
+        const lastLiTag = $('li.jenkins-breadcrumbs__list-item').last();
+        const aTag = lastLiTag.find('a');
+        const newHref = aTag.attr('href') + '?tableId=' + tableId.responseJSON;
+        aTag.attr('href', newHref);
+    });
+}
 const CoverageChartGenerator = function ($) {
 
     function printPercentage(value, minimumFractionDigits = 2) {

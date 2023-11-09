@@ -376,6 +376,9 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
                         = getNode().findByHashCode(Metric.FILE, Integer.parseInt(link));
                 if (targetResult.isPresent() && targetResult.get() instanceof FileNode) {
                     String tableId = request.getParameter(TABLE_ID);
+                    if (tableId == null) {
+                        tableId = ABSOLUTE_COVERAGE_TABLE_ID;
+                    }
                     return new SourceViewModel(getOwner(), getId(), (FileNode) targetResult.get(), tableId);
                 }
             }
