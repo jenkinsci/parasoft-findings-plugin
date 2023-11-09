@@ -28,6 +28,7 @@
 
   <j:set var="coverageText" value="${it.getCoverageText(job)}"/>
   <j:set var="coverageValue" value="${it.getCoverageValue(job)}"/>
+  <j:set var="lastCompletedBuildNumber" value="${job.getLastCompletedBuild().getNumber()}"/>
 
   <j:choose>
     <j:when test="${coverageValue.isPresent()}">
@@ -45,7 +46,7 @@
                 ${coverageText}
               </j:when>
               <j:otherwise>
-                <a class="coverage-cell-link" href="${rootURL}/${job.url}lastSuccessfulBuild/${url}">${coverageText}</a>
+                <a class="coverage-cell-link" href="${rootURL}/${job.url}${lastCompletedBuildNumber}/${url}">${coverageText}</a>
               </j:otherwise>
             </j:choose>
           </div>
