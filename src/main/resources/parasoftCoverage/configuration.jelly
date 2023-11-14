@@ -11,9 +11,19 @@
         <f:textbox default="${descriptor.defaultPattern()}" placeholder="${descriptor.defaultPattern()}"/>
     </f:entry>
 
+    <f:entry title="${%title.referenceJob}" field="referenceJob"
+             help="/plugin/parasoft-findings/help/parasoftCoverage/help-referenceJob.html">
+        <f:textbox placeholder="${%placeholder.referenceJob}"/>
+    </f:entry>
+
+    <f:entry title="${%title.referenceBuild}" field="referenceBuild"
+             help="/plugin/parasoft-findings/help/parasoftCoverage/help-referenceBuild.html">
+        <f:textbox placeholder="${%Permalink.LastStableBuild}"/>
+    </f:entry>
+
     <f:entry title="${%title.qualityGates}" description="${%description.qualityGates}">
         <div id="qualityGates">
-            <f:repeatableProperty field="parasoftCoverageQualityGates" add="${%qualityGate.add}">
+            <f:repeatableProperty field="coverageQualityGates" add="${%qualityGate.add}">
                 <f:entry title="">
                     <div align="right">
                         <f:repeatableDeleteButton/>

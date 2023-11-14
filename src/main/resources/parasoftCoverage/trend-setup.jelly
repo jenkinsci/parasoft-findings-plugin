@@ -1,0 +1,104 @@
+<!--MIT License
+
+Copyright (c) 2019 Dr. Ullrich Hafner
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.-->
+
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:d="jelly:define" xmlns:st="jelly:stapler">
+
+  <st:documentation>
+    Provides a generic trend chart configuration dialog.
+
+    <st:attribute name="suffix" type="String" use="required">
+      Suffix for this configuration dialog's IDs.
+    </st:attribute>
+
+  </st:documentation>
+
+  <st:adjunct includes="io.jenkins.plugins.jquery3"/>
+  <st:adjunct includes="io.jenkins.plugins.bootstrap5"/>
+
+  <div class="modal fade" id="trend-configuration-${suffix}" tabindex="-1"
+       aria-labelledby="trend-configuration-label-${suffix}" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="trend-configuration-label-${suffix}">${%configure.trend.chart}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
+        </div>
+        <div class="modal-body">
+          <form>
+            <d:invokeBody />
+            <div class="mb-3">
+              <input class="form-check-input" type="radio" name="domain-axis-type" id="build-domain-${suffix}"
+                     checked="true"/>
+              <label class="form-check-label" for="build-domain-${suffix}">
+                ${%show.results.per.build}
+              </label>
+            </div>
+            <div class="mb-3">
+              <input class="form-check-input" type="radio" name="domain-axis-type" id="date-domain-${suffix}"/>
+              <label class="form-check-label" for="date-domain-${suffix}">
+                ${%show.aggregated.results.per.day}
+              </label>
+            </div>
+            <div class="mb-3">
+              <label for="builds" class="form-label">${%maximum.number.of.builds.to.consider}</label>
+              <input type="number" min="2" class="form-control" id="builds-${suffix}" required="true"/>
+              <div id="builds-help-${suffix}" class="form-text">
+                ${%if.set.to.a.value.less.than.two}
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="days" class="form-label">${%maximum.number.of.days.to.look.into.the.past}</label>
+              <input type="number" min="0" class="form-control" id="days-${suffix}" required="true"/>
+              <div id="days-help-${suffix}" class="form-text">
+                ${%if.set.to.a.value.less.than.one}
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="width-${suffix}" class="form-label">${%trend.chart.width}</label>
+              <div class="range-slider">
+                <input class="range-slider-range" type="range" value="500" min="100" max="1000" step="25" id="width-${suffix}"/>
+                <span class="range-slider-value">500</span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="height-${suffix}" class="form-label">${%trend.chart.height}</label>
+              <div class="range-slider">
+                <input class="range-slider-range" type="range" value="200" min="100" max="1000" step="25" id="height-${suffix}"/>
+                <span class="range-slider-value">200</span>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">${%trend.chart.close.button}</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="save-trend-configuration-${suffix}">
+            ${%trend.chart.save.button}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</j:jelly>
+
+

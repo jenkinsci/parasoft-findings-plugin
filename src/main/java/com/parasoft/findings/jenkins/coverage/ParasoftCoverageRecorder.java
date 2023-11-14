@@ -16,8 +16,11 @@
 
 package com.parasoft.findings.jenkins.coverage;
 
-import edu.hm.hafner.coverage.Metric;
+import com.parasoft.findings.jenkins.coverage.api.metrics.steps.*;
+import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
+import com.parasoft.findings.jenkins.coverage.model.Node;
 import edu.hm.hafner.util.FilteredLog;
+import edu.hm.hafner.util.TreeStringBuilder;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
@@ -30,9 +33,6 @@ import hudson.tasks.Publisher;
 import hudson.tasks.Recorder;
 import hudson.util.ComboBoxModel;
 import hudson.util.FormValidation;
-import io.jenkins.plugins.coverage.metrics.steps.CoverageQualityGate;
-import io.jenkins.plugins.coverage.metrics.steps.CoverageRecorder;
-import io.jenkins.plugins.coverage.metrics.steps.CoverageTool;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -52,8 +52,8 @@ import java.util.stream.Collectors;
 
 public class ParasoftCoverageRecorder extends Recorder {
 
-    static final String PARASOFT_COVERAGE_ID = "parasoft-coverage"; // $NON-NLS-1$
-    static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage"; // $NON-NLS-1$
+    public static final String PARASOFT_COVERAGE_ID = "parasoft-coverage"; // $NON-NLS-1$
+    public static final String PARASOFT_COVERAGE_NAME = "Parasoft Coverage"; // $NON-NLS-1$
     static final String DEFAULT_PATTERN = "**/coverage.xml"; // $NON-NLS-1$
     private static final String COBERTURA_XSL_NAME = "cobertura.xsl"; // $NON-NLS-1$
     private static final String FILE_PATTERN_SEPARATOR = ","; // $NON-NLS-1$
@@ -61,12 +61,22 @@ public class ParasoftCoverageRecorder extends Recorder {
 
     private String pattern = StringUtils.EMPTY;
     private String sourceCodeEncoding = StringUtils.EMPTY;
-    private List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates = new ArrayList<>();
+    private List<CoverageQualityGate> coverageQualityGates = new ArrayList<>();
+    private String referenceJob = StringUtils.EMPTY;
+    private String referenceBuild = StringUtils.EMPTY;
 
     @DataBoundConstructor
     public ParasoftCoverageRecorder() {
         super();
         // empty constructor required for Stapler
+    }
+
+    public String getId() {
+        return PARASOFT_COVERAGE_ID;
+    }
+
+    public String getName() {
+        return PARASOFT_COVERAGE_NAME;
     }
 
     @DataBoundSetter
@@ -90,17 +100,35 @@ public class ParasoftCoverageRecorder extends Recorder {
 
     @SuppressWarnings("unused")
     @DataBoundSetter
-    public void setParasoftCoverageQualityGates(final List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates) {
-        if (parasoftCoverageQualityGates != null && !parasoftCoverageQualityGates.isEmpty()) {
-            this.parasoftCoverageQualityGates = List.copyOf(parasoftCoverageQualityGates);
+    public void setCoverageQualityGates(final List<CoverageQualityGate> coverageQualityGates) {
+        if (coverageQualityGates != null && !coverageQualityGates.isEmpty()) {
+            this.coverageQualityGates = List.copyOf(coverageQualityGates);
         } else {
-            this.parasoftCoverageQualityGates = new ArrayList<>();
+            this.coverageQualityGates = new ArrayList<>();
         }
     }
 
     @SuppressWarnings("unused")
-    public List<ParasoftCoverageQualityGate> getParasoftCoverageQualityGates() {
-        return parasoftCoverageQualityGates;
+    public List<CoverageQualityGate> getCoverageQualityGates() {
+        return coverageQualityGates;
+    }
+
+    @DataBoundSetter
+    public void setReferenceJob(String referenceJob) {
+        this.referenceJob = referenceJob;
+    }
+
+    public String getReferenceJob() {
+        return referenceJob;
+    }
+
+    @DataBoundSetter
+    public void setReferenceBuild(String referenceBuild) {
+        this.referenceBuild = referenceBuild;
+    }
+
+    public String getReferenceBuild() {
+        return referenceBuild;
     }
 
     @Override
@@ -109,31 +137,99 @@ public class ParasoftCoverageRecorder extends Recorder {
     }
 
     @Override
-    public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
+    public boolean perform(final AbstractBuild<?, ?> build, final Launcher launcher, final BuildListener listener)
             throws InterruptedException, IOException {
         FilePath workspace = build.getWorkspace();
         if (workspace == null) {
             throw new IOException("No workspace found for " + build); // $NON-NLS-1$
         }
 
-        LogHandler logHandler = new LogHandler(listener, PARASOFT_COVERAGE_NAME);
-        CoverageConversionResult coverageResult = performCoverageReportConversion(build, workspace, logHandler,
-                new RunResultHandler(build));
-
-        CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), getSourceCodeEncoding(), getParasoftCoverageQualityGates());
-        recorder.perform(build, launcher, listener);
-
-        deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
+        perform(build, workspace, listener, new RunResultHandler(build));
 
         return true;
+    }
+
+    public void perform(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
+                        final StageResultHandler resultHandler) throws InterruptedException {
+        Result overallResult = run.getResult();
+        LogHandler logHandler = new LogHandler(taskListener, PARASOFT_COVERAGE_NAME);
+        if (overallResult == null || overallResult.isBetterOrEqualTo(Result.UNSTABLE)) {
+            FilteredLog log = new FilteredLog("Errors while recording Parasoft code coverage:");
+            log.logInfo("Recording coverage results");
+
+            perform(run, workspace, taskListener, resultHandler, log, logHandler);
+        }
+        else {
+            logHandler.log("Skipping execution of coverage recorder since overall result is '%s'", overallResult);
+        }
+    }
+
+    private void perform(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
+                         final StageResultHandler resultHandler, final FilteredLog log, final LogHandler logHandler) throws InterruptedException {
+        List<com.parasoft.findings.jenkins.coverage.model.Node> results = recordCoverageResults(run, workspace, taskListener, logHandler, log);
+
+        if (!results.isEmpty()) {
+            CoverageReporter reporter = new CoverageReporter();
+            var rootNode = Node.merge(results);
+
+            var sources = rootNode.getSourceFolders();
+            resolveAbsolutePaths(rootNode, workspace, sources, log);
+            logHandler.log(log);
+
+            reporter.publishAction(getId(), getIcon(), rootNode, run, workspace, taskListener, getReferenceJob(),
+                    getReferenceBuild(), getCoverageQualityGates(), getSourceCodeEncoding(), resultHandler);
+        }
+    }
+
+    private List<Node> recordCoverageResults(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
+                                             final LogHandler logHandler, final FilteredLog log) throws InterruptedException {
+        List<Node> results = new ArrayList<>();
+        CoverageConversionResult coverageConversionResult = performCoverageReportConversion(run, workspace, logHandler,
+                new RunResultHandler(run), log);
+
+        try {
+            AgentFileVisitor.FileVisitorResult<ModuleNode> result = workspace.act(
+                    new CoverageReportScanner(coverageConversionResult.getCoberturaPattern(), "UTF-8", false, CoverageTool.Parser.COBERTURA));
+            log.merge(result.getLog());
+
+            var coverageResults = result.getResults();
+            results.addAll(coverageResults);
+        }
+        catch (IOException exception) {
+            log.logException(exception, "Exception while parsing with " + CoverageTool.Parser.COBERTURA);
+        }
+
+        logHandler.log(log);
+        deleteTemporaryCoverageDirs(workspace, coverageConversionResult.getGeneratedCoverageBuildDirs(), logHandler, log);
+
+        return results;
+    }
+
+    private void resolveAbsolutePaths(final Node rootNode, final FilePath workspace, final Set<String> sources,
+                                      final FilteredLog log) throws InterruptedException {
+        log.logInfo("Resolving source code files...");
+        var pathMapping = new PathResolver().resolvePaths(rootNode.getFiles(), sources, workspace, log);
+
+        if (!pathMapping.isEmpty()) {
+            log.logInfo("Making paths of " + pathMapping.size() + " source code files relative to workspace root...");
+            var builder = new TreeStringBuilder();
+            rootNode.getAllFileNodes().stream()
+                    .filter(file -> pathMapping.containsKey(file.getRelativePath()))
+                    .forEach(file -> file.setRelativePath(builder.intern(pathMapping.get(file.getRelativePath()))));
+            builder.dedup();
+        }
+    }
+
+    private String getIcon() {
+        return CoverageTool.Parser.COBERTURA.getIcon();
     }
 
     // Return Cobertura patterns and temporary coverage directories for this build.
     CoverageConversionResult performCoverageReportConversion(final Run<?, ?> run, final FilePath workspace,
                                                              final LogHandler logHandler,
-                                                             final StageResultHandler resultHandler)
+                                                             final StageResultHandler resultHandler,
+                                                             final FilteredLog log)
             throws InterruptedException {
-        FilteredLog log = new FilteredLog("Errors while recording Parasoft code coverage:"); // $NON-NLS-1$
         log.logInfo("Recording Parasoft coverage results"); // $NON-NLS-1$
         return convertCoverageReport(run, workspace, resultHandler,
                 log, logHandler);
@@ -142,22 +238,6 @@ public class ParasoftCoverageRecorder extends Recorder {
     @Override
     public ParasoftCoverageDescriptor getDescriptor() {
         return (ParasoftCoverageDescriptor) super.getDescriptor();
-    }
-
-    static CoverageRecorder setUpCoverageRecorder(final String pattern, final String sourceCodeEncoding,
-                                                  final List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates) {
-        CoverageRecorder recorder = new CoverageRecorder();
-        CoverageTool tool = new CoverageTool();
-        tool.setParser(CoverageTool.Parser.COBERTURA);
-        tool.setPattern(pattern);
-        recorder.setTools(List.of(tool));
-        recorder.setId(PARASOFT_COVERAGE_ID);
-        recorder.setName(PARASOFT_COVERAGE_NAME);
-        recorder.setQualityGates(convertToCoverageQualityGates(parasoftCoverageQualityGates));
-        if (!sourceCodeEncoding.isEmpty()) {
-            recorder.setSourceCodeEncoding(sourceCodeEncoding);
-        }
-        return recorder;
     }
 
     private CoverageConversionResult convertCoverageReport(final Run<?, ?> run, final FilePath workspace,
@@ -232,10 +312,9 @@ public class ParasoftCoverageRecorder extends Recorder {
     }
 
     void deleteTemporaryCoverageDirs(final FilePath workspace, final Set<String> tempCoverageDirs,
-                                             final LogHandler logHandler)
+                                             final LogHandler logHandler, final FilteredLog log)
             throws InterruptedException {
         logHandler.log("Deleting temporary coverage files"); // $NON-NLS-1$
-        FilteredLog log = new FilteredLog("Errors while deleting temporary coverage files:"); // $NON-NLS-1$
         for (String tempCoverageDir : tempCoverageDirs) {
             try {
                 Objects.requireNonNull(workspace.child(tempCoverageDir).getParent()).deleteRecursive();
@@ -259,19 +338,6 @@ public class ParasoftCoverageRecorder extends Recorder {
                 .filter(pattern -> !pattern.isEmpty())
                 .collect(Collectors.toList());
         return String.join(", ", nonEmptyPatterns);
-    }
-
-    private static List<CoverageQualityGate> convertToCoverageQualityGates(final List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates) {
-        List<CoverageQualityGate> coverageQualityGates = new ArrayList<>();
-        if (parasoftCoverageQualityGates != null && !parasoftCoverageQualityGates.isEmpty()) {
-            for (ParasoftCoverageQualityGate parasoftCoverageQualityGate : parasoftCoverageQualityGates) {
-                CoverageQualityGate coverageQualityGate = new CoverageQualityGate(parasoftCoverageQualityGate.getThreshold(), Metric.LINE);
-                coverageQualityGate.setBaseline(parasoftCoverageQualityGate.getBaseline());
-                coverageQualityGate.setCriticality(parasoftCoverageQualityGate.getCriticality());
-                coverageQualityGates.add(coverageQualityGate);
-            }
-        }
-        return coverageQualityGates;
     }
 
     @Extension

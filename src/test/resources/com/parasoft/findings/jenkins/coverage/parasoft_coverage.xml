@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Coverage ver="2" toolVer="2022.1.0" execEnv="win32_x86_64" hasViols="false" project="" buildId="2023-06-15" climode="true" toolDispName="Jtest" prjModule="com.parasoft:project-with-default-package" toolId="jtest" machine="DESKTOP-DCD46AU" tag="Unit Tests-com.parasoft:project-with-default-package-${scontrol_branch}-win32_x86_64" time="2023-06-15T14:55:08+08:00" id="1686059287200" lang="en_US" user="devtest" toolName="DTP Engine for Java">
+	<TestConfig machine="DESKTOP-DCD46AU" pseudoUrl="builtin://Unit Tests" name="Unit Tests" user="devtest" />
+	<VersionInfos>
+		<VersionInfo id="LC" ver="1" />
+	</VersionInfos>
+	<Repositories />
+	<Locations>
+		<Loc locRef="1" projId="com.parasoft:project-with-default-package" covId="516238227,1495237307,-1072665781" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/Calculator.java" uri="/workspace/test0/Calculator.java" projPath="/com.parasoft:project-with-default-package" hash="1741334343" />
+		<Loc locRef="2" projId="com.parasoft:project-with-default-package" covId="1022206551" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/com/parasoft/Convertor.java" uri="/workspace/test0/com/parasoft/Convertor.java" projPath="/com.parasoft:project-with-default-package" hash="-662881149" />
+		<Loc locRef="3" projId="com.parasoft:project-with-default-package" covId="-563343909" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/com/parasoft/another/Convertor.java" uri="/workspace/test0/com/parasoft/another/Convertor.java" projPath="/com.parasoft:project-with-default-package" hash="469181545" />
+		<Loc locRef="4" projId="com.parasoft:project-with-default-package" covId="31915879" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/com/parasoft/interfaces/IConvertor.java" uri="/workspace/test0/com/parasoft/interfaces/IConvertor.java" projPath="/com.parasoft:project-with-default-package" hash="-1706285489" />
+		<Loc locRef="5" projId="com.parasoft:project-with-default-package" covId="2052078758" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/com/parasoft/interfaces2/ICalculator.java" uri="/workspace/test0/com/parasoft/interfaces2/ICalculator.java" projPath="/com.parasoft:project-with-default-package" hash="1200206342" />
+		<Loc locRef="6" projId="com.parasoft:project-with-default-package" covId="1718134890,-2024947891,-704551445,-643246718" project="com.parasoft:project-with-default-package" resProjPath="src/main/java/com/parasoft/nested/PhoneFactory.java" uri="/workspace/test0/com/parasoft/nested/PhoneFactory.java" projPath="/com.parasoft:project-with-default-package" hash="-1917579824" />
+	</Locations>
+	<Tests>
+		<Test testRef="1" id="CalculatorTest|+|com.parasoft:project-with-default-package#CalculatorTest.java#CalculatorTest#testAdd" />
+		<Test testRef="2" id="CalculatorTest|+|com.parasoft:project-with-default-package#CalculatorTest.java#CalculatorTest#testMinus" />
+		<Test testRef="3" id="com.parasoft.ConvertorTest|+|com.parasoft:project-with-default-package#ConvertorTest.java#com.parasoft.ConvertorTest#convertToString1" />
+		<Test testRef="4" id="com.parasoft.ConvertorTest|+|com.parasoft:project-with-default-package#ConvertorTest.java#com.parasoft.ConvertorTest#convertToString2" />
+		<Test testRef="5" id="com.parasoft.ConvertorTest|+|com.parasoft:project-with-default-package#ConvertorTest.java#com.parasoft.ConvertorTest#convertToString3" />
+		<Test testRef="6" id="com.parasoft.another.ConvertorTest|+|com.parasoft:project-with-default-package#ConvertorTest.java#com.parasoft.another.ConvertorTest#convertToString" />
+		<Test testRef="7" id="com.parasoft.another.ConvertorTest|+|com.parasoft:project-with-default-package#ConvertorTest.java#com.parasoft.another.ConvertorTest#name" />
+		<Test testRef="8" id="com.parasoft.nested.PhoneFactoryTest|+|com.parasoft:project-with-default-package#PhoneFactoryTest.java#com.parasoft.nested.PhoneFactoryTest#getIphone4" />
+	</Tests>
+	<CoverageData type="LC">
+		<CvgData locRef="1">
+			<Stats>
+				<Item itemRef="1" id="Calculator.java#Calculator" name="Calculator">
+					<Item itemRef="2" id="Calculator.java#Calculator#add#(II)I" name="add( int, int )" />
+					<Item itemRef="3" id="Calculator.java#Calculator#&lt;init>#()V" name="Calculator()" />
+					<Item itemRef="4" id="Calculator.java#Calculator#Calculator$Screen" name="Calculator$Screen">
+						<Item itemRef="5" id="Calculator.java#Calculator#Calculator$Screen#&lt;init>#(LCalculator$Screen$Brightness;)V" name="Calculator$Screen( Calculator$Screen$Brightness )" />
+						<Item itemRef="6" id="Calculator.java#Calculator#Calculator$Screen#showResult#(I)V" name="showResult( int )" />
+						<Item itemRef="7" id="Calculator.java#Calculator#Calculator$Screen#Calculator$Screen$Brightness" name="Calculator$Screen$Brightness">
+							<Item itemRef="8" id="Calculator.java#Calculator#Calculator$Screen#Calculator$Screen$Brightness#&lt;clinit>#()V" name="class initialization()" />
+							<Item itemRef="9" id="Calculator.java#Calculator#Calculator$Screen#Calculator$Screen$Brightness#&lt;init>#(Ljava/lang/String;I)V" name="Calculator$Screen$Brightness( java.lang.String, int )" />
+						</Item>
+					</Item>
+				</Item>
+			</Stats>
+			<Static>
+				<StatCvg itemRef="8" elems="23 24" hashes="-619022508 -1760446347" />
+				<StatCvg itemRef="5" elems="15 16 17" hashes="1528369737 320737896 1508372605" />
+				<StatCvg itemRef="9" elems="23" hashes="-619022508" />
+				<StatCvg itemRef="2" elems="7 8 9" hashes="1928371266 1284531579 363132110" />
+				<StatCvg itemRef="3" elems="3 5" hashes="707665141 -2008629378" />
+				<StatCvg itemRef="6" elems="20 21" hashes="-1397641892 1508372605" />
+			</Static>
+			<Dynamic>
+				<DynCvg itemRef="8">
+					<CtxCvg testRefs="1" elemRefs="23 24" />
+				</DynCvg>
+				<DynCvg itemRef="5">
+					<CtxCvg testRefs="2 1" elemRefs="15 16 17" />
+				</DynCvg>
+				<DynCvg itemRef="9">
+					<CtxCvg testRefs="1" elemRefs="23" />
+				</DynCvg>
+				<DynCvg itemRef="6">
+					<CtxCvg testRefs="1" elemRefs="20 21" />
+				</DynCvg>
+				<DynCvg itemRef="2">
+					<CtxCvg testRefs="1" elemRefs="7 8 9" />
+				</DynCvg>
+				<DynCvg itemRef="3">
+					<CtxCvg testRefs="2 1" elemRefs="3 5" />
+				</DynCvg>
+			</Dynamic>
+		</CvgData>
+		<CvgData locRef="2">
+			<Stats>
+				<Item itemRef="1" id="Convertor.java#Convertor" name="Convertor">
+					<Item itemRef="2" id="Convertor.java#Convertor#name#()Ljava/lang/String;" name="name()" />
+					<Item itemRef="3" id="Convertor.java#Convertor#&lt;init>#()V" name="Convertor()" />
+					<Item itemRef="4" id="Convertor.java#Convertor#convertToString#(I)Ljava/lang/String;" name="convertToString( int )" />
+				</Item>
+			</Stats>
+			<Static>
+				<StatCvg itemRef="2" elems="12" hashes="-31285632" />
+				<StatCvg itemRef="3" elems="5" hashes="-1890058929" />
+				<StatCvg itemRef="4" elems="7" hashes="380198143" />
+			</Static>
+			<Dynamic>
+				<DynCvg itemRef="3">
+					<CtxCvg testRefs="4 3 5" elemRefs="5" />
+				</DynCvg>
+				<DynCvg itemRef="4">
+					<CtxCvg testRefs="4 3 5" elemRefs="7" />
+				</DynCvg>
+			</Dynamic>
+		</CvgData>
+		<CvgData locRef="3">
+			<Stats>
+				<Item itemRef="1" id="Convertor.java#Convertor" name="Convertor">
+					<Item itemRef="2" id="Convertor.java#Convertor#name#()Ljava/lang/String;" name="name()" />
+					<Item itemRef="3" id="Convertor.java#Convertor#&lt;init>#()V" name="Convertor()" />
+					<Item itemRef="4" id="Convertor.java#Convertor#convertToString#(I)Ljava/lang/String;" name="convertToString( int )" />
+				</Item>
+			</Stats>
+			<Static>
+				<StatCvg itemRef="2" elems="12" hashes="-31285632" />
+				<StatCvg itemRef="3" elems="5" hashes="-1890058929" />
+				<StatCvg itemRef="4" elems="7" hashes="936757658" />
+			</Static>
+			<Dynamic>
+				<DynCvg itemRef="3">
+					<CtxCvg testRefs="7 6" elemRefs="5" />
+				</DynCvg>
+				<DynCvg itemRef="2">
+					<CtxCvg testRefs="7" elemRefs="12" />
+				</DynCvg>
+				<DynCvg itemRef="4">
+					<CtxCvg testRefs="6" elemRefs="7" />
+				</DynCvg>
+			</Dynamic>
+		</CvgData>
+		<CvgData locRef="5">
+			<Stats>
+				<Item itemRef="1" id="ICalculator.java#ICalculator" name="ICalculator">
+					<Item itemRef="2" id="ICalculator.java#ICalculator#minus#(II)I" name="minus( int, int )" />
+				</Item>
+			</Stats>
+			<Static>
+				<StatCvg itemRef="2" elems="5" hashes="-679419333" />
+			</Static>
+			<Dynamic>
+				<DynCvg itemRef="2">
+					<CtxCvg testRefs="2" elemRefs="5" />
+				</DynCvg>
+			</Dynamic>
+		</CvgData>
+		<CvgData locRef="6">
+			<Stats>
+				<Item itemRef="1" id="PhoneFactory.java#PhoneFactory" name="PhoneFactory">
+					<Item itemRef="2" id="PhoneFactory.java#PhoneFactory#PhoneFactory$Phone" name="PhoneFactory$Phone">
+						<Item itemRef="3" id="PhoneFactory.java#PhoneFactory#PhoneFactory$Phone#getName#()Ljava/lang/String;" name="getName()" />
+						<Item itemRef="4" id="PhoneFactory.java#PhoneFactory#PhoneFactory$Phone#call911#()V" name="call911()" />
+						<Item itemRef="5" id="PhoneFactory.java#PhoneFactory#PhoneFactory$Phone#getBrand#()Lcom/parasoft/nested/PhoneFactory$Brand;" name="getBrand()" />
+						<Item itemRef="6" id="PhoneFactory.java#PhoneFactory#PhoneFactory$Phone#&lt;init>#(Ljava/lang/String;Lcom/parasoft/nested/PhoneFactory$Brand;)V" name="PhoneFactory$Phone( java.lang.String, com.parasoft.nested.PhoneFactory$Brand )" />
+						<Item itemRef="7" id="PhoneFactory.java#PhoneFactory#PhoneFactory$Phone#&lt;init>#()V" name="PhoneFactory$Phone()" />
+						<Item itemRef="8" id="PhoneFactory.java#PhoneFactory#PhoneFactory$Phone#toString#()Ljava/lang/String;" name="toString()" />
+					</Item>
+					<Item itemRef="9" id="PhoneFactory.java#PhoneFactory#&lt;init>#()V" name="PhoneFactory()" />
+					<Item itemRef="10" id="PhoneFactory.java#PhoneFactory#PhoneFactory$Brand" name="PhoneFactory$Brand">
+						<Item itemRef="11" id="PhoneFactory.java#PhoneFactory#PhoneFactory$Brand#&lt;clinit>#()V" name="class initialization()" />
+						<Item itemRef="12" id="PhoneFactory.java#PhoneFactory#PhoneFactory$Brand#&lt;init>#(Ljava/lang/String;I)V" name="PhoneFactory$Brand( java.lang.String, int )" />
+					</Item>
+					<Item itemRef="13" id="PhoneFactory.java#PhoneFactory#getIphone4#()Lcom/parasoft/nested/PhoneFactory$Phone;" name="getIphone4()" />
+				</Item>
+			</Stats>
+			<Static>
+				<StatCvg itemRef="11" elems="12 13" hashes="-1345140166 1992071219" />
+				<StatCvg itemRef="12" elems="12" hashes="-1345140166" />
+				<StatCvg itemRef="3" elems="43" hashes="-823419872" />
+				<StatCvg itemRef="9" elems="6" hashes="-784183754" />
+				<StatCvg itemRef="4" elems="35 36" hashes="399150515 1508372605" />
+				<StatCvg itemRef="5" elems="47" hashes="-84409724" />
+				<StatCvg itemRef="6" elems="29 30 31 32" hashes="-20822861 32660008 786480288 1508372605" />
+				<StatCvg itemRef="13" elems="9" hashes="-528728787" />
+				<StatCvg itemRef="7" elems="24 25 26 27" hashes="-771458445 -1307574176 1345644102 1508372605" />
+				<StatCvg itemRef="8" elems="39" hashes="2013206282" />
+			</Static>
+			<Dynamic>
+				<DynCvg itemRef="13">
+					<CtxCvg testRefs="8" elemRefs="9" />
+				</DynCvg>
+				<DynCvg itemRef="5">
+					<CtxCvg testRefs="8" elemRefs="47" />
+				</DynCvg>
+				<DynCvg itemRef="11">
+					<CtxCvg testRefs="8" elemRefs="12 13" />
+				</DynCvg>
+				<DynCvg itemRef="3">
+					<CtxCvg testRefs="8" elemRefs="43" />
+				</DynCvg>
+				<DynCvg itemRef="12">
+					<CtxCvg testRefs="8" elemRefs="12" />
+				</DynCvg>
+				<DynCvg itemRef="8">
+					<CtxCvg testRefs="8" elemRefs="39" />
+				</DynCvg>
+				<DynCvg itemRef="6">
+					<CtxCvg testRefs="8" elemRefs="29 30 31 32" />
+				</DynCvg>
+			</Dynamic>
+		</CvgData>
+	</CoverageData>
+</Coverage>

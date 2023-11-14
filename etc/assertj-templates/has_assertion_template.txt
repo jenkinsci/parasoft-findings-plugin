@@ -1,0 +1,46 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Shenyu Zheng and other Jenkins contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+  /**
+   * Verifies that the actual ${class_to_assert}'s ${property} is equal to the given one.
+   * @param ${property_safe} the given ${property} to compare the actual ${class_to_assert}'s ${property} to.
+   * @return this assertion object.
+   * @throws AssertionError - if the actual ${class_to_assert}'s ${property} is not equal to the given one.${throws_javadoc}
+   */
+  public ${self_type} has${Property}(${propertyType} ${property_safe}) ${throws}{
+    // check that actual ${class_to_assert} we want to make assertions on is not null.
+    isNotNull();
+
+    // overrides the default error message with a more explicit one
+    String assertjErrorMessage = "\nExpecting ${property} of:\n  <%s>\nto be:\n  <%s>\nbut was:\n  <%s>";
+
+    // null safe check
+    ${propertyType} actual${Property} = actual.${getter}();
+    if (!java.util.Objects.deepEquals(actual${Property}, ${property_safe})) {
+      failWithMessage(assertjErrorMessage, actual, ${property_safe}, actual${Property});
+    }
+
+    // return the current assertion for method chaining
+    return ${myself};
+  }

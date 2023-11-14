@@ -1,5 +1,22 @@
+/*
+ * Copyright 2023 Parasoft Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.parasoft.findings.jenkins.coverage;
 
+import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageQualityGate;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -9,8 +26,6 @@ import hudson.model.*;
 
 import hudson.util.ComboBoxModel;
 import hudson.util.FormValidation;
-import hudson.util.ReflectionUtils;
-import io.jenkins.plugins.coverage.metrics.steps.CoverageRecorder;
 import io.jenkins.plugins.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.jenkinsci.plugins.workflow.graph.FlowNode;
@@ -22,19 +37,20 @@ import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.verb.POST;
 
 import java.io.Serializable;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.*;
+
 public class ParasoftCoverageStep extends Step implements Serializable {
     private static final long serialVersionUID = -2235239576082380147L;
     private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
-    private String pattern;
+    private String pattern = StringUtils.EMPTY;
     private String sourceCodeEncoding = StringUtils.EMPTY;
-    private List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates = new ArrayList<>();
+    private List<CoverageQualityGate> CoverageQualityGates = new ArrayList<>();
+    private String referenceJob = StringUtils.EMPTY;
+    private String referenceBuild = StringUtils.EMPTY;
 
     @DataBoundConstructor
     public ParasoftCoverageStep(){
@@ -46,6 +62,24 @@ public class ParasoftCoverageStep extends Step implements Serializable {
     @Override
     public StepExecution start(StepContext context) throws Exception {
         return new Execution(context, this);
+    }
+
+    @DataBoundSetter
+    public void setReferenceJob(String referenceJob) {
+        this.referenceJob = referenceJob;
+    }
+
+    public String getReferenceJob() {
+        return referenceJob;
+    }
+
+    @DataBoundSetter
+    public void setReferenceBuild(String referenceBuild) {
+        this.referenceBuild = referenceBuild;
+    }
+
+    public String getReferenceBuild() {
+        return referenceBuild;
     }
 
     @DataBoundSetter
@@ -70,16 +104,16 @@ public class ParasoftCoverageStep extends Step implements Serializable {
 
     @SuppressWarnings("unused") // used by Stapler view data binding
     @DataBoundSetter
-    public void setParasoftCoverageQualityGates(final List<ParasoftCoverageQualityGate> parasoftCoverageQualityGates) {
-        if (parasoftCoverageQualityGates != null && !parasoftCoverageQualityGates.isEmpty()) {
-            this.parasoftCoverageQualityGates = List.copyOf(parasoftCoverageQualityGates);
+    public void setCoverageQualityGates(final List<CoverageQualityGate> CoverageQualityGates) {
+        if (CoverageQualityGates != null && !CoverageQualityGates.isEmpty()) {
+            this.CoverageQualityGates = List.copyOf(CoverageQualityGates);
         } else {
-            this.parasoftCoverageQualityGates = new ArrayList<>();
+            this.CoverageQualityGates = new ArrayList<>();
         }
     }
 
-    public List<ParasoftCoverageQualityGate> getParasoftCoverageQualityGates() {
-        return parasoftCoverageQualityGates;
+    public List<CoverageQualityGate> getCoverageQualityGates() {
+        return CoverageQualityGates;
     }
 
     @SuppressFBWarnings(value = "THROWS", justification = "false positive")
@@ -101,23 +135,10 @@ public class ParasoftCoverageStep extends Step implements Serializable {
             FilePath workspace = getWorkspace();
             TaskListener taskListener = getTaskListener();
             RunResultHandler runResultHandler = new RunResultHandler(run);
-            var parasoftCoverageRecorder = new ParasoftCoverageRecorder();
-            parasoftCoverageRecorder.setPattern(step.getPattern());
-            LogHandler logHandler = new LogHandler(taskListener, PARASOFT_COVERAGE_NAME);
-            CoverageConversionResult coverageResult = parasoftCoverageRecorder.performCoverageReportConversion(
-                    run, workspace, logHandler, runResultHandler);
-            CoverageRecorder recorder = setUpCoverageRecorder(coverageResult.getCoberturaPattern(), step.getSourceCodeEncoding(),
-                    step.getParasoftCoverageQualityGates());
+            ParasoftCoverageRecorder recorder = setUpCoverageRecorder(step.getPattern(), step.getSourceCodeEncoding(),
+                    step.getCoverageQualityGates(), step.getReferenceJob(), step.getReferenceBuild());
 
-            // Using reflection for calling the 'perform' method of the 'CoverageRecorder' class.
-            // Argument 'AbstractBuild<?, ?>' cannot be directly passed in.
-            Method performMethod =
-                    ReflectionUtils.findMethod(CoverageRecorder.class, "perform", Run.class, FilePath.class,
-                            TaskListener.class, StageResultHandler.class); // $NON-NLS-1$
-            ReflectionUtils.makeAccessible(Objects.requireNonNull(performMethod));
-            ReflectionUtils.invokeMethod(performMethod, recorder, run, workspace, taskListener,
-                    runResultHandler);
-            parasoftCoverageRecorder.deleteTemporaryCoverageDirs(workspace, coverageResult.getGeneratedCoverageBuildDirs(), logHandler);
+            recorder.perform(run, workspace, taskListener, runResultHandler);
             return UNUSED;
         }
     }
@@ -168,4 +189,21 @@ public class ParasoftCoverageStep extends Step implements Serializable {
         }
     }
 
+    static ParasoftCoverageRecorder setUpCoverageRecorder(final String pattern, final String sourceCodeEncoding,
+                                                          final List<CoverageQualityGate> coverageQualityGates,
+                                                          final String referenceJob, final String referenceBuild) {
+        ParasoftCoverageRecorder recorder = new ParasoftCoverageRecorder();
+        recorder.setPattern(pattern);
+        recorder.setCoverageQualityGates(coverageQualityGates);
+        if (referenceJob != null && !referenceJob.isEmpty()) {
+            recorder.setReferenceJob(referenceJob);
+        }
+        if (referenceBuild != null && !referenceBuild.isEmpty()) {
+            recorder.setReferenceBuild(referenceBuild);
+        }
+        if (sourceCodeEncoding != null && !sourceCodeEncoding.isEmpty()) {
+            recorder.setSourceCodeEncoding(sourceCodeEncoding);
+        }
+        return recorder;
+    }
 }
