@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ResultsSession buildId="C++test-2017-11-13" climode="true" execEnv="win32_x86" hasViols="true" id="1511851298970" lang="en_US" machine="cyprus" prjModule="C++test" project="C++test" tag="${scontrol_branch}-win32_x86" time="2017-11-13T22:56:31+01:00" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="10.3.4" user="modtest">
-    <TestConfig machine="cyprus" name="GoogleTest" pseudoUrl="builtin://GoogleTest" user="modtest" />
+<ResultsSession buildId="C++test-2017-11-13" climode="true" execEnv="win32_x86" hasViols="true" id="1511851298970" lang="en_US" machine="machine-name" prjModule="C++test" project="C++test" tag="${scontrol_branch}-win32_x86" time="2017-11-13T22:56:31+01:00" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="10.3.4" user="user-name">
+    <TestConfig machine="machine-name" name="GoogleTest" pseudoUrl="builtin://GoogleTest" user="user-name" />
     <Authors>
         <Author id="dev1" name="UnknownGoogleTestUser" />
-        <Author id="dev2" name="modtest" />
+        <Author id="dev2" name="user-name" />
     </Authors>
     <Analyzers>
         <Analyzer id="xtest" name="Scope Analyzer" ver="1" />
@@ -38,12 +38,12 @@
     <Scope>
         <Repositories />
         <Locations>
-            <Loc accLns="0" auth="modtest" hash="-1295238355" locRef="1" projId="607525877" projPath="" project="C++test" rejBy="com.parasoft.xtest.cpp.filter.filename.FileNamePreFilter" resProjPath="linkedlist_queue_test.xml" totLns="183" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/linkedlist_queue_test.xml" />
-            <Loc auth="UnknownGoogleTestUser" hash="-1187332121" locRef="2" projId="607525877" projPath="" project="C++test" resProjPath="Queue_death_test.cpp" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/Queue_death_test.cpp" />
-            <Loc auth="UnknownGoogleTestUser" hash="953031315" locRef="3" projId="607525877" projPath="" project="C++test" resProjPath="Queue_basic_test.cpp" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/Queue_basic_test.cpp" />
-            <Loc auth="UnknownGoogleTestUser" hash="415502830" locRef="4" projId="607525877" projPath="" project="C++test" resProjPath="LinkedList_scoped_trace_test.cpp" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/LinkedList_scoped_trace_test.cpp" />
-            <Loc auth="UnknownGoogleTestUser" hash="1299022293" locRef="5" projId="607525877" projPath="" project="C++test" resProjPath="LinkedList_fixture_test.cpp" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/LinkedList_fixture_test.cpp" />
-            <Loc auth="UnknownGoogleTestUser" hash="-1523146660" locRef="6" projId="607525877" projPath="" project="C++test" resProjPath="LinkedList_basic_test.cpp" uri="file://cyprus/C:/home/modtest/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/LinkedList_basic_test.cpp" />
+            <Loc accLns="0" auth="user-name" hash="-1295238355" locRef="1" projId="607525877" projPath="" project="C++test" rejBy="com.parasoft.xtest.cpp.filter.filename.FileNamePreFilter" resProjPath="linkedlist_queue_test.xml" totLns="183" uri="file://machine-name/C:/home/user-name/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/linkedlist_queue_test.xml" />
+            <Loc auth="UnknownGoogleTestUser" hash="-1187332121" locRef="2" projId="607525877" projPath="" project="C++test" resProjPath="Queue_death_test.cpp" uri="file://machine-name/C:/home/user-name/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/Queue_death_test.cpp" />
+            <Loc auth="UnknownGoogleTestUser" hash="953031315" locRef="3" projId="607525877" projPath="" project="C++test" resProjPath="Queue_basic_test.cpp" uri="file://machine-name/C:/home/user-name/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/Queue_basic_test.cpp" />
+            <Loc auth="UnknownGoogleTestUser" hash="415502830" locRef="4" projId="607525877" projPath="" project="C++test" resProjPath="LinkedList_scoped_trace_test.cpp" uri="file://machine-name/C:/home/user-name/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/LinkedList_scoped_trace_test.cpp" />
+            <Loc auth="UnknownGoogleTestUser" hash="1299022293" locRef="5" projId="607525877" projPath="" project="C++test" resProjPath="LinkedList_fixture_test.cpp" uri="file://machine-name/C:/home/user-name/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/LinkedList_fixture_test.cpp" />
+            <Loc auth="UnknownGoogleTestUser" hash="-1523146660" locRef="6" projId="607525877" projPath="" project="C++test" resProjPath="LinkedList_basic_test.cpp" uri="file://machine-name/C:/home/user-name/app-cpp/20171113192457/cptests/src/batch/DTP.CPPTEST.CLI.UTC.GOOGLETEST/src/linkedlist_queue/LinkedList_basic_test.cpp" />
         </Locations>
     </Scope>
 
@@ -78,7 +78,7 @@
                         <Y>0,0,0,</Y>
                         <Delta>0,0,0,</Delta>
                     </Author>
-                    <Author name="modtest">
+                    <Author name="user-name">
                         <X>11-13-17,</X>
                         <Y>12,0,0,</Y>
                         <Delta>12,0,0,</Delta>
@@ -138,62 +138,62 @@
         </Projects>
 
         <ExecViols>
-            <UnitViol loc="/Queue_death_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="2" cat="FAIL" testId="cpptest.provider://QueueDeathTest::QueueDeathTestFailure" lnHash="-1511158338" urgent="true" goals="1,">
+            <UnitViol loc="/Queue_death_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="2" cat="FAIL" testId="cpptest.provider://QueueDeathTest::QueueDeathTestFailure" lnHash="-1511158338" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="Queue_death_test.cpp::QueueDeathTest::QueueDeathTestFailure" msg="Detected 2 GoogleTest assertion failures in test case [QueueDeathTestFailure]" />
                 </Thr>
             </UnitViol>
-            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest::EnqueueFailsExpectEq" lnHash="-1511158338" urgent="true" goals="1,">
+            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest::EnqueueFailsExpectEq" lnHash="-1511158338" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="Queue_basic_test.cpp::QueueTest::EnqueueFailsExpectEq" msg="Detected 1 GoogleTest assertion failure in test case [EnqueueFailsExpectEq]" />
                 </Thr>
             </UnitViol>
-            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest::EnqueueFailsExpectNe" lnHash="-1511158338" urgent="true" goals="1,">
+            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest::EnqueueFailsExpectNe" lnHash="-1511158338" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="Queue_basic_test.cpp::QueueTest::EnqueueFailsExpectNe" msg="Detected 1 GoogleTest assertion failure in test case [EnqueueFailsExpectNe]" />
                 </Thr>
             </UnitViol>
-            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest::EnqueueFailsAssertEq" lnHash="-1511158338" urgent="true" goals="1,">
+            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest::EnqueueFailsAssertEq" lnHash="-1511158338" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="Queue_basic_test.cpp::QueueTest::EnqueueFailsAssertEq" msg="Detected 1 GoogleTest assertion failure in test case [EnqueueFailsAssertEq]" />
                 </Thr>
             </UnitViol>
-            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest_second::EnqueueFailsAssertEq" lnHash="-1511158338" urgent="true" goals="1,">
+            <UnitViol loc="/Queue_basic_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="3" cat="FAIL" testId="cpptest.provider://QueueTest_second::EnqueueFailsAssertEq" lnHash="-1511158338" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="Queue_basic_test.cpp::QueueTest_second::EnqueueFailsAssertEq" msg="Detected 1 GoogleTest assertion failure in test case [EnqueueFailsAssertEq]" />
                 </Thr>
             </UnitViol>
-            <UnitViol loc="/LinkedList_scoped_trace_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="4" cat="FAIL" testId="cpptest.provider://LinkedListScopedTraceTest::ScopedTraceTest1" lnHash="839346442" urgent="true" goals="1,">
+            <UnitViol loc="/LinkedList_scoped_trace_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="4" cat="FAIL" testId="cpptest.provider://LinkedListScopedTraceTest::ScopedTraceTest1" lnHash="839346442" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="LinkedList_scoped_trace_test.cpp::LinkedListScopedTraceTest::ScopedTraceTest1" msg="Detected 1 GoogleTest assertion failure in test case [ScopedTraceTest1]" />
                 </Thr>
             </UnitViol>
-            <UnitViol loc="/LinkedList_scoped_trace_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="4" cat="FAIL" testId="cpptest.provider://LinkedListScopedTraceTest::ScopedTraceTest2" lnHash="839346442" urgent="true" goals="1,">
+            <UnitViol loc="/LinkedList_scoped_trace_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="4" cat="FAIL" testId="cpptest.provider://LinkedListScopedTraceTest::ScopedTraceTest2" lnHash="839346442" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="LinkedList_scoped_trace_test.cpp::LinkedListScopedTraceTest::ScopedTraceTest2" msg="Detected 1 GoogleTest assertion failure in test case [ScopedTraceTest2]" />
                 </Thr>
             </UnitViol>
-            <UnitViol loc="/LinkedList_fixture_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="5" cat="FAIL" testId="cpptest.provider://LinkedListFixtureTest::checkContentsOfIntList" lnHash="839346442" urgent="true" goals="1,">
+            <UnitViol loc="/LinkedList_fixture_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="5" cat="FAIL" testId="cpptest.provider://LinkedListFixtureTest::checkContentsOfIntList" lnHash="839346442" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="LinkedList_fixture_test.cpp::LinkedListFixtureTest::checkContentsOfIntList" msg="Detected 5 GoogleTest assertion failures in test case [checkContentsOfIntList]" />
                 </Thr>
             </UnitViol>
-            <UnitViol loc="/LinkedList_fixture_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="5" cat="FAIL" testId="cpptest.provider://LinkedListFixtureTest::checkContentsOfStdStringList" lnHash="839346442" urgent="true" goals="1,">
+            <UnitViol loc="/LinkedList_fixture_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="5" cat="FAIL" testId="cpptest.provider://LinkedListFixtureTest::checkContentsOfStdStringList" lnHash="839346442" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="LinkedList_fixture_test.cpp::LinkedListFixtureTest::checkContentsOfStdStringList" msg="Detected 9 GoogleTest assertion failures in test case [checkContentsOfStdStringList]" />
                 </Thr>
             </UnitViol>
-            <UnitViol loc="/LinkedList_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="6" cat="FAIL" testId="cpptest.provider://LinkedListBasicTest::AddFrontFailsExpectEq" lnHash="839346442" urgent="true" goals="1,">
+            <UnitViol loc="/LinkedList_basic_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="6" cat="FAIL" testId="cpptest.provider://LinkedListBasicTest::AddFrontFailsExpectEq" lnHash="839346442" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="LinkedList_basic_test.cpp::LinkedListBasicTest::AddFrontFailsExpectEq" msg="Detected 1 GoogleTest assertion failure in test case [AddFrontFailsExpectEq]" />
                 </Thr>
             </UnitViol>
-            <UnitViol loc="/LinkedList_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="6" cat="FAIL" testId="cpptest.provider://LinkedListBasicTest::AddFrontFailsExpectNe" lnHash="839346442" urgent="true" goals="1,">
+            <UnitViol loc="/LinkedList_basic_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="6" cat="FAIL" testId="cpptest.provider://LinkedListBasicTest::AddFrontFailsExpectNe" lnHash="839346442" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="LinkedList_basic_test.cpp::LinkedListBasicTest::AddFrontFailsExpectNe" msg="Detected 1 GoogleTest assertion failure in test case [AddFrontFailsExpectNe]" />
                 </Thr>
             </UnitViol>
-            <UnitViol loc="/LinkedList_basic_test.cpp" ln="1" sev="1" auth="modtest" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="6" cat="FAIL" testId="cpptest.provider://LinkedListBasicTest::AddFrontFailsAssertEq" lnHash="839346442" urgent="true" goals="1,">
+            <UnitViol loc="/LinkedList_basic_test.cpp" ln="1" sev="1" auth="user-name" analyzer="com.parasoft.xtest.cpp.analyzer.googletest" locRef="6" cat="FAIL" testId="cpptest.provider://LinkedListBasicTest::AddFrontFailsAssertEq" lnHash="839346442" urgent="true" goals="1,">
                 <Thr>
                     <ThrPart type="LinkedList_basic_test.cpp::LinkedListBasicTest::AddFrontFailsAssertEq" msg="Detected 1 GoogleTest assertion failure in test case [AddFrontFailsAssertEq]" />
                 </Thr>

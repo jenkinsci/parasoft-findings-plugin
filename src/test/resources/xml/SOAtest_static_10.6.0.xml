@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="buil-id-desktop" climode="false" execEnv="win32_x86_64" hasViols="true" id="1642161812820" lang="en_US" machine="CONQUEROR" project="soavirt-test" tag="session-tag-desktop" time="2022-02-04T12:45:51+01:00" toolDispName="SOAtest" toolId="soatest" toolName="SOAtest" toolVer="2022.1.0.qualifier" user="mgorecka">
-   <TestConfig machine="CONQUEROR" name="static" pseudoUrl="soatest.user://static" user="mgorecka"/>
+<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="buil-id-desktop" climode="false" execEnv="win32_x86_64" hasViols="true" id="1642161812820" lang="en_US" machine="machine-name" project="soavirt-test" tag="session-tag-desktop" time="2022-02-04T12:45:51+01:00" toolDispName="SOAtest" toolId="soatest" toolName="SOAtest" toolVer="2022.1.0.qualifier" user="user-name">
+   <TestConfig machine="machine-name" name="static" pseudoUrl="soatest.user://static" user="user-name"/>
    <Authors>
       <Author id="dev1" name="unknown"/>
-      <Author id="dev2" name="mgorecka"/>
+      <Author id="dev2" name="user-name"/>
    </Authors>
    <Analyzers>
       <Analyzer id="com.parasoft.soavirt.desktop.static.analyzer" name="Parasoft Web Static Analyzer" ver="10.6.0.qualifier"/>
@@ -21,14 +21,14 @@
    <Scope>
       <Repositories/>
       <Locations>
-         <Loc hash="-167103014" locRef="1" projId="Examples_SOAVirtPL" projPath="/Examples_SOAVirtPL" project="Examples_SOAVirtPL" resProjPath="StaticAnalysis/XML/report (6).xml" totLns="222" uri="file://CONQUEROR/C:/Users/mgorecka/Workspaces/runtime-SOAtest/Examples_SOAVirtPL/StaticAnalysis/XML/report%20(6).xml"/>
+         <Loc hash="-167103014" locRef="1" projId="Examples_SOAVirtPL" projPath="/Examples_SOAVirtPL" project="Examples_SOAVirtPL" resProjPath="StaticAnalysis/XML/report (6).xml" totLns="222" uri="file://machine-name/C:/Users/user-name/Workspaces/runtime-SOAtest/Examples_SOAVirtPL/StaticAnalysis/XML/report%20(6).xml"/>
       </Locations>
    </Scope>
    <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:01">
       <Projects>
          <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="1" checkedLns="222" id="Examples_SOAVirtPL" name="Examples_SOAVirtPL" qfixErrs="0" suppErrs="1" totErrs="1" totFiles="1" totLns="222"/>
       </Projects>
-      
+
       <History>
          <Graph id="lns">
             <Categories>
@@ -50,8 +50,8 @@
             </Authors>
          </Graph>
       </History>
-   
-      
+
+
       <Rules>
          <CategoriesList>
             <Category authTot="1;" authUrg="0;" desc="Validate XML" name="VXML" rules="2" total="1"/>
@@ -64,12 +64,12 @@
             <Severity authTot="1;" authUrg="0;" id="1" total="1"/>
          </SeverityList>
       </Rules>
-      
+
   <Supps>
-    <Supp suppAuth="mgorecka" locRef="1" suppRsn="in-file-test" refId="1" suppLine="1" type="in-file" suppMsg="Content is not allowed in prolog." suppRule="VXML.CHECK" suppLoc="/Examples_SOAVirtPL/StaticAnalysis/XML/report (6).xml"/>
+    <Supp suppAuth="user-name" locRef="1" suppRsn="in-file-test" refId="1" suppLine="1" type="in-file" suppMsg="Content is not allowed in prolog." suppRule="VXML.CHECK" suppLoc="/Examples_SOAVirtPL/StaticAnalysis/XML/report (6).xml"/>
   </Supps>
 
-      
+
   <StdViols>
     <StdViol msg="Problem with /ResultsSession. WSDLException (at /ResultsSession): faultCode=INVALID_WSDL: Expected element '{http://schemas.xmlsoap.org/wsdl/}definitions'." ln="1" locFile="/Examples_SOAVirtPL/StaticAnalysis/XML/report (6).xml" locStartln="1" sev="1" auth="unknown" locRef="1" rule="VXML.SCR" rule.header="Check WSDL semantics" tool="soatest" lineHash="789580073" locStartPos="0" analyzer="com.parasoft.soavirt.desktop.static.analyzer" lang="web" locEndPos="0" locType="sr" hash="-167103014" locEndLn="2"/>
     <StdViol msg="Content is not allowed in prolog." ln="1" locFile="/Examples_SOAVirtPL/StaticAnalysis/XML/report (6).xml" suppRef="1" locStartln="1" sev="1" auth="unknown" locRef="1" rule="VXML.CHECK" rule.header="Ensure XML is well-formed" tool="soatest" lineHash="789580073" locStartPos="0" supp="true" analyzer="com.parasoft.soavirt.desktop.static.analyzer" lang="web" locEndPos="0" locType="sr" hash="-167103014" locEndLn="2"/>
@@ -87,7 +87,7 @@
          </Total>
       </TestedFilesDetails>
    </CodingStandards>
-   
+
   <SetupProblems>
     <Problem msg="Validation problems with mapping/cloning:" sev="1" totErrs="1" type="RulesValidation">
       <ErrorList>
@@ -97,7 +97,7 @@
   </SetupProblems>
 
    <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
-      
+
       <AssocUrls>
          <Tag disp="Requirement" name="req"/>
          <Tag disp="Feature request" name="fr"/>
@@ -106,8 +106,8 @@
          <Tag disp="Asset" name="asset"/>
          <Tag disp="Test" name="test"/>
       </AssocUrls>
-   
-      
+
+
       <History>
          <Graph id="tsks">
             <Categories>
@@ -141,7 +141,7 @@
             </Total>
          </Graph>
       </History>
-   
+
       <Categories>
          <CategoryGroup authTot="0;" authUrg="0;" desc="Functional Test Problems" id="GROUP.FUNC.FAIL" label="Fix Functional Test Problems" name="Functional Test Problems" total="0">
             <Category authTot="0;" authUrg="0;" id="FUNC.FAIL" name="Functional Failures" short="functional failure" total="0"/>
@@ -153,31 +153,31 @@
          </CategoryGroup>
       </Categories>
       <Projects/>
-      
+
   <APICoverage/>
 
-      
+
   <TrafficData/>
-      
+
   <EnvData/>
       <FuncAPISecurity pentest="false">
-         
+
   <Categories/>
-         
+
   <Attacks/>
       </FuncAPISecurity>
-      
+
   <ExecViols/>
 
-      
+
    <ExecutedTestsDetails functional="true" changeImpact="false" type="FT">
       <Total name="Passed / Total" authErr="0;0;" total="0" authFail="0;0;"/>
    </ExecutedTestsDetails>
 
-      
+
   <FuncTestDetails/>
    </Exec>
    <Statistics>
-      
+
    </Statistics>
 </ResultsSession>

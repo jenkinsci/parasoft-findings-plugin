@@ -34,6 +34,7 @@ public class RuleDocumentationStorageTest
         File tempDir = FileUtil.getTempDir(new RawServiceContext());
         try {
             URI workspaceDir = null;
+            // Modify the settings for the DTP server in "settings.properties" to pass this test
             workspaceDir = new File("src/test/resources/settings").toURI();
             Properties settings = JenkinsRulesUtil.loadSettings(new FilePath(new File(workspaceDir)), "settings.properties");
             RuleDocumentationStorage underTest = new RuleDocumentationStorage(tempDir, settings);

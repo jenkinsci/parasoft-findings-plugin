@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ResultsSession buildId="build-2014-07-23 15:40:35" climode="true" hasViols="true" id="1408162778008" lang="en_GB" machine="cook" project="" tag="Demo-filtered" time="2014-07-23T15:40:35+02:00" toolId="Exec simulator" toolName="Xtest Simulator" toolVer="1.0">
-   <TestConfig machine="cook" name="Demo-filtered" pseudoUrl="E:\OSGI_demo\configurations\Demo-filtered.properties" user="DarekPap" />
+<ResultsSession buildId="build-2014-07-23 15:40:35" climode="true" hasViols="true" id="1408162778008" lang="en_GB" machine="machine-name" project="" tag="Demo-filtered" time="2014-07-23T15:40:35+02:00" toolId="Exec simulator" toolName="Xtest Simulator" toolVer="1.0">
+   <TestConfig machine="machine-name" name="Demo-filtered" pseudoUrl="E:\OSGI_demo\configurations\Demo-filtered.properties" user="user-name" />
    <Authors>
       <Author id="dev1" name="unknown" />
    </Authors>
@@ -15,40 +15,40 @@
       <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1" />
    </VersionInfos>
    <Goals tsks="8">
-      
+
    </Goals>
-   
+
    <Scope>
       <Repositories />
       <Locations>
-         <Loc hash="933299019" locRef="21" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceTraverser.java" totLns="66" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceTraverser.java" />
-         <Loc hash="1824464682" locRef="6" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IResource.java" totLns="129" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResource.java" />
-         <Loc hash="855410254" locRef="7" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IResourceContainer.java" totLns="22" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResourceContainer.java" />
-         <Loc hash="-538458838" locRef="16" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/MarkerCreationInfo.java" totLns="84" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerCreationInfo.java" />
-         <Loc hash="-1894367396" locRef="14" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java" totLns="78" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java" />
-         <Loc hash="-558083786" locRef="18" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/Logger.java" totLns="43" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/Logger.java" />
-         <Loc hash="-3025334" locRef="11" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarker.java" totLns="27" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java" />
-         <Loc hash="512629593" locRef="22" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceUtil.java" totLns="109" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceUtil.java" />
-         <Loc hash="1892729290" locRef="2" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IFile.java" totLns="61" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java" />
-         <Loc hash="-431336354" locRef="9" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/ResourceException.java" totLns="51" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/ResourceException.java" />
-         <Loc hash="1432620297" locRef="3" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IPath.java" totLns="130" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IPath.java" />
-         <Loc hash="2103353780" locRef="20" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceFinder.java" totLns="447" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceFinder.java" />
-         <Loc hash="1239803856" locRef="1" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/EmptyWorkspace.java" totLns="104" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java" />
-         <Loc hash="-1706143452" locRef="5" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IProjectContainer.java" totLns="31" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java" />
-         <Loc hash="-202098261" locRef="4" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IProject.java" totLns="32" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java" />
-         <Loc hash="-1046930728" locRef="19" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceComparator.java" totLns="125" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceComparator.java" />
-         <Loc hash="-995009220" locRef="17" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/MarkerType.java" totLns="101" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerType.java" />
-         <Loc hash="560313352" locRef="23" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/TestableInputAdapter.java" totLns="152" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/TestableInputAdapter.java" />
-         <Loc hash="-729767802" locRef="13" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarkerListener.java" totLns="25" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerListener.java" />
-         <Loc hash="-1657353470" locRef="10" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/DefaultMarker.java" totLns="87" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/DefaultMarker.java" />
-         <Loc hash="927280722" locRef="12" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarkerInfo.java" totLns="112" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerInfo.java" />
-         <Loc hash="1895480130" locRef="15" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java" totLns="63" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java" />
-         <Loc hash="16900182" locRef="8" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IWorkspace.java" totLns="50" uri="file://cook/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" />
+         <Loc hash="933299019" locRef="21" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceTraverser.java" totLns="66" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceTraverser.java" />
+         <Loc hash="1824464682" locRef="6" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IResource.java" totLns="129" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResource.java" />
+         <Loc hash="855410254" locRef="7" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IResourceContainer.java" totLns="22" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IResourceContainer.java" />
+         <Loc hash="-538458838" locRef="16" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/MarkerCreationInfo.java" totLns="84" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerCreationInfo.java" />
+         <Loc hash="-1894367396" locRef="14" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java" totLns="78" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerManager.java" />
+         <Loc hash="-558083786" locRef="18" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/Logger.java" totLns="43" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/Logger.java" />
+         <Loc hash="-3025334" locRef="11" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarker.java" totLns="27" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarker.java" />
+         <Loc hash="512629593" locRef="22" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceUtil.java" totLns="109" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceUtil.java" />
+         <Loc hash="1892729290" locRef="2" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IFile.java" totLns="61" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IFile.java" />
+         <Loc hash="-431336354" locRef="9" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/ResourceException.java" totLns="51" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/ResourceException.java" />
+         <Loc hash="1432620297" locRef="3" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IPath.java" totLns="130" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IPath.java" />
+         <Loc hash="2103353780" locRef="20" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceFinder.java" totLns="447" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceFinder.java" />
+         <Loc hash="1239803856" locRef="1" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/EmptyWorkspace.java" totLns="104" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/EmptyWorkspace.java" />
+         <Loc hash="-1706143452" locRef="5" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IProjectContainer.java" totLns="31" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProjectContainer.java" />
+         <Loc hash="-202098261" locRef="4" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IProject.java" totLns="32" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java" />
+         <Loc hash="-1046930728" locRef="19" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/ResourceComparator.java" totLns="125" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/ResourceComparator.java" />
+         <Loc hash="-995009220" locRef="17" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/MarkerType.java" totLns="101" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerType.java" />
+         <Loc hash="560313352" locRef="23" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/util/TestableInputAdapter.java" totLns="152" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/util/TestableInputAdapter.java" />
+         <Loc hash="-729767802" locRef="13" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarkerListener.java" totLns="25" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerListener.java" />
+         <Loc hash="-1657353470" locRef="10" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/DefaultMarker.java" totLns="87" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/DefaultMarker.java" />
+         <Loc hash="927280722" locRef="12" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/IMarkerInfo.java" totLns="112" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/IMarkerInfo.java" />
+         <Loc hash="1895480130" locRef="15" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java" totLns="63" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/markers/MarkerChangedEvent.java" />
+         <Loc hash="16900182" locRef="8" projId="com.parasoft.xtest.resource.api" projPath="/com.parasoft.xtest.resource.api" project="com.parasoft.xtest.resource.api" resProjPath="src/com/parasoft/xtest/resource/api/IWorkspace.java" totLns="50" uri="file://machine-name/E:/Workspace/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IWorkspace.java" />
       </Locations>
    </Scope>
-   
+
    <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
-      
+
       <History>
          <Graph id="tsks">
             <Categories>
@@ -62,7 +62,7 @@
                <Delta>0,0,0,</Delta>
             </Total>
             <Authors secSer="1" title="" xTitle="Date" yTitle="Tasks" yTitle2="Assertion Failures">
-               <Author name="darekpap">
+               <Author name="user-name">
                   <X>06-18-14,06-20-14,07-03-14,07-04-14,07-10-14,07-14-14,07-15-14,07-16-14,07-17-14,07-18-14,07-22-14,07-23-14,</X>
                   <Y>60,64,8,60,60,60,60,60,1048,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,</Y>
                   <Delta>0,0,0,</Delta>
@@ -88,7 +88,7 @@
             </Total>
          </Graph>
       </History>
-   
+
       <Categories>
          <CategoryGroup authTot="8;" authUrg="8;" desc="This represents the tasks arising from tests that have already been reviewed. This includes exceptions that have been marked as expected, assertion failures from previously reviewed tests, and any other kind of unexpected behavior that needs to be looked at (such as timeouts)." id="GROUP.UTEST.PROBL" label="Fix Unit Test Problems" name="Unit Test Problems" total="8">
             <Category authTot="0;" authUrg="0;" id="EXC" name="Runtime Exceptions" short="exception" total="0" />
@@ -115,7 +115,7 @@
             <CategoryGroupStats id="GROUP.UNVER.FAIL" total="0" />
          </Project>
       </Projects>
-      
+
   <ExecViols>
     <ExecViol sev="1" cat="FAIL" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" startPos="1" urgent="true" endLn="3" lnHash="-431530501" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java" analyzer="Exec simulator" tcId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1 [0]" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" locRef="4" goals="1," startLn="2" endPos="22" auth="unknown" props="win32" />
     <ExecViol sev="1" cat="FAIL" testId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" startPos="1" urgent="true" endLn="3" lnHash="-431530501" loc="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java" analyzer="Exec simulator" tcId="/com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1 [1]" msg="Message for violation: /com.parasoft.xtest.resource.api/src/com/parasoft/xtest/resource/api/IProject.java.testMethod_1" locRef="4" goals="1," startLn="2" endPos="22" auth="unknown" props="win32" />
@@ -179,7 +179,7 @@
     </UnitViol>
   </ExecViols>
 
-      
+
    <ExecutedTestsDetails>
       <Total fail="6" name="Passed / Total" authErr="0;" total="85" pass="79" authFail="6;">
          <Project fail="6" name="com.parasoft.xtest.resource.api" authErr="0;" total="85" pass="79" id="com.parasoft.xtest.resource.api" authFail="6;">
@@ -1469,7 +1469,7 @@
                </CvgInfo>
             </CvgInfo>
          </CvgStats>
-         
+
       <History>
          <Graph id="cvg">
             <Categories>
@@ -1483,10 +1483,10 @@
             </Total>
          </Graph>
       </History>
-   
+
       </Coverage>
    </Exec>
    <Statistics>
-      
+
    </Statistics>
 </ResultsSession>

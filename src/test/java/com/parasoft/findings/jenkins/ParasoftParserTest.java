@@ -141,7 +141,7 @@ public class ParasoftParserTest
         Report report = parseFile(TEST_RESOURCES + "xml/jtest_10.6.0_unit.xml");
         assertEquals(25, report.getSize());
     }
-    
+
     @Test
     public void parseCppEngineTestStatic_10_3_4()
     {
@@ -218,14 +218,14 @@ public class ParasoftParserTest
             assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties)properties;
             if (additionalProperties instanceof FlowIssueAdditionalProperties) {
-                assertEquals("com.parasoft.xtest.cpp.analyzer.static.flow", additionalProperties.getAnalyzer());   
+                assertEquals("com.parasoft.xtest.cpp.analyzer.static.flow", additionalProperties.getAnalyzer());
                 countFlow++;
             } else {
                 if (issue.getType().startsWith("METRIC")) {
-                    assertEquals("com.parasoft.xtest.cpp.analyzer.static.metrics", additionalProperties.getAnalyzer());   
+                    assertEquals("com.parasoft.xtest.cpp.analyzer.static.metrics", additionalProperties.getAnalyzer());
                     countMetrics++;
                 } else {
-                    assertEquals(ANALYZER_PATTERN, additionalProperties.getAnalyzer());      
+                    assertEquals(ANALYZER_PATTERN, additionalProperties.getAnalyzer());
                 }
             }
         }
@@ -272,7 +272,7 @@ public class ParasoftParserTest
     public void parseCppStdViolsTest_10_5()
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.0_static.xml");
-        String[] authors = { "tester", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski", "tpieczkowski"};
+        String[] authors = { "tester", "user-name", "user-name", "user-name", "user-name", "user-name"};
         checkStaticReport(6, new String[] {ANALYZER_PATTERN}, report, authors, RULES, CATEGORIES);
     }
 
@@ -280,14 +280,14 @@ public class ParasoftParserTest
     public void parseCppStdViolsTest_10_5_1()
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.1_static.xml");
-        checkStaticReport(6, new String[] {ANALYZER_PATTERN}, report, new String[] {"mgorecka"}, RULES, CATEGORIES);
+        checkStaticReport(6, new String[] {ANALYZER_PATTERN}, report, new String[] {"user-name"}, RULES, CATEGORIES);
     }
 
     @Test
     public void parseCppStdViolsTest_10_5_2()
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.2_static.xml");
-        checkStaticReport(6, new String[] {ANALYZER_PATTERN}, report, new String[] {"mgorecka"}, RULES, CATEGORIES);
+        checkStaticReport(6, new String[] {ANALYZER_PATTERN}, report, new String[] {"user-name"}, RULES, CATEGORIES);
     }
 
     @Test
@@ -295,7 +295,7 @@ public class ParasoftParserTest
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.6.0_static.xml");
         checkStaticReport(11, new String[] {ANALYZER_FLOW, ANALYZER_PATTERN}, report,
-            new String[] {"mgorecka"}, new String[] {"BD-PB-ZERO", "BD-PB-NP", "OOP-23",
+            new String[] {"user-name"}, new String[] {"BD-PB-ZERO", "BD-PB-NP", "OOP-23",
                     "Object Oriented", "OOP-23", "CODSTA-CPP-04", "OPT-14"},
             new String[] {"Possible Bugs", "Object Oriented", "CODSTA-CPP-04",
                     "Coding Conventions for C++", "Optimization"});
@@ -417,7 +417,7 @@ public class ParasoftParserTest
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.1_flowanalysis.xml");
 
         assertEquals(2, report.getSize());
-        checkFAReport(report, "mgorecka");
+        checkFAReport(report, "user-name");
     }
 
     @Test
@@ -426,7 +426,7 @@ public class ParasoftParserTest
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.2_flowanalysis.xml");
 
         assertEquals(2, report.getSize());
-        checkFAReport(report, "mgorecka");
+        checkFAReport(report, "user-name");
     }
 
     @Test
@@ -435,7 +435,7 @@ public class ParasoftParserTest
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.6.0_flowanalysis.xml");
 
         assertEquals(11, report.getSize());
-        checkFAReport(report, "mgorecka");
+        checkFAReport(report, "user-name");
     }
 
     private void checkFAReport(Report report, String author)

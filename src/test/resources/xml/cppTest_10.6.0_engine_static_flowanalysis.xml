@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ResultsSession buildId="2022-10-18" climode="true" execEnv="win32_x86_64" hasViols="true" id="1664272096448" lang="en_US" machine="CONQUEROR" prjModule="FlowAnalysisCpp" project="" tag="${scontrol_branch}-win32_x86_64" time="2022-10-18T11:30:36+02:00" toolDispName="C/C++test" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="2022.1.0" user="mgorecka">
-   <TestConfig machine="CONQUEROR" name="Recommended Rules" pseudoUrl="builtin://Recommended Rules" user="mgorecka" />
+<ResultsSession buildId="2022-10-18" climode="true" execEnv="win32_x86_64" hasViols="true" id="1664272096448" lang="en_US" machine="machine-name" prjModule="FlowAnalysisCpp" project="" tag="${scontrol_branch}-win32_x86_64" time="2022-10-18T11:30:36+02:00" toolDispName="C/C++test" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="2022.1.0" user="user-name">
+   <TestConfig machine="machine-name" name="Recommended Rules" pseudoUrl="builtin://Recommended Rules" user="user-name" />
    <Authors>
-      <Author id="dev1" name="mgorecka" />
+      <Author id="dev1" name="user-name" />
    </Authors>
    <Analyzers>
       <Analyzer id="com.parasoft.xtest.scope.analyzer" name="Scope Analyzer" ver="10.6.0.20220510" />
@@ -26,7 +26,7 @@
       <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
    </VersionInfos>
    <Goals tsks="2">
-      
+
    </Goals>
    <Metrics>
       <Metric avg="1,8" disp="true" id="METRIC.CC" max="3" min="1" name="McCabe Cyclomatic Complexity" noi="10" stddev="0,872">
@@ -45,21 +45,21 @@
    <Scope>
       <Repositories />
       <Locations>
-         <Loc auth="mgorecka" hash="-1257393797" locRef="1" projId="FlowAnalysisCpp" projPath="/FlowAnalysisCpp" project="FlowAnalysisCpp" resProjPath="NullPointer.cpp" totLns="14" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/FlowAnalysisCpp/NullPointer.cpp" />
-         <Loc auth="mgorecka" hash="-1665970746" locRef="2" projId="FlowAnalysisCpp" projPath="/FlowAnalysisCpp" project="FlowAnalysisCpp" resProjPath="DivisionByZero.cpp" totLns="6" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/FlowAnalysisCpp/DivisionByZero.cpp" />
-         <Loc auth="mgorecka" hash="-443364725" locRef="3" projId="FlowAnalysisCpp" projPath="/FlowAnalysisCpp" project="FlowAnalysisCpp" resProjPath="MemoryLeak.cpp" totLns="15" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/FlowAnalysisCpp/MemoryLeak.cpp" />
-         <Loc auth="mgorecka" hash="-1141459980" locRef="4" projId="FlowAnalysisCpp" projPath="/FlowAnalysisCpp" project="FlowAnalysisCpp" resProjPath="DeadLock.cpp" totLns="143" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/FlowAnalysisCpp/DeadLock.cpp" />
+         <Loc auth="user-name" hash="-1257393797" locRef="1" projId="FlowAnalysisCpp" projPath="/FlowAnalysisCpp" project="FlowAnalysisCpp" resProjPath="NullPointer.cpp" totLns="14" uri="file://machine-name/C:/Program%20Files/Parasoft/C++test/10.5/examples/FlowAnalysisCpp/NullPointer.cpp" />
+         <Loc auth="user-name" hash="-1665970746" locRef="2" projId="FlowAnalysisCpp" projPath="/FlowAnalysisCpp" project="FlowAnalysisCpp" resProjPath="DivisionByZero.cpp" totLns="6" uri="file://machine-name/C:/Program%20Files/Parasoft/C++test/10.5/examples/FlowAnalysisCpp/DivisionByZero.cpp" />
+         <Loc auth="user-name" hash="-443364725" locRef="3" projId="FlowAnalysisCpp" projPath="/FlowAnalysisCpp" project="FlowAnalysisCpp" resProjPath="MemoryLeak.cpp" totLns="15" uri="file://machine-name/C:/Program%20Files/Parasoft/C++test/10.5/examples/FlowAnalysisCpp/MemoryLeak.cpp" />
+         <Loc auth="user-name" hash="-1141459980" locRef="4" projId="FlowAnalysisCpp" projPath="/FlowAnalysisCpp" project="FlowAnalysisCpp" resProjPath="DeadLock.cpp" totLns="143" uri="file://machine-name/C:/Program%20Files/Parasoft/C++test/10.5/examples/FlowAnalysisCpp/DeadLock.cpp" />
       </Locations>
    </Scope>
-   
+
   <SetupProblems />
 
    <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:02">
       <Projects>
          <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="4" checkedLns="178" id="FlowAnalysisCpp" name="FlowAnalysisCpp" qfixErrs="0" suppErrs="1" totErrs="2" totFiles="4" totLns="178" />
       </Projects>
-      
-      
+
+
       <Rules>
          <CategoriesList>
             <Category authTot="0;" authUrg="0;" desc="Flow Analysis" name="BD" rules="122" total="0">
@@ -142,14 +142,14 @@
             <Severity authTot="2;" authUrg="2;" id="1" total="2" />
          </SeverityList>
       </Rules>
-      
+
   <Supps>
-    <Supp suppAuth="mgorecka" locRef="3" suppRsn="source-code1" refId="1" suppLine="15" type="comment" suppMsg="Memory not deallocated: data" suppRule="BD-RES-LEAKS" suppLoc="/FlowAnalysisCpp/MemoryLeak.cpp" />
+    <Supp suppAuth="user-name" locRef="3" suppRsn="source-code1" refId="1" suppLine="15" type="comment" suppMsg="Memory not deallocated: data" suppRule="BD-RES-LEAKS" suppLoc="/FlowAnalysisCpp/MemoryLeak.cpp" />
   </Supps>
 
-      
+
   <StdViols>
-    <FlowViol msg="&quot;point&quot; may possibly be null" ln="11" locFile="/FlowAnalysisCpp/NullPointer.cpp" ruleSAFMsg="Null pointer dereferencing point" FirstElSrcRngEndPos="0" auth="mgorecka" FirstElSrcRngEndLn="8" rule="BD-PB-NP" FirstElSrcRngStartPos="0" lnHash="1178067846" ruleSCSCMsg="Source of null value" FirstElSrcRngFile="/FlowAnalysisCpp/NullPointer.cpp" rule.header="Avoid null pointer dereferencing" FirstElSrcRngStartln="7" locStartPos="0" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="1390236584" lang="cpp" violId="28bd9d57-5b90-362b-b255-000d54b8b075" locEndPos="0" urgent="true" locEndLn="12" goals="1," locStartln="11" sev="1" locRef="1" tool="c++test" lineHash="1178067846" unbViolId="f97c4a8e-441c-3e8c-a981-a30e5f510dfb" locType="sr" hash="-1257393797" causeLocRef="1">
+    <FlowViol msg="&quot;point&quot; may possibly be null" ln="11" locFile="/FlowAnalysisCpp/NullPointer.cpp" ruleSAFMsg="Null pointer dereferencing point" FirstElSrcRngEndPos="0" auth="user-name" FirstElSrcRngEndLn="8" rule="BD-PB-NP" FirstElSrcRngStartPos="0" lnHash="1178067846" ruleSCSCMsg="Source of null value" FirstElSrcRngFile="/FlowAnalysisCpp/NullPointer.cpp" rule.header="Avoid null pointer dereferencing" FirstElSrcRngStartln="7" locStartPos="0" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="1390236584" lang="cpp" violId="28bd9d57-5b90-362b-b255-000d54b8b075" locEndPos="0" urgent="true" locEndLn="12" goals="1," locStartln="11" sev="1" locRef="1" tool="c++test" lineHash="1178067846" unbViolId="f97c4a8e-441c-3e8c-a981-a30e5f510dfb" locType="sr" hash="-1257393797" causeLocRef="1">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -173,7 +173,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="Memory not deallocated: data" ln="15" locFile="/FlowAnalysisCpp/MemoryLeak.cpp" ruleSAFMsg="Point where allocated memory is lost" FirstElSrcRngEndPos="0" auth="mgorecka" FirstElSrcRngEndLn="9" rule="BD-RES-LEAKS" FirstElSrcRngStartPos="0" lnHash="125" ruleSCSCMsg="Point where memory is allocated" FirstElSrcRngFile="/FlowAnalysisCpp/MemoryLeak.cpp" rule.header="Ensure resources are freed" FirstElSrcRngStartln="8" locStartPos="0" supp="true" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="-1842545282" lang="cpp" violId="e4f91e8b-4d7f-34f3-b6aa-1f21ac2a7412" locEndPos="0" locEndLn="16" goals="0," suppRef="1" locStartln="15" sev="1" locRef="3" tool="c++test" lineHash="125" unbViolId="32734871-69a6-3758-b4ee-8bcb493b0f2d" locType="sr" hash="-443364725" causeLocRef="3">
+    <FlowViol msg="Memory not deallocated: data" ln="15" locFile="/FlowAnalysisCpp/MemoryLeak.cpp" ruleSAFMsg="Point where allocated memory is lost" FirstElSrcRngEndPos="0" auth="user-name" FirstElSrcRngEndLn="9" rule="BD-RES-LEAKS" FirstElSrcRngStartPos="0" lnHash="125" ruleSCSCMsg="Point where memory is allocated" FirstElSrcRngFile="/FlowAnalysisCpp/MemoryLeak.cpp" rule.header="Ensure resources are freed" FirstElSrcRngStartln="8" locStartPos="0" supp="true" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="-1842545282" lang="cpp" violId="e4f91e8b-4d7f-34f3-b6aa-1f21ac2a7412" locEndPos="0" locEndLn="16" goals="0," suppRef="1" locStartln="15" sev="1" locRef="3" tool="c++test" lineHash="125" unbViolId="32734871-69a6-3758-b4ee-8bcb493b0f2d" locType="sr" hash="-443364725" causeLocRef="3">
       <Props>
         <Prop key="Tracked variables" val="Allocated memory" />
       </Props>
@@ -215,7 +215,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="Unreleased lock: changePositionMutex" ln="103" locFile="/FlowAnalysisCpp/DeadLock.cpp" ruleSAFMsg="Point prior to which the lock is to be released" FirstElSrcRngEndPos="0" auth="mgorecka" FirstElSrcRngEndLn="93" rule="BD-TRS-LOCK" FirstElSrcRngStartPos="0" lnHash="404" ruleSCSCMsg="Point where the lock is acquired" pkg="Physics" FirstElSrcRngFile="/FlowAnalysisCpp/DeadLock.cpp" rule.header="Do not abandon unreleased locks" FirstElSrcRngStartln="92" locStartPos="0" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="579201482" lang="cpp" violId="fa3ee360-b164-314d-978a-92d8f98ee713" locEndPos="0" urgent="true" locEndLn="104" goals="1," locStartln="103" sev="1" locRef="4" tool="c++test" lineHash="404" unbViolId="5dca9284-191a-345b-b725-8b9de9305f66" locType="sr" hash="-1141459980" causeLocRef="4">
+    <FlowViol msg="Unreleased lock: changePositionMutex" ln="103" locFile="/FlowAnalysisCpp/DeadLock.cpp" ruleSAFMsg="Point prior to which the lock is to be released" FirstElSrcRngEndPos="0" auth="user-name" FirstElSrcRngEndLn="93" rule="BD-TRS-LOCK" FirstElSrcRngStartPos="0" lnHash="404" ruleSCSCMsg="Point where the lock is acquired" pkg="Physics" FirstElSrcRngFile="/FlowAnalysisCpp/DeadLock.cpp" rule.header="Do not abandon unreleased locks" FirstElSrcRngStartln="92" locStartPos="0" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="579201482" lang="cpp" violId="fa3ee360-b164-314d-978a-92d8f98ee713" locEndPos="0" urgent="true" locEndLn="104" goals="1," locStartln="103" sev="1" locRef="4" tool="c++test" lineHash="404" unbViolId="5dca9284-191a-345b-b725-8b9de9305f66" locType="sr" hash="-1141459980" causeLocRef="4">
       <Props />
       <ElDescList>
         <ElDesc lineHash="-1229452372" locType="sr" srcRnghash="-1141459980" locRef="4" srcRngFile="/FlowAnalysisCpp/DeadLock.cpp" ln="90" srcRngStartPos="0" srcRngEndPos="0" srcRngStartln="90" srcRngEndLn="91" desc="while (!exitGame) {" ElType="." rngLn="90">
@@ -275,6 +275,6 @@
       </TestedFilesDetails>
    </CodingStandards>
    <Statistics>
-      
+
    </Statistics>
 </ResultsSession>

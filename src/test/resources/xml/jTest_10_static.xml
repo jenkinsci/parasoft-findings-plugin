@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ResultsSession climode="true" hasViols="true" id="1381658385178" lang="en_US" machine="husarz" project="Jtest 9.5" tag="Static Analysis (2)" time="2013-09-23T13:24:37+02:00" toolId="jtest" toolName="Jtest" toolVer="10.0.0.qualifier">
-   <TestConfig machine="husarz" name="Static Analysis (2)" pseudoUrl="user://all-fa-rules" user="mczyzyk" />
+<ResultsSession climode="true" hasViols="true" id="1381658385178" lang="en_US" machine="machine-name" project="Jtest 9.5" tag="Static Analysis (2)" time="2013-09-23T13:24:37+02:00" toolId="jtest" toolName="Jtest" toolVer="10.0.0.qualifier">
+   <TestConfig machine="machine-name" name="Static Analysis (2)" pseudoUrl="user://all-fa-rules" user="user-name" />
    <Authors>
-      <Author id="dev1" name="mczyzyk" />
+      <Author id="dev1" name="user-name" />
    </Authors>
    <Analyzers>
       <Analyzer id="com.parasoft.jtest.standards.checkers.java" name="Java Rules" ver="10.0.0.qualifier" />
@@ -14,10 +14,10 @@
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.scope" resultId="IScopeProjectInfo" ver="3" ver10x="1" />
    </VersionInfos>
    <Goals tsks="50">
-      
+
    </Goals>
-   
-   
+
+
   <SetupProblems>
     <Problem sev="1" type="MissingRulesSetupProblem" msg="NLS missing message: MissingRules_Problem_Title in: com.parasoft.jtest.standards.res.messages">
       <ErrorList>
@@ -29,147 +29,147 @@
    <Scope>
       <Repositories />
       <Locations>
-         <Loc hash="-1323408464" locRef="65" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\junit4\IMoney.java" totLns="45" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/junit4/IMoney.java" />
-         <Loc hash="398557395" locRef="107" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\singletons\RaffleTicketPicker.java" totLns="69" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/singletons/RaffleTicketPicker.java" />
-         <Loc hash="412288049" locRef="111" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\FifoStackMachine.java" totLns="36" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/FifoStackMachine.java" />
-         <Loc hash="-454481916" locRef="47" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\XMLInjection.java" totLns="41" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/XMLInjection.java" />
-         <Loc hash="1997559057" locRef="60" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\inputs\ParseIntTest.java" totLns="44" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/inputs/ParseIntTest.java" />
-         <Loc hash="1343022762" locRef="97" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\NonSymmetricEqualsFixed.java" totLns="30" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/NonSymmetricEqualsFixed.java" />
-         <Loc hash="-1107680187" locRef="17" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\CreditCard.java" totLns="199" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/CreditCard.java" />
-         <Loc hash="-516432544" locRef="106" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\singletons\Guestbook.java" totLns="82" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/singletons/Guestbook.java" />
-         <Loc hash="-784476576" locRef="27" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseImages.java" totLns="35" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseImages.java" />
-         <Loc hash="-296435483" locRef="73" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\AccountDynamicTest.java" totLns="36" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/AccountDynamicTest.java" />
-         <Loc hash="106409609" locRef="29" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseNIOChannels.java" totLns="36" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseNIOChannels.java" />
-         <Loc hash="1305049501" locRef="86" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\repository\Message.java" totLns="28" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/repository/Message.java" />
-         <Loc hash="-769004876" locRef="94" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\IteratingThroughLinkedListUsingGet.java" totLns="26" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/IteratingThroughLinkedListUsingGet.java" />
-         <Loc hash="-971567706" locRef="116" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\struts\InputForm.java" totLns="25" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/struts/InputForm.java" />
-         <Loc hash="411349189" locRef="133" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="WEB-INF\validation.xml" totLns="74" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/WEB-INF/validation.xml" />
-         <Loc hash="361246837" locRef="41" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\SQLInjection.java" totLns="62" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/SQLInjection.java" />
-         <Loc hash="-471131991" locRef="35" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\DivisionByZero.java" totLns="78" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/DivisionByZero.java" />
-         <Loc hash="-303031357" locRef="81" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\ITransaction.java" totLns="22" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/ITransaction.java" />
-         <Loc hash="111534471" locRef="68" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\junit4\MoneyTest.java" totLns="168" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/junit4/MoneyTest.java" />
-         <Loc hash="-697829711" locRef="22" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\Transaction.java" totLns="14" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/Transaction.java" />
-         <Loc hash="2146360543" locRef="84" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\queue\Queue.java" totLns="76" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/queue/Queue.java" />
-         <Loc hash="-1187516400" locRef="108" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\AbstractStackMachine.java" totLns="143" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/AbstractStackMachine.java" />
-         <Loc hash="705364080" locRef="96" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\NonSymmetricEquals.java" totLns="39" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/NonSymmetricEquals.java" />
-         <Loc hash="1652415353" locRef="127" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\suppress\Example.java" totLns="7" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/suppress/Example.java" />
-         <Loc hash="1692496407" locRef="53" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\SimpleNeverHappenedAndNotAcknowledgedByBD.java" totLns="34" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/SimpleNeverHappenedAndNotAcknowledgedByBD.java" />
-         <Loc hash="1330481014" locRef="119" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\ConstructorExampleTest.java" totLns="52" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/ConstructorExampleTest.java" />
-         <Loc hash="-1326869201" locRef="103" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\UserMethodSpecifier.java" totLns="41" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/UserMethodSpecifier.java" />
-         <Loc hash="-929205062" locRef="129" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\unit\Quickfix.java" totLns="23" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/unit/Quickfix.java" />
-         <Loc hash="404961246" locRef="98" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\InputValidatorExample.java" totLns="19" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/InputValidatorExample.java" />
-         <Loc hash="1812380721" locRef="125" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\Simple.java" totLns="11" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/Simple.java" />
-         <Loc hash="426128185" locRef="134" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="WEB-INF\web.xml" totLns="69" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/WEB-INF/web.xml" />
-         <Loc hash="-1157077983" locRef="18" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\CreditCardWithObject.java" totLns="200" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/CreditCardWithObject.java" />
-         <Loc hash="253175353" locRef="90" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\AddTest.java" totLns="11" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/AddTest.java" />
-         <Loc hash="1152084680" locRef="115" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\StackList.java" totLns="112" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/StackList.java" />
-         <Loc hash="1371482814" locRef="95" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\IteratingThroughLinkedListUsingGetFixed.java" totLns="28" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/IteratingThroughLinkedListUsingGetFixed.java" />
-         <Loc hash="2086332510" locRef="49" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\ExtendedNullPointer.java" totLns="59" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/ExtendedNullPointer.java" />
-         <Loc hash="914882630" locRef="45" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\UseBeforeInitialization.java" totLns="73" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/UseBeforeInitialization.java" />
-         <Loc hash="-1154982270" locRef="51" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\MyDictionary.java" totLns="27" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/MyDictionary.java" />
-         <Loc hash="-2079818279" locRef="102" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\UserInputValidator.java" totLns="22" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/UserInputValidator.java" />
-         <Loc hash="-184029439" locRef="105" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\servlets\ExampleServlet.java" totLns="24" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/servlets/ExampleServlet.java" />
-         <Loc hash="1150192803" locRef="21" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\DepositTransactionTest.java" totLns="57" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/DepositTransactionTest.java" />
-         <Loc hash="-1475001764" locRef="126" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\suppress\AllFileSuppress.java" totLns="13" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/suppress/AllFileSuppress.java" />
-         <Loc hash="986625853" locRef="69" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\leaks\Library.java" totLns="107" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/leaks/Library.java" />
-         <Loc hash="903050763" locRef="38" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\InefficientCollectionRemoval.java" totLns="32" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/InefficientCollectionRemoval.java" />
-         <Loc hash="-777800340" locRef="101" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\method_specifier.properties" totLns="1" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/method_specifier.properties" />
-         <Loc hash="-1719823464" locRef="79" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\Customer.java" totLns="114" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/Customer.java" />
-         <Loc hash="162881537" locRef="5" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\jsp\mycart.jsp" totLns="102" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/jsp/mycart.jsp" />
-         <Loc hash="363227546" locRef="10" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\WEB-INF\tiles-defs.xml" totLns="42" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/bin/WEB-INF/tiles-defs.xml" />
-         <Loc hash="-1380665891" locRef="30" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseRAFs.java" totLns="36" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseRAFs.java" />
-         <Loc hash="-728312803" locRef="4" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\jsp\login.jsp" totLns="24" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/jsp/login.jsp" />
-         <Loc hash="529854093" locRef="121" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\FileExample.java" totLns="23" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/FileExample.java" />
-         <Loc hash="-2135057720" locRef="99" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\input_validator.properties" totLns="1" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/input_validator.properties" />
-         <Loc hash="-521846276" locRef="44" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\UseBeforeInConstructorInitialization.java" totLns="34" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/UseBeforeInConstructorInitialization.java" />
-         <Loc hash="290117829" locRef="128" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\unit\Example.java" totLns="75" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/unit/Example.java" />
-         <Loc hash="-728312803" locRef="62" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\jsp\login.jsp" totLns="24" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/jsp/login.jsp" />
-         <Loc hash="1259778297" locRef="3" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\jsp\confirm.jsp" totLns="23" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/jsp/confirm.jsp" />
-         <Loc hash="-2105563810" locRef="124" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\Logger.java" totLns="9" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/Logger.java" />
-         <Loc hash="-245476435" locRef="85" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\repository\IntFields.java" totLns="28" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/repository/IntFields.java" />
-         <Loc hash="1005976568" locRef="109" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\CommandLineStackMachine.java" totLns="117" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/CommandLineStackMachine.java" />
-         <Loc hash="162881537" locRef="63" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\jsp\mycart.jsp" totLns="102" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/jsp/mycart.jsp" />
-         <Loc hash="-2034860641" locRef="59" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\inputs\InputData.java" totLns="37" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/inputs/InputData.java" />
-         <Loc hash="152770624" locRef="104" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\security\InputValidation.java" totLns="136" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/security/InputValidation.java" />
-         <Loc hash="1418434383" locRef="87" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\AccessingFileSimultaneously.java" totLns="37" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/AccessingFileSimultaneously.java" />
-         <Loc hash="-1483577808" locRef="82" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\LogAccountInfo.java" totLns="46" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/LogAccountInfo.java" />
-         <Loc hash="-225334836" locRef="1" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="build.xml" totLns="94" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/build.xml" />
-         <Loc hash="958313566" locRef="66" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\junit4\Money.java" totLns="78" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/junit4/Money.java" />
-         <Loc hash="-1517100743" locRef="42" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\SystemInjection.java" totLns="65" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/SystemInjection.java" />
-         <Loc hash="-960213214" locRef="54" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\eval\Simple.java" totLns="132" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/eval/Simple.java" />
-         <Loc hash="411349189" locRef="11" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\WEB-INF\validation.xml" totLns="74" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/bin/WEB-INF/validation.xml" />
-         <Loc hash="-1384728861" locRef="20" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\Deposit.java" totLns="20" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/Deposit.java" />
-         <Loc hash="330872929" locRef="123" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\IOExample.java" totLns="61" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/IOExample.java" />
-         <Loc hash="-225334836" locRef="2" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\build.xml" totLns="94" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/bin/build.xml" />
-         <Loc hash="-148247498" locRef="120" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\DatabaseExample.java" totLns="112" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/DatabaseExample.java" />
-         <Loc hash="-1161598625" locRef="23" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\TransactionTest.java" totLns="73" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/TransactionTest.java" />
-         <Loc hash="1405819373" locRef="24" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\Withdraw.java" totLns="15" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/Withdraw.java" />
-         <Loc hash="-224268807" locRef="114" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\StackInterface.java" totLns="51" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/StackInterface.java" />
-         <Loc hash="-552576268" locRef="34" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\DereferenceBeforeNullCheck.java" totLns="54" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/DereferenceBeforeNullCheck.java" />
-         <Loc hash="-1716541218" locRef="9" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\WEB-INF\struts-config.xml" totLns="43" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/bin/WEB-INF/struts-config.xml" />
-         <Loc hash="-60100263" locRef="122" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\FileExampleTest.java" totLns="62" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/FileExampleTest.java" />
-         <Loc hash="2000096904" locRef="39" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\InefficientMapRemoval.java" totLns="58" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/InefficientMapRemoval.java" />
-         <Loc hash="345942915" locRef="80" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\DepositTransaction.java" totLns="24" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/DepositTransaction.java" />
-         <Loc hash="-1106172127" locRef="57" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\initialize\RaffleTicketPicker.java" totLns="71" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/initialize/RaffleTicketPicker.java" />
-         <Loc hash="549974854" locRef="15" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\BankAccount.java" totLns="47" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/BankAccount.java" />
-         <Loc hash="-716435735" locRef="112" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\LifoStackMachine.java" totLns="40" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/LifoStackMachine.java" />
-         <Loc hash="1203158776" locRef="33" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\ClassCast.java" totLns="19" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/ClassCast.java" />
-         <Loc hash="-1836386940" locRef="28" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseLogging.java" totLns="24" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseLogging.java" />
-         <Loc hash="1374828955" locRef="19" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\Customer.java" totLns="20" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/Customer.java" />
-         <Loc hash="791341732" locRef="89" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\Add.java" totLns="9" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/Add.java" />
-         <Loc hash="-1587264213" locRef="91" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\ExamplesUtil.java" totLns="35" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/ExamplesUtil.java" />
-         <Loc hash="-1502586885" locRef="113" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\RunnableStackMachine.java" totLns="447" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/RunnableStackMachine.java" />
-         <Loc hash="-1015952933" locRef="78" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\CreditCard.java" totLns="200" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/CreditCard.java" />
-         <Loc hash="-701256765" locRef="88" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\AccessingFileSimultaneouslyFixed.java" totLns="36" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/AccessingFileSimultaneouslyFixed.java" />
-         <Loc hash="-1671927431" locRef="55" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\exec\Parameterized.java" totLns="14" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/exec/Parameterized.java" />
-         <Loc hash="1293137078" locRef="100" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\MethodSpecifierExample.java" totLns="45" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/MethodSpecifierExample.java" />
-         <Loc hash="-777800340" locRef="8" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\runtime\security\method_specifier.properties" totLns="1" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/runtime/security/method_specifier.properties" />
-         <Loc hash="-2135057720" locRef="7" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\runtime\security\input_validator.properties" totLns="1" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/runtime/security/input_validator.properties" />
-         <Loc hash="896006844" locRef="72" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\AccountDynamicSuite.java" totLns="25" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/AccountDynamicSuite.java" />
-         <Loc hash="-1794176664" locRef="52" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\NullPointer.java" totLns="31" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/NullPointer.java" />
-         <Loc hash="784352566" locRef="48" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\DatabaseObject.java" totLns="67" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/DatabaseObject.java" />
-         <Loc hash="1215937753" locRef="93" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\ExitingFinallyBlockAbruptlyFixed.java" totLns="28" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/ExitingFinallyBlockAbruptlyFixed.java" />
-         <Loc hash="-733889105" locRef="36" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\FilesInjection.java" totLns="32" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/FilesInjection.java" />
-         <Loc hash="426128185" locRef="12" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\WEB-INF\web.xml" totLns="69" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/bin/WEB-INF/web.xml" />
-         <Loc hash="953714558" locRef="40" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\InefficientMapUsage.java" totLns="37" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/InefficientMapUsage.java" />
-         <Loc hash="-1812218702" locRef="26" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseGSS.java" totLns="33" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseGSS.java" />
-         <Loc hash="980076692" locRef="14" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="dbc\RequirementViolation.java" totLns="15" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/dbc/RequirementViolation.java" />
-         <Loc hash="-1924865398" locRef="13" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="dbc\Example.java" totLns="19" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/dbc/Example.java" />
-         <Loc hash="-1432761020" locRef="76" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\Bank.java" totLns="63" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/Bank.java" />
-         <Loc hash="1259778297" locRef="61" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\jsp\confirm.jsp" totLns="23" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/jsp/confirm.jsp" />
-         <Loc hash="-945271585" locRef="110" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\CustomListRenderer.java" totLns="31" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/CustomListRenderer.java" />
-         <Loc hash="-1627413893" locRef="25" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\WithdrawTransactionTest.java" totLns="52" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/WithdrawTransactionTest.java" />
-         <Loc hash="363227546" locRef="132" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="WEB-INF\tiles-defs.xml" totLns="42" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/WEB-INF/tiles-defs.xml" />
-         <Loc hash="251929394" locRef="83" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\WithdrawalTransaction.java" totLns="24" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/WithdrawalTransaction.java" />
-         <Loc hash="-1716541218" locRef="131" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="WEB-INF\struts-config.xml" totLns="43" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/WEB-INF/struts-config.xml" />
-         <Loc hash="-304524193" locRef="74" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\AccountJUnit4Test.java" totLns="31" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/AccountJUnit4Test.java" />
-         <Loc hash="-2126764651" locRef="118" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\ConstructorExample.java" totLns="15" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/ConstructorExample.java" />
-         <Loc hash="672975014" locRef="46" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\WebApplication.java" totLns="50" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/WebApplication.java" />
-         <Loc hash="-1121815185" locRef="43" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\UnreachableCode.java" totLns="58" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/UnreachableCode.java" />
-         <Loc hash="1930052595" locRef="64" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\jsp\sushi_list.jsp" totLns="80" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/jsp/sushi_list.jsp" />
-         <Loc hash="207838171" locRef="71" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\Account.java" totLns="78" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/Account.java" />
-         <Loc hash="-699500644" locRef="37" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\IncorrectIteratorUsage.java" totLns="41" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/IncorrectIteratorUsage.java" />
-         <Loc hash="-1888197764" locRef="31" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseSockets.java" totLns="30" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseSockets.java" />
-         <Loc hash="-1551204630" locRef="50" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\MessageFormatter.java" totLns="17" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/MessageFormatter.java" />
-         <Loc hash="-1229095135" locRef="75" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\AccountTest.java" totLns="34" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/AccountTest.java" />
-         <Loc hash="874526682" locRef="67" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\junit4\MoneyBag.java" totLns="124" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/junit4/MoneyBag.java" />
-         <Loc hash="1156277555" locRef="77" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\ConnectionException.java" totLns="9" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/ConnectionException.java" />
-         <Loc hash="-1699291202" locRef="58" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\inputs\AddTest.java" totLns="45" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/inputs/AddTest.java" />
-         <Loc hash="1779163050" locRef="92" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\ExitingFinallyBlockAbruptly.java" totLns="28" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/ExitingFinallyBlockAbruptly.java" />
-         <Loc hash="1504991512" locRef="32" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseXMLEncDec.java" totLns="76" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseXMLEncDec.java" />
-         <Loc hash="1930052595" locRef="6" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\jsp\sushi_list.jsp" totLns="80" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/jsp/sushi_list.jsp" />
-         <Loc hash="1073933388" locRef="130" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\unit\TestingTasks.java" totLns="44" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/unit/TestingTasks.java" />
-         <Loc hash="406098653" locRef="117" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\struts\LoginAction.java" totLns="24" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/struts/LoginAction.java" />
-         <Loc hash="-69771240" locRef="16" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\ChangeOwnership.java" totLns="15" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/ChangeOwnership.java" />
-         <Loc hash="-798293711" locRef="70" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\AbstractTransaction.java" totLns="14" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/AbstractTransaction.java" />
-         <Loc hash="-512299843" locRef="56" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\initialize\Guestbook.java" totLns="94" uri="file://husarz/E:/workspaces/branche/trunk/Jtest%20Example/examples/initialize/Guestbook.java" />
+         <Loc hash="-1323408464" locRef="65" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\junit4\IMoney.java" totLns="45" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/junit4/IMoney.java" />
+         <Loc hash="398557395" locRef="107" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\singletons\RaffleTicketPicker.java" totLns="69" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/singletons/RaffleTicketPicker.java" />
+         <Loc hash="412288049" locRef="111" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\FifoStackMachine.java" totLns="36" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/FifoStackMachine.java" />
+         <Loc hash="-454481916" locRef="47" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\XMLInjection.java" totLns="41" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/XMLInjection.java" />
+         <Loc hash="1997559057" locRef="60" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\inputs\ParseIntTest.java" totLns="44" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/inputs/ParseIntTest.java" />
+         <Loc hash="1343022762" locRef="97" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\NonSymmetricEqualsFixed.java" totLns="30" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/NonSymmetricEqualsFixed.java" />
+         <Loc hash="-1107680187" locRef="17" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\CreditCard.java" totLns="199" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/CreditCard.java" />
+         <Loc hash="-516432544" locRef="106" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\singletons\Guestbook.java" totLns="82" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/singletons/Guestbook.java" />
+         <Loc hash="-784476576" locRef="27" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseImages.java" totLns="35" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseImages.java" />
+         <Loc hash="-296435483" locRef="73" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\AccountDynamicTest.java" totLns="36" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/AccountDynamicTest.java" />
+         <Loc hash="106409609" locRef="29" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseNIOChannels.java" totLns="36" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseNIOChannels.java" />
+         <Loc hash="1305049501" locRef="86" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\repository\Message.java" totLns="28" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/repository/Message.java" />
+         <Loc hash="-769004876" locRef="94" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\IteratingThroughLinkedListUsingGet.java" totLns="26" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/IteratingThroughLinkedListUsingGet.java" />
+         <Loc hash="-971567706" locRef="116" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\struts\InputForm.java" totLns="25" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/struts/InputForm.java" />
+         <Loc hash="411349189" locRef="133" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="WEB-INF\validation.xml" totLns="74" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/WEB-INF/validation.xml" />
+         <Loc hash="361246837" locRef="41" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\SQLInjection.java" totLns="62" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/SQLInjection.java" />
+         <Loc hash="-471131991" locRef="35" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\DivisionByZero.java" totLns="78" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/DivisionByZero.java" />
+         <Loc hash="-303031357" locRef="81" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\ITransaction.java" totLns="22" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/ITransaction.java" />
+         <Loc hash="111534471" locRef="68" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\junit4\MoneyTest.java" totLns="168" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/junit4/MoneyTest.java" />
+         <Loc hash="-697829711" locRef="22" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\Transaction.java" totLns="14" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/Transaction.java" />
+         <Loc hash="2146360543" locRef="84" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\queue\Queue.java" totLns="76" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/queue/Queue.java" />
+         <Loc hash="-1187516400" locRef="108" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\AbstractStackMachine.java" totLns="143" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/AbstractStackMachine.java" />
+         <Loc hash="705364080" locRef="96" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\NonSymmetricEquals.java" totLns="39" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/NonSymmetricEquals.java" />
+         <Loc hash="1652415353" locRef="127" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\suppress\Example.java" totLns="7" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/suppress/Example.java" />
+         <Loc hash="1692496407" locRef="53" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\SimpleNeverHappenedAndNotAcknowledgedByBD.java" totLns="34" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/SimpleNeverHappenedAndNotAcknowledgedByBD.java" />
+         <Loc hash="1330481014" locRef="119" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\ConstructorExampleTest.java" totLns="52" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/ConstructorExampleTest.java" />
+         <Loc hash="-1326869201" locRef="103" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\UserMethodSpecifier.java" totLns="41" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/UserMethodSpecifier.java" />
+         <Loc hash="-929205062" locRef="129" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\unit\Quickfix.java" totLns="23" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/unit/Quickfix.java" />
+         <Loc hash="404961246" locRef="98" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\InputValidatorExample.java" totLns="19" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/InputValidatorExample.java" />
+         <Loc hash="1812380721" locRef="125" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\Simple.java" totLns="11" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/Simple.java" />
+         <Loc hash="426128185" locRef="134" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="WEB-INF\web.xml" totLns="69" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/WEB-INF/web.xml" />
+         <Loc hash="-1157077983" locRef="18" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\CreditCardWithObject.java" totLns="200" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/CreditCardWithObject.java" />
+         <Loc hash="253175353" locRef="90" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\AddTest.java" totLns="11" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/AddTest.java" />
+         <Loc hash="1152084680" locRef="115" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\StackList.java" totLns="112" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/StackList.java" />
+         <Loc hash="1371482814" locRef="95" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\IteratingThroughLinkedListUsingGetFixed.java" totLns="28" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/IteratingThroughLinkedListUsingGetFixed.java" />
+         <Loc hash="2086332510" locRef="49" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\ExtendedNullPointer.java" totLns="59" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/ExtendedNullPointer.java" />
+         <Loc hash="914882630" locRef="45" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\UseBeforeInitialization.java" totLns="73" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/UseBeforeInitialization.java" />
+         <Loc hash="-1154982270" locRef="51" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\MyDictionary.java" totLns="27" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/MyDictionary.java" />
+         <Loc hash="-2079818279" locRef="102" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\UserInputValidator.java" totLns="22" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/UserInputValidator.java" />
+         <Loc hash="-184029439" locRef="105" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\servlets\ExampleServlet.java" totLns="24" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/servlets/ExampleServlet.java" />
+         <Loc hash="1150192803" locRef="21" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\DepositTransactionTest.java" totLns="57" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/DepositTransactionTest.java" />
+         <Loc hash="-1475001764" locRef="126" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\suppress\AllFileSuppress.java" totLns="13" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/suppress/AllFileSuppress.java" />
+         <Loc hash="986625853" locRef="69" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\leaks\Library.java" totLns="107" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/leaks/Library.java" />
+         <Loc hash="903050763" locRef="38" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\InefficientCollectionRemoval.java" totLns="32" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/InefficientCollectionRemoval.java" />
+         <Loc hash="-777800340" locRef="101" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\method_specifier.properties" totLns="1" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/method_specifier.properties" />
+         <Loc hash="-1719823464" locRef="79" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\Customer.java" totLns="114" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/Customer.java" />
+         <Loc hash="162881537" locRef="5" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\jsp\mycart.jsp" totLns="102" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/jsp/mycart.jsp" />
+         <Loc hash="363227546" locRef="10" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\WEB-INF\tiles-defs.xml" totLns="42" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/bin/WEB-INF/tiles-defs.xml" />
+         <Loc hash="-1380665891" locRef="30" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseRAFs.java" totLns="36" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseRAFs.java" />
+         <Loc hash="-728312803" locRef="4" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\jsp\login.jsp" totLns="24" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/jsp/login.jsp" />
+         <Loc hash="529854093" locRef="121" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\FileExample.java" totLns="23" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/FileExample.java" />
+         <Loc hash="-2135057720" locRef="99" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\input_validator.properties" totLns="1" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/input_validator.properties" />
+         <Loc hash="-521846276" locRef="44" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\UseBeforeInConstructorInitialization.java" totLns="34" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/UseBeforeInConstructorInitialization.java" />
+         <Loc hash="290117829" locRef="128" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\unit\Example.java" totLns="75" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/unit/Example.java" />
+         <Loc hash="-728312803" locRef="62" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\jsp\login.jsp" totLns="24" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/jsp/login.jsp" />
+         <Loc hash="1259778297" locRef="3" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\jsp\confirm.jsp" totLns="23" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/jsp/confirm.jsp" />
+         <Loc hash="-2105563810" locRef="124" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\Logger.java" totLns="9" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/Logger.java" />
+         <Loc hash="-245476435" locRef="85" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\repository\IntFields.java" totLns="28" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/repository/IntFields.java" />
+         <Loc hash="1005976568" locRef="109" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\CommandLineStackMachine.java" totLns="117" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/CommandLineStackMachine.java" />
+         <Loc hash="162881537" locRef="63" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\jsp\mycart.jsp" totLns="102" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/jsp/mycart.jsp" />
+         <Loc hash="-2034860641" locRef="59" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\inputs\InputData.java" totLns="37" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/inputs/InputData.java" />
+         <Loc hash="152770624" locRef="104" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\security\InputValidation.java" totLns="136" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/security/InputValidation.java" />
+         <Loc hash="1418434383" locRef="87" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\AccessingFileSimultaneously.java" totLns="37" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/AccessingFileSimultaneously.java" />
+         <Loc hash="-1483577808" locRef="82" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\LogAccountInfo.java" totLns="46" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/LogAccountInfo.java" />
+         <Loc hash="-225334836" locRef="1" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="build.xml" totLns="94" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/build.xml" />
+         <Loc hash="958313566" locRef="66" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\junit4\Money.java" totLns="78" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/junit4/Money.java" />
+         <Loc hash="-1517100743" locRef="42" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\SystemInjection.java" totLns="65" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/SystemInjection.java" />
+         <Loc hash="-960213214" locRef="54" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\eval\Simple.java" totLns="132" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/eval/Simple.java" />
+         <Loc hash="411349189" locRef="11" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\WEB-INF\validation.xml" totLns="74" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/bin/WEB-INF/validation.xml" />
+         <Loc hash="-1384728861" locRef="20" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\Deposit.java" totLns="20" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/Deposit.java" />
+         <Loc hash="330872929" locRef="123" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\IOExample.java" totLns="61" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/IOExample.java" />
+         <Loc hash="-225334836" locRef="2" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\build.xml" totLns="94" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/bin/build.xml" />
+         <Loc hash="-148247498" locRef="120" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\DatabaseExample.java" totLns="112" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/DatabaseExample.java" />
+         <Loc hash="-1161598625" locRef="23" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\TransactionTest.java" totLns="73" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/TransactionTest.java" />
+         <Loc hash="1405819373" locRef="24" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\Withdraw.java" totLns="15" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/Withdraw.java" />
+         <Loc hash="-224268807" locRef="114" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\StackInterface.java" totLns="51" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/StackInterface.java" />
+         <Loc hash="-552576268" locRef="34" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\DereferenceBeforeNullCheck.java" totLns="54" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/DereferenceBeforeNullCheck.java" />
+         <Loc hash="-1716541218" locRef="9" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\WEB-INF\struts-config.xml" totLns="43" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/bin/WEB-INF/struts-config.xml" />
+         <Loc hash="-60100263" locRef="122" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\FileExampleTest.java" totLns="62" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/FileExampleTest.java" />
+         <Loc hash="2000096904" locRef="39" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\InefficientMapRemoval.java" totLns="58" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/InefficientMapRemoval.java" />
+         <Loc hash="345942915" locRef="80" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\DepositTransaction.java" totLns="24" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/DepositTransaction.java" />
+         <Loc hash="-1106172127" locRef="57" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\initialize\RaffleTicketPicker.java" totLns="71" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/initialize/RaffleTicketPicker.java" />
+         <Loc hash="549974854" locRef="15" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\BankAccount.java" totLns="47" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/BankAccount.java" />
+         <Loc hash="-716435735" locRef="112" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\LifoStackMachine.java" totLns="40" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/LifoStackMachine.java" />
+         <Loc hash="1203158776" locRef="33" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\ClassCast.java" totLns="19" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/ClassCast.java" />
+         <Loc hash="-1836386940" locRef="28" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseLogging.java" totLns="24" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseLogging.java" />
+         <Loc hash="1374828955" locRef="19" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\Customer.java" totLns="20" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/Customer.java" />
+         <Loc hash="791341732" locRef="89" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\Add.java" totLns="9" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/Add.java" />
+         <Loc hash="-1587264213" locRef="91" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\ExamplesUtil.java" totLns="35" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/ExamplesUtil.java" />
+         <Loc hash="-1502586885" locRef="113" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\RunnableStackMachine.java" totLns="447" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/RunnableStackMachine.java" />
+         <Loc hash="-1015952933" locRef="78" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\CreditCard.java" totLns="200" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/CreditCard.java" />
+         <Loc hash="-701256765" locRef="88" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\AccessingFileSimultaneouslyFixed.java" totLns="36" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/AccessingFileSimultaneouslyFixed.java" />
+         <Loc hash="-1671927431" locRef="55" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\exec\Parameterized.java" totLns="14" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/exec/Parameterized.java" />
+         <Loc hash="1293137078" locRef="100" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\security\MethodSpecifierExample.java" totLns="45" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/security/MethodSpecifierExample.java" />
+         <Loc hash="-777800340" locRef="8" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\runtime\security\method_specifier.properties" totLns="1" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/runtime/security/method_specifier.properties" />
+         <Loc hash="-2135057720" locRef="7" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\runtime\security\input_validator.properties" totLns="1" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/runtime/security/input_validator.properties" />
+         <Loc hash="896006844" locRef="72" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\AccountDynamicSuite.java" totLns="25" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/AccountDynamicSuite.java" />
+         <Loc hash="-1794176664" locRef="52" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\NullPointer.java" totLns="31" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/NullPointer.java" />
+         <Loc hash="784352566" locRef="48" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\DatabaseObject.java" totLns="67" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/DatabaseObject.java" />
+         <Loc hash="1215937753" locRef="93" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\ExitingFinallyBlockAbruptlyFixed.java" totLns="28" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/ExitingFinallyBlockAbruptlyFixed.java" />
+         <Loc hash="-733889105" locRef="36" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\FilesInjection.java" totLns="32" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/FilesInjection.java" />
+         <Loc hash="426128185" locRef="12" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\WEB-INF\web.xml" totLns="69" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/bin/WEB-INF/web.xml" />
+         <Loc hash="953714558" locRef="40" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\InefficientMapUsage.java" totLns="37" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/InefficientMapUsage.java" />
+         <Loc hash="-1812218702" locRef="26" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseGSS.java" totLns="33" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseGSS.java" />
+         <Loc hash="980076692" locRef="14" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="dbc\RequirementViolation.java" totLns="15" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/dbc/RequirementViolation.java" />
+         <Loc hash="-1924865398" locRef="13" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="dbc\Example.java" totLns="19" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/dbc/Example.java" />
+         <Loc hash="-1432761020" locRef="76" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\Bank.java" totLns="63" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/Bank.java" />
+         <Loc hash="1259778297" locRef="61" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\jsp\confirm.jsp" totLns="23" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/jsp/confirm.jsp" />
+         <Loc hash="-945271585" locRef="110" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stackmachine\CustomListRenderer.java" totLns="31" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stackmachine/CustomListRenderer.java" />
+         <Loc hash="-1627413893" locRef="25" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\WithdrawTransactionTest.java" totLns="52" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/WithdrawTransactionTest.java" />
+         <Loc hash="363227546" locRef="132" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="WEB-INF\tiles-defs.xml" totLns="42" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/WEB-INF/tiles-defs.xml" />
+         <Loc hash="251929394" locRef="83" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\WithdrawalTransaction.java" totLns="24" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/WithdrawalTransaction.java" />
+         <Loc hash="-1716541218" locRef="131" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="WEB-INF\struts-config.xml" totLns="43" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/WEB-INF/struts-config.xml" />
+         <Loc hash="-304524193" locRef="74" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\AccountJUnit4Test.java" totLns="31" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/AccountJUnit4Test.java" />
+         <Loc hash="-2126764651" locRef="118" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\stubs\ConstructorExample.java" totLns="15" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/stubs/ConstructorExample.java" />
+         <Loc hash="672975014" locRef="46" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\WebApplication.java" totLns="50" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/WebApplication.java" />
+         <Loc hash="-1121815185" locRef="43" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\UnreachableCode.java" totLns="58" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/UnreachableCode.java" />
+         <Loc hash="1930052595" locRef="64" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\jsp\sushi_list.jsp" totLns="80" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/jsp/sushi_list.jsp" />
+         <Loc hash="207838171" locRef="71" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\Account.java" totLns="78" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/Account.java" />
+         <Loc hash="-699500644" locRef="37" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\IncorrectIteratorUsage.java" totLns="41" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/IncorrectIteratorUsage.java" />
+         <Loc hash="-1888197764" locRef="31" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseSockets.java" totLns="30" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseSockets.java" />
+         <Loc hash="-1551204630" locRef="50" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\np\MessageFormatter.java" totLns="17" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/np/MessageFormatter.java" />
+         <Loc hash="-1229095135" locRef="75" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\AccountTest.java" totLns="34" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/AccountTest.java" />
+         <Loc hash="874526682" locRef="67" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\junit4\MoneyBag.java" totLns="124" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/junit4/MoneyBag.java" />
+         <Loc hash="1156277555" locRef="77" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\ConnectionException.java" totLns="9" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/ConnectionException.java" />
+         <Loc hash="-1699291202" locRef="58" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\inputs\AddTest.java" totLns="45" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/inputs/AddTest.java" />
+         <Loc hash="1779163050" locRef="92" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\runtime\ExitingFinallyBlockAbruptly.java" totLns="28" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/runtime/ExitingFinallyBlockAbruptly.java" />
+         <Loc hash="1504991512" locRef="32" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bugdetective\AlwaysCloseXMLEncDec.java" totLns="76" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bugdetective/AlwaysCloseXMLEncDec.java" />
+         <Loc hash="1930052595" locRef="6" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="bin\examples\jsp\sushi_list.jsp" totLns="80" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/bin/examples/jsp/sushi_list.jsp" />
+         <Loc hash="1073933388" locRef="130" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\unit\TestingTasks.java" totLns="44" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/unit/TestingTasks.java" />
+         <Loc hash="406098653" locRef="117" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\struts\LoginAction.java" totLns="24" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/struts/LoginAction.java" />
+         <Loc hash="-69771240" locRef="16" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\bank\ChangeOwnership.java" totLns="15" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/bank/ChangeOwnership.java" />
+         <Loc hash="-798293711" locRef="70" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\nbank\AbstractTransaction.java" totLns="14" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/nbank/AbstractTransaction.java" />
+         <Loc hash="-512299843" locRef="56" projId="Jtest Example" projPath="/Jtest Example" project="Jtest Example" resProjPath="examples\initialize\Guestbook.java" totLns="94" uri="file://machine-name/E:/workspaces/branche/trunk/Jtest%20Example/examples/initialize/Guestbook.java" />
       </Locations>
    </Scope>
    <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards">
       <Projects>
          <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="134" checkedLns="7180" name="Jtest Example" qfixErrs="0" suppErrs="0" totErrs="65" totFiles="134" totLns="7180" />
       </Projects>
-      
+
   <FADetails>
     <HtmlDump value=".C   AlwaysCloseGSS.java (10): context = GSSManager.getInstance().createContext(tokens) // Allocated resource variable: context&#xd;&#xa;.    AlwaysCloseGSS.java (11): inputBuff = new byte[256] // Allocated resource variable: context&#xd;&#xa;.    AlwaysCloseGSS.java (12): context.initSecContext(inputBuff, 0, 256); // Allocated resource variable: context&#xd;&#xa;.P   AlwaysCloseGSS.java (14): } // Allocated resource variable: context" dumpId="1" />
     <HtmlDump value=".C   AlwaysCloseGSS.java (21): context = null // Null value carrier: context&#xd;&#xa;!E   AlwaysCloseGSS.java (23): context = GSSManager.getInstance().createContext(tokens) // GSSManager.createContext() throws: GSSException // Null value carrier: context&#xd;&#xa;.    AlwaysCloseGSS.java (27): catch (Exception ioe) // Null value carrier: context&#xd;&#xa;.    AlwaysCloseGSS.java (28): System.out.println(&quot;Exception occured: &quot; + ioe); // Null value carrier: context&#xd;&#xa;.P   AlwaysCloseGSS.java (30): context.dispose(); // Null value carrier: context" dumpId="2" />
@@ -238,8 +238,8 @@
     <HtmlDump value=".    DatabaseExample.java (83): _loggedCalls.add(&quot;addScore: &quot; + team_name + &quot;, &quot; + score);&#xd;&#xa;.    DatabaseExample.java (84): prepare();&#xd;&#xa;.       DatabaseExample.java (93): {&#xd;&#xa;.       DatabaseExample.java (94): if (_connection != null)&#xd;&#xa;.       DatabaseExample.java (95): return;&#xd;&#xa;.       DatabaseExample.java (93): {&#xd;&#xa;.C   DatabaseExample.java (85): stmt = _connection.createStatement() // Allocated resource variable: stmt&#xd;&#xa;.    DatabaseExample.java (86): stmt.executeUpdate(&quot;INSERT INTO SCORES (TEAM_NAME, SCORE) VALUES ('&quot; // Allocated resource variable: stmt&#xd;&#xa;.P   DatabaseExample.java (88): } // Allocated resource variable: stmt" dumpId="65" />
   </FADetails>
 
-      
-      
+
+
       <TestedFilesDetails>
          <Total name="Suppressed / Total" supp="0" total="65">
             <Project name="Jtest Example" supp="0" total="65">
@@ -444,7 +444,7 @@
             </Project>
          </Total>
       </TestedFilesDetails>
-   
+
       <Rules>
          <CategoriesList>
             <Category desc="Flow Analysis" name="BD" total="0">
@@ -762,12 +762,12 @@
             </Severity>
          </SeverityList>
       </Rules>
-      
+
   <Supps />
 
-      
+
   <StdViols>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseGSS.java" ln="14" tool="jtest" lang="java" locRef="26" lineHash="2103670358" id="0" locStartln="14" locStartPos="8" rule="BD.RES.LEAKS" locEndPos="9" causeLocRef="26" FirstElSrcRngEndLn="10" hash="-1812218702" urgent="true" FirstElSrcRngStartln="10" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="14" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="23" msg="Security context not disposed: context" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseGSS.java" dumpId="1" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="79">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseGSS.java" ln="14" tool="jtest" lang="java" locRef="26" lineHash="2103670358" id="0" locStartln="14" locStartPos="8" rule="BD.RES.LEAKS" locEndPos="9" causeLocRef="26" FirstElSrcRngEndLn="10" hash="-1812218702" urgent="true" FirstElSrcRngStartln="10" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="14" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="23" msg="Security context not disposed: context" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseGSS.java" dumpId="1" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="79">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -794,7 +794,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseGSS.java" ln="30" tool="jtest" lang="java" locRef="26" lineHash="229487401" id="0" locStartln="30" locStartPos="18" rule="BD.EXCEPT.NP" locEndPos="36" causeLocRef="26" FirstElSrcRngEndLn="21" hash="-1812218702" urgent="true" FirstElSrcRngStartln="21" ruleSCSCMsg="Source of Null Value" locEndLn="30" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="19" msg="&quot;context&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseGSS.java" dumpId="2" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="33">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseGSS.java" ln="30" tool="jtest" lang="java" locRef="26" lineHash="229487401" id="0" locStartln="30" locStartPos="18" rule="BD.EXCEPT.NP" locEndPos="36" causeLocRef="26" FirstElSrcRngEndLn="21" hash="-1812218702" urgent="true" FirstElSrcRngStartln="21" ruleSCSCMsg="Source of Null Value" locEndLn="30" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="19" msg="&quot;context&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseGSS.java" dumpId="2" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="33">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -826,7 +826,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseImages.java" ln="15" tool="jtest" lang="java" locRef="27" lineHash="100324464" id="0" locStartln="15" locStartPos="8" rule="BD.RES.LEAKS" locEndPos="9" causeLocRef="27" FirstElSrcRngEndLn="13" hash="-784476576" urgent="true" FirstElSrcRngStartln="13" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="15" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="24" msg="Image resource not closed: imgReader" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseImages.java" dumpId="3" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="62">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseImages.java" ln="15" tool="jtest" lang="java" locRef="27" lineHash="100324464" id="0" locStartln="15" locStartPos="8" rule="BD.RES.LEAKS" locEndPos="9" causeLocRef="27" FirstElSrcRngEndLn="13" hash="-784476576" urgent="true" FirstElSrcRngStartln="13" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="15" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="24" msg="Image resource not closed: imgReader" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseImages.java" dumpId="3" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="62">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -851,7 +851,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseImages.java" ln="31" tool="jtest" lang="java" locRef="27" lineHash="-281777821" id="0" locStartln="31" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="32" causeLocRef="27" FirstElSrcRngEndLn="24" hash="-784476576" urgent="true" FirstElSrcRngStartln="24" ruleSCSCMsg="Source of Null Value" locEndLn="31" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="20" msg="&quot;imgReader&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseImages.java" dumpId="4" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="36">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseImages.java" ln="31" tool="jtest" lang="java" locRef="27" lineHash="-281777821" id="0" locStartln="31" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="32" causeLocRef="27" FirstElSrcRngEndLn="24" hash="-784476576" urgent="true" FirstElSrcRngStartln="24" ruleSCSCMsg="Source of Null Value" locEndLn="31" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="20" msg="&quot;imgReader&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseImages.java" dumpId="4" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="36">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -886,7 +886,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseLogging.java" ln="11" tool="jtest" lang="java" locRef="28" lineHash="30537853" id="0" locStartln="11" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="28" FirstElSrcRngEndLn="8" hash="-1836386940" urgent="true" FirstElSrcRngStartln="8" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="11" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="33" msg="Logging handler not closed: handler" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseLogging.java" dumpId="5" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="53">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseLogging.java" ln="11" tool="jtest" lang="java" locRef="28" lineHash="30537853" id="0" locStartln="11" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="28" FirstElSrcRngEndLn="8" hash="-1836386940" urgent="true" FirstElSrcRngStartln="8" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="11" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="33" msg="Logging handler not closed: handler" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseLogging.java" dumpId="5" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="53">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -913,7 +913,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseNIOChannels.java" ln="33" tool="jtest" lang="java" locRef="29" lineHash="1414922134" id="0" locStartln="33" locStartPos="18" rule="BD.EXCEPT.NP" locEndPos="34" causeLocRef="29" FirstElSrcRngEndLn="23" hash="106409609" urgent="true" FirstElSrcRngStartln="23" ruleSCSCMsg="Source of Null Value" locEndLn="33" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="20" msg="&quot;channel&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseNIOChannels.java" dumpId="6" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="34">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseNIOChannels.java" ln="33" tool="jtest" lang="java" locRef="29" lineHash="1414922134" id="0" locStartln="33" locStartPos="18" rule="BD.EXCEPT.NP" locEndPos="34" causeLocRef="29" FirstElSrcRngEndLn="23" hash="106409609" urgent="true" FirstElSrcRngStartln="23" ruleSCSCMsg="Source of Null Value" locEndLn="33" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="20" msg="&quot;channel&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseNIOChannels.java" dumpId="6" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="34">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -945,7 +945,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseRAFs.java" ln="32" tool="jtest" lang="java" locRef="30" lineHash="-1763786582" id="0" locStartln="32" locStartPos="18" rule="BD.EXCEPT.NP" locEndPos="30" causeLocRef="30" FirstElSrcRngEndLn="23" hash="-1380665891" urgent="true" FirstElSrcRngStartln="23" ruleSCSCMsg="Source of Null Value" locEndLn="32" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="25" msg="&quot;raf&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseRAFs.java" dumpId="7" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="35">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseRAFs.java" ln="32" tool="jtest" lang="java" locRef="30" lineHash="-1763786582" id="0" locStartln="32" locStartPos="18" rule="BD.EXCEPT.NP" locEndPos="30" causeLocRef="30" FirstElSrcRngEndLn="23" hash="-1380665891" urgent="true" FirstElSrcRngStartln="23" ruleSCSCMsg="Source of Null Value" locEndLn="32" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="25" msg="&quot;raf&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseRAFs.java" dumpId="7" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="35">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -980,7 +980,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseSockets.java" ln="13" tool="jtest" lang="java" locRef="31" lineHash="2094668668" id="0" locStartln="13" locStartPos="8" rule="BD.RES.LEAKS" locEndPos="9" causeLocRef="31" FirstElSrcRngEndLn="11" hash="-1888197764" urgent="true" FirstElSrcRngStartln="11" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="13" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="19" msg="Socket not closed: sock" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseSockets.java" dumpId="8" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="44">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseSockets.java" ln="13" tool="jtest" lang="java" locRef="31" lineHash="2094668668" id="0" locStartln="13" locStartPos="8" rule="BD.RES.LEAKS" locEndPos="9" causeLocRef="31" FirstElSrcRngEndLn="11" hash="-1888197764" urgent="true" FirstElSrcRngStartln="11" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="13" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="19" msg="Socket not closed: sock" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseSockets.java" dumpId="8" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="44">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -997,7 +997,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseSockets.java" ln="27" tool="jtest" lang="java" locRef="31" lineHash="-89748885" id="0" locStartln="27" locStartPos="18" rule="BD.EXCEPT.NP" locEndPos="31" causeLocRef="31" FirstElSrcRngEndLn="20" hash="-1888197764" urgent="true" FirstElSrcRngStartln="20" ruleSCSCMsg="Source of Null Value" locEndLn="27" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="&quot;sock&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseSockets.java" dumpId="9" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="26">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\AlwaysCloseSockets.java" ln="27" tool="jtest" lang="java" locRef="31" lineHash="-89748885" id="0" locStartln="27" locStartPos="18" rule="BD.EXCEPT.NP" locEndPos="31" causeLocRef="31" FirstElSrcRngEndLn="20" hash="-1888197764" urgent="true" FirstElSrcRngStartln="20" ruleSCSCMsg="Source of Null Value" locEndLn="27" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="&quot;sock&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\AlwaysCloseSockets.java" dumpId="9" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="26">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -1029,7 +1029,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\DivisionByZero.java" ln="23" tool="jtest" lang="java" locRef="35" lineHash="203027039" id="0" locStartln="23" locStartPos="18" rule="BD.PB.ZERO" locEndPos="74" causeLocRef="35" FirstElSrcRngEndLn="38" hash="-471131991" urgent="true" FirstElSrcRngStartln="38" ruleSCSCMsg="Source of Zero" locEndLn="23" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="14" msg="&quot;discountedSum&quot; may possibly be zero" goals="1," locFile="/Jtest Example/examples\bugdetective\DivisionByZero.java" dumpId="10" ruleSAFMsg="Point of Division by Zero" auth="mczyzyk" FirstElSrcRngEndPos="34">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\DivisionByZero.java" ln="23" tool="jtest" lang="java" locRef="35" lineHash="203027039" id="0" locStartln="23" locStartPos="18" rule="BD.PB.ZERO" locEndPos="74" causeLocRef="35" FirstElSrcRngEndLn="38" hash="-471131991" urgent="true" FirstElSrcRngStartln="38" ruleSCSCMsg="Source of Zero" locEndLn="23" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="14" msg="&quot;discountedSum&quot; may possibly be zero" goals="1," locFile="/Jtest Example/examples\bugdetective\DivisionByZero.java" dumpId="10" ruleSAFMsg="Point of Division by Zero" auth="user-name" FirstElSrcRngEndPos="34">
       <Props>
         <Prop key="Tracked variables" val="Zero value carrier" />
       </Props>
@@ -1086,7 +1086,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\FilesInjection.java" ln="26" tool="jtest" lang="java" locRef="36" lineHash="1826395322" id="0" locStartln="26" locStartPos="19" rule="BD.SECURITY.TDFNAMES" locEndPos="50" causeLocRef="36" FirstElSrcRngEndLn="15" hash="-733889105" urgent="true" FirstElSrcRngStartln="15" ruleSCSCMsg="Tainting Point" locEndLn="26" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;sFileName&quot;) to filename setting method" goals="1," locFile="/Jtest Example/examples\bugdetective\FilesInjection.java" dumpId="11" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="58">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\FilesInjection.java" ln="26" tool="jtest" lang="java" locRef="36" lineHash="1826395322" id="0" locStartln="26" locStartPos="19" rule="BD.SECURITY.TDFNAMES" locEndPos="50" causeLocRef="36" FirstElSrcRngEndLn="15" hash="-733889105" urgent="true" FirstElSrcRngStartln="15" ruleSCSCMsg="Tainting Point" locEndLn="26" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;sFileName&quot;) to filename setting method" goals="1," locFile="/Jtest Example/examples\bugdetective\FilesInjection.java" dumpId="11" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="58">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -1125,7 +1125,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\FilesInjection.java" ln="27" tool="jtest" lang="java" locRef="36" lineHash="7888607" id="0" locStartln="27" locStartPos="12" rule="BD.SECURITY.TDFILES" locEndPos="49" causeLocRef="36" FirstElSrcRngEndLn="16" hash="-733889105" urgent="true" FirstElSrcRngStartln="16" ruleSCSCMsg="Tainting Point" locEndLn="27" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;storyContents&quot;) to method writing to file" goals="1," locFile="/Jtest Example/examples\bugdetective\FilesInjection.java" dumpId="12" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="57">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\FilesInjection.java" ln="27" tool="jtest" lang="java" locRef="36" lineHash="7888607" id="0" locStartln="27" locStartPos="12" rule="BD.SECURITY.TDFILES" locEndPos="49" causeLocRef="36" FirstElSrcRngEndLn="16" hash="-733889105" urgent="true" FirstElSrcRngStartln="16" ruleSCSCMsg="Tainting Point" locEndLn="27" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;storyContents&quot;) to method writing to file" goals="1," locFile="/Jtest Example/examples\bugdetective\FilesInjection.java" dumpId="12" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="57">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -1167,7 +1167,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\FilesInjection.java" ln="29" tool="jtest" lang="java" locRef="36" lineHash="-1243101048" id="0" locStartln="29" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="25" causeLocRef="36" FirstElSrcRngEndLn="23" hash="-733889105" urgent="true" FirstElSrcRngStartln="23" ruleSCSCMsg="Source of Null Value" locEndLn="29" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="25" msg="&quot;fOut&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\FilesInjection.java" dumpId="13" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="36">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\FilesInjection.java" ln="29" tool="jtest" lang="java" locRef="36" lineHash="-1243101048" id="0" locStartln="29" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="25" causeLocRef="36" FirstElSrcRngEndLn="23" hash="-733889105" urgent="true" FirstElSrcRngStartln="23" ruleSCSCMsg="Source of Null Value" locEndLn="29" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="25" msg="&quot;fOut&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\FilesInjection.java" dumpId="13" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="36">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -1194,7 +1194,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\IncorrectIteratorUsage.java" ln="15" tool="jtest" lang="java" locRef="37" lineHash="2144542579" id="0" locStartln="15" locStartPos="9" rule="BD.CO.ITMOD" locEndPos="23" causeLocRef="37" FirstElSrcRngEndLn="14" ruleRIPMsg="Collection Modification Point" hash="-699500644" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Iterator Creation Point" locEndLn="15" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="11" msg="Iterator &quot;iter&quot; may possibly be used after iterated collection is modified" goals="1," locFile="/Jtest Example/examples\bugdetective\IncorrectIteratorUsage.java" dumpId="14" ruleSAFMsg="Iterator Usage Point" auth="mczyzyk" FirstElSrcRngEndPos="39">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\IncorrectIteratorUsage.java" ln="15" tool="jtest" lang="java" locRef="37" lineHash="2144542579" id="0" locStartln="15" locStartPos="9" rule="BD.CO.ITMOD" locEndPos="23" causeLocRef="37" FirstElSrcRngEndLn="14" ruleRIPMsg="Collection Modification Point" hash="-699500644" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Iterator Creation Point" locEndLn="15" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="11" msg="Iterator &quot;iter&quot; may possibly be used after iterated collection is modified" goals="1," locFile="/Jtest Example/examples\bugdetective\IncorrectIteratorUsage.java" dumpId="14" ruleSAFMsg="Iterator Usage Point" auth="user-name" FirstElSrcRngEndPos="39">
       <Props>
         <Prop key="Tracked variables" val="Tracked iterators" />
         <Prop key="Tracked collections" val="Tracked collections" />
@@ -1238,7 +1238,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\IncorrectIteratorUsage.java" ln="20" tool="jtest" lang="java" locRef="37" lineHash="1295664149" id="0" locStartln="20" locStartPos="12" rule="BD.OPT.INEFCOL" locEndPos="35" causeLocRef="37" FirstElSrcRngEndLn="14" hash="-699500644" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Point of Getting Iterator" locEndLn="20" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="11" msg="Inefficient removal from collection &quot;collection&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="1," locFile="/Jtest Example/examples\bugdetective\IncorrectIteratorUsage.java" dumpId="15" ruleSAFMsg="Point where Element is Removed from Collection" auth="mczyzyk" FirstElSrcRngEndPos="39">
+    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\IncorrectIteratorUsage.java" ln="20" tool="jtest" lang="java" locRef="37" lineHash="1295664149" id="0" locStartln="20" locStartPos="12" rule="BD.OPT.INEFCOL" locEndPos="35" causeLocRef="37" FirstElSrcRngEndLn="14" hash="-699500644" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Point of Getting Iterator" locEndLn="20" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="11" msg="Inefficient removal from collection &quot;collection&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="1," locFile="/Jtest Example/examples\bugdetective\IncorrectIteratorUsage.java" dumpId="15" ruleSAFMsg="Point where Element is Removed from Collection" auth="user-name" FirstElSrcRngEndPos="39">
       <Props>
         <Prop key="Tracked variables" val="Tracked" />
       </Props>
@@ -1270,7 +1270,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientCollectionRemoval.java" ln="15" tool="jtest" lang="java" locRef="38" lineHash="-1314484653" id="0" locStartln="15" locStartPos="15" rule="BD.CO.ITMOD" locEndPos="29" causeLocRef="38" FirstElSrcRngEndLn="14" ruleRIPMsg="Collection Modification Point" hash="903050763" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Iterator Creation Point" locEndLn="15" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="17" msg="Iterator &quot;iter&quot; may possibly be used after iterated collection is modified" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientCollectionRemoval.java" dumpId="16" ruleSAFMsg="Iterator Usage Point" auth="mczyzyk" FirstElSrcRngEndPos="45">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientCollectionRemoval.java" ln="15" tool="jtest" lang="java" locRef="38" lineHash="-1314484653" id="0" locStartln="15" locStartPos="15" rule="BD.CO.ITMOD" locEndPos="29" causeLocRef="38" FirstElSrcRngEndLn="14" ruleRIPMsg="Collection Modification Point" hash="903050763" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Iterator Creation Point" locEndLn="15" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="17" msg="Iterator &quot;iter&quot; may possibly be used after iterated collection is modified" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientCollectionRemoval.java" dumpId="16" ruleSAFMsg="Iterator Usage Point" auth="user-name" FirstElSrcRngEndPos="45">
       <Props>
         <Prop key="Tracked variables" val="Tracked iterators" />
         <Prop key="Tracked collections" val="Tracked collections" />
@@ -1308,7 +1308,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientCollectionRemoval.java" ln="17" tool="jtest" lang="java" locRef="38" lineHash="-1848798502" id="0" locStartln="17" locStartPos="12" rule="BD.OPT.INEFCOL" locEndPos="39" causeLocRef="38" FirstElSrcRngEndLn="14" hash="903050763" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Point of Getting Iterator" locEndLn="17" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="17" msg="Inefficient removal from collection &quot;collection&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientCollectionRemoval.java" dumpId="17" ruleSAFMsg="Point where Element is Removed from Collection" auth="mczyzyk" FirstElSrcRngEndPos="45">
+    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientCollectionRemoval.java" ln="17" tool="jtest" lang="java" locRef="38" lineHash="-1848798502" id="0" locStartln="17" locStartPos="12" rule="BD.OPT.INEFCOL" locEndPos="39" causeLocRef="38" FirstElSrcRngEndLn="14" hash="903050763" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Point of Getting Iterator" locEndLn="17" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="17" msg="Inefficient removal from collection &quot;collection&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientCollectionRemoval.java" dumpId="17" ruleSAFMsg="Point where Element is Removed from Collection" auth="user-name" FirstElSrcRngEndPos="45">
       <Props>
         <Prop key="Tracked variables" val="Tracked" />
       </Props>
@@ -1335,7 +1335,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" ln="15" tool="jtest" lang="java" locRef="39" lineHash="-1314484653" id="0" locStartln="15" locStartPos="15" rule="BD.CO.ITMOD" locEndPos="29" causeLocRef="39" FirstElSrcRngEndLn="14" ruleRIPMsg="Collection Modification Point" hash="2000096904" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Iterator Creation Point" locEndLn="15" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="17" msg="Iterator &quot;iter&quot; may possibly be used after iterated collection is modified" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" dumpId="18" ruleSAFMsg="Iterator Usage Point" auth="mczyzyk" FirstElSrcRngEndPos="47">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" ln="15" tool="jtest" lang="java" locRef="39" lineHash="-1314484653" id="0" locStartln="15" locStartPos="15" rule="BD.CO.ITMOD" locEndPos="29" causeLocRef="39" FirstElSrcRngEndLn="14" ruleRIPMsg="Collection Modification Point" hash="2000096904" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Iterator Creation Point" locEndLn="15" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="17" msg="Iterator &quot;iter&quot; may possibly be used after iterated collection is modified" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" dumpId="18" ruleSAFMsg="Iterator Usage Point" auth="user-name" FirstElSrcRngEndPos="47">
       <Props>
         <Prop key="Tracked variables" val="Tracked iterators" />
         <Prop key="Tracked collections" val="Tracked collections" />
@@ -1373,7 +1373,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" ln="17" tool="jtest" lang="java" locRef="39" lineHash="-943711873" id="0" locStartln="17" locStartPos="12" rule="BD.OPT.INEFMAPRM" locEndPos="28" causeLocRef="39" FirstElSrcRngEndLn="14" hash="2000096904" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Point of Getting Key Set" locEndLn="17" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="24" msg="Inefficient removal from map &quot;map&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" dumpId="19" ruleSAFMsg="Point where Entry is Removed by Key" auth="mczyzyk" FirstElSrcRngEndPos="36">
+    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" ln="17" tool="jtest" lang="java" locRef="39" lineHash="-943711873" id="0" locStartln="17" locStartPos="12" rule="BD.OPT.INEFMAPRM" locEndPos="28" causeLocRef="39" FirstElSrcRngEndLn="14" hash="2000096904" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Point of Getting Key Set" locEndLn="17" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="24" msg="Inefficient removal from map &quot;map&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" dumpId="19" ruleSAFMsg="Point where Entry is Removed by Key" auth="user-name" FirstElSrcRngEndPos="36">
       <Props>
         <Prop key="Tracked variables" val="Tracked" />
       </Props>
@@ -1400,7 +1400,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" ln="28" tool="jtest" lang="java" locRef="39" lineHash="-1314484653" id="0" locStartln="28" locStartPos="15" rule="BD.CO.ITMOD" locEndPos="29" causeLocRef="39" FirstElSrcRngEndLn="27" ruleRIPMsg="Collection Modification Point" hash="2000096904" urgent="true" FirstElSrcRngStartln="27" ruleSCSCMsg="Iterator Creation Point" locEndLn="28" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="17" msg="Iterator &quot;iter&quot; may possibly be used after iterated collection is modified" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" dumpId="20" ruleSAFMsg="Iterator Usage Point" auth="mczyzyk" FirstElSrcRngEndPos="49">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" ln="28" tool="jtest" lang="java" locRef="39" lineHash="-1314484653" id="0" locStartln="28" locStartPos="15" rule="BD.CO.ITMOD" locEndPos="29" causeLocRef="39" FirstElSrcRngEndLn="27" ruleRIPMsg="Collection Modification Point" hash="2000096904" urgent="true" FirstElSrcRngStartln="27" ruleSCSCMsg="Iterator Creation Point" locEndLn="28" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="17" msg="Iterator &quot;iter&quot; may possibly be used after iterated collection is modified" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientMapRemoval.java" dumpId="20" ruleSAFMsg="Iterator Usage Point" auth="user-name" FirstElSrcRngEndPos="49">
       <Props>
         <Prop key="Tracked variables" val="Tracked iterators" />
         <Prop key="Tracked collections" val="Tracked collections" />
@@ -1444,7 +1444,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientMapUsage.java" ln="17" tool="jtest" lang="java" locRef="40" lineHash="-1032022773" id="0" locStartln="17" locStartPos="19" rule="BD.OPT.INEFMAP" locEndPos="39" causeLocRef="40" FirstElSrcRngEndLn="14" hash="953714558" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Point of Getting Key Set" locEndLn="17" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="24" msg="Inefficient iteration over map &quot;map&quot;. Use entry set iterator to access values instead of retrieving them by &quot;get()&quot; method" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientMapUsage.java" dumpId="21" ruleSAFMsg="Point where Value is Retrieved by Key" auth="mczyzyk" FirstElSrcRngEndPos="36">
+    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\InefficientMapUsage.java" ln="17" tool="jtest" lang="java" locRef="40" lineHash="-1032022773" id="0" locStartln="17" locStartPos="19" rule="BD.OPT.INEFMAP" locEndPos="39" causeLocRef="40" FirstElSrcRngEndLn="14" hash="953714558" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Point of Getting Key Set" locEndLn="17" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="24" msg="Inefficient iteration over map &quot;map&quot;. Use entry set iterator to access values instead of retrieving them by &quot;get()&quot; method" goals="1," locFile="/Jtest Example/examples\bugdetective\InefficientMapUsage.java" dumpId="21" ruleSAFMsg="Point where Value is Retrieved by Key" auth="user-name" FirstElSrcRngEndPos="36">
       <Props>
         <Prop key="Tracked variables" val="Tracked" />
       </Props>
@@ -1471,7 +1471,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SQLInjection.java" ln="29" tool="jtest" lang="java" locRef="41" lineHash="-128758600" id="0" locStartln="29" locStartPos="13" rule="BD.SECURITY.TDSQL" locEndPos="43" causeLocRef="41" FirstElSrcRngEndLn="19" hash="361246837" urgent="true" FirstElSrcRngStartln="19" ruleSCSCMsg="Tainting Point" locEndLn="29" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="16" msg="Injection of data received from servlet request (&quot;sQuery&quot;) to SQL query" goals="1," locFile="/Jtest Example/examples\bugdetective\SQLInjection.java" dumpId="22" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="57">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SQLInjection.java" ln="29" tool="jtest" lang="java" locRef="41" lineHash="-128758600" id="0" locStartln="29" locStartPos="13" rule="BD.SECURITY.TDSQL" locEndPos="43" causeLocRef="41" FirstElSrcRngEndLn="19" hash="361246837" urgent="true" FirstElSrcRngStartln="19" ruleSCSCMsg="Tainting Point" locEndLn="29" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="16" msg="Injection of data received from servlet request (&quot;sQuery&quot;) to SQL query" goals="1," locFile="/Jtest Example/examples\bugdetective\SQLInjection.java" dumpId="22" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="57">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -1513,7 +1513,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SQLInjection.java" ln="29" tool="jtest" lang="java" locRef="41" lineHash="-128758600" id="0" locStartln="29" locStartPos="13" rule="BD.SECURITY.TDSQL" locEndPos="43" causeLocRef="41" FirstElSrcRngEndLn="20" hash="361246837" urgent="true" FirstElSrcRngStartln="20" ruleSCSCMsg="Tainting Point" locEndLn="29" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="16" msg="Injection of data received from servlet request (&quot;sQuery&quot;) to SQL query" goals="1," locFile="/Jtest Example/examples\bugdetective\SQLInjection.java" dumpId="23" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="58">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SQLInjection.java" ln="29" tool="jtest" lang="java" locRef="41" lineHash="-128758600" id="0" locStartln="29" locStartPos="13" rule="BD.SECURITY.TDSQL" locEndPos="43" causeLocRef="41" FirstElSrcRngEndLn="20" hash="361246837" urgent="true" FirstElSrcRngStartln="20" ruleSCSCMsg="Tainting Point" locEndLn="29" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="16" msg="Injection of data received from servlet request (&quot;sQuery&quot;) to SQL query" goals="1," locFile="/Jtest Example/examples\bugdetective\SQLInjection.java" dumpId="23" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="58">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -1553,7 +1553,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SystemInjection.java" ln="24" tool="jtest" lang="java" locRef="42" lineHash="1948805676" id="0" locStartln="24" locStartPos="8" rule="BD.SECURITY.TDCMD" locEndPos="44" causeLocRef="42" FirstElSrcRngEndLn="14" hash="-1517100743" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Tainting Point" locEndLn="24" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;sCommand&quot;) to command executing method" goals="1," locFile="/Jtest Example/examples\bugdetective\SystemInjection.java" dumpId="24" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="44">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SystemInjection.java" ln="24" tool="jtest" lang="java" locRef="42" lineHash="1948805676" id="0" locStartln="24" locStartPos="8" rule="BD.SECURITY.TDCMD" locEndPos="44" causeLocRef="42" FirstElSrcRngEndLn="14" hash="-1517100743" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Tainting Point" locEndLn="24" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;sCommand&quot;) to command executing method" goals="1," locFile="/Jtest Example/examples\bugdetective\SystemInjection.java" dumpId="24" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="44">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -1583,7 +1583,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SystemInjection.java" ln="37" tool="jtest" lang="java" locRef="42" lineHash="-1399063460" id="0" locStartln="37" locStartPos="8" rule="BD.SECURITY.TDENV" locEndPos="65" causeLocRef="42" FirstElSrcRngEndLn="14" hash="-1517100743" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Tainting Point" locEndLn="37" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;sSomeResultingString&quot;) to method setting system (environment) properties" goals="1," locFile="/Jtest Example/examples\bugdetective\SystemInjection.java" dumpId="25" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="44">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SystemInjection.java" ln="37" tool="jtest" lang="java" locRef="42" lineHash="-1399063460" id="0" locStartln="37" locStartPos="8" rule="BD.SECURITY.TDENV" locEndPos="65" causeLocRef="42" FirstElSrcRngEndLn="14" hash="-1517100743" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Tainting Point" locEndLn="37" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;sSomeResultingString&quot;) to method setting system (environment) properties" goals="1," locFile="/Jtest Example/examples\bugdetective\SystemInjection.java" dumpId="25" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="44">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -1610,7 +1610,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SystemInjection.java" ln="50" tool="jtest" lang="java" locRef="42" lineHash="1967794448" id="0" locStartln="50" locStartPos="8" rule="BD.SECURITY.TDLIB" locEndPos="36" causeLocRef="42" FirstElSrcRngEndLn="14" hash="-1517100743" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Tainting Point" locEndLn="50" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;libName&quot;) to library loading method" goals="1," locFile="/Jtest Example/examples\bugdetective\SystemInjection.java" dumpId="26" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="44">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SystemInjection.java" ln="50" tool="jtest" lang="java" locRef="42" lineHash="1967794448" id="0" locStartln="50" locStartPos="8" rule="BD.SECURITY.TDLIB" locEndPos="36" causeLocRef="42" FirstElSrcRngEndLn="14" hash="-1517100743" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Tainting Point" locEndLn="50" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;libName&quot;) to library loading method" goals="1," locFile="/Jtest Example/examples\bugdetective\SystemInjection.java" dumpId="26" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="44">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -1637,7 +1637,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SystemInjection.java" ln="59" tool="jtest" lang="java" locRef="42" lineHash="-1369445572" id="0" locStartln="59" locStartPos="8" rule="BD.SECURITY.TDRFL" locEndPos="65" causeLocRef="42" FirstElSrcRngEndLn="14" hash="-1517100743" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Tainting Point" locEndLn="59" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;sClassName&quot;) to Java reflection method" goals="1," locFile="/Jtest Example/examples\bugdetective\SystemInjection.java" dumpId="27" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="44">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\SystemInjection.java" ln="59" tool="jtest" lang="java" locRef="42" lineHash="-1369445572" id="0" locStartln="59" locStartPos="8" rule="BD.SECURITY.TDRFL" locEndPos="65" causeLocRef="42" FirstElSrcRngEndLn="14" hash="-1517100743" urgent="true" FirstElSrcRngStartln="14" ruleSCSCMsg="Tainting Point" locEndLn="59" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;sClassName&quot;) to Java reflection method" goals="1," locFile="/Jtest Example/examples\bugdetective\SystemInjection.java" dumpId="27" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="44">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -1664,7 +1664,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="2" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\UnreachableCode.java" ln="13" tool="jtest" lang="java" locRef="43" lineHash="1476420430" id="0" locStartln="13" locStartPos="15" rule="BD.PB.CC" locEndPos="56" causeLocRef="43" FirstElSrcRngEndLn="10" hash="-1121815185" urgent="true" FirstElSrcRngStartln="10" ruleSCSCMsg="Point that Stipulates Condition Value" locEndLn="13" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="Condition &quot;result instanceof RuntimeException&quot; always evaluates to false" goals="1," locFile="/Jtest Example/examples\bugdetective\UnreachableCode.java" dumpId="28" ruleSAFMsg="Point where Senseless Condition is Used" auth="mczyzyk" FirstElSrcRngEndPos="39">
+    <FlowViol sev="2" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\UnreachableCode.java" ln="13" tool="jtest" lang="java" locRef="43" lineHash="1476420430" id="0" locStartln="13" locStartPos="15" rule="BD.PB.CC" locEndPos="56" causeLocRef="43" FirstElSrcRngEndLn="10" hash="-1121815185" urgent="true" FirstElSrcRngStartln="10" ruleSCSCMsg="Point that Stipulates Condition Value" locEndLn="13" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="Condition &quot;result instanceof RuntimeException&quot; always evaluates to false" goals="1," locFile="/Jtest Example/examples\bugdetective\UnreachableCode.java" dumpId="28" ruleSAFMsg="Point where Senseless Condition is Used" auth="user-name" FirstElSrcRngEndPos="39">
       <Props>
         <Prop key="Tracked variables" val="Important values" />
       </Props>
@@ -1681,7 +1681,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="2" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\UseBeforeInConstructorInitialization.java" ln="28" tool="jtest" lang="java" locRef="44" lineHash="618523607" id="0" locStartln="28" locStartPos="12" rule="BD.PB.NOTINITCTOR" locEndPos="60" causeLocRef="44" FirstElSrcRngEndLn="21" ruleRIPMsg="Point of Implicit Initialization" hash="-521846276" urgent="true" FirstElSrcRngStartln="21" ruleSCSCMsg="Point of Explicit Initialization" locEndLn="28" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="&quot;this.minLoginLength&quot; is used prior to explicit initialization" goals="1," locFile="/Jtest Example/examples\bugdetective\UseBeforeInConstructorInitialization.java" dumpId="29" ruleSAFMsg="Usage Point" auth="mczyzyk" FirstElSrcRngEndPos="30">
+    <FlowViol sev="2" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\UseBeforeInConstructorInitialization.java" ln="28" tool="jtest" lang="java" locRef="44" lineHash="618523607" id="0" locStartln="28" locStartPos="12" rule="BD.PB.NOTINITCTOR" locEndPos="60" causeLocRef="44" FirstElSrcRngEndLn="21" ruleRIPMsg="Point of Implicit Initialization" hash="-521846276" urgent="true" FirstElSrcRngStartln="21" ruleSCSCMsg="Point of Explicit Initialization" locEndLn="28" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="&quot;this.minLoginLength&quot; is used prior to explicit initialization" goals="1," locFile="/Jtest Example/examples\bugdetective\UseBeforeInConstructorInitialization.java" dumpId="29" ruleSAFMsg="Usage Point" auth="user-name" FirstElSrcRngEndPos="30">
       <Props>
         <Prop key="Tracked variables" val="Not explicitly initialized value" />
       </Props>
@@ -1727,7 +1727,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="4" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\UseBeforeInConstructorInitialization.java" ln="28" tool="jtest" lang="java" locRef="44" lineHash="618523607" id="0" locStartln="28" locStartPos="16" rule="BD.PB.NOTEXPLINIT" locEndPos="57" causeLocRef="44" FirstElSrcRngEndLn="21" hash="-521846276" urgent="true" FirstElSrcRngStartln="21" ruleSCSCMsg="Source of Implicitly Initialized Value" locEndLn="28" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="8" msg="&quot;this.minLoginLength&quot; is used prior to explicit initialization" goals="1," locFile="/Jtest Example/examples\bugdetective\UseBeforeInConstructorInitialization.java" dumpId="30" ruleSAFMsg="Usage Point" auth="mczyzyk" FirstElSrcRngEndPos="31">
+    <FlowViol sev="4" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\UseBeforeInConstructorInitialization.java" ln="28" tool="jtest" lang="java" locRef="44" lineHash="618523607" id="0" locStartln="28" locStartPos="16" rule="BD.PB.NOTEXPLINIT" locEndPos="57" causeLocRef="44" FirstElSrcRngEndLn="21" hash="-521846276" urgent="true" FirstElSrcRngStartln="21" ruleSCSCMsg="Source of Implicitly Initialized Value" locEndLn="28" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="8" msg="&quot;this.minLoginLength&quot; is used prior to explicit initialization" goals="1," locFile="/Jtest Example/examples\bugdetective\UseBeforeInConstructorInitialization.java" dumpId="30" ruleSAFMsg="Usage Point" auth="user-name" FirstElSrcRngEndPos="31">
       <Props>
         <Prop key="Tracked variables" val="Not explicitly initialized value" />
       </Props>
@@ -1768,7 +1768,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="4" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\UseBeforeInitialization.java" ln="37" tool="jtest" lang="java" locRef="45" lineHash="-107142727" id="0" locStartln="37" locStartPos="16" rule="BD.PB.NOTEXPLINIT" locEndPos="55" causeLocRef="45" FirstElSrcRngEndLn="59" hash="914882630" urgent="true" FirstElSrcRngStartln="59" ruleSCSCMsg="Source of Implicitly Initialized Value" locEndLn="37" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="8" msg="&quot;storage.getValue()&quot; is used prior to explicit initialization" goals="1," locFile="/Jtest Example/examples\bugdetective\UseBeforeInitialization.java" dumpId="31" ruleSAFMsg="Usage Point" auth="mczyzyk" FirstElSrcRngEndPos="22">
+    <FlowViol sev="4" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\UseBeforeInitialization.java" ln="37" tool="jtest" lang="java" locRef="45" lineHash="-107142727" id="0" locStartln="37" locStartPos="16" rule="BD.PB.NOTEXPLINIT" locEndPos="55" causeLocRef="45" FirstElSrcRngEndLn="59" hash="914882630" urgent="true" FirstElSrcRngStartln="59" ruleSCSCMsg="Source of Implicitly Initialized Value" locEndLn="37" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="8" msg="&quot;storage.getValue()&quot; is used prior to explicit initialization" goals="1," locFile="/Jtest Example/examples\bugdetective\UseBeforeInitialization.java" dumpId="31" ruleSAFMsg="Usage Point" auth="user-name" FirstElSrcRngEndPos="22">
       <Props>
         <Prop key="Tracked variables" val="Not explicitly initialized value" />
       </Props>
@@ -1842,7 +1842,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\UseBeforeInitialization.java" ln="37" tool="jtest" lang="java" locRef="45" lineHash="-107142727" id="0" locStartln="37" locStartPos="16" rule="BD.PB.STRNULL" locEndPos="55" causeLocRef="45" FirstElSrcRngEndLn="59" hash="914882630" urgent="true" FirstElSrcRngStartln="59" ruleSCSCMsg="Source of Null Value" locEndLn="37" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="8" msg="&quot;storage.getValue()&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\UseBeforeInitialization.java" dumpId="32" ruleSAFMsg="Point where Null Value is Appended to String" auth="mczyzyk" FirstElSrcRngEndPos="22">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\UseBeforeInitialization.java" ln="37" tool="jtest" lang="java" locRef="45" lineHash="-107142727" id="0" locStartln="37" locStartPos="16" rule="BD.PB.STRNULL" locEndPos="55" causeLocRef="45" FirstElSrcRngEndLn="59" hash="914882630" urgent="true" FirstElSrcRngStartln="59" ruleSCSCMsg="Source of Null Value" locEndLn="37" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="8" msg="&quot;storage.getValue()&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\UseBeforeInitialization.java" dumpId="32" ruleSAFMsg="Point where Null Value is Appended to String" auth="user-name" FirstElSrcRngEndPos="22">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -1916,7 +1916,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\WebApplication.java" ln="30" tool="jtest" lang="java" locRef="46" lineHash="126438163" id="0" locStartln="30" locStartPos="8" rule="BD.SECURITY.TDXSS" locEndPos="34" causeLocRef="46" FirstElSrcRngEndLn="27" hash="672975014" urgent="true" FirstElSrcRngStartln="27" ruleSCSCMsg="Tainting Point" locEndLn="30" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;sUserName&quot;) to servlet response (possible XSS attack)" goals="1," locFile="/Jtest Example/examples\bugdetective\WebApplication.java" dumpId="33" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="55">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\WebApplication.java" ln="30" tool="jtest" lang="java" locRef="46" lineHash="126438163" id="0" locStartln="30" locStartPos="8" rule="BD.SECURITY.TDXSS" locEndPos="34" causeLocRef="46" FirstElSrcRngEndLn="27" hash="672975014" urgent="true" FirstElSrcRngStartln="27" ruleSCSCMsg="Tainting Point" locEndLn="30" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;sUserName&quot;) to servlet response (possible XSS attack)" goals="1," locFile="/Jtest Example/examples\bugdetective\WebApplication.java" dumpId="33" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="55">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -1955,7 +1955,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\XMLInjection.java" ln="28" tool="jtest" lang="java" locRef="47" lineHash="1823710720" id="0" locStartln="28" locStartPos="16" rule="BD.SECURITY.TDXML" locEndPos="59" causeLocRef="47" FirstElSrcRngEndLn="24" hash="-454481916" urgent="true" FirstElSrcRngStartln="17" ruleSCSCMsg="Tainting Point" locEndLn="28" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="9" msg="Injection of data received by remote method (&quot;userAttrName&quot;) to XML attributes" goals="1," locFile="/Jtest Example/examples\bugdetective\XMLInjection.java" dumpId="34" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="4">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\XMLInjection.java" ln="28" tool="jtest" lang="java" locRef="47" lineHash="1823710720" id="0" locStartln="28" locStartPos="16" rule="BD.SECURITY.TDXML" locEndPos="59" causeLocRef="47" FirstElSrcRngEndLn="24" hash="-454481916" urgent="true" FirstElSrcRngStartln="17" ruleSCSCMsg="Tainting Point" locEndLn="28" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="9" msg="Injection of data received by remote method (&quot;userAttrName&quot;) to XML attributes" goals="1," locFile="/Jtest Example/examples\bugdetective\XMLInjection.java" dumpId="34" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="4">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -1977,7 +1977,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\XMLInjection.java" ln="29" tool="jtest" lang="java" locRef="47" lineHash="-114337401" id="0" locStartln="29" locStartPos="8" rule="BD.SECURITY.TDXML" locEndPos="45" causeLocRef="47" FirstElSrcRngEndLn="24" hash="-454481916" urgent="true" FirstElSrcRngStartln="17" ruleSCSCMsg="Tainting Point" locEndLn="29" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="9" msg="Injection of data received by remote method (&quot;sUserName&quot;) to XML attributes" goals="1," locFile="/Jtest Example/examples\bugdetective\XMLInjection.java" dumpId="35" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="4">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\XMLInjection.java" ln="29" tool="jtest" lang="java" locRef="47" lineHash="-114337401" id="0" locStartln="29" locStartPos="8" rule="BD.SECURITY.TDXML" locEndPos="45" causeLocRef="47" FirstElSrcRngEndLn="24" hash="-454481916" urgent="true" FirstElSrcRngStartln="17" ruleSCSCMsg="Tainting Point" locEndLn="29" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="9" msg="Injection of data received by remote method (&quot;sUserName&quot;) to XML attributes" goals="1," locFile="/Jtest Example/examples\bugdetective\XMLInjection.java" dumpId="35" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="4">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -2004,7 +2004,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\XMLInjection.java" ln="31" tool="jtest" lang="java" locRef="47" lineHash="-1128345384" id="0" locStartln="31" locStartPos="16" rule="BD.SECURITY.TDXML" locEndPos="60" causeLocRef="47" FirstElSrcRngEndLn="24" hash="-454481916" urgent="true" FirstElSrcRngStartln="17" ruleSCSCMsg="Tainting Point" locEndLn="31" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="9" msg="Injection of data received by remote method (&quot;sDataType&quot;) to XML attributes" goals="1," locFile="/Jtest Example/examples\bugdetective\XMLInjection.java" dumpId="36" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="4">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\XMLInjection.java" ln="31" tool="jtest" lang="java" locRef="47" lineHash="-1128345384" id="0" locStartln="31" locStartPos="16" rule="BD.SECURITY.TDXML" locEndPos="60" causeLocRef="47" FirstElSrcRngEndLn="24" hash="-454481916" urgent="true" FirstElSrcRngStartln="17" ruleSCSCMsg="Tainting Point" locEndLn="31" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="9" msg="Injection of data received by remote method (&quot;sDataType&quot;) to XML attributes" goals="1," locFile="/Jtest Example/examples\bugdetective\XMLInjection.java" dumpId="36" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="4">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -2036,7 +2036,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\XMLInjection.java" ln="32" tool="jtest" lang="java" locRef="47" lineHash="917005069" id="0" locStartln="32" locStartPos="8" rule="BD.SECURITY.TDXML" locEndPos="37" causeLocRef="47" FirstElSrcRngEndLn="24" hash="-454481916" urgent="true" FirstElSrcRngStartln="17" ruleSCSCMsg="Tainting Point" locEndLn="32" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="9" msg="Injection of data received by remote method (&quot;sData&quot;) to XML attributes" goals="1," locFile="/Jtest Example/examples\bugdetective\XMLInjection.java" dumpId="37" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="4">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\XMLInjection.java" ln="32" tool="jtest" lang="java" locRef="47" lineHash="917005069" id="0" locStartln="32" locStartPos="8" rule="BD.SECURITY.TDXML" locEndPos="37" causeLocRef="47" FirstElSrcRngEndLn="24" hash="-454481916" urgent="true" FirstElSrcRngStartln="17" ruleSCSCMsg="Tainting Point" locEndLn="32" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="9" msg="Injection of data received by remote method (&quot;sData&quot;) to XML attributes" goals="1," locFile="/Jtest Example/examples\bugdetective\XMLInjection.java" dumpId="37" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="4">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -2073,7 +2073,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\np\DatabaseObject.java" ln="15" tool="jtest" lang="java" locRef="50" lineHash="-568163166" id="0" locStartln="15" locStartPos="27" rule="BD.EXCEPT.NP" locEndPos="77" causeLocRef="48" FirstElSrcRngEndLn="9" hash="-1551204630" urgent="true" FirstElSrcRngStartln="9" ruleSCSCMsg="Source of Null Value" locEndLn="15" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="11" msg="&quot;oid&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\np\MessageFormatter.java" dumpId="38" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="21">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\np\DatabaseObject.java" ln="15" tool="jtest" lang="java" locRef="50" lineHash="-568163166" id="0" locStartln="15" locStartPos="27" rule="BD.EXCEPT.NP" locEndPos="77" causeLocRef="48" FirstElSrcRngEndLn="9" hash="-1551204630" urgent="true" FirstElSrcRngStartln="9" ruleSCSCMsg="Source of Null Value" locEndLn="15" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="11" msg="&quot;oid&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\np\MessageFormatter.java" dumpId="38" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="21">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -2178,7 +2178,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\np\MyDictionary.java" ln="20" tool="jtest" lang="java" locRef="51" lineHash="-1504762512" id="0" locStartln="20" locStartPos="8" rule="BD.EXCEPT.NP" locEndPos="32" causeLocRef="51" FirstElSrcRngEndLn="16" hash="-1154982270" urgent="true" FirstElSrcRngStartln="16" ruleSCSCMsg="Source of Null Value" locEndLn="20" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="&quot;strKey&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\np\MyDictionary.java" dumpId="39" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="28">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\np\MyDictionary.java" ln="20" tool="jtest" lang="java" locRef="51" lineHash="-1504762512" id="0" locStartln="20" locStartPos="8" rule="BD.EXCEPT.NP" locEndPos="32" causeLocRef="51" FirstElSrcRngEndLn="16" hash="-1154982270" urgent="true" FirstElSrcRngStartln="16" ruleSCSCMsg="Source of Null Value" locEndLn="20" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="&quot;strKey&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\np\MyDictionary.java" dumpId="39" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="28">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -2200,7 +2200,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\np\NullPointer.java" ln="20" tool="jtest" lang="java" locRef="52" lineHash="-1543564921" id="0" locStartln="20" locStartPos="15" rule="BD.EXCEPT.NP" locEndPos="34" causeLocRef="52" FirstElSrcRngEndLn="10" hash="-1794176664" urgent="true" FirstElSrcRngStartln="10" ruleSCSCMsg="Source of Null Value" locEndLn="20" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="&quot;sFirstLine&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\np\NullPointer.java" dumpId="40" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="32">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\np\NullPointer.java" ln="20" tool="jtest" lang="java" locRef="52" lineHash="-1543564921" id="0" locStartln="20" locStartPos="15" rule="BD.EXCEPT.NP" locEndPos="34" causeLocRef="52" FirstElSrcRngEndLn="10" hash="-1794176664" urgent="true" FirstElSrcRngStartln="10" ruleSCSCMsg="Source of Null Value" locEndLn="20" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="&quot;sFirstLine&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\np\NullPointer.java" dumpId="40" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="32">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -2242,7 +2242,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\np\NullPointer.java" ln="26" tool="jtest" lang="java" locRef="52" lineHash="-2039937235" id="0" locStartln="26" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="27" causeLocRef="52" FirstElSrcRngEndLn="11" hash="-1794176664" urgent="true" FirstElSrcRngStartln="11" ruleSCSCMsg="Source of Null Value" locEndLn="26" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="23" msg="&quot;reader&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\np\NullPointer.java" dumpId="41" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="36">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\bugdetective\np\NullPointer.java" ln="26" tool="jtest" lang="java" locRef="52" lineHash="-2039937235" id="0" locStartln="26" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="27" causeLocRef="52" FirstElSrcRngEndLn="11" hash="-1794176664" urgent="true" FirstElSrcRngStartln="11" ruleSCSCMsg="Source of Null Value" locEndLn="26" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="23" msg="&quot;reader&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\bugdetective\np\NullPointer.java" dumpId="41" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="36">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -2284,7 +2284,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\initialize\RaffleTicketPicker.java" ln="66" tool="jtest" lang="java" locRef="57" lineHash="-586808221" id="0" locStartln="66" locStartPos="3" rule="BD.OPT.INEFCOL" locEndPos="33" causeLocRef="57" FirstElSrcRngEndLn="65" hash="-1106172127" urgent="true" FirstElSrcRngStartln="65" ruleSCSCMsg="Point of Getting Iterator" locEndLn="66" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="29" msg="Inefficient removal from collection &quot;this._drawn_tickets&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="1," locFile="/Jtest Example/examples\initialize\RaffleTicketPicker.java" dumpId="42" ruleSAFMsg="Point where Element is Removed from Collection" auth="mczyzyk" FirstElSrcRngEndPos="54">
+    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\initialize\RaffleTicketPicker.java" ln="66" tool="jtest" lang="java" locRef="57" lineHash="-586808221" id="0" locStartln="66" locStartPos="3" rule="BD.OPT.INEFCOL" locEndPos="33" causeLocRef="57" FirstElSrcRngEndLn="65" hash="-1106172127" urgent="true" FirstElSrcRngStartln="65" ruleSCSCMsg="Point of Getting Iterator" locEndLn="66" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="29" msg="Inefficient removal from collection &quot;this._drawn_tickets&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="1," locFile="/Jtest Example/examples\initialize\RaffleTicketPicker.java" dumpId="42" ruleSAFMsg="Point where Element is Removed from Collection" auth="user-name" FirstElSrcRngEndPos="54">
       <Props>
         <Prop key="Tracked variables" val="Tracked" />
       </Props>
@@ -2304,7 +2304,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\junit4\MoneyBag.java" ln="46" tool="jtest" lang="java" locRef="67" lineHash="85409682" id="0" locStartln="46" locStartPos="2" rule="BD.OPT.INEFCOL" locEndPos="22" causeLocRef="67" FirstElSrcRngEndLn="73" hash="874526682" urgent="true" FirstElSrcRngStartln="71" ruleSCSCMsg="Point of Getting Iterator" locEndLn="46" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="2" msg="Inefficient removal from collection &quot;this.fMonies&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="1," locFile="/Jtest Example/examples\junit4\MoneyBag.java" dumpId="43" ruleSAFMsg="Point where Element is Removed from Collection" auth="mczyzyk" FirstElSrcRngEndPos="16">
+    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\junit4\MoneyBag.java" ln="46" tool="jtest" lang="java" locRef="67" lineHash="85409682" id="0" locStartln="46" locStartPos="2" rule="BD.OPT.INEFCOL" locEndPos="22" causeLocRef="67" FirstElSrcRngEndLn="73" hash="874526682" urgent="true" FirstElSrcRngStartln="71" ruleSCSCMsg="Point of Getting Iterator" locEndLn="46" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="2" msg="Inefficient removal from collection &quot;this.fMonies&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="1," locFile="/Jtest Example/examples\junit4\MoneyBag.java" dumpId="43" ruleSAFMsg="Point where Element is Removed from Collection" auth="user-name" FirstElSrcRngEndPos="16">
       <Props>
         <Prop key="Tracked variables" val="Tracked" />
       </Props>
@@ -2359,7 +2359,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="4" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="34" tool="jtest" lang="java" locRef="76" lineHash="-1108016052" id="0" locStartln="34" locStartPos="2" rule="BD.PB.NOTEXPLINIT" locEndPos="44" causeLocRef="79" FirstElSrcRngEndLn="19" hash="-1432761020" urgent="true" FirstElSrcRngStartln="19" ruleSCSCMsg="Source of Implicitly Initialized Value" locEndLn="34" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="4" msg="&quot;account.getID ()&quot; is used prior to explicit initialization" goals="1," locFile="/Jtest Example/examples\nbank\Bank.java" dumpId="44" ruleSAFMsg="Usage Point" auth="mczyzyk" FirstElSrcRngEndPos="24">
+    <FlowViol sev="4" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="34" tool="jtest" lang="java" locRef="76" lineHash="-1108016052" id="0" locStartln="34" locStartPos="2" rule="BD.PB.NOTEXPLINIT" locEndPos="44" causeLocRef="79" FirstElSrcRngEndLn="19" hash="-1432761020" urgent="true" FirstElSrcRngStartln="19" ruleSCSCMsg="Source of Implicitly Initialized Value" locEndLn="34" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="4" msg="&quot;account.getID ()&quot; is used prior to explicit initialization" goals="1," locFile="/Jtest Example/examples\nbank\Bank.java" dumpId="44" ruleSAFMsg="Usage Point" auth="user-name" FirstElSrcRngEndPos="24">
       <Props>
         <Prop key="Tracked variables" val="Not explicitly initialized value" />
       </Props>
@@ -2481,7 +2481,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="4" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="54" tool="jtest" lang="java" locRef="79" lineHash="-1409184873" id="0" locStartln="54" locStartPos="11" rule="BD.PB.NOTEXPLINIT" locEndPos="37" causeLocRef="79" FirstElSrcRngEndLn="19" hash="-1719823464" urgent="true" FirstElSrcRngStartln="19" ruleSCSCMsg="Source of Implicitly Initialized Value" locEndLn="54" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="4" msg="&quot;cust.getSSN()&quot; is used prior to explicit initialization" goals="1," locFile="/Jtest Example/examples\nbank\Customer.java" dumpId="45" ruleSAFMsg="Usage Point" auth="mczyzyk" FirstElSrcRngEndPos="24">
+    <FlowViol sev="4" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="54" tool="jtest" lang="java" locRef="79" lineHash="-1409184873" id="0" locStartln="54" locStartPos="11" rule="BD.PB.NOTEXPLINIT" locEndPos="37" causeLocRef="79" FirstElSrcRngEndLn="19" hash="-1719823464" urgent="true" FirstElSrcRngStartln="19" ruleSCSCMsg="Source of Implicitly Initialized Value" locEndLn="54" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="4" msg="&quot;cust.getSSN()&quot; is used prior to explicit initialization" goals="1," locFile="/Jtest Example/examples\nbank\Customer.java" dumpId="45" ruleSAFMsg="Usage Point" auth="user-name" FirstElSrcRngEndPos="24">
       <Props>
         <Prop key="Tracked variables" val="Not explicitly initialized value" />
       </Props>
@@ -2594,7 +2594,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="54" tool="jtest" lang="java" locRef="79" lineHash="-1409184873" id="0" locStartln="54" locStartPos="11" rule="BD.EXCEPT.NP" locEndPos="37" causeLocRef="79" FirstElSrcRngEndLn="19" hash="-1719823464" urgent="true" FirstElSrcRngStartln="19" ruleSCSCMsg="Source of Null Value" locEndLn="54" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="4" msg="&quot;this._ssn&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\nbank\Customer.java" dumpId="46" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="24">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="54" tool="jtest" lang="java" locRef="79" lineHash="-1409184873" id="0" locStartln="54" locStartPos="11" rule="BD.EXCEPT.NP" locEndPos="37" causeLocRef="79" FirstElSrcRngEndLn="19" hash="-1719823464" urgent="true" FirstElSrcRngStartln="19" ruleSCSCMsg="Source of Null Value" locEndLn="54" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="4" msg="&quot;this._ssn&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\nbank\Customer.java" dumpId="46" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="24">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -2688,7 +2688,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="100" tool="jtest" lang="java" locRef="79" lineHash="30537853" id="0" locStartln="100" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="79" FirstElSrcRngEndLn="73" hash="-1719823464" urgent="true" FirstElSrcRngStartln="73" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="100" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC Connection not closed: connection" goals="1," locFile="/Jtest Example/examples\nbank\Customer.java" dumpId="47" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="78">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="100" tool="jtest" lang="java" locRef="79" lineHash="30537853" id="0" locStartln="100" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="79" FirstElSrcRngEndLn="73" hash="-1719823464" urgent="true" FirstElSrcRngStartln="73" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="100" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC Connection not closed: connection" goals="1," locFile="/Jtest Example/examples\nbank\Customer.java" dumpId="47" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="78">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -2752,7 +2752,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="100" tool="jtest" lang="java" locRef="79" lineHash="30537853" id="0" locStartln="100" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="79" FirstElSrcRngEndLn="85" hash="-1719823464" urgent="true" FirstElSrcRngStartln="85" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="100" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC statement not closed: statement" goals="1," locFile="/Jtest Example/examples\nbank\Customer.java" dumpId="48" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="96">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="100" tool="jtest" lang="java" locRef="79" lineHash="30537853" id="0" locStartln="100" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="79" FirstElSrcRngEndLn="85" hash="-1719823464" urgent="true" FirstElSrcRngStartln="85" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="100" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC statement not closed: statement" goals="1," locFile="/Jtest Example/examples\nbank\Customer.java" dumpId="48" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="96">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -2804,7 +2804,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="100" tool="jtest" lang="java" locRef="79" lineHash="30537853" id="0" locStartln="100" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="79" FirstElSrcRngEndLn="86" hash="-1719823464" urgent="true" FirstElSrcRngStartln="86" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="100" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC resultset not closed: resultSet" goals="1," locFile="/Jtest Example/examples\nbank\Customer.java" dumpId="49" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="48">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\nbank\Customer.java" ln="100" tool="jtest" lang="java" locRef="79" lineHash="30537853" id="0" locStartln="100" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="79" FirstElSrcRngEndLn="86" hash="-1719823464" urgent="true" FirstElSrcRngStartln="86" ruleSCSCMsg="Point where the Resource is Allocated" locEndLn="100" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC resultset not closed: resultSet" goals="1," locFile="/Jtest Example/examples\nbank\Customer.java" dumpId="49" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="48">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -2859,7 +2859,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\runtime\ExitingFinallyBlockAbruptly.java" ln="25" tool="jtest" lang="java" locRef="92" lineHash="1506418955" id="0" locStartln="25" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="23" causeLocRef="92" FirstElSrcRngEndLn="19" hash="1779163050" urgent="true" FirstElSrcRngStartln="19" ruleSCSCMsg="Source of Null Value" locEndLn="25" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="20" msg="&quot;in&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\runtime\ExitingFinallyBlockAbruptly.java" dumpId="50" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="29">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\runtime\ExitingFinallyBlockAbruptly.java" ln="25" tool="jtest" lang="java" locRef="92" lineHash="1506418955" id="0" locStartln="25" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="23" causeLocRef="92" FirstElSrcRngEndLn="19" hash="1779163050" urgent="true" FirstElSrcRngStartln="19" ruleSCSCMsg="Source of Null Value" locEndLn="25" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="20" msg="&quot;in&quot; may possibly be null" goals="1," locFile="/Jtest Example/examples\runtime\ExitingFinallyBlockAbruptly.java" dumpId="50" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="29">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -2881,7 +2881,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\security\InputValidation.java" ln="96" tool="jtest" lang="java" locRef="104" lineHash="849041673" id="0" locStartln="96" locStartPos="12" rule="BD.SECURITY.TDSQL" locEndPos="41" causeLocRef="104" FirstElSrcRngEndLn="65" hash="152770624" FirstElSrcRngStartln="65" locEndLn="96" ruleSCSCMsg="Tainting Point" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;query&quot;) to SQL query" goals="0," locFile="/Jtest Example/examples\security\InputValidation.java" dumpId="51" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="58">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\security\InputValidation.java" ln="96" tool="jtest" lang="java" locRef="104" lineHash="849041673" id="0" locStartln="96" locStartPos="12" rule="BD.SECURITY.TDSQL" locEndPos="41" causeLocRef="104" FirstElSrcRngEndLn="65" hash="152770624" FirstElSrcRngStartln="65" locEndLn="96" ruleSCSCMsg="Tainting Point" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;query&quot;) to SQL query" goals="0," locFile="/Jtest Example/examples\security\InputValidation.java" dumpId="51" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="58">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -2933,7 +2933,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\security\InputValidation.java" ln="96" tool="jtest" lang="java" locRef="104" lineHash="849041673" id="0" locStartln="96" locStartPos="12" rule="BD.SECURITY.TDSQL" locEndPos="41" causeLocRef="104" FirstElSrcRngEndLn="66" hash="152770624" FirstElSrcRngStartln="66" locEndLn="96" ruleSCSCMsg="Tainting Point" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;query&quot;) to SQL query" goals="0," locFile="/Jtest Example/examples\security\InputValidation.java" dumpId="52" ruleSAFMsg="Dangerous Method Call" auth="mczyzyk" FirstElSrcRngEndPos="58">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\security\InputValidation.java" ln="96" tool="jtest" lang="java" locRef="104" lineHash="849041673" id="0" locStartln="96" locStartPos="12" rule="BD.SECURITY.TDSQL" locEndPos="41" causeLocRef="104" FirstElSrcRngEndLn="66" hash="152770624" FirstElSrcRngStartln="66" locEndLn="96" ruleSCSCMsg="Tainting Point" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="15" msg="Injection of data received from servlet request (&quot;query&quot;) to SQL query" goals="0," locFile="/Jtest Example/examples\security\InputValidation.java" dumpId="52" ruleSAFMsg="Dangerous Method Call" auth="user-name" FirstElSrcRngEndPos="58">
       <Props>
         <Prop key="Tracked variables" val="Tainted data" />
       </Props>
@@ -2983,7 +2983,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\security\InputValidation.java" ln="109" tool="jtest" lang="java" locRef="104" lineHash="30537853" id="0" locStartln="109" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="104" FirstElSrcRngEndLn="95" hash="152770624" FirstElSrcRngStartln="95" locEndLn="109" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC statement not closed: stmt" goals="0," locFile="/Jtest Example/examples\security\InputValidation.java" dumpId="53" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="48">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\security\InputValidation.java" ln="109" tool="jtest" lang="java" locRef="104" lineHash="30537853" id="0" locStartln="109" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="104" FirstElSrcRngEndLn="95" hash="152770624" FirstElSrcRngStartln="95" locEndLn="109" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC statement not closed: stmt" goals="0," locFile="/Jtest Example/examples\security\InputValidation.java" dumpId="53" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="48">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -3024,7 +3024,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\security\InputValidation.java" ln="109" tool="jtest" lang="java" locRef="104" lineHash="30537853" id="0" locStartln="109" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="104" FirstElSrcRngEndLn="96" hash="152770624" FirstElSrcRngStartln="96" locEndLn="109" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC resultset not closed: rs" goals="0," locFile="/Jtest Example/examples\security\InputValidation.java" dumpId="54" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="41">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\security\InputValidation.java" ln="109" tool="jtest" lang="java" locRef="104" lineHash="30537853" id="0" locStartln="109" locStartPos="4" rule="BD.RES.LEAKS" locEndPos="5" causeLocRef="104" FirstElSrcRngEndLn="96" hash="152770624" FirstElSrcRngStartln="96" locEndLn="109" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC resultset not closed: rs" goals="0," locFile="/Jtest Example/examples\security\InputValidation.java" dumpId="54" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="41">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -3063,7 +3063,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\security\InputValidation.java" ln="132" tool="jtest" lang="java" locRef="104" lineHash="-813710626" id="0" locStartln="132" locStartPos="8" rule="BD.RES.LEAKS" locEndPos="9" causeLocRef="104" FirstElSrcRngEndLn="128" hash="152770624" FirstElSrcRngStartln="128" locEndLn="132" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="22" msg="JDBC statement not closed: stmt" goals="0," locFile="/Jtest Example/examples\security\InputValidation.java" dumpId="55" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="58">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\security\InputValidation.java" ln="132" tool="jtest" lang="java" locRef="104" lineHash="-813710626" id="0" locStartln="132" locStartPos="8" rule="BD.RES.LEAKS" locEndPos="9" causeLocRef="104" FirstElSrcRngEndLn="128" hash="152770624" FirstElSrcRngStartln="128" locEndLn="132" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="22" msg="JDBC statement not closed: stmt" goals="0," locFile="/Jtest Example/examples\security\InputValidation.java" dumpId="55" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="58">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -3090,7 +3090,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\singletons\RaffleTicketPicker.java" ln="66" tool="jtest" lang="java" locRef="107" lineHash="1886414938" id="0" locStartln="66" locStartPos="2" rule="BD.OPT.INEFCOL" locEndPos="32" causeLocRef="107" FirstElSrcRngEndLn="65" hash="398557395" FirstElSrcRngStartln="65" locEndLn="66" ruleSCSCMsg="Point of Getting Iterator" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="28" msg="Inefficient removal from collection &quot;this._drawn_tickets&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="0," locFile="/Jtest Example/examples\singletons\RaffleTicketPicker.java" dumpId="56" ruleSAFMsg="Point where Element is Removed from Collection" auth="mczyzyk" FirstElSrcRngEndPos="53">
+    <FlowViol sev="3" FirstElSrcRngFile="/Jtest Example/examples\singletons\RaffleTicketPicker.java" ln="66" tool="jtest" lang="java" locRef="107" lineHash="1886414938" id="0" locStartln="66" locStartPos="2" rule="BD.OPT.INEFCOL" locEndPos="32" causeLocRef="107" FirstElSrcRngEndLn="65" hash="398557395" FirstElSrcRngStartln="65" locEndLn="66" ruleSCSCMsg="Point of Getting Iterator" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="28" msg="Inefficient removal from collection &quot;this._drawn_tickets&quot;. Remove elements by &quot;Iterator.remove()&quot;" goals="0," locFile="/Jtest Example/examples\singletons\RaffleTicketPicker.java" dumpId="56" ruleSAFMsg="Point where Element is Removed from Collection" auth="user-name" FirstElSrcRngEndPos="53">
       <Props>
         <Prop key="Tracked variables" val="Tracked" />
       </Props>
@@ -3107,7 +3107,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="31" tool="jtest" lang="java" locRef="120" lineHash="1519051298" id="0" locStartln="31" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="48" causeLocRef="120" FirstElSrcRngEndLn="94" hash="-148247498" FirstElSrcRngStartln="94" locEndLn="31" ruleSCSCMsg="Source of Null Value" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="6" msg="&quot;_connection&quot; may possibly be null" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="57" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="25">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="31" tool="jtest" lang="java" locRef="120" lineHash="1519051298" id="0" locStartln="31" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="48" causeLocRef="120" FirstElSrcRngEndLn="94" hash="-148247498" FirstElSrcRngStartln="94" locEndLn="31" ruleSCSCMsg="Source of Null Value" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="6" msg="&quot;_connection&quot; may possibly be null" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="57" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="25">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -3155,7 +3155,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="43" tool="jtest" lang="java" locRef="120" lineHash="28563137" id="0" locStartln="43" locStartPos="9" rule="BD.PB.ZERO" locEndPos="28" causeLocRef="120" FirstElSrcRngEndLn="37" hash="-148247498" FirstElSrcRngStartln="37" locEndLn="43" ruleSCSCMsg="Source of Zero" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="6" msg="&quot;num_entries&quot; may possibly be zero" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="58" ruleSAFMsg="Point of Division by Zero" auth="mczyzyk" FirstElSrcRngEndPos="21">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="43" tool="jtest" lang="java" locRef="120" lineHash="28563137" id="0" locStartln="43" locStartPos="9" rule="BD.PB.ZERO" locEndPos="28" causeLocRef="120" FirstElSrcRngEndLn="37" hash="-148247498" FirstElSrcRngStartln="37" locEndLn="43" ruleSCSCMsg="Source of Zero" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="6" msg="&quot;num_entries&quot; may possibly be zero" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="58" ruleSAFMsg="Point of Division by Zero" auth="user-name" FirstElSrcRngEndPos="21">
       <Props>
         <Prop key="Tracked variables" val="Zero value carrier" />
       </Props>
@@ -3209,7 +3209,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="44" tool="jtest" lang="java" locRef="120" lineHash="404" id="0" locStartln="44" locStartPos="1" rule="BD.RES.LEAKS" locEndPos="2" causeLocRef="120" FirstElSrcRngEndLn="31" hash="-148247498" FirstElSrcRngStartln="31" locEndLn="44" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC statement not closed: stmt" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="59" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="48">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="44" tool="jtest" lang="java" locRef="120" lineHash="404" id="0" locStartln="44" locStartPos="1" rule="BD.RES.LEAKS" locEndPos="2" causeLocRef="120" FirstElSrcRngEndLn="31" hash="-148247498" FirstElSrcRngStartln="31" locEndLn="44" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC statement not closed: stmt" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="59" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="48">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -3256,7 +3256,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="44" tool="jtest" lang="java" locRef="120" lineHash="404" id="0" locStartln="44" locStartPos="1" rule="BD.RES.LEAKS" locEndPos="2" causeLocRef="120" FirstElSrcRngEndLn="34" hash="-148247498" FirstElSrcRngStartln="32" locEndLn="44" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC resultset not closed: rs" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="60" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="24">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="44" tool="jtest" lang="java" locRef="120" lineHash="404" id="0" locStartln="44" locStartPos="1" rule="BD.RES.LEAKS" locEndPos="2" causeLocRef="120" FirstElSrcRngEndLn="34" hash="-148247498" FirstElSrcRngStartln="32" locEndLn="44" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC resultset not closed: rs" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="60" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="24">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -3314,7 +3314,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="60" tool="jtest" lang="java" locRef="120" lineHash="1519051298" id="0" locStartln="60" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="48" causeLocRef="120" FirstElSrcRngEndLn="94" hash="-148247498" FirstElSrcRngStartln="94" locEndLn="60" ruleSCSCMsg="Source of Null Value" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="6" msg="&quot;_connection&quot; may possibly be null" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="61" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="25">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="60" tool="jtest" lang="java" locRef="120" lineHash="1519051298" id="0" locStartln="60" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="48" causeLocRef="120" FirstElSrcRngEndLn="94" hash="-148247498" FirstElSrcRngStartln="94" locEndLn="60" ruleSCSCMsg="Source of Null Value" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="6" msg="&quot;_connection&quot; may possibly be null" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="61" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="25">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -3367,7 +3367,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="69" tool="jtest" lang="java" locRef="120" lineHash="404" id="0" locStartln="69" locStartPos="1" rule="BD.RES.LEAKS" locEndPos="2" causeLocRef="120" FirstElSrcRngEndLn="60" hash="-148247498" FirstElSrcRngStartln="60" locEndLn="69" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC statement not closed: stmt" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="62" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="48">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="69" tool="jtest" lang="java" locRef="120" lineHash="404" id="0" locStartln="69" locStartPos="1" rule="BD.RES.LEAKS" locEndPos="2" causeLocRef="120" FirstElSrcRngEndLn="60" hash="-148247498" FirstElSrcRngStartln="60" locEndLn="69" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC statement not closed: stmt" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="62" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="48">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -3417,7 +3417,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="69" tool="jtest" lang="java" locRef="120" lineHash="404" id="0" locStartln="69" locStartPos="1" rule="BD.RES.LEAKS" locEndPos="2" causeLocRef="120" FirstElSrcRngEndLn="63" hash="-148247498" FirstElSrcRngStartln="61" locEndLn="69" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC resultset not closed: rs" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="63" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="24">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="69" tool="jtest" lang="java" locRef="120" lineHash="404" id="0" locStartln="69" locStartPos="1" rule="BD.RES.LEAKS" locEndPos="2" causeLocRef="120" FirstElSrcRngEndLn="63" hash="-148247498" FirstElSrcRngStartln="61" locEndLn="69" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC resultset not closed: rs" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="63" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="24">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -3468,7 +3468,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="85" tool="jtest" lang="java" locRef="120" lineHash="1519051298" id="0" locStartln="85" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="48" causeLocRef="120" FirstElSrcRngEndLn="94" hash="-148247498" FirstElSrcRngStartln="94" locEndLn="85" ruleSCSCMsg="Source of Null Value" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="6" msg="&quot;_connection&quot; may possibly be null" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="64" ruleSAFMsg="NullPointerException Point" auth="mczyzyk" FirstElSrcRngEndPos="25">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="85" tool="jtest" lang="java" locRef="120" lineHash="1519051298" id="0" locStartln="85" locStartPos="12" rule="BD.EXCEPT.NP" locEndPos="48" causeLocRef="120" FirstElSrcRngEndLn="94" hash="-148247498" FirstElSrcRngStartln="94" locEndLn="85" ruleSCSCMsg="Source of Null Value" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="6" msg="&quot;_connection&quot; may possibly be null" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="64" ruleSAFMsg="NullPointerException Point" auth="user-name" FirstElSrcRngEndPos="25">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier" />
       </Props>
@@ -3516,7 +3516,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="88" tool="jtest" lang="java" locRef="120" lineHash="404" id="0" locStartln="88" locStartPos="1" rule="BD.RES.LEAKS" locEndPos="2" causeLocRef="120" FirstElSrcRngEndLn="85" hash="-148247498" FirstElSrcRngStartln="85" locEndLn="88" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC statement not closed: stmt" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="65" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="mczyzyk" FirstElSrcRngEndPos="48">
+    <FlowViol sev="1" FirstElSrcRngFile="/Jtest Example/examples\stubs\DatabaseExample.java" ln="88" tool="jtest" lang="java" locRef="120" lineHash="404" id="0" locStartln="88" locStartPos="1" rule="BD.RES.LEAKS" locEndPos="2" causeLocRef="120" FirstElSrcRngEndLn="85" hash="-148247498" FirstElSrcRngStartln="85" locEndLn="88" ruleSCSCMsg="Point where the Resource is Allocated" locType="sr" analyzer="jtest" FirstElSrcRngStartPos="12" msg="JDBC statement not closed: stmt" goals="0," locFile="/Jtest Example/examples\stubs\DatabaseExample.java" dumpId="65" ruleSAFMsg="Point where the Allocated Resource is Lost" auth="user-name" FirstElSrcRngEndPos="48">
       <Props>
         <Prop key="Tracked variables" val="Allocated resource variable" />
       </Props>
@@ -3562,6 +3562,6 @@
 
    </CodingStandards>
    <Statistics>
-      
+
    </Statistics>
 </ResultsSession>

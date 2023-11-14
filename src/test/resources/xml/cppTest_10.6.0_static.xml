@@ -1,7 +1,7 @@
-<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="Default Project-2022-10-18" date="10/18/22 09:44:53" machine="CONQUEROR" project="Default Project" tag="Recommended Rules" time="2022-10-18T09:44:53+02:00" toolName="C++test" toolVer="2022.1.0.20220615B1827" user="mgorecka">
-   <TestConfig machine="CONQUEROR" name="Recommended Rules" pseudoUrl="c++test.builtin://Recommended Rules" user="mgorecka"/>
+<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="Default Project-2022-10-18" date="10/18/22 09:44:53" machine="machine-name" project="Default Project" tag="Recommended Rules" time="2022-10-18T09:44:53+02:00" toolName="C++test" toolVer="2022.1.0.20220615B1827" user="user-name">
+   <TestConfig machine="machine-name" name="Recommended Rules" pseudoUrl="c++test.builtin://Recommended Rules" user="user-name"/>
    <Authors>
-      <Author id="dev1" name="mgorecka"/>
+      <Author id="dev1" name="user-name"/>
    </Authors>
    <VersionInfos>
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="IExecutionViolation" ver="2"/>
@@ -15,8 +15,8 @@
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationInfo" ver="2"/>
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationProjectInfo" ver="2"/>
    </VersionInfos>
-   
-   
+
+
    <Scope>
       <ProjectInformations>
          <ScopeProjectInfo fltFiles="6" fltLns="236" project="/FlowAnalysisCpp" totFiles="6" totLns="236"/>
@@ -257,9 +257,9 @@
             </Severity>
          </SeverityList>
       </Rules>
-      
+
   <StdViols>
-    <FlowViol msg="Division by &quot;shape2.getArea()&quot; which may possibly be zero" ln="5" ruleSAFMsg="Point of division by zero" auth="mgorecka" sev="1" rule="BD-PB-ZERO" ruleSCSCMsg="Start of the path" tool="c++test" id="-1887152637" lang="cpp" locType="sr" urgent="true" config="1" hash="-1665970746" locStartln="5" locStartPos="0" locEndLn="6" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp" FirstElSrcRngStartln="5" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="6" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp">
+    <FlowViol msg="Division by &quot;shape2.getArea()&quot; which may possibly be zero" ln="5" ruleSAFMsg="Point of division by zero" auth="user-name" sev="1" rule="BD-PB-ZERO" ruleSCSCMsg="Start of the path" tool="c++test" id="-1887152637" lang="cpp" locType="sr" urgent="true" config="1" hash="-1665970746" locStartln="5" locStartPos="0" locEndLn="6" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp" FirstElSrcRngStartln="5" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="6" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp">
       <Props/>
       <ElDescList>
         <ElDesc srcRngStartln="5" srcRngStartPos="0" srcRngEndLn="6" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp" srcRnghash="-1665970746" ln="5" ElType=".C" desc="shape2->getArea()" rngLn="5">
@@ -281,7 +281,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="Memory not deallocated: data" ln="15" ruleSAFMsg="Point where allocated memory is lost" auth="mgorecka" sev="1" rule="BD-RES-LEAKS" ruleSCSCMsg="Point where memory is allocated" tool="c++test" supp="true" id="-1842545282" lang="cpp" locType="sr" config="1" hash="-443364725" locStartln="15" locStartPos="0" locEndLn="16" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" FirstElSrcRngStartln="8" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="9" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp">
+    <FlowViol msg="Memory not deallocated: data" ln="15" ruleSAFMsg="Point where allocated memory is lost" auth="user-name" sev="1" rule="BD-RES-LEAKS" ruleSCSCMsg="Point where memory is allocated" tool="c++test" supp="true" id="-1842545282" lang="cpp" locType="sr" config="1" hash="-443364725" locStartln="15" locStartPos="0" locEndLn="16" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" FirstElSrcRngStartln="8" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="9" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp">
       <Props>
         <Prop key="Tracked variables" val="Allocated memory"/>
       </Props>
@@ -328,7 +328,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="&quot;point&quot; may possibly be null" ln="11" ruleSAFMsg="Null pointer dereferencing point" auth="mgorecka" sev="1" rule="BD-PB-NP" ruleSCSCMsg="Source of null value" tool="c++test" id="1390236584" lang="cpp" locType="sr" urgent="true" config="1" hash="-1257393797" locStartln="11" locStartPos="0" locEndLn="12" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp">
+    <FlowViol msg="&quot;point&quot; may possibly be null" ln="11" ruleSAFMsg="Null pointer dereferencing point" auth="user-name" sev="1" rule="BD-PB-NP" ruleSCSCMsg="Source of null value" tool="c++test" id="1390236584" lang="cpp" locType="sr" urgent="true" config="1" hash="-1257393797" locStartln="11" locStartPos="0" locEndLn="12" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier"/>
       </Props>
@@ -355,25 +355,25 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <StdViol msg="Class 'Shape' has virtual functions without a virtual destructor" ln="6" sev="2" auth="mgorecka" rule="OOP-23" tool="c++test" cat="OOP" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="6" locStartPos="6" locEndLn="6" locEndPos="7" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
-    <StdViol msg="Constructor 'Shape' allowing conversion should be made explicit" ln="12" sev="1" auth="mgorecka" rule="CODSTA-CPP-04" tool="c++test" cat="CODSTA-CPP" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="12" locStartPos="4" locEndLn="12" locEndPos="5" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
-    <StdViol msg="The parameter 'position' of function 'Shape' is passed by value" ln="12" sev="3" auth="mgorecka" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="12" locStartPos="16" locEndLn="12" locEndPos="17" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
-    <StdViol msg="Class 'LineSegment' has virtual functions without a virtual destructor" ln="15" sev="2" auth="mgorecka" rule="OOP-23" tool="c++test" cat="OOP" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="15" locStartPos="6" locEndLn="15" locEndPos="7" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
-    <StdViol msg="The parameter 'end' of function 'LineSegment' is passed by value" ln="18" sev="3" auth="mgorecka" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="18" locStartPos="38" locEndLn="18" locEndPos="39" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
-    <StdViol msg="The parameter 'position' of function 'LineSegment' is passed by value" ln="18" sev="3" auth="mgorecka" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="18" locStartPos="22" locEndLn="18" locEndPos="23" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
-    <StdViol msg="Class 'Circle' has virtual functions without a virtual destructor" ln="22" sev="2" auth="mgorecka" rule="OOP-23" tool="c++test" cat="OOP" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="22" locStartPos="6" locEndLn="22" locEndPos="7" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
-    <StdViol msg="The parameter 'position' of function 'Circle' is passed by value" ln="25" sev="3" auth="mgorecka" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="25" locStartPos="17" locEndLn="25" locEndPos="18" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
-    <StdViol msg="The parameter 'point' of function 'contains' is passed by value" ln="27" sev="3" auth="mgorecka" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="27" locStartPos="23" locEndLn="27" locEndPos="24" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
+    <StdViol msg="Class 'Shape' has virtual functions without a virtual destructor" ln="6" sev="2" auth="user-name" rule="OOP-23" tool="c++test" cat="OOP" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="6" locStartPos="6" locEndLn="6" locEndPos="7" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
+    <StdViol msg="Constructor 'Shape' allowing conversion should be made explicit" ln="12" sev="1" auth="user-name" rule="CODSTA-CPP-04" tool="c++test" cat="CODSTA-CPP" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="12" locStartPos="4" locEndLn="12" locEndPos="5" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
+    <StdViol msg="The parameter 'position' of function 'Shape' is passed by value" ln="12" sev="3" auth="user-name" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="12" locStartPos="16" locEndLn="12" locEndPos="17" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
+    <StdViol msg="Class 'LineSegment' has virtual functions without a virtual destructor" ln="15" sev="2" auth="user-name" rule="OOP-23" tool="c++test" cat="OOP" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="15" locStartPos="6" locEndLn="15" locEndPos="7" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
+    <StdViol msg="The parameter 'end' of function 'LineSegment' is passed by value" ln="18" sev="3" auth="user-name" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="18" locStartPos="38" locEndLn="18" locEndPos="39" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
+    <StdViol msg="The parameter 'position' of function 'LineSegment' is passed by value" ln="18" sev="3" auth="user-name" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="18" locStartPos="22" locEndLn="18" locEndPos="23" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
+    <StdViol msg="Class 'Circle' has virtual functions without a virtual destructor" ln="22" sev="2" auth="user-name" rule="OOP-23" tool="c++test" cat="OOP" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="22" locStartPos="6" locEndLn="22" locEndPos="7" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
+    <StdViol msg="The parameter 'position' of function 'Circle' is passed by value" ln="25" sev="3" auth="user-name" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="25" locStartPos="17" locEndLn="25" locEndPos="18" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
+    <StdViol msg="The parameter 'point' of function 'contains' is passed by value" ln="27" sev="3" auth="user-name" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1537905639" locStartln="27" locStartPos="23" locEndLn="27" locEndPos="24" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/Shapes.hpp"/>
   </StdViols>
 
       <Supps>
-         <Supp suppAuth="mgorecka" suppCount="1" suppLine="15" suppLoc="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" suppMsg="Memory not deallocated: data" suppRsn="source-code1" suppRule="BD-RES-LEAKS"/>
+         <Supp suppAuth="user-name" suppCount="1" suppLine="15" suppLoc="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" suppMsg="Memory not deallocated: data" suppRsn="source-code1" suppRule="BD-RES-LEAKS"/>
       </Supps>
-      
-      
+
+
    </CodingStandards>
    <Metrics ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:20">
-      
+
    </Metrics>
    <AssocUrls/>
 </ResultsSession>

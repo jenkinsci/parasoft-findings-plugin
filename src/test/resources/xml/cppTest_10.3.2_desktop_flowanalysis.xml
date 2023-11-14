@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<ResultsSession buildId="ctest_mlyko-2017-11-27" date="11/27/17 12:45:32" machine="leto" project="ctest_mlyko" tag="BugDetective Standard" time="2017-11-27T12:45:32+01:00" toolName="C++test" toolVer="10.3.2" user="ktos_inny">
-   <TestConfig machine="leto" name="BugDetective Standard" pseudoUrl="c++test.builtin://BugDetective Standard" user="ktos_inny" />
+<ResultsSession buildId="ctest_mlyko-2017-11-27" date="11/27/17 12:45:32" machine="machine-name" project="ctest_mlyko" tag="BugDetective Standard" time="2017-11-27T12:45:32+01:00" toolName="C++test" toolVer="10.3.2" user="user-name">
+   <TestConfig machine="machine-name" name="BugDetective Standard" pseudoUrl="c++test.builtin://BugDetective Standard" user="user-name" />
    <Authors>
       <Author id="dev1" name="mlyko" />
    </Authors>
@@ -18,24 +18,24 @@
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationInfo" ver="2" />
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationProjectInfo" ver="2" />
    </VersionInfos>
-   
+
       <Locations>
-      
+
          <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\DivisionByZero.cpp" loc="/BugDetectiveCpp/DivisionByZero.cpp" />
-      
+
          <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\DeadLock.cpp" loc="/BugDetectiveCpp/DeadLock.cpp" />
-      
+
          <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\Point.hpp" loc="/BugDetectiveCpp/Point.hpp" />
-      
+
          <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\NullPointer.cpp" loc="/BugDetectiveCpp/NullPointer.cpp" />
-      
+
          <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\MemoryLeak.cpp" loc="/BugDetectiveCpp/MemoryLeak.cpp" />
-      
+
          <Loc fsPath="D:\projects\10.3\BugDetectiveCpp\Shapes.hpp" loc="/BugDetectiveCpp/Shapes.hpp" />
-   
+
       </Locations>
-   
-   
+
+
    <Scope>
       <ProjectInformations>
          <ScopeProjectInfo fltFiles="6" fltLns="236" project="/BugDetectiveCpp" totFiles="6" totLns="236" />
@@ -53,7 +53,7 @@
             </ErrorList>
          </RulesValidation>
       </TestingProcessProblems>
-      
+
   <StdViols>
     <FlowViol msg="Unreleased lock: changePositionMutex" ln="103" ruleSAFMsg="Point prior to which the Lock is to be Released" auth="mlyko" sev="1" dumpId="0" rule="BD-TRS-LOCK" ruleSCSCMsg="Point where the Lock is Acquired" pkg="Physics" tool="c++test" id="2037104885" lang="cpp" locType="sr" urgent="true" config="2" hash="-2074750358" locStartln="103" locStartPos="0" locEndLn="104" locEndPos="0" locFile="/BugDetectiveCpp/DeadLock.cpp" FirstElSrcRngStartln="92" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="93" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/BugDetectiveCpp/DeadLock.cpp">
       <Props>
@@ -206,40 +206,40 @@
   </StdViols>
 
       <Supps />
-      
+
       <FADetails>
          <HtmlDump dumpId="0" value=".    DeadLock.cpp (90): while (!exitGame) {&#xd;&#xa;.    DeadLock.cpp (91): for(int i = 0; i &amp;lt; participantsCount; i++) {&#xd;&#xa;.C   DeadLock.cpp (92): LOCK_ACQUIRE(changePositionMutex);&#xd;&#xa;.    DeadLock.cpp (93): Point&amp;amp; position = participants[i]-&amp;gt;getPosition();&#xd;&#xa;.       Shapes.hpp (10): Point&amp;amp; getPosition() { return _position; }&#xd;&#xa;.    DeadLock.cpp (94): position.translate(*velocityArray[i]);&#xd;&#xa;.       Point.hpp (15): _x += vector._x;&#xd;&#xa;.       Point.hpp (16): _y += vector._y;&#xd;&#xa;.    DeadLock.cpp (95): ring.contains(...)&#xd;&#xa;.       Shapes.hpp (29): getPosition()&#xd;&#xa;.          Shapes.hpp (10): Point&amp;amp; getPosition() { return _position; }&#xd;&#xa;.       Shapes.hpp (29): point.squareDistanceTo(...)&#xd;&#xa;.          Point.hpp (21): return ((_x - point._x) * (_x - point._x)) + ((_y - point._y) * (_y - point._y));&#xd;&#xa;.       Shapes.hpp (29): return point.squareDistanceTo(getPosition()) &amp;lt;= (_radius * _radius);&#xd;&#xa;!E   DeadLock.cpp (95): assertion(ring.contains(position), &quot;Participant is out of ring&quot;); // assertion() throws: const char *&#xd;&#xa;.       DeadLock.cpp (60): if (!condition) {&#xd;&#xa;!E      DeadLock.cpp (61): throw message;&#xd;&#xa;.P   DeadLock.cpp (103): }" />
          <HtmlDump dumpId="1" value=".C   DivisionByZero.cpp (5): shape2-&amp;gt;getArea()&#xd;&#xa;.       Shapes.hpp (19): double getArea() const { return 0; }&#xd;&#xa;.P   DivisionByZero.cpp (5): return shape1-&amp;gt;getArea()/shape2-&amp;gt;getArea();" />
          <HtmlDump dumpId="2" value=".    MemoryLeak.cpp (7): fscanf(file, &quot;%d&quot;, pSize);&#xd;&#xa;.C   MemoryLeak.cpp (8): int* data = new int[*pSize]; // Allocated memory: data&#xd;&#xa;.    MemoryLeak.cpp (9): for (int i = 0; i &amp;lt; *pSize; i++) { // Allocated memory: data&#xd;&#xa;!    MemoryLeak.cpp (10): if (fscanf(file, &quot;%d&quot;, &amp;amp;data[i]) == EOF) { // Allocated memory: data&#xd;&#xa;!E   MemoryLeak.cpp (11): throw IOException(); // Allocated memory: data&#xd;&#xa;.P   MemoryLeak.cpp (15): } // Allocated memory: data" />
          <HtmlDump dumpId="3" value=".C   NullPointer.cpp (7): Point* point = 0; // Null value carrier: point&#xd;&#xa;.    NullPointer.cpp (8): if (argc &amp;gt; 3) { // Null value carrier: point&#xd;&#xa;.P   NullPointer.cpp (11): point-&amp;gt;reflectAcrossX(); // Null value carrier: point" />
       </FADetails>
-   
-      
-      
+
+
+
       <TestedFilesDetails>
-         
+
          <Total name="Suppressed / Total" supp="0" total="4">
-            
+
             <Project name="BugDetectiveCpp" supp="0" total="4">
-               
+
                <Res loc="/BugDetectiveCpp/DivisionByZero.cpp" locType="sr" name="DivisionByZero.cpp" supp="0" total="1" />
-               
+
                <Res loc="/BugDetectiveCpp/DeadLock.cpp" locType="sr" name="DeadLock.cpp" supp="0" total="1" />
-               
+
                <Res name="Point.hpp" supp="0" total="0" />
-               
+
                <Res loc="/BugDetectiveCpp/NullPointer.cpp" locType="sr" name="NullPointer.cpp" supp="0" total="1" />
-               
+
                <Res loc="/BugDetectiveCpp/MemoryLeak.cpp" locType="sr" name="MemoryLeak.cpp" supp="0" total="1" />
-               
+
                <Res name="Shapes.hpp" supp="0" total="0" />
-            
+
             </Project>
-         
+
          </Total>
-      
+
       </TestedFilesDetails>
-   
+
       <Rules>
          <RulesList>
             <Rule cat="BD-PB" desc="Avoid use before initialization" id="BD-PB-NOTINIT" sev="1">
@@ -448,7 +448,7 @@
       </Rules>
    </CodingStandards>
    <Metrics ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:21">
-      
+
    </Metrics>
    <AssocUrls />
 </ResultsSession>
