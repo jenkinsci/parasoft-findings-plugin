@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<ResultsSession buildId="ctest_mlyko-2017-11-21" date="11/21/17 13:28:32" machine="leto" project="ctest_mlyko" tag="CRules" time="2017-11-21T13:28:32+01:00" toolName="C++test" toolVer="10.3.2" user="ktos_inny">
-   <TestConfig machine="leto" name="CRules" pseudoUrl="c++test.builtin://CRules" user="ktos_inny" />
+<ResultsSession buildId="ctest_mlyko-2017-11-21" date="11/21/17 13:28:32" machine="machine-name" project="ctest_mlyko" tag="CRules" time="2017-11-21T13:28:32+01:00" toolName="C++test" toolVer="10.3.2" user="user-name">
+   <TestConfig machine="machine-name" name="CRules" pseudoUrl="c++test.builtin://CRules" user="user-name" />
    <Authors>
       <Author id="dev1" name="user11" />
    </Authors>
@@ -18,16 +18,16 @@
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationInfo" ver="2" />
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationProjectInfo" ver="2" />
    </VersionInfos>
-   
+
       <Locations>
-      
+
          <Loc fsPath="e:\Work\JenkinsWorkspaces\ctestKod\examples\Shapes\test.c" loc="/Shapes/test.c" />
-      
+
          <Loc fsPath="e:\Work\JenkinsWorkspaces\ctestKod\examples\Shapes\Point.cpp" loc="/Shapes/Point.cpp" />
-   
+
       </Locations>
-   
-   
+
+
    <Scope>
       <ProjectInformations>
          <ScopeProjectInfo fltFiles="14" fltLns="533" project="/Shapes" totFiles="14" totLns="533" />
@@ -368,7 +368,7 @@
             </Severity>
          </SeverityList>
       </Rules>
-      
+
   <StdViols>
     <StdViol msg="Every non empty case clause in a switch statement shall be terminated with a break statement" ln="15" sev="3" auth="user11" rule="CODSTA-39" tool="c++test" cat="CODSTA" lang="cpp" locType="sr" urgent="true" config="1" hash="939481020" locStartln="15" locStartPos="7" locEndLn="15" locEndPos="8" locFile="/Shapes/Point.cpp" />
     <StdViol msg="Every non empty case clause in a switch statement shall be terminated with a break statement" ln="17" sev="3" auth="user11" rule="CODSTA-39" tool="c++test" cat="CODSTA" lang="cpp" locType="sr" urgent="true" config="1" hash="939481020" locStartln="17" locStartPos="7" locEndLn="17" locEndPos="8" locFile="/Shapes/Point.cpp" />
@@ -380,58 +380,58 @@
   </StdViols>
 
       <Supps />
-      
+
       <FADetails />
-   
-      
-      
+
+
+
       <TestedFilesDetails>
-         
+
          <Total name="Suppressed / Total" supp="0" total="7">
-            
+
             <Project name="Shapes" supp="0" total="7">
-               
+
                <Res name="Square.cpp" supp="0" total="0" />
-               
+
                <Res name="Rectangle.h" supp="0" total="0" />
-               
+
                <Res name="Rectangle.cpp" supp="0" total="0" />
-               
+
                <Res name="Logger.h" supp="0" total="0" />
-               
+
                <Res name="BetterRectangle.h" supp="0" total="0" />
-               
+
                <Res name="Shape.h" supp="0" total="0" />
-               
+
                <Res name="Point.h" supp="0" total="0" />
-               
+
                <Res name="Square.h" supp="0" total="0" />
-               
+
                <Res name="Logger.cpp" supp="0" total="0" />
-               
+
                <Res name="BetterRectangle.cpp" supp="0" total="0" />
-               
+
                <Res name="Main.cpp" supp="0" total="0" />
-               
+
                <Res name="BetterSquare.h" supp="0" total="0" />
-               
+
                <Res loc="/Shapes/test.c" locType="sr" name="test.c" supp="0" total="3" />
-               
+
                <Res loc="/Shapes/Point.cpp" locType="sr" name="Point.cpp" supp="0" total="4" />
-            
+
             </Project>
-         
+
          </Total>
-      
+
       </TestedFilesDetails>
-   
+
       <Rules>
          <RulesList>
-         
-        
-         
-         
-         
+
+
+
+
+
             <Rule cat="CODSTA" desc="Avoid internal or external name conflict with a C++ reserved word" id="CODSTA-39" sev="1">
                <Stats authTot="0;" authUrg="0;" total="0" />
             </Rule>
@@ -755,7 +755,7 @@
       </Rules>
    </CodingStandards>
    <Metrics ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:37">
-      
+
    </Metrics>
    <AssocUrls />
 </ResultsSession>

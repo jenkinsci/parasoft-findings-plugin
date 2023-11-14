@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ResultsSession buildId="2022-01-28" climode="true" execEnv="win32_x86_64" hasViols="true" id="1641566751256" lang="en_US" machine="CONQUEROR" prjModule="ATM" project="" tag="${scontrol_branch}-win32_x86_64" time="2022-01-28T15:28:08+01:00" toolDispName="C/C++test" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="2021.2.1" user="mgorecka">
-   <TestConfig machine="CONQUEROR" name="Recommended Rules" pseudoUrl="builtin://Recommended Rules" user="mgorecka" />
+<ResultsSession buildId="2022-01-28" climode="true" execEnv="win32_x86_64" hasViols="true" id="1641566751256" lang="en_US" machine="machine-name" prjModule="ATM" project="" tag="${scontrol_branch}-win32_x86_64" time="2022-01-28T15:28:08+01:00" toolDispName="C/C++test" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="2021.2.1" user="user-name">
+   <TestConfig machine="machine-name" name="Recommended Rules" pseudoUrl="builtin://Recommended Rules" user="user-name" />
    <Authors>
-      <Author id="dev1" name="mgorecka" />
+      <Author id="dev1" name="user-name" />
    </Authors>
    <Analyzers>
       <Analyzer id="com.parasoft.xtest.scope.analyzer" name="Scope Analyzer" ver="10.5.2.20211215" />
@@ -25,7 +25,7 @@
       <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
    </VersionInfos>
    <Goals tsks="3">
-      
+
    </Goals>
    <Metrics>
       <Metric avg="1.571" disp="true" id="METRIC.CC" max="5" min="1" name="McCabe Cyclomatic Complexity" noi="14" stddev="1.116">
@@ -44,21 +44,21 @@
    <Scope>
       <Repositories />
       <Locations>
-         <Loc auth="mgorecka" hash="-318977119" locRef="1" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" totLns="52" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" />
-         <Loc auth="mgorecka" hash="-1422048276" locRef="2" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" totLns="40" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" />
-         <Loc auth="mgorecka" hash="-1798372520" locRef="3" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/BaseDisplay.cxx" totLns="18" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/BaseDisplay.cxx" />
-         <Loc auth="mgorecka" hash="-1636172050" locRef="4" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Account.cxx" totLns="14" uri="file://CONQUEROR/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/Account.cxx" />
+         <Loc auth="user-name" hash="-318977119" locRef="1" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" totLns="52" uri="file://machine-name/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" />
+         <Loc auth="user-name" hash="-1422048276" locRef="2" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" totLns="40" uri="file://machine-name/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" />
+         <Loc auth="user-name" hash="-1798372520" locRef="3" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/BaseDisplay.cxx" totLns="18" uri="file://machine-name/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/BaseDisplay.cxx" />
+         <Loc auth="user-name" hash="-1636172050" locRef="4" projId="ATM" projPath="/ATM" project="ATM" resProjPath="C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Account.cxx" totLns="14" uri="file://machine-name/C:/Program%20Files/Parasoft/C++test/10.5/examples/ATM/Account.cxx" />
       </Locations>
    </Scope>
-   
+
   <SetupProblems />
 
    <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:04">
       <Projects>
          <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="4" checkedLns="124" id="ATM" name="ATM" qfixErrs="0" suppErrs="0" totErrs="3" totFiles="4" totLns="124" />
       </Projects>
-      
-      
+
+
       <Rules>
          <CategoriesList>
             <Category authTot="0;" authUrg="0;" desc="Flow Analysis" name="BD" rules="118" total="0">
@@ -142,13 +142,13 @@
             <Severity authTot="2;" authUrg="2;" id="3" total="2" />
          </SeverityList>
       </Rules>
-      
+
   <Supps />
 
-      
+
   <StdViols>
-    <StdViol msg="The parameter 'password' of function 'viewAccount' is passed by value" ln="10" locFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" locStartln="10" sev="3" auth="mgorecka" locRef="1" rule="OPT-14" lnHash="-2065354134" rule.header="Pass objects by reference instead of by value" tool="c++test" lineHash="-2065354134" unbViolId="6f651dce-4832-32a9-9816-494f331a947e" locStartPos="48" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" lang="cpp" violId="795922c2-d810-395b-8e92-c4b0ec8b3740" locEndPos="49" locType="sr" urgent="true" hash="-318977119" locEndLn="10" goals="1," />
-    <FlowViol msg="Condition &quot;!(bool)this->myCurrentAccount&quot; always evaluates to true" ln="12" locFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" ruleSAFMsg="Point where senseless condition is used" FirstElSrcRngEndPos="0" auth="mgorecka" FirstElSrcRngEndLn="11" rule="BD-PB-CC" FirstElSrcRngStartPos="0" lnHash="1719088503" ruleSCSCMsg="Start of the path" FirstElSrcRngFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" rule.header="Avoid conditions that always evaluate to the same value" FirstElSrcRngStartln="10" locStartPos="0" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="873174745" lang="cpp" violId="978e4505-0aaf-3eed-b9ef-58d8e027e913" locEndPos="0" urgent="true" locEndLn="13" goals="1," locStartln="12" sev="2" locRef="1" tool="c++test" lineHash="1719088503" unbViolId="e70ccbfe-b254-3223-a6cf-abd41c9d19d6" locType="sr" hash="-318977119" causeLocRef="1">
+    <StdViol msg="The parameter 'password' of function 'viewAccount' is passed by value" ln="10" locFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" locStartln="10" sev="3" auth="user-name" locRef="1" rule="OPT-14" lnHash="-2065354134" rule.header="Pass objects by reference instead of by value" tool="c++test" lineHash="-2065354134" unbViolId="6f651dce-4832-32a9-9816-494f331a947e" locStartPos="48" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" lang="cpp" violId="795922c2-d810-395b-8e92-c4b0ec8b3740" locEndPos="49" locType="sr" urgent="true" hash="-318977119" locEndLn="10" goals="1," />
+    <FlowViol msg="Condition &quot;!(bool)this->myCurrentAccount&quot; always evaluates to true" ln="12" locFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" ruleSAFMsg="Point where senseless condition is used" FirstElSrcRngEndPos="0" auth="user-name" FirstElSrcRngEndLn="11" rule="BD-PB-CC" FirstElSrcRngStartPos="0" lnHash="1719088503" ruleSCSCMsg="Start of the path" FirstElSrcRngFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" rule.header="Avoid conditions that always evaluate to the same value" FirstElSrcRngStartln="10" locStartPos="0" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="873174745" lang="cpp" violId="978e4505-0aaf-3eed-b9ef-58d8e027e913" locEndPos="0" urgent="true" locEndLn="13" goals="1," locStartln="12" sev="2" locRef="1" tool="c++test" lineHash="1719088503" unbViolId="e70ccbfe-b254-3223-a6cf-abd41c9d19d6" locType="sr" hash="-318977119" causeLocRef="1">
       <Props />
       <ElDescList>
         <ElDesc lineHash="-2065354134" locType="sr" srcRnghash="-318977119" locRef="1" srcRngFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/ATM.cxx" srcRngEndLn="11" ln="10" srcRngEndPos="0" srcRngStartln="10" srcRngStartPos="0" desc="void ATM::viewAccount(int accountNumber, string password)" ElType=".C" rngLn="10">
@@ -180,7 +180,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="15" locFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" locStartln="15" sev="3" auth="mgorecka" locRef="2" rule="OPT-14" lnHash="22837910" rule.header="Pass objects by reference instead of by value" tool="c++test" lineHash="22837910" unbViolId="47244651-b228-3394-ac8c-91ad80e8fe46" locStartPos="42" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" lang="cpp" violId="a5cf8eb1-7633-3ec8-bfbe-66d33471f1ee" locEndPos="43" locType="sr" urgent="true" hash="-1422048276" locEndLn="15" goals="1," />
+    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="15" locFile="/ATM/C:/Program Files/Parasoft/C++test/10.5/examples/ATM/Bank.cxx" locStartln="15" sev="3" auth="user-name" locRef="2" rule="OPT-14" lnHash="22837910" rule.header="Pass objects by reference instead of by value" tool="c++test" lineHash="22837910" unbViolId="47244651-b228-3394-ac8c-91ad80e8fe46" locStartPos="42" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" lang="cpp" violId="a5cf8eb1-7633-3ec8-bfbe-66d33471f1ee" locEndPos="43" locType="sr" urgent="true" hash="-1422048276" locEndLn="15" goals="1," />
   </StdViols>
 
       <TestedFilesDetails>
@@ -209,6 +209,6 @@
       </TestedFilesDetails>
    </CodingStandards>
    <Statistics>
-      
+
    </Statistics>
 </ResultsSession>

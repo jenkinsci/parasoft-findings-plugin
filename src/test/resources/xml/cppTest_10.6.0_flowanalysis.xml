@@ -1,7 +1,7 @@
-<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="Default Project-2022-10-18" date="10/18/22 09:48:38" machine="CONQUEROR" project="Default Project" tag="Flow Analysis Standard" time="2022-10-18T09:48:38+02:00" toolName="C++test" toolVer="2022.1.0.20220615B1827" user="mgorecka">
-   <TestConfig machine="CONQUEROR" name="Flow Analysis Standard" pseudoUrl="c++test.builtin://Flow Analysis Standard" user="mgorecka"/>
+<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="Default Project-2022-10-18" date="10/18/22 09:48:38" machine="machine-name" project="Default Project" tag="Flow Analysis Standard" time="2022-10-18T09:48:38+02:00" toolName="C++test" toolVer="2022.1.0.20220615B1827" user="user-name">
+   <TestConfig machine="machine-name" name="Flow Analysis Standard" pseudoUrl="c++test.builtin://Flow Analysis Standard" user="user-name"/>
    <Authors>
-      <Author id="dev1" name="mgorecka"/>
+      <Author id="dev1" name="user-name"/>
    </Authors>
    <VersionInfos>
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="IExecutionViolation" ver="2"/>
@@ -15,8 +15,8 @@
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationInfo" ver="2"/>
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationProjectInfo" ver="2"/>
    </VersionInfos>
-   
-   
+
+
    <Scope>
       <ProjectInformations>
          <ScopeProjectInfo fltFiles="6" fltLns="236" project="/FlowAnalysisCpp" totFiles="6" totLns="236"/>
@@ -362,9 +362,9 @@
             </Severity>
          </SeverityList>
       </Rules>
-      
+
   <StdViols>
-    <FlowViol msg="&quot;participants&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="93" ruleSAFMsg="Usage of &quot;participants&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;participants&quot; in first critical section" pkg="Physics" tool="c++test" id="208209936" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="93" locStartPos="0" locEndLn="94" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="93" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="94" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+    <FlowViol msg="&quot;participants&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="93" ruleSAFMsg="Usage of &quot;participants&quot; in second critical section" auth="user-name" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;participants&quot; in first critical section" pkg="Physics" tool="c++test" id="208209936" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="93" locStartPos="0" locEndLn="94" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="93" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="94" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
       <Props>
         <Prop key="Tracked variables" val="Variable used in critical section"/>
       </Props>
@@ -473,7 +473,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="&quot;velocityArray&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="94" ruleSAFMsg="Usage of &quot;velocityArray&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;velocityArray&quot; in first critical section" pkg="Physics" tool="c++test" id="1066261748" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="94" locStartPos="0" locEndLn="95" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="94" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="95" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+    <FlowViol msg="&quot;velocityArray&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="94" ruleSAFMsg="Usage of &quot;velocityArray&quot; in second critical section" auth="user-name" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;velocityArray&quot; in first critical section" pkg="Physics" tool="c++test" id="1066261748" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="94" locStartPos="0" locEndLn="95" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="94" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="95" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
       <Props>
         <Prop key="Tracked variables" val="Variable used in critical section"/>
       </Props>
@@ -590,7 +590,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="&quot;ring&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="95" ruleSAFMsg="Usage of &quot;ring&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;ring&quot; in first critical section" pkg="Physics" tool="c++test" id="-1966185267" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="95" locStartPos="0" locEndLn="96" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="95" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="96" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+    <FlowViol msg="&quot;ring&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="95" ruleSAFMsg="Usage of &quot;ring&quot; in second critical section" auth="user-name" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;ring&quot; in first critical section" pkg="Physics" tool="c++test" id="-1966185267" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="95" locStartPos="0" locEndLn="96" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="95" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="96" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
       <Props>
         <Prop key="Tracked variables" val="Variable used in critical section"/>
       </Props>
@@ -718,7 +718,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="Unreleased lock: changePositionMutex" ln="103" ruleSAFMsg="Point prior to which the lock is to be released" auth="mgorecka" sev="1" rule="BD-TRS-LOCK" ruleSCSCMsg="Point where the lock is acquired" pkg="Physics" tool="c++test" id="-1760906373" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="103" locStartPos="0" locEndLn="104" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="92" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="93" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+    <FlowViol msg="Unreleased lock: changePositionMutex" ln="103" ruleSAFMsg="Point prior to which the lock is to be released" auth="user-name" sev="1" rule="BD-TRS-LOCK" ruleSCSCMsg="Point where the lock is acquired" pkg="Physics" tool="c++test" id="-1760906373" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="103" locStartPos="0" locEndLn="104" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="92" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="93" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
       <Props/>
       <ElDescList>
         <ElDesc srcRngStartln="90" srcRngStartPos="0" srcRngEndLn="91" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" srcRnghash="-1141459980" ln="90" ElType="." desc="while (!exitGame) {" rngLn="90">
@@ -812,7 +812,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="&quot;ring&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="119" ruleSAFMsg="Usage of &quot;ring&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;ring&quot; in first critical section" pkg="Render" tool="c++test" id="240447899" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="119" locStartPos="0" locEndLn="120" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="119" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="120" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+    <FlowViol msg="&quot;ring&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="119" ruleSAFMsg="Usage of &quot;ring&quot; in second critical section" auth="user-name" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;ring&quot; in first critical section" pkg="Render" tool="c++test" id="240447899" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="119" locStartPos="0" locEndLn="120" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="119" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="120" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
       <Props>
         <Prop key="Tracked variables" val="Variable used in critical section"/>
       </Props>
@@ -889,7 +889,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="&quot;currentCameraVelocity&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="124" ruleSAFMsg="Usage of &quot;currentCameraVelocity&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;currentCameraVelocity&quot; in first critical section" pkg="Render" tool="c++test" id="-881739154" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="124" locStartPos="0" locEndLn="125" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="119" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="120" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+    <FlowViol msg="&quot;currentCameraVelocity&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="124" ruleSAFMsg="Usage of &quot;currentCameraVelocity&quot; in second critical section" auth="user-name" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;currentCameraVelocity&quot; in first critical section" pkg="Render" tool="c++test" id="-881739154" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="124" locStartPos="0" locEndLn="125" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="119" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="120" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
       <Props>
         <Prop key="Tracked variables" val="Variable used in critical section"/>
       </Props>
@@ -964,7 +964,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="&quot;participants&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="124" ruleSAFMsg="Usage of &quot;participants&quot; in second critical section" auth="mgorecka" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;participants&quot; in first critical section" pkg="Render" tool="c++test" id="-935999178" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="124" locStartPos="0" locEndLn="125" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="124" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="125" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
+    <FlowViol msg="&quot;participants&quot; is used in two critical sections in context of single method, using one critical section will improve atomicity of operation" ln="124" ruleSAFMsg="Usage of &quot;participants&quot; in second critical section" auth="user-name" sev="2" rule="BD-TRS-DIFCS" ruleSCSCMsg="Usage of &quot;participants&quot; in first critical section" pkg="Render" tool="c++test" id="-935999178" lang="cpp" locType="sr" urgent="true" config="3" hash="-1141459980" locStartln="124" locStartPos="0" locEndLn="125" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp" FirstElSrcRngStartln="124" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="125" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DeadLock.cpp">
       <Props>
         <Prop key="Tracked variables" val="Variable used in critical section"/>
       </Props>
@@ -1072,7 +1072,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="Division by &quot;shape2.getArea()&quot; which may possibly be zero" ln="5" ruleSAFMsg="Point of division by zero" auth="mgorecka" sev="1" rule="BD-PB-ZERO" ruleSCSCMsg="Start of the path" tool="c++test" id="-1887152637" lang="cpp" locType="sr" urgent="true" config="3" hash="-1665970746" locStartln="5" locStartPos="0" locEndLn="6" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp" FirstElSrcRngStartln="5" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="6" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp">
+    <FlowViol msg="Division by &quot;shape2.getArea()&quot; which may possibly be zero" ln="5" ruleSAFMsg="Point of division by zero" auth="user-name" sev="1" rule="BD-PB-ZERO" ruleSCSCMsg="Start of the path" tool="c++test" id="-1887152637" lang="cpp" locType="sr" urgent="true" config="3" hash="-1665970746" locStartln="5" locStartPos="0" locEndLn="6" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp" FirstElSrcRngStartln="5" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="6" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp">
       <Props/>
       <ElDescList>
         <ElDesc srcRngStartln="5" srcRngStartPos="0" srcRngEndLn="6" srcRngEndPos="0" srcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/DivisionByZero.cpp" srcRnghash="-1665970746" ln="5" ElType=".C" desc="shape2->getArea()" rngLn="5">
@@ -1094,7 +1094,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="Data obtained from a file (&quot;*pSize&quot;) is used to determine the size of memory allocation" ln="8" ruleSAFMsg="Point where the array is allocated" auth="mgorecka" sev="2" rule="BD-SECURITY-TDALLOC" ruleSCSCMsg="Tainting point" tool="c++test" id="-862528737" lang="cpp" locType="sr" urgent="true" config="3" hash="-443364725" locStartln="8" locStartPos="0" locEndLn="9" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp">
+    <FlowViol msg="Data obtained from a file (&quot;*pSize&quot;) is used to determine the size of memory allocation" ln="8" ruleSAFMsg="Point where the array is allocated" auth="user-name" sev="2" rule="BD-SECURITY-TDALLOC" ruleSCSCMsg="Tainting point" tool="c++test" id="-862528737" lang="cpp" locType="sr" urgent="true" config="3" hash="-443364725" locStartln="8" locStartPos="0" locEndLn="9" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp">
       <Props>
         <Prop key="Tracked variables" val="Tainted data"/>
       </Props>
@@ -1113,7 +1113,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="Data obtained from a file (&quot;*pSize&quot;) is used in a loop condition" ln="9" ruleSAFMsg="Tainted data use in a loop condition" auth="mgorecka" sev="1" rule="BD-SECURITY-TDLOOP" ruleSCSCMsg="Tainting point" tool="c++test" id="2054996746" lang="cpp" locType="sr" urgent="true" config="3" hash="-443364725" locStartln="9" locStartPos="0" locEndLn="10" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp">
+    <FlowViol msg="Data obtained from a file (&quot;*pSize&quot;) is used in a loop condition" ln="9" ruleSAFMsg="Tainted data use in a loop condition" auth="user-name" sev="1" rule="BD-SECURITY-TDLOOP" ruleSCSCMsg="Tainting point" tool="c++test" id="2054996746" lang="cpp" locType="sr" urgent="true" config="3" hash="-443364725" locStartln="9" locStartPos="0" locEndLn="10" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp">
       <Props>
         <Prop key="Tracked variables" val="Tainted data"/>
       </Props>
@@ -1141,7 +1141,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="Memory not deallocated: data" ln="15" ruleSAFMsg="Point where allocated memory is lost" auth="mgorecka" sev="1" rule="BD-RES-LEAKS" ruleSCSCMsg="Point where memory is allocated" tool="c++test" supp="true" id="-1842545282" lang="cpp" locType="sr" config="3" hash="-443364725" locStartln="15" locStartPos="0" locEndLn="16" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" FirstElSrcRngStartln="8" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="9" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp">
+    <FlowViol msg="Memory not deallocated: data" ln="15" ruleSAFMsg="Point where allocated memory is lost" auth="user-name" sev="1" rule="BD-RES-LEAKS" ruleSCSCMsg="Point where memory is allocated" tool="c++test" supp="true" id="-1842545282" lang="cpp" locType="sr" config="3" hash="-443364725" locStartln="15" locStartPos="0" locEndLn="16" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" FirstElSrcRngStartln="8" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="9" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp">
       <Props>
         <Prop key="Tracked variables" val="Allocated memory"/>
       </Props>
@@ -1188,7 +1188,7 @@
         </ElDesc>
       </ElDescList>
     </FlowViol>
-    <FlowViol msg="&quot;point&quot; may possibly be null" ln="11" ruleSAFMsg="Null pointer dereferencing point" auth="mgorecka" sev="1" rule="BD-PB-NP" ruleSCSCMsg="Source of null value" tool="c++test" id="1390236584" lang="cpp" locType="sr" urgent="true" config="3" hash="-1257393797" locStartln="11" locStartPos="0" locEndLn="12" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp">
+    <FlowViol msg="&quot;point&quot; may possibly be null" ln="11" ruleSAFMsg="Null pointer dereferencing point" auth="user-name" sev="1" rule="BD-PB-NP" ruleSCSCMsg="Source of null value" tool="c++test" id="1390236584" lang="cpp" locType="sr" urgent="true" config="3" hash="-1257393797" locStartln="11" locStartPos="0" locEndLn="12" locEndPos="0" locFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp" FirstElSrcRngStartln="7" FirstElSrcRngStartPos="0" FirstElSrcRngEndLn="8" FirstElSrcRngEndPos="0" FirstElSrcRngFile="/FlowAnalysisCpp/FlowAnalysisCpp/NullPointer.cpp">
       <Props>
         <Prop key="Tracked variables" val="Null value carrier"/>
       </Props>
@@ -1218,13 +1218,13 @@
   </StdViols>
 
       <Supps>
-         <Supp suppAuth="mgorecka" suppCount="1" suppLine="15" suppLoc="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" suppMsg="Memory not deallocated: data" suppRsn="source-code1" suppRule="BD-RES-LEAKS"/>
+         <Supp suppAuth="user-name" suppCount="1" suppLine="15" suppLoc="/FlowAnalysisCpp/FlowAnalysisCpp/MemoryLeak.cpp" suppMsg="Memory not deallocated: data" suppRsn="source-code1" suppRule="BD-RES-LEAKS"/>
       </Supps>
-      
-      
+
+
    </CodingStandards>
    <Metrics ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:15">
-      
+
    </Metrics>
    <AssocUrls/>
 </ResultsSession>

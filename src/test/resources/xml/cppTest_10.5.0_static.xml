@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="C++test-2020-11-19" date="11/19/20 13:24:04" machine="GOPHER" project="C++test" tag="Recommended Rules" time="2020-11-19T13:24:04+01:00" toolName="C++test" toolVer="2020.2.0.20201022B1126" user="tpieczkowski">
-   <TestConfig machine="GOPHER" name="Recommended Rules" pseudoUrl="c++test.builtin://Recommended Rules" user="tpieczkowski"/>
+<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="C++test-2020-11-19" date="11/19/20 13:24:04" machine="machine-name" project="C++test" tag="Recommended Rules" time="2020-11-19T13:24:04+01:00" toolName="C++test" toolVer="2020.2.0.20201022B1126" user="user-name">
+   <TestConfig machine="machine-name" name="Recommended Rules" pseudoUrl="c++test.builtin://Recommended Rules" user="user-name"/>
    <Authors>
       <Author id="dev2" name="tester"/>
-      <Author id="dev1" name="tpieczkowski"/>
+      <Author id="dev1" name="user-name"/>
    </Authors>
    <VersionInfos>
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="IExecutionViolation" ver="2"/>
@@ -16,8 +16,8 @@
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationInfo" ver="2"/>
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationProjectInfo" ver="2"/>
    </VersionInfos>
-   
-   
+
+
    <Scope>
       <ProjectInformations>
          <ScopeProjectInfo fltFiles="16" fltLns="2141" project="/ATM" totFiles="16" totLns="2141"/>
@@ -258,59 +258,59 @@
             </Severity>
          </SeverityList>
       </Rules>
-      
+
   <StdViols>
     <StdViol msg="Constructor does not initialize members: 'myCurrentAccount'" ln="4" sev="1" auth="tester" rule="INIT-06" tool="c++test" cat="INIT" lang="cpp" locType="sr" urgent="true" config="1" hash="1869739320" locStartln="4" locStartPos="5" locEndLn="4" locEndPos="6" locFile="/ATM/ATM.cxx"/>
-    <StdViol msg="The parameter 'name' of function 'viewAccount' is passed by value" ln="10" sev="3" auth="tpieczkowski" rule="OPT-14" tool="c++test" supp="true" cat="OPT" lang="cpp" locType="sr" config="1" hash="1869739320" locStartln="10" locStartPos="65" locEndLn="10" locEndPos="66" locFile="/ATM/ATM.cxx"/>
+    <StdViol msg="The parameter 'name' of function 'viewAccount' is passed by value" ln="10" sev="3" auth="user-name" rule="OPT-14" tool="c++test" supp="true" cat="OPT" lang="cpp" locType="sr" config="1" hash="1869739320" locStartln="10" locStartPos="65" locEndLn="10" locEndPos="66" locFile="/ATM/ATM.cxx"/>
     <StdViol msg="The parameter 'password' of function 'viewAccount' is passed by value" ln="10" sev="3" auth="tester" rule="OPT-14" tool="c++test" supp="true" cat="OPT" lang="cpp" locType="sr" config="1" hash="1869739320" locStartln="10" locStartPos="48" locEndLn="10" locEndPos="49" locFile="/ATM/ATM.cxx"/>
-    <StdViol msg="The parameter 'password' of function 'fillUserRequest' is passed by value" ln="18" sev="3" auth="tpieczkowski" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1869739320" locStartln="18" locStartPos="69" locEndLn="18" locEndPos="70" locFile="/ATM/ATM.cxx"/>
-    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="15" sev="3" auth="tpieczkowski" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-1422048276" locStartln="15" locStartPos="42" locEndLn="15" locEndPos="43" locFile="/ATM/Bank.cxx"/>
-    <StdViol msg="Constructor 'Account' allowing conversion should be made explicit" ln="16" sev="1" auth="tpieczkowski" rule="CODSTA-CPP-04" tool="c++test" cat="CODSTA-CPP" lang="cpp" locType="sr" urgent="true" config="1" hash="2036829073" locStartln="16" locStartPos="8" locEndLn="16" locEndPos="9" locFile="/ATM/include/Account.hxx"/>
-    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="16" sev="3" auth="tpieczkowski" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-118678391" locStartln="16" locStartPos="44" locEndLn="16" locEndPos="45" locFile="/ATM/include/Bank.hxx"/>
-    <StdViol msg="Class 'BaseDisplay' has virtual functions without a virtual destructor" ln="4" sev="2" auth="tpieczkowski" rule="OOP-23" tool="c++test" cat="OOP" lang="cpp" locType="sr" urgent="true" config="1" hash="-2070703729" locStartln="4" locStartPos="6" locEndLn="4" locEndPos="7" locFile="/ATM/include/BaseDisplay.hxx"/>
+    <StdViol msg="The parameter 'password' of function 'fillUserRequest' is passed by value" ln="18" sev="3" auth="user-name" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="1869739320" locStartln="18" locStartPos="69" locEndLn="18" locEndPos="70" locFile="/ATM/ATM.cxx"/>
+    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="15" sev="3" auth="user-name" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-1422048276" locStartln="15" locStartPos="42" locEndLn="15" locEndPos="43" locFile="/ATM/Bank.cxx"/>
+    <StdViol msg="Constructor 'Account' allowing conversion should be made explicit" ln="16" sev="1" auth="user-name" rule="CODSTA-CPP-04" tool="c++test" cat="CODSTA-CPP" lang="cpp" locType="sr" urgent="true" config="1" hash="2036829073" locStartln="16" locStartPos="8" locEndLn="16" locEndPos="9" locFile="/ATM/include/Account.hxx"/>
+    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="16" sev="3" auth="user-name" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-118678391" locStartln="16" locStartPos="44" locEndLn="16" locEndPos="45" locFile="/ATM/include/Bank.hxx"/>
+    <StdViol msg="Class 'BaseDisplay' has virtual functions without a virtual destructor" ln="4" sev="2" auth="user-name" rule="OOP-23" tool="c++test" cat="OOP" lang="cpp" locType="sr" urgent="true" config="1" hash="-2070703729" locStartln="4" locStartPos="6" locEndLn="4" locEndPos="7" locFile="/ATM/include/BaseDisplay.hxx"/>
   </StdViols>
 
       <Supps>
-         <Supp suppAuth="tpieczkowski" suppCount="1" suppLine="10" suppLoc="/ATM/ATM.cxx" suppMsg="The parameter 'name' of function 'viewAccount' is passed by value" suppRsn="Review" suppRule="OPT-14"/>
-         <Supp suppAuth="tpieczkowski" suppCount="1" suppLine="10" suppLoc="/ATM/ATM.cxx" suppMsg="The parameter 'password' of function 'viewAccount' is passed by value" suppRsn="suppress" suppRule="OPT-14"/>
+         <Supp suppAuth="user-name" suppCount="1" suppLine="10" suppLoc="/ATM/ATM.cxx" suppMsg="The parameter 'name' of function 'viewAccount' is passed by value" suppRsn="Review" suppRule="OPT-14"/>
+         <Supp suppAuth="user-name" suppCount="1" suppLine="10" suppLoc="/ATM/ATM.cxx" suppMsg="The parameter 'password' of function 'viewAccount' is passed by value" suppRsn="suppress" suppRule="OPT-14"/>
       </Supps>
-      
-      
+
+
       <TestedFilesDetails>
-         
+
          <Total name="Suppressed / Total" supp="2" total="6">
-            
+
             <Project name="ATM" supp="2" total="6">
-               
+
                <Res name="BaseDisplay.cxx" supp="0" total="0"/>
-               
+
                <Res name="include" supp="0" total="3">
-                  
+
                   <Res loc="/ATM/include/Account.hxx" locType="sr" name="Account.hxx" supp="0" total="1"/>
-                  
+
                   <Res loc="/ATM/include/BaseDisplay.hxx" locType="sr" name="BaseDisplay.hxx" supp="0" total="1"/>
-                  
+
                   <Res loc="/ATM/include/Bank.hxx" locType="sr" name="Bank.hxx" supp="0" total="1"/>
-                  
+
                   <Res name="ATM.hxx" supp="0" total="0"/>
-               
+
                </Res>
-               
+
                <Res loc="/ATM/Bank.cxx" locType="sr" name="Bank.cxx" supp="0" total="1"/>
-               
+
                <Res loc="/ATM/ATM.cxx" locType="sr" name="ATM.cxx" supp="2" total="2"/>
-               
+
                <Res name="Account.cxx" supp="0" total="0"/>
-            
+
             </Project>
-         
+
          </Total>
-      
+
       </TestedFilesDetails>
-   
+
    </CodingStandards>
    <Metrics ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:08">
-      
+
    </Metrics>
    <AssocUrls/>
 </ResultsSession>

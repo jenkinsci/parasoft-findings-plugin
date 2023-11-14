@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ResultsSession buildId="2017-11-20" climode="true" execEnv="win32_x86_64" hasViols="true" id="1512632716666" lang="en_US" machine="leto" prjModule="ATM" project="" tag="${scontrol_branch}-win32_x86_64" time="2017-11-20T14:03:09+01:00" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="10.3.4" user="mlyko">
-   <TestConfig machine="leto" name="CRules" pseudoUrl="builtin://CRules" user="mlyko" />
+<ResultsSession buildId="2017-11-20" climode="true" execEnv="win32_x86_64" hasViols="true" id="1512632716666" lang="en_US" machine="machine-name" prjModule="ATM" project="" tag="${scontrol_branch}-win32_x86_64" time="2017-11-20T14:03:09+01:00" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="10.3.4" user="user-name">
+   <TestConfig machine="machine-name" name="CRules" pseudoUrl="builtin://CRules" user="user-name" />
    <Authors>
-      <Author id="dev1" name="mlyko" />
+      <Author id="dev1" name="user-name" />
    </Authors>
    <Analyzers>
       <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.code" name="Parasoft C/C++ Code Analyzer" ver="10.3.4" />
@@ -21,31 +21,31 @@
       <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
    </VersionInfos>
    <Goals tsks="5">
-      
+
    </Goals>
    <Scope>
       <Repositories />
       <Locations>
-         <Loc auth="mlyko" hash="-318977119" locRef="1" projId="ATM" projPath="/ATM" project="ATM" resProjPath="ATM.cxx" totLns="52" uri="file://leto/D:/apps/dtp/latest/x64/cpptest/examples/ATM/ATM.cxx" />
-         <Loc auth="mlyko" hash="-1422048276" locRef="2" projId="ATM" projPath="/ATM" project="ATM" resProjPath="Bank.cxx" totLns="40" uri="file://leto/D:/apps/dtp/latest/x64/cpptest/examples/ATM/Bank.cxx" />
-         <Loc auth="mlyko" hash="-1798372520" locRef="3" projId="ATM" projPath="/ATM" project="ATM" resProjPath="BaseDisplay.cxx" totLns="18" uri="file://leto/D:/apps/dtp/latest/x64/cpptest/examples/ATM/BaseDisplay.cxx" />
-         <Loc auth="mlyko" hash="-1636172050" locRef="4" projId="ATM" projPath="/ATM" project="ATM" resProjPath="Account.cxx" totLns="14" uri="file://leto/D:/apps/dtp/latest/x64/cpptest/examples/ATM/Account.cxx" />
-         <Loc auth="mlyko" hash="785146300" locRef="5" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/ATM.hxx" totLns="39" uri="file://leto/D:/apps/dtp/latest/x64/cpptest/examples/ATM/include/ATM.hxx" />
-         <Loc auth="mlyko" hash="2036829073" locRef="6" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/Account.hxx" totLns="55" uri="file://leto/D:/apps/dtp/latest/x64/cpptest/examples/ATM/include/Account.hxx" />
-         <Loc auth="mlyko" hash="-2070703729" locRef="7" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/BaseDisplay.hxx" totLns="16" uri="file://leto/D:/apps/dtp/latest/x64/cpptest/examples/ATM/include/BaseDisplay.hxx" />
-         <Loc auth="mlyko" hash="-118678391" locRef="8" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/Bank.hxx" totLns="25" uri="file://leto/D:/apps/dtp/latest/x64/cpptest/examples/ATM/include/Bank.hxx" />
+         <Loc auth="user-name" hash="-318977119" locRef="1" projId="ATM" projPath="/ATM" project="ATM" resProjPath="ATM.cxx" totLns="52" uri="file://machine-name/D:/apps/dtp/latest/x64/cpptest/examples/ATM/ATM.cxx" />
+         <Loc auth="user-name" hash="-1422048276" locRef="2" projId="ATM" projPath="/ATM" project="ATM" resProjPath="Bank.cxx" totLns="40" uri="file://machine-name/D:/apps/dtp/latest/x64/cpptest/examples/ATM/Bank.cxx" />
+         <Loc auth="user-name" hash="-1798372520" locRef="3" projId="ATM" projPath="/ATM" project="ATM" resProjPath="BaseDisplay.cxx" totLns="18" uri="file://machine-name/D:/apps/dtp/latest/x64/cpptest/examples/ATM/BaseDisplay.cxx" />
+         <Loc auth="user-name" hash="-1636172050" locRef="4" projId="ATM" projPath="/ATM" project="ATM" resProjPath="Account.cxx" totLns="14" uri="file://machine-name/D:/apps/dtp/latest/x64/cpptest/examples/ATM/Account.cxx" />
+         <Loc auth="user-name" hash="785146300" locRef="5" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/ATM.hxx" totLns="39" uri="file://machine-name/D:/apps/dtp/latest/x64/cpptest/examples/ATM/include/ATM.hxx" />
+         <Loc auth="user-name" hash="2036829073" locRef="6" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/Account.hxx" totLns="55" uri="file://machine-name/D:/apps/dtp/latest/x64/cpptest/examples/ATM/include/Account.hxx" />
+         <Loc auth="user-name" hash="-2070703729" locRef="7" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/BaseDisplay.hxx" totLns="16" uri="file://machine-name/D:/apps/dtp/latest/x64/cpptest/examples/ATM/include/BaseDisplay.hxx" />
+         <Loc auth="user-name" hash="-118678391" locRef="8" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/Bank.hxx" totLns="25" uri="file://machine-name/D:/apps/dtp/latest/x64/cpptest/examples/ATM/include/Bank.hxx" />
       </Locations>
    </Scope>
-   
+
   <SetupProblems />
 
    <CodingStandards ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:55">
       <Projects>
          <Project bdCheckedFiles="0" bdTotalFiles="0" checkedFiles="8" checkedLns="259" name="ATM" qfixErrs="0" suppErrs="0" totErrs="5" totFiles="8" totLns="259" />
       </Projects>
-      
-      
-      
+
+
+
       <Rules>
          <CategoriesList>
             <Category authTot="0;" authUrg="0;" desc="Flow Analysis" name="BD" rules="82" total="0">
@@ -162,16 +162,16 @@
             <Severity authTot="5;" authUrg="5;" id="3" total="5" />
          </SeverityList>
       </Rules>
-      
+
   <Supps />
 
-      
+
   <StdViols>
-    <StdViol msg="Assignment to 'myCurrentAccount' used in expression that yield a Boolean value" ln="12" locFile="/ATM/ATM.cxx" locStartln="12" sev="3" auth="mlyko" locRef="1" rule="MISRA2004-13_1" lnHash="1719088503" tool="c++test" lineHash="1719088503" locStartPos="11" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" risk="Undefined" lang="cpp" locEndPos="12" locType="sr" urgent="true" prio="Not Defined" hash="-318977119" locEndLn="12" goals="1," />
-    <StdViol msg="Conditional statement 'if' in a function 'fillUserRequest' should be followed by a block" ln="20" locFile="/ATM/ATM.cxx" locStartln="20" sev="3" auth="mlyko" locRef="1" rule="MISRA2004-14_9" lnHash="-1069739612" tool="c++test" lineHash="-1069739612" locStartPos="4" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" risk="Undefined" lang="cpp" locEndPos="5" locType="sr" urgent="true" prio="Not Defined" hash="-318977119" locEndLn="20" goals="1," />
-    <StdViol msg="Missing default branch in switch statement" ln="21" locFile="/ATM/ATM.cxx" locStartln="21" sev="3" auth="mlyko" locRef="1" rule="CODSTA-35" lnHash="1595945398" tool="c++test" lineHash="1595945398" locStartPos="8" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" risk="Undefined" lang="cpp" locEndPos="9" locType="sr" urgent="true" prio="Not Defined" hash="-318977119" locEndLn="21" goals="1," />
-    <StdViol msg="Implicit conversion between signed and unsigned type shall not be used" ln="18" locFile="/ATM/Bank.cxx" locStartln="18" sev="3" auth="mlyko" locRef="2" rule="MISRA2004-10_1_a" lnHash="-1454903092" tool="c++test" lineHash="-1454903092" locStartPos="8" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" risk="Undefined" lang="cpp" locEndPos="9" locType="sr" urgent="true" prio="Not Defined" hash="-1422048276" locEndLn="18" goals="1," />
-    <StdViol msg="Members 'myPassword' of class 'Account' are declared in suboptimal order for memory layout" ln="7" locFile="/ATM/include/Account.hxx" locStartln="7" sev="3" auth="mlyko" locRef="6" rule="OPT-13" lnHash="1462923109" tool="c++test" lineHash="1462923109" locStartPos="6" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" risk="Undefined" lang="cpp" locEndPos="7" locType="sr" urgent="true" prio="Not Defined" hash="2036829073" locEndLn="7" goals="1," />
+    <StdViol msg="Assignment to 'myCurrentAccount' used in expression that yield a Boolean value" ln="12" locFile="/ATM/ATM.cxx" locStartln="12" sev="3" auth="user-name" locRef="1" rule="MISRA2004-13_1" lnHash="1719088503" tool="c++test" lineHash="1719088503" locStartPos="11" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" risk="Undefined" lang="cpp" locEndPos="12" locType="sr" urgent="true" prio="Not Defined" hash="-318977119" locEndLn="12" goals="1," />
+    <StdViol msg="Conditional statement 'if' in a function 'fillUserRequest' should be followed by a block" ln="20" locFile="/ATM/ATM.cxx" locStartln="20" sev="3" auth="user-name" locRef="1" rule="MISRA2004-14_9" lnHash="-1069739612" tool="c++test" lineHash="-1069739612" locStartPos="4" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" risk="Undefined" lang="cpp" locEndPos="5" locType="sr" urgent="true" prio="Not Defined" hash="-318977119" locEndLn="20" goals="1," />
+    <StdViol msg="Missing default branch in switch statement" ln="21" locFile="/ATM/ATM.cxx" locStartln="21" sev="3" auth="user-name" locRef="1" rule="CODSTA-35" lnHash="1595945398" tool="c++test" lineHash="1595945398" locStartPos="8" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" risk="Undefined" lang="cpp" locEndPos="9" locType="sr" urgent="true" prio="Not Defined" hash="-318977119" locEndLn="21" goals="1," />
+    <StdViol msg="Implicit conversion between signed and unsigned type shall not be used" ln="18" locFile="/ATM/Bank.cxx" locStartln="18" sev="3" auth="user-name" locRef="2" rule="MISRA2004-10_1_a" lnHash="-1454903092" tool="c++test" lineHash="-1454903092" locStartPos="8" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" risk="Undefined" lang="cpp" locEndPos="9" locType="sr" urgent="true" prio="Not Defined" hash="-1422048276" locEndLn="18" goals="1," />
+    <StdViol msg="Members 'myPassword' of class 'Account' are declared in suboptimal order for memory layout" ln="7" locFile="/ATM/include/Account.hxx" locStartln="7" sev="3" auth="user-name" locRef="6" rule="OPT-13" lnHash="1462923109" tool="c++test" lineHash="1462923109" locStartPos="6" analyzer="com.parasoft.xtest.cpp.analyzer.static.pattern" risk="Undefined" lang="cpp" locEndPos="7" locType="sr" urgent="true" prio="Not Defined" hash="2036829073" locEndLn="7" goals="1," />
   </StdViols>
 
       <TestedFilesDetails>
@@ -192,6 +192,6 @@
       </TestedFilesDetails>
    </CodingStandards>
    <Statistics>
-      
+
    </Statistics>
 </ResultsSession>

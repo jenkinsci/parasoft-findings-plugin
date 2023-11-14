@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ResultsSession buildId="master_10.4.0.20180515B1158" climode="true" execEnv="linux_x86_64" hasViols="true" id="1527060793502" lang="en_US" machine="flow-analysis5" prjModule="ATM" project="BugDetective" tag="ref_master_ATM" time="2018-05-16T10:46:30+02:00" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="10.4.0" user="modtest">
-    <TestConfig machine="flow-analysis5" name="AllRules" pseudoUrl="user://AllRules" user="modtest" />
+<ResultsSession buildId="master_10.4.0.20180515B1158" climode="true" execEnv="linux_x86_64" hasViols="true" id="1527060793502" lang="en_US" machine="machine-name" prjModule="ATM" project="BugDetective" tag="ref_master_ATM" time="2018-05-16T10:46:30+02:00" toolId="c++test" toolName="DTP Engine for C/C++" toolVer="10.4.0" user="user-name">
+    <TestConfig machine="machine-name" name="AllRules" pseudoUrl="user://AllRules" user="user-name" />
     <Authors>
-        <Author id="dev1" name="modtest" />
+        <Author id="dev1" name="user-name" />
     </Authors>
     <Analyzers>
         <Analyzer id="com.parasoft.xtest.cpp.analyzer.static.code" name="Parasoft C/C++ Code Analyzer" ver="10.4.0" />
@@ -40,14 +40,14 @@
     <Scope>
         <Repositories />
         <Locations>
-            <Loc auth="modtest" hash="-318977119" locRef="1" projId="ATM" projPath="/ATM" project="ATM" resProjPath="ATM.cxx" totLns="52" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/ATM.cxx" />
-            <Loc auth="modtest" hash="-1422048276" locRef="2" projId="ATM" projPath="/ATM" project="ATM" resProjPath="Bank.cxx" totLns="40" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/Bank.cxx" />
-            <Loc auth="modtest" hash="-1798372520" locRef="3" projId="ATM" projPath="/ATM" project="ATM" resProjPath="BaseDisplay.cxx" totLns="18" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/BaseDisplay.cxx" />
-            <Loc auth="modtest" hash="-1636172050" locRef="4" projId="ATM" projPath="/ATM" project="ATM" resProjPath="Account.cxx" totLns="14" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/Account.cxx" />
-            <Loc auth="modtest" hash="2036829073" locRef="5" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/Account.hxx" totLns="55" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/Account.hxx" />
-            <Loc auth="modtest" hash="-118678391" locRef="6" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/Bank.hxx" totLns="25" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/Bank.hxx" />
-            <Loc auth="modtest" hash="785146300" locRef="7" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/ATM.hxx" totLns="39" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/ATM.hxx" />
-            <Loc auth="modtest" hash="-2070703729" locRef="8" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/BaseDisplay.hxx" totLns="16" uri="file://flow-analysis5/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/BaseDisplay.hxx" />
+            <Loc auth="user-name" hash="-318977119" locRef="1" projId="ATM" projPath="/ATM" project="ATM" resProjPath="ATM.cxx" totLns="52" uri="file://machine-name/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/ATM.cxx" />
+            <Loc auth="user-name" hash="-1422048276" locRef="2" projId="ATM" projPath="/ATM" project="ATM" resProjPath="Bank.cxx" totLns="40" uri="file://machine-name/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/Bank.cxx" />
+            <Loc auth="user-name" hash="-1798372520" locRef="3" projId="ATM" projPath="/ATM" project="ATM" resProjPath="BaseDisplay.cxx" totLns="18" uri="file://machine-name/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/BaseDisplay.cxx" />
+            <Loc auth="user-name" hash="-1636172050" locRef="4" projId="ATM" projPath="/ATM" project="ATM" resProjPath="Account.cxx" totLns="14" uri="file://machine-name/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/Account.cxx" />
+            <Loc auth="user-name" hash="2036829073" locRef="5" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/Account.hxx" totLns="55" uri="file://machine-name/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/Account.hxx" />
+            <Loc auth="user-name" hash="-118678391" locRef="6" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/Bank.hxx" totLns="25" uri="file://machine-name/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/Bank.hxx" />
+            <Loc auth="user-name" hash="785146300" locRef="7" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/ATM.hxx" totLns="39" uri="file://machine-name/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/ATM.hxx" />
+            <Loc auth="user-name" hash="-2070703729" locRef="8" projId="ATM" projPath="/ATM" project="ATM" resProjPath="include/BaseDisplay.hxx" totLns="16" uri="file://machine-name/tmp/.jenkins/workspace/test.cpp.manual.master/cpptest/examples/ATM/include/BaseDisplay.hxx" />
         </Locations>
     </Scope>
 
@@ -76,7 +76,7 @@
                     <Delta>259,259,1,</Delta>
                 </Total>
                 <Authors title="" xTitle="Date" yTitle="Total Tasks">
-                    <Author name="modtest">
+                    <Author name="user-name">
                         <X>05-16-18,</X>
                         <Y>1,</Y>
                         <Delta>1,</Delta>
@@ -238,7 +238,7 @@
 
 
         <StdViols>
-            <FlowViol msg="Condition &quot;!(bool)this->myCurrentAccount&quot; always evaluates to true" ln="12" locFile="/ATM/ATM.cxx" ruleSAFMsg="Point where senseless condition is used" FirstElSrcRngEndPos="0" auth="modtest" FirstElSrcRngEndLn="11" rule="BD-PB-CC" FirstElSrcRngStartPos="0" lnHash="1719088503" ruleSCSCMsg="Start of the path" FirstElSrcRngFile="/ATM/ATM.cxx" FirstElSrcRngStartln="10" locStartPos="0" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="311360009" lang="cpp" locEndPos="0" urgent="true" prio="Not Defined" locEndLn="13" goals="1," locStartln="12" sev="2" locRef="1" dumpId="1" tool="c++test" lineHash="1719088503" risk="Undefined" locType="sr" hash="-318977119" causeLocRef="1">
+            <FlowViol msg="Condition &quot;!(bool)this->myCurrentAccount&quot; always evaluates to true" ln="12" locFile="/ATM/ATM.cxx" ruleSAFMsg="Point where senseless condition is used" FirstElSrcRngEndPos="0" auth="user-name" FirstElSrcRngEndLn="11" rule="BD-PB-CC" FirstElSrcRngStartPos="0" lnHash="1719088503" ruleSCSCMsg="Start of the path" FirstElSrcRngFile="/ATM/ATM.cxx" FirstElSrcRngStartln="10" locStartPos="0" analyzer="com.parasoft.xtest.cpp.analyzer.static.flow" id="311360009" lang="cpp" locEndPos="0" urgent="true" prio="Not Defined" locEndLn="13" goals="1," locStartln="12" sev="2" locRef="1" dumpId="1" tool="c++test" lineHash="1719088503" risk="Undefined" locType="sr" hash="-318977119" causeLocRef="1">
                 <Props />
                 <ElDescList>
                     <ElDesc lineHash="-2065354134" locType="sr" srcRnghash="-318977119" locRef="1" srcRngFile="/ATM/ATM.cxx" srcRngEndLn="11" ln="10" srcRngEndPos="0" srcRngStartln="10" srcRngStartPos="0" desc="void ATM::viewAccount(int accountNumber, string password)" ElType=".C" rngLn="10">

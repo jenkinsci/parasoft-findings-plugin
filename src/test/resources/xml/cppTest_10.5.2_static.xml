@@ -1,7 +1,7 @@
-<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="Default Project-2021-11-10" date="11/10/21 11:26:28" machine="CONQUEROR" project="Default Project" tag="Recommended Rules" time="2021-11-10T11:26:28+01:00" toolName="C++test" toolVer="2021.2.0.20211105B1600" user="mgorecka">
-   <TestConfig machine="CONQUEROR" name="Recommended Rules" pseudoUrl="c++test.builtin://Recommended Rules" user="mgorecka"/>
+<?xml version='1.0' encoding='utf-8'?><ResultsSession buildId="Default Project-2021-11-10" date="11/10/21 11:26:28" machine="machine-name" project="Default Project" tag="Recommended Rules" time="2021-11-10T11:26:28+01:00" toolName="C++test" toolVer="2021.2.0.20211105B1600" user="user-name">
+   <TestConfig machine="machine-name" name="Recommended Rules" pseudoUrl="c++test.builtin://Recommended Rules" user="user-name"/>
    <Authors>
-      <Author id="dev1" name="mgorecka"/>
+      <Author id="dev1" name="user-name"/>
    </Authors>
    <VersionInfos>
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.execution" resultId="IExecutionViolation" ver="2"/>
@@ -15,8 +15,8 @@
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationInfo" ver="2"/>
       <StorageInfo ownerId="com.parasoft.xtest.checkers.api.generation" resultId="IGenerationProjectInfo" ver="2"/>
    </VersionInfos>
-   
-   
+
+
    <Scope>
       <ProjectInformations>
          <ScopeProjectInfo fltFiles="18" fltLns="3381" project="/ATM" totFiles="18" totLns="3381"/>
@@ -257,58 +257,58 @@
             </Severity>
          </SeverityList>
       </Rules>
-      
+
   <StdViols>
-    <StdViol msg="Constructor does not initialize members: 'myCurrentAccount'" ln="4" sev="1" auth="mgorecka" rule="INIT-06" tool="c++test" cat="INIT" lang="cpp" locType="sr" urgent="true" config="1" hash="-318977119" locStartln="4" locStartPos="5" locEndLn="4" locEndPos="6" locFile="/ATM/ATM/ATM.cxx"/>
-    <StdViol msg="The parameter 'password' of function 'viewAccount' is passed by value" ln="10" sev="3" auth="mgorecka" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-318977119" locStartln="10" locStartPos="48" locEndLn="10" locEndPos="49" locFile="/ATM/ATM/ATM.cxx"/>
-    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="15" sev="3" auth="mgorecka" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-1422048276" locStartln="15" locStartPos="42" locEndLn="15" locEndPos="43" locFile="/ATM/ATM/Bank.cxx"/>
-    <StdViol msg="Constructor 'Account' allowing conversion should be made explicit" ln="16" sev="1" auth="mgorecka" rule="CODSTA-CPP-04" tool="c++test" cat="CODSTA-CPP" lang="cpp" locType="sr" urgent="true" config="1" hash="2036829073" locStartln="16" locStartPos="8" locEndLn="16" locEndPos="9" locFile="/ATM/ATM/include/Account.hxx"/>
-    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="16" sev="3" auth="mgorecka" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-118678391" locStartln="16" locStartPos="44" locEndLn="16" locEndPos="45" locFile="/ATM/ATM/include/Bank.hxx"/>
-    <StdViol msg="Class 'BaseDisplay' has virtual functions without a virtual destructor" ln="4" sev="2" auth="mgorecka" rule="OOP-23" tool="c++test" cat="OOP" lang="cpp" locType="sr" urgent="true" config="1" hash="-2070703729" locStartln="4" locStartPos="6" locEndLn="4" locEndPos="7" locFile="/ATM/ATM/include/BaseDisplay.hxx"/>
+    <StdViol msg="Constructor does not initialize members: 'myCurrentAccount'" ln="4" sev="1" auth="user-name" rule="INIT-06" tool="c++test" cat="INIT" lang="cpp" locType="sr" urgent="true" config="1" hash="-318977119" locStartln="4" locStartPos="5" locEndLn="4" locEndPos="6" locFile="/ATM/ATM/ATM.cxx"/>
+    <StdViol msg="The parameter 'password' of function 'viewAccount' is passed by value" ln="10" sev="3" auth="user-name" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-318977119" locStartln="10" locStartPos="48" locEndLn="10" locEndPos="49" locFile="/ATM/ATM/ATM.cxx"/>
+    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="15" sev="3" auth="user-name" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-1422048276" locStartln="15" locStartPos="42" locEndLn="15" locEndPos="43" locFile="/ATM/ATM/Bank.cxx"/>
+    <StdViol msg="Constructor 'Account' allowing conversion should be made explicit" ln="16" sev="1" auth="user-name" rule="CODSTA-CPP-04" tool="c++test" cat="CODSTA-CPP" lang="cpp" locType="sr" urgent="true" config="1" hash="2036829073" locStartln="16" locStartPos="8" locEndLn="16" locEndPos="9" locFile="/ATM/ATM/include/Account.hxx"/>
+    <StdViol msg="The parameter 'password' of function 'getAccount' is passed by value" ln="16" sev="3" auth="user-name" rule="OPT-14" tool="c++test" cat="OPT" lang="cpp" locType="sr" urgent="true" config="1" hash="-118678391" locStartln="16" locStartPos="44" locEndLn="16" locEndPos="45" locFile="/ATM/ATM/include/Bank.hxx"/>
+    <StdViol msg="Class 'BaseDisplay' has virtual functions without a virtual destructor" ln="4" sev="2" auth="user-name" rule="OOP-23" tool="c++test" cat="OOP" lang="cpp" locType="sr" urgent="true" config="1" hash="-2070703729" locStartln="4" locStartPos="6" locEndLn="4" locEndPos="7" locFile="/ATM/ATM/include/BaseDisplay.hxx"/>
   </StdViols>
 
       <Supps/>
-      
-      
+
+
       <TestedFilesDetails>
-         
+
          <Total name="Suppressed / Total" supp="0" total="6">
-            
+
             <Project name="ATM" supp="0" total="6">
-               
+
                <Res name="ATM" supp="0" total="3">
-                  
+
                   <Res loc="/ATM/ATM/Bank.cxx" locType="sr" name="Bank.cxx" supp="0" total="1"/>
-                  
+
                   <Res loc="/ATM/ATM/ATM.cxx" locType="sr" name="ATM.cxx" supp="0" total="2"/>
-                  
+
                   <Res name="Account.cxx" supp="0" total="0"/>
-                  
+
                   <Res name="BaseDisplay.cxx" supp="0" total="0"/>
-               
+
                </Res>
-               
+
                <Res name="ATM/include" supp="0" total="3">
-                  
+
                   <Res loc="/ATM/ATM/include/Bank.hxx" locType="sr" name="Bank.hxx" supp="0" total="1"/>
-                  
+
                   <Res name="ATM.hxx" supp="0" total="0"/>
-                  
+
                   <Res loc="/ATM/ATM/include/Account.hxx" locType="sr" name="Account.hxx" supp="0" total="1"/>
-                  
+
                   <Res loc="/ATM/ATM/include/BaseDisplay.hxx" locType="sr" name="BaseDisplay.hxx" supp="0" total="1"/>
-               
+
                </Res>
-            
+
             </Project>
-         
+
          </Total>
-      
+
       </TestedFilesDetails>
-   
+
    </CodingStandards>
    <Metrics ownerId="com.parasoft.xtest.checkers.api.standards" time="0:00:12">
-      
+
    </Metrics>
    <AssocUrls/>
 </ResultsSession>
