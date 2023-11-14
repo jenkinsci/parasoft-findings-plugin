@@ -32,7 +32,7 @@
     <jsoup.version>1.16.1</jsoup.version>
     <testcontainers.version>1.18.1</testcontainers.version>
 
-    <prism-api.version>1.29.0-6</prism-api.version>
+    <prism-api.version>1.29.0-7</prism-api.version>
 
     <equalsverifier.version>3.14.1</equalsverifier.version>
     <junit-pioneer.version>2.0.1</junit-pioneer.version>
@@ -247,6 +247,11 @@
         <version>6.10.0</version>
         <scope>import</scope>
         <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20230618</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
