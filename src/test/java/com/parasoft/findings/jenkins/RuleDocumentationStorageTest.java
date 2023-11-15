@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.Properties;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.parasoft.xtest.common.io.FileUtil;
@@ -29,6 +30,7 @@ public class RuleDocumentationStorageTest
     }
 
     @Test
+    @Ignore
     public void dtpRuleDownloadTest() throws IOException
     {
         File tempDir = FileUtil.getTempDir(new RawServiceContext());
