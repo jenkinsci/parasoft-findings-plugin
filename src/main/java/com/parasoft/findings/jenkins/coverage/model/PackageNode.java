@@ -24,10 +24,7 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
-import org.apache.commons.lang3.StringUtils;
-
 import edu.hm.hafner.util.TreeString;
-import edu.umd.cs.findbugs.annotations.CheckForNull;
 
 /**
  * A {@link Node} for a specific package. It converts a package structure to a corresponding path structure.
@@ -43,7 +40,7 @@ public final class PackageNode extends Node {
      * @param name
      *         the human-readable name of the node
      */
-    public PackageNode(@CheckForNull final String name) {
+    public PackageNode(final String name) {
         super(Metric.PACKAGE, name);
     }
 

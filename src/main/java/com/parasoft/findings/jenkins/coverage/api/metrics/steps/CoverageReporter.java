@@ -30,6 +30,7 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.Nullable;
 import hudson.model.Job;
 import hudson.model.Result;
 import io.jenkins.plugins.util.EnvironmentResolver;
@@ -297,6 +298,7 @@ public class CoverageReporter {
         }
     }
 
+    @Nullable
     private Run<?, ?> getSpecifiedReferenceBuild(final Job<?, ?> job, final String expandedRefBuild,
                                                  final FilteredLog log) {
         if (!StringUtils.isNumeric(expandedRefBuild)) {

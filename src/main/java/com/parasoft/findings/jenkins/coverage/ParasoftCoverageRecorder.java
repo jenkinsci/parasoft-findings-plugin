@@ -317,7 +317,10 @@ public class ParasoftCoverageRecorder extends Recorder {
         logHandler.log("Deleting temporary coverage files"); // $NON-NLS-1$
         for (String tempCoverageDir : tempCoverageDirs) {
             try {
-                Objects.requireNonNull(workspace.child(tempCoverageDir).getParent()).deleteRecursive();
+                FilePath tempCoverageDirParent = workspace.child(tempCoverageDir).getParent();
+                if (tempCoverageDirParent != null) {
+                    tempCoverageDirParent.deleteRecursive();
+                }
             } catch (IOException exception) {
                 log.logException(exception, "Failed to delete directory '%s' due to an exception: ", tempCoverageDir); // $NON-NLS-1$
             }

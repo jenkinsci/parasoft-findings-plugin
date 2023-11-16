@@ -123,7 +123,7 @@ public class ParasoftCoverageStep extends Step implements Serializable {
         private final ParasoftCoverageStep step;
 
 
-        Execution(@NonNull final StepContext context, final ParasoftCoverageStep step) throws Exception {
+        Execution(@NonNull final StepContext context, final ParasoftCoverageStep step) {
             super(context);
             this.step = step;
         }

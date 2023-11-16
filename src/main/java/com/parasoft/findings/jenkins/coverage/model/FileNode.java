@@ -40,6 +40,7 @@ import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.Fraction;
 
@@ -97,6 +98,7 @@ public final class FileNode extends Node {
      *
      * @return this
      */
+    @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE")
     private Object readResolve() {
         if (relativePath == null) {
             relativePath = TreeString.valueOf(StringUtils.EMPTY);
