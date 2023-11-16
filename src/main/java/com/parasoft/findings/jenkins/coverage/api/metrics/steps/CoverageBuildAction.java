@@ -43,6 +43,7 @@ import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.NonNull;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.kohsuke.stapler.StaplerProxy;
 import hudson.model.Run;
 
@@ -86,6 +87,7 @@ public final class CoverageBuildAction extends BuildAction<Node> implements Stap
     /** The coverages filtered by modified lines of the associated change request. */
     private final List<? extends Value> modifiedLinesCoverage;
 
+    @SuppressFBWarnings("SE_BAD_FIELD")
     private final ReferenceResult referenceResult;
 
     static {

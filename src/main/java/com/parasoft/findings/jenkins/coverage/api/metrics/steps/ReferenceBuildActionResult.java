@@ -16,8 +16,12 @@
 
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
+import edu.umd.cs.findbugs.annotations.CheckForNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
+
 public class ReferenceBuildActionResult {
 
+    @Nullable
     private final CoverageBuildAction coverageBuildAction;
 
     private final ReferenceResult referenceResult;
@@ -32,6 +36,7 @@ public class ReferenceBuildActionResult {
         this.referenceResult = referenceResult;
     }
 
+    @CheckForNull
     public CoverageBuildAction getCoverageBuildAction() {
         return coverageBuildAction;
     }
@@ -39,5 +44,6 @@ public class ReferenceBuildActionResult {
     public ReferenceResult getReferenceResult() {
         return referenceResult;
     }
+
 
 }

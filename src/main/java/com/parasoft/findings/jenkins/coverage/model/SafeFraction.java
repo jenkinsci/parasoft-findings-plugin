@@ -24,6 +24,7 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.lang3.math.Fraction;
 
 import static com.parasoft.findings.jenkins.coverage.model.Percentage.*;
@@ -55,6 +56,7 @@ public class SafeFraction {
      * @param denominator
      *         the denominator of the fraction
      */
+    @SuppressFBWarnings(value = "CT_CONSTRUCTOR_THROW")
     public SafeFraction(final int numerator, final int denominator) {
         if (denominator == 0) {
             throw new IllegalArgumentException(TOTALS_ZERO_MESSAGE);

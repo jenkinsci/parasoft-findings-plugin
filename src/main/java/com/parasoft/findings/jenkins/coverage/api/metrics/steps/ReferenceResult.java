@@ -16,12 +16,15 @@
 
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
+import edu.umd.cs.findbugs.annotations.Nullable;
+
 public class ReferenceResult {
 
     static final String DEFAULT_REFERENCE_BUILD_IDENTIFIER = "default";
 
     private final ReferenceStatus status;
 
+    @Nullable
     private String referenceJob;
 
     private final String referenceBuild;

@@ -105,11 +105,9 @@ class CoverageTableModel extends TableModel {
 
         customTableConfiguration.loadConfiguration();
         Locale languageCode = LocaleProvider.getLocale();
-        String i18nFileBasename = null;
         if (languageCode.equals(Locale.SIMPLIFIED_CHINESE)) {
-            i18nFileBasename = "zh";
+            customTableConfiguration.language("zh");
         }
-        customTableConfiguration.language(i18nFileBasename);
         renderer.configureTable(customTableConfiguration);
         return customTableConfiguration;
     }

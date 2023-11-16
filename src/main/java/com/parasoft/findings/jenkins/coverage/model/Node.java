@@ -41,6 +41,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import edu.umd.cs.findbugs.annotations.Nullable;
 import org.apache.commons.lang3.math.Fraction;
 
 import edu.hm.hafner.util.Ensure;
@@ -57,13 +58,13 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 public abstract class Node implements Serializable {
     private static final long serialVersionUID = -6608885640271135273L;
 
-    static final String EMPTY_NAME = "-";
     static final String ROOT = "^";
 
     private final Metric metric;
     private final String name;
     private final List<Node> children = new ArrayList<>();
     private final List<Value> values = new ArrayList<>();
+    @Nullable
     private String parasoftToolName;
 
     @CheckForNull
