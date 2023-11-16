@@ -216,6 +216,7 @@
             </templates>
           </configuration>
         </plugin>
+        <!-- Added to run code analysis similar to the process in "mvn release:prepare" for early detection of potential issues -->
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
