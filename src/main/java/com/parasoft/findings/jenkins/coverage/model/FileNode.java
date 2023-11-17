@@ -98,7 +98,7 @@ public final class FileNode extends Node {
      *
      * @return this
      */
-    @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE")
+    @SuppressFBWarnings(value = "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE", justification = "expected")
     private Object readResolve() {
         if (relativePath == null) {
             relativePath = TreeString.valueOf(StringUtils.EMPTY);

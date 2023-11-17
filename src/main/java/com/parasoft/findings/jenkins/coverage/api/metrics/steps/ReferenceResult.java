@@ -18,7 +18,11 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import edu.umd.cs.findbugs.annotations.Nullable;
 
-public class ReferenceResult {
+import java.io.Serializable;
+
+public class ReferenceResult implements Serializable {
+
+    private static final long serialVersionUID = -5028911049640671582L;
 
     static final String DEFAULT_REFERENCE_BUILD_IDENTIFIER = "default";
 

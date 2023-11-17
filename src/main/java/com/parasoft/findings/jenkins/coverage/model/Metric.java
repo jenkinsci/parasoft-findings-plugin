@@ -76,7 +76,7 @@ public enum Metric {
         return valueOf(tag.toUpperCase(Locale.ENGLISH).replaceAll("-", "_"));
     }
 
-    @SuppressFBWarnings("SE_BAD_FIELD")
+    @SuppressFBWarnings(value = "SE_BAD_FIELD", justification = "No Serializable properties")
     private final MetricEvaluator evaluator;
     private final MetricTendency tendency;
 

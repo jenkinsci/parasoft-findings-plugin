@@ -56,7 +56,7 @@ public class SafeFraction {
      * @param denominator
      *         the denominator of the fraction
      */
-    @SuppressFBWarnings(value = "CT_CONSTRUCTOR_THROW")
+    @SuppressFBWarnings(value = "CT_CONSTRUCTOR_THROW", justification = "expected")
     public SafeFraction(final int numerator, final int denominator) {
         if (denominator == 0) {
             throw new IllegalArgumentException(TOTALS_ZERO_MESSAGE);
