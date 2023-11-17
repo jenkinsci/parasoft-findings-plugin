@@ -208,7 +208,7 @@
             <generateJUnitSoftAssertions>false</generateJUnitSoftAssertions>
             <quiet>true</quiet>
             <templates>
-              <templatesDirectory>${project.basedir}/etc/assertj-templates/</templatesDirectory>
+              <templatesDirectory>${project.basedir}/src/test/java/com/parasoft/findings/jenkins/coverage/assertj-templates/</templatesDirectory>
               <assertionsEntryPointClass>assertions_entry_point_class_template.txt</assertionsEntryPointClass>
               <softEntryPointAssertionClass>soft_assertions_entry_point_class_template.txt
               </softEntryPointAssertionClass>
