@@ -1,0 +1,31 @@
+{
+  "search": "Search:",
+  "loadingRecords": "Loading...",
+  "processing": "Processing...",
+  "emptyTable": "There is no data in the table",
+  "searchPanes": {
+    "clearMessage": "Clear all",
+    "collapse": {
+      "0": "Search panel",
+      "_": "Search panel (%d)"
+    },
+    "count": "{total}",
+    "countFiltered": "{shown} ({total})",
+    "emptyPanes": "No search panel",
+    "loadMessage": "Loading search panel...",
+    "title": "Activated filter criteria - %d",
+    "showMessage": "Show all",
+    "collapseMessage": "Collapse all"
+  },
+  "select": {
+    "rows": {
+      "1": "1 row selected",
+      "_": "%d row selected"
+    }
+  },
+  "zeroRecords": "No matching records found",
+  "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+  "infoEmpty": "Showing 0 to 0 of 0 entries",
+  "infoFiltered": "(filtered from _MAX_ total entries)",
+  "lengthMenu": "Show _MENU_ entries"
+}

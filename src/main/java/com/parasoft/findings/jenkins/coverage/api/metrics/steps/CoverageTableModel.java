@@ -106,7 +106,11 @@ class CoverageTableModel extends TableModel {
         customTableConfiguration.loadConfiguration();
         Locale languageCode = LocaleProvider.getLocale();
         if (languageCode.equals(Locale.SIMPLIFIED_CHINESE)) {
-            customTableConfiguration.language("zh");
+            customTableConfiguration.language("datatables_zh_CN");
+        } else if (languageCode.equals(Locale.JAPANESE)) {
+            customTableConfiguration.language("datatables_ja");
+        } else {
+            customTableConfiguration.language("datatables");
         }
         renderer.configureTable(customTableConfiguration);
         return customTableConfiguration;
