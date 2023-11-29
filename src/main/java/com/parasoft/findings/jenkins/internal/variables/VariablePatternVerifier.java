@@ -55,12 +55,12 @@ public class VariablePatternVerifier
     {
         int occ = countOccurrences("%"); //$NON-NLS-1$
         if (occ % 2 != 0) {
-            _errorMessage = Messages.PERCENT_SIGN_MISSING;
+            _errorMessage = Messages.PERCENT_SIGN_MISSING();
             return false;
         }
         int dollarCount = countOccurrences("$"); //$NON-NLS-1$
         if ((dollarCount != countOccurrences("${")) || (dollarCount != countOccurrences("}"))) { //$NON-NLS-1$ //$NON-NLS-2$
-            _errorMessage = Messages.CURLY_BRACKET_MISSING;
+            _errorMessage = Messages.CURLY_BRACKET_MISSING();
             return false;
         }
         Set<String> usedVariables = getUsedVariables();

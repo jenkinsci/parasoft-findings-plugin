@@ -146,7 +146,7 @@ public class ParasoftTool
         @Override
         public String getDisplayName()
         {
-            return Messages.PARASOFT_TOOL_DISPLAY_NAME;
+            return Messages.PARASOFT_TOOL_DISPLAY_NAME();
         }
 
         @Override
@@ -187,7 +187,7 @@ public class ParasoftTool
 
         LabelProvider()
         {
-            super(PLUGIN_ID, Messages.PARASOFT_NAME);
+            super(PLUGIN_ID, Messages.PARASOFT_NAME());
         }
 
         @Override
