@@ -66,18 +66,18 @@ public class ParasoftTableModel
         columns.add(createDetailsColumn());
         columns.add(createFileColumn());
         if (getReport().hasPackages()) {
-            columns.add(new TableColumn(Messages.PACKAGE_COLUMN_HEADER, "packageName").setWidth(2)); //$NON-NLS-1$
+            columns.add(new TableColumn(Messages.PACKAGE_COLUMN_HEADER(), "packageName").setWidth(2)); //$NON-NLS-1$
         }
         if (getReport().hasCategories()) {
-            columns.add(new TableColumn(Messages.CATEGORY_COLUMN_HEADER, "category")); //$NON-NLS-1$
+            columns.add(new TableColumn(Messages.CATEGORY_COLUMN_HEADER(), "category")); //$NON-NLS-1$
         }
         if (getReport().hasTypes()) {
-            columns.add(new TableColumn(Messages.TYPE_COLUMN_HEADER, "type")); //$NON-NLS-1$
+            columns.add(new TableColumn(Messages.TYPE_COLUMN_HEADER(), "type")); //$NON-NLS-1$
         }
         columns.add(createSeverityColumn());
         columns.add(createAgeColumn());
-        columns.add(new TableColumn(Messages.AUTHOR_COLUMN_HEADER, "author")); //$NON-NLS-1$
-        columns.add(new TableColumn(Messages.REVISION_COLUMN_HEADER, "revision")); //$NON-NLS-1$
+        columns.add(new TableColumn(Messages.AUTHOR_COLUMN_HEADER(), "author")); //$NON-NLS-1$
+        columns.add(new TableColumn(Messages.REVISION_COLUMN_HEADER(), "revision")); //$NON-NLS-1$
         return columns;
     }
 
