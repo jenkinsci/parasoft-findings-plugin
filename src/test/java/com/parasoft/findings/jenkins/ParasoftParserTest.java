@@ -42,26 +42,21 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.parasoft.findings.utils.results.testableinput.ProjectFileTestableInput;
+import com.parasoft.findings.utils.results.violations.*;
+import com.parasoft.findings.utils.results.xml.IXmlTagsAndAttributes;
+import com.parasoft.findings.utils.results.xml.RulesImportHandler;
 import org.hamcrest.collection.IsIn;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.parasoft.xtest.common.api.IProjectFileTestableInput;
-import com.parasoft.xtest.common.api.ISourceRange;
 import com.parasoft.findings.jenkins.parser.DupIssueAdditionalProperties;
 import com.parasoft.findings.jenkins.parser.FlowIssueAdditionalProperties;
 import com.parasoft.findings.jenkins.parser.ParasoftIssueAdditionalProperties;
 import com.parasoft.findings.jenkins.parser.ParasoftParser;
-import com.parasoft.xtest.results.api.IFlowAnalysisPathElement;
-import com.parasoft.xtest.results.api.IFlowAnalysisPathElement.Type;
-import com.parasoft.xtest.results.api.IFlowAnalysisViolation;
-import com.parasoft.xtest.results.api.IResultLocation;
-import com.parasoft.xtest.results.api.IRuleViolation;
-import com.parasoft.xtest.results.api.IViolation;
-import com.parasoft.xtest.results.api.attributes.IRuleAttributes;
-import com.parasoft.xtest.results.api.importer.IRulesImportHandler;
+import com.parasoft.findings.utils.results.violations.IFlowAnalysisPathElement.Type;
 
 import edu.hm.hafner.analysis.FileReaderFactory;
 import edu.hm.hafner.analysis.Issue;
@@ -295,10 +290,10 @@ public class ParasoftParserTest
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.6.0_static.xml");
         checkStaticReport(11, new String[] {ANALYZER_FLOW, ANALYZER_PATTERN}, report,
-            new String[] {"user-name"}, new String[] {"BD-PB-ZERO", "BD-PB-NP", "OOP-23",
-                    "Object Oriented", "OOP-23", "CODSTA-CPP-04", "OPT-14"},
-            new String[] {"Possible Bugs", "Object Oriented", "CODSTA-CPP-04",
-                    "Coding Conventions for C++", "Optimization"});
+                new String[] {"user-name"}, new String[] {"BD-PB-ZERO", "BD-PB-NP", "OOP-23",
+                        "Object Oriented", "OOP-23", "CODSTA-CPP-04", "OPT-14"},
+                new String[] {"Possible Bugs", "Object Oriented", "CODSTA-CPP-04",
+                        "Coding Conventions for C++", "Optimization"});
     }
 
     private void checkStaticReport(int reportSize, String[] patternNames, Report report, String[] authors, String[] rules, String[] categories)
@@ -482,7 +477,7 @@ public class ParasoftParserTest
     public void convertViolationsTest()
     {
         List<IViolation> violations = mockViolations();
-        IRulesImportHandler rulesImportHandlerMock = Mockito.mock(IRulesImportHandler.class);
+        RulesImportHandler rulesImportHandlerMock = Mockito.mock(RulesImportHandler.class);
         Mockito.when(rulesImportHandlerMock.getCategoryDescription("INIT")).thenReturn("Initialize");
         Report report = _parser.convert(violations.iterator(), rulesImportHandlerMock);
         Iterator<Issue> issueIterator = report.iterator();
@@ -518,7 +513,7 @@ public class ParasoftParserTest
     public void convertFAViolations()
     {
         List<IViolation> violations = mockFAViolations();
-        IRulesImportHandler rulesImportHandlerMock = Mockito.mock(IRulesImportHandler.class);
+        RulesImportHandler rulesImportHandlerMock = Mockito.mock(RulesImportHandler.class);
         Mockito.when(rulesImportHandlerMock.getCategoryDescription(Mockito.anyString())).thenReturn("Flow Analysis");
         String expectedFlowPath = "<ul><li><b></b><span style=\"color:#808080\">ParasoftResult.java:5</span>&nbsp&nbsp<code><span style=\"color:#808080\">Element Description</span></code></li><li><b></b><span style=\"color:#808080\">ParasoftPublisher.java:6</span>&nbsp&nbsp<code><span style=\"color:#808080\">Element Description</span></code></li><li><b></b><span style=\"color:#808080\">ParasoftHealthDescriptor.java:7</span>&nbsp&nbsp<code><span style=\"color:#808080\">Element Description</span></code><ul><li><b></b><span style=\"color:#808080\">ParasoftDetailBuilder.java:5</span>&nbsp&nbsp<code><span style=\"color:#808080\">Element Description</span></code></li></ul><ul><li><b></b><span style=\"color:#808080\">ParasoftProjectAction.java:6</span>&nbsp&nbsp<code><span style=\"color:#808080\">Element Description</span></code></li></ul></li></ul>";
         Report report = _parser.convert(violations.iterator(), rulesImportHandlerMock);
@@ -615,53 +610,53 @@ public class ParasoftParserTest
     {
         List<IViolation> violations = new ArrayList<IViolation>();
         IRuleViolation violationMock = mockViolation(// severity 5
-            "INIT.AAI",
-            "Array initializer used.",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
-            PROJECT_NAME, 5, 10, "5", "Do not use array initializers.");
+                "INIT.AAI",
+                "Array initializer used.",
+                PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
+                PROJECT_NAME, 5, 10, "5", "Do not use array initializers.");
         violations.add(violationMock);
         violationMock = mockViolation(// severity 5
-            "INIT.AAI",
-            "Array initializer used.",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftResult.java",
-            PROJECT_NAME, 7, 12, "5", "Do not use array initializers.");
+                "INIT.AAI",
+                "Array initializer used.",
+                PROJECT_PATH + RELATIVE_PATH + "\\ParasoftResult.java",
+                PROJECT_NAME, 7, 12, "5", "Do not use array initializers.");
         violations.add(violationMock);
         violationMock = mockViolation(// severity 3
-            "INIT.AULI",
-            "This &quot;if&quot; statement may mistakenly use &quot;!=&quot; instead of &quot;==&quot; for lazy initialization of &quot;{0}&quot;.",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
-            PROJECT_NAME, 5, 10, "3", "Ensure that the &quot;if&quot; check for lazy initialization uses the correct operator.");
+                "INIT.AULI",
+                "This &quot;if&quot; statement may mistakenly use &quot;!=&quot; instead of &quot;==&quot; for lazy initialization of &quot;{0}&quot;.",
+                PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
+                PROJECT_NAME, 5, 10, "3", "Ensure that the &quot;if&quot; check for lazy initialization uses the correct operator.");
         violations.add(violationMock);
         violationMock = mockViolation(// severity 3
-            "SERIAL.SNSO",
-            "Argument ''{0}'' to method &quot;setAttribute&quot; is non-serializable.",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftDescriptor.java",
-            PROJECT_NAME, 5, 10, "3", "Do not store non-serializable objects as HttpSession attributes");
+                "SERIAL.SNSO",
+                "Argument ''{0}'' to method &quot;setAttribute&quot; is non-serializable.",
+                PROJECT_PATH + RELATIVE_PATH + "\\ParasoftDescriptor.java",
+                PROJECT_NAME, 5, 10, "3", "Do not store non-serializable objects as HttpSession attributes");
         violations.add(violationMock);
         violationMock = mockViolation(// severity 1
-            "SERIAL.OC",
-            "Outer class ''{0}'' is not serializable.",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPublisher.java",
-            PROJECT_NAME, 5, 10, "1", "Ensure outer class is serializable if its inner class is serializable");
+                "SERIAL.OC",
+                "Outer class ''{0}'' is not serializable.",
+                PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPublisher.java",
+                PROJECT_NAME, 5, 10, "1", "Ensure outer class is serializable if its inner class is serializable");
         violations.add(violationMock);
         return violations;
     }
 
     private static IRuleViolation mockViolation(String ruleId, String message, String absolutePath, String packageName, int startingLine,
-        int endingLine, String severity, String header)
+                                                int endingLine, String severity, String header)
     {
         IRuleViolation violationMock = Mockito.mock(IRuleViolation.class);
 
         Mockito.when(violationMock.getRuleId()).thenReturn(ruleId);
         Mockito.when(violationMock.getMessage()).thenReturn(message);
-        IResultLocation resultLocationMock = mockResultLocation(startingLine, endingLine, absolutePath, packageName);
+        ResultLocation resultLocationMock = mockResultLocation(startingLine, endingLine, absolutePath, packageName);
         Mockito.when(violationMock.getResultLocation()).thenReturn(resultLocationMock);
 
         String ruleCategory = substringBefore(ruleId, ".");
 
-        Mockito.when(violationMock.getAttribute(IRuleAttributes.SEVERITY_ATTR)).thenReturn(severity);
-        Mockito.when(violationMock.getAttribute(IRuleAttributes.RULE_CATEGORY_ATTR)).thenReturn(ruleCategory);
-        Mockito.when(violationMock.getAttribute(IRuleAttributes.RULE_HEADER_ATTR)).thenReturn(header);
+        Mockito.when(violationMock.getAttribute(IXmlTagsAndAttributes.SEVERITY_ATTR)).thenReturn(severity);
+        Mockito.when(violationMock.getAttribute(IXmlTagsAndAttributes.RULE_CATEGORY_ATTR)).thenReturn(ruleCategory);
+        Mockito.when(violationMock.getAttribute(IXmlTagsAndAttributes.RULE_HEADER_ATTR)).thenReturn(header);
 
         return violationMock;
     }
@@ -676,41 +671,41 @@ public class ParasoftParserTest
         childrenFileNames.add(PROJECT_PATH + RELATIVE_PATH + "\\ParasoftHealthDescriptor.java");
 
         IFlowAnalysisViolation violationMock = mockFAViolation(// severity 5
-            "FA.FA",
-            "Null value carrier",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
-            childrenFileNames, PROJECT_NAME, 10, 10);
+                "FA.FA",
+                "Null value carrier",
+                PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
+                childrenFileNames, PROJECT_NAME, 10, 10);
         violations.add(violationMock);
         violationMock = mockFAViolation(// severity 5
-            "FA.FA",
-            "Null value carrier",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftResult.java",
-            childrenFileNames, PROJECT_NAME, 12, 12);
+                "FA.FA",
+                "Null value carrier",
+                PROJECT_PATH + RELATIVE_PATH + "\\ParasoftResult.java",
+                childrenFileNames, PROJECT_NAME, 12, 12);
         violations.add(violationMock);
         violationMock = mockFAViolation(// severity 3
-            "FA.FA",
-            "Null value carrier",
-            PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
-            childrenFileNames, PROJECT_NAME, 17, 17);
+                "FA.FA",
+                "Null value carrier",
+                PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPlugin.java",
+                childrenFileNames, PROJECT_NAME, 17, 17);
         violations.add(violationMock);
         return violations;
     }
 
     private static IFlowAnalysisViolation mockFAViolation(String ruleId, String message, String absolutePath, List<String> childrenFileNames,
-        String packageName, int startingLine, int endingLine)
+                                                          String packageName, int startingLine, int endingLine)
     {
-        IResultLocation resultLocationMock = mockResultLocation(startingLine, endingLine, absolutePath, packageName);
+        ResultLocation resultLocationMock = mockResultLocation(startingLine, endingLine, absolutePath, packageName);
 
         ruleId.split(".");
         String ruleCategory = substringBefore(ruleId, ".");
 
         Properties properties = new Properties();
-        properties.setProperty(IRuleAttributes.SEVERITY_ATTR, "1");
-        properties.setProperty(IRuleAttributes.RULE_CATEGORY_ATTR, ruleCategory);
-        properties.setProperty(IRuleAttributes.RULE_HEADER_ATTR, "Flowanalysis stack trace:");
+        properties.setProperty(IXmlTagsAndAttributes.SEVERITY_ATTR, "1");
+        properties.setProperty(IXmlTagsAndAttributes.RULE_CATEGORY_ATTR, ruleCategory);
+        properties.setProperty(IXmlTagsAndAttributes.RULE_HEADER_ATTR, "Flowanalysis stack trace:");
 
         IFlowAnalysisViolation violationMock = new FARuleViolationMock(resultLocationMock, packageName, properties, message, ruleId,
-            getChildrenArray(childrenFileNames));
+                getChildrenArray(childrenFileNames));
 
         return violationMock;
     }
@@ -732,7 +727,7 @@ public class ParasoftParserTest
 
         for (int i = 0; i < childrenFilePaths.size(); i++) {
             String childFilePath = childrenFilePaths.get(i);
-            IResultLocation location = mockResultLocation(i + 5, i + 5, childFilePath, PROJECT_NAME);
+            ResultLocation location = mockResultLocation(i + 5, i + 5, childFilePath, PROJECT_NAME);
             IFlowAnalysisPathElement descriptor = Mockito.mock(IFlowAnalysisPathElement.class);
             Mockito.when(descriptor.getLocation()).thenReturn(location);
             Mockito.when(descriptor.getDescription()).thenReturn("Element Description");
@@ -755,10 +750,10 @@ public class ParasoftParserTest
         return array;
     }
 
-    private static IResultLocation mockResultLocation(int startLine, int endLine, String absolutePath, String moduleName)
+    private static ResultLocation mockResultLocation(int startLine, int endLine, String absolutePath, String moduleName)
     {
-        ISourceRange sourceRangeMock = Mockito.mock(ISourceRange.class);
-        IProjectFileTestableInput fileTestableInputMock = Mockito.mock(IProjectFileTestableInput.class);
+        SourceRange sourceRangeMock = Mockito.mock(SourceRange.class);
+        ProjectFileTestableInput fileTestableInputMock = Mockito.mock(ProjectFileTestableInput.class);
         File fileMock = Mockito.mock(File.class);
         Mockito.when(fileMock.getAbsolutePath()).thenReturn(absolutePath);
         Mockito.when(fileTestableInputMock.getFileLocation()).thenReturn(fileMock);
@@ -767,7 +762,7 @@ public class ParasoftParserTest
 
         Mockito.when(fileTestableInputMock.getProjectRelativePath()).thenReturn(path.getFileName().toString());
 
-        IResultLocation resultLocationMock = Mockito.mock(IResultLocation.class);
+        ResultLocation resultLocationMock = Mockito.mock(ResultLocation.class);
         Mockito.when(resultLocationMock.getSourceRange()).thenReturn(sourceRangeMock);
         Mockito.when(sourceRangeMock.getStartLine()).thenReturn(startLine);
         Mockito.when(sourceRangeMock.getEndLine()).thenReturn(endLine);

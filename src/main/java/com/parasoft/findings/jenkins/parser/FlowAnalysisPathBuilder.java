@@ -22,24 +22,24 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import com.parasoft.findings.utils.common.util.StringUtil;
+import com.parasoft.findings.utils.results.violations.PathElementAnnotation;
+import com.parasoft.findings.utils.results.violations.ResultLocation;
 import org.apache.commons.collections.CollectionUtils;
 
-import com.parasoft.xtest.common.IStringConstants;
-import com.parasoft.xtest.common.api.IFileTestableInput;
-import com.parasoft.xtest.common.api.IProjectFileTestableInput;
-import com.parasoft.xtest.common.api.ISourceRange;
-import com.parasoft.xtest.common.api.ITestableInput;
-import com.parasoft.xtest.common.collections.UCollection;
-import com.parasoft.xtest.common.path.PathInput;
-import com.parasoft.xtest.common.text.UString;
+import com.parasoft.findings.utils.common.IStringConstants;
+import com.parasoft.findings.utils.results.testableinput.IFileTestableInput;
+import com.parasoft.findings.utils.results.testableinput.ProjectFileTestableInput;
+import com.parasoft.findings.utils.results.violations.SourceRange;
+import com.parasoft.findings.utils.results.testableinput.ITestableInput;
+import com.parasoft.findings.utils.common.util.CollectionUtil;
+import com.parasoft.findings.utils.results.testableinput.PathInput;
 import com.parasoft.findings.jenkins.html.Colors;
 import com.parasoft.findings.jenkins.html.IHtmlTags;
-import com.parasoft.findings.jenkins.internal.JenkinsLocationMatcher;
-import com.parasoft.xtest.results.api.IFlowAnalysisPathElement;
-import com.parasoft.xtest.results.api.IFlowAnalysisPathElement.Type;
-import com.parasoft.xtest.results.api.IFlowAnalysisViolation;
-import com.parasoft.xtest.results.api.IPathElementAnnotation;
-import com.parasoft.xtest.results.api.IResultLocation;
+import com.parasoft.findings.utils.results.testableinput.FindingsLocationMatcher;
+import com.parasoft.findings.utils.results.violations.IFlowAnalysisPathElement;
+import com.parasoft.findings.utils.results.violations.IFlowAnalysisPathElement.Type;
+import com.parasoft.findings.utils.results.violations.IFlowAnalysisViolation;
 
 import edu.hm.hafner.analysis.FileNameResolver;
 import edu.hm.hafner.analysis.Issue;
@@ -60,7 +60,7 @@ public class FlowAnalysisPathBuilder
 
     private static List<String> excludedFromMessages = Arrays.asList(ANNOTATION_KIND_POINT, ANNOTATION_KIND_CAUSE);
     private static List<Character> importantPathElements = Arrays.asList(IFlowAnalysisPathElement.IMPORTANT_ELEMENT, IFlowAnalysisPathElement.POINT,
-        IFlowAnalysisPathElement.THROWING_CHAR, IFlowAnalysisPathElement.CAUSE, IFlowAnalysisPathElement.RULE);
+            IFlowAnalysisPathElement.THROWING_CHAR, IFlowAnalysisPathElement.CAUSE, IFlowAnalysisPathElement.RULE);
 
     /**
      * @param violation for which path information is needed
@@ -80,7 +80,7 @@ public class FlowAnalysisPathBuilder
 
     private String getAnnotationByKind(IFlowAnalysisPathElement descriptor, String kind)
     {
-        for (IPathElementAnnotation annotation : descriptor.getAnnotations()) {
+        for (PathElementAnnotation annotation : descriptor.getAnnotations()) {
             if (annotation.getKind().equals(kind)) {
                 return annotation.getMessage();
             }
@@ -122,7 +122,7 @@ public class FlowAnalysisPathBuilder
     {
         String throwingMethod = descriptor.getThrowingMethod();
         String thrownTypes = descriptor.getThrownTypes();
-        if (UString.isEmpty(throwingMethod) || UString.isEmpty(thrownTypes)) {
+        if (StringUtil.isEmpty(throwingMethod) || StringUtil.isEmpty(thrownTypes)) {
             return null;
         } else {
             return throwingMethod + "() throws: " + thrownTypes; //$NON-NLS-1$
@@ -179,7 +179,7 @@ public class FlowAnalysisPathBuilder
             Issue element = createElement(descriptor, useAnnotations, issueBuilder);
             result.add(element);
         }
-        if (UCollection.isNonEmpty(result)) {
+        if (CollectionUtil.isNonEmpty(result)) {
             createAbsolutePathsForIssues(result);
         }
         return result;
@@ -191,7 +191,7 @@ public class FlowAnalysisPathBuilder
             return;
         }
 
-        List<IPathElementAnnotation> annotations = new ArrayList<>(descriptor.getAnnotations());
+        List<PathElementAnnotation> annotations = new ArrayList<>(descriptor.getAnnotations());
 
         addImportantMessages(sb, annotations, bFullDescription, descriptor.getType().getIdentifier());
         addNormalMessages(sb, annotations, bFullDescription);
@@ -204,11 +204,11 @@ public class FlowAnalysisPathBuilder
         }
     }
 
-    private void addImportantMessages(StringBuilder sb, List<IPathElementAnnotation> annotations, boolean bFullDescription,
-        String descriptorIdentifier)
+    private void addImportantMessages(StringBuilder sb, List<PathElementAnnotation> annotations, boolean bFullDescription,
+                                      String descriptorIdentifier)
     {
-        for (Iterator<IPathElementAnnotation> it = annotations.iterator(); it.hasNext();) {
-            IPathElementAnnotation annotation = it.next();
+        for (Iterator<PathElementAnnotation> it = annotations.iterator(); it.hasNext();) {
+            PathElementAnnotation annotation = it.next();
             String kind = annotation.getKind();
             if (kind == null) {
                 it.remove();
@@ -232,9 +232,9 @@ public class FlowAnalysisPathBuilder
         addStyledMessage(sb, message, bFullDescription, Colors.GREEN, FontStyle.ITALIC);
     }
 
-    private void addNormalMessages(StringBuilder sb, List<IPathElementAnnotation> annotations, boolean bFullDescription)
+    private void addNormalMessages(StringBuilder sb, List<PathElementAnnotation> annotations, boolean bFullDescription)
     {
-        for (IPathElementAnnotation annotation : annotations) {
+        for (PathElementAnnotation annotation : annotations) {
             addNormalMessage(sb, annotation.getMessage(), bFullDescription);
         }
     }
@@ -246,7 +246,7 @@ public class FlowAnalysisPathBuilder
 
     private static void addStyledMessage(StringBuilder sb, String message, boolean bFullDescription, String color, FontStyle style)
     {
-        if (UString.isEmpty(message)) {
+        if (StringUtil.isEmpty(message)) {
             return;
         }
 
@@ -297,7 +297,7 @@ public class FlowAnalysisPathBuilder
         String message = _violation.getTrackedVariablesMessages().get(attribute);
         String variables = descriptor.getProperties().get(attribute);
 
-        if (UString.isEmpty(variables)) {
+        if (StringUtil.isEmpty(variables)) {
             return;
         }
         String trackedMessage = message + IStringConstants.COLON_SP + variables;
@@ -314,7 +314,7 @@ public class FlowAnalysisPathBuilder
 
     private Issue createElement(IFlowAnalysisPathElement descriptor, boolean useAnnotation, IssueBuilder issueBuilder)
     {
-        IResultLocation location = descriptor.getLocation();
+        ResultLocation location = descriptor.getLocation();
         FlowIssueAdditionalProperties additionalProperties = new FlowIssueAdditionalProperties();
         issueBuilder.setAdditionalProperties(additionalProperties);
         if (location != null) {
@@ -323,7 +323,7 @@ public class FlowAnalysisPathBuilder
             ITestableInput input = location.getTestableInput();
             String filePath = null;
             if (input instanceof IFileTestableInput) {
-                filePath = JenkinsLocationMatcher.getFilePath((IFileTestableInput) input);
+                filePath = FindingsLocationMatcher.getFilePath((IFileTestableInput) input);
             } else if (input instanceof PathInput) {
                 filePath = ((PathInput) input).getPath();
                 if (filePath.startsWith("/")) { //$NON-NLS-1$
@@ -332,16 +332,16 @@ public class FlowAnalysisPathBuilder
             } else {
                 filePath = input.getName();
             }
-            if (UString.isNonEmptyTrimmed(filePath)) {
+            if (StringUtil.isNonEmptyTrimmed(filePath)) {
                 issueBuilder.setFileName(filePath);
             }
 
-            if (input instanceof IProjectFileTestableInput) {
-                IProjectFileTestableInput projectInput = (IProjectFileTestableInput) input;
+            if (input instanceof ProjectFileTestableInput) {
+                ProjectFileTestableInput projectInput = (ProjectFileTestableInput) input;
                 issueBuilder.setModuleName(projectInput.getProjectName());
             }
 
-            ISourceRange sourceRange = location.getSourceRange();
+            SourceRange sourceRange = location.getSourceRange();
             issueBuilder.setLineStart(sourceRange.getStartLine());
             issueBuilder.setLineEnd(sourceRange.getEndLine());
             issueBuilder.setColumnStart(sourceRange.getStartLineOffset());

@@ -19,14 +19,14 @@ package com.parasoft.findings.jenkins.parser;
 import java.io.Serializable;
 import java.util.List;
 
-import com.parasoft.xtest.common.IStringConstants;
+import com.parasoft.findings.utils.common.IStringConstants;
 import com.parasoft.findings.jenkins.html.IHtmlTags;
 
 import edu.hm.hafner.analysis.Issue;
 import io.jenkins.plugins.analysis.core.model.FileNameRenderer;
 
 public class DupIssueAdditionalProperties
-    extends ParasoftIssueAdditionalProperties
+        extends ParasoftIssueAdditionalProperties
 {
     private static final long serialVersionUID = -984630394099766160L;
 
@@ -36,11 +36,6 @@ public class DupIssueAdditionalProperties
     public DupIssueAdditionalProperties(String author, String revision, String analyzer)
     {
         super(author, revision, analyzer);
-    }
-
-    public String getParentKey()
-    {
-        return (String)get(PARENT_KEY);
     }
 
     @SuppressWarnings("unchecked")

@@ -16,14 +16,14 @@
 
 package com.parasoft.findings.jenkins.internal.rules;
 
+import com.parasoft.findings.utils.common.IStringConstants;
+import com.parasoft.findings.utils.common.util.FileUtil;
+import com.parasoft.findings.utils.common.util.StringUtil;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.parasoft.xtest.common.IStringConstants;
-import com.parasoft.xtest.common.io.FileUtil;
-import com.parasoft.xtest.common.text.UString;
 
 public class RuleDocumentationReader
 {
@@ -48,7 +48,7 @@ public class RuleDocumentationReader
     {
         String key = getRuleDocKey(analyzer, ruleId);
         String contents = _ruleDocMap.get(key);
-        if (UString.isNonEmpty(contents)) {
+        if (StringUtil.isNonEmpty(contents)) {
             return contents;
         }
         File ruleDoc = new File(_buildRoot, getRuleDocRelativePath(_rulesDocDir, analyzer, ruleId));
@@ -68,11 +68,11 @@ public class RuleDocumentationReader
     {
         return rulesDocDir + '/' + analyzer + '/' + ruleId + ".html"; //$NON-NLS-1$
     }
-    
+
     public static String getRuleDocKey(String analyzer, String ruleId)
     {
         return analyzer + '_' + ruleId;
     }
-    
+
     static final String DEFAULT_RULES_DIR = "parasoft-findings-rules"; //$NON-NLS-1$
 }

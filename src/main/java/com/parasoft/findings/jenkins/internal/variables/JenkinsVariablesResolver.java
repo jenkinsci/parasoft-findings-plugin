@@ -21,19 +21,17 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.parasoft.xtest.common.api.variables.IVariable;
-import com.parasoft.xtest.common.api.variables.IVariablesProvider;
-import com.parasoft.xtest.common.variables.StaticVariable;
-import com.parasoft.xtest.common.variables.VariablesResolver;
-import com.parasoft.xtest.services.api.IParasoftServiceContext;
+import com.parasoft.findings.utils.common.variables.IVariablesProvider;
+import com.parasoft.findings.utils.common.variables.StaticVariable;
+import com.parasoft.findings.utils.common.variables.VariablesResolver;
 
-/** 
+/**
  * Resolver impl for jenkins variables in jenkins notation.
  */
 public class JenkinsVariablesResolver
-    extends VariablesResolver
+        extends VariablesResolver
 {
-    
+
     /**
      * @param buildVariables the map with build variables
      */
@@ -41,15 +39,12 @@ public class JenkinsVariablesResolver
     {
         super(new JenkinsVariablesProvider(buildVariables));
     }
-    
-    /**
-     * @see com.parasoft.xtest.common.variables.VariablesResolver#performSubstitution(java.lang.String, com.parasoft.xtest.services.api.IParasoftServiceContext)
-     */
+
     @Override
-    public String performSubstitution(String sExpression, IParasoftServiceContext context)
+    public String performSubstitution(String sExpression)
     {
         String sModifiedExpression = prepare(sExpression);
-        return super.performSubstitution(sModifiedExpression, context);
+        return super.performSubstitution(sModifiedExpression);
     }
 
     /**
@@ -77,9 +72,9 @@ public class JenkinsVariablesResolver
         }
         return sResult;
     }
-    
+
     private static class JenkinsVariablesProvider
-        implements IVariablesProvider
+            implements IVariablesProvider
     {
         private final Map<String, String> _variables = new HashMap<String, String>();
 
@@ -88,16 +83,10 @@ public class JenkinsVariablesResolver
             _variables.putAll(buildVariables);
         }
 
-        public IVariable getVariable(String sName)
+        public StaticVariable getVariable(String sName)
         {
             String sValue = _variables.get(sName);
             return sValue == null ? null : new StaticVariable(sName, sValue);
-        }
-
-        public String[] getVariableNames()
-        {
-            Set<String> keys = _variables.keySet();
-            return keys.toArray(new String[keys.size()]);
         }
 
     }

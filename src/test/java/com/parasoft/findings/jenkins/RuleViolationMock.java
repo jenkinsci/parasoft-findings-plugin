@@ -15,17 +15,16 @@
  */
 package com.parasoft.findings.jenkins;
 
-import com.parasoft.xtest.results.api.IResultLocation;
-import com.parasoft.xtest.results.api.IRuleViolation;
+import com.parasoft.findings.utils.results.violations.IRuleViolation;
+import com.parasoft.findings.utils.results.violations.ResultLocation;
 
 import java.util.Properties;
-import java.util.Set;
 
 
 public class RuleViolationMock implements IRuleViolation
 {
 
-    private IResultLocation _resultLocation;
+    private ResultLocation _resultLocation;
     private String _packageName;
     private Properties _properties;
     private String _message;
@@ -37,18 +36,12 @@ public class RuleViolationMock implements IRuleViolation
         return null;
     }
 
-    public String getLanguageId()
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     public String getNamespace()
     {
         return _packageName;
     }
 
-    public IResultLocation getResultLocation()
+    public ResultLocation getResultLocation()
     {
         return _resultLocation;
     }
@@ -56,12 +49,7 @@ public class RuleViolationMock implements IRuleViolation
     public void addAttribute(String sName, String sValue)
     {
         // TODO Auto-generated method stub
-        
-    }
 
-    public Set<String> getAttributeNames()
-    {
-        return null;
     }
 
     public String getAttribute(String sName)
@@ -79,8 +67,8 @@ public class RuleViolationMock implements IRuleViolation
         return _ruleId;
     }
 
-    public RuleViolationMock(IResultLocation resultLocation, String packageName,
-        Properties properties, String message, String ruleId)
+    public RuleViolationMock(ResultLocation resultLocation, String packageName,
+                             Properties properties, String message, String ruleId)
     {
         super();
         _resultLocation = resultLocation;

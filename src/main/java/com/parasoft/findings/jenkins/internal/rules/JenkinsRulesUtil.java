@@ -20,14 +20,7 @@ import java.io.File;
 import java.util.Properties;
 
 import com.parasoft.findings.jenkins.util.FilePathUtil;
-import com.parasoft.xtest.common.api.progress.EmptyProgressMonitor;
-import com.parasoft.xtest.common.api.progress.IProgressMonitor;
-import com.parasoft.xtest.common.services.RawServiceContext;
-import com.parasoft.xtest.common.text.UString;
-import com.parasoft.xtest.configuration.api.ConfigurationException;
-import com.parasoft.xtest.configuration.api.rules.IRuleDescriptionUpdateService;
-import com.parasoft.xtest.services.api.IParasoftServiceContext;
-import com.parasoft.xtest.services.api.ServiceUtil;
+import com.parasoft.findings.utils.common.util.StringUtil;
 
 import hudson.FilePath;
 
@@ -37,27 +30,6 @@ import hudson.FilePath;
 public class JenkinsRulesUtil
 {
     /**
-     * Refreshes rules information if rule providers have non-static rule descriptions and are capable of update during runtime.
-     * This requires given settings to contain complete information required to perform such update. 
-     * 
-     * @param settings settings to use to refresh rules
-     */
-    public static void refreshRuleDescriptions(Properties settings)
-    {
-        IParasoftServiceContext context = new RawServiceContext(settings);
-        
-        IProgressMonitor monitor = EmptyProgressMonitor.getInstance();
-        IRuleDescriptionUpdateService ruleDescriptionUpdateService = ServiceUtil.getService(IRuleDescriptionUpdateService.class);
-        if (ruleDescriptionUpdateService != null) {
-            try {
-                ruleDescriptionUpdateService.refreshSharedDescriptions(context, monitor.subTask(1));
-            } catch (ConfigurationException ce) {
-                Logger.getLogger().error(ce);
-            }
-        }
-    }
-
-    /**
      * Loads settings from remote workspace location
      * @param workspaceDir workspace directory
      * @param settingsPath relative or absolute path to settings
@@ -65,13 +37,11 @@ public class JenkinsRulesUtil
      */
     public static Properties loadSettings(FilePath workspaceDir, String settingsPath)
     {
-        if (UString.isEmpty(settingsPath)) {
+        if (StringUtil.isEmpty(settingsPath)) {
             return new Properties();
         }
         FilePath localSettingsFile = null;
-        // parasoft-begin-suppress BD.EXCEPT.NP "'UString.isEmpty(settingsPath)' includes the check of null"
         File localPath = new File(settingsPath);
-        // parasoft-end-suppress BD.EXCEPT.NP
         if (localPath.isAbsolute() && localPath.exists()) {
             localSettingsFile = new FilePath(localPath);
         } else {

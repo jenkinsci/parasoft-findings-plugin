@@ -16,10 +16,9 @@
 
 package com.parasoft.findings.jenkins.internal;
 
-import com.parasoft.xtest.results.api.IRuleViolation;
-import com.parasoft.xtest.results.rules.ViolationRuleUtil;
-import com.parasoft.xtest.results.suppressions.SuppressionsUtil;
-import com.parasoft.xtest.results.xapi.xml.IResultsXmlTags;
+import com.parasoft.findings.utils.results.violations.IRuleViolation;
+import com.parasoft.findings.utils.results.violations.ViolationRuleUtil;
+import com.parasoft.findings.utils.results.xml.IXmlTagsAndAttributes;
 
 /**
  * Provides additional attributes associated with violation, which are not attached directly to violation itself.
@@ -42,7 +41,8 @@ public class ResultAdditionalAttributes
      */
     public boolean isSuppressed()
     {
-        return SuppressionsUtil.isSuppressed(_violation);
+        String sSuppressionType = _violation.getAttribute(IXmlTagsAndAttributes.SUPPRESSION_TYPE_ATTR);
+        return sSuppressionType != null;
     }
 
     /**
@@ -52,7 +52,7 @@ public class ResultAdditionalAttributes
     {
         return ViolationRuleUtil.getSeverity(_violation);
     }
-    
+
     /**
      * @return title of violated rule
      */
@@ -74,7 +74,7 @@ public class ResultAdditionalAttributes
      */
     public String getAuthor()
     {
-        return _violation.getAttribute(IResultsXmlTags.AUTHOR_V2_ATTR);
+        return _violation.getAttribute(IXmlTagsAndAttributes.AUTHOR_V2_ATTR);
     }
 
     /**
@@ -82,7 +82,7 @@ public class ResultAdditionalAttributes
      */
     public String getRevision()
     {
-        return _violation.getAttribute(IResultsXmlTags.REVISION_ATTR);
+        return _violation.getAttribute(IXmlTagsAndAttributes.REVISION_ATTR);
     }
 
 }

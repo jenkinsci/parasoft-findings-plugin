@@ -25,9 +25,7 @@ import java.util.Set;
 public class VariablePatternVerifier
 {
     private final String _pattern;
-    
-    private String _errorMessage = null;
-    
+
     /**
      * Create verifier for given pattern.
      * @param pattern the pattern to verify
@@ -44,43 +42,30 @@ public class VariablePatternVerifier
     {
         return _pattern.contains("%") || _pattern.contains("$"); //$NON-NLS-1$ //$NON-NLS-2$
     }
-    
+
     /**
-     * @return false if variables seem to be incorrectly specified, or unsupported variable is used. 
+     * @return false if variables seem to be incorrectly specified, or unsupported variable is used.
      * True if there are no variables or they are all recognized.
-     * See also {@link JenkinsVariablesResolver#getResolvableVariables()}. 
-     * Call prior to {@link #getErrorMessage()}.
+     * See also {@link JenkinsVariablesResolver#getResolvableVariables()}.
      */
     public boolean checkVariableNotation()
     {
         int occ = countOccurrences("%"); //$NON-NLS-1$
         if (occ % 2 != 0) {
-            _errorMessage = Messages.PERCENT_SIGN_MISSING();
             return false;
         }
         int dollarCount = countOccurrences("$"); //$NON-NLS-1$
         if ((dollarCount != countOccurrences("${")) || (dollarCount != countOccurrences("}"))) { //$NON-NLS-1$ //$NON-NLS-2$
-            _errorMessage = Messages.CURLY_BRACKET_MISSING();
             return false;
         }
         Set<String> usedVariables = getUsedVariables();
         Set<String> resolvableVariables = JenkinsVariablesResolver.getResolvableVariables();
         for (String variable : usedVariables) {
             if (!resolvableVariables.contains(variable)) {
-                _errorMessage = "Unrecognized variable used: " + variable;   //$NON-NLS-1$
                 return false;
             }
         }
-        _errorMessage = null;
         return true;
-    }
-    
-    /**
-     * @return error message bound while processing {@link #checkVariableNotation()} or null.
-     */
-    public String getErrorMessage()
-    {
-        return _errorMessage;
     }
 
     private Set<String> getUsedVariables()

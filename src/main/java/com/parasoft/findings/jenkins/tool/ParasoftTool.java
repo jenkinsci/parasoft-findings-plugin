@@ -38,7 +38,6 @@ import org.kohsuke.stapler.DataBoundSetter;
 import com.parasoft.findings.jenkins.html.IHtmlTags;
 import com.parasoft.findings.jenkins.internal.rules.JenkinsRulesUtil;
 import com.parasoft.findings.jenkins.internal.rules.RuleDocumentationStorage;
-import com.parasoft.findings.jenkins.internal.services.JenkinsServicesProvider;
 import com.parasoft.findings.jenkins.internal.variables.JenkinsVariablesResolver;
 
 import edu.hm.hafner.analysis.Issue;
@@ -57,7 +56,7 @@ import io.jenkins.plugins.util.LogHandler;
 import io.jenkins.plugins.util.JenkinsFacade;
 
 public class ParasoftTool
-    extends ReportScanningTool
+        extends ReportScanningTool
 {
     private static final long serialVersionUID = -5773171179445359278L;
     private final static String PLUGIN_ID = "parasoft-findings"; //$NON-NLS-1$
@@ -97,7 +96,6 @@ public class ParasoftTool
 
         Iterator<Issue> issues = report.iterator();
 
-        JenkinsServicesProvider.init();
         RuleDocumentationStorage storage = new RuleDocumentationStorage(run.getRootDir(), _settings);
         while (issues.hasNext()) {
 
@@ -129,7 +127,7 @@ public class ParasoftTool
     @Extension
     @Symbol("parasoftFindings")
     public static class Descriptor
-        extends ReportScanningToolDescriptor
+            extends ReportScanningToolDescriptor
     {
         // Maintain backward compatibility.
         @Initializer(before = InitMilestone.PLUGINS_STARTED)
@@ -172,8 +170,8 @@ public class ParasoftTool
         }
     }
 
-   public static class LabelProvider
-        extends IconLabelProvider
+    public static class LabelProvider
+            extends IconLabelProvider
     {
 
         private static final String ICONS_PREFIX = "/plugin/parasoft-findings/icons/"; //$NON-NLS-1$
