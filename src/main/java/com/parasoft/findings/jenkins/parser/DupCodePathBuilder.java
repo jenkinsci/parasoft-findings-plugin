@@ -19,29 +19,29 @@ package com.parasoft.findings.jenkins.parser;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.parasoft.xtest.common.IStringConstants;
-import com.parasoft.xtest.common.api.IFileTestableInput;
-import com.parasoft.xtest.common.api.IProjectFileTestableInput;
-import com.parasoft.xtest.common.api.ISourceRange;
-import com.parasoft.xtest.common.api.ITestableInput;
-import com.parasoft.xtest.common.path.PathInput;
-import com.parasoft.xtest.common.text.UString;
+import com.parasoft.findings.utils.common.IStringConstants;
+import com.parasoft.findings.utils.common.util.StringUtil;
+import com.parasoft.findings.utils.results.testableinput.IFileTestableInput;
+import com.parasoft.findings.utils.results.testableinput.ProjectFileTestableInput;
+import com.parasoft.findings.utils.results.violations.SourceRange;
+import com.parasoft.findings.utils.results.testableinput.ITestableInput;
+import com.parasoft.findings.utils.results.testableinput.PathInput;
 import com.parasoft.findings.jenkins.html.Colors;
 import com.parasoft.findings.jenkins.html.IHtmlTags;
-import com.parasoft.findings.jenkins.internal.JenkinsLocationMatcher;
-import com.parasoft.xtest.results.api.IDupCodeViolation;
-import com.parasoft.xtest.results.api.IPathElement;
-import com.parasoft.xtest.results.api.IResultLocation;
+import com.parasoft.findings.utils.results.testableinput.FindingsLocationMatcher;
+import com.parasoft.findings.utils.results.violations.IPathElement;
 
+import com.parasoft.findings.utils.results.violations.ResultLocation;
+import com.parasoft.findings.utils.results.violations.DupCodeViolation;
 import edu.hm.hafner.analysis.Issue;
 import edu.hm.hafner.analysis.IssueBuilder;
 
 public class DupCodePathBuilder
 {
-    private final IDupCodeViolation _violation;
+    private final DupCodeViolation _violation;
     private final String _parentKey;
 
-    public DupCodePathBuilder(IDupCodeViolation violation, String parentKey)
+    public DupCodePathBuilder(DupCodeViolation violation, String parentKey)
     {
         _violation = violation;
         _parentKey = parentKey;
@@ -65,7 +65,7 @@ public class DupCodePathBuilder
 
     private Issue createElement(IPathElement pathElement, IssueBuilder issueBuilder)
     {
-        IResultLocation location = pathElement.getLocation();
+        ResultLocation location = pathElement.getLocation();
         DupIssueAdditionalProperties additionalProperties = new DupIssueAdditionalProperties();
         issueBuilder.setAdditionalProperties(additionalProperties);
         if (location != null) {
@@ -74,7 +74,7 @@ public class DupCodePathBuilder
             ITestableInput input = location.getTestableInput();
             String filePath = null;
             if (input instanceof IFileTestableInput) {
-                filePath = JenkinsLocationMatcher.getFilePath((IFileTestableInput) input);
+                filePath = FindingsLocationMatcher.getFilePath((IFileTestableInput) input);
             } else if (input instanceof PathInput) {
                 filePath = ((PathInput) input).getPath();
                 if (filePath.startsWith("/")) { //$NON-NLS-1$
@@ -83,16 +83,16 @@ public class DupCodePathBuilder
             } else {
                 filePath = input.getName();
             }
-            if (UString.isNonEmptyTrimmed(filePath)) {
+            if (StringUtil.isNonEmptyTrimmed(filePath)) {
                 issueBuilder.setFileName(filePath);
             }
 
-            if (input instanceof IProjectFileTestableInput) {
-                IProjectFileTestableInput projectInput = (IProjectFileTestableInput) input;
+            if (input instanceof ProjectFileTestableInput) {
+                ProjectFileTestableInput projectInput = (ProjectFileTestableInput) input;
                 issueBuilder.setModuleName(projectInput.getProjectName());
             }
 
-            ISourceRange sourceRange = location.getSourceRange();
+            SourceRange sourceRange = location.getSourceRange();
             issueBuilder.setLineStart(sourceRange.getStartLine());
             issueBuilder.setLineEnd(sourceRange.getEndLine());
             issueBuilder.setColumnStart(sourceRange.getStartLineOffset());

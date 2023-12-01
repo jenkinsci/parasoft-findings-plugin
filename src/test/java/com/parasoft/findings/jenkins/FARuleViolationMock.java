@@ -19,16 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import com.parasoft.xtest.results.api.IFlowAnalysisPathElement;
-import com.parasoft.xtest.results.api.IFlowAnalysisViolation;
-import com.parasoft.xtest.results.api.IResultLocation;
+import com.parasoft.findings.utils.results.violations.IFlowAnalysisPathElement;
+import com.parasoft.findings.utils.results.violations.IFlowAnalysisViolation;
+import com.parasoft.findings.utils.results.violations.ResultLocation;
 
 public class FARuleViolationMock
-    extends RuleViolationMock
-    implements IFlowAnalysisViolation
+        extends RuleViolationMock
+        implements IFlowAnalysisViolation
 {
-    public FARuleViolationMock(IResultLocation resultLocation, String packageName,
-        Properties properties, String message, String ruleId, IFlowAnalysisPathElement[] FAElemDesc)
+    public FARuleViolationMock(ResultLocation resultLocation, String packageName,
+                               Properties properties, String message, String ruleId, IFlowAnalysisPathElement[] FAElemDesc)
     {
         super(resultLocation, packageName, properties, message, ruleId);
         _FAElemDesc = FAElemDesc;
@@ -42,27 +42,12 @@ public class FARuleViolationMock
         return _FAElemDesc;
     }
 
-    public int getId()
-    {
-        return 0;
-    }
-
-    public IResultLocation getCauseLocation()
-    {
-        return null;
-    }
-
     public String getCauseMessage()
     {
         return null;
     }
 
     public String getRuleImportantPointMessage()
-    {
-        return null;
-    }
-
-    public String getRuleHiddenMessage()
     {
         return null;
     }
@@ -75,17 +60,6 @@ public class FARuleViolationMock
     public Map<String, String> getTrackedVariablesMessages()
     {
         return new HashMap<String, String>();
-    }
-
-
-    public void setElementDescriptors(IFlowAnalysisPathElement[] FAElemDesc)
-    {
-        _FAElemDesc = FAElemDesc;
-    }
-
-    public String getFlowPathDescription()
-    {
-        return null;
     }
 
 }

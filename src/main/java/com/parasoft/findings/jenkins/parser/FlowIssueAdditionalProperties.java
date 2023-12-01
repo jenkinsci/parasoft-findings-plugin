@@ -19,7 +19,7 @@ package com.parasoft.findings.jenkins.parser;
 import java.io.Serializable;
 import java.util.List;
 
-import com.parasoft.xtest.common.collections.UCollection;
+import com.parasoft.findings.utils.common.util.CollectionUtil;
 import com.parasoft.findings.jenkins.html.Colors;
 import com.parasoft.findings.jenkins.html.IHtmlTags;
 
@@ -27,7 +27,7 @@ import edu.hm.hafner.analysis.Issue;
 import io.jenkins.plugins.analysis.core.model.FileNameRenderer;
 
 public class FlowIssueAdditionalProperties
-    extends ParasoftIssueAdditionalProperties
+        extends ParasoftIssueAdditionalProperties
 {
     private static final long serialVersionUID = 3241507213664883643L;
 
@@ -37,11 +37,6 @@ public class FlowIssueAdditionalProperties
     public FlowIssueAdditionalProperties(String author, String revision, String analyzer)
     {
         super(author, revision, analyzer);
-    }
-
-    public String getParentKey()
-    {
-        return (String)get(PARENT_KEY);
     }
 
     @SuppressWarnings("unchecked")
@@ -148,7 +143,7 @@ public class FlowIssueAdditionalProperties
     private void addChildren(StringBuilder message, FlowIssueAdditionalProperties additionalProperties, FileNameRenderer fileNameRenderer)
     {
         List<Issue> children = additionalProperties.getChildren();
-        if (UCollection.isNonEmpty(children)) {
+        if (CollectionUtil.isNonEmpty(children)) {
             for (Issue child : children) {
                 message.append(IHtmlTags.LIST_START_TAG);
                 message.append(getChildDescription(child, fileNameRenderer));

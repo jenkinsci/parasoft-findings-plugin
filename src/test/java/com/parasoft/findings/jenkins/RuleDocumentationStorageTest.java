@@ -9,34 +9,21 @@ import java.net.URI;
 import java.net.URL;
 import java.util.Properties;
 
-import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import com.parasoft.xtest.common.io.FileUtil;
-import com.parasoft.xtest.common.services.RawServiceContext;
 import com.parasoft.findings.jenkins.internal.rules.JenkinsRulesUtil;
 import com.parasoft.findings.jenkins.internal.rules.RuleDocumentationStorage;
-import com.parasoft.findings.jenkins.internal.services.JenkinsServicesProvider;
 
 import hudson.FilePath;
 
 public class RuleDocumentationStorageTest
 {
-    @BeforeClass
-    public static void setUp()
-    {
-        JenkinsServicesProvider.init();
-    }
-
     @Test
-    @Ignore
     public void dtpRuleDownloadTest() throws IOException
     {
-        File tempDir = FileUtil.getTempDir(new RawServiceContext());
+        File tempDir = FileUtil.getTempDir();
         try {
             URI workspaceDir = null;
-            // Modify the settings for the DTP server in "settings.properties" to pass this test
             workspaceDir = new File("src/test/resources/settings").toURI();
             Properties settings = JenkinsRulesUtil.loadSettings(new FilePath(new File(workspaceDir)), "settings.properties");
             RuleDocumentationStorage underTest = new RuleDocumentationStorage(tempDir, settings);
@@ -49,7 +36,7 @@ public class RuleDocumentationStorageTest
     @Test
     public void localRuleTest() throws IOException
     {
-        File tempDir = FileUtil.getTempDir(new RawServiceContext());
+        File tempDir = FileUtil.getTempDir();
         try {
             URL resource = null;
             try {

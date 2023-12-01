@@ -22,8 +22,6 @@
   <properties>
     <jenkins.version>2.387.3</jenkins.version>
     <java.level>8</java.level>
-    <parasoft.repository.url>file:///${basedir}/repository</parasoft.repository.url>
-    <xtest.version>10.6.2.20230410</xtest.version>
 
     <!-- start properties of code-coverage-api -->
     <saxon-he.version>12.2</saxon-he.version>
@@ -131,22 +129,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy-dependencies</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <includeGroupIds>com.parasoft.xtest.common</includeGroupIds>
-              <outputDirectory>${project.build.directory}/${project.artifactId}/WEB-INF/lib</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
         <executions>
           <execution>
@@ -247,10 +229,6 @@
       <id>repo.jenkins-ci.org</id>
       <url>https://repo.jenkins-ci.org/public/</url>
     </repository>
-    <repository>
-      <id>parasoft</id>
-      <url>${parasoft.repository.url}</url>
-    </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
@@ -273,6 +251,31 @@
         <artifactId>json</artifactId>
         <version>20231013</version>
       </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>2.0.7</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.5.14</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpcore</artifactId>
+        <version>4.4.16</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>fluent-hc</artifactId>
+        <version>4.5.14</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>1.15</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -287,83 +290,11 @@
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>warnings-ng</artifactId>
       <version>10.5.1</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.httpcomponents</groupId>
-          <artifactId>httpclient</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.httpcomponents</groupId>
-          <artifactId>httpcore</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.httpcomponents</groupId>
-          <artifactId>fluent-hc</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.httpcomponents</groupId>
-          <artifactId>httpmime</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>commons-codec</groupId>
-          <artifactId>commons-codec</artifactId>
-        </exclusion>
-        <!--  shared by xtest and warnings-ng - synchronize with xtest -->
-        <exclusion>
-          <groupId>com.fasterxml.jackson.core</groupId>
-          <artifactId>jackson-core</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.fasterxml.jackson.core</groupId>
-          <artifactId>jackson-annotations</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.fasterxml.jackson.core</groupId>
-          <artifactId>jackson-databind</artifactId>
-        </exclusion>
-        <!--  shared by xunit and warnings-ng - synchronize with xunit(use version as in dtkit-metrics-util) -->
-        <exclusion>
-          <groupId>net.sf.saxon</groupId>
-          <artifactId>Saxon-HE</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <!-- these artifacts versions are defined in com.parasoft.xtest:build pom -->
-    <!--  shared by xtest, warnings-ng and org.jenkins-ci.plugins:git-client - synchronize with org.jenkins-ci.plugins:git-client -->
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>4.5.14</version>
-    </dependency>
-    <!--  shared by xtest, warnings-ng and org.jenkins-ci.plugins:git-client - synchronize with org.jenkins-ci.plugins:git-client -->
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpcore</artifactId>
-      <version>4.4.16</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-collections4</artifactId>
-      <version>4.4</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>fluent-hc</artifactId>
-      <version>4.5.13</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpmime</artifactId>
-      <version>4.5.13</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.15</version>
+      <groupId>com.parasoft</groupId>
+      <artifactId>parasoft-findings-utils</artifactId>
+      <version>1.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
@@ -634,203 +565,7 @@
       <artifactId>plexus-classworlds</artifactId>
       <version>2.4.2</version>
     </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.common</artifactId>
-      <version>${xtest.version}</version>
-      <exclusions>
-        <exclusion>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient-cache</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>fluent-hc</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-vfs2</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>com.parasoft.adhoc.mozilla</groupId>
-            <artifactId>chardet</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>com.microsoft.azure</groupId>
-            <artifactId>applicationinsights-core</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>com.parasoft.xtest.libs</groupId>
-            <artifactId>unikey</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.parasoft.dtp</groupId>
-          <artifactId>com.parasoft.dtp.shared</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>com.parasoft.xtest.libs</groupId>
-            <artifactId>javanet.staxutils</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>com.parasoft.xtest.libs</groupId>
-            <artifactId>org.codehaus.stax2</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.common.base</artifactId>
-      <version>${xtest.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.common.api</artifactId>
-      <version>${xtest.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.configuration.api</artifactId>
-      <version>${xtest.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.configuration</artifactId>
-      <version>${xtest.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.logging.api</artifactId>
-      <version>${xtest.version}</version>
-      <exclusions>
-          <exclusion>
-              <groupId>org.apache.logging.log4j</groupId>
-              <artifactId>log4j-api</artifactId>
-          </exclusion>
-          <exclusion>
-              <groupId>org.apache.logging.log4j</groupId>
-              <artifactId>log4j-core</artifactId>
-          </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.preference.api</artifactId>
-      <version>${xtest.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.reports.api</artifactId>
-      <version>${xtest.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.reports</artifactId>
-      <version>${xtest.version}</version>
-      <exclusions>
-        <exclusion>
-            <groupId>com.parasoft.xtest.libs</groupId>
-            <artifactId>javanet.staxutils</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>com.parasoft.xtest.libs</groupId>
-            <artifactId>org.codehaus.stax2</artifactId>
-        </exclusion>
-        <exclusion>
-           <groupId>org.apache.xmlgraphics</groupId>
-           <artifactId>batik-all</artifactId>
-        </exclusion>
-        <exclusion>
-             <groupId>org.apache.xmlgraphics</groupId>
-             <artifactId>fop</artifactId>
-        </exclusion>
-        <exclusion>
-             <groupId>org.apache.xmlgraphics</groupId>
-             <artifactId>xmlgraphics-commons</artifactId>
-        </exclusion>
-        <exclusion>
-           <groupId>com.parasoft.xtest.libs</groupId>
-           <artifactId>saxon</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.results.api</artifactId>
-      <version>${xtest.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.results</artifactId>
-      <version>${xtest.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>com.parasoft.dtp</groupId>
-          <artifactId>com.parasoft.dtp.shared</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>com.parasoft.xtest.libs</groupId>
-            <artifactId>javanet.staxutils</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>com.parasoft.xtest.libs</groupId>
-            <artifactId>org.codehaus.stax2</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.services.api</artifactId>
-      <version>${xtest.version}</version>
-      <exclusions>
-          <exclusion>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.core</artifactId>
-          </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.share.api</artifactId>
-      <version>${xtest.version}</version>
-    </dependency>
-    <!-- these are needed only in runtime -->
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.scope.api</artifactId>
-      <version>${xtest.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.parasoft.xtest.common</groupId>
-      <artifactId>com.parasoft.xtest.testcases.api</artifactId>
-      <version>${xtest.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <!-- these are needed only for tests -->
+
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>

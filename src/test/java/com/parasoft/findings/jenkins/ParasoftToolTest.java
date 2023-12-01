@@ -1,9 +1,6 @@
 
 package com.parasoft.findings.jenkins;
 
-import com.parasoft.xtest.common.io.FileUtil;
-import com.parasoft.xtest.common.services.RawServiceContext;
-import com.parasoft.findings.jenkins.internal.services.JenkinsServicesProvider;
 import com.parasoft.findings.jenkins.tool.ParasoftTableModel;
 import com.parasoft.findings.jenkins.tool.ParasoftTableModel.ParasoftTableRow;
 import com.parasoft.findings.jenkins.tool.ParasoftTool;
@@ -20,8 +17,8 @@ import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider;
 import io.jenkins.plugins.util.JenkinsFacade;
 import io.jenkins.plugins.util.LogHandler;
 import org.jenkins.ui.symbol.SymbolRequest;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import java.io.File;
@@ -31,31 +28,24 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
 
 public class ParasoftToolTest
 {
     private static final String REPORT_NAME = "jtest_10.6.0_static.xml";
     private static final String TOOL_NAME = "Parasoft Findings";
 
-    @BeforeClass
-    public static void setUp()
-    {
-        JenkinsServicesProvider.init();
-    }
-
     @Test
     public void scanReportTest()
-        throws IOException, InterruptedException
+            throws IOException, InterruptedException
     {
-        File tempDir = FileUtil.getTempDir(new RawServiceContext());
+        File tempDir = FileUtil.getTempDir();
         try {
             String localSettingsPath = new File("src/test/resources/settings")
                     .getAbsolutePath() + "/settings.properties";
             FreeStyleBuild freeStyleBuild = Mockito.mock(FreeStyleBuild.class);
             Mockito.when(freeStyleBuild.getRootDir()).thenReturn(tempDir);
             Mockito.when(freeStyleBuild.getEnvironment(TaskListener.NULL))
-            .thenReturn(new EnvVars());
+                    .thenReturn(new EnvVars());
             LogHandler logger = Mockito.mock(LogHandler.class);
 
             ParasoftTool underTest = Mockito.spy(new UnderTest());
@@ -64,8 +54,8 @@ public class ParasoftToolTest
             Mockito.doReturn(new Descriptor()).when((ReportScanningTool)underTest).getDescriptor();
 
             Report report = underTest.scan(freeStyleBuild,
-                new FilePath(new File("src/test/resources/xml")),
-                Charset.forName("UTF-8"), logger);
+                    new FilePath(new File("src/test/resources/xml")),
+                    Charset.forName("UTF-8"), logger);
 
             Set<Severity> severieties = report.getSeverities();
             assertEquals(17, report.getSize());
@@ -80,7 +70,7 @@ public class ParasoftToolTest
     @Test
     public void labelProviderAndDescriptorTest() throws IOException, InterruptedException
     {
-        File tempDir = FileUtil.getTempDir(new RawServiceContext());
+        File tempDir = FileUtil.getTempDir();
         try {
             String localSettingsPath = new File("src/test/resources/settings")
                     .getAbsolutePath() + "/settings.properties";
@@ -88,18 +78,18 @@ public class ParasoftToolTest
             Mockito.when(freeStyleBuild.getRootDir()).thenReturn(tempDir);
             LogHandler logger = Mockito.mock(LogHandler.class);
             Mockito.when(freeStyleBuild.getEnvironment(TaskListener.NULL))
-            .thenReturn(new EnvVars());
+                    .thenReturn(new EnvVars());
 
             ParasoftTool underTest = new UnderTest();
             underTest.setLocalSettingsPath(localSettingsPath);
 
             JenkinsFacade jenkinsFacade = Mockito.mock(JenkinsFacade.class);
-            Mockito.when(jenkinsFacade.getDescriptorOrDie(any())).thenReturn(new Descriptor());
+            Mockito.when(jenkinsFacade.getDescriptorOrDie(ArgumentMatchers.any())).thenReturn(new Descriptor());
             underTest.setJenkinsFacade(jenkinsFacade);
 
             Report report = underTest.scan(freeStyleBuild,
-                new FilePath(new File("src/test/resources/xml")),
-                Charset.forName("UTF-8"), logger);
+                    new FilePath(new File("src/test/resources/xml")),
+                    Charset.forName("UTF-8"), logger);
 
             ReportScanningToolDescriptor descriptor = new Descriptor();
             assertNotNull(descriptor);
@@ -114,7 +104,7 @@ public class ParasoftToolTest
             assertEquals("/plugin/parasoft-findings/icons/parasofttest48.png", labelProvider.getLargeIconUrl());
             assertEquals("/plugin/parasoft-findings/icons/parasofttest24.png", labelProvider.getSmallIconUrl());
 
-            Mockito.when(jenkinsFacade.getSymbol(any(SymbolRequest.class))).thenReturn("<svg>details-open-close-icon</svg>");
+            Mockito.when(jenkinsFacade.getSymbol(ArgumentMatchers.any(SymbolRequest.class))).thenReturn("<svg>details-open-close-icon</svg>");
             ((ParasoftTool.LabelProvider) labelProvider).setJenkinsFacade(jenkinsFacade);
 
             ParasoftTableModel model = (ParasoftTableModel)labelProvider.getIssuesModel(freeStyleBuild, "parasoft-findings", report);
@@ -132,7 +122,7 @@ public class ParasoftToolTest
 
     @SuppressWarnings("serial")
     private class UnderTest
-        extends ParasoftTool
+            extends ParasoftTool
     {
         @Override
         public String getActualPattern()

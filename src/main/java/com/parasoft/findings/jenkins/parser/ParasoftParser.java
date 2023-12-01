@@ -24,25 +24,16 @@ import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.Properties;
 
-import com.parasoft.xtest.common.api.IFileTestableInput;
-import com.parasoft.xtest.common.api.IProjectFileTestableInput;
-import com.parasoft.xtest.common.api.ISourceRange;
-import com.parasoft.xtest.common.api.ITestableInput;
-import com.parasoft.xtest.common.path.PathInput;
-import com.parasoft.xtest.common.text.UString;
-import com.parasoft.findings.jenkins.internal.JenkinsLocationMatcher;
-import com.parasoft.findings.jenkins.internal.JenkinsResultsImporter;
+import com.parasoft.findings.utils.results.violations.*;
+import com.parasoft.findings.utils.results.testableinput.IFileTestableInput;
+import com.parasoft.findings.utils.results.testableinput.ProjectFileTestableInput;
+import com.parasoft.findings.utils.results.testableinput.ITestableInput;
+import com.parasoft.findings.utils.results.testableinput.PathInput;
+import com.parasoft.findings.utils.common.util.StringUtil;
+import com.parasoft.findings.utils.results.testableinput.FindingsLocationMatcher;
 import com.parasoft.findings.jenkins.internal.ResultAdditionalAttributes;
-import com.parasoft.findings.jenkins.internal.rules.JenkinsRulesUtil;
-import com.parasoft.xtest.results.api.IDupCodeViolation;
-import com.parasoft.xtest.results.api.IFlowAnalysisViolation;
-import com.parasoft.xtest.results.api.IMetricsViolation;
-import com.parasoft.xtest.results.api.IResultLocation;
-import com.parasoft.xtest.results.api.IRuleViolation;
-import com.parasoft.xtest.results.api.IViolation;
-import com.parasoft.xtest.results.api.attributes.IRuleAttributes;
-import com.parasoft.xtest.results.api.importer.IImportedData;
-import com.parasoft.xtest.results.api.importer.IRulesImportHandler;
+import com.parasoft.findings.utils.results.xml.RuleAttributes;
+import com.parasoft.findings.utils.results.xml.RulesImportHandler;
 
 import edu.hm.hafner.analysis.Issue;
 import edu.hm.hafner.analysis.IssueBuilder;
@@ -57,7 +48,7 @@ import edu.hm.hafner.analysis.Severity;
  * A parser for Parasoft files containing xml report.
  */
 public class ParasoftParser
-    extends IssueParser
+        extends IssueParser
 {
     private static final long serialVersionUID = 1731087921659486425L;
 
@@ -69,7 +60,7 @@ public class ParasoftParser
 
     private final String _workspace;
 
-    private transient JenkinsResultsImporter _importer = null;
+    private transient XmlReportViolationsImporter _importer = null;
 
     public ParasoftParser(Properties properties, String workspace)
     {
@@ -96,7 +87,7 @@ public class ParasoftParser
 
     private Report importResults(File file)
     {
-        IImportedData importedData = getImporter().performImport(file);
+        XmlReportViolations importedData = getImporter().performImport(file);
         if (importedData == null) {
             return new Report();
         }
@@ -104,10 +95,8 @@ public class ParasoftParser
     }
 
     // keep it public for JUnit tests
-    public Report convert(Iterator<IViolation> importResults, IRulesImportHandler rulesImportHandler)
+    public Report convert(Iterator<IViolation> importResults, RulesImportHandler rulesImportHandler)
     {
-        JenkinsRulesUtil.refreshRuleDescriptions(_properties);
-
         IssueBuilder issueBuilder = new IssueBuilder();
         Report report = new Report();
 
@@ -136,14 +125,14 @@ public class ParasoftParser
         if (properties instanceof FlowIssueAdditionalProperties) {
             FlowIssueAdditionalProperties additionalProperties = (FlowIssueAdditionalProperties) properties;
             additionalProperties
-                .setChildren(new FlowAnalysisPathBuilder((IFlowAnalysisViolation) violation, issue.getId().toString(), workspacePath).getPath());
+                    .setChildren(new FlowAnalysisPathBuilder((IFlowAnalysisViolation) violation, issue.getId().toString(), workspacePath).getPath());
         } else if (properties instanceof DupIssueAdditionalProperties) {
             DupIssueAdditionalProperties additionalProperties = (DupIssueAdditionalProperties)properties;
-            additionalProperties.setChildren(new DupCodePathBuilder((IDupCodeViolation)violation, issue.getId().toString()).getPath());
+            additionalProperties.setChildren(new DupCodePathBuilder((DupCodeViolation)violation, issue.getId().toString()).getPath());
         }
     }
 
-    private boolean reportViolation(IRuleViolation violation, IRulesImportHandler rulesImportHandler, String moduleName, IssueBuilder issueBuilder)
+    private boolean reportViolation(IRuleViolation violation, RulesImportHandler rulesImportHandler, String moduleName, IssueBuilder issueBuilder)
     {
         ResultAdditionalAttributes attributes = new ResultAdditionalAttributes(violation);
         if (attributes.isSuppressed()) {
@@ -155,8 +144,8 @@ public class ParasoftParser
         Severity severityLevel = convertToSeverityLevel(severity);
         String ruleCategory = attributes.getRuleCategory();
 
-        IResultLocation location = violation.getResultLocation();
-        ISourceRange sourceRange = location.getSourceRange();
+        ResultLocation location = violation.getResultLocation();
+        SourceRange sourceRange = location.getSourceRange();
         int startLine = sourceRange.getStartLine();
         int endLine = sourceRange.getEndLine();
 
@@ -165,12 +154,12 @@ public class ParasoftParser
         String ruleDesc = ruleId;
 
         issueBuilder.setSeverity(severityLevel).setMessage(message).setLineStart(startLine).setLineEnd(endLine).setCategory(categoryDesc)
-            .setType(ruleDesc);
+                .setType(ruleDesc);
 
         ITestableInput input = location.getTestableInput();
         String filePath = null;
         if (input instanceof IFileTestableInput) {
-            filePath = JenkinsLocationMatcher.getFilePath((IFileTestableInput) input);
+            filePath = FindingsLocationMatcher.getFilePath((IFileTestableInput) input);
         } else if (input instanceof PathInput) {
             filePath = ((PathInput) input).getPath();
             if (filePath.startsWith("/")) { //$NON-NLS-1$
@@ -179,12 +168,12 @@ public class ParasoftParser
         } else {
             filePath = input.getName();
         }
-        if (UString.isNonEmptyTrimmed(filePath)) {
+        if (StringUtil.isNonEmptyTrimmed(filePath)) {
             issueBuilder.setFileName(filePath);
         }
 
-        if (input instanceof IProjectFileTestableInput) {
-            IProjectFileTestableInput projectInput = (IProjectFileTestableInput) input;
+        if (input instanceof ProjectFileTestableInput) {
+            ProjectFileTestableInput projectInput = (ProjectFileTestableInput) input;
             issueBuilder.setModuleName(projectInput.getProjectName());
         } else {
             issueBuilder.setModuleName(moduleName);
@@ -194,19 +183,19 @@ public class ParasoftParser
         issueBuilder.setColumnEnd(sourceRange.getEndLineOffset());
 
         String namespace = violation.getNamespace();
-        if (UString.isNonEmpty(namespace)) {
+        if (StringUtil.isNonEmpty(namespace)) {
             issueBuilder.setPackageName(namespace);
         } else {
             issueBuilder.setPackageName("-"); //$NON-NLS-1$
         }
 
         String author = attributes.getAuthor();
-        if (UString.isEmpty(author)) {
+        if (StringUtil.isEmpty(author)) {
             author = PROPERTY_UNKNOWN;
         }
 
         String revision = attributes.getRevision();
-        if (UString.isEmpty(revision)) {
+        if (StringUtil.isEmpty(revision)) {
             revision = PROPERTY_UNKNOWN;
         }
 
@@ -218,7 +207,7 @@ public class ParasoftParser
 
         if (violation instanceof IFlowAnalysisViolation) {
             issueBuilder.setAdditionalProperties(new FlowIssueAdditionalProperties(author, revision, analyzer));
-        } else if (violation instanceof IDupCodeViolation) {
+        } else if (violation instanceof DupCodeViolation) {
             issueBuilder.setAdditionalProperties(new DupIssueAdditionalProperties(author, revision, analyzer));
         } else {
             issueBuilder.setAdditionalProperties(new ParasoftIssueAdditionalProperties(author, revision, analyzer));
@@ -240,10 +229,10 @@ public class ParasoftParser
         }
     }
 
-    private synchronized JenkinsResultsImporter getImporter()
+    private synchronized XmlReportViolationsImporter getImporter()
     {
         if (_importer == null) {
-            _importer = new JenkinsResultsImporter(_properties);
+            _importer = new XmlReportViolationsImporter(_properties);
         }
 
         return _importer;
@@ -254,14 +243,14 @@ public class ParasoftParser
         return LEGACY_TOOL_NAME.equals(analyzer);
     }
 
-    private String mapToAnalyzer(IRuleViolation violation, IRulesImportHandler rulesImportHandler)
+    private String mapToAnalyzer(IRuleViolation violation, RulesImportHandler rulesImportHandler)
     {
         String analyzer = null;
-        if (violation instanceof IDupCodeViolation) {
+        if (violation instanceof DupCodeViolation) {
             analyzer = "com.parasoft.xtest.cpp.analyzer.static.dupcode"; //$NON-NLS-1$
         } else if (violation instanceof IFlowAnalysisViolation) {
             analyzer = "com.parasoft.xtest.cpp.analyzer.static.flow"; //$NON-NLS-1$
-        } else if (violation instanceof IMetricsViolation) {
+        } else if (violation instanceof MetricsViolation) {
             analyzer = "com.parasoft.xtest.cpp.analyzer.static.metrics"; //$NON-NLS-1$
         } else if (isGlobalRule(violation.getRuleId(), rulesImportHandler)) {
             analyzer = "com.parasoft.xtest.cpp.analyzer.static.global"; //$NON-NLS-1$
@@ -271,9 +260,9 @@ public class ParasoftParser
         return analyzer;
     }
 
-    private boolean isGlobalRule(String ruleId, IRulesImportHandler rulesImportHandler)
+    private boolean isGlobalRule(String ruleId, RulesImportHandler rulesImportHandler)
     {
-        IRuleAttributes ruleAttributes = rulesImportHandler.getRuleAttributes(ruleId);
+        RuleAttributes ruleAttributes = rulesImportHandler.getRuleAttributes(ruleId);
         if (ruleAttributes == null) {
             return false;
         }

@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class TagCounterVerifier
-    extends DefaultHandler
+        extends DefaultHandler
 {
     private final Map<String, Integer> _tagCountMap = new HashMap<>();
 

@@ -16,7 +16,7 @@
 
 package com.parasoft.findings.jenkins.internal;
 
-import com.parasoft.xtest.logging.api.ParasoftLogger;
+import com.parasoft.findings.utils.common.logging.FindingsLogger;
 
 final class Logger
 {
@@ -26,22 +26,22 @@ final class Logger
      *
      * @post $result != null
      */
-    public static ParasoftLogger getLogger()
+    public static FindingsLogger getLogger()
     {
         return _LOGGER;
 
     } // getLogger()
 
-    /** 
-     * Just to prevent instantiation. 
+    /**
+     * Just to prevent instantiation.
      */
     private Logger()
     {
         super();
-        
+
     } // Logger()
-    
-    private final static ParasoftLogger _LOGGER = ParasoftLogger.getLogger(Logger.class);
-    
+
+    private final static FindingsLogger _LOGGER = FindingsLogger.getLogger(Logger.class);
+
 } // class Logger
 

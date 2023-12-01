@@ -20,7 +20,7 @@ import com.parasoft.findings.jenkins.parser.FlowIssueAdditionalProperties;
 import com.parasoft.findings.jenkins.parser.ParasoftIssueAdditionalProperties;
 import org.apache.commons.lang3.StringUtils;
 
-import com.parasoft.xtest.common.text.UString;
+import com.parasoft.findings.utils.common.util.StringUtil;
 import com.parasoft.findings.jenkins.internal.rules.RuleDocumentationReader;
 
 import edu.hm.hafner.analysis.Issue;
@@ -35,12 +35,12 @@ import io.jenkins.plugins.util.JenkinsFacade;
 import j2html.tags.UnescapedText;
 
 public class ParasoftTableModel
-    extends DetailsTableModel
+        extends DetailsTableModel
 {
     private RuleDocumentationReader _ruleDocReader = null;
 
     public ParasoftTableModel(Run<?, ?> build, Report report, FileNameRenderer fileNameRenderer, AgeBuilder ageBuilder,
-        DescriptionProvider descriptionProvider, JenkinsFacade jenkinsFacade)
+                              DescriptionProvider descriptionProvider, JenkinsFacade jenkinsFacade)
     {
         super(report, fileNameRenderer, ageBuilder, descriptionProvider, jenkinsFacade);
         _ruleDocReader = new RuleDocumentationReader(build.getRootDir());
@@ -82,7 +82,7 @@ public class ParasoftTableModel
     }
 
     public class ParasoftTableRow
-        extends TableRow
+            extends TableRow
     {
         private String description;
         private String packageName;
@@ -93,7 +93,7 @@ public class ParasoftTableModel
         private String revision = "-"; //$NON-NLS-1$
 
         protected ParasoftTableRow(AgeBuilder ageBuilder, FileNameRenderer fileNameRenderer, DescriptionProvider descriptionProvider, Issue issue,
-            JenkinsFacade jenkinsFacade)
+                                   JenkinsFacade jenkinsFacade)
         {
             super(ageBuilder, fileNameRenderer, descriptionProvider, issue, jenkinsFacade);
             description = formatDetails(issue, descriptionProvider.getDescription(issue));
@@ -106,9 +106,9 @@ public class ParasoftTableModel
             if (additionalProperties instanceof ParasoftIssueAdditionalProperties) {
                 ParasoftIssueAdditionalProperties parasoftIssueAdditionalProperties = (ParasoftIssueAdditionalProperties)additionalProperties;
                 author = formatProperty("additionalProperties(" + ParasoftIssueAdditionalProperties.AUTHOR_KEY + ")", //$NON-NLS-1$ //$NON-NLS-2$
-                    parasoftIssueAdditionalProperties.getAuthor());
+                        parasoftIssueAdditionalProperties.getAuthor());
                 revision = formatProperty("additionalProperties(" + ParasoftIssueAdditionalProperties.REVISION_KEY + ")", //$NON-NLS-1$ //$NON-NLS-2$
-                    parasoftIssueAdditionalProperties.getRevision());
+                        parasoftIssueAdditionalProperties.getRevision());
             }
         }
 
@@ -165,9 +165,9 @@ public class ParasoftTableModel
             String ruleId = issue.getType();
             String ruleDocContents = _ruleDocReader.getRuleDoc(analyzer, ruleId);
 
-            if (UString.isNonEmpty(ruleDocContents)) {
+            if (StringUtil.isNonEmpty(ruleDocContents)) {
                 sb.append(IHtmlTags.BREAK_LINE_TAG + IHtmlTags.PARAGRAPH_START_TAG + ruleDocContents + IHtmlTags.PARAGRAPH_END_TAG);
-            } else if (UString.isNonEmptyTrimmed(ruleId)) {
+            } else if (StringUtil.isNonEmptyTrimmed(ruleId)) {
                 //sb.append(IHtmlTags.BREAK_LINE_TAG + NLS.getFormatted(Messages.RULE_DOCUMENTATION_UNAVAILABLE, ruleId));
             }
             return formatDefaultDetails(issue, sb.toString());

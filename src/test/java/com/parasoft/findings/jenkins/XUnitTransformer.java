@@ -15,8 +15,7 @@
  */
 package com.parasoft.findings.jenkins;
 
-import com.parasoft.xtest.common.UIO;
-import com.parasoft.xtest.common.io.FileUtil;
+import com.parasoft.findings.utils.common.util.FileUtil;
 import org.jenkinsci.lib.dtkit.util.converter.ConversionException;
 import org.jenkinsci.lib.dtkit.util.converter.ConversionService;
 import org.xml.sax.InputSource;
@@ -55,7 +54,7 @@ class XUnitTransformer
     }
 
     static File transform(String reportFileName, String outputFileName, String pathToXslSchema)
-        throws MalformedURLException, ConversionException
+            throws MalformedURLException, ConversionException
     {
         URL report = new File(reportFileName).toURI().toURL();
         URL resource = new File(pathToXslSchema).toURI().toURL();
@@ -66,7 +65,7 @@ class XUnitTransformer
     }
 
     private static void printContents(File outputFile)
-        throws IOException
+            throws IOException
     {
         ArrayList<String> lines = new ArrayList<>();
         FileUtil.readFile(outputFile, lines);
@@ -77,7 +76,7 @@ class XUnitTransformer
     }
 
     private static void validateAgainstXslSchemas(File outputFile)
-        throws SAXException, IOException
+            throws SAXException, IOException
     {
         // keep compatibility with old schema
         validate(outputFile, "src/test/resources/schema/junit-7.xsd");
@@ -86,7 +85,7 @@ class XUnitTransformer
     }
 
     private static void validate(File outputFile, String schemaPath)
-        throws SAXException, IOException
+            throws SAXException, IOException
     {
         URL schemaFile = new File(schemaPath).toURI().toURL();
         Source xmlFile = new StreamSource(outputFile);
@@ -97,7 +96,7 @@ class XUnitTransformer
     }
 
     static void transform(URL inputUrl, URL xslURL, File outputFile)
-        throws ConversionException
+            throws ConversionException
     {
         InputStream inputStream = null;
         InputStream xslStream = null;
@@ -112,13 +111,13 @@ class XUnitTransformer
             Logger.getLogger().error(ex);
             doFail(ex);
         } finally {
-            UIO.close(inputStream);
-            UIO.close(xslStream);
+            close(inputStream);
+            close(xslStream);
         }
     }
 
     static void parseXunitOutputXml(File outputFile, TagCounterVerifier verifier)
-        throws ParserConfigurationException, SAXException, IOException
+            throws ParserConfigurationException, SAXException, IOException
     {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
@@ -128,5 +127,22 @@ class XUnitTransformer
     static void doFail(Exception e)
     {
         fail(e.getClass().getName() + ": " + e.getMessage());
+    }
+
+    /**
+     * Safe closing.
+     *
+     * @param stream
+     */
+    public static void close(InputStream stream)
+    {
+        if (stream == null) {
+            return;
+        }
+        try {
+            stream.close();
+        } catch (IOException ex) {
+            Logger.getLogger().error(ex);
+        }
     }
 }

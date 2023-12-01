@@ -44,7 +44,7 @@ public class JenkinsVariablesResolverTest
         assertEquals(PATH_EXAMPLE + "1", resolver.performSubstitution(sExpr));
         assertEquals("1" + PATH_EXAMPLE, resolver.performSubstitution(sExpr2));
     }
-    
+
     @Test
     public void testResolveSurroundedByPercentSign()
     {

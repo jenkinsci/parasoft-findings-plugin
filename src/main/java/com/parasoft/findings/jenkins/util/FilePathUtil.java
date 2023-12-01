@@ -29,19 +29,19 @@ import java.util.Properties;
 import org.apache.commons.io.IOUtils;
 import org.jenkinsci.remoting.RoleChecker;
 
-/** 
+/**
  * Utility class for operations related to {@link FilePath}.
  */
 public final class FilePathUtil
 {
 
-	/**
-	 * Private constructor to prevent class instantiation.
-	 */
-	private FilePathUtil () {}
+    /**
+     * Private constructor to prevent class instantiation.
+     */
+    private FilePathUtil () {}
 
     /**
-     * @param file the file to check 
+     * @param file the file to check
      * @return true if file behind given object is absolute
      */
     public static boolean isAbsolute(FilePath file)
@@ -56,7 +56,7 @@ public final class FilePathUtil
         }
         return result;
     }
-    
+
     /**
      * @param file the file with properties to load
      * @return properties loaded from given file
@@ -124,4 +124,4 @@ public final class FilePathUtil
         }
     }
 }
-    
+

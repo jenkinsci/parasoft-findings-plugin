@@ -28,19 +28,14 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
+import com.parasoft.findings.utils.common.util.StringUtil;
+import com.parasoft.findings.utils.common.util.URLUtil;
+import com.parasoft.findings.utils.doc.RuleDocumentationProvider;
 import org.jenkinsci.remoting.RoleChecker;
 
-import com.parasoft.xtest.common.IStringConstants;
-import com.parasoft.xtest.common.UURL;
-import com.parasoft.xtest.common.dtp.IDtpServiceRegistry;
-import com.parasoft.xtest.common.io.FileUtil;
-import com.parasoft.xtest.common.io.IOUtils;
-import com.parasoft.xtest.common.services.RawServiceContext;
-import com.parasoft.xtest.common.text.UString;
-import com.parasoft.xtest.configuration.dtp.XRestRulesClient;
-import com.parasoft.xtest.configuration.rules.RuleDocumentationHelper;
-import com.parasoft.xtest.services.api.IParasoftServiceContext;
-import com.parasoft.xtest.services.api.ServiceUtil;
+import com.parasoft.findings.utils.common.IStringConstants;
+import com.parasoft.findings.utils.common.util.FileUtil;
+import com.parasoft.findings.utils.common.util.IOUtils;
 
 import hudson.FilePath;
 import hudson.FilePath.FileCallable;
@@ -54,7 +49,7 @@ public class RuleDocumentationStorage
 
     private Set<String> _ruleDocs = null;
 
-    private final JenkinsRuleDocumentationProvider _docProvider;
+    private final RuleDocumentationProvider _docProvider;
 
     public RuleDocumentationStorage(File buildRoot, Properties settings)
     {
@@ -66,7 +61,7 @@ public class RuleDocumentationStorage
         _buildRoot = buildRoot;
         _ruleDocs = new HashSet<>();
         _rulesDocDir = rulesDocDir;
-        _docProvider = new JenkinsRuleDocumentationProvider(settings);
+        _docProvider = new RuleDocumentationProvider(settings);
     }
 
     public void storeRuleDoc(String analyzer, String ruleId)
@@ -78,14 +73,14 @@ public class RuleDocumentationStorage
         String ruleDocLocation = _docProvider.getRuleDocLocation(analyzer, ruleId);
 
         String contents = null;
-        if (UString.isNonEmpty(ruleDocLocation)) {
+        if (StringUtil.isNonEmpty(ruleDocLocation)) {
             if (isLocal(ruleDocLocation)) {
                 contents = readFromLocal(ruleDocLocation);
             } else {
                 contents = readExternalURL(ruleDocLocation);
             }
         }
-        if (UString.isNonEmptyTrimmed(contents)) {
+        if (StringUtil.isNonEmptyTrimmed(contents)) {
             storeRuleDoc(new FilePath(_buildRoot), _rulesDocDir, analyzer, ruleId, contents);
         }
         _ruleDocs.add(key);
@@ -93,7 +88,7 @@ public class RuleDocumentationStorage
 
     private static String readFromLocal(String ruleDocLocation)
     {
-        File localFile = UURL.getLocalFile(UURL.toURL(ruleDocLocation));
+        File localFile = URLUtil.getLocalFile(URLUtil.toURL(ruleDocLocation));
         if (localFile != null) {
             try {
                 return FileUtil.readFile(localFile, IStringConstants.UTF_8);
@@ -108,7 +103,7 @@ public class RuleDocumentationStorage
 
     private static boolean isLocal(String ruleDocLocation)
     {
-        File localFile = UURL.getLocalFile(UURL.toURL(ruleDocLocation));
+        File localFile = URLUtil.getLocalFile(URLUtil.toURL(ruleDocLocation));
         return localFile != null;
     }
 
@@ -185,47 +180,6 @@ public class RuleDocumentationStorage
             Logger.getLogger().warnTrace(e);
         } finally {
             IOUtils.close(writer);
-        }
-    }
-
-    private static class JenkinsRuleDocumentationProvider
-    {
-        private IParasoftServiceContext _context;
-
-        private XRestRulesClient _client;
-
-        /**
-         * @param settingsFile the settings to configure access to the documentation
-         * @param analyzer the analyzer connected with the given rule
-         * @param ruleId the rule identifier
-         */
-        public JenkinsRuleDocumentationProvider(Properties settings)
-        {
-            _context = new RawServiceContext(settings);
-            _client = getRuleClient(_context);
-        }
-
-        /**
-         * @return url of rule docs or null
-         */
-        public String getRuleDocLocation(String analyzer, String ruleId)
-        {
-            RuleDocumentationHelper ruleDocHelper = new RuleDocumentationHelper(ruleId, analyzer, _client, _context);
-            return ruleDocHelper.getRuleDocLocation();
-        }
-
-        private static XRestRulesClient getRuleClient(IParasoftServiceContext context)
-        {
-            IDtpServiceRegistry registry = ServiceUtil.getService(IDtpServiceRegistry.class, context);
-            if (registry == null) {
-                return null;
-            }
-
-            XRestRulesClient rulesClient = XRestRulesClient.create(registry, context);
-            if (rulesClient == null) {
-                Logger.getLogger().info("Rules service client could not be created."); //$NON-NLS-1$
-            }
-            return rulesClient;
         }
     }
 }

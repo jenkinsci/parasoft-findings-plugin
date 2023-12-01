@@ -11,30 +11,20 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.Scanner;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.parasoft.xtest.common.io.FileUtil;
-import com.parasoft.xtest.common.services.RawServiceContext;
 import com.parasoft.findings.jenkins.internal.rules.RuleDocumentationReader;
 import com.parasoft.findings.jenkins.internal.rules.RuleDocumentationStorage;
-import com.parasoft.findings.jenkins.internal.services.JenkinsServicesProvider;
 
 public class RuleDocumentationReaderTest
 {
     private String ruleName = "APSC_DV.000160.SRD";
     private String analyzer = "com.parasoft.jtest.standards.checkers.java";
 
-    @BeforeClass
-    public static void setUp()
-    {
-        JenkinsServicesProvider.init();
-    }
-
     @Test
     public void documentationReaderTest() throws IOException
     {
-        File tempDir = FileUtil.getTempDir(new RawServiceContext());
+        File tempDir = FileUtil.getTempDir();
         try {
             URL resource = null;
             try {
