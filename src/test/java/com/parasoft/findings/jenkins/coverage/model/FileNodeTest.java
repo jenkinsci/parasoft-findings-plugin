@@ -24,8 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import edu.hm.hafner.util.TreeString;
@@ -90,15 +88,5 @@ class FileNodeTest extends AbstractNodeTest {
         assertThat(file.matches(Metric.FILE, fileName.hashCode())).isTrue();
         assertThat(file.matches(Metric.FILE, otherPath.hashCode())).isTrue();
         assertThat(file.matches(Metric.FILE, "wrong".hashCode())).isFalse();
-    }
-
-    @Test
-    @Disabled
-    void shouldReadOldVersion() {
-        byte[] restored = readAllBytes("version-0.21.0.ser");
-
-        var serializable = (FileNode)createSerializable();
-        serializable.setRelativePath(TreeString.valueOf(StringUtils.EMPTY));
-        assertThatRestoredInstanceEqualsOriginalInstance(serializable, restore(restored));
     }
 }
