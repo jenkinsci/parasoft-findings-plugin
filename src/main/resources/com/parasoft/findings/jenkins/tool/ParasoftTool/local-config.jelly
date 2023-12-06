@@ -2,7 +2,7 @@
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form" xmlns:i="/issues">
 
   <f:entry title="${%title.localSettingsPath}" description="${%description.localSettingsPath}"
-           field="localSettingsPath">
+           field="localSettingsPath" help="/plugin/parasoft-findings/help/ParasoftTool/help-localSettingsPath.html">
     <f:textbox/>
   </f:entry>
 
