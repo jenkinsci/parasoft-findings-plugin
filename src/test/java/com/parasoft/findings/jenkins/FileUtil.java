@@ -16,8 +16,6 @@
 
 package com.parasoft.findings.jenkins;
 
-import com.parasoft.findings.utils.common.logging.FindingsLogger;
-
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -150,7 +148,7 @@ public final class FileUtil
                     return storageDir;
                 }
             }
-            // FindingsLogger.getLogger().error("Can not resolve local storage directory base on system property nor settings.");  //$NON-NLS-1$
+            // Logger.getLogger().error("Can not resolve local storage directory base on system property nor settings.");  //$NON-NLS-1$
             File storageDir = getTempLocalStorageDir();
             // we always return temp storage dir
             checkStorageDir(storageDir);
@@ -163,11 +161,11 @@ public final class FileUtil
             storageDir = storageDir.getAbsoluteFile();
             storageDir.mkdirs();
             if (!(storageDir.isDirectory())) {
-                FindingsLogger.getLogger().error("Failed to create local storage directory at " + storageDir.getPath()); //$NON-NLS-1$
+                Logger.getLogger().error("Failed to create local storage directory at " + storageDir.getPath()); //$NON-NLS-1$
                 return false;
             }
             if (!(storageDir.canWrite())) {
-                FindingsLogger.getLogger().error("Local storage directory is not writable at " + storageDir.getPath()); //$NON-NLS-1$
+                Logger.getLogger().error("Local storage directory is not writable at " + storageDir.getPath()); //$NON-NLS-1$
                 return false;
             }
             return true;
@@ -224,7 +222,7 @@ public final class FileUtil
             if (sSystemTempDir != null) {
                 parasoftDir = new File(sSystemTempDir, sParasoftDirName);
             } else {
-                FindingsLogger.getLogger().error("Cannot find a temporary directory, set the java.io.tmpdir system property appropriately."); //$NON-NLS-1$
+                Logger.getLogger().error("Cannot find a temporary directory, set the java.io.tmpdir system property appropriately."); //$NON-NLS-1$
                 parasoftDir = new File(sParasoftDirName);
             }
             return parasoftDir;
