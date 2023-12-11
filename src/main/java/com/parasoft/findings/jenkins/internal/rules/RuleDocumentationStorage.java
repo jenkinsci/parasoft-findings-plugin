@@ -16,14 +16,11 @@
 
 package com.parasoft.findings.jenkins.internal.rules;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.net.URL;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
@@ -86,7 +83,7 @@ public class RuleDocumentationStorage
         _ruleDocs.add(key);
     }
 
-    private static String readFromLocal(String ruleDocLocation)
+    private String readFromLocal(String ruleDocLocation)
     {
         File localFile = URLUtil.getLocalFile(URLUtil.toURL(ruleDocLocation));
         if (localFile != null) {
@@ -101,25 +98,15 @@ public class RuleDocumentationStorage
         return IStringConstants.EMPTY;
     }
 
-    private static boolean isLocal(String ruleDocLocation)
+    private boolean isLocal(String ruleDocLocation)
     {
         File localFile = URLUtil.getLocalFile(URLUtil.toURL(ruleDocLocation));
         return localFile != null;
     }
 
-    private static String readExternalURL(String externalUrl)
+    private String readExternalURL(String externalUrl)
     {
-        StringBuilder builder = new StringBuilder();
-        BufferedReader in = null;
-        try {
-            URL ruleDocUrl = new URL(externalUrl);
-            in = new BufferedReader(new InputStreamReader(ruleDocUrl.openStream(), IStringConstants.UTF_8));
-
-            return FileUtil.readFile(in);
-        } catch (IOException ioe) {} finally {
-            IOUtils.close(in);
-        }
-        return builder.toString();
+        return this._docProvider.getDtpRuleDocContent(externalUrl);
     }
 
     private void storeRuleDoc(FilePath rootDir, String ruleDocDir, String analyzer, String ruleId, String contents)
