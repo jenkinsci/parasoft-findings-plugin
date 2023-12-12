@@ -41,6 +41,11 @@ public class RuleViolationMock implements IRuleViolation
         return _packageName;
     }
 
+    @Override
+    public String getLanguageId() {
+        return null;
+    }
+
     public ResultLocation getResultLocation()
     {
         return _resultLocation;
