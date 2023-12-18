@@ -648,6 +648,9 @@ public abstract class Node implements Serializable {
         if (getName().equals(other.getName())) {
             Node combinedReport = copyTree();
             combinedReport.mergeChildren(other);
+            if (this.parasoftToolName != null && this.parasoftToolName.equals(other.getParasoftToolName())) {
+                combinedReport.setParasoftToolName(this.parasoftToolName);
+            }
             return combinedReport;
         }
         else {
