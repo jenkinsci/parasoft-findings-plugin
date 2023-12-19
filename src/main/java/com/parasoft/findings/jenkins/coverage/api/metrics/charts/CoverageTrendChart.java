@@ -37,6 +37,9 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.CoverageStatisti
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Messages;
 import io.jenkins.plugins.echarts.JenkinsPalette;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Builds the Java side model for a trend chart showing the line and branch coverage of a project. The number of builds
  * to consider is controlled by a {@link ChartModelConfiguration} instance. The created model object can be serialized
@@ -71,10 +74,33 @@ public class CoverageTrendChart {
             LineSeries lineSeries = new LineSeries(Messages.Metric_LINE(),
                     LINE_COVERAGE_COLOR, StackedMode.SEPARATE_LINES, FilledMode.FILLED,
                     dataSet.getSeries(CoverageSeriesBuilder.LINE_COVERAGE));
+            double maxCoverageValue = dataSet.getMaximumValue();
+            double minCoverageValue = dataSet.getMinimumValue();
+            double coverageRange = maxCoverageValue - minCoverageValue;
+
+            if (maxCoverageValue == 0 && minCoverageValue == 0) {
+                maxCoverageValue = 100;
+                minCoverageValue = 0;
+            } else if (coverageRange == 0.0) {
+                maxCoverageValue = Math.ceil(maxCoverageValue) + 5;
+                minCoverageValue = Math.floor(minCoverageValue) - 5;
+            } else if (coverageRange > 0.0 && coverageRange < 0.5) {
+                // If coverage range is larger than 0 and less than 0.5, the maximum value and minimum value should keep two decimal
+                maxCoverageValue = new BigDecimal(maxCoverageValue + 0.05).setScale(2, RoundingMode.CEILING).doubleValue();
+                minCoverageValue = new BigDecimal(minCoverageValue - 0.05).setScale(2, RoundingMode.FLOOR).doubleValue();
+            } else {
+                // This value is the height from top to maximum coverage value or bottom to minimum coverage value
+                // So the coverage trend line could be displayed in the center in the Parasoft Coverage Trend chart
+                double height = Math.ceil(coverageRange) / 4;
+                // If coverage range is larger than 1, the maximum value and minimum value should keep integer
+                maxCoverageValue = Math.ceil(maxCoverageValue + height);
+                minCoverageValue = Math.floor(minCoverageValue - height);
+            }
+
             model.addSeries(lineSeries);
             model.useContinuousRangeAxis();
-            model.setRangeMax(100);
-            model.setRangeMin(dataSet.getMinimumValue());
+            model.setRangeMax(Math.min(maxCoverageValue, 100.0));
+            model.setRangeMin(Math.max(minCoverageValue, 0.0));
         }
         return model;
     }
