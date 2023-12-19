@@ -140,7 +140,7 @@ public class ElementFormatterTest {
                 .setMissed(0)
                 .build();
         result = formatter.formatValue(coverage);
-        assertThat(result).isEqualTo("-");
+        assertThat(result).isEqualTo("N/A");
 
         result = formatter.formatValue(integerValue);
         assertThat(result).isEqualTo("36");

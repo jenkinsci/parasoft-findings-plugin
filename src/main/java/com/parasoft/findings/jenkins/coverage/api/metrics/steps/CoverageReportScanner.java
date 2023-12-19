@@ -24,7 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,10 +33,10 @@ import com.parasoft.findings.jenkins.coverage.model.CoverageParser;
 import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.PathUtil;
-import edu.hm.hafner.util.SecureXmlParserFactory.ParsingException;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
 import io.jenkins.plugins.util.AgentFileVisitor;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 /**
  * Scans the workspace for coverage reports that match a specified Ant file pattern and parse these files with the
@@ -76,12 +75,12 @@ public class CoverageReportScanner extends AgentFileVisitor<ModuleNode> {
         try {
             CoverageParser xmlParser = parser.createParser();
             ModuleNode node = xmlParser.parse(Files.newBufferedReader(file, charset), log);
-            log.logInfo("Successfully parsed file '%s'", PATH_UTIL.getAbsolutePath(file));
+            log.logInfo("Successfully parsed intermediate Cobertura coverage report file '%s'", PATH_UTIL.getAbsolutePath(file));
             node.aggregateValues().forEach(v -> log.logInfo("%s", v));
             return Optional.of(node);
-        }
-        catch (IOException | ParsingException exception) {
-            log.logException(exception, "Parsing of file '%s' failed due to an exception:", file);
+        } catch (Exception exception) {
+            log.logError("Parsing of intermediate Cobertura coverage report file '%s' failed due to an exception: %s",
+                    file, ExceptionUtils.getRootCauseMessage(exception));
             return Optional.empty();
         }
     }

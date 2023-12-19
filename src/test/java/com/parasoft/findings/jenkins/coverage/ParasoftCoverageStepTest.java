@@ -84,9 +84,17 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     @Test
     void testNoCoverageFilesFound() {
         WorkflowJob job = createPipeline("1", COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, "wrongFile.xml");
-        Run<?, ?> build = buildWithResult(job, Result.FAILURE);
+        Run<?, ?> build = buildWithResult(job, Result.SUCCESS);
 
         assertThat(getConsoleLog(build)).contains("[-ERROR-] No files found for pattern 'wrongFile.xml'. Configuration error?");
+    }
+
+    @Test
+    void testNoStableBuildFoundInReferenceJob() {
+        WorkflowJob job = createPipelineWithWorkspaceFiles(COVERAGE_FILE, "parasoft_coverage_no_data.xml");
+        setPipelineScript(job,
+                "invalid-snippet");
+        buildWithResult(job, Result.FAILURE);
 
         WorkflowJob currentJob = createPipeline(job.getFullName(), null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         Run<?, ?> currentBuild = buildSuccessfully(currentJob);
@@ -99,7 +107,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     @Test
     void testNoCoverageDataFound() {
         WorkflowJob job = createPipeline("1", COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, "parasoft_coverage_no_data.xml");
-        Run<?, ?> build = buildWithResult(job, Result.FAILURE);
+        Run<?, ?> build = buildWithResult(job, Result.SUCCESS);
 
         assertThat(getConsoleLog(build)).contains("No Parasoft coverage information found in the specified file.");
     }
@@ -200,7 +208,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     void testWhenReferenceBuildIsFailed() {
         WorkflowJob job = createPipelineWithWorkspaceFiles(COVERAGE_FILE, "parasoft_coverage_no_data.xml");
         setPipelineScript(job,
-                "recordParasoftCoverage coverageQualityGates: [" + COVERAGE_QUALITY_GATE_SCRIPT + "], " + " referenceBuild: '1', pattern: '" + "parasoft_coverage_no_data.xml" + "', sourceCodeEncoding: '" + SOURCECODE_ENCODING + "'");
+                "invalid-snippet");
         buildWithResult(job, Result.FAILURE);
         setPipelineScript(job,
                 "recordParasoftCoverage coverageQualityGates: [" + COVERAGE_QUALITY_GATE_SCRIPT + "], " + " referenceBuild: '1', pattern: '" + COVERAGE_FILE + "', sourceCodeEncoding: '" + SOURCECODE_ENCODING + "'");

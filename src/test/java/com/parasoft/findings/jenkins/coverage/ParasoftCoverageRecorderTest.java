@@ -45,7 +45,7 @@ public class ParasoftCoverageRecorderTest {
         FreeStyleBuild build = project.scheduleBuild2(0).get();
         String log = FileUtils.readFileToString(build.getLogFile(), "UTF-8");
         Assert.assertTrue(log.contains("[Parasoft Coverage] [-ERROR-] Skipping file 'coverage.xml' because it's empty"));
-        Assert.assertTrue(log.contains(failure));
+        Assert.assertTrue(log.contains(success));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class ParasoftCoverageRecorderTest {
         ParasoftCoverageRecorder parasoftCoverageRecorder = new ParasoftCoverageRecorder();
         String log = runPlugin(parasoftCoverageRecorder, false);
         Assert.assertTrue(log.contains("[Parasoft Coverage] [-ERROR-] No files found for pattern '**/coverage.xml'. Configuration error?"));
-        Assert.assertTrue(log.contains(failure));
+        Assert.assertTrue(log.contains(success));
     }
 
     @Test

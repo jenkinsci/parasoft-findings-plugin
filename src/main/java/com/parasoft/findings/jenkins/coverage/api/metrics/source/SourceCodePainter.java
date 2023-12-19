@@ -39,7 +39,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.io.FileUtils;
 
 import com.parasoft.findings.jenkins.coverage.model.FileNode;
-import com.parasoft.findings.jenkins.coverage.model.Metric;
 import com.parasoft.findings.jenkins.coverage.model.Node;
 import edu.hm.hafner.util.FilteredLog;
 import edu.umd.cs.findbugs.annotations.NonNull;
@@ -51,6 +50,7 @@ import jenkins.MasterToSlaveFileCallable;
 
 import io.jenkins.plugins.prism.SourceCodeRetention;
 import io.jenkins.plugins.util.ValidationUtilities;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 /**
  * Highlights the code coverage information in all source code files. This process is executed on the agent node that
@@ -124,7 +124,7 @@ public class SourceCodePainter {
             log.merge(agentLog);
         }
         catch (IOException exception) {
-            log.logException(exception, "Can't paint and zip sources on the agent");
+            log.logError("Can't paint and zip sources on the agent due to an exception: %s", ExceptionUtils.getRootCauseMessage(exception));
         }
     }
 
@@ -189,12 +189,10 @@ public class SourceCodePainter {
                 deleteFolder(temporaryFolder.toFile(), log);
             }
             catch (IOException exception) {
-                log.logException(exception,
-                        "Cannot create temporary directory in folder '%s' for the painted source files", workspace);
+                log.logError("Cannot create temporary directory for the painted source files due to an exception: %s", ExceptionUtils.getRootCauseMessage(exception));
             }
             catch (InterruptedException exception) {
-                log.logException(exception,
-                        "Processing has been interrupted: skipping zipping of source files", workspace);
+                log.logError("Processing has been interrupted: skipping zipping of source files in folder %s due to an exception: %s", workspace, ExceptionUtils.getRootCauseMessage(exception));
             }
 
             return log;
@@ -234,8 +232,8 @@ public class SourceCodePainter {
                 return 1;
             }
             catch (IOException | InterruptedException exception) {
-                log.logException(exception, "Can't write coverage paint of '%s' to zipped source file '%s'",
-                        relativePathIdentifier, zipOutputPath);
+                log.logError("Can't write coverage paint of '%s' to zipped source file '%s' due to an exception: %s",
+                        relativePathIdentifier, zipOutputPath, ExceptionUtils.getRootCauseMessage(exception));
                 return 0;
             }
         }
@@ -254,7 +252,7 @@ public class SourceCodePainter {
                 }
             }
             catch (InvalidPathException | IOException | InterruptedException exception) {
-                log.logException(exception, "No valid path in coverage node: '%s'", fileName);
+                log.logError("No valid path in coverage node: '%s' due to an exception: %s", fileName, ExceptionUtils.getRootCauseMessage(exception));
             }
             return Optional.empty();
         }
