@@ -134,9 +134,9 @@ class CoverageTableModel extends TableModel {
 
         String parasoftToolName = root.getParasoftToolName();
         String packageHeaderLabel = Messages.Column_Folder();
-        if(parasoftToolName.equals("Jtest")) {
+        if("Jtest".equals(parasoftToolName)) {
             packageHeaderLabel = Messages.Column_Package();
-        } else if(parasoftToolName.equals("dotTEST")) {
+        } else if("dotTEST".equals(parasoftToolName)) {
             packageHeaderLabel = Messages.Column_Namespace();
         }
         TableColumn packageName = new ColumnBuilder().withHeaderLabel(packageHeaderLabel)
