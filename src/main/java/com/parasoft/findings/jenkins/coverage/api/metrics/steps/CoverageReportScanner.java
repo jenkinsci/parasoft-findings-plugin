@@ -24,19 +24,18 @@
 
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Optional;
-
+import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
 import com.parasoft.findings.jenkins.coverage.model.CoverageParser;
 import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.PathUtil;
-
-import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
 import io.jenkins.plugins.util.AgentFileVisitor;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Optional;
 
 /**
  * Scans the workspace for coverage reports that match a specified Ant file pattern and parse these files with the

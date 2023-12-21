@@ -81,7 +81,7 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
             params.put(new QName(WORKING_DIRECTORY_PARAM), new XdmAtomicValue(workspaceCanonicalPath));
             new ConversionService().convert(new StreamSource(new StringReader(xslContent)),
                     file.toFile(), outputCoberturaReport.toFile(), params);
-            log.logInfo("Successfully parsed Parasoft coverage report file '%s'", PATH_UTIL.getAbsolutePath(file));
+            log.logInfo("Successfully converted Parasoft coverage report file '%s' to intermediate Cobertura report file '%s'", PATH_UTIL.getAbsolutePath(file), PATH_UTIL.getAbsolutePath(outputCoberturaReport));
             String coberturaPattern = StringUtils.replace(PATH_UTIL.getRelativePath(Paths.get(workspaceLoc),
                     outputCoberturaReport), StringUtils.SPACE, QUESTION_MARK);
             return Optional.of(new ProcessedFileResult(coberturaPattern, generatedCoverageBuildDir.toString()));

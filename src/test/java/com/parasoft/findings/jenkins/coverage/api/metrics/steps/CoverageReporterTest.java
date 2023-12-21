@@ -4,10 +4,13 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import com.parasoft.findings.jenkins.coverage.api.metrics.source.SourceCodePainter;
 import com.parasoft.findings.jenkins.coverage.model.Node;
+import com.parasoft.findings.jenkins.util.FilteredLogChain;
+import edu.hm.hafner.util.FilteredLog;
 import hudson.FilePath;
 import hudson.model.Job;
 import hudson.model.Run;
 import hudson.model.TaskListener;
+import io.jenkins.plugins.util.LogHandler;
 import io.jenkins.plugins.util.QualityGate;
 import io.jenkins.plugins.util.StageResultHandler;
 import org.junit.jupiter.api.Test;
@@ -59,11 +62,16 @@ public class CoverageReporterTest extends AbstractCoverageTest {
         doReturn(job).when(build).getParent();
         MockedConstruction<SourceCodePainter> sourceCodePainterMockedConstruction = mockConstruction(SourceCodePainter.class);
         MockedConstruction<CoverageXmlStream> coverageXmlStreamMockedConstruction = mockConstruction(CoverageXmlStream.class);
+        FilteredLogChain mockedLogChain = mock(FilteredLogChain.class);
+        when(mockedLogChain.getLogHandler()).thenReturn(mock(LogHandler.class));
+        when(mockedLogChain.addNewFilteredLog(anyString())).thenReturn(mock(FilteredLog.class));
 
         try {
             action = reporter.publishAction("parasoft-coverage", "symbol-footsteps-outline plugin-ionicons-api",
                     node, build, new FilePath(new File("com/parasoft/findings/jenkins/coverage/api/metrics/steps/test_project")),
-                    TaskListener.NULL, "", configRefBuild, coverageQualityGate, "UTF-8", mock(StageResultHandler.class));
+                    TaskListener.NULL, "", configRefBuild, coverageQualityGate, "UTF-8", mock(StageResultHandler.class),
+                    mockedLogChain
+            );
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,6 +80,8 @@ public class CoverageReporterTest extends AbstractCoverageTest {
         assertThat(sourceCodePainterMockedConstruction.constructed().size()).isEqualTo(1);
         sourceCodePainterMockedConstruction.close();
         coverageXmlStreamMockedConstruction.close();
+        verify(mockedLogChain).getLogHandler();
+        verify(mockedLogChain).addNewFilteredLog(anyString());
 
         return action;
     }

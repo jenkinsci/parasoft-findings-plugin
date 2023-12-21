@@ -30,6 +30,7 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
+import com.parasoft.findings.jenkins.util.FilteredLogChain;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import hudson.model.Job;
 import hudson.model.Result;
@@ -52,14 +53,13 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.source.SourceCodePaint
 import io.jenkins.plugins.forensics.delta.Delta;
 import io.jenkins.plugins.forensics.delta.FileChanges;
 import io.jenkins.plugins.prism.SourceCodeRetention;
-import io.jenkins.plugins.util.LogHandler;
 import io.jenkins.plugins.util.QualityGateResult;
 import io.jenkins.plugins.util.StageResultHandler;
 import org.jvnet.localizer.Localizable;
 
-import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.PARASOFT_COVERAGE_NAME;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.*;
+import static io.jenkins.plugins.forensics.reference.ReferenceBuild.NO_REFERENCE_BUILD;
 
 /**
  * Transforms the old model to the new model and invokes all steps that work on the new model. Currently, only the
@@ -74,51 +74,56 @@ public class CoverageReporter {
                                              final Run<?, ?> build, final FilePath workspace, final TaskListener listener,
                                              final String configRefJob, final String configRefBuild,
                                              final List<CoverageQualityGate> qualityGates,
-                                             final String sourceCodeEncoding, final StageResultHandler resultHandler)
+                                             final String sourceCodeEncoding, final StageResultHandler resultHandler, FilteredLogChain logChain)
             throws InterruptedException {
-        FilteredLog log = new FilteredLog("Errors while reporting Parasoft code coverage result:");
+        FilteredLog log = logChain.addNewFilteredLog("Errors while reporting Parasoft code coverage result:");
 
-        ReferenceBuildActionResult referenceBuildActionResult = getReferenceBuildActionResult(configRefJob, configRefBuild, build, id, log);
-        CoverageBuildAction referenceAction = referenceBuildActionResult.getCoverageBuildAction();
-        ReferenceResult referenceResult = referenceBuildActionResult.getReferenceResult();
+        try {
+            ReferenceBuildActionResult referenceBuildActionResult = getReferenceBuildActionResult(configRefJob, configRefBuild, build, id, log);
+            CoverageBuildAction referenceAction = referenceBuildActionResult.getCoverageBuildAction();
+            ReferenceResult referenceResult = referenceBuildActionResult.getReferenceResult();
 
-        CoverageBuildAction action;
-        if (referenceAction != null) {
-            log.logInfo("Calculating the code delta...");
-            CodeDeltaCalculator codeDeltaCalculator = new CodeDeltaCalculator(build, workspace, listener, StringUtils.EMPTY);
-            Optional<Delta> delta = codeDeltaCalculator.calculateCodeDeltaToReference(referenceAction.getOwner(), log);
-            delta.ifPresent(value -> createDeltaReports(rootNode, log, codeDeltaCalculator, value));
+            CoverageBuildAction action;
+            QualityGateResult qualityGateResult;
+            List<? extends Value> modifiedLinesCoverage;
+            String referenceBuildId;
+            if (referenceAction != null) {
+                log.logInfo("Calculating the code delta...");
+                CodeDeltaCalculator codeDeltaCalculator = new CodeDeltaCalculator(build, workspace, listener, StringUtils.EMPTY);
+                Optional<Delta> delta = codeDeltaCalculator.calculateCodeDeltaToReference(referenceAction.getOwner(), log);
+                delta.ifPresent(value -> createDeltaReports(rootNode, log, codeDeltaCalculator, value));
 
-            Node modifiedLinesCoverageRoot = rootNode.filterByModifiedLines();
-            if (!hasModifiedLinesCoverage(modifiedLinesCoverageRoot) && rootNode.hasModifiedLines()) {
-                log.logInfo("No detected code changes affect the code coverage");
+                Node modifiedLinesCoverageRoot = rootNode.filterByModifiedLines();
+                if (!hasModifiedLinesCoverage(modifiedLinesCoverageRoot) && rootNode.hasModifiedLines()) {
+                    log.logInfo("No detected code changes affect the code coverage");
+                }
+                modifiedLinesCoverage = modifiedLinesCoverageRoot.aggregateValues();
+
+                qualityGateResult = evaluateQualityGates(rootNode, log,
+                        modifiedLinesCoverageRoot.aggregateValues(), resultHandler, qualityGates);
+                referenceBuildId = referenceAction.getOwner().getExternalizableId();
+            }
+            else {
+                qualityGateResult = evaluateQualityGates(rootNode, log,
+                        List.of(), resultHandler, qualityGates);
+                modifiedLinesCoverage =  List.of();
+                referenceBuildId = NO_REFERENCE_BUILD;
             }
 
-            QualityGateResult qualityGateResult = evaluateQualityGates(rootNode, log,
-                    modifiedLinesCoverageRoot.aggregateValues(), resultHandler, qualityGates);
-
-            action = new CoverageBuildAction(build, id, icon, rootNode, qualityGateResult, log,
-                    referenceAction.getOwner().getExternalizableId(), modifiedLinesCoverageRoot.aggregateValues(), referenceResult);
+            try {
+                SourceCodePainter sourceCodePainter = new SourceCodePainter(build, workspace, id);
+                sourceCodePainter.processSourceCodePainting(rootNode, rootNode.getAllFileNodes(),
+                        sourceCodeEncoding, SourceCodeRetention.LAST_BUILD, log);
+            } finally {
+                log.logInfo("Finished coverage processing - adding the action to the build...");
+                action = new CoverageBuildAction(build, id, icon, rootNode, qualityGateResult, logChain.mergeAllLogs(),
+                        referenceBuildId, modifiedLinesCoverage, referenceResult);
+                build.addAction(action);
+            }
+            return action;
+        } finally {
+            logChain.getLogHandler().log(log);
         }
-        else {
-            QualityGateResult qualityGateStatus = evaluateQualityGates(rootNode, log,
-                    List.of(), resultHandler, qualityGates);
-
-            action = new CoverageBuildAction(build, id, icon, rootNode, qualityGateStatus, log, referenceResult);
-        }
-
-        log.logInfo("Executing source code painting...");
-        SourceCodePainter sourceCodePainter = new SourceCodePainter(build, workspace, id);
-        sourceCodePainter.processSourceCodePainting(rootNode, rootNode.getAllFileNodes(),
-                sourceCodeEncoding, SourceCodeRetention.LAST_BUILD, log);
-
-        log.logInfo("Finished coverage processing - adding the action to the build...");
-
-        LogHandler logHandler = new LogHandler(listener, PARASOFT_COVERAGE_NAME);
-        logHandler.log(log);
-
-        build.addAction(action);
-        return action;
     }
 
     private void createDeltaReports(final Node rootNode, final FilteredLog log,
