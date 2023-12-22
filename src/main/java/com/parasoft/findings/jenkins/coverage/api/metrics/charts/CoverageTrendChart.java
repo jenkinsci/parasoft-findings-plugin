@@ -77,24 +77,26 @@ public class CoverageTrendChart {
             double maxCoverageValue = dataSet.getMaximumValue();
             double minCoverageValue = dataSet.getMinimumValue();
             double coverageRange = maxCoverageValue - minCoverageValue;
-
+            // Adjust the maximum value and minimum value of the coverage trend line chart according to the coverage range for better display
+            double space; // Add extra space for better display
             if (maxCoverageValue == 0 && minCoverageValue == 0) {
                 maxCoverageValue = 100;
                 minCoverageValue = 0;
             } else if (coverageRange == 0.0) {
-                maxCoverageValue = Math.ceil(maxCoverageValue) + 5;
-                minCoverageValue = Math.floor(minCoverageValue) - 5;
+                space = 5;
+                maxCoverageValue = Math.ceil(maxCoverageValue) + space;
+                minCoverageValue = Math.floor(minCoverageValue) - space;
             } else if (coverageRange > 0.0 && coverageRange < 0.5) {
-                // If coverage range is larger than 0 and less than 0.5, the maximum value and minimum value should keep two decimal
-                maxCoverageValue = new BigDecimal(maxCoverageValue + 0.05).setScale(2, RoundingMode.CEILING).doubleValue();
-                minCoverageValue = new BigDecimal(minCoverageValue - 0.05).setScale(2, RoundingMode.FLOOR).doubleValue();
+                // Keep two decimal for the maximum and minimum value when coverage range is larger than 0 and less than 0.5
+                space = 0.05;
+                maxCoverageValue = new BigDecimal(maxCoverageValue + space).setScale(2, RoundingMode.CEILING).doubleValue();
+                minCoverageValue = new BigDecimal(minCoverageValue - space).setScale(2, RoundingMode.FLOOR).doubleValue();
             } else {
-                // This value is the height from top to maximum coverage value or bottom to minimum coverage value
-                // So the coverage trend line could be displayed in the center in the Parasoft Coverage Trend chart
-                double height = Math.ceil(coverageRange) / 4;
-                // If coverage range is larger than 1, the maximum value and minimum value should keep integer
-                maxCoverageValue = Math.ceil(maxCoverageValue + height);
-                minCoverageValue = Math.floor(minCoverageValue - height);
+                // To display the coverage trend line in the center of the Parasoft Coverage Trend chart,
+                // adjust the maximum value and minimum value to be 1/4 of the coverage range
+                space = Math.ceil(coverageRange) / 4;
+                maxCoverageValue = Math.ceil(maxCoverageValue + space);
+                minCoverageValue = Math.floor(minCoverageValue - space);
             }
 
             model.addSeries(lineSeries);
