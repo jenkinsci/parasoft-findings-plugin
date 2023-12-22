@@ -77,6 +77,21 @@ class CoverageSeriesBuilderTest extends ResourceTest {
         verifySeriesDetails(lineCoverage);
     }
 
+    @Test
+    void shouldCreateChart_withVerySmallCoverageTrend() {
+        BuildResult<CoverageStatistics> first = createResult(1,
+                new CoverageBuilder().setMetric(Metric.LINE).setCovered(20).setMissed(980).build(),
+                new CoverageBuilder().setMetric(Metric.BRANCH).setCovered(3).setMissed(1).build());
+        BuildResult<CoverageStatistics> second = createResult(2,
+                new CoverageBuilder().setMetric(Metric.LINE).setCovered(21).setMissed(979).build(),
+                new CoverageBuilder().setMetric(Metric.BRANCH).setCovered(3).setMissed(1).build());
+
+        CoverageTrendChart trendChart = new CoverageTrendChart();
+        var lineCoverage = trendChart.create(List.of(first, second), createConfiguration());
+        assertThat(lineCoverage.getRangeMin()).isEqualTo(1.94);
+        assertThat(lineCoverage.getRangeMax()).isEqualTo(2.15);
+    }
+
     @VisibleForTesting
     private BuildResult<CoverageStatistics> createResult(final int buildNumber,
             final Coverage lineCoverage, final Coverage branchCoverage) {
@@ -90,8 +105,8 @@ class CoverageSeriesBuilderTest extends ResourceTest {
     private void verifySeriesDetails(final LinesChartModel lineCoverage) {
         assertThat(lineCoverage.getBuildNumbers()).containsExactly(1);
         assertThat(lineCoverage.getSeries()).hasSize(1);
-        assertThat(lineCoverage.getRangeMax()).isEqualTo(100.0);
-        assertThat(lineCoverage.getRangeMin()).isEqualTo(50.0);
+        assertThat(lineCoverage.getRangeMax()).isEqualTo(55.0);
+        assertThat(lineCoverage.getRangeMin()).isEqualTo(45.0);
     }
 
     @Test
