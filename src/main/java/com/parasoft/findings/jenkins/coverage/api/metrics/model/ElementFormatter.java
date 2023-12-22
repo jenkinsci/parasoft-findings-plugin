@@ -45,6 +45,8 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProvider.DisplayColors;
 import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProviderFactory;
 
+import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.Messages.Coverage_Not_Available;
+
 /**
  * A localized formatter for coverages, metrics, baselines, etc.
  *
@@ -53,7 +55,6 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.color.ColorProviderFac
 // TODO: create instances for the different types
 @SuppressWarnings({"PMD.GodClass", "PMD.CyclomaticComplexity"})
 public final class ElementFormatter {
-    private static final String NO_COVERAGE_AVAILABLE = "-";
     private static final Pattern PERCENTAGE = Pattern.compile("\\d+(\\.\\d+)?%");
     private int covered;
 
@@ -268,7 +269,7 @@ public final class ElementFormatter {
         if (coverage.isSet()) {
             return formatPercentage(coverage.getCoveredPercentage(), locale);
         }
-        return NO_COVERAGE_AVAILABLE;
+        return Coverage_Not_Available();
     }
 
     /**

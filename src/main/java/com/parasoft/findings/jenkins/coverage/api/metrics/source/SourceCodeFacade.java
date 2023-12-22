@@ -39,6 +39,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -165,7 +166,7 @@ public class SourceCodeFacade {
             log.logInfo("-> done");
         }
         catch (IOException exception) {
-            log.logException(exception, "Can't copy zipped sources from agent to controller");
+            log.logError("Can't copy zipped sources from agent to controller due to an exception: %s", ExceptionUtils.getRootCauseMessage(exception));
         }
     }
 

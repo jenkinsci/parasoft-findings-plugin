@@ -16,7 +16,6 @@
 
 package com.parasoft.findings.jenkins.coverage;
 
-import com.parasoft.findings.jenkins.coverage.converter.ConversionException;
 import com.parasoft.findings.jenkins.coverage.converter.ConversionService;
 import edu.hm.hafner.util.FilteredLog;
 import edu.hm.hafner.util.PathUtil;
@@ -25,6 +24,7 @@ import net.sf.saxon.s9api.QName;
 import net.sf.saxon.s9api.XdmAtomicValue;
 import net.sf.saxon.s9api.XdmValue;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import javax.xml.transform.stream.StreamSource;
 import java.io.BufferedReader;
@@ -81,12 +81,13 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
             params.put(new QName(WORKING_DIRECTORY_PARAM), new XdmAtomicValue(workspaceCanonicalPath));
             new ConversionService().convert(new StreamSource(new StringReader(xslContent)),
                     file.toFile(), outputCoberturaReport.toFile(), params);
-            log.logInfo("Successfully parsed file '%s'", PATH_UTIL.getAbsolutePath(file));
+            log.logInfo("Successfully converted Parasoft coverage report file '%s' to intermediate Cobertura report file '%s'", PATH_UTIL.getAbsolutePath(file), PATH_UTIL.getAbsolutePath(outputCoberturaReport));
             String coberturaPattern = StringUtils.replace(PATH_UTIL.getRelativePath(Paths.get(workspaceLoc),
                     outputCoberturaReport), StringUtils.SPACE, QUESTION_MARK);
             return Optional.of(new ProcessedFileResult(coberturaPattern, generatedCoverageBuildDir.toString()));
-        } catch (IOException | NoSuchElementException | ConversionException exception) {
-            log.logException(exception, "Parsing of file '%s' failed due to an exception:", file);
+        } catch (Exception exception) {
+            log.logError("Parsing of Parasoft coverage report file '%s' failed due to an exception: %s",
+                    file, ExceptionUtils.getRootCauseMessage(exception));
             return Optional.empty();
         }
     }

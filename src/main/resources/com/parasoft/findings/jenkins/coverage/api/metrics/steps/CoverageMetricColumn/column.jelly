@@ -31,7 +31,7 @@
   <j:set var="lastCompletedBuildNumber" value="${job.getLastCompletedBuild().getNumber()}"/>
 
   <j:choose>
-    <j:when test="${coverageValue.isPresent()}">
+    <j:when test="${coverageValue.isPresent() and coverageValue.get().isSet()}">
       <td align="right">
         <j:set var="displayColors" value="${it.getDisplayColors(job, coverageValue)}"/>
         <j:set var="backgroundColor" value="${displayColors.getFillColorAsRGBAHex(80)}"/>

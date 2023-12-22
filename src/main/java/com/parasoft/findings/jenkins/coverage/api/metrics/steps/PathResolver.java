@@ -48,6 +48,7 @@ import io.jenkins.plugins.prism.PermittedSourceCodeDirectory;
 import io.jenkins.plugins.prism.PrismConfiguration;
 import io.jenkins.plugins.prism.SourceDirectoryFilter;
 import io.jenkins.plugins.util.RemoteResultWrapper;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 /**
  * Resolves source code files on the agent using the stored paths of the coverage reports. Since these paths are
@@ -87,7 +88,7 @@ public class PathResolver {
             return agentLog.getResult();
         }
         catch (IOException exception) {
-            log.logException(exception, "Can't resolve source files on agent");
+            log.logError("Can't resolve source files on agent due to an exception: %s", ExceptionUtils.getRootCauseMessage(exception));
         }
         return Collections.emptyMap();
     }
@@ -195,7 +196,7 @@ public class PathResolver {
                 log.logError("- Source file '%s' not found", relativePath);
             }
             catch (InvalidPathException | IOException | InterruptedException exception) {
-                log.logException(exception, "No valid path in coverage node: '%s'", relativePath);
+                log.logError("No valid path in coverage node : '%s' due to an exception: %s", relativePath, ExceptionUtils.getRootCauseMessage(exception));
             }
             return Optional.empty();
         }
