@@ -211,7 +211,7 @@ public class ParasoftCoverageRecorder extends Recorder {
             List<Node> results = new ArrayList<>();
             final String coberturaPattern = coverageConversionResult.getCoberturaPattern();
             if (StringUtils.isBlank(coberturaPattern)) {
-                log.logInfo("Skipping processing of intermediate Cobertura coverage report since processing of Parasoft coverage report return no result");
+                log.logInfo("Skipping processing of intermediate Cobertura coverage report since processing of Parasoft coverage report returned no result");
                 return results;
             }
 
