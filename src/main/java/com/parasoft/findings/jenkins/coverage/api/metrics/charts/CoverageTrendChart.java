@@ -87,10 +87,15 @@ public class CoverageTrendChart {
                 maxCoverageValue = Math.ceil(maxCoverageValue) + space;
                 minCoverageValue = Math.floor(minCoverageValue) - space;
             } else if (coverageRange > 0.0 && coverageRange < 0.5) {
-                // Keep two decimal for the maximum and minimum value when coverage range is larger than 0 and less than 0.5
-                space = 0.05;
-                maxCoverageValue = new BigDecimal(maxCoverageValue + space).setScale(2, RoundingMode.CEILING).doubleValue();
-                minCoverageValue = new BigDecimal(minCoverageValue - space).setScale(2, RoundingMode.FLOOR).doubleValue();
+                // Keep one decimal for the maximum and minimum value when coverage range is larger than 0 and less than 0.5
+                space = 0.15;
+                maxCoverageValue = new BigDecimal(maxCoverageValue + space).setScale(1, RoundingMode.CEILING).doubleValue();
+                minCoverageValue = new BigDecimal(minCoverageValue - space).setScale(1, RoundingMode.FLOOR).doubleValue();
+
+                // To adjust the space to keep one decimal for the maximum and minimum value
+                // when the minimum value is larger than 99.6 or the maximum value is less than 0.4
+                minCoverageValue = Math.min(minCoverageValue, 99.6);
+                maxCoverageValue = Math.max(maxCoverageValue, 0.4);
             } else {
                 // To display the coverage trend line in the center of the Parasoft Coverage Trend chart,
                 // adjust the maximum value and minimum value to be 1/4 of the coverage range
