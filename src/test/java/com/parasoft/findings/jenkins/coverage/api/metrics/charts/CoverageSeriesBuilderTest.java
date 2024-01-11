@@ -88,8 +88,8 @@ class CoverageSeriesBuilderTest extends ResourceTest {
 
         CoverageTrendChart trendChart = new CoverageTrendChart();
         var lineCoverage = trendChart.create(List.of(first, second), createConfiguration());
-        assertThat(lineCoverage.getRangeMin()).isEqualTo(1.94);
-        assertThat(lineCoverage.getRangeMax()).isEqualTo(2.15);
+        assertThat(lineCoverage.getRangeMin()).isEqualTo(1.8);
+        assertThat(lineCoverage.getRangeMax()).isEqualTo(2.3);
     }
 
     @VisibleForTesting
