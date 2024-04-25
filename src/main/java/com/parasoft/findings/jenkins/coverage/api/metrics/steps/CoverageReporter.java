@@ -34,7 +34,7 @@ import com.parasoft.findings.jenkins.util.FilteredLogChain;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import hudson.model.Job;
 import hudson.model.Result;
-import io.jenkins.plugins.util.EnvironmentResolver;
+import io.jenkins.plugins.util.*;
 import jenkins.model.Jenkins;
 import org.apache.commons.lang3.StringUtils;
 
@@ -53,8 +53,6 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.source.SourceCodePaint
 import io.jenkins.plugins.forensics.delta.Delta;
 import io.jenkins.plugins.forensics.delta.FileChanges;
 import io.jenkins.plugins.prism.SourceCodeRetention;
-import io.jenkins.plugins.util.QualityGateResult;
-import io.jenkins.plugins.util.StageResultHandler;
 import org.jvnet.localizer.Localizable;
 
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
@@ -74,7 +72,7 @@ public class CoverageReporter {
                                              final Run<?, ?> build, final FilePath workspace, final TaskListener listener,
                                              final String configRefJob, final String configRefBuild,
                                              final List<CoverageQualityGate> qualityGates,
-                                             final String sourceCodeEncoding, final StageResultHandler resultHandler, FilteredLogChain logChain)
+                                             final String sourceCodeEncoding, final ResultHandler resultHandler, FilteredLogChain logChain)
             throws InterruptedException {
         FilteredLog log = logChain.addNewFilteredLog("Errors while reporting Parasoft code coverage result:");
 
@@ -147,11 +145,11 @@ public class CoverageReporter {
 
     private QualityGateResult evaluateQualityGates(final Node rootNode, final FilteredLog log,
                                                    final List<Value> modifiedLinesCoverageDistribution,
-                                                   final StageResultHandler resultHandler,
+                                                   final ResultHandler resultHandler,
                                                    final List<CoverageQualityGate> qualityGates) {
         var statistics = new CoverageStatistics(rootNode.aggregateValues(), modifiedLinesCoverageDistribution);
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, statistics);
-        var qualityGateStatus = evaluator.evaluate();
+        var qualityGateStatus = evaluator.evaluate(resultHandler, log);
         if (qualityGateStatus.isInactive()) {
             log.logInfo("No quality gates have been set - skipping");
         }
@@ -164,7 +162,7 @@ public class CoverageReporter {
                 var message = String.format("-> Some quality gates failed: overall result is %s",
                         qualityGateStatus.getOverallStatus().getResult());
                 log.logInfo(message);
-                resultHandler.setResult(qualityGateStatus.getOverallStatus().getResult(), message);
+                resultHandler.publishResult(qualityGateStatus.getOverallStatus().getResult(), message);
             }
             log.logInfo("-> Details for each quality gate:");
             qualityGateStatus.getMessages().forEach(log::logInfo);

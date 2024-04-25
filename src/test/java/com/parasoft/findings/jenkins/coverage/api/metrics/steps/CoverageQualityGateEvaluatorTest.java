@@ -28,9 +28,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import edu.hm.hafner.util.FilteredLog;
+import io.jenkins.plugins.util.NullResultHandler;
 import org.junit.jupiter.api.Test;
-
-import com.parasoft.findings.jenkins.coverage.model.Metric;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
@@ -45,7 +45,7 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     void shouldBeInactiveIfGatesAreEmpty() {
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(new ArrayList<>(), createStatistics());
 
-        QualityGateResult result = evaluator.evaluate();
+        QualityGateResult result = evaluator.evaluate(new NullResultHandler(), new FilteredLog("Errors"));
 
         assertThat(result).hasNoMessages().isInactive().isSuccessful().hasOverallStatus(QualityGateStatus.INACTIVE);
     }
@@ -61,11 +61,11 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
 
         assertThat(evaluator).isEnabled();
 
-        QualityGateResult result = evaluator.evaluate();
+        QualityGateResult result = evaluator.evaluate(new NullResultHandler(), new FilteredLog("Errors"));
 
         assertThat(result).hasOverallStatus(QualityGateStatus.PASSED).isSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Modified code lines - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)");
+                "[Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
+                "[Modified code lines - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)");
     }
 
     @Test
@@ -78,10 +78,10 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
 
         assertThat(evaluator).isEnabled();
 
-        QualityGateResult result = evaluator.evaluate();
+        QualityGateResult result = evaluator.evaluate(new NullResultHandler(), new FilteredLog("Errors"));
 
         assertThat(result).hasOverallStatus(QualityGateStatus.INACTIVE).isInactive().hasMessages(
-                "-> [Modified code lines - Coverage]: ≪Not built≫ - (Actual value: N/A, Quality gate: 0.00)");
+                "[Modified code lines - Coverage]: ≪Not built≫ - (Actual value: N/A, Quality gate: 0.00)");
     }
 
     @Test
@@ -92,11 +92,11 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         qualityGates.add(new CoverageQualityGate(51.0, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
-        QualityGateResult result = evaluator.evaluate();
+        QualityGateResult result = evaluator.evaluate(new NullResultHandler(), new FilteredLog("Errors"));
 
         assertThat(result).hasOverallStatus(QualityGateStatus.WARNING).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)");
+                "[Overall project - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)",
+                "[Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 
     @Test
@@ -108,12 +108,12 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         qualityGates.add(new CoverageQualityGate(999, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
-        QualityGateResult result = evaluator.evaluate();
+        QualityGateResult result = evaluator.evaluate(new NullResultHandler(), new FilteredLog("Errors"));
 
         assertThat(result).hasOverallStatus(QualityGateStatus.WARNING).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
-                "-> [Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 14.00)",
-                "-> [Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 100.00)");
+                "[Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 0.00)",
+                "[Overall project - Coverage]: ≪Success≫ - (Actual value: 50.00%, Quality gate: 14.00)",
+                "[Modified code lines - Coverage]: ≪Unstable≫ - (Actual value: 50.00%, Quality gate: 100.00)");
     }
 
     @Test
@@ -125,7 +125,7 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         qualityGates.add(new CoverageQualityGate(minimum, Baseline.MODIFIED_LINES, QualityGateCriticality.UNSTABLE));
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
-        QualityGateResult result = evaluator.evaluate();
+        QualityGateResult result = evaluator.evaluate(new NullResultHandler(), new FilteredLog("Errors"));
 
         assertThat(result).hasOverallStatus(QualityGateStatus.PASSED);
     }
@@ -135,8 +135,8 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
         QualityGateResult result = createQualityGateResult();
 
         assertThat(result).hasOverallStatus(QualityGateStatus.FAILED).isNotSuccessful().isNotInactive().hasMessages(
-                "-> [Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
-                "-> [Modified code lines - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
+                "[Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)",
+                "[Modified code lines - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 
     static QualityGateResult createQualityGateResult() {
@@ -146,7 +146,7 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
 
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(qualityGates, createStatistics());
 
-        return evaluator.evaluate();
+        return evaluator.evaluate(new NullResultHandler(), new FilteredLog("Errors"));
     }
 
     @Test
@@ -170,8 +170,8 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
     }
 
     private static void assertThatStatusWillBeOverwritten(final CoverageQualityGateEvaluator evaluator) {
-        QualityGateResult result = evaluator.evaluate();
+        QualityGateResult result = evaluator.evaluate(new NullResultHandler(), new FilteredLog("Errors"));
         assertThat(result).hasOverallStatus(QualityGateStatus.FAILED).isNotSuccessful().hasMessages(
-                "-> [Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
+                "[Overall project - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 }
