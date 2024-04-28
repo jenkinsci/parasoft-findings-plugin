@@ -303,6 +303,7 @@
       <artifactId>plugin-util-api</artifactId>
       <classifier>tests</classifier>
       <scope>test</scope>
+      <version>${plugin-util-api.version}</version>
     </dependency>
     <dependency>
       <groupId>org.xmlunit</groupId>
