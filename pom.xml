@@ -141,6 +141,32 @@
           </archive>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.revapi</groupId>
+        <artifactId>revapi-maven-plugin</artifactId>
+        <version>0.15.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <analysisConfiguration>
+            <revapi.differences>
+              <justification>revapi is introduced in 10.7.2 of parasoft-findings-plugin which creates a false positive difference.</justification>
+              <differences>
+                <item>
+                  <code>java.class.nonPublicPartOfAPI</code>
+                  <old>class com.parasoft.findings.utils.results.xml.factory.UResults.DefaultResultsCore</old>
+                  <justification> This is a false positive because it's only used internally within UResults.</justification>
+                </item>
+              </differences>
+            </revapi.differences>
+          </analysisConfiguration>
+        </configuration>
+      </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
