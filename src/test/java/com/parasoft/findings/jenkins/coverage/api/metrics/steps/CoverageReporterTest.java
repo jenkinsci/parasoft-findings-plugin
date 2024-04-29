@@ -12,7 +12,7 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import io.jenkins.plugins.util.LogHandler;
 import io.jenkins.plugins.util.QualityGate;
-import io.jenkins.plugins.util.StageResultHandler;
+import io.jenkins.plugins.util.RunResultHandler;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
 
@@ -60,28 +60,28 @@ public class CoverageReporterTest extends AbstractCoverageTest {
         Job<?,?> job = mock(Job.class);
         doReturn("test_project").when(job).getFullName();
         doReturn(job).when(build).getParent();
-        MockedConstruction<SourceCodePainter> sourceCodePainterMockedConstruction = mockConstruction(SourceCodePainter.class);
-        MockedConstruction<CoverageXmlStream> coverageXmlStreamMockedConstruction = mockConstruction(CoverageXmlStream.class);
-        FilteredLogChain mockedLogChain = mock(FilteredLogChain.class);
-        when(mockedLogChain.getLogHandler()).thenReturn(mock(LogHandler.class));
-        when(mockedLogChain.addNewFilteredLog(anyString())).thenReturn(mock(FilteredLog.class));
+        try(MockedConstruction<SourceCodePainter> sourceCodePainterMockedConstruction = mockConstruction(SourceCodePainter.class);
+            MockedConstruction<CoverageXmlStream> coverageXmlStreamMockedConstruction = mockConstruction(CoverageXmlStream.class)) {
 
-        try {
-            action = reporter.publishAction("parasoft-coverage", "symbol-footsteps-outline plugin-ionicons-api",
-                    node, build, new FilePath(new File("com/parasoft/findings/jenkins/coverage/api/metrics/steps/test_project")),
-                    TaskListener.NULL, "", configRefBuild, coverageQualityGate, "UTF-8", mock(StageResultHandler.class),
-                    mockedLogChain
-            );
-        } catch (Exception e) {
-            e.printStackTrace();
+            FilteredLogChain mockedLogChain = mock(FilteredLogChain.class);
+            when(mockedLogChain.getLogHandler()).thenReturn(mock(LogHandler.class));
+            when(mockedLogChain.addNewFilteredLog(anyString())).thenReturn(mock(FilteredLog.class));
+
+            try {
+                action = reporter.publishAction("parasoft-coverage", "symbol-footsteps-outline plugin-ionicons-api",
+                        node, build, new FilePath(new File("com/parasoft/findings/jenkins/coverage/api/metrics/steps/test_project")),
+                        TaskListener.NULL, "", configRefBuild, coverageQualityGate, "UTF-8", mock(RunResultHandler.class),
+                        mockedLogChain
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            assertThat(coverageXmlStreamMockedConstruction.constructed().size()).isEqualTo(1);
+            assertThat(sourceCodePainterMockedConstruction.constructed().size()).isEqualTo(1);
+            verify(mockedLogChain).getLogHandler();
+            verify(mockedLogChain).addNewFilteredLog(anyString());
         }
-
-        assertThat(coverageXmlStreamMockedConstruction.constructed().size()).isEqualTo(1);
-        assertThat(sourceCodePainterMockedConstruction.constructed().size()).isEqualTo(1);
-        sourceCodePainterMockedConstruction.close();
-        coverageXmlStreamMockedConstruction.close();
-        verify(mockedLogChain).getLogHandler();
-        verify(mockedLogChain).addNewFilteredLog(anyString());
 
         return action;
     }

@@ -43,6 +43,7 @@ import java.util.Set;
 
 import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.*;
 
+@SuppressWarnings("unused")
 public class ParasoftCoverageStep extends Step implements Serializable {
     private static final long serialVersionUID = -2235239576082380147L;
     private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();

@@ -63,8 +63,9 @@ public class CoverageQualityGate extends QualityGate {
      */
     @DataBoundConstructor
     public CoverageQualityGate(final double threshold, final Baseline type, final QualityGateCriticality criticality) {
-        super(checkThresholdRange(threshold));
+        super();
 
+        setThreshold(checkThresholdRange(threshold));
         setType(type);
         setCriticality(criticality);
     }

@@ -1,9 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.jenkins-ci.plugins</groupId>
-    <artifactId>plugin</artifactId>
-    <version>4.65</version> <!-- or later -->
+    <groupId>org.jvnet.hudson.plugins</groupId>
+    <artifactId>analysis-pom</artifactId>
+    <version>7.2.0</version>
+    <relativePath/>
   </parent>
 
   <groupId>com.parasoft</groupId>
@@ -20,26 +21,21 @@
   </organization>
 
   <properties>
-    <jenkins.version>2.387.3</jenkins.version>
-    <java.level>8</java.level>
+    <!-- Library Dependencies Versions -->
+    <parasoft-findings-utils.version>1.0.2</parasoft-findings-utils.version>
+    <jsoup.version>1.17.2</jsoup.version>
+    <saxon-he.version>12.4</saxon-he.version>
 
-    <!-- start properties of code-coverage-api -->
-    <saxon-he.version>12.2</saxon-he.version>
+    <!-- Plugin Dependencies Versions -->
+    <warnings-ng.version>11.0.0</warnings-ng.version>
+    <xunit.version>3.1.2</xunit.version>
+    <plugin-util-api.version>4.1.0</plugin-util-api.version>
+    <forensics-api.version>2.4.0</forensics-api.version>
+    <git-forensics.version>2.1.0</git-forensics.version>
 
+    <!-- Test Library Dependencies Versions -->
     <xmlunit.version>2.9.1</xmlunit.version>
-    <jsoup.version>1.16.1</jsoup.version>
-    <testcontainers.version>1.18.1</testcontainers.version>
-
-    <prism-api.version>1.29.0-7</prism-api.version>
-
-    <equalsverifier.version>3.14.1</equalsverifier.version>
-    <junit-pioneer.version>2.0.1</junit-pioneer.version>
-    <assertj.version>3.24.2</assertj.version>
-    <json-unit-fluent.version>2.37.0</json-unit-fluent.version>
-
-    <assertj-assertions-generator-maven-plugin.version>2.2.0</assertj-assertions-generator-maven-plugin.version>
-    <maven-surefire.plugin>3.1.0</maven-surefire.plugin>
-    <!-- end properties of code-coverage-api -->
+    <testcontainers.version>1.19.6</testcontainers.version>
   </properties>
 
   <developers>
@@ -92,20 +88,6 @@
     </resources>
     <plugins>
       <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven-surefire.plugin}</version>
-        <configuration>
-          <additionalClasspathElements>
-            <additionalClasspathElement>src/test/java</additionalClasspathElement>
-          </additionalClasspathElements>
-          <trimStackTrace>false</trimStackTrace> <!-- SUREFIRE-1798 -->
-          <excludes>
-            <exclude>**/*ITest.*</exclude>
-            <exclude>**/InjectedTest.*</exclude>
-          </excludes>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
         <configuration>
@@ -117,48 +99,22 @@
         </configuration>
       </plugin>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>${java.level}</source>
-          <target>${java.level}</target>
-          <testSource>${java.level}</testSource>
-          <testTarget>${java.level}</testTarget>
-          <compilerArgs>
-            <arg>-Xlint:all</arg>
-          </compilerArgs>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>display-info</id>
-            <configuration>
-              <rules>
-                <enforceBytecodeVersion>
-                  <ignoreClasses>
-                    <!-- asm dependency from PMD contains a java9 module-info.class -->
-                    <ignoreClass>module-info</ignoreClass>
-                    <!-- Junit >= 5.3 contains some java9 classes -->
-                    <ignoreClass>**/ModuleUtils*</ignoreClass>
-                  </ignoreClasses>
-                </enforceBytecodeVersion>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
           <checkModificationExcludes>
             <checkModificationExclude>pom.xml</checkModificationExclude>
           </checkModificationExcludes>
+          <tagNameFormat>parasoft-findings-@{project.version}</tagNameFormat>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.assertj</groupId>
         <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-test-sources</phase>
+          </execution>
+        </executions>
         <configuration>
           <packages combine.children="append">
             <package>com.parasoft.findings.jenkins.coverage.api.metrics</package>
@@ -168,43 +124,26 @@
             <exclude>.*ITest.*</exclude>
             <exclude>.*CoverageXmlStream.*</exclude>
           </excludes>
+          <templates>
+            <templatesDirectory>${project.basedir}/src/test/java/com/parasoft/findings/jenkins/coverage/assertj-templates/</templatesDirectory>
+          </templates>
           <entryPointClassPackage>com.parasoft.findings.jenkins.coverage</entryPointClassPackage>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Built-By>Parasoft</Built-By>
+            </manifestEntries>
+          </archive>
         </configuration>
       </plugin>
     </plugins>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>org.assertj</groupId>
-          <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
-          <version>${assertj-assertions-generator-maven-plugin.version}</version>
-          <executions>
-            <execution>
-              <phase>generate-test-sources</phase>
-              <goals>
-                <goal>generate-assertions</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-            <excludes>
-              <exclude>.*ITest</exclude>
-              <exclude>.*Action</exclude>
-            </excludes>
-            <cleanTargetDir>true</cleanTargetDir>
-            <hierarchical>false</hierarchical>
-            <generateBddAssertions>false</generateBddAssertions>
-            <generateJUnitSoftAssertions>false</generateJUnitSoftAssertions>
-            <quiet>true</quiet>
-            <templates>
-              <templatesDirectory>${project.basedir}/src/test/java/com/parasoft/findings/jenkins/coverage/assertj-templates/</templatesDirectory>
-              <assertionsEntryPointClass>assertions_entry_point_class_template.txt</assertionsEntryPointClass>
-              <softEntryPointAssertionClass>soft_assertions_entry_point_class_template.txt
-              </softEntryPointAssertionClass>
-              <objectAssertion>has_assertion_template.txt</objectAssertion>
-            </templates>
-          </configuration>
-        </plugin>
         <!-- Added to run code analysis similar to the process in "mvn release:prepare" for early detection of potential issues -->
         <plugin>
           <groupId>com.github.spotbugs</groupId>
@@ -240,71 +179,34 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.jvnet.hudson.plugins</groupId>
-        <artifactId>analysis-pom</artifactId>
-        <version>6.10.0</version>
-        <scope>import</scope>
-        <type>pom</type>
-      </dependency>
-      <dependency>
         <groupId>org.json</groupId>
         <artifactId>json</artifactId>
-        <version>20231013</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>2.0.7</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpclient</artifactId>
-        <version>4.5.14</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>httpcore</artifactId>
-        <version>4.4.16</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.httpcomponents</groupId>
-        <artifactId>fluent-hc</artifactId>
-        <version>4.5.14</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-codec</groupId>
-        <artifactId>commons-codec</artifactId>
-        <version>1.15</version>
+        <version>20240205</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
-    <!-- Remove "o.k.s.f.adjunct.AdjunctsInPage#findNeeded: No such adjunct found: io.jenkins.plugins.popper2" warning and related stacktrace in Jenkins log. -->
-    <dependency>
-      <groupId>io.jenkins.plugins</groupId>
-      <artifactId>bootstrap5-api</artifactId>
-      <version>5.2.3-1</version>
-    </dependency>
-    <dependency>
-      <groupId>io.jenkins.plugins</groupId>
-      <artifactId>warnings-ng</artifactId>
-      <version>10.5.1</version>
-    </dependency>
+    <!-- Library Dependencies -->
     <dependency>
       <groupId>com.parasoft</groupId>
       <artifactId>parasoft-findings-utils</artifactId>
-      <version>1.0.1</version>
+      <version>${parasoft-findings-utils.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>xunit</artifactId>
-      <version>3.1.2</version>
-    </dependency>
-    <!-- start dependencies of code-coverage-api -->
-    <dependency>
-      <groupId>io.jenkins.plugins</groupId>
-      <artifactId>ionicons-api</artifactId>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>${jsoup.version}</version>
     </dependency>
     <dependency>
       <groupId>net.sf.saxon</groupId>
@@ -312,21 +214,53 @@
       <version>${saxon-he.version}</version>
       <exclusions>
         <exclusion>
-          <artifactId>httpclient</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
         </exclusion>
         <exclusion>
-          <artifactId>httpcore</artifactId>
           <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpcore</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
 
     <!-- Plugin Dependencies -->
     <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-multibranch</artifactId>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>warnings-ng</artifactId>
+      <version>${warnings-ng.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>xunit</artifactId>
+      <version>${xunit.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>plugin-util-api</artifactId>
+      <version>${plugin-util-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>prism-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>echarts-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>data-tables-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>forensics-api</artifactId>
+      <version>${forensics-api.version}</version>
+    </dependency>
+    <!--
+    Only compile time pipeline dependencies are included. To make a pipeline job work, you can manually install the
+    [Pipeline](https://plugins.jenkins.io/workflow-aggregator/) plugin.
+    -->
     <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-api</artifactId>
@@ -336,29 +270,17 @@
       <artifactId>workflow-step-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>jackson2-api</artifactId>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-scm-step</artifactId>
     </dependency>
-    <dependency>
-      <groupId>io.jenkins.plugins</groupId>
-      <artifactId>echarts-api</artifactId>
-      <version>5.4.0-4</version>
-    </dependency>
+    <!-- Used in web pages(jelly files and String in Java files) -->
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>jquery3-api</artifactId>
     </dependency>
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
-      <artifactId>data-tables-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.jenkins.plugins</groupId>
-      <artifactId>forensics-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.jenkins.plugins</groupId>
-      <artifactId>plugin-util-api</artifactId>
+      <artifactId>bootstrap5-api</artifactId>
     </dependency>
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
@@ -366,26 +288,22 @@
     </dependency>
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
-      <artifactId>prism-api</artifactId>
-      <version>${prism-api.version}</version>
+      <artifactId>ionicons-api</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.jsoup</groupId>
-      <artifactId>jsoup</artifactId>
-      <version>${jsoup.version}</version>
-    </dependency>
+    <!-- Require optional git-forensics plugin to enable some coverage related features by default. -->
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>git-forensics</artifactId>
-      <version>2.0.0</version>
+      <version>${git-forensics.version}</version>
     </dependency>
 
-    <!-- Test Dependencies -->
+    <!-- Test Library Dependencies -->
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>plugin-util-api</artifactId>
       <classifier>tests</classifier>
       <scope>test</scope>
+      <version>${plugin-util-api.version}</version>
     </dependency>
     <dependency>
       <groupId>org.xmlunit</groupId>
@@ -420,74 +338,6 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-cps</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-job</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-basic-steps</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-durable-task-step</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-support</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkinsci.plugins</groupId>
-      <artifactId>pipeline-model-definition</artifactId>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.jenkins-ci.plugins</groupId>
-          <artifactId>cloudbees-folder</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>credentials</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>git</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>git-client</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>timestamper</artifactId>
-      <version>1.25</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>ssh-credentials</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>ssh-slaves</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.testcontainers</groupId>
       <artifactId>testcontainers</artifactId>
       <version>${testcontainers.version}</version>
@@ -505,70 +355,16 @@
       <version>${testcontainers.version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>io.jenkins.plugins</groupId>
-      <artifactId>code-coverage-api</artifactId>
-      <version>4.6.0</version>
-      <scope>test</scope>
-    </dependency>
 
+    <!-- Test Plugin Dependencies -->
     <dependency>
-      <groupId>nl.jqno.equalsverifier</groupId>
-      <artifactId>equalsverifier</artifactId>
-      <version>${equalsverifier.version}</version>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>ssh-slaves</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.junit-pioneer</groupId>
-      <artifactId>junit-pioneer</artifactId>
-      <version>${junit-pioneer.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>${assertj.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>net.javacrumbs.json-unit</groupId>
-      <artifactId>json-unit-assertj</artifactId>
-      <version>${json-unit-fluent.version}</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.ow2.asm</groupId>
-          <artifactId>asm</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <!-- end dependencies of code-coverage-api -->
-    <dependency>
-      <groupId>org.apache.ant</groupId>
-      <artifactId>ant</artifactId>
-      <version>1.10.12</version>
-    </dependency>
-    <!-- Override parent spotbugs-annotations dependency and use version as in WNG -->
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <version>4.7.3</version><!--$NO-MVN-MAN-VER$-->
-    </dependency>
-    <!-- Override parent jsr305 dependency and use version as in spotbugs-annotations -->
-    <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>jsr305</artifactId>
-      <version>3.0.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-classworlds</artifactId>
-      <version>2.4.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
+      <artifactId>workflow-durable-task-step</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

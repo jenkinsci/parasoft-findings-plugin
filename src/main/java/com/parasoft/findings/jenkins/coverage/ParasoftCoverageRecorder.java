@@ -154,7 +154,7 @@ public class ParasoftCoverageRecorder extends Recorder {
     }
 
     public void perform(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
-                        final StageResultHandler resultHandler) throws InterruptedException {
+                        final ResultHandler resultHandler) throws InterruptedException {
         FilteredLogChain logChain = new FilteredLogChain(taskListener);
         logChain.getLogHandler().log("Recording Parasoft coverage results");
         try {
@@ -171,7 +171,7 @@ public class ParasoftCoverageRecorder extends Recorder {
     }
 
     private void perform(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
-                         final StageResultHandler resultHandler, final FilteredLogChain logChain) throws InterruptedException {
+                         final ResultHandler resultHandler, final FilteredLogChain logChain) throws InterruptedException {
 
         List<com.parasoft.findings.jenkins.coverage.model.Node> results = recordCoverageResults(run, workspace, logChain);
 
