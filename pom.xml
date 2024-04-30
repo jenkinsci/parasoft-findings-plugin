@@ -146,6 +146,7 @@
         <artifactId>revapi-maven-plugin</artifactId>
         <configuration>
           <analysisConfiguration>
+            <!-- revapi is introduced by org.jvnet.hudson.plugins:analysis-pom since 10.7.2 which sometimes creates false positive differences -->
             <revapi.differences id="manually-vetted" >
               <differences combine.children="append">
                 <item>
