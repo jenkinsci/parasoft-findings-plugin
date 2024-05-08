@@ -612,7 +612,7 @@ public abstract class Node implements Serializable {
 
         if (haveSameNameAndMetric(nodes)) {
             return nodes.stream()
-                    .map(t -> (Node) t)
+                    .map(t -> (Node) t) // parasoft-suppress OPT.UNC-3 "Expected"
                     .reduce(Node::merge)
                     .orElseThrow(() -> new NoSuchElementException("No node found"));
         }
@@ -636,7 +636,7 @@ public abstract class Node implements Serializable {
      */
     @SuppressWarnings({"ReferenceEquality", "PMD.CompareObjectsWithEquals"})
     public Node merge(final Node other) {
-        if (other == this) {
+        if (other == this) { // parasoft-suppress PB.CUB.UEIC-2 "Expected"
             return this; // nothing to do
         }
 

@@ -103,7 +103,7 @@ public abstract class Value implements Serializable {
             if (StringUtils.contains(cleanedFormat, METRIC_SEPARATOR)) {
                 var metric = Metric.valueOf(StringUtils.substringBefore(cleanedFormat, METRIC_SEPARATOR));
                 var value = StringUtils.substringAfter(cleanedFormat, METRIC_SEPARATOR);
-                switch (metric) {
+                switch (metric) { // parasoft-suppress PB.PDS-3 "Expected"
                     case CONTAINER:
                     case MODULE:
                     case PACKAGE:
