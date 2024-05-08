@@ -28,7 +28,7 @@
 
     <!-- Plugin Dependencies Versions -->
     <warnings-ng.version>11.3.0</warnings-ng.version>
-    <xunit.version>3.1.2</xunit.version>
+    <xunit.version>3.1.4</xunit.version>
     <plugin-util-api.version>4.1.0</plugin-util-api.version>
     <forensics-api.version>2.4.0</forensics-api.version>
     <git-forensics.version>2.1.0</git-forensics.version>
