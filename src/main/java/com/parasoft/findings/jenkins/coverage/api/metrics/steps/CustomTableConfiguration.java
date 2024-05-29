@@ -19,11 +19,12 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hudson.PluginWrapper;
 import io.jenkins.plugins.datatables.TableConfiguration;
-import io.jenkins.plugins.util.JenkinsFacade;
 import jenkins.model.Jenkins;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,9 +44,21 @@ public class CustomTableConfiguration extends TableConfiguration {
 
     public void language(String i18nFileBasename) {
         if (i18nFileBasename != null) {
-            String url = new JenkinsFacade().getAbsoluteUrl(StringUtils.removeStart(Jenkins.RESOURCE_PATH, "/"),
-                    String.format("plugin/parasoft-findings/i18n/datatables.net/%s.json", i18nFileBasename));
-            customConfiguration.put("language", new Language(url));
+            Jenkins jenkins = Jenkins.get();
+            String jenkinsRootUrlFromRequest = jenkins.getRootUrlFromRequest();
+            PluginWrapper pluginWrapper = jenkins.getPluginManager().getPlugin("parasoft-findings");
+            if (pluginWrapper != null) {
+                String pluginDir = pluginWrapper.baseResourceURL.getFile();
+                File wantedLocalizationFile = new File(pluginDir, "/i18n/datatables.net/" + i18nFileBasename + ".json");
+                if(!wantedLocalizationFile.exists()) {
+                    // Use English as default if the wanted language file does not exist
+                    i18nFileBasename = "datatables";
+                }
+
+                String jenkinsResourcePath = StringUtils.removeStart(Jenkins.RESOURCE_PATH, "/");
+                String finalLocalizationRequestUrl = jenkinsRootUrlFromRequest + jenkinsResourcePath + "/plugin/parasoft-findings/i18n/datatables.net/" + i18nFileBasename + ".json";
+                customConfiguration.put("language", new Language(finalLocalizationRequestUrl));
+            }
         }
     }
 
