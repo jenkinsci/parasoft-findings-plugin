@@ -8,18 +8,28 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTableMod
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTableModel.RowRenderer;
 import com.parasoft.findings.jenkins.coverage.model.*;
 import hudson.Functions;
+import hudson.Plugin;
+import hudson.PluginManager;
+import hudson.PluginWrapper;
 import io.jenkins.plugins.datatables.DetailedCell;
 import io.jenkins.plugins.datatables.TableColumn;
 import io.jenkins.plugins.datatables.TableConfiguration;
+import jenkins.model.Jenkins;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.jar.Manifest;
 
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageViewModel.MODIFIED_LINES_COVERAGE_TABLE_ID;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.*;
 
 public class CoverageTableModelTest extends AbstractCoverageTest {
     CoverageTableModel coverageTableModel;
@@ -42,8 +52,27 @@ public class CoverageTableModelTest extends AbstractCoverageTest {
 
     @Test
     public void testGetTableConfiguration() {
-        TableConfiguration tableConfiguration = coverageTableModel.getTableConfiguration();
-        assertThat(tableConfiguration).isNotNull();
+        try(MockedStatic<Jenkins> jenkinsMocked = mockStatic(Jenkins.class)) {
+            Jenkins.RESOURCE_PATH = "/static/e64c2d52";
+            Jenkins jenkins = mock(Jenkins.class);
+            PluginManager pluginManager = mock(PluginManager.class);
+            Plugin plugin = mock(Plugin.class);
+            PluginWrapper pluginWrapper = new PluginWrapper(mock(PluginManager.class),new File("fake"), new Manifest(),
+                    new URL("file:/D:/fake/jenkins/plugins/parasoft-findings-plugin/"),
+                    mock(ClassLoader.class), new File("fake"), null, new ArrayList<>());
+
+            when(Jenkins.get()).thenReturn(jenkins);
+            when(jenkins.getRootUrlFromRequest()).thenReturn("http://localhost:8080/jenkins/");
+            when(jenkins.getPluginManager()).thenReturn(pluginManager);
+            when(pluginManager.getPlugin("parasoft-findings")).thenReturn(pluginWrapper);
+            when(plugin.getWrapper()).thenReturn(pluginWrapper);
+
+            TableConfiguration tableConfiguration = coverageTableModel.getTableConfiguration();
+            assertThat(tableConfiguration.getConfiguration().contains("\"language\":{\"url\":\"http://localhost:8080/jenkins/static/e64c2d52/plugin/parasoft-findings/i18n/datatables.net/datatables.json"));
+            assertThat(tableConfiguration).isNotNull();
+        } catch (Exception e) {
+            fail("Exception should not be thrown.", e);
+        }
     }
 
     @Test
