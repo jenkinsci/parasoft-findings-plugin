@@ -27,15 +27,15 @@
     <saxon-he.version>12.4</saxon-he.version>
 
     <!-- Plugin Dependencies Versions -->
-    <warnings-ng.version>11.3.0</warnings-ng.version>
-    <xunit.version>3.1.4</xunit.version>
+    <warnings-ng.version>11.0.0</warnings-ng.version>
+    <xunit.version>3.1.2</xunit.version>
     <plugin-util-api.version>4.1.0</plugin-util-api.version>
     <forensics-api.version>2.4.0</forensics-api.version>
     <git-forensics.version>2.1.0</git-forensics.version>
 
     <!-- Test Library Dependencies Versions -->
-    <xmlunit.version>2.10.0</xmlunit.version>
-    <testcontainers.version>1.19.7</testcontainers.version>
+    <xmlunit.version>2.9.1</xmlunit.version>
+    <testcontainers.version>1.19.6</testcontainers.version>
   </properties>
 
   <developers>
@@ -147,7 +147,7 @@
         <configuration>
           <analysisConfiguration>
             <!-- revapi is introduced by org.jvnet.hudson.plugins:analysis-pom since 10.7.2 which sometimes creates false positive differences -->
-            <revapi.differences id="manually-vetted">
+            <revapi.differences id="manually-vetted" >
               <differences combine.children="append">
                 <item>
                   <ignore>true</ignore>
@@ -167,12 +167,12 @@
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.8.4.0</version>
+          <version>4.8.1.0</version>
           <dependencies>
             <dependency>
               <groupId>com.github.spotbugs</groupId>
               <artifactId>spotbugs</artifactId>
-              <version>4.8.4</version>
+              <version>4.8.1</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -200,7 +200,7 @@
       <dependency>
         <groupId>org.json</groupId>
         <artifactId>json</artifactId>
-        <version>20240303</version>
+        <version>20240205</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
