@@ -34,7 +34,7 @@
     <git-forensics.version>2.1.0</git-forensics.version>
 
     <!-- Test Library Dependencies Versions -->
-    <xmlunit.version>2.9.1</xmlunit.version>
+    <xmlunit.version>2.10.0</xmlunit.version>
     <testcontainers.version>1.19.6</testcontainers.version>
   </properties>
 
