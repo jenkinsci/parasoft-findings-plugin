@@ -295,6 +295,32 @@
             </xsl:map>
         </xsl:variable>
 
+        <xsl:variable name="verboseLineNumbers" select="tokenize($statCvgElemsString, '\s+')"/>
+        <xsl:variable name="statCvgHashes" select="$cvgDataNode/Static/StatCvg[contains($itemRefsString, concat(' ', @itemRef, ' '))]/@hashes"/>
+        <xsl:variable name="lineHashes" select="tokenize(string-join($statCvgHashes, ' '), '\s+')"/>
+
+        <!-- This variable is used to store the lineNumber(@elems) and lineHash(@hashes) pair according to the index -->
+        <xsl:variable name="lineHashPairs">
+            <xsl:for-each select="$verboseLineNumbers">
+                <xsl:variable name="index" select="position()"/>
+                <xsl:variable name="lineHash" select="$lineHashes[$index]"/>
+                <xsl:element name="lineHashPair">
+                    <xsl:attribute name="lineNumber" select="string(.)"/>
+                    <xsl:attribute name="lineHash" select="string($lineHash)" />
+                </xsl:element>
+            </xsl:for-each>
+        </xsl:variable>
+        <!-- This map is used to store unique line numbers and it's line hash. key: line number, value: line hash -->
+        <xsl:variable name="lineHashesMap" as="map(xs:string, xs:string)">
+            <xsl:map>
+                <xsl:for-each select="$lineNumbers">
+                    <xsl:variable name="line" select="."/>
+                    <xsl:variable name="lineHash" select="$lineHashPairs/lineHashPair[@lineNumber=$line]/@lineHash"/>
+                    <xsl:map-entry key="string(.)" select="string($lineHash[1])"/>
+                </xsl:for-each>
+            </xsl:map>
+        </xsl:variable>
+
         <xsl:if test="count(map:keys($linesMap)) > 0">
             <xsl:element name="class">
                 <xsl:attribute name="filename">
@@ -331,6 +357,9 @@
                             </xsl:attribute>
                             <xsl:attribute name="hits">
                                 <xsl:value-of select="map:get($linesMap, $lineNumber)"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="hash">
+                                <xsl:value-of select="map:get($lineHashesMap, $lineNumber)"/>
                             </xsl:attribute>
                         </xsl:element>
                     </xsl:for-each>

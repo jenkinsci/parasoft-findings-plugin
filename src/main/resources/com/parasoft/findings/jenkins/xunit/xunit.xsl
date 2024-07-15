@@ -7,6 +7,8 @@
     <xsl:variable name="isFunctionalResult" select="/ResultsSession/@toolName = 'SOAtest'"/>
     <xsl:variable name="useFullClassName" select="/ResultsSession/@toolName = 'C++test' or /ResultsSession/@toolId='c++test'" />
 
+    <xsl:param name="pipelineBuildWorkingDirectory"><xsl:value-of select="/ResultsSession/@pipelineBuildWorkingDirectory"/></xsl:param>
+
     <xsl:template match="/">
         <xsl:choose>
             <xsl:when test="not($isLegacyMode = 'true') and not($isFunctionalResult = 'true')">
@@ -97,6 +99,10 @@
 
                 <testcase name="{@name}" classname="{$className}">
                     <xsl:call-template name="addTimeAttr" />
+                    <!-- [Jenkins] cvc-complex-type.3.2.2: Attribute 'file' is not allowed to appear in element 'testcase' -->
+                    <!-- <xsl:call-template name="addFileAttr">-->
+                        <!-- <xsl:with-param name="tcId" select="$tcId" />-->
+                    <!-- </xsl:call-template>-->
                     <xsl:if test="$status!='pass'">
                         <xsl:call-template name="processExecViols">
                             <xsl:with-param name="execViols" select="/ResultsSession/Exec/ExecViols/ExecViol[@testId=$id]" />
@@ -109,6 +115,10 @@
             <xsl:otherwise>
                 <testcase name="{@name}" classname="{$className}">
                     <xsl:call-template name="addTimeAttr" />
+                    <!-- [Jenkins] cvc-complex-type.3.2.2: Attribute 'file' is not allowed to appear in element 'testcase' -->
+                    <!-- <xsl:call-template name="addFileAttr">-->
+                        <!-- <xsl:with-param name="tcId" select="$tcId" />-->
+                    <!-- </xsl:call-template>-->
                     <xsl:if test="$status!='pass'">
                         <xsl:call-template name="processExecViols">
                             <xsl:with-param name="execViols" select="/ResultsSession/Exec/ExecViols/ExecViol[@testId=$id and @tcId=$tcId]" />
@@ -292,6 +302,10 @@
             <xsl:when test="$tcId='null'">
                 <testcase name="{@name}" classname="{$className}">
                     <xsl:call-template name="addTimeAttr" />
+                    <!-- [Jenkins] cvc-complex-type.3.2.2: Attribute 'file' is not allowed to appear in element 'testcase' -->
+                    <!-- <xsl:call-template name="addFileAttr">-->
+                        <!-- <xsl:with-param name="tcId" select="$tcId" />-->
+                    <!-- </xsl:call-template>-->
                     <xsl:if test="$status!='pass'">
                         <xsl:call-template name="processExecViol_Legacy">
                             <xsl:with-param name="execViols" select="/ResultsSession/Exec/ExecViols/ExecViol[@testId=$id]" />
@@ -304,6 +318,10 @@
                 <xsl:variable name="testName" select="ancestor::Test[position()=1]/@name" />
                 <testcase name="{$testName}[{@params}]" classname="{$className}">
                     <xsl:call-template name="addTimeAttr" />
+                    <!-- [Jenkins] cvc-complex-type.3.2.2: Attribute 'file' is not allowed to appear in element 'testcase' -->
+                    <!-- <xsl:call-template name="addFileAttr">-->
+                        <!-- <xsl:with-param name="tcId" select="$tcId" />-->
+                    <!-- </xsl:call-template>-->
                     <xsl:if test="$status!='pass'">
                         <xsl:call-template name="processExecViol_Legacy">
                             <xsl:with-param name="execViols" select="/ResultsSession/Exec/ExecViols/ExecViol[@testId=$id and @testCaseId=$tcId]" />
@@ -411,6 +429,72 @@
         </xsl:variable>
 
         <xsl:value-of select="concat($allSec,'.',$millis)" />
+    </xsl:template>
+
+    <xsl:template name="addFileAttr">
+        <xsl:param name="tcId" select="'null'" />
+        <xsl:attribute name="file">
+            <!-- The structure "/ResultsSession/Scope/Locations/Loc" is available in the reports of JTest, DOTTest, SOATest, C++ Standard,
+                 then also in C++Test Professional reports starting from 2024.1 when using -property report.additional.report.dir=<additional_report_dir>.
+                 The value of the file attribute can only be found with this situation. -->
+            <xsl:if test="/ResultsSession/Scope/Locations/Loc">
+            <xsl:choose>
+                <!-- When "TestCase" node does not exist, use "locRef" of the current "Test" node for the test. -->
+                <xsl:when test="$tcId = 'null'">
+                    <xsl:apply-templates select="/ResultsSession/Scope/Locations/Loc">
+                        <xsl:with-param name="testLocRef" select="@locRef"/>
+                    </xsl:apply-templates>
+                </xsl:when>
+                <!-- When "TestCase" node exists, use "locRef" of the nearest "Test" ancestor of the current node for the test. -->
+                <xsl:otherwise>
+                    <xsl:apply-templates select="/ResultsSession/Scope/Locations/Loc">
+                        <xsl:with-param name="testLocRef" select="ancestor::Test[position()=1]/@locRef"/>
+                    </xsl:apply-templates>
+                </xsl:otherwise>
+            </xsl:choose>
+            </xsl:if>
+        </xsl:attribute>
+    </xsl:template>
+
+    <xsl:template match="Loc">
+        <xsl:param name="testLocRef"/>
+        <xsl:if test="$testLocRef = @locRef">
+            <xsl:variable name="uncodedPipelineBuildWorkingDirectory">
+                <xsl:if test="string($pipelineBuildWorkingDirectory) != ''">
+                    <xsl:value-of select="concat(translate($pipelineBuildWorkingDirectory, '\', '/'), '/')"/>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:variable name="encodedPipelineBuildWorkingDirectory">
+                <xsl:if test="string($uncodedPipelineBuildWorkingDirectory) != ''">
+                    <!-- Replace % with %25 and space with %20 to get an encoded path-->
+                    <xsl:value-of select="replace(replace($uncodedPipelineBuildWorkingDirectory, '%', '%25'), ' ', '%20')"/>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:variable name="processedPipelineBuildWorkingDirectory">
+                <xsl:choose>
+                    <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $uncodedPipelineBuildWorkingDirectory)">
+                        <xsl:value-of select="$uncodedPipelineBuildWorkingDirectory"/>
+                    </xsl:when>
+                    <!-- Using encoded pipeline build working directory when the uri attribute of <Loc> tag in Parasoft tool report(e.g. jtest report) is encoded -->
+                    <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $encodedPipelineBuildWorkingDirectory)">
+                        <xsl:value-of select="$encodedPipelineBuildWorkingDirectory"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="''"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="isExternalReport" select="$processedPipelineBuildWorkingDirectory = ''"/>
+            <xsl:choose>
+                <xsl:when test="$isExternalReport">
+                    <xsl:value-of select="@uri"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- Get relative source file path -->
+                    <xsl:value-of select="concat('./', substring-after(@uri, $processedPipelineBuildWorkingDirectory))"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template name="getClassname">
