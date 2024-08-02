@@ -9,7 +9,7 @@
 
   <groupId>com.parasoft</groupId>
   <artifactId>parasoft-findings</artifactId>
-  <version>10.7.4-SNAPSHOT</version>
+  <version>10.7.4</version>
   <packaging>hpi</packaging>
 
   <name>Parasoft Findings</name>
@@ -64,7 +64,7 @@
     <connection>scm:git:ssh://github.com/jenkinsci/parasoft-findings-plugin.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/jenkinsci/parasoft-findings-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/parasoft-findings-plugin</url>
-    <tag>master</tag>
+    <tag>parasoft-findings-10.7.4</tag>
   </scm>
 
   <build>
@@ -147,7 +147,7 @@
         <configuration>
           <analysisConfiguration>
             <!-- revapi is introduced by org.jvnet.hudson.plugins:analysis-pom since 10.7.2 which sometimes creates false positive differences -->
-            <revapi.differences id="manually-vetted" >
+            <revapi.differences id="manually-vetted">
               <differences combine.children="append">
                 <item>
                   <ignore>true</ignore>
