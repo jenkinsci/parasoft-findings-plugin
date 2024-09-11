@@ -154,17 +154,10 @@ public class FlowAnalysisPathBuilder
                 }
             }
 
-            if (identifier.contains(String.valueOf(IFlowAnalysisPathElement.RULE))) {
-                addRuleImportantPointMessage(sb, _violation.getRuleImportantPointMessage(), bFullDescription);
-            }
-
             if (identifier.contains(String.valueOf(IFlowAnalysisPathElement.THROWING_CHAR))) {
                 String message = getExceptionMessageFromDescriptor(descriptor);
                 addExceptionMessage(sb, message, bFullDescription);
             }
-
-            addTrackedMessage(sb, descriptor, TRACKED_VARIABLES_ATTR, bFullDescription);
-            addTrackedMessage(sb, descriptor, TRACKED_COLLECTIONS_ATTR, bFullDescription);
         }
 
         return sb.toString();
@@ -292,18 +285,6 @@ public class FlowAnalysisPathBuilder
         }
     }
 
-    private void addTrackedMessage(StringBuilder sb, IFlowAnalysisPathElement descriptor, String attribute, boolean bFullDescription)
-    {
-        String message = _violation.getTrackedVariablesMessages().get(attribute);
-        String variables = descriptor.getProperties().get(attribute);
-
-        if (StringUtil.isEmpty(variables)) {
-            return;
-        }
-        String trackedMessage = message + IStringConstants.COLON_SP + variables;
-        addNormalMessage(sb, trackedMessage, bFullDescription);
-    }
-
     private void createAbsolutePathsForIssues(List<Issue> issues)
     {
         Report report = new Report();
@@ -410,8 +391,4 @@ public class FlowAnalysisPathBuilder
     {
         BLANK, ITALIC, BOLD, ITALIC_BOLD
     }
-
-    private static final String TRACKED_VARIABLES_ATTR = "Tracked variables"; //$NON-NLS-1$
-
-    private static final String TRACKED_COLLECTIONS_ATTR = "Tracked collections"; //$NON-NLS-1$
 }
