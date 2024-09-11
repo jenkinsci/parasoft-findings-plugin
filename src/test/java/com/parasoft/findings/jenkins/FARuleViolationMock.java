@@ -47,19 +47,9 @@ public class FARuleViolationMock
         return null;
     }
 
-    public String getRuleImportantPointMessage()
-    {
-        return null;
-    }
-
     public String getPointMessage()
     {
         return null;
-    }
-
-    public Map<String, String> getTrackedVariablesMessages()
-    {
-        return new HashMap<String, String>();
     }
 
 }
