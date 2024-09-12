@@ -15,8 +15,6 @@
  */
 package com.parasoft.findings.jenkins;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 import com.parasoft.findings.utils.results.violations.IFlowAnalysisPathElement;
@@ -34,22 +32,10 @@ public class FARuleViolationMock
         _FAElemDesc = FAElemDesc;
     }
 
-
     private IFlowAnalysisPathElement[] _FAElemDesc;
 
     public IFlowAnalysisPathElement[] getPathElements()
     {
         return _FAElemDesc;
     }
-
-    public String getCauseMessage()
-    {
-        return null;
-    }
-
-    public String getPointMessage()
-    {
-        return null;
-    }
-
 }

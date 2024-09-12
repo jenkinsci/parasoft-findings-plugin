@@ -23,23 +23,19 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.parasoft.findings.utils.common.util.StringUtil;
-import com.parasoft.findings.utils.results.violations.PathElementAnnotation;
-import com.parasoft.findings.utils.results.violations.ResultLocation;
+import com.parasoft.findings.utils.results.violations.*;
 import org.apache.commons.collections.CollectionUtils;
 
 import com.parasoft.findings.utils.common.IStringConstants;
 import com.parasoft.findings.utils.results.testableinput.IFileTestableInput;
 import com.parasoft.findings.utils.results.testableinput.ProjectFileTestableInput;
-import com.parasoft.findings.utils.results.violations.SourceRange;
 import com.parasoft.findings.utils.results.testableinput.ITestableInput;
 import com.parasoft.findings.utils.common.util.CollectionUtil;
 import com.parasoft.findings.utils.results.testableinput.PathInput;
 import com.parasoft.findings.jenkins.html.Colors;
 import com.parasoft.findings.jenkins.html.IHtmlTags;
 import com.parasoft.findings.utils.results.testableinput.FindingsLocationMatcher;
-import com.parasoft.findings.utils.results.violations.IFlowAnalysisPathElement;
 import com.parasoft.findings.utils.results.violations.IFlowAnalysisPathElement.Type;
-import com.parasoft.findings.utils.results.violations.IFlowAnalysisViolation;
 
 import edu.hm.hafner.analysis.FileNameResolver;
 import edu.hm.hafner.analysis.Issue;
@@ -147,10 +143,10 @@ public class FlowAnalysisPathBuilder
             String identifier = descriptor.getType().getIdentifier();
             if (!bFullDescription) {
                 if (identifier.contains(String.valueOf(IFlowAnalysisPathElement.POINT))) {
-                    addStyledMessage(sb, _violation.getPointMessage(), bFullDescription, null, FontStyle.BLANK);
+                    addStyledMessage(sb, FlowAnalysisViolationUtil.getPointMessage(_violation), bFullDescription, null, FontStyle.BLANK);
                 }
                 if (identifier.contains(String.valueOf(IFlowAnalysisPathElement.CAUSE))) {
-                    addStyledMessage(sb, _violation.getCauseMessage(), bFullDescription, null, FontStyle.BLANK);
+                    addStyledMessage(sb, FlowAnalysisViolationUtil.getCauseMessage(_violation), bFullDescription, null, FontStyle.BLANK);
                 }
             }
 
@@ -336,7 +332,7 @@ public class FlowAnalysisPathBuilder
                     if (useAnnotation) {
                         additionalProperties.setCause(getAnnotationByKind(descriptor, ANNOTATION_KIND_CAUSE));
                     } else {
-                        additionalProperties.setCause(_violation.getCauseMessage());
+                        additionalProperties.setCause(FlowAnalysisViolationUtil.getCauseMessage(_violation));
                     }
                 }
 
@@ -344,7 +340,7 @@ public class FlowAnalysisPathBuilder
                     if (useAnnotation) {
                         additionalProperties.setPoint(getAnnotationByKind(descriptor, ANNOTATION_KIND_POINT));
                     } else {
-                        additionalProperties.setPoint(_violation.getPointMessage());
+                        additionalProperties.setPoint(FlowAnalysisViolationUtil.getPointMessage(_violation));
                     }
                 }
             }
