@@ -114,6 +114,17 @@ public class FlowAnalysisPathBuilder
         return sb.toString();
     }
 
+    private String getExceptionMessageFromDescriptor(IFlowAnalysisPathElement descriptor)
+    {
+        String throwingMethod = descriptor.getThrowingMethod();
+        String thrownTypes = descriptor.getThrownTypes();
+        if (StringUtil.isEmpty(throwingMethod) || StringUtil.isEmpty(thrownTypes)) {
+            return null;
+        } else {
+            return throwingMethod + "() throws: " + thrownTypes; //$NON-NLS-1$
+        }
+    }
+
     private String getMessage(IFlowAnalysisPathElement descriptor, boolean bFullDescription, boolean useAnnotation)
     {
         if (descriptor == null) {
@@ -128,6 +139,21 @@ public class FlowAnalysisPathBuilder
 
         if (useAnnotation) {
             addAnnotations(sb, descriptor, bFullDescription);
+        } else {
+            String identifier = descriptor.getType().getIdentifier();
+            if (!bFullDescription) {
+                if (identifier.contains(String.valueOf(IFlowAnalysisPathElement.POINT))) {
+                    addStyledMessage(sb, FlowAnalysisViolationUtil.getPointMessage(_violation), bFullDescription, null, FontStyle.BLANK);
+                }
+                if (identifier.contains(String.valueOf(IFlowAnalysisPathElement.CAUSE))) {
+                    addStyledMessage(sb, FlowAnalysisViolationUtil.getCauseMessage(_violation), bFullDescription, null, FontStyle.BLANK);
+                }
+            }
+
+            if (identifier.contains(String.valueOf(IFlowAnalysisPathElement.THROWING_CHAR))) {
+                String message = getExceptionMessageFromDescriptor(descriptor);
+                addExceptionMessage(sb, message, bFullDescription);
+            }
         }
 
         return sb.toString();
