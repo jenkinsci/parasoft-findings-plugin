@@ -89,7 +89,7 @@ public class RuleDocumentationStorage
         if (localFile != null) {
             try {
                 return FileUtil.readFile(localFile, IStringConstants.UTF_8);
-            } catch (IOException e) {
+            } catch (IOException e) { // parasoft-suppress OWASP2021.A9.LGE "reviewed"
                 Logger.getLogger().error(e);
             }
         } else {
@@ -113,14 +113,14 @@ public class RuleDocumentationStorage
     {
         try {
             rootDir.act(new InternalStoreRuleDocFileCallable(ruleDocDir, analyzer, ruleId, contents));
-        } catch (IOException e) {
+        } catch (IOException e) { // parasoft-suppress OWASP2021.A9.LGE "reviewed"
             Logger.getLogger().errorTrace(e);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e) { // parasoft-suppress OWASP2021.A9.LGE "reviewed"
             Logger.getLogger().errorTrace(e);
         }
     }
 
-    private static final class InternalStoreRuleDocFileCallable implements FileCallable<Boolean> {
+    private static final class InternalStoreRuleDocFileCallable implements FileCallable<Boolean> { // parasoft-suppress OWASP2021.A8.OROM "reviewed"
 
         private static final long serialVersionUID = 1L;
 
@@ -163,7 +163,7 @@ public class RuleDocumentationStorage
             }
             writer = new OutputStreamWriter(new FileOutputStream(file.getAbsolutePath()), IStringConstants.UTF_8); // parasoft-suppress BD.RES.LEAKS "Closed in finally"
             writer.write(contents);
-        } catch (IOException e) {
+        } catch (IOException e) { // parasoft-suppress OWASP2021.A9.LGE "reviewed"
             Logger.getLogger().warnTrace(e);
         } finally {
             IOUtils.close(writer);

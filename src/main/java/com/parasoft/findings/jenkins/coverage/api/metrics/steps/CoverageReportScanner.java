@@ -44,7 +44,7 @@ import java.util.Optional;
  *
  * @author Ullrich Hafner
  */
-public class CoverageReportScanner extends AgentFileVisitor<ModuleNode> {
+public class CoverageReportScanner extends AgentFileVisitor<ModuleNode> { // parasoft-suppress OWASP2021.A8.OROM "reviewed"
     private static final long serialVersionUID = 6940864958150044554L;
 
     private static final PathUtil PATH_UTIL = new PathUtil();
@@ -77,7 +77,7 @@ public class CoverageReportScanner extends AgentFileVisitor<ModuleNode> {
             log.logInfo("Successfully parsed intermediate Cobertura coverage report file '%s'", PATH_UTIL.getAbsolutePath(file));
             node.aggregateValues().forEach(v -> log.logInfo("%s", v));
             return Optional.of(node);
-        } catch (Exception exception) {
+        } catch (Exception exception) { // parasoft-suppress OWASP2021.A5.NCE "reviewed"
             log.logError("Parsing of intermediate Cobertura coverage report file '%s' failed due to an exception: %s",
                     file, ExceptionUtils.getRootCauseMessage(exception));
             return Optional.empty();

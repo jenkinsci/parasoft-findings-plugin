@@ -29,7 +29,7 @@ import java.io.*;
 import java.util.Map;
 
 // Adapted from: https://github.com/jenkinsci/libdtkit/blob/dtkit-frmk-3.0.0/dtkit-metrics-util/src/main/java/org/jenkinsci/lib/dtkit/util/converter/ConversionService.java
-public class ConversionService implements Serializable {
+public class ConversionService implements Serializable { //parasoft-suppress OWASP2021.A8.DUID "reviewed"
 
     /**
      * Skip DTD Entity resolution.
@@ -74,13 +74,13 @@ public class ConversionService implements Serializable {
             throws ConversionException {
         try (OutputStream os = new FileOutputStream(outFile)) {
             convert(xslSource, inputFile, os, params);
-        } catch (Exception e) {
+        } catch (Exception e) { // parasoft-suppress OWASP2021.A5.NCE "reviewed"
             throw asConversionException(e);
         }
     }
 
     private void convert(StreamSource xslSource, InputSource inputFile, OutputStream output,
-                         Map<QName, XdmValue> params) throws Exception {
+                         Map<QName, XdmValue> params) throws Exception { // parasoft-suppress OWASP2021.A5.NTX "reviewed"
         // create the conversion processor with a XSLT compiler
         Processor processor = new Processor(false);
         processor.setConfigurationProperty(Feature.ENTITY_RESOLVER_CLASS, CoverageEntityResolver.class.getName());

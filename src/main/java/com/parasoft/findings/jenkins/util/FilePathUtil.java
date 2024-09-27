@@ -49,9 +49,9 @@ public final class FilePathUtil
         boolean result = false;
         try {
             result = file.act(new IsAbsoluteFileCallable());
-        } catch (IOException e) {
+        } catch (IOException e) { // parasoft-suppress OWASP2021.A9.LGE "reviewed"
             Logger.getLogger().errorTrace(e);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e) { // parasoft-suppress OWASP2021.A9.LGE "reviewed"
             Logger.getLogger().errorTrace(e);
         }
         return result;
@@ -66,9 +66,9 @@ public final class FilePathUtil
         Properties props = null;
         try {
             props = file.act(new LoadPropertiesFileCallable());
-        } catch (IOException e) {
+        } catch (IOException e) { // parasoft-suppress OWASP2021.A9.LGE "reviewed"
             Logger.getLogger().error("Localsettings file not found", e); //$NON-NLS-1$
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e) { // parasoft-suppress OWASP2021.A9.LGE "reviewed"
             Logger.getLogger().error("Error while reading remote file", e); //$NON-NLS-1$
         }
         if (props == null) {

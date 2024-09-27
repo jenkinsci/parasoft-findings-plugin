@@ -42,7 +42,7 @@ import edu.umd.cs.findbugs.annotations.CheckReturnValue;
  *
  * @author Ullrich Hafner
  */
-public abstract class Value implements Serializable {
+public abstract class Value implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "reviewed"
     private static final long serialVersionUID = -1062406664372222691L;
     private static final String METRIC_SEPARATOR = ":";
 

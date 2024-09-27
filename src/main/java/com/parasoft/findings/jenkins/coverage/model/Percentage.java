@@ -38,7 +38,7 @@ import org.apache.commons.lang3.math.Fraction;
  *
  * @author Florian Orendi
  */
-public final class Percentage implements Serializable {
+public final class Percentage implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "reviewed"
     private static final long serialVersionUID = 3324942976687883481L;
 
     /** null value. */
@@ -101,7 +101,7 @@ public final class Percentage implements Serializable {
                 return new Percentage(numerator, denominator);
             }
         }
-        catch (NumberFormatException exception) {
+        catch (NumberFormatException exception) { // parasoft-suppress OWASP2021.A9.LGE "reviewed"
             // ignore and throw a specific exception
         }
         throw new IllegalArgumentException(

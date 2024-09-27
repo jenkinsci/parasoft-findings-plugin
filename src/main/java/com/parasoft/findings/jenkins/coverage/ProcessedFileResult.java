@@ -18,7 +18,7 @@ package com.parasoft.findings.jenkins.coverage;
 
 import java.io.Serializable;
 
-public class ProcessedFileResult implements Serializable {
+public class ProcessedFileResult implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "reviewed"
     private static final long serialVersionUID = 2393265115219226404L;
 
     private final String coberturaPattern;

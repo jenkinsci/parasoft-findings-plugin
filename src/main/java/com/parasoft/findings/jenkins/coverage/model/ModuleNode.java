@@ -41,7 +41,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @author Melissa Bauer
  */
-public final class ModuleNode extends Node {
+public final class ModuleNode extends Node { // parasoft-suppress OWASP2021.A8.OROM "reviewed"
     private static final long serialVersionUID = 2393265115219226404L;
 
     private final List<String> sources = new ArrayList<>();

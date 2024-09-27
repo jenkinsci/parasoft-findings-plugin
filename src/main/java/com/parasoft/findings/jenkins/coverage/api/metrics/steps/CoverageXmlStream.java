@@ -244,7 +244,7 @@ class CoverageXmlStream extends AbstractXmlStream<Node> {
                                 StringUtils.substringAfter(marshalledValue, ':'));
                         map.put(entry.getKey(), entry.getValue());
                     }
-                    catch (IllegalArgumentException exception) {
+                    catch (IllegalArgumentException exception) { // parasoft-suppress OWASP2021.A9.LGE "reviewed"
                         // ignore
                     }
                 }

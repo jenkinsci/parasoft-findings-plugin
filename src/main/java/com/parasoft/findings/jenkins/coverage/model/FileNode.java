@@ -53,7 +53,7 @@ import edu.hm.hafner.util.TreeString;
  * @author Ullrich Hafner
  */
 @SuppressWarnings({"PMD.GodClass", "PMD.CyclomaticComplexity"})
-public final class FileNode extends Node {
+public final class FileNode extends Node { // parasoft-suppress OWASP2021.A8.OROM "reviewed"
     private static final long serialVersionUID = -3795695377267542624L; // Set to 1 when release 1.0.0 is ready
 
     private final NavigableMap<Integer, Integer> coveredPerLine = new TreeMap<>();

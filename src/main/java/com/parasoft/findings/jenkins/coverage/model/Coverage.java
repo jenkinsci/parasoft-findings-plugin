@@ -42,7 +42,7 @@ import edu.umd.cs.findbugs.annotations.CheckForNull;
  *
  * @author Ullrich Hafner
  */
-public final class Coverage extends Value {
+public final class Coverage extends Value { // parasoft-suppress OWASP2021.A8.OROM "reviewed"
     private static final long serialVersionUID = -3802318446471137305L;
     private static final String FRACTION_SEPARATOR = "/";
 
