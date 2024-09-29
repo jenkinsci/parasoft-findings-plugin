@@ -78,7 +78,7 @@ public class SafeFraction {
         try {
             return fraction.multiplyBy(multiplier);
         }
-        catch (ArithmeticException exception) {
+        catch (ArithmeticException exception) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during arithmetic processing don't cause the build to fail."
             return Fraction.getFraction(fraction.doubleValue() * multiplier.doubleValue());
         }
     }
@@ -97,7 +97,7 @@ public class SafeFraction {
         try {
             return fraction.subtract(subtrahend);
         }
-        catch (ArithmeticException exception) {
+        catch (ArithmeticException exception) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during arithmetic processing don't cause the build to fail."
             return Fraction.getFraction(fraction.doubleValue() - subtrahend.doubleValue());
         }
     }
@@ -136,7 +136,7 @@ public class SafeFraction {
         try {
             return fraction.add(summand);
         }
-        catch (ArithmeticException exception) {
+        catch (ArithmeticException exception) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during arithmetic processing don't cause the build to fail."
             return Fraction.getFraction(fraction.doubleValue() + summand.doubleValue());
         }
     }

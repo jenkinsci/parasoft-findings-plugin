@@ -38,7 +38,9 @@ import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import edu.hm.hafner.util.FilteredLog;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.math.Fraction;
 
 import com.thoughtworks.xstream.converters.Converter;
@@ -234,6 +236,7 @@ class CoverageXmlStream extends AbstractXmlStream<Node> {
         }
 
         NavigableMap<K, V> unmarshal(final String value) {
+            FilteredLog log = new FilteredLog("Errors during reading coverage XML:");
             NavigableMap<K, V> map = new TreeMap<>();
 
             for (String marshalledValue : toArray(value)) {
@@ -244,8 +247,8 @@ class CoverageXmlStream extends AbstractXmlStream<Node> {
                                 StringUtils.substringAfter(marshalledValue, ':'));
                         map.put(entry.getKey(), entry.getValue());
                     }
-                    catch (IllegalArgumentException exception) {
-                        // ignore
+                    catch (IllegalArgumentException exception) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during coverage report processing don't cause the build to fail."
+                        log.logError("Failed to read coverage XML due to an exception: %s", ExceptionUtils.getRootCauseMessage(exception));
                     }
                 }
             }
