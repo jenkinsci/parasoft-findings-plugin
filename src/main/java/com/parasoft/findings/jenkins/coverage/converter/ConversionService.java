@@ -30,7 +30,6 @@ import java.util.Map;
 
 // Adapted from: https://github.com/jenkinsci/libdtkit/blob/dtkit-frmk-3.0.0/dtkit-metrics-util/src/main/java/org/jenkinsci/lib/dtkit/util/converter/ConversionService.java
 public class ConversionService implements Serializable {
-    private static final long serialVersionUID = 9023541911137031601L;
 
     /**
      * Skip DTD Entity resolution.
@@ -75,7 +74,7 @@ public class ConversionService implements Serializable {
             throws ConversionException {
         try (OutputStream os = new FileOutputStream(outFile)) {
             convert(xslSource, inputFile, os, params);
-        } catch (Exception e) { // parasoft-suppress OWASP2021.A5.NCE "Reviewed"
+        } catch (Exception e) { // parasoft-suppress OWASP2021.A5.NCE "This is expected. Reason: All exceptions are treated as conversation exceptions."
             throw asConversionException(e);
         }
     }
