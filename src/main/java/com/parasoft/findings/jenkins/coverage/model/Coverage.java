@@ -24,6 +24,8 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Objects;
 import java.util.function.UnaryOperator;
 
@@ -483,5 +485,11 @@ public final class Coverage extends Value {
         public void incrementMissed() {
             setMissed(missed + 1);
         }
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }

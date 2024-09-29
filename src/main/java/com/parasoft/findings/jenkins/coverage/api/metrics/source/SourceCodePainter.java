@@ -27,6 +27,7 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.source;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -275,6 +276,12 @@ public class SourceCodePainter {
                             folder.getAbsolutePath());
                 }
             }
+        }
+
+        private void readObject (ObjectInputStream in)
+                throws IOException, ClassNotFoundException {
+            // It works exactly as it would without the custom readObject() method.
+            in.defaultReadObject();
         }
     }
 

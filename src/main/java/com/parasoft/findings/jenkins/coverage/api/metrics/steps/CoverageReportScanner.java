@@ -32,6 +32,8 @@ import edu.hm.hafner.util.PathUtil;
 import io.jenkins.plugins.util.AgentFileVisitor;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -82,5 +84,11 @@ public class CoverageReportScanner extends AgentFileVisitor<ModuleNode> {
                     file, ExceptionUtils.getRootCauseMessage(exception));
             return Optional.empty();
         }
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }

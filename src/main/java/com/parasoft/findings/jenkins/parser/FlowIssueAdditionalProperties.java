@@ -16,6 +16,8 @@
 
 package com.parasoft.findings.jenkins.parser;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.List;
 
@@ -176,6 +178,12 @@ public class FlowIssueAdditionalProperties
             return (FlowIssueAdditionalProperties) properties;
         }
         return null;
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 
     public static final String CAUSE_KEY = "cause"; //$NON-NLS-1$

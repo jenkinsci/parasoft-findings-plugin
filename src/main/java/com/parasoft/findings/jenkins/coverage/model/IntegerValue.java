@@ -24,6 +24,8 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Objects;
 import java.util.function.UnaryOperator;
 
@@ -138,5 +140,11 @@ public abstract class IntegerValue extends Value {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), integer);
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }

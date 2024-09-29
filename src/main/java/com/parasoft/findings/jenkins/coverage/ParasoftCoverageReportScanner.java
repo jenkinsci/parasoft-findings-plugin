@@ -27,10 +27,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import javax.xml.transform.stream.StreamSource;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -123,5 +120,11 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
         }
         Files.createDirectories(generatedCoverageBuildDir);
         return generatedCoverageBuildDir;
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }

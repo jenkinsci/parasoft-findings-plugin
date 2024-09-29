@@ -24,6 +24,8 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -196,5 +198,11 @@ public final class ModuleNode extends Node {
     @Override
     public String toString() {
         return String.format("[%s] %s <%d> %s", getMetric(), getName(), getChildren().size(), getSourceFolders());
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }

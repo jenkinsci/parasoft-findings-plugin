@@ -24,6 +24,8 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Objects;
 
 /**
@@ -113,5 +115,11 @@ public final class MethodNode extends Node {
     @Override
     public String toString() {
         return String.format("[%s] %s(%d) <%s>", getMetric(), getName(), getLineNumber(), getSignature());
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }

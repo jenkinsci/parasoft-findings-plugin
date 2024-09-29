@@ -16,11 +16,7 @@
 
 package com.parasoft.findings.jenkins.internal.rules;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.*;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
@@ -148,6 +144,12 @@ public class RuleDocumentationStorage
         public void checkRoles(RoleChecker arg0)
                 throws SecurityException
         {}
+
+        private void readObject (ObjectInputStream in)
+                throws IOException, ClassNotFoundException {
+            // It works exactly as it would without the custom readObject() method.
+            in.defaultReadObject();
+        }
     }
 
     private static void internalStoreRuleDoc(File rootDir, String ruleDocFile, String contents)

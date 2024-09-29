@@ -16,6 +16,8 @@
 
 package com.parasoft.findings.jenkins.parser;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.HashMap;
 
 public class ParasoftIssueAdditionalProperties
@@ -46,6 +48,12 @@ public class ParasoftIssueAdditionalProperties
     public String getAnalyzer()
     {
         return (String)get(ANALYZER_KEY);
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 
     public static final String ANALYZER_KEY = "analyzer"; //$NON-NLS-1$

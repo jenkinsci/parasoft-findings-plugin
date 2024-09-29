@@ -41,6 +41,9 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.ElementFormatter
 import io.jenkins.plugins.util.JenkinsFacade;
 import io.jenkins.plugins.util.QualityGate;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 /**
  * Defines a quality gate based on a specific threshold of code coverage in the current build. After a build has been
  * finished, a set of {@link CoverageQualityGate quality gates} will be evaluated and the overall quality gate status will be
@@ -151,5 +154,11 @@ public class CoverageQualityGate extends QualityGate {
 
     private static double checkThresholdRange(double threshold) {
         return threshold < 0 ? 0 : threshold > 100 ? 100 : threshold;
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }

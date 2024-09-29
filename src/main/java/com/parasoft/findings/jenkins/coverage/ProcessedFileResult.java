@@ -16,6 +16,8 @@
 
 package com.parasoft.findings.jenkins.coverage;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 public class ProcessedFileResult implements Serializable {
@@ -36,5 +38,11 @@ public class ProcessedFileResult implements Serializable {
 
     public String getGeneratedCoverageBuildDir() {
         return generatedCoverageBuildDir;
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }

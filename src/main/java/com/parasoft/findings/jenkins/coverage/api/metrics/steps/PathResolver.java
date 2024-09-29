@@ -26,6 +26,7 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.nio.file.InvalidPathException;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Collections;
@@ -221,6 +222,12 @@ public class PathResolver {
         private boolean isWithinWorkspace(final String fileName, final FilePath workspace) {
             var workspacePath = PATH_UTIL.getAbsolutePath(workspace.getRemote());
             return PATH_UTIL.getAbsolutePath(fileName).startsWith(workspacePath);
+        }
+
+        private void readObject (ObjectInputStream in)
+                throws IOException, ClassNotFoundException {
+            // It works exactly as it would without the custom readObject() method.
+            in.defaultReadObject();
         }
     }
 }

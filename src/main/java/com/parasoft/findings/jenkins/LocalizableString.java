@@ -16,6 +16,8 @@
 
 package com.parasoft.findings.jenkins;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Locale;
 
 import org.jvnet.localizer.Localizable;
@@ -56,6 +58,12 @@ public class LocalizableString
             return _sMessage;
         }
         return super.toString(locale);
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 
 }

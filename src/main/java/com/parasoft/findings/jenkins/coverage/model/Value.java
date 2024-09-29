@@ -24,6 +24,8 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -230,5 +232,11 @@ public abstract class Value implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(metric);
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }

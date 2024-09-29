@@ -24,6 +24,8 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
@@ -217,5 +219,11 @@ public final class Percentage implements Serializable {
     @Override
     public String toString() {
         return formatPercentage(Locale.ENGLISH);
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }

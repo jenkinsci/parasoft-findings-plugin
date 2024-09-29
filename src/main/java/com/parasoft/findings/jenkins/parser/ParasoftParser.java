@@ -16,10 +16,7 @@
 
 package com.parasoft.findings.jenkins.parser;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.Properties;
@@ -268,6 +265,12 @@ public class ParasoftParser
         }
         String ruleCategory = ruleAttributes.getRuleCategory();
         return GLOBAL_CATEGORY.equals(ruleCategory);
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 
     private static final String PROPERTY_UNKNOWN = "unknown"; //$NON-NLS-1$

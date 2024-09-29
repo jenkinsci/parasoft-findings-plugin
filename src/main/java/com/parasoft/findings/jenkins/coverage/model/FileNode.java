@@ -24,6 +24,8 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -621,5 +623,11 @@ public final class FileNode extends Node {
     public int hashCode() {
         return Objects.hash(super.hashCode(), coveredPerLine, missedPerLine, mutations, modifiedLines,
                 indirectCoverageChanges, coverageDelta, relativePath);
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }

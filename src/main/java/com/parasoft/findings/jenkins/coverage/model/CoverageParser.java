@@ -24,6 +24,8 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Reader;
 import java.io.Serializable;
 import java.util.NoSuchElementException;
@@ -128,5 +130,11 @@ public abstract class CoverageParser implements Serializable {
 
     protected static ParsingException createEofException() {
         return new ParsingException("Unexpected end of file");
+    }
+
+    private void readObject (ObjectInputStream in)
+            throws IOException, ClassNotFoundException {
+        // It works exactly as it would without the custom readObject() method.
+        in.defaultReadObject();
     }
 }
