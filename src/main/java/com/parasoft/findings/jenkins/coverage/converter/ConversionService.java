@@ -30,6 +30,7 @@ import java.util.Map;
 
 // Adapted from: https://github.com/jenkinsci/libdtkit/blob/dtkit-frmk-3.0.0/dtkit-metrics-util/src/main/java/org/jenkinsci/lib/dtkit/util/converter/ConversionService.java
 public class ConversionService implements Serializable {
+    private static final long serialVersionUID = 9023541911137031601L;
 
     /**
      * Skip DTD Entity resolution.
