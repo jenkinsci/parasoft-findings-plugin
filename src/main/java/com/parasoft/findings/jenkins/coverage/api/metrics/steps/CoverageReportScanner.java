@@ -77,7 +77,7 @@ public class CoverageReportScanner extends AgentFileVisitor<ModuleNode> {
             log.logInfo("Successfully parsed intermediate Cobertura coverage report file '%s'", PATH_UTIL.getAbsolutePath(file));
             node.aggregateValues().forEach(v -> log.logInfo("%s", v));
             return Optional.of(node);
-        } catch (Exception exception) { // parasoft-suppress OWASP2021.A5.NCE "This is expected. Reason: Do not fail the build when processing coverage reports."
+        } catch (Exception exception) { // parasoft-suppress OWASP2021.A5.NCE "This is intentionally designed to ensure exceptions during coverage report processing don't cause the build to fail."
             log.logError("Parsing of intermediate Cobertura coverage report file '%s' failed due to an exception: %s",
                     file, ExceptionUtils.getRootCauseMessage(exception));
             return Optional.empty();

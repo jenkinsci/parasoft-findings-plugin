@@ -75,7 +75,7 @@ public class ConversionService implements Serializable {
             throws ConversionException {
         try (OutputStream os = new FileOutputStream(outFile)) {
             convert(xslSource, inputFile, os, params);
-        } catch (Exception e) { // parasoft-suppress OWASP2021.A5.NCE "This is expected. Reason: All exceptions are treated as conversation exceptions."
+        } catch (Exception e) { // parasoft-suppress OWASP2021.A5.NCE "This is intentionally designed to wrap exceptions with customized exception: ConversionException."
             throw asConversionException(e);
         }
     }

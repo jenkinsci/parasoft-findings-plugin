@@ -85,7 +85,7 @@ public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFil
             String coberturaPattern = StringUtils.replace(PATH_UTIL.getRelativePath(Paths.get(workspaceLoc),
                     outputCoberturaReport), StringUtils.SPACE, QUESTION_MARK);
             return Optional.of(new ProcessedFileResult(coberturaPattern, generatedCoverageBuildDir.toString()));
-        } catch (Exception exception) { // parasoft-suppress OWASP2021.A5.NCE "This is expected. Reason: Do not fail the build when processing coverage reports."
+        } catch (Exception exception) { // parasoft-suppress OWASP2021.A5.NCE "This is intentionally designed to ensure exceptions during coverage report processing don't cause the build to fail."
             log.logError("Parsing of Parasoft coverage report file '%s' failed due to an exception: %s",
                     file, ExceptionUtils.getRootCauseMessage(exception));
             return Optional.empty();
