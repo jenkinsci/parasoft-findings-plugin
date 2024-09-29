@@ -74,13 +74,13 @@ public class ConversionService implements Serializable {
             throws ConversionException {
         try (OutputStream os = new FileOutputStream(outFile)) {
             convert(xslSource, inputFile, os, params);
-        } catch (Exception e) {
+        } catch (Exception e) { // parasoft-suppress OWASP2021.A5.NCE "This is expected. Reason: All exceptions are treated as conversation exceptions."
             throw asConversionException(e);
         }
     }
 
     private void convert(StreamSource xslSource, InputSource inputFile, OutputStream output,
-                         Map<QName, XdmValue> params) throws Exception {
+                         Map<QName, XdmValue> params) throws SaxonApiException {
         // create the conversion processor with a XSLT compiler
         Processor processor = new Processor(false);
         processor.setConfigurationProperty(Feature.ENTITY_RESOLVER_CLASS, CoverageEntityResolver.class.getName());
