@@ -24,8 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -44,7 +42,7 @@ import edu.umd.cs.findbugs.annotations.CheckReturnValue;
  *
  * @author Ullrich Hafner
  */
-public abstract class Value implements Serializable {
+public abstract class Value implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = -1062406664372222691L;
     private static final String METRIC_SEPARATOR = ":";
 
@@ -232,11 +230,5 @@ public abstract class Value implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(metric);
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 }

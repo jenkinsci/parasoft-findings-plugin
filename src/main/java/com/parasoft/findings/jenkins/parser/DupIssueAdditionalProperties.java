@@ -16,8 +16,6 @@
 
 package com.parasoft.findings.jenkins.parser;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.List;
 
@@ -27,7 +25,7 @@ import com.parasoft.findings.jenkins.html.IHtmlTags;
 import edu.hm.hafner.analysis.Issue;
 import io.jenkins.plugins.analysis.core.model.FileNameRenderer;
 
-public class DupIssueAdditionalProperties
+public class DupIssueAdditionalProperties // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
         extends ParasoftIssueAdditionalProperties
 {
     private static final long serialVersionUID = -984630394099766160L;
@@ -114,12 +112,6 @@ public class DupIssueAdditionalProperties
             return (DupIssueAdditionalProperties) properties;
         }
         return null;
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 
     public static final String PARENT_KEY = "parentKey"; //$NON-NLS-1$

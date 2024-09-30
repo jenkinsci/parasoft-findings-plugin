@@ -16,7 +16,10 @@
 
 package com.parasoft.findings.jenkins.parser;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.Properties;
@@ -44,7 +47,7 @@ import edu.hm.hafner.analysis.Severity;
 /**
  * A parser for Parasoft files containing xml report.
  */
-public class ParasoftParser
+public class ParasoftParser // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
         extends IssueParser
 {
     private static final long serialVersionUID = 1731087921659486425L;
@@ -265,12 +268,6 @@ public class ParasoftParser
         }
         String ruleCategory = ruleAttributes.getRuleCategory();
         return GLOBAL_CATEGORY.equals(ruleCategory);
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 
     private static final String PROPERTY_UNKNOWN = "unknown"; //$NON-NLS-1$

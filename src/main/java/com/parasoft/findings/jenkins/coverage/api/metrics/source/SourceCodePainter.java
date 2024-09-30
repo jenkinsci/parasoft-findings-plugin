@@ -27,7 +27,6 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.source;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -134,7 +133,7 @@ public class SourceCodePainter {
      * HTML files that contain the painted source code. In the last step all zipped source files are aggregated into a
      * single archive to simplify copying to the controller.
      */
-    static class AgentCoveragePainter extends MasterToSlaveFileCallable<FilteredLog> {
+    static class AgentCoveragePainter extends MasterToSlaveFileCallable<FilteredLog> { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
         private static final long serialVersionUID = 3966282357309568323L;
 
         private final List<? extends CoverageSourcePrinter> paintedFiles;
@@ -276,12 +275,6 @@ public class SourceCodePainter {
                             folder.getAbsolutePath());
                 }
             }
-        }
-
-        private void readObject (ObjectInputStream in)
-                throws IOException, ClassNotFoundException {
-            // It works exactly as it would without the custom readObject() method.
-            in.defaultReadObject();
         }
     }
 

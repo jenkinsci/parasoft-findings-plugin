@@ -24,8 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -57,7 +55,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  */
 // TODO: Make sure that we do not have children with the same name in the same node
 @SuppressWarnings({"PMD.GodClass", "PMD.ExcessivePublicCount", "PMD.CyclomaticComplexity"})
-public abstract class Node implements Serializable {
+public abstract class Node implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = -6608885640271135273L;
 
     static final String ROOT = "^";
@@ -796,11 +794,5 @@ public abstract class Node implements Serializable {
         var copy = copy();
         copy.addAllChildren(prunedChildren);
         return Optional.of(copy);
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 }

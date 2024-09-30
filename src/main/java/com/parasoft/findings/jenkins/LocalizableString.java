@@ -16,15 +16,13 @@
 
 package com.parasoft.findings.jenkins;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.Locale;
 
 import org.jvnet.localizer.Localizable;
 import org.jvnet.localizer.ResourceBundleHolder;
 
 
-public class LocalizableString
+public class LocalizableString // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     extends Localizable
 {
     private static final long serialVersionUID = 5885639086662718677L;
@@ -58,12 +56,6 @@ public class LocalizableString
             return _sMessage;
         }
         return super.toString(locale);
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 
 }

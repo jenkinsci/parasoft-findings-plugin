@@ -24,8 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.Objects;
 import java.util.function.UnaryOperator;
 
@@ -36,7 +34,7 @@ import org.apache.commons.lang3.math.Fraction;
  *
  * @author Melissa Bauer
  */
-public abstract class IntegerValue extends Value {
+public abstract class IntegerValue extends Value { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = -1626223071392791727L;
 
     private final int integer;
@@ -140,11 +138,5 @@ public abstract class IntegerValue extends Value {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), integer);
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 }

@@ -24,8 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.Objects;
 
 import org.apache.commons.lang3.math.Fraction;
@@ -38,7 +36,7 @@ import com.parasoft.findings.jenkins.coverage.model.Metric.MetricTendency;
  *
  * @author Ullrich Hafner
  */
-public final class FractionValue extends Value {
+public final class FractionValue extends Value { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = -7019903979028578410L;
 
     private final Fraction fraction;
@@ -153,11 +151,5 @@ public final class FractionValue extends Value {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), fraction);
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 }

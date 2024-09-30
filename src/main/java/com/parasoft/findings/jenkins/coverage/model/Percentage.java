@@ -24,8 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
@@ -40,7 +38,7 @@ import org.apache.commons.lang3.math.Fraction;
  *
  * @author Florian Orendi
  */
-public final class Percentage implements Serializable {
+public final class Percentage implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = 3324942976687883481L;
 
     /** null value. */
@@ -219,11 +217,5 @@ public final class Percentage implements Serializable {
     @Override
     public String toString() {
         return formatPercentage(Locale.ENGLISH);
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 }

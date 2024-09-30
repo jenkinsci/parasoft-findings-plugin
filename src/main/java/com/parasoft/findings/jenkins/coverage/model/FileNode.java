@@ -24,8 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -55,7 +53,7 @@ import edu.hm.hafner.util.TreeString;
  * @author Ullrich Hafner
  */
 @SuppressWarnings({"PMD.GodClass", "PMD.CyclomaticComplexity"})
-public final class FileNode extends Node {
+public final class FileNode extends Node { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = -3795695377267542624L; // Set to 1 when release 1.0.0 is ready
 
     private final NavigableMap<Integer, Integer> coveredPerLine = new TreeMap<>();
@@ -623,11 +621,5 @@ public final class FileNode extends Node {
     public int hashCode() {
         return Objects.hash(super.hashCode(), coveredPerLine, missedPerLine, mutations, modifiedLines,
                 indirectCoverageChanges, coverageDelta, relativePath);
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 }

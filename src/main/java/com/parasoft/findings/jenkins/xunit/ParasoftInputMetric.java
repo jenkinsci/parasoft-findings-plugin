@@ -21,10 +21,7 @@ import org.jenkinsci.lib.dtkit.model.InputType;
 import org.jenkinsci.lib.dtkit.model.OutputMetric;
 import org.jenkinsci.plugins.xunit.types.model.JUnitModel;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-
-public class ParasoftInputMetric
+public class ParasoftInputMetric // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     extends InputMetricXSL
 {
     @Override
@@ -61,12 +58,6 @@ public class ParasoftInputMetric
     public OutputMetric getOutputFormatType()
     {
         return JUnitModel.LATEST;
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
     
     private static final String PARASOFT_TOOL = "ParasoftAnalyzers"; //$NON-NLS-1$

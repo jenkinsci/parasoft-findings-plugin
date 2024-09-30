@@ -24,8 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.model.parser;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Reader;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
@@ -57,7 +55,7 @@ import edu.hm.hafner.util.SecureXmlParserFactory.ParsingException;
  * @author Ullrich Hafner
  */
 @SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
-public class CoberturaParser extends CoverageParser {
+public class CoberturaParser extends CoverageParser {  // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = -3625341318291829577L;
 
     private static final PathUtil PATH_UTIL = new PathUtil();
@@ -267,11 +265,5 @@ public class CoberturaParser extends CoverageParser {
         String version = getValueOf(currentElement, VERSION);
         String parasoftTool = version.split(" ")[0];
         root.setParasoftToolName(parasoftTool);
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 }

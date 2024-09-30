@@ -24,8 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Reader;
 import java.io.Serializable;
 import java.util.NoSuchElementException;
@@ -43,7 +41,7 @@ import edu.hm.hafner.util.TreeStringBuilder;
  *
  * @author Ullrich Hafner
  */
-public abstract class CoverageParser implements Serializable {
+public abstract class CoverageParser implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = 3941742254762282096L;
     private transient TreeStringBuilder treeStringBuilder = new TreeStringBuilder();
 
@@ -130,11 +128,5 @@ public abstract class CoverageParser implements Serializable {
 
     protected static ParsingException createEofException() {
         return new ParsingException("Unexpected end of file");
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 }

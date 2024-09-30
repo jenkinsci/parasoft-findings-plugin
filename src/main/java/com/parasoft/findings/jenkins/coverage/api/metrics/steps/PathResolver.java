@@ -26,7 +26,6 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.nio.file.InvalidPathException;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Collections;
@@ -99,7 +98,7 @@ public class PathResolver {
      * relative, this resolver tries to find the absolute paths by guessing the prefix to the relative path. It also
      * evaluates the defined source paths as prefixes when resolving the absolute paths.
      */
-    static class AgentPathResolver extends MasterToSlaveFileCallable<RemoteResultWrapper<HashMap<String, String>>> {
+    static class AgentPathResolver extends MasterToSlaveFileCallable<RemoteResultWrapper<HashMap<String, String>>> { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
         private static final long serialVersionUID = 3966282357309568323L;
         private static final PathUtil PATH_UTIL = new PathUtil();
 
@@ -222,12 +221,6 @@ public class PathResolver {
         private boolean isWithinWorkspace(final String fileName, final FilePath workspace) {
             var workspacePath = PATH_UTIL.getAbsolutePath(workspace.getRemote());
             return PATH_UTIL.getAbsolutePath(fileName).startsWith(workspacePath);
-        }
-
-        private void readObject (ObjectInputStream in)
-                throws IOException, ClassNotFoundException {
-            // It works exactly as it would without the custom readObject() method.
-            in.defaultReadObject();
         }
     }
 }

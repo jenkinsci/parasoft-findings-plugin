@@ -24,8 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.model.parser;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Reader;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
@@ -62,7 +60,7 @@ import edu.hm.hafner.util.TreeString;
  * @author Melissa Bauer
  */
 @SuppressWarnings("PMD.GodClass")
-public class JacocoParser extends CoverageParser {
+public class JacocoParser extends CoverageParser { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = -6021749565311262221L;
 
     private static final QName REPORT = new QName("report");
@@ -324,11 +322,5 @@ public class JacocoParser extends CoverageParser {
                         .setCovered(covered)
                         .setMissed(missed).build();
         }
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 }

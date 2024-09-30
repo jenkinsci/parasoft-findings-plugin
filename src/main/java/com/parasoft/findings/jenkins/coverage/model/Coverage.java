@@ -24,8 +24,6 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.Objects;
 import java.util.function.UnaryOperator;
 
@@ -44,7 +42,7 @@ import edu.umd.cs.findbugs.annotations.CheckForNull;
  *
  * @author Ullrich Hafner
  */
-public final class Coverage extends Value {
+public final class Coverage extends Value { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = -3802318446471137305L;
     private static final String FRACTION_SEPARATOR = "/";
 
@@ -485,11 +483,5 @@ public final class Coverage extends Value {
         public void incrementMissed() {
             setMissed(missed + 1);
         }
-    }
-
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
     }
 }

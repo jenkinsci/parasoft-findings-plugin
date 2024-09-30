@@ -18,11 +18,9 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
 import edu.umd.cs.findbugs.annotations.Nullable;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 
-public class ReferenceResult implements Serializable {
+public class ReferenceResult implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
 
     private static final long serialVersionUID = -5028911049640671582L;
 
@@ -68,9 +66,4 @@ public class ReferenceResult implements Serializable {
         NO_CVG_DATA_IN_REF_BUILD;
     }
 
-    private void readObject (ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        // It works exactly as it would without the custom readObject() method.
-        in.defaultReadObject();
-    }
 }
