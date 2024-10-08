@@ -247,7 +247,7 @@ class CoverageXmlStream extends AbstractXmlStream<Node> {
                                 StringUtils.substringAfter(marshalledValue, ':'));
                         map.put(entry.getKey(), entry.getValue());
                     }
-                    catch (IllegalArgumentException exception) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during coverage report processing don't cause the build to fail."
+                    catch (IllegalArgumentException exception) {
                         log.logError("Failed to read coverage XML due to an exception: %s", ExceptionUtils.getRootCauseMessage(exception));
                     }
                 }

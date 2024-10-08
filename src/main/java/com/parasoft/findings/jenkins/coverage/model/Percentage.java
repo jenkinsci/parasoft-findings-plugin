@@ -104,7 +104,7 @@ public final class Percentage implements Serializable { // parasoft-suppress OWA
                 return new Percentage(numerator, denominator);
             }
         }
-        catch (NumberFormatException exception) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during percentage instance processing don't cause the build to fail."
+        catch (NumberFormatException exception) {
             log.logError("Failed to convert percentage instance due to an exception: %s", ExceptionUtils.getRootCauseMessage(exception));
         }
         throw new IllegalArgumentException(
