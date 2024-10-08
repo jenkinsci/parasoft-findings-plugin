@@ -49,9 +49,7 @@ public final class FilePathUtil
         boolean result = false;
         try {
             result = file.act(new IsAbsoluteFileCallable());
-        } catch (IOException e) { // parasoft-suppress OWASP2021.A9.LGE "The exception is not rethrown because it's not critical."
-            Logger.getLogger().errorTrace(e);
-        } catch (InterruptedException e) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during file processing don't cause the build to fail."
+        } catch (IOException | InterruptedException e) { // parasoft-suppress OWASP2021.A9.LGE "The exception is not rethrown because it's not critical."
             Logger.getLogger().errorTrace(e);
         }
         return result;
