@@ -28,7 +28,9 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.Objects;
 
+import edu.hm.hafner.util.FilteredLog;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.lang3.math.Fraction;
 
 /**
@@ -89,6 +91,7 @@ public final class Percentage implements Serializable { // parasoft-suppress OWA
      *         if the string is not a valid Percentage instance
      */
     public static Percentage valueOf(final String stringRepresentation) {
+        FilteredLog log = new FilteredLog("Errors during converting percentage instance:");
         try {
             String cleanedFormat = StringUtils.deleteWhitespace(stringRepresentation);
             if (StringUtils.contains(cleanedFormat, "/")) {
@@ -102,7 +105,7 @@ public final class Percentage implements Serializable { // parasoft-suppress OWA
             }
         }
         catch (NumberFormatException exception) {
-            // ignore and throw a specific exception
+            log.logError("Failed to convert percentage instance due to an exception: %s", ExceptionUtils.getRootCauseMessage(exception));
         }
         throw new IllegalArgumentException(
                 String.format("Cannot convert %s to a valid Percentage instance.", stringRepresentation));
