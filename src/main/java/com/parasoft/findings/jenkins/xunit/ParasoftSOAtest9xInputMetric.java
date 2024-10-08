@@ -21,7 +21,7 @@ import org.jenkinsci.lib.dtkit.model.InputType;
 import org.jenkinsci.lib.dtkit.model.OutputMetric;
 import org.jenkinsci.plugins.xunit.types.model.JUnitModel;
 
-public class ParasoftSOAtest9xInputMetric
+public class ParasoftSOAtest9xInputMetric // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     extends InputMetricXSL
 {
     @Override

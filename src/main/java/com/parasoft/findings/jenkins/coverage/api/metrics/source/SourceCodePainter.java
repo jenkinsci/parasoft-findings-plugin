@@ -133,7 +133,7 @@ public class SourceCodePainter {
      * HTML files that contain the painted source code. In the last step all zipped source files are aggregated into a
      * single archive to simplify copying to the controller.
      */
-    static class AgentCoveragePainter extends MasterToSlaveFileCallable<FilteredLog> {
+    static class AgentCoveragePainter extends MasterToSlaveFileCallable<FilteredLog> { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
         private static final long serialVersionUID = 3966282357309568323L;
 
         private final List<? extends CoverageSourcePrinter> paintedFiles;

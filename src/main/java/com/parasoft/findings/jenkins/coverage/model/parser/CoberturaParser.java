@@ -55,7 +55,7 @@ import edu.hm.hafner.util.SecureXmlParserFactory.ParsingException;
  * @author Ullrich Hafner
  */
 @SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
-public class CoberturaParser extends CoverageParser {
+public class CoberturaParser extends CoverageParser {  // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = -3625341318291829577L;
 
     private static final PathUtil PATH_UTIL = new PathUtil();

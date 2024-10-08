@@ -18,7 +18,7 @@ package com.parasoft.findings.jenkins.parser;
 
 import java.util.HashMap;
 
-public class ParasoftIssueAdditionalProperties
+public class ParasoftIssueAdditionalProperties // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
         extends HashMap<String, Object>
 {
     private static final long serialVersionUID = -5014146322978138084L;

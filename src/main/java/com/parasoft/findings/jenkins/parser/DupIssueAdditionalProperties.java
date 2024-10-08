@@ -25,7 +25,7 @@ import com.parasoft.findings.jenkins.html.IHtmlTags;
 import edu.hm.hafner.analysis.Issue;
 import io.jenkins.plugins.analysis.core.model.FileNameRenderer;
 
-public class DupIssueAdditionalProperties
+public class DupIssueAdditionalProperties // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
         extends ParasoftIssueAdditionalProperties
 {
     private static final long serialVersionUID = -984630394099766160L;
