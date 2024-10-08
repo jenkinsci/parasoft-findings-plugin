@@ -34,7 +34,7 @@ import org.apache.commons.lang3.math.Fraction;
  *
  * @author Melissa Bauer
  */
-public abstract class IntegerValue extends Value {
+public abstract class IntegerValue extends Value { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = -1626223071392791727L;
 
     private final int integer;

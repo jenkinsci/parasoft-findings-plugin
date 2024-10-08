@@ -47,7 +47,7 @@ import edu.hm.hafner.analysis.Severity;
 /**
  * A parser for Parasoft files containing xml report.
  */
-public class ParasoftParser
+public class ParasoftParser // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
         extends IssueParser
 {
     private static final long serialVersionUID = 1731087921659486425L;

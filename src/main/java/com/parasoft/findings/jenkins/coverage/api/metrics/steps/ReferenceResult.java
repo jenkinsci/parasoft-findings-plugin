@@ -20,7 +20,7 @@ import edu.umd.cs.findbugs.annotations.Nullable;
 
 import java.io.Serializable;
 
-public class ReferenceResult implements Serializable {
+public class ReferenceResult implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
 
     private static final long serialVersionUID = -5028911049640671582L;
 

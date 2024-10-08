@@ -60,7 +60,7 @@ import edu.hm.hafner.util.TreeString;
  * @author Melissa Bauer
  */
 @SuppressWarnings("PMD.GodClass")
-public class JacocoParser extends CoverageParser {
+public class JacocoParser extends CoverageParser { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = -6021749565311262221L;
 
     private static final QName REPORT = new QName("report");

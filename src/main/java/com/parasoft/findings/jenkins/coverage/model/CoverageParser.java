@@ -41,7 +41,7 @@ import edu.hm.hafner.util.TreeStringBuilder;
  *
  * @author Ullrich Hafner
  */
-public abstract class CoverageParser implements Serializable {
+public abstract class CoverageParser implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
     private static final long serialVersionUID = 3941742254762282096L;
     private transient TreeStringBuilder treeStringBuilder = new TreeStringBuilder();
 
