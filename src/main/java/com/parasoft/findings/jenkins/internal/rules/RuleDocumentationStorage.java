@@ -113,9 +113,7 @@ public class RuleDocumentationStorage
     {
         try {
             rootDir.act(new InternalStoreRuleDocFileCallable(ruleDocDir, analyzer, ruleId, contents));
-        } catch (IOException e) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during static analysis report processing don't cause the build to fail."
-            Logger.getLogger().errorTrace(e);
-        } catch (InterruptedException e) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during static analysis report processing don't cause the build to fail."
+        } catch (IOException | InterruptedException e) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during static analysis report processing don't cause the build to fail."
             Logger.getLogger().errorTrace(e);
         }
     }
