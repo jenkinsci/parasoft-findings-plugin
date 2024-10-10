@@ -55,7 +55,7 @@ public class RuleDocumentationReader
         if (ruleDoc.exists()) {
             try {
                 contents = FileUtil.readFile(ruleDoc, IStringConstants.UTF_8);
-            } catch (IOException e) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during static analysis report processing don't cause the build to fail."
+            } catch (IOException e) {
                 Logger.getLogger().error(e);
             }
         }
