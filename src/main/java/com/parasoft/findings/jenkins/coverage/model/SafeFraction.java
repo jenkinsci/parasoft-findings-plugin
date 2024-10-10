@@ -24,6 +24,7 @@
 
 package com.parasoft.findings.jenkins.coverage.model;
 
+import edu.hm.hafner.util.FilteredLog;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.lang3.math.Fraction;
 
@@ -37,6 +38,7 @@ import static com.parasoft.findings.jenkins.coverage.model.Percentage.*;
  */
 public class SafeFraction {
     private final Fraction fraction;
+    private final FilteredLog log = new FilteredLog();
 
     /**
      * Creates a new fraction instance that wraps the specified fraction with safe operations.
@@ -78,7 +80,8 @@ public class SafeFraction {
         try {
             return fraction.multiplyBy(multiplier);
         }
-        catch (ArithmeticException exception) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during arithmetic processing don't cause the build to fail."
+        catch (ArithmeticException exception) {
+            log.logError("Multiplication error with fractions, switching to double. Exception: {}", exception.getMessage());
             return Fraction.getFraction(fraction.doubleValue() * multiplier.doubleValue());
         }
     }
@@ -97,7 +100,8 @@ public class SafeFraction {
         try {
             return fraction.subtract(subtrahend);
         }
-        catch (ArithmeticException exception) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during arithmetic processing don't cause the build to fail."
+        catch (ArithmeticException exception) {
+            log.logError("Subtraction error with fractions, switching to double. Exception: {}", exception.getMessage());
             return Fraction.getFraction(fraction.doubleValue() - subtrahend.doubleValue());
         }
     }
@@ -136,7 +140,8 @@ public class SafeFraction {
         try {
             return fraction.add(summand);
         }
-        catch (ArithmeticException exception) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during arithmetic processing don't cause the build to fail."
+        catch (ArithmeticException exception) {
+            log.logError("Adding error with fractions, switching to double. Exception: {}", exception.getMessage());
             return Fraction.getFraction(fraction.doubleValue() + summand.doubleValue());
         }
     }

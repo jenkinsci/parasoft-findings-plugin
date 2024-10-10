@@ -89,7 +89,7 @@ public class RuleDocumentationStorage
         if (localFile != null) {
             try {
                 return FileUtil.readFile(localFile, IStringConstants.UTF_8);
-            } catch (IOException e) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during static analysis report processing don't cause the build to fail."
+            } catch (IOException e) {
                 Logger.getLogger().error(e);
             }
         } else {
@@ -113,7 +113,7 @@ public class RuleDocumentationStorage
     {
         try {
             rootDir.act(new InternalStoreRuleDocFileCallable(ruleDocDir, analyzer, ruleId, contents));
-        } catch (IOException | InterruptedException e) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during static analysis report processing don't cause the build to fail."
+        } catch (IOException | InterruptedException e) {
             Logger.getLogger().errorTrace(e);
         }
     }
@@ -161,7 +161,7 @@ public class RuleDocumentationStorage
             }
             writer = new OutputStreamWriter(new FileOutputStream(file.getAbsolutePath()), IStringConstants.UTF_8); // parasoft-suppress BD.RES.LEAKS "Closed in finally"
             writer.write(contents);
-        } catch (IOException e) { // parasoft-suppress OWASP2021.A9.LGE "This is intentionally designed to ensure exceptions during static analysis report processing don't cause the build to fail."
+        } catch (IOException e) {
             Logger.getLogger().warnTrace(e);
         } finally {
             IOUtils.close(writer);
