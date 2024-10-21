@@ -24,47 +24,31 @@
 
 package com.parasoft.findings.jenkins.coverage.api.metrics.steps;
 
+import edu.hm.hafner.util.FilteredLog;
+import edu.hm.hafner.util.PathUtil;
+import hudson.FilePath;
+import hudson.remoting.VirtualChannel;
+import io.jenkins.plugins.util.RemoteResultWrapper;
+import jenkins.MasterToSlaveFileCallable;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.InvalidPathException;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import edu.hm.hafner.util.FilteredLog;
-import edu.hm.hafner.util.PathUtil;
-
-import hudson.FilePath;
-import hudson.remoting.VirtualChannel;
-import jenkins.MasterToSlaveFileCallable;
-
-import io.jenkins.plugins.prism.FilePermissionEnforcer;
-import io.jenkins.plugins.prism.PermittedSourceCodeDirectory;
-import io.jenkins.plugins.prism.PrismConfiguration;
-import io.jenkins.plugins.prism.SourceDirectoryFilter;
-import io.jenkins.plugins.util.RemoteResultWrapper;
-import org.apache.commons.lang3.exception.ExceptionUtils;
-
 /**
- * Resolves source code files on the agent using the stored paths of the coverage reports. Since these paths are
- * relative, this resolver tries to find the absolute paths by guessing the prefix to the relative path. It also
- * evaluates the defined source paths as prefixes when resolving the absolute paths.
+ * Resolves source code files on the agent using the stored paths of the coverage reports.
  */
 public class PathResolver {
     /**
-     * Resolves source code files on the agent using the stored paths of the coverage reports. Since these paths are
-     * relative, this resolver tries to find the absolute paths by guessing the prefix to the relative path. It also
-     * evaluates the defined source paths as prefixes when resolving the absolute paths.
+     * Resolves source code files on the agent using the stored paths of the coverage reports.
      *
-     * @param relativePaths
-     *         the relative paths to map
-     * @param requestedSourceDirectories
-     *         the requested relative and absolute source directories (in the step configuration)
+     * @param paths
+     *         the paths to map
      * @param workspace
      *         the workspace that contains the source code files
      * @param log
@@ -72,17 +56,10 @@ public class PathResolver {
      *
      * @return the resolved paths as mapping of relative to absolute paths
      */
-    public Map<String, String> resolvePaths(final Set<String> relativePaths,
-            final Set<String> requestedSourceDirectories,
+    public Map<String, String> resolvePaths(final Set<String> paths,
             final FilePath workspace, final FilteredLog log) throws InterruptedException {
         try {
-            Set<String> permittedSourceDirectories = PrismConfiguration.getInstance()
-                    .getSourceDirectories()
-                    .stream()
-                    .map(PermittedSourceCodeDirectory::getPath)
-                    .collect(Collectors.toSet());
-
-            var resolver = new AgentPathResolver(relativePaths, permittedSourceDirectories, requestedSourceDirectories);
+            var resolver = new AgentPathResolver(paths);
             var agentLog = workspace.act(resolver);
             log.merge(agentLog);
             return agentLog.getResult();
@@ -94,36 +71,23 @@ public class PathResolver {
     }
 
     /**
-     * Resolves source code files on the agent using the stored paths of the coverage reports. Since these paths are
-     * relative, this resolver tries to find the absolute paths by guessing the prefix to the relative path. It also
-     * evaluates the defined source paths as prefixes when resolving the absolute paths.
+     * Resolves source code files on the agent using the stored paths of the coverage reports.
      */
     static class AgentPathResolver extends MasterToSlaveFileCallable<RemoteResultWrapper<HashMap<String, String>>> { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
         private static final long serialVersionUID = 3966282357309568323L;
         private static final PathUtil PATH_UTIL = new PathUtil();
 
-        private final Set<String> relativePaths;
-        private final Set<String> permittedSourceDirectories;
-        private final Set<String> requestedSourceDirectories;
+        private final Set<String> paths;
 
         /**
          * Creates a new instance of {@link AgentPathResolver}.
          *
-         * @param relativePaths
-         *         the relative paths to map
-         * @param permittedSourceDirectories
-         *         the permitted source code directories (in Jenkins global configuration)
-         * @param requestedSourceDirectories
-         *         the requested relative and absolute source directories (in the step configuration)
+         * @param paths
+         *         the paths to map
          */
-        AgentPathResolver(final Set<String> relativePaths,
-                final Set<String> permittedSourceDirectories,
-                final Set<String> requestedSourceDirectories) {
+        AgentPathResolver(final Set<String> paths) {
             super();
-
-            this.relativePaths = relativePaths;
-            this.permittedSourceDirectories = permittedSourceDirectories;
-            this.requestedSourceDirectories = requestedSourceDirectories;
+            this.paths = paths;
         }
 
         @Override
@@ -131,30 +95,20 @@ public class PathResolver {
                 final File workspaceFile, final VirtualChannel channel) {
             FilteredLog log = new FilteredLog("Errors while resolving source files on agent:");
 
-            Set<String> sourceDirectories = filterSourceDirectories(workspaceFile, log);
-            if (sourceDirectories.isEmpty()) {
-                log.logInfo("Searching for source code files in root of workspace '%s'", workspaceFile);
-            }
-            else if (sourceDirectories.size() == 1) {
-                log.logInfo("Searching for source code files in '%s'", sourceDirectories.iterator().next());
-            }
-            else {
-                log.logInfo("Searching for source code files in:", workspaceFile);
-                sourceDirectories.forEach(dir -> log.logInfo("-> %s", dir));
-            }
+            log.logInfo("Searching for source code files...");
 
             var workspace = new FilePath(workspaceFile);
-            var mapping = relativePaths.stream()
-                    .map(path -> new SimpleEntry<>(path, locateSource(path, workspace, sourceDirectories, log)))
+            var mapping = paths.stream()
+                    .map(path -> new SimpleEntry<>(path, locateSource(path, workspace, log)))
                     .filter(entry -> entry.getValue().isPresent())
                     .collect(Collectors.toMap(Entry::getKey, entry -> entry.getValue().get()));
 
-            if (mapping.size() == relativePaths.size()) {
+            if (mapping.size() == paths.size()) {
                 log.logInfo("-> resolved absolute paths for all %d source files", mapping.size());
             }
             else {
                 log.logInfo("-> finished resolving of absolute paths (found: %d, not found: %d)",
-                        mapping.size(), relativePaths.size() - mapping.size());
+                        mapping.size(), paths.size() - mapping.size());
             }
 
             var changedFilesMapping = mapping.entrySet()
@@ -166,31 +120,17 @@ public class PathResolver {
             return result;
         }
 
-        private Set<String> filterSourceDirectories(final File workspace, final FilteredLog log) {
-            SourceDirectoryFilter filter = new SourceDirectoryFilter();
-            return filter.getPermittedSourceDirectories(workspace.getAbsolutePath(),
-                    permittedSourceDirectories, requestedSourceDirectories, log);
-        }
-
-        private Optional<String> locateSource(final String relativePath, final FilePath workspace,
-                final Set<String> sourceSearchDirectories, final FilteredLog log) {
+        private Optional<String> locateSource(final String relativePath, final FilePath workspace, final FilteredLog log) {
 
             try {
                 FilePath absolutePath = new FilePath(new File(relativePath));
                 if (absolutePath.exists()) {
-                    return enforcePermissionFor(absolutePath, workspace, sourceSearchDirectories, log);
+                    return getPathFor(absolutePath, workspace);
                 }
 
                 FilePath relativePathInWorkspace = workspace.child(relativePath);
                 if (relativePathInWorkspace.exists()) {
-                    return enforcePermissionFor(relativePathInWorkspace, workspace, sourceSearchDirectories, log);
-                }
-
-                for (String sourceFolder : sourceSearchDirectories) {
-                    FilePath sourcePath = workspace.child(sourceFolder).child(relativePath);
-                    if (sourcePath.exists()) {
-                        return enforcePermissionFor(sourcePath, workspace, sourceSearchDirectories, log);
-                    }
+                    return getPathFor(relativePathInWorkspace, workspace);
                 }
 
                 log.logError("- Source file '%s' not found", relativePath);
@@ -201,21 +141,14 @@ public class PathResolver {
             return Optional.empty();
         }
 
-        private Optional<String> enforcePermissionFor(final FilePath absolutePath, final FilePath workspace,
-                final Set<String> sourceDirectories, final FilteredLog log) {
-            FilePermissionEnforcer enforcer = new FilePermissionEnforcer();
+        private Optional<String> getPathFor(final FilePath absolutePath, final FilePath workspace) {
             var fileName = absolutePath.getRemote();
-            if (enforcer.isInWorkspace(fileName, workspace, sourceDirectories)) {
-                if (isWithinWorkspace(fileName, workspace)) {
-                    return Optional.of(PATH_UTIL.getRelativePath(workspace.getRemote(), fileName));
-                }
-                else {
-                    return Optional.of(PATH_UTIL.getAbsolutePath(fileName));
-                }
+            if (isWithinWorkspace(fileName, workspace)) {
+                return Optional.of(PATH_UTIL.getRelativePath(workspace.getRemote(), fileName));
             }
-            log.logError("- Skipping resolving of file: %s (not part of workspace or permitted source code folders)",
-                    fileName);
-            return Optional.empty();
+            else {
+                return Optional.of(PATH_UTIL.getAbsolutePath(fileName));
+            }
         }
 
         private boolean isWithinWorkspace(final String fileName, final FilePath workspace) {
