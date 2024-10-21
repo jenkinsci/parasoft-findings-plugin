@@ -1,42 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"  standalone="yes"?>
 <xsl:stylesheet version="3.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:map="http://www.w3.org/2005/xpath-functions/map">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:map="http://www.w3.org/2005/xpath-functions/map">
     <xsl:variable name="toolName" select="/Coverage/@toolId"/>
     <xsl:variable name="toolVer" select="/Coverage/@toolVer"/>
     <xsl:variable name="toolDispName" select="/Coverage/@toolDispName"/>
     <xsl:param name="pipelineBuildWorkingDirectory"><xsl:value-of select="/Coverage/@pipelineBuildWorkingDirectory"/></xsl:param>
 
-    <!-- Used to store the URI prefix adapted to the current report for later calculation of the relative path -->
-    <xsl:variable name="uriPrefix">
-        <xsl:variable name="firstLocUri" select="/Coverage/Locations/Loc[1]/@uri"/>
-        <!-- Try to take the first <Loc> as an example to get prefix -->
-        <xsl:choose>
-            <!-- for file:/xxx uri pattern -->
-            <xsl:when test="matches($firstLocUri, '^file:/[^/]')">file:/</xsl:when>
-            <!-- for file://hostname/xxx uri pattern -->
-            <xsl:when test="matches($firstLocUri, '^file://[^/]+/')">
-                <!-- Extract the hostname from an uri, like: the result is 'hostname' for uri 'file://hostname/folder/xxx' -->
-                <xsl:variable name="hostname" select="replace($firstLocUri, '^file://([^/]+)(/.*)$', '$1')" />
-                <xsl:value-of select="concat('file://', $hostname, '/')" />
-            </xsl:when>
-            <!-- for file:///xxx uri pattern -->
-            <xsl:when test="matches($firstLocUri, '^file:///')">file:///</xsl:when>
-        </xsl:choose>
-    </xsl:variable>
-
     <xsl:template name="getUriWithoutFilePrefix">
         <xsl:param name="rawUri"/>
-
-        <!-- Remove prefix if present and trim spaces -->
-        <xsl:variable name="withoutPrefix" select="replace($rawUri, concat($uriPrefix, ''), '')"/>
-        <!-- Trim spaces at the front and back ends of the URI -->
-        <xsl:variable name="trimmedUri" select="replace(replace($withoutPrefix, '^\s+', ''), '\s+$', '')"/>
-        <!-- Replace backslashes with forward slashes for consistency in path formatting -->
-        <xsl:variable name="processedUri" select="translate($trimmedUri, '\', '/')"/>
-
-        <xsl:value-of select="$processedUri"/>
+        <xsl:choose>
+            <!-- for file:/xxx uri pattern -->
+            <xsl:when test="matches($rawUri, '^file:/[^/]')">
+                <xsl:value-of select="substring-after($rawUri, 'file:/')"/>
+            </xsl:when>
+            <!-- for file://hostname/xxx uri pattern -->
+            <xsl:when test="matches($rawUri, '^file://[^/]+/')">
+                <!-- Extract the hostname from an uri, like: the result is 'hostname' for uri 'file://hostname/folder/xxx' -->
+                <xsl:variable name="hostname" select="replace($rawUri, '^file://([^/]+)(/.*)$', '$1')" />
+                <xsl:value-of select="substring-after($rawUri, concat('file://', $hostname, '/'))"/>
+            </xsl:when>
+            <!-- for file:///xxx uri pattern -->
+            <xsl:when test="matches($rawUri, '^file:///')">
+                <xsl:value-of select="substring-after($rawUri, 'file:///')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$rawUri"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="/">
@@ -72,9 +64,8 @@
 
     <xsl:template name="packages">
         <xsl:element name="packages">
-<!--             Group by the parent path of uri-->
+            <!-- Group by the parent path of uri-->
             <xsl:for-each-group select="/Coverage/Locations/Loc" group-by="substring-before(@uri, tokenize(@uri, '/')[last()])">
-                <xsl:variable name="uriWithFileInitialize" select="@uri"/>
                 <xsl:variable name="uriWithoutFilePrefix">
                     <xsl:call-template name="getUriWithoutFilePrefix">
                         <xsl:with-param name="rawUri" select="@uri"/>
@@ -93,18 +84,18 @@
                             </xsl:if>
                         </xsl:variable>
                         <xsl:variable name="encodedPipelineBuildWorkingDirectory">
-                             <xsl:if test="string($uncodedPipelineBuildWorkingDirectory) != ''">
+                            <xsl:if test="string($uncodedPipelineBuildWorkingDirectory) != ''">
                                 <!-- Replace % with %25 and space with %20 to get an encoded path-->
                                 <xsl:value-of select="replace(replace($uncodedPipelineBuildWorkingDirectory, '%', '%25'), ' ', '%20')"/>
                             </xsl:if>
                         </xsl:variable>
                         <xsl:variable name="processedPipelineBuildWorkingDirectory">
                             <xsl:choose>
-                                <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains($uriWithFileInitialize, $uncodedPipelineBuildWorkingDirectory)">
+                                <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains($uriWithoutFilePrefix, $uncodedPipelineBuildWorkingDirectory)">
                                     <xsl:value-of select="$uncodedPipelineBuildWorkingDirectory"/>
                                 </xsl:when>
                                 <!-- Using encoded pipeline build working directory when the uri attribute of <Loc> tag in Parasoft tool report(e.g. jtest report) is encoded -->
-                                <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains($uriWithFileInitialize, $encodedPipelineBuildWorkingDirectory)">
+                                <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains($uriWithoutFilePrefix, $encodedPipelineBuildWorkingDirectory)">
                                     <xsl:value-of select="$encodedPipelineBuildWorkingDirectory"/>
                                 </xsl:when>
                                 <xsl:otherwise>
@@ -123,7 +114,7 @@
                                 <xsl:otherwise>
                                     <xsl:call-template name="getPackageName">
                                         <!-- Get relative source file path -->
-                                        <xsl:with-param name="projectPath" select="substring-after($uriWithFileInitialize, $processedPipelineBuildWorkingDirectory)"/>
+                                        <xsl:with-param name="projectPath" select="substring-after($uriWithoutFilePrefix, $processedPipelineBuildWorkingDirectory)"/>
                                     </xsl:call-template>
                                 </xsl:otherwise>
                             </xsl:choose>
@@ -142,8 +133,8 @@
                                             <xsl:value-of select="$uriWithoutFilePrefix"/>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                           <!-- Get relative source file path -->
-                                           <xsl:value-of select="substring-after($uriWithFileInitialize, $processedPipelineBuildWorkingDirectory)"/>
+                                            <!-- Get relative source file path -->
+                                            <xsl:value-of select="substring-after($uriWithoutFilePrefix, $processedPipelineBuildWorkingDirectory)"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
@@ -255,7 +246,7 @@
         <xsl:choose>
             <xsl:when test="count($segments) > 1">
                 <xsl:variable name="filename">
-                     <xsl:value-of select="$segments[last()]"/>
+                    <xsl:value-of select="$segments[last()]"/>
                 </xsl:variable>
                 <xsl:choose>
                     <!--    Jtest    -->
