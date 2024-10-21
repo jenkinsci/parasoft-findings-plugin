@@ -22,17 +22,15 @@
                 <xsl:value-of select="concat('file://', $hostname, '/')" />
             </xsl:when>
             <!-- for file:///xxx uri pattern -->
-            <xsl:otherwise>file:///</xsl:otherwise>
+            <xsl:when test="matches($firstLocUri, '^file:///')">file:///</xsl:when>
         </xsl:choose>
     </xsl:variable>
 
-    <!-- Template for formatting URIs -->
-    <xsl:template name="formatUri">
-        <xsl:param name="uri"/>
-        <xsl:param name="prefix"/>
+    <xsl:template name="getUriWithoutFilePrefix">
+        <xsl:param name="rawUri"/>
 
         <!-- Remove prefix if present and trim spaces -->
-        <xsl:variable name="withoutPrefix" select="replace($uri, concat($prefix, ''), '')"/>
+        <xsl:variable name="withoutPrefix" select="replace($rawUri, concat($uriPrefix, ''), '')"/>
         <!-- Trim spaces at the front and back ends of the URI -->
         <xsl:variable name="trimmedUri" select="replace(replace($withoutPrefix, '^\s+', ''), '\s+$', '')"/>
         <!-- Replace backslashes with forward slashes for consistency in path formatting -->
@@ -76,11 +74,10 @@
         <xsl:element name="packages">
 <!--             Group by the parent path of uri-->
             <xsl:for-each-group select="/Coverage/Locations/Loc" group-by="substring-before(@uri, tokenize(@uri, '/')[last()])">
-                <xsl:variable name="rawUri" select="@uri"/>
-                <xsl:variable name="formattedUri">
-                    <xsl:call-template name="formatUri">
-                        <xsl:with-param name="uri" select="$rawUri"/>
-                        <xsl:with-param name="prefix" select="$uriPrefix"/>
+                <xsl:variable name="uriWithFileInitialize" select="@uri"/>
+                <xsl:variable name="uriWithoutFilePrefix">
+                    <xsl:call-template name="getUriWithoutFilePrefix">
+                        <xsl:with-param name="rawUri" select="@uri"/>
                     </xsl:call-template>
                 </xsl:variable>
                 <xsl:variable name="lineRateForPacakgeTag">
@@ -103,11 +100,11 @@
                         </xsl:variable>
                         <xsl:variable name="processedPipelineBuildWorkingDirectory">
                             <xsl:choose>
-                                <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $uncodedPipelineBuildWorkingDirectory)">
+                                <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains($uriWithFileInitialize, $uncodedPipelineBuildWorkingDirectory)">
                                     <xsl:value-of select="$uncodedPipelineBuildWorkingDirectory"/>
                                 </xsl:when>
                                 <!-- Using encoded pipeline build working directory when the uri attribute of <Loc> tag in Parasoft tool report(e.g. jtest report) is encoded -->
-                                <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $encodedPipelineBuildWorkingDirectory)">
+                                <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains($uriWithFileInitialize, $encodedPipelineBuildWorkingDirectory)">
                                     <xsl:value-of select="$encodedPipelineBuildWorkingDirectory"/>
                                 </xsl:when>
                                 <xsl:otherwise>
@@ -120,13 +117,13 @@
                             <xsl:choose>
                                 <xsl:when test="$isExternalReport">
                                     <xsl:call-template name="getPackageName">
-                                        <xsl:with-param name="projectPath" select="$formattedUri"/>
+                                        <xsl:with-param name="projectPath" select="$uriWithoutFilePrefix"/>
                                     </xsl:call-template>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:call-template name="getPackageName">
                                         <!-- Get relative source file path -->
-                                        <xsl:with-param name="projectPath" select="substring-after(@uri, $processedPipelineBuildWorkingDirectory)"/>
+                                        <xsl:with-param name="projectPath" select="substring-after($uriWithFileInitialize, $processedPipelineBuildWorkingDirectory)"/>
                                     </xsl:call-template>
                                 </xsl:otherwise>
                             </xsl:choose>
@@ -142,11 +139,11 @@
                                 <xsl:variable name="filePath">
                                     <xsl:choose>
                                         <xsl:when test="$isExternalReport">
-                                            <xsl:value-of select="$formattedUri"/>
+                                            <xsl:value-of select="$uriWithoutFilePrefix"/>
                                         </xsl:when>
                                         <xsl:otherwise>
                                            <!-- Get relative source file path -->
-                                           <xsl:value-of select="substring-after(@uri, $processedPipelineBuildWorkingDirectory)"/>
+                                           <xsl:value-of select="substring-after($uriWithFileInitialize, $processedPipelineBuildWorkingDirectory)"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
