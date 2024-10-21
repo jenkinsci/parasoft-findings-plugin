@@ -7,6 +7,40 @@
     <xsl:variable name="toolVer" select="/Coverage/@toolVer"/>
     <xsl:variable name="toolDispName" select="/Coverage/@toolDispName"/>
     <xsl:param name="pipelineBuildWorkingDirectory"><xsl:value-of select="/Coverage/@pipelineBuildWorkingDirectory"/></xsl:param>
+
+    <!-- Used to store the URI prefix adapted to the current report for later calculation of the relative path -->
+    <xsl:variable name="uriPrefix">
+        <xsl:variable name="firstLocUri" select="/Coverage/Locations/Loc[1]/@uri"/>
+        <!-- Try to take the first <Loc> as an example to get prefix -->
+        <xsl:choose>
+            <!-- for file:/xxx uri pattern -->
+            <xsl:when test="matches($firstLocUri, '^file:/[^/]')">file:/</xsl:when>
+            <!-- for file://hostname/xxx uri pattern -->
+            <xsl:when test="matches($firstLocUri, '^file://[^/]+/')">
+                <!-- Extract the hostname from an uri, like: the result is 'hostname' for uri 'file://hostname/folder/xxx' -->
+                <xsl:variable name="hostname" select="replace($firstLocUri, '^file://([^/]+)(/.*)$', '$1')" />
+                <xsl:value-of select="concat('file://', $hostname, '/')" />
+            </xsl:when>
+            <!-- for file:///xxx uri pattern -->
+            <xsl:otherwise>file:///</xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+
+    <!-- Template for formatting URIs -->
+    <xsl:template name="formatUri">
+        <xsl:param name="uri"/>
+        <xsl:param name="prefix"/>
+
+        <!-- Remove prefix if present and trim spaces -->
+        <xsl:variable name="withoutPrefix" select="replace($uri, concat($prefix, ''), '')"/>
+        <!-- Trim spaces at the front and back ends of the URI -->
+        <xsl:variable name="trimmedUri" select="replace(replace($withoutPrefix, '^\s+', ''), '\s+$', '')"/>
+        <!-- Replace backslashes with forward slashes for consistency in path formatting -->
+        <xsl:variable name="processedUri" select="translate($trimmedUri, '\', '/')"/>
+
+        <xsl:value-of select="$processedUri"/>
+    </xsl:template>
+
     <xsl:template match="/">
         <xsl:element name="coverage">
             <xsl:variable name="allLocNodes" select="/Coverage/Locations/Loc"/>
@@ -42,6 +76,13 @@
         <xsl:element name="packages">
 <!--             Group by the parent path of uri-->
             <xsl:for-each-group select="/Coverage/Locations/Loc" group-by="substring-before(@uri, tokenize(@uri, '/')[last()])">
+                <xsl:variable name="rawUri" select="@uri"/>
+                <xsl:variable name="formattedUri">
+                    <xsl:call-template name="formatUri">
+                        <xsl:with-param name="uri" select="$rawUri"/>
+                        <xsl:with-param name="prefix" select="$uriPrefix"/>
+                    </xsl:call-template>
+                </xsl:variable>
                 <xsl:variable name="lineRateForPacakgeTag">
                     <xsl:call-template name="getLineRateForPackage">
                         <xsl:with-param name="locNodesToCalcute" select="current-group()"/>
@@ -79,7 +120,7 @@
                             <xsl:choose>
                                 <xsl:when test="$isExternalReport">
                                     <xsl:call-template name="getPackageName">
-                                        <xsl:with-param name="projectPath" select="@uri"/>
+                                        <xsl:with-param name="projectPath" select="$formattedUri"/>
                                     </xsl:call-template>
                                 </xsl:when>
                                 <xsl:otherwise>
@@ -101,7 +142,7 @@
                                 <xsl:variable name="filePath">
                                     <xsl:choose>
                                         <xsl:when test="$isExternalReport">
-                                            <xsl:value-of select="@uri"/>
+                                            <xsl:value-of select="$formattedUri"/>
                                         </xsl:when>
                                         <xsl:otherwise>
                                            <!-- Get relative source file path -->
