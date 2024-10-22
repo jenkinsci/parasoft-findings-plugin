@@ -11,22 +11,45 @@
     <xsl:template name="getUriWithoutFilePrefix">
         <xsl:param name="rawUri"/>
         <xsl:choose>
-            <!-- for file:/xxx uri pattern -->
-            <xsl:when test="matches($rawUri, '^file:/[^/]')">
-                <xsl:value-of select="substring-after($rawUri, 'file:/')"/>
+            <!-- for file:///xxx uri pattern -->
+            <xsl:when test="matches($rawUri, '^file:///([^/\\]+)')">
+                <xsl:variable name="uriWithoutFilePrefix" select="substring-after($rawUri, 'file:///')"/>
+                <xsl:call-template name="makeUriSystemCompatible">
+                    <xsl:with-param name="uriWithoutFilePrefix" select="$uriWithoutFilePrefix"/>
+                </xsl:call-template>
             </xsl:when>
             <!-- for file://hostname/xxx uri pattern -->
-            <xsl:when test="matches($rawUri, '^file://[^/]+/')">
-                <!-- Extract the hostname from an uri, like: the result is 'hostname' for uri 'file://hostname/folder/xxx' -->
+            <xsl:when test="matches($rawUri, '^file://([^/]+)/([^/\\]+)')">
+                <!-- Extract the hostname from an uri, like: the result is 'hostname' for uri 'file://hostname/C:/abc' -->
                 <xsl:variable name="hostname" select="replace($rawUri, '^file://([^/]+)(/.*)$', '$1')" />
-                <xsl:value-of select="substring-after($rawUri, concat('file://', $hostname, '/'))"/>
+                <xsl:variable name="uriWithoutFilePrefix" select="substring-after($rawUri, concat('file://', $hostname , '/'))"/>
+                <xsl:call-template name="makeUriSystemCompatible">
+                    <xsl:with-param name="uriWithoutFilePrefix" select="$uriWithoutFilePrefix"/>
+                </xsl:call-template>
             </xsl:when>
-            <!-- for file:///xxx uri pattern -->
-            <xsl:when test="matches($rawUri, '^file:///')">
-                <xsl:value-of select="substring-after($rawUri, 'file:///')"/>
+            <!-- for file:/ uri pattern -->
+            <xsl:when test="matches($rawUri, '^file:/([^/\\]+)')">
+                <xsl:variable name="uriWithoutFilePrefix" select="substring-after($rawUri, 'file:/')"/>
+                <xsl:call-template name="makeUriSystemCompatible">
+                    <xsl:with-param name="uriWithoutFilePrefix" select="$uriWithoutFilePrefix"/>
+                </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$rawUri"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="makeUriSystemCompatible">
+        <xsl:param name="uriWithoutFilePrefix"/>
+        <xsl:choose>
+            <!-- on windows: start with X:/ or X:\ -->
+            <xsl:when test="matches($uriWithoutFilePrefix, '^[A-Za-z]:[/\\]')">
+                <xsl:value-of select="$uriWithoutFilePrefix"/>
+            </xsl:when>
+            <!-- on linux -->
+            <xsl:otherwise>
+                <xsl:value-of select="concat('/', $uriWithoutFilePrefix)"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
