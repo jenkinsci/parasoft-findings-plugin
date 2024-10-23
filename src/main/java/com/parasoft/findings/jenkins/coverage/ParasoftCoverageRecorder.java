@@ -23,7 +23,6 @@ import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
 import com.parasoft.findings.jenkins.coverage.model.Node;
 import com.parasoft.findings.jenkins.util.FilteredLogChain;
 import edu.hm.hafner.util.FilteredLog;
-import edu.hm.hafner.util.TreeStringBuilder;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
