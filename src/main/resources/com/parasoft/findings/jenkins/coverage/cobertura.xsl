@@ -1,12 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"  standalone="yes"?>
 <xsl:stylesheet version="3.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:map="http://www.w3.org/2005/xpath-functions/map">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:map="http://www.w3.org/2005/xpath-functions/map">
     <xsl:variable name="toolName" select="/Coverage/@toolId"/>
     <xsl:variable name="toolVer" select="/Coverage/@toolVer"/>
     <xsl:variable name="toolDispName" select="/Coverage/@toolDispName"/>
     <xsl:param name="pipelineBuildWorkingDirectory"><xsl:value-of select="/Coverage/@pipelineBuildWorkingDirectory"/></xsl:param>
+
+    <xsl:template name="getUriWithoutFilePrefix">
+        <xsl:param name="rawUri"/>
+        <xsl:choose>
+            <!-- for file:///xxx uri pattern -->
+            <xsl:when test="matches($rawUri, '^file:///([^/\\]+)')">
+                <xsl:variable name="uriWithoutFilePrefix" select="substring-after($rawUri, 'file:///')"/>
+                <xsl:call-template name="makeUriSystemCompatible">
+                    <xsl:with-param name="uriWithoutFilePrefix" select="$uriWithoutFilePrefix"/>
+                </xsl:call-template>
+            </xsl:when>
+            <!-- for file://hostname/xxx uri pattern -->
+            <xsl:when test="matches($rawUri, '^file://([^/]+)/([^/\\]+)')">
+                <!-- Extract the hostname from an uri, like: the result is 'hostname' for uri 'file://hostname/C:/abc' -->
+                <xsl:variable name="hostname" select="replace($rawUri, '^file://([^/]+)(/.*)$', '$1')" />
+                <xsl:variable name="uriWithoutFilePrefix" select="substring-after($rawUri, concat('file://', $hostname , '/'))"/>
+                <xsl:call-template name="makeUriSystemCompatible">
+                    <xsl:with-param name="uriWithoutFilePrefix" select="$uriWithoutFilePrefix"/>
+                </xsl:call-template>
+            </xsl:when>
+            <!-- for file:/ uri pattern -->
+            <xsl:when test="matches($rawUri, '^file:/([^/\\]+)')">
+                <xsl:variable name="uriWithoutFilePrefix" select="substring-after($rawUri, 'file:/')"/>
+                <xsl:call-template name="makeUriSystemCompatible">
+                    <xsl:with-param name="uriWithoutFilePrefix" select="$uriWithoutFilePrefix"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$rawUri"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="makeUriSystemCompatible">
+        <xsl:param name="uriWithoutFilePrefix"/>
+        <xsl:choose>
+            <!-- on windows: start with X:/ or X:\ -->
+            <xsl:when test="matches($uriWithoutFilePrefix, '^[A-Za-z]:[/\\]')">
+                <xsl:value-of select="$uriWithoutFilePrefix"/>
+            </xsl:when>
+            <!-- on linux -->
+            <xsl:otherwise>
+                <xsl:value-of select="concat('/', $uriWithoutFilePrefix)"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
     <xsl:template match="/">
         <xsl:element name="coverage">
             <xsl:variable name="allLocNodes" select="/Coverage/Locations/Loc"/>
@@ -40,8 +87,13 @@
 
     <xsl:template name="packages">
         <xsl:element name="packages">
-<!--             Group by the parent path of uri-->
+            <!-- Group by the parent path of uri-->
             <xsl:for-each-group select="/Coverage/Locations/Loc" group-by="substring-before(@uri, tokenize(@uri, '/')[last()])">
+                <xsl:variable name="theFirstUriWithoutFilePrefixInCurrentGroup">
+                    <xsl:call-template name="getUriWithoutFilePrefix">
+                        <xsl:with-param name="rawUri" select="@uri"/>
+                    </xsl:call-template>
+                </xsl:variable>
                 <xsl:variable name="lineRateForPacakgeTag">
                     <xsl:call-template name="getLineRateForPackage">
                         <xsl:with-param name="locNodesToCalcute" select="current-group()"/>
@@ -55,18 +107,18 @@
                             </xsl:if>
                         </xsl:variable>
                         <xsl:variable name="encodedPipelineBuildWorkingDirectory">
-                             <xsl:if test="string($uncodedPipelineBuildWorkingDirectory) != ''">
+                            <xsl:if test="string($uncodedPipelineBuildWorkingDirectory) != ''">
                                 <!-- Replace % with %25 and space with %20 to get an encoded path-->
                                 <xsl:value-of select="replace(replace($uncodedPipelineBuildWorkingDirectory, '%', '%25'), ' ', '%20')"/>
                             </xsl:if>
                         </xsl:variable>
                         <xsl:variable name="processedPipelineBuildWorkingDirectory">
                             <xsl:choose>
-                                <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $uncodedPipelineBuildWorkingDirectory)">
+                                <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains($theFirstUriWithoutFilePrefixInCurrentGroup, $uncodedPipelineBuildWorkingDirectory)">
                                     <xsl:value-of select="$uncodedPipelineBuildWorkingDirectory"/>
                                 </xsl:when>
                                 <!-- Using encoded pipeline build working directory when the uri attribute of <Loc> tag in Parasoft tool report(e.g. jtest report) is encoded -->
-                                <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains(@uri, $encodedPipelineBuildWorkingDirectory)">
+                                <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains($theFirstUriWithoutFilePrefixInCurrentGroup, $encodedPipelineBuildWorkingDirectory)">
                                     <xsl:value-of select="$encodedPipelineBuildWorkingDirectory"/>
                                 </xsl:when>
                                 <xsl:otherwise>
@@ -79,13 +131,13 @@
                             <xsl:choose>
                                 <xsl:when test="$isExternalReport">
                                     <xsl:call-template name="getPackageName">
-                                        <xsl:with-param name="projectPath" select="@uri"/>
+                                        <xsl:with-param name="projectPath" select="$theFirstUriWithoutFilePrefixInCurrentGroup"/>
                                     </xsl:call-template>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:call-template name="getPackageName">
                                         <!-- Get relative source file path -->
-                                        <xsl:with-param name="projectPath" select="substring-after(@uri, $processedPipelineBuildWorkingDirectory)"/>
+                                        <xsl:with-param name="projectPath" select="substring-after($theFirstUriWithoutFilePrefixInCurrentGroup, $processedPipelineBuildWorkingDirectory)"/>
                                     </xsl:call-template>
                                 </xsl:otherwise>
                             </xsl:choose>
@@ -98,14 +150,21 @@
                         </xsl:attribute>
                         <xsl:element name="classes">
                             <xsl:for-each select="current-group()">
+                                <xsl:variable name="sourceFileUriWithoutFilePrefix">
+                                    <xsl:call-template name="getUriWithoutFilePrefix">
+                                        <xsl:with-param name="rawUri" select="@uri"/>
+                                    </xsl:call-template>
+                                </xsl:variable>
                                 <xsl:variable name="filePath">
                                     <xsl:choose>
                                         <xsl:when test="$isExternalReport">
-                                            <xsl:value-of select="@uri"/>
+                                            <!-- Replace %25 with % and %20 with space to get an uncoded path-->
+                                            <xsl:value-of select="replace(replace($sourceFileUriWithoutFilePrefix, '%25', '%'), '%20', ' ')"/>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                           <!-- Get relative source file path -->
-                                           <xsl:value-of select="substring-after(@uri, $processedPipelineBuildWorkingDirectory)"/>
+                                            <!-- Get relative source file path -->
+                                            <!-- Replace %25 with % and %20 with space to get an uncoded path-->
+                                            <xsl:value-of select="replace(replace(substring-after($sourceFileUriWithoutFilePrefix, $processedPipelineBuildWorkingDirectory), '%25', '%'), '%20', ' ')"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
@@ -217,7 +276,7 @@
         <xsl:choose>
             <xsl:when test="count($segments) > 1">
                 <xsl:variable name="filename">
-                     <xsl:value-of select="$segments[last()]"/>
+                    <xsl:value-of select="$segments[last()]"/>
                 </xsl:variable>
                 <xsl:choose>
                     <!--    Jtest    -->
@@ -239,7 +298,8 @@
                     </xsl:when>
                     <!--     Dottest  or CPPTest std     -->
                     <xsl:when test="$toolName = 'dottest' or $toolName = 'c++test'">
-                        <xsl:value-of select="substring-before($projectPath, concat($delimiter, $filename))"/>
+                        <!-- Replace %25 with % and %20 with space to get an uncoded path-->
+                        <xsl:value-of select="replace(replace(substring-before($projectPath, concat($delimiter, $filename)), '%25', '%'), '%20', ' ')"/>
                     </xsl:when>
                 </xsl:choose>
             </xsl:when>

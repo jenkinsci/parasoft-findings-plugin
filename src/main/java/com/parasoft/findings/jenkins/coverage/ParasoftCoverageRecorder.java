@@ -23,7 +23,6 @@ import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
 import com.parasoft.findings.jenkins.coverage.model.Node;
 import com.parasoft.findings.jenkins.util.FilteredLogChain;
 import edu.hm.hafner.util.FilteredLog;
-import edu.hm.hafner.util.TreeStringBuilder;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
@@ -242,17 +241,8 @@ public class ParasoftCoverageRecorder extends Recorder {
                                       FilteredLogChain logChain) throws InterruptedException {
         FilteredLog log = logChain.addNewFilteredLog("Errors while resolving source code files:");
         log.logInfo("Resolving source code files...");
-        var sources = rootNode.getSourceFolders();
-        var pathMapping = new PathResolver().resolvePaths(rootNode.getFiles(), sources, workspace, log);
+        var pathMapping = new PathResolver().resolvePaths(rootNode.getFiles(), workspace, log);
 
-        if (!pathMapping.isEmpty()) {
-            log.logInfo("Making paths of " + pathMapping.size() + " source code files relative to workspace root...");
-            var builder = new TreeStringBuilder();
-            rootNode.getAllFileNodes().stream()
-                    .filter(file -> pathMapping.containsKey(file.getRelativePath()))
-                    .forEach(file -> file.setRelativePath(builder.intern(pathMapping.get(file.getRelativePath()))));
-            builder.dedup();
-        }
         logChain.getLogHandler().log(log);
     }
 
