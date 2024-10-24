@@ -158,11 +158,13 @@
                                 <xsl:variable name="filePath">
                                     <xsl:choose>
                                         <xsl:when test="$isExternalReport">
-                                            <xsl:value-of select="$sourceFileUriWithoutFilePrefix"/>
+                                            <!-- Replace %25 with % and %20 with space to get an uncoded path-->
+                                            <xsl:value-of select="replace(replace($sourceFileUriWithoutFilePrefix, '%25', '%'), '%20', ' ')"/>
                                         </xsl:when>
                                         <xsl:otherwise>
                                             <!-- Get relative source file path -->
-                                            <xsl:value-of select="substring-after($sourceFileUriWithoutFilePrefix, $processedPipelineBuildWorkingDirectory)"/>
+                                            <!-- Replace %25 with % and %20 with space to get an uncoded path-->
+                                            <xsl:value-of select="replace(replace(substring-after($sourceFileUriWithoutFilePrefix, $processedPipelineBuildWorkingDirectory), '%25', '%'), '%20', ' ')"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
@@ -296,7 +298,8 @@
                     </xsl:when>
                     <!--     Dottest  or CPPTest std     -->
                     <xsl:when test="$toolName = 'dottest' or $toolName = 'c++test'">
-                        <xsl:value-of select="substring-before($projectPath, concat($delimiter, $filename))"/>
+                        <!-- Replace %25 with % and %20 with space to get an uncoded path-->
+                        <xsl:value-of select="replace(replace(substring-before($projectPath, concat($delimiter, $filename)), '%25', '%'), '%20', ' ')"/>
                     </xsl:when>
                 </xsl:choose>
             </xsl:when>
