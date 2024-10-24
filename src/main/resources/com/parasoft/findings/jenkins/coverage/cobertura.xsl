@@ -89,7 +89,7 @@
         <xsl:element name="packages">
             <!-- Group by the parent path of uri-->
             <xsl:for-each-group select="/Coverage/Locations/Loc" group-by="substring-before(@uri, tokenize(@uri, '/')[last()])">
-                <xsl:variable name="uriWithoutFilePrefix">
+                <xsl:variable name="theFirstUriWithoutFilePrefixInCurrentGroup">
                     <xsl:call-template name="getUriWithoutFilePrefix">
                         <xsl:with-param name="rawUri" select="@uri"/>
                     </xsl:call-template>
@@ -114,11 +114,11 @@
                         </xsl:variable>
                         <xsl:variable name="processedPipelineBuildWorkingDirectory">
                             <xsl:choose>
-                                <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains($uriWithoutFilePrefix, $uncodedPipelineBuildWorkingDirectory)">
+                                <xsl:when test="string($uncodedPipelineBuildWorkingDirectory) != '' and contains($theFirstUriWithoutFilePrefixInCurrentGroup, $uncodedPipelineBuildWorkingDirectory)">
                                     <xsl:value-of select="$uncodedPipelineBuildWorkingDirectory"/>
                                 </xsl:when>
                                 <!-- Using encoded pipeline build working directory when the uri attribute of <Loc> tag in Parasoft tool report(e.g. jtest report) is encoded -->
-                                <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains($uriWithoutFilePrefix, $encodedPipelineBuildWorkingDirectory)">
+                                <xsl:when test="string($encodedPipelineBuildWorkingDirectory) != '' and contains($theFirstUriWithoutFilePrefixInCurrentGroup, $encodedPipelineBuildWorkingDirectory)">
                                     <xsl:value-of select="$encodedPipelineBuildWorkingDirectory"/>
                                 </xsl:when>
                                 <xsl:otherwise>
@@ -131,13 +131,13 @@
                             <xsl:choose>
                                 <xsl:when test="$isExternalReport">
                                     <xsl:call-template name="getPackageName">
-                                        <xsl:with-param name="projectPath" select="$uriWithoutFilePrefix"/>
+                                        <xsl:with-param name="projectPath" select="$theFirstUriWithoutFilePrefixInCurrentGroup"/>
                                     </xsl:call-template>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:call-template name="getPackageName">
                                         <!-- Get relative source file path -->
-                                        <xsl:with-param name="projectPath" select="substring-after($uriWithoutFilePrefix, $processedPipelineBuildWorkingDirectory)"/>
+                                        <xsl:with-param name="projectPath" select="substring-after($theFirstUriWithoutFilePrefixInCurrentGroup, $processedPipelineBuildWorkingDirectory)"/>
                                     </xsl:call-template>
                                 </xsl:otherwise>
                             </xsl:choose>
@@ -150,14 +150,19 @@
                         </xsl:attribute>
                         <xsl:element name="classes">
                             <xsl:for-each select="current-group()">
+                                <xsl:variable name="sourceFileUriWithoutFilePrefix">
+                                    <xsl:call-template name="getUriWithoutFilePrefix">
+                                        <xsl:with-param name="rawUri" select="@uri"/>
+                                    </xsl:call-template>
+                                </xsl:variable>
                                 <xsl:variable name="filePath">
                                     <xsl:choose>
                                         <xsl:when test="$isExternalReport">
-                                            <xsl:value-of select="$uriWithoutFilePrefix"/>
+                                            <xsl:value-of select="$sourceFileUriWithoutFilePrefix"/>
                                         </xsl:when>
                                         <xsl:otherwise>
                                             <!-- Get relative source file path -->
-                                            <xsl:value-of select="substring-after($uriWithoutFilePrefix, $processedPipelineBuildWorkingDirectory)"/>
+                                            <xsl:value-of select="substring-after($sourceFileUriWithoutFilePrefix, $processedPipelineBuildWorkingDirectory)"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:variable>
