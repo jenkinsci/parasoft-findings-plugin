@@ -118,7 +118,7 @@ public class RuleDocumentationStorage
         }
     }
 
-    private static final class InternalStoreRuleDocFileCallable implements FileCallable<Boolean> { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+    private static final class InternalStoreRuleDocFileCallable implements FileCallable<Boolean> {
 
         private static final long serialVersionUID = 1L;
 

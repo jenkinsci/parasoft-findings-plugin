@@ -40,7 +40,7 @@ import org.apache.commons.lang3.math.Fraction;
  *
  * @author Florian Orendi
  */
-public final class Percentage implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+public final class Percentage implements Serializable {
     private static final long serialVersionUID = 3324942976687883481L;
 
     /** null value. */

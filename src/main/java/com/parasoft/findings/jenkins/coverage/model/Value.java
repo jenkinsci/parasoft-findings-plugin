@@ -42,7 +42,7 @@ import edu.umd.cs.findbugs.annotations.CheckReturnValue;
  *
  * @author Ullrich Hafner
  */
-public abstract class Value implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+public abstract class Value implements Serializable {
     private static final long serialVersionUID = -1062406664372222691L;
     private static final String METRIC_SEPARATOR = ":";
 
@@ -103,7 +103,7 @@ public abstract class Value implements Serializable { // parasoft-suppress OWASP
             if (StringUtils.contains(cleanedFormat, METRIC_SEPARATOR)) {
                 var metric = Metric.valueOf(StringUtils.substringBefore(cleanedFormat, METRIC_SEPARATOR));
                 var value = StringUtils.substringAfter(cleanedFormat, METRIC_SEPARATOR);
-                switch (metric) { // parasoft-suppress PB.PDS-3 "Expected"
+                switch (metric) {
                     case CONTAINER:
                     case MODULE:
                     case PACKAGE:
