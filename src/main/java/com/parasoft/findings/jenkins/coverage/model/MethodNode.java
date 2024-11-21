@@ -31,7 +31,7 @@ import java.util.Objects;
  *
  * @author Florian Orendi
  */
-public final class MethodNode extends Node { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+public final class MethodNode extends Node {
     private static final long serialVersionUID = -5765205034179396434L;
 
     private final String signature;

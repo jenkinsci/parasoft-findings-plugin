@@ -36,7 +36,7 @@ import com.parasoft.findings.jenkins.coverage.model.Metric.MetricTendency;
  *
  * @author Ullrich Hafner
  */
-public final class FractionValue extends Value { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+public final class FractionValue extends Value {
     private static final long serialVersionUID = -7019903979028578410L;
 
     private final Fraction fraction;

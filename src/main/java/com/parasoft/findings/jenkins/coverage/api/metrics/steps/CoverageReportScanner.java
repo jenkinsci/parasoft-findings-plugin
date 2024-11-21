@@ -44,7 +44,7 @@ import java.util.Optional;
  *
  * @author Ullrich Hafner
  */
-public class CoverageReportScanner extends AgentFileVisitor<ModuleNode> { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+public class CoverageReportScanner extends AgentFileVisitor<ModuleNode> {
     private static final long serialVersionUID = 6940864958150044554L;
 
     private static final PathUtil PATH_UTIL = new PathUtil();

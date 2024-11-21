@@ -73,7 +73,7 @@ public class PathResolver {
     /**
      * Resolves source code files on the agent using the stored paths of the coverage reports.
      */
-    static class AgentPathResolver extends MasterToSlaveFileCallable<RemoteResultWrapper<HashMap<String, String>>> { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+    static class AgentPathResolver extends MasterToSlaveFileCallable<RemoteResultWrapper<HashMap<String, String>>> {
         private static final long serialVersionUID = 3966282357309568323L;
         private static final PathUtil PATH_UTIL = new PathUtil();
 

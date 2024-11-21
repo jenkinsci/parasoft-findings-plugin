@@ -48,7 +48,7 @@ import io.jenkins.plugins.util.QualityGate;
  *
  * @author Johannes Walter
  */
-public class CoverageQualityGate extends QualityGate { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+public class CoverageQualityGate extends QualityGate {
     private static final long serialVersionUID = -397278599489426668L;
 
     private static final ElementFormatter FORMATTER = new ElementFormatter();

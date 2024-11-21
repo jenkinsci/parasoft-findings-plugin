@@ -41,7 +41,7 @@ import edu.hm.hafner.util.TreeStringBuilder;
  */
 @SuppressWarnings("PMD.DataClass")
 // TODO: intern some strings after deserialization to improve the memory footprint
-public final class Mutation implements Serializable { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+public final class Mutation implements Serializable {
     private static final long serialVersionUID = -7725185756332899065L;
 
     private final boolean detected;

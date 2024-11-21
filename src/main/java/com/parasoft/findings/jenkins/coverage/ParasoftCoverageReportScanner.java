@@ -37,7 +37,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFileResult> { // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+public class ParasoftCoverageReportScanner extends AgentFileVisitor<ProcessedFileResult> {
 
     private static final long serialVersionUID = 6940864958150044554L;
 

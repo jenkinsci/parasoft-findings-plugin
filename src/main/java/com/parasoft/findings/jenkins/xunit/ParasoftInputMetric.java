@@ -21,7 +21,7 @@ import org.jenkinsci.lib.dtkit.model.InputType;
 import org.jenkinsci.lib.dtkit.model.OutputMetric;
 import org.jenkinsci.plugins.xunit.types.model.JUnitModel;
 
-public class ParasoftInputMetric // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+public class ParasoftInputMetric
     extends InputMetricXSL
 {
     @Override
@@ -49,7 +49,7 @@ public class ParasoftInputMetric // parasoft-suppress OWASP2021.A8.OROM "Using d
     }
 
     @Override
-    public String[] getInputXsdNameList() // parasoft-suppress PB.EAR "Reviewed"
+    public String[] getInputXsdNameList()
     {
         return null;
     }

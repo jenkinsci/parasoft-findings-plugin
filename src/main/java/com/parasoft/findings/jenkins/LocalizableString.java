@@ -22,7 +22,7 @@ import org.jvnet.localizer.Localizable;
 import org.jvnet.localizer.ResourceBundleHolder;
 
 
-public class LocalizableString // parasoft-suppress OWASP2021.A8.OROM "Using default serialization mechanism."
+public class LocalizableString
     extends Localizable
 {
     private static final long serialVersionUID = 5885639086662718677L;
