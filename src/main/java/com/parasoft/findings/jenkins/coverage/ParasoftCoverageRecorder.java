@@ -164,7 +164,7 @@ public class ParasoftCoverageRecorder extends Recorder {
             else {
                 logChain.getLogHandler().log("Skipping execution of coverage recorder since overall result is '%s'", overallResult);
             }
-        } catch (RuntimeException | Error e) {
+        } catch (RuntimeException | Error e) { // parasoft-suppress OWASP2021.A5.NCE "This is intentionally designed to prevent exceptions from bubbling up and causing the program to terminate."
             logChain.getLogHandler().logErrorMessages(Arrays.asList(ExceptionUtils.getRootCauseStackTrace(e)));
         }
     }
@@ -241,7 +241,7 @@ public class ParasoftCoverageRecorder extends Recorder {
                                       FilteredLogChain logChain) throws InterruptedException {
         FilteredLog log = logChain.addNewFilteredLog("Errors while resolving source code files:");
         log.logInfo("Resolving source code files...");
-        var pathMapping = new PathResolver().resolvePaths(rootNode.getFiles(), workspace, log);
+        new PathResolver().resolvePaths(rootNode.getFiles(), workspace, log);
 
         logChain.getLogHandler().log(log);
     }
