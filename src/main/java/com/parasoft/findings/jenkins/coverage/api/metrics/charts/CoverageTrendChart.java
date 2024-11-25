@@ -74,15 +74,16 @@ public class CoverageTrendChart {
             LineSeries lineSeries = new LineSeries(Messages.Metric_LINE(),
                     LINE_COVERAGE_COLOR, StackedMode.SEPARATE_LINES, FilledMode.FILLED,
                     dataSet.getSeries(CoverageSeriesBuilder.LINE_COVERAGE));
+            final double EPSILON = 1e-9; // 0.000000001 A small positive number which is acceptable as zero
             double maxCoverageValue = dataSet.getMaximumValue();
             double minCoverageValue = dataSet.getMinimumValue();
             double coverageRange = maxCoverageValue - minCoverageValue;
             // Adjust the maximum value and minimum value of the coverage trend line chart according to the coverage range for better display
             double space; // Add extra space for better display
-            if (maxCoverageValue == 0 && minCoverageValue == 0) {
+            if (Math.abs(maxCoverageValue) < EPSILON && Math.abs(minCoverageValue) < EPSILON) {
                 maxCoverageValue = 100;
                 minCoverageValue = 0;
-            } else if (coverageRange == 0.0) {
+            } else if (Math.abs(coverageRange) < EPSILON) {
                 space = 5;
                 maxCoverageValue = Math.ceil(maxCoverageValue) + space;
                 minCoverageValue = Math.floor(minCoverageValue) - space;

@@ -26,6 +26,7 @@ package com.parasoft.findings.jenkins.coverage.api.metrics.source;
 
 import java.io.IOException;
 
+import edu.hm.hafner.util.FilteredLog;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import com.parasoft.findings.jenkins.coverage.model.FileNode;
@@ -125,6 +126,8 @@ public class SourceViewModel implements ModelObject {
             return doc.html();
         }
         catch (IOException | InterruptedException exception) {
+            FilteredLog log = new FilteredLog();
+            log.logInfo("Failed to read source file: " + exception.getMessage());
             return ExceptionUtils.getStackTrace(exception);
         }
     }

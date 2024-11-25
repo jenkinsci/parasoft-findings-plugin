@@ -172,7 +172,7 @@ public class ParasoftCoverageRecorder extends Recorder {
     private void perform(final Run<?, ?> run, final FilePath workspace, final TaskListener taskListener,
                          final ResultHandler resultHandler, final FilteredLogChain logChain) throws InterruptedException {
 
-        List<com.parasoft.findings.jenkins.coverage.model.Node> results = recordCoverageResults(run, workspace, logChain);
+        List<Node> results = recordCoverageResults(run, workspace, logChain);
 
         // To enable evaluating of quality gates when there's no coverage result due to errors of report processing.
         // Manually construct a ModuleNode and set the coverage to 0.
@@ -395,7 +395,11 @@ public class ParasoftCoverageRecorder extends Recorder {
                 return FormValidation.ok();
             }
 
-            return VALIDATION_UTILITIES.validateCharset(sourceCodeEncoding);
+            return VALIDATION_UTILITIES.validateCharset(canonicalizeCharset(sourceCodeEncoding));
+        }
+
+        private String canonicalizeCharset(String sourceCodeEncoding) {
+            return sourceCodeEncoding == null ? StringUtils.EMPTY : sourceCodeEncoding.trim();
         }
     }
 
