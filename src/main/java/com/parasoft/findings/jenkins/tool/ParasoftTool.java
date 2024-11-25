@@ -87,7 +87,7 @@ public class ParasoftTool
             Map<String, String> envVars = run.getEnvironment(TaskListener.NULL);
             JenkinsVariablesResolver variablesResolver = new JenkinsVariablesResolver(envVars);
             resolvedSettingsPath = variablesResolver.performSubstitution(getLocalSettingsPath());
-        } catch (Exception e) {
+        } catch (Exception e) { // parasoft-suppress OWASP2021.A5.NCE "This is intentionally designed to prevent exceptions from bubbling up and causing the program to terminate."
             Logger.getLogger().warn(e);
         }
         _settings = JenkinsRulesUtil.loadSettings(workspace, resolvedSettingsPath);

@@ -37,7 +37,7 @@ public class JenkinsRulesUtil
      */
     public static Properties loadSettings(FilePath workspaceDir, String settingsPath)
     {
-        if (StringUtil.isEmpty(settingsPath)) {
+        if (settingsPath == null || StringUtil.isEmpty(settingsPath)) {
             return new Properties();
         }
         FilePath localSettingsFile = null;

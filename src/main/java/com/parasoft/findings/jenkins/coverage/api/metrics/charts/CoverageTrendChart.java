@@ -89,8 +89,8 @@ public class CoverageTrendChart {
             } else if (coverageRange > 0.0 && coverageRange < 0.5) {
                 // Keep one decimal for the maximum and minimum value when coverage range is larger than 0 and less than 0.5
                 space = 0.15;
-                maxCoverageValue = new BigDecimal(maxCoverageValue + space).setScale(1, RoundingMode.CEILING).doubleValue();
-                minCoverageValue = new BigDecimal(minCoverageValue - space).setScale(1, RoundingMode.FLOOR).doubleValue();
+                maxCoverageValue = new BigDecimal(String.valueOf(maxCoverageValue + space)).setScale(1, RoundingMode.CEILING).doubleValue();
+                minCoverageValue = new BigDecimal(String.valueOf(minCoverageValue - space)).setScale(1, RoundingMode.FLOOR).doubleValue();
 
                 // To adjust the space to keep one decimal for the maximum and minimum value
                 // when the minimum value is larger than 99.6 or the maximum value is less than 0.4
