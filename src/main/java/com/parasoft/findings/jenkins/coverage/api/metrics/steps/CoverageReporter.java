@@ -156,7 +156,7 @@ public class CoverageReporter {
         else {
             log.logInfo("Evaluating quality gates");
             if (qualityGateStatus.isSuccessful()) {
-                log.logInfo("-> All quality gates passed");
+                log.logInfo("-> All quality gates passed"); // parasoft-suppress OWASP2021.A2.CONSEN "This is expected to log the result of the quality gates evaluation, no sensitive data is exposed here.
             }
             else {
                 var message = String.format("-> Some quality gates failed: overall result is %s",

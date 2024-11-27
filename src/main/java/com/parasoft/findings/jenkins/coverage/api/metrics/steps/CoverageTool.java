@@ -38,7 +38,7 @@ import hudson.model.AbstractDescribableImpl;
  *
  * @author Ullrich Hafner
  */
-public class CoverageTool extends AbstractDescribableImpl<CoverageTool> implements Serializable {
+public class CoverageTool extends AbstractDescribableImpl<CoverageTool> implements Serializable { // parasoft-suppress OWASP2021.A8.SCBNP "Using default serialization mechanism."
     private static final long serialVersionUID = -8612521458890553037L;
 
     /**

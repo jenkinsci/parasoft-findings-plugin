@@ -44,7 +44,7 @@ import java.util.Set;
 import static com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder.*;
 
 @SuppressWarnings("unused")
-public class ParasoftCoverageStep extends Step implements Serializable {
+public class ParasoftCoverageStep extends Step implements Serializable { // parasoft-suppress OWASP2021.A8.SCBNP "Using default serialization mechanism."
     private static final long serialVersionUID = -2235239576082380147L;
     private static final ValidationUtilities VALIDATION_UTILITIES = new ValidationUtilities();
     private String pattern = StringUtils.EMPTY;
@@ -186,7 +186,11 @@ public class ParasoftCoverageStep extends Step implements Serializable {
                 return FormValidation.ok();
             }
 
-            return VALIDATION_UTILITIES.validateCharset(sourceCodeEncoding);
+            return VALIDATION_UTILITIES.validateCharset(canonicalizeCharset(sourceCodeEncoding));
+        }
+
+        private String canonicalizeCharset(String sourceCodeEncoding) {
+            return sourceCodeEncoding == null ? StringUtils.EMPTY : sourceCodeEncoding.trim();
         }
     }
 

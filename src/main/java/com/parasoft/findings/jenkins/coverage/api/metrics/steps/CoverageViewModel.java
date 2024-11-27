@@ -183,6 +183,7 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
             return ColorProviderFactory.createColorProvider(colorMapping);
         }
         catch (JsonProcessingException e) {
+            log.logInfo("Failed to parse color JSON: " + e.getMessage());
             return ColorProviderFactory.createDefaultColorProvider();
         }
     }
@@ -280,6 +281,7 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
                 return readSourceCode((FileNode)fileNode, tableId);
             }
             catch (IOException | InterruptedException exception) {
+                log.logInfo("Failed to read source code: " + exception.getMessage());
                 return ExceptionUtils.getStackTrace(exception);
             }
         }
