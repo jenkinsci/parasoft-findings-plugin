@@ -183,7 +183,7 @@ public class CoverageViewModel extends DefaultAsyncTableContentProvider implemen
             return ColorProviderFactory.createColorProvider(colorMapping);
         }
         catch (JsonProcessingException e) {
-            log.logInfo("Failed to parse color json: " + e.getMessage());
+            log.logInfo("Failed to parse color JSON: " + e.getMessage());
             return ColorProviderFactory.createDefaultColorProvider();
         }
     }
