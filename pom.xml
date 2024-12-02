@@ -196,6 +196,16 @@
   <dependencies>
     <!-- Library Dependencies -->
     <dependency>
+      <groupId>org.jenkins-ci.main</groupId>
+      <artifactId>jenkins-core</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>xpp3</groupId>
+          <artifactId>xpp3</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>com.parasoft</groupId>
       <artifactId>parasoft-findings-utils</artifactId>
       <version>${parasoft-findings-utils.version}</version>
@@ -236,6 +246,12 @@
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>warnings-ng</artifactId>
       <version>${warnings-ng.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
