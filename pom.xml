@@ -196,6 +196,7 @@
   <dependencies>
     <!-- Library Dependencies -->
     <dependency>
+      <!-- This fixes a compilation error caused by a package being accessible from multiple modules. -->
       <groupId>org.jenkins-ci.main</groupId>
       <artifactId>jenkins-core</artifactId>
       <exclusions>
@@ -246,6 +247,7 @@
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>warnings-ng</artifactId>
       <version>${warnings-ng.version}</version>
+      <!-- This fixes a compilation error caused by a package being accessible from multiple modules. -->
       <exclusions>
         <exclusion>
           <groupId>xml-apis</groupId>
