@@ -37,6 +37,7 @@ import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.verb.POST;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -167,6 +168,11 @@ public class ParasoftCoverageStep extends Step implements Serializable { // para
         // Used in jelly file.
         public String defaultPattern() {
             return DEFAULT_PATTERN;
+        }
+
+        // Used in jelly file.
+        public String defaultSourceCodeEncoding() {
+            return StandardCharsets.UTF_8.name();
         }
 
         @POST
