@@ -378,6 +378,11 @@ public class ParasoftCoverageRecorder extends Recorder {
             return DEFAULT_PATTERN;
         }
 
+        // Used in jelly file.
+        public String defaultSourceCodeEncoding() {
+            return StandardCharsets.UTF_8.name();
+        }
+
         @POST
         @SuppressWarnings("unused") // used by Stapler view data binding
         public ComboBoxModel doFillSourceCodeEncodingItems(@AncestorInPath final AbstractProject<?, ?> project) {
