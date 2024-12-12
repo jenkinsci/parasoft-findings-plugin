@@ -37,7 +37,7 @@
         <f:entry title="${%title.sourceCodeEncoding}" field="sourceCodeEncoding"
                  description="${%description.sourceCodeEncoding}"
                  help="/plugin/parasoft-findings/help/parasoftCoverage/help-sourceCodeEncoding.html">
-            <f:combobox default="${descriptor.defaultSourceCodeEncoding()}" placeholder="${descriptor.defaultSourceCodeEncoding()}"/>
+            <f:combobox default="${descriptor.defaultSourceCodeEncoding()}"/>
         </f:entry>
     </f:advanced>
 
