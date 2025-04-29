@@ -45,13 +45,23 @@ public class RuleDocumentationStorageTest
     }
 
     @Test
-    public void localRuleTest() throws IOException
+    public void localRuleTest_getRuleDocFromLocalDir() throws IOException
     {
+        testStoreRuleDocFileFromLocalFile("src/test/resources/rule");
+    }
+
+    @Test
+    public void localRuleTest_getRuleDocFromZipFile() throws IOException
+    {
+        testStoreRuleDocFileFromLocalFile("src/test/resources/rule/doc.zip");
+    }
+
+    private void testStoreRuleDocFileFromLocalFile(String ruleDocLocation) throws IOException {
         File tempDir = FileUtil.getTempDir();
         try {
             URL resource = null;
             try {
-                resource = new File("src/test/resources/rule").toURI().toURL();
+                resource = new File(ruleDocLocation).toURI().toURL();
             } catch (MalformedURLException e) {
                 fail();
             }

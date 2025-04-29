@@ -25,14 +25,11 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
+import com.parasoft.findings.utils.common.IStringConstants;
+import com.parasoft.findings.utils.common.util.IOUtils;
 import com.parasoft.findings.utils.common.util.StringUtil;
-import com.parasoft.findings.utils.common.util.URLUtil;
 import com.parasoft.findings.utils.doc.RuleDocumentationProvider;
 import org.jenkinsci.remoting.RoleChecker;
-
-import com.parasoft.findings.utils.common.IStringConstants;
-import com.parasoft.findings.utils.common.util.FileUtil;
-import com.parasoft.findings.utils.common.util.IOUtils;
 
 import hudson.FilePath;
 import hudson.FilePath.FileCallable;
@@ -69,44 +66,11 @@ public class RuleDocumentationStorage
         }
         String ruleDocLocation = _docProvider.getRuleDocLocation(analyzer, ruleId);
 
-        String contents = null;
-        if (StringUtil.isNonEmpty(ruleDocLocation)) {
-            if (isLocal(ruleDocLocation)) {
-                contents = readFromLocal(ruleDocLocation);
-            } else {
-                contents = readExternalURL(ruleDocLocation);
-            }
-        }
+        String contents = _docProvider.getRuleDocContent(ruleDocLocation);
         if (StringUtil.isNonEmptyTrimmed(contents)) {
             storeRuleDoc(new FilePath(_buildRoot), _rulesDocDir, analyzer, ruleId, contents);
         }
         _ruleDocs.add(key);
-    }
-
-    private String readFromLocal(String ruleDocLocation)
-    {
-        File localFile = URLUtil.getLocalFile(URLUtil.toURL(ruleDocLocation));
-        if (localFile != null) {
-            try {
-                return FileUtil.readFile(localFile, IStringConstants.UTF_8);
-            } catch (IOException e) {
-                Logger.getLogger().error(e);
-            }
-        } else {
-            Logger.getLogger().error("Failed to determine local file for rule doc location: " + ruleDocLocation); //$NON-NLS-1$
-        }
-        return IStringConstants.EMPTY;
-    }
-
-    private boolean isLocal(String ruleDocLocation)
-    {
-        File localFile = URLUtil.getLocalFile(URLUtil.toURL(ruleDocLocation));
-        return localFile != null;
-    }
-
-    private String readExternalURL(String externalUrl)
-    {
-        return this._docProvider.getDtpRuleDocContent(externalUrl);
     }
 
     private void storeRuleDoc(FilePath rootDir, String ruleDocDir, String analyzer, String ruleId, String contents)
