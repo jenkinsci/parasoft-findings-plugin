@@ -18,29 +18,24 @@ package com.parasoft.findings.jenkins;
 
 import com.parasoft.findings.utils.common.logging.FindingsLogger;
 
-final class Logger
-{
+final class Logger {
     /**
      * Provides logger for this package.
      * @return the logger instance
      *
      * @post $result != null
      */
-    public static FindingsLogger getLogger()
-    {
+    public static FindingsLogger getLogger() {
         return _LOGGER;
-
     } // getLogger()
 
     /**
      * Just to prevent instantiation.
      */
-    private Logger()
-    {
+    private Logger() {
         super();
-
     } // Logger()
 
-    private final static FindingsLogger _LOGGER = FindingsLogger.getLogger(Logger.class);
+    private static final FindingsLogger _LOGGER = FindingsLogger.getLogger(Logger.class);
 
 } // class Logger

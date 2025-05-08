@@ -16,19 +16,17 @@
 package com.parasoft.findings.jenkins;
 
 import java.io.File;
-
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
-
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-public class SoatestReportsXslTransformationTest
-{
+import static org.junit.jupiter.api.Assertions.*;
+
+class SoatestReportsXslTransformationTest {
 
     private static final String SOATEST_XUNIT_XSL = "src/main/resources/com/parasoft/findings/jenkins/xunit/soatest-xunit.xsl";
 
@@ -46,87 +44,78 @@ public class SoatestReportsXslTransformationTest
     };
 
     @Test
-    public void testSoatestExecutionViolationsForSingleTestCases() throws Exception
-    {
+    void testSoatestExecutionViolationsForSingleTestCases() throws Exception {
         Document output = transformExecutionViolations("execution-violations-single-output.xml");
         for (String type : EXECUTION_VIOLATION_TYPES) {
             Element testCase = findTestCase(output, "Execution violations/Single " + type);
             assertExecutionViolation(testCase, type);
-            Assert.assertEquals("1.000", testCase.getAttribute("time"));
+            assertEquals("1.000", testCase.getAttribute("time"));
         }
-        Assert.assertEquals(0, findTestCase(output, "Execution violations/Passing test")
+        assertEquals(0, findTestCase(output, "Execution violations/Passing test")
                 .getElementsByTagName("failure").getLength());
     }
 
     @Test
-    public void testSoatestExecutionViolationsForMultipleTestCases() throws Exception
-    {
+    void testSoatestExecutionViolationsForMultipleTestCases() throws Exception {
         Document output = transformExecutionViolations("execution-violations-multiple-output.xml");
         for (String type : EXECUTION_VIOLATION_TYPES) {
             assertExecutionViolation(findTestCase(output, "Execution violations/Parameterized " + type + "[Safari]"), type);
-            Assert.assertEquals(type, 0, findTestCase(output, "Execution violations/Parameterized " + type + "[Chrome]")
-                    .getElementsByTagName("failure").getLength());
+            assertEquals(0, findTestCase(output, "Execution violations/Parameterized " + type + "[Chrome]")
+                    .getElementsByTagName("failure").getLength(), type);
         }
     }
 
     @Test
-    public void testSoatestMixedExecutionViolationDetails() throws Exception
-    {
+    void testSoatestMixedExecutionViolationDetails() throws Exception {
         Document output = transformExecutionViolations("execution-violations-mixed-output.xml");
         NodeList failures = findTestCase(output, "Execution violations/Mixed violations").getElementsByTagName("failure");
-        Assert.assertEquals(1, failures.getLength());
+        assertEquals(1, failures.getLength());
         Element failure = (Element) failures.item(0);
-        Assert.assertEquals("Multiple errors reported", failure.getAttribute("message"));
-        Assert.assertEquals("==== ERROR ====\nFunctional failure"
+        assertEquals("Multiple errors reported", failure.getAttribute("message"));
+        assertEquals("==== ERROR ====\nFunctional failure"
                 + "\n\n==== ERROR ====\nChange impact failure\nChange impact details"
                 + "\n\n==== ERROR ====\nVisual difference failure\nSource: screenshot.png"
                 + "\n\n==== ERROR ====\nFuncViol\nMixed details without summary", failure.getTextContent());
     }
 
     @Test
-    public void testSoatestExecutionViolationsWithoutMessages() throws Exception
-    {
+    void testSoatestExecutionViolationsWithoutMessages() throws Exception {
         Document output = transformExecutionViolations("execution-violations-message-fallback-output.xml");
         assertFailure(output, "Functional without message", "FuncViol", "Details without summary");
     }
 
     @Test
-    public void testSoatestUnknownExecutionViolationIsNotReportedAsPassing() throws Exception
-    {
+    void testSoatestUnknownExecutionViolationIsNotReportedAsPassing() throws Exception {
         // FutureViolation is synthetic: matching must not depend on a fixed list of known types.
         Document output = transformExecutionViolations("execution-violations-unknown-output.xml");
         assertFailure(output, "Unknown violation", "Future violation failure", "Future violation details");
     }
 
     @Test
-    public void testSoatestExecutionViolationWithoutTestCase() throws Exception
-    {
+    void testSoatestExecutionViolationWithoutTestCase() throws Exception {
         Document output = transformExecutionViolations("execution-violations-without-test-case-output.xml");
         NodeList failures = findTestCase(output, "Execution violations/Without test case").getElementsByTagName("failure");
-        Assert.assertEquals(1, failures.getLength());
-        Assert.assertEquals("Visual comparison failed", ((Element) failures.item(0)).getAttribute("message"));
+        assertEquals(1, failures.getLength());
+        assertEquals("Visual comparison failed", ((Element) failures.item(0)).getAttribute("message"));
     }
 
     @Test
-    public void testSoatestExecutionViolationCounts() throws Exception
-    {
+    void testSoatestExecutionViolationCounts() throws Exception {
         transform(EXECUTION_VIOLATIONS_REPORT, "execution-violations-counts-output.xml", 1, 14, 10);
         Document output = transformExecutionViolations("execution-violations-totals-output.xml");
         Element suite = (Element) output.getElementsByTagName("testsuite").item(0);
-        Assert.assertEquals("14", suite.getAttribute("tests"));
-        Assert.assertEquals("10", suite.getAttribute("failures"));
+        assertEquals("14", suite.getAttribute("tests"));
+        assertEquals("10", suite.getAttribute("failures"));
     }
 
     @Test
-    public void testSoatestExecutionViolationsOutputSchema()
-    {
+    void testSoatestExecutionViolationsOutputSchema() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/" + EXECUTION_VIOLATIONS_REPORT,
                 "execution-violations-schema-output.xml");
     }
 
     @Test
-    public void testOriginalVisualDifferenceReport() throws Exception
-    {
+    void testOriginalVisualDifferenceReport() throws Exception {
         Document output = transform("soatest_visual_difference.xml", "native-original-visual-output.xml");
         assertCounts(output, 129, 526, 1);
         NodeList testCases = output.getElementsByTagName("testcase");
@@ -139,17 +128,16 @@ public class SoatestReportsXslTransformationTest
                 passingTests++;
             }
         }
-        Assert.assertEquals(525, passingTests);
+        assertEquals(525, passingTests);
 
         Element failure = failure(output, "Test Suite: Test Suite/Test Suite: Web Scenarios/"
                 + "Scenario: SOA-18974/Test 7: Visually Compare Window 2");
-        Assert.assertEquals("Visual difference found at (0, 0) of size 1,920 x 870.", failure.getAttribute("message"));
-        Assert.assertEquals("Source: SOA-18974_ScreenshotOutputs_test4_window2.png", failure.getTextContent());
+        assertEquals("Visual difference found at (0, 0) of size 1,920 x 870.", failure.getAttribute("message"));
+        assertEquals("Source: SOA-18974_ScreenshotOutputs_test4_window2.png", failure.getTextContent());
     }
 
     @Test
-    public void testNativeReportsProduceSchemaValidXunit()
-    {
+    void testNativeReportsProduceSchemaValidXunit() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatest_visual_difference.xml", "native-original-visual-schema-output.xml");
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatest_parabank_change_impact_with_all_functional_tests.xml", "native-change-schema-output.xml");
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatest_parabank_change_impact_without_functional_tests.xml", "native-change-only-schema-output.xml");
@@ -157,118 +145,106 @@ public class SoatestReportsXslTransformationTest
     }
 
     @Test
-    public void testNativeChangeImpactOnlyRunPreservesAnalyzedTests() throws Exception
-    {
+    void testNativeChangeImpactOnlyRunPreservesAnalyzedTests() throws Exception {
         Document output = transform("soatest_parabank_change_impact_without_functional_tests.xml", "native-change-only-output.xml");
         // All seven change-impact checks ran even though every functional total is zero.
         assertCounts(output, 1, 7, 7);
         Element failure = failure(output, "Test Suite: Test Suite/Test Suite: CartServicePort/Test 3: getItemById");
-        Assert.assertTrue(failure.getTextContent().contains("getItemByIdentifier"));
-        Assert.assertFalse(failure.getTextContent().contains("SOAP Fault"));
+        assertTrue(failure.getTextContent().contains("getItemByIdentifier"));
+        assertFalse(failure.getTextContent().contains("SOAP Fault"));
     }
 
     @Test
-    public void testNativeFilteredFunctionalRunRetainsAllExecutedChangeChecks() throws Exception
-    {
+    void testNativeFilteredFunctionalRunRetainsAllExecutedChangeChecks() throws Exception {
         Document output = transform("soatest_parabank_change_impact_with_one_functional_test.xml", "native-change-filtered-output.xml");
         // The functional filter selects submitOrder; Change Advisor still analyzes all seven clients.
         assertCounts(output, 1, 7, 7);
         Element failure = failure(output, "Test Suite: Test Suite/Test Suite: CartServicePort/Test 1: addItemToCart");
-        Assert.assertTrue(failure.getTextContent().contains("Operation \"addItemToCart\" - targetObjectUri changed"));
-        Assert.assertFalse(failure.getTextContent().contains("SOAP Fault"));
+        assertTrue(failure.getTextContent().contains("Operation \"addItemToCart\" - targetObjectUri changed"));
+        assertFalse(failure.getTextContent().contains("SOAP Fault"));
     }
 
     @Test
-    public void testNativeChangeImpactsIncludeFunctionallyPassingTestsInFailureTotals() throws Exception
-    {
+    void testNativeChangeImpactsIncludeFunctionallyPassingTestsInFailureTotals() throws Exception {
         Document output = transform("soatest_parabank_change_impact_with_all_functional_tests.xml", "native-change-output.xml");
         // Native functional counters exclude the passing SOAP call whose Change Advisor checks failed.
         assertCounts(output, 1, 7, 7);
         String scenario = "Test Suite: Test Suite/Test Suite: CartServicePort/";
         Element changeOnly = failure(output, scenario + "Test 6: submitOrder");
-        Assert.assertEquals("Multiple errors reported", changeOnly.getAttribute("message"));
-        Assert.assertEquals("==== ERROR ====\nOperation \"submitOrder\" - targetObjectUri changed from \"http://bookstore.parasoft.com/\""
+        assertEquals("Multiple errors reported", changeOnly.getAttribute("message"));
+        assertEquals("==== ERROR ====\nOperation \"submitOrder\" - targetObjectUri changed from \"http://bookstore.parasoft.com/\""
                 + " to \"http://bookstore2.parasoft.com/\"\n" + CHANGE_DETAILS
                 + "\n\n==== ERROR ====\nElement \"submitOrder\" - namespace changed from \"http://bookstore.parasoft.com/\""
                 + " to \"http://bookstore2.parasoft.com/\"\n" + CHANGE_DETAILS, changeOnly.getTextContent());
 
         Element mixed = failure(output, scenario + "Test 1: addItemToCart");
-        Assert.assertTrue(mixed.getTextContent().contains("Operation \"addItemToCart\" - targetObjectUri changed"));
-        Assert.assertTrue(mixed.getTextContent().contains("Element \"addItemToCart\" - namespace changed"));
-        Assert.assertTrue(mixed.getTextContent().contains("SOAP Fault"));
-        Assert.assertFalse(mixed.getTextContent().contains("Operation \"getItemByTitle\""));
+        assertTrue(mixed.getTextContent().contains("Operation \"addItemToCart\" - targetObjectUri changed"));
+        assertTrue(mixed.getTextContent().contains("Element \"addItemToCart\" - namespace changed"));
+        assertTrue(mixed.getTextContent().contains("SOAP Fault"));
+        assertFalse(mixed.getTextContent().contains("Operation \"getItemByTitle\""));
     }
 
-    private Document transformExecutionViolations(String outputFileName) throws Exception
-    {
+    private Document transformExecutionViolations(String outputFileName) throws Exception {
         return transform(EXECUTION_VIOLATIONS_REPORT, outputFileName);
     }
 
-    private Document transform(String fileName, String outputFileName) throws Exception
-    {
+    private Document transform(String fileName, String outputFileName) throws Exception {
         File output = XUnitTransformer.transform(TEST_RESOURCES + "xml/" + fileName,
                 outputFileName, SOATEST_XUNIT_XSL);
         return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(output);
     }
 
-    private Element findTestCase(Document output, String name) throws Exception
-    {
+    private Element findTestCase(Document output, String name) throws Exception {
         Element testCase = (Element) XPathFactory.newInstance().newXPath()
                 .evaluate("//testcase[@name='" + name + "']", output, XPathConstants.NODE);
-        Assert.assertNotNull("Missing test case: " + name, testCase);
+        assertNotNull(testCase, "Missing test case: " + name);
         return testCase;
     }
 
-    private void assertExecutionViolation(Element testCase, String type)
-    {
+    private void assertExecutionViolation(Element testCase, String type) {
         NodeList failures = testCase.getElementsByTagName("failure");
-        Assert.assertEquals(type, 1, failures.getLength());
+        assertEquals(1, failures.getLength(), type);
         Element failure = (Element) failures.item(0);
-        Assert.assertEquals(type + " failure", failure.getAttribute("message"));
-        Assert.assertEquals(type, type + " details", failure.getTextContent());
+        assertEquals(type + " failure", failure.getAttribute("message"));
+        assertEquals(type + " details", failure.getTextContent(), type);
     }
 
-    private void assertFailure(Document output, String testName, String message, String details) throws Exception
-    {
+    private void assertFailure(Document output, String testName, String message, String details) throws Exception {
         NodeList failures = findTestCase(output, "Execution violations/" + testName).getElementsByTagName("failure");
-        Assert.assertEquals(testName, 1, failures.getLength());
+        assertEquals(1, failures.getLength(), testName);
         Element failure = (Element) failures.item(0);
-        Assert.assertEquals(testName, message, failure.getAttribute("message"));
-        Assert.assertEquals(testName, details, failure.getTextContent());
+        assertEquals(message, failure.getAttribute("message"), testName);
+        assertEquals(details, failure.getTextContent(), testName);
     }
 
-    private Element failure(Document output, String name) throws Exception
-    {
+    private Element failure(Document output, String name) throws Exception {
         NodeList failures = findTestCase(output, name).getElementsByTagName("failure");
-        Assert.assertEquals(name, 1, failures.getLength());
+        assertEquals(1, failures.getLength(), name);
         return (Element) failures.item(0);
     }
 
-    private void assertCounts(Document output, int suites, int tests, int failures)
-    {
+    private void assertCounts(Document output, int suites, int tests, int failures) {
         NodeList testSuites = output.getElementsByTagName("testsuite");
-        Assert.assertEquals(suites, testSuites.getLength());
+        assertEquals(suites, testSuites.getLength());
         // The original browser report spans many suites; verify each summary against its emitted cases.
         for (int i = 0; i < testSuites.getLength(); i++) {
             Element suite = (Element) testSuites.item(i);
-            Assert.assertEquals(suite.getAttribute("name"),
-                    Integer.toString(suite.getElementsByTagName("testcase").getLength()), suite.getAttribute("tests"));
-            Assert.assertEquals(suite.getAttribute("name"),
-                    Integer.toString(suite.getElementsByTagName("failure").getLength()), suite.getAttribute("failures"));
+            assertEquals(Integer.toString(suite.getElementsByTagName("testcase").getLength()),
+                    suite.getAttribute("tests"), suite.getAttribute("name"));
+            assertEquals(Integer.toString(suite.getElementsByTagName("failure").getLength()),
+                    suite.getAttribute("failures"), suite.getAttribute("name"));
         }
-        Assert.assertEquals(tests, output.getElementsByTagName("testcase").getLength());
-        Assert.assertEquals(failures, output.getElementsByTagName("failure").getLength());
+        assertEquals(tests, output.getElementsByTagName("testcase").getLength());
+        assertEquals(failures, output.getElementsByTagName("failure").getLength());
     }
 
     @Test
-    public void testSoatest9DesktopFunctionalXUnitTransform()
-    {
+    void testSoatest9DesktopFunctionalXUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatestDesktop9Functional.xml", "soatestDesktop9Functional-output.xml");
     }
 
     @Test
-    public void testSoatest9DesktopFunctionalIterationsXUnitTransform()
-    {
+    void testSoatest9DesktopFunctionalIterationsXUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatestDesktop9FunctionalIterations.xml", "soatestDesktop9FunctionalIterations-output.xml");
     }
 
@@ -276,55 +252,46 @@ public class SoatestReportsXslTransformationTest
      * soatestDesktopCalc3.xml has complex structure, test suites contains tests and other test suites
      */
     @Test
-    public void testSoatest9DesktopCalc3FunctionalXUnitTransform()
-    {
+    void testSoatest9DesktopCalc3FunctionalXUnitTransform() {
         soatestXunitTransformation( TEST_RESOURCES + "xml/soatestDesktopCalc3.xml", "soatestDesktopCalc3-output.xml");
     }
 
     @Test
-    public void testSoatestDesktop9FunctionalOutputXUnit()
-    {
+    void testSoatestDesktop9FunctionalOutputXUnit() {
         transform("soatestDesktop9Functional.xml", "soatestDesktop9Functional-output.xml", 2, 6, 6);
     }
 
     @Test
-    public void testSoatestDesktop10FunctionalOutputXUnit()
-    {
+    void testSoatestDesktop10FunctionalOutputXUnit() {
         transform("soatest_desktop_10_5_2.xml", "soatestDesktop10Functional-output.xml", 3, 6, 6);
     }
 
     @Test
-    public void testSoatest_10_6_1_FunctionalOutputXUnit()
-    {
+    void testSoatest_10_6_1_FunctionalOutputXUnit() {
         transform("SOAtest_functional_10.6.1.xml", "soatest_10_6_1_Functional-output.xml", 1, 18, 18);
     }
 
     @Test
-    public void testSoatest_2025_3_0_FunctionalOutputXUnit()
-    {
+    void testSoatest_2025_3_0_FunctionalOutputXUnit() {
         transform("SOAtest_functional_2025.3.0_zero_total_test.xml", "SOAtest_functional_2025.3.0-output.xml", 0, 0, 0);
     }
 
     @Test
-    public void testSoatest_2025_3_0_no_ExecutedTestsDetails_tag_FunctionalOutputXUnit()
-    {
+    void testSoatest_2025_3_0_no_ExecutedTestsDetails_tag_FunctionalOutputXUnit() {
         transform("SOAtest_functional_2025.3.0_no_ExecutedTestsDetails_tag.xml", "SOAtest_functional_2025.3.0_no_ExecutedTestsDetails_tag-output.xml", 0, 0, 0);
     }
 
     @Test
-    public void testSoatestDesktop9FunctionalIterationsOutputXUnit()
-    {
+    void testSoatestDesktop9FunctionalIterationsOutputXUnit() {
         transform("soatestDesktop9FunctionalIterations.xml", "soatestDesktop9FunctionalIterations.xml", 2, 20, 20);
     }
 
     @Test
-    public void testSoatest9DesktopCalc3OutputXUnit()
-    {
+    void testSoatest9DesktopCalc3OutputXUnit() {
         transform("soatestDesktopCalc3.xml", "soatestDesktopCalc3-output.xml", 1, 5, 2);
     }
 
-    private void transform(String fileName, String outputFileName, int testsuite, int testcase, int failure)
-    {
+    private void transform(String fileName, String outputFileName, int testsuite, int testcase, int failure) {
         try {
             String reportFileName = TEST_RESOURCES + "xml/" + fileName;
             File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, SOATEST_XUNIT_XSL);
@@ -339,14 +306,12 @@ public class SoatestReportsXslTransformationTest
     }
 
     @Test
-    public void testSoatestWarFunctionalXUnitTransform()
-    {
+    void testSoatestWarFunctionalXUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatestWar.xml", "soatestWar-output.xml");
     }
 
     @Test
-    public void testSoatestWarLoopFunctionalXUnitTransform()
-    {
+    void testSoatestWarLoopFunctionalXUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatestWarLoop.xml", "soatestWarLoop-output.xml");
     }
 
@@ -354,47 +319,40 @@ public class SoatestReportsXslTransformationTest
      * soatestWarCalc3.xml has complex structure, test suites contains tests and other test suites
      */
     @Test
-    public void testSoatestWarCalc3FunctionalXUnitTransform()
-    {
+    void testSoatestWarCalc3FunctionalXUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatestWarCalc3.xml", "soatestWarCalc3-output.xml");
     }
 
 
     @Test
-    public void testSoatestWarFunctionalXUnitOutput()
-    {
+    void testSoatestWarFunctionalXUnitOutput() {
         transform("soatestWar.xml", "soatestWar-output.xml", 2, 6, 6);
     }
 
     @Test
-    public void testSoatestWarLoopFunctionalXUnitOutput()
-    {
+    void testSoatestWarLoopFunctionalXUnitOutput() {
         transform("soatestWarLoop.xml", "soatestWarLoop-output.xml", 2, 20, 20);
     }
 
     @Test
-    public void testSoatestWarCalc3FunctionalXUnitOutput()
-    {
+    void testSoatestWarCalc3FunctionalXUnitOutput() {
         transform("soatestWarCalc3.xml", "soatestWarCalc3-output.xml", 1, 5, 2);
     }
 
     @Test
-    public void parseSOAtestTest_10_5_XUnitOutput()
-    {
+    void parseSOAtestTest_10_5_XUnitOutput() {
         transform("soatest_10.5.0.xml", "soatest_10.5.0-output.xml", 12, 153, 82);
     }
 
     @Test
-    public void parseSOAtestTest_10_5_XUnitTransform()
-    {
+    void parseSOAtestTest_10_5_XUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatest_10.5.0.xml", "soatest_10.5.0-output.xml");
     }
 
-    private void assertElementsCounts(TagCounterVerifier verifier, int expectedTestSuiteCount, int expectedTestCaseCount, int expectedFailuresCount)
-    {
-        Assert.assertEquals(expectedTestSuiteCount, verifier.getNumber("testsuite"));
-        Assert.assertEquals(expectedTestCaseCount, verifier.getNumber("testcase"));
-        Assert.assertEquals(expectedFailuresCount, verifier.getNumber("failure"));
+    private void assertElementsCounts(TagCounterVerifier verifier, int expectedTestSuiteCount, int expectedTestCaseCount, int expectedFailuresCount) {
+        assertEquals(expectedTestSuiteCount, verifier.getNumber("testsuite"));
+        assertEquals(expectedTestCaseCount, verifier.getNumber("testcase"));
+        assertEquals(expectedFailuresCount, verifier.getNumber("failure"));
     }
 
     private static void soatestXunitTransformation(String reportFileName, String outputFileName) {

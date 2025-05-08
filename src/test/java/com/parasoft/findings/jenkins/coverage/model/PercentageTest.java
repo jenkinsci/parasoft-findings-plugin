@@ -37,6 +37,7 @@ import static org.assertj.core.api.Assertions.*;
  * @author Florian Orendi
  */
 class PercentageTest {
+
     private static final double COVERAGE_FRACTION = 0.5;
 
     @Test

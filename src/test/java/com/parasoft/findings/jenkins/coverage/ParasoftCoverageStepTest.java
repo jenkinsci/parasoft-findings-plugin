@@ -10,10 +10,13 @@ import hudson.model.Run;
 import jenkins.model.ParameterizedJobMixIn;
 import org.jenkinsci.plugins.workflow.job.WorkflowJob;
 import org.junit.jupiter.api.Test;
+import org.jvnet.hudson.test.junit.jupiter.WithJenkins;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@WithJenkins
 class ParasoftCoverageStepTest extends AbstractCoverageITest {
+
     private static final String COVERAGE_FILE = "parasoft_coverage.xml";
     private static final String COVERAGE_QUALITY_GATE_SCRIPT = "[type: 'PROJECT', criticality: 'UNSTABLE', threshold: 0.0]";
     private static final String UNSTABLE_COVERAGE_QUALITY_GATE_SCRIPT = "[type: 'PROJECT', criticality: 'UNSTABLE', threshold: 100.0]";

@@ -35,15 +35,16 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.AbstractCoverageTest;
 import static org.assertj.core.api.Assertions.*;
 
 class CoverageSourcePrinterTest extends AbstractCoverageTest {
-    static final String CLASS = "class";
-    static final String RENDERED_CODE = "                    "
+
+    private static final String CLASS = "class";
+    private static final String RENDERED_CODE = "                    "
             + "for (int line = 0; line < lines.size(); line++) {";
 
     @Test
     void shouldRenderLinesWithVariousCoverages() {
         var tree = readResult("../steps/jacoco-codingstyle.xml", new JacocoParser());
 
-        var file = new CoverageSourcePrinter(tree.findFile("TreeStringBuilder.java").get());
+        var file = new CoverageSourcePrinter(tree.findFile("TreeStringBuilder.java").orElseThrow());
 
         assertThat(file.getColorClass(0)).isEqualTo(CoverageSourcePrinter.NO_COVERAGE);
         assertThat(file.getSummaryColumn(0)).isEqualTo("0");
@@ -61,7 +62,7 @@ class CoverageSourcePrinterTest extends AbstractCoverageTest {
         assertThat(file.getSummaryColumn(19)).isEqualTo("1");
         assertThat(file.getTooltip(19)).isEqualTo("Covered at least once");
 
-        var anotherFile = new CoverageSourcePrinter(tree.findFile("StringContainsUtils.java").get());
+        var anotherFile = new CoverageSourcePrinter(tree.findFile("StringContainsUtils.java").orElseThrow());
 
         assertThat(anotherFile.getColorClass(43)).isEqualTo(CoverageSourcePrinter.FULL_COVERAGE);
         assertThat(anotherFile.getSummaryColumn(43)).isEqualTo("2/2");
@@ -72,7 +73,7 @@ class CoverageSourcePrinterTest extends AbstractCoverageTest {
     void shouldRenderWholeLine() {
         var tree = readResult("../steps/jacoco-codingstyle.xml", new JacocoParser());
 
-        var file = new CoverageSourcePrinter(tree.findFile("TreeStringBuilder.java").get());
+        var file = new CoverageSourcePrinter(tree.findFile("TreeStringBuilder.java").orElseThrow());
 
         var renderedLine = file.renderLine(61,
                 "                    for (int line = 0; line < lines.size(); line++) {\n");

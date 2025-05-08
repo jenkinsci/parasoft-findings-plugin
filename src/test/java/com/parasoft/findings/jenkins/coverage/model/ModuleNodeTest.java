@@ -33,13 +33,14 @@ import static com.parasoft.findings.jenkins.coverage.model.Metric.*;
 import static com.parasoft.findings.jenkins.coverage.Assertions.*;
 
 class ModuleNodeTest extends AbstractNodeTest {
+
     @Override
-    Metric getMetric() {
+    protected Metric getMetric() {
         return MODULE;
     }
 
     @Override
-    Node createNode(final String name) {
+    protected Node createNode(final String name) {
         var moduleNode = new ModuleNode(name);
         moduleNode.addSource("/path/to/sources");
         return moduleNode;

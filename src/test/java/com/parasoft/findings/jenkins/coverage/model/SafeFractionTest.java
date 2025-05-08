@@ -35,6 +35,7 @@ import static org.assertj.core.api.Assertions.*;
  * @author Ullrich Hafner
  */
 class SafeFractionTest {
+
     @Test
     void shouldDelegateToFraction() {
         var ten = Fraction.getFraction(10, 1);
