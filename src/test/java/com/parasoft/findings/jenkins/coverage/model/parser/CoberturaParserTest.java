@@ -47,8 +47,9 @@ import static com.parasoft.findings.jenkins.coverage.Assertions.*;
 
 @DefaultLocale("en")
 class CoberturaParserTest extends AbstractParserTest {
+
     @Override
-    CoberturaParser createParser() {
+    protected CoberturaParser createParser() {
         return new CoberturaParser();
     }
 
@@ -246,7 +247,7 @@ class CoberturaParserTest extends AbstractParserTest {
         long missedLines = 0;
         long coveredLines = 0;
         for (Node node : nodes) {
-            var lineCoverage = (Coverage) node.getValue(LINE).get();
+            var lineCoverage = (Coverage) node.getValue(LINE).orElseThrow();
             missedLines = missedLines + lineCoverage.getMissed();
             coveredLines = coveredLines + lineCoverage.getCovered();
         }
@@ -265,7 +266,7 @@ class CoberturaParserTest extends AbstractParserTest {
     }
 
     private static Coverage getCoverage(final Node node, final Metric metric) {
-        return (Coverage) node.getValue(metric).get();
+        return (Coverage) node.getValue(metric).orElseThrow();
     }
 
     private void verifyCoverageMetrics(final Node tree) {

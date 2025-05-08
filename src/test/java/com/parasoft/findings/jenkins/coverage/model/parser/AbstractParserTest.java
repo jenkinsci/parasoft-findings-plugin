@@ -37,7 +37,6 @@ import org.junit.jupiter.api.Test;
 import com.parasoft.findings.jenkins.coverage.model.CoverageParser;
 import com.parasoft.findings.jenkins.coverage.model.ModuleNode;
 import edu.hm.hafner.util.FilteredLog;
-import edu.hm.hafner.util.SecureXmlParserFactory.ParsingException;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -47,9 +46,10 @@ import static org.assertj.core.api.Assertions.*;
  * @author Ullrich Hafner
  */
 abstract class AbstractParserTest {
+
     private final FilteredLog log = new FilteredLog("Errors");
 
-    ModuleNode readReport(final String fileName) {
+    protected ModuleNode readReport(final String fileName) {
         try (InputStream stream = AbstractParserTest.class.getResourceAsStream(fileName);
                 Reader reader = new InputStreamReader(Objects.requireNonNull(stream), StandardCharsets.UTF_8)) {
             return createParser().parse(reader, log);
@@ -59,7 +59,7 @@ abstract class AbstractParserTest {
         }
     }
 
-    abstract CoverageParser createParser();
+    protected abstract CoverageParser createParser();
 
     protected FilteredLog getLog() {
         return log;

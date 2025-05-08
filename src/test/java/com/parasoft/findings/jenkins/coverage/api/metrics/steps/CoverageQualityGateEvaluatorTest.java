@@ -41,6 +41,7 @@ import io.jenkins.plugins.util.QualityGateStatus;
 import static io.jenkins.plugins.util.assertions.Assertions.*;
 
 class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
+
     @Test
     void shouldBeInactiveIfGatesAreEmpty() {
         CoverageQualityGateEvaluator evaluator = new CoverageQualityGateEvaluator(new ArrayList<>(), createStatistics());
@@ -139,7 +140,7 @@ class CoverageQualityGateEvaluatorTest extends AbstractCoverageTest {
                 "[Modified code lines - Coverage]: ≪Failed≫ - (Actual value: 50.00%, Quality gate: 51.00)");
     }
 
-    static QualityGateResult createQualityGateResult() {
+    private static QualityGateResult createQualityGateResult() {
         Collection<CoverageQualityGate> qualityGates = new ArrayList<>();
         qualityGates.add(new CoverageQualityGate(51.0, Baseline.PROJECT, QualityGateCriticality.FAILURE));
         qualityGates.add(new CoverageQualityGate(51.0, Baseline.MODIFIED_LINES, QualityGateCriticality.FAILURE));

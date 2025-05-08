@@ -15,11 +15,11 @@
  */
 package com.parasoft.findings.jenkins;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.Suite;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
+@Suite
+@SelectClasses(value = {
         JenkinsVariablesResolverTest.class,
         FilePathUtilTest.class,
         ParasoftParserTest.class,
@@ -30,7 +30,6 @@ import org.junit.runners.Suite;
         XSLTransformTest.class,
         SoatestReportsXslTransformationTest.class
 })
-
 public class JenkinsTestSuite {
 
 }

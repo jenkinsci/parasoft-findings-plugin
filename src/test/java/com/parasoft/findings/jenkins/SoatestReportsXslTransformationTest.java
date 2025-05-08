@@ -17,25 +17,23 @@ package com.parasoft.findings.jenkins;
 
 import java.io.File;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class SoatestReportsXslTransformationTest
-{
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class SoatestReportsXslTransformationTest {
 
     private static final String SOATEST_XUNIT_XSL = "src/main/resources/com/parasoft/findings/jenkins/xunit/soatest-xunit.xsl";
 
     private static final String TEST_RESOURCES = "src/test/resources/";
 
     @Test
-    public void testSoatest9DesktopFunctionalXUnitTransform()
-    {
+    void testSoatest9DesktopFunctionalXUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatestDesktop9Functional.xml", "soatestDesktop9Functional-output.xml");
     }
 
     @Test
-    public void testSoatest9DesktopFunctionalIterationsXUnitTransform()
-    {
+    void testSoatest9DesktopFunctionalIterationsXUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatestDesktop9FunctionalIterations.xml", "soatestDesktop9FunctionalIterations-output.xml");
     }
 
@@ -43,43 +41,36 @@ public class SoatestReportsXslTransformationTest
      * soatestDesktopCalc3.xml has complex structure, test suites contains tests and other test suites
      */
     @Test
-    public void testSoatest9DesktopCalc3FunctionalXUnitTransform()
-    {
+    void testSoatest9DesktopCalc3FunctionalXUnitTransform() {
         soatestXunitTransformation( TEST_RESOURCES + "xml/soatestDesktopCalc3.xml", "soatestDesktopCalc3-output.xml");
     }
 
     @Test
-    public void testSoatestDesktop9FunctionalOutputXUnit()
-    {
+    void testSoatestDesktop9FunctionalOutputXUnit() {
         transform("soatestDesktop9Functional.xml", "soatestDesktop9Functional-output.xml", 2, 6, 6);
     }
 
     @Test
-    public void testSoatestDesktop10FunctionalOutputXUnit()
-    {
+    void testSoatestDesktop10FunctionalOutputXUnit() {
         transform("soatest_desktop_10_5_2.xml", "soatestDesktop10Functional-output.xml", 3, 6, 6);
     }
 
     @Test
-    public void testSoatest_10_6_1_FunctionalOutputXUnit()
-    {
+    void testSoatest_10_6_1_FunctionalOutputXUnit() {
         transform("SOAtest_functional_10.6.1.xml", "soatest_10_6_1_Functional-output.xml", 1, 18, 18);
     }
 
     @Test
-    public void testSoatestDesktop9FunctionalIterationsOutputXUnit()
-    {
+    void testSoatestDesktop9FunctionalIterationsOutputXUnit() {
         transform("soatestDesktop9FunctionalIterations.xml", "soatestDesktop9FunctionalIterations.xml", 2, 20, 20);
     }
 
     @Test
-    public void testSoatest9DesktopCalc3OutputXUnit()
-    {
+    void testSoatest9DesktopCalc3OutputXUnit() {
         transform("soatestDesktopCalc3.xml", "soatestDesktopCalc3-output.xml", 1, 5, 2);
     }
 
-    private void transform(String fileName, String outputFileName, int testsuite, int testcase, int failure)
-    {
+    private void transform(String fileName, String outputFileName, int testsuite, int testcase, int failure) {
         try {
             String reportFileName = TEST_RESOURCES + "xml/" + fileName;
             File outputFile = XUnitTransformer.transform(reportFileName, outputFileName, SOATEST_XUNIT_XSL);
@@ -94,14 +85,12 @@ public class SoatestReportsXslTransformationTest
     }
 
     @Test
-    public void testSoatestWarFunctionalXUnitTransform()
-    {
+    void testSoatestWarFunctionalXUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatestWar.xml", "soatestWar-output.xml");
     }
 
     @Test
-    public void testSoatestWarLoopFunctionalXUnitTransform()
-    {
+    void testSoatestWarLoopFunctionalXUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatestWarLoop.xml", "soatestWarLoop-output.xml");
     }
 
@@ -109,47 +98,40 @@ public class SoatestReportsXslTransformationTest
      * soatestWarCalc3.xml has complex structure, test suites contains tests and other test suites
      */
     @Test
-    public void testSoatestWarCalc3FunctionalXUnitTransform()
-    {
+    void testSoatestWarCalc3FunctionalXUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatestWarCalc3.xml", "soatestWarCalc3-output.xml");
     }
 
 
     @Test
-    public void testSoatestWarFunctionalXUnitOutput()
-    {
+    void testSoatestWarFunctionalXUnitOutput() {
         transform("soatestWar.xml", "soatestWar-output.xml", 2, 6, 6);
     }
 
     @Test
-    public void testSoatestWarLoopFunctionalXUnitOutput()
-    {
+    void testSoatestWarLoopFunctionalXUnitOutput() {
         transform("soatestWarLoop.xml", "soatestWarLoop-output.xml", 2, 20, 20);
     }
 
     @Test
-    public void testSoatestWarCalc3FunctionalXUnitOutput()
-    {
+    void testSoatestWarCalc3FunctionalXUnitOutput() {
         transform("soatestWarCalc3.xml", "soatestWarCalc3-output.xml", 1, 5, 2);
     }
 
     @Test
-    public void parseSOAtestTest_10_5_XUnitOutput()
-    {
+    void parseSOAtestTest_10_5_XUnitOutput() {
         transform("soatest_10.5.0.xml", "soatest_10.5.0-output.xml", 12, 153, 82);
     }
 
     @Test
-    public void parseSOAtestTest_10_5_XUnitTransform()
-    {
+    void parseSOAtestTest_10_5_XUnitTransform() {
         soatestXunitTransformation(TEST_RESOURCES + "xml/soatest_10.5.0.xml", "soatest_10.5.0-output.xml");
     }
 
-    private void assertElementsCounts(TagCounterVerifier verifier, int expectedTestSuiteCount, int expectedTestCaseCount, int expectedFailuresCount)
-    {
-        Assert.assertEquals(expectedTestSuiteCount, verifier.getNumber("testsuite"));
-        Assert.assertEquals(expectedTestCaseCount, verifier.getNumber("testcase"));
-        Assert.assertEquals(expectedFailuresCount, verifier.getNumber("failure"));
+    private void assertElementsCounts(TagCounterVerifier verifier, int expectedTestSuiteCount, int expectedTestCaseCount, int expectedFailuresCount) {
+        assertEquals(expectedTestSuiteCount, verifier.getNumber("testsuite"));
+        assertEquals(expectedTestCaseCount, verifier.getNumber("testcase"));
+        assertEquals(expectedFailuresCount, verifier.getNumber("failure"));
     }
 
     private static void soatestXunitTransformation(String reportFileName, String outputFileName) {

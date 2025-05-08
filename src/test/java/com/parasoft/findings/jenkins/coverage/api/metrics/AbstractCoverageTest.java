@@ -27,10 +27,7 @@ package com.parasoft.findings.jenkins.coverage.api.metrics;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
-import java.util.NavigableMap;
-import java.util.TreeMap;
 
-import org.apache.commons.lang3.math.Fraction;
 import org.junitpioneer.jupiter.DefaultLocale;
 
 import com.parasoft.findings.jenkins.coverage.model.Coverage.CoverageBuilder;
@@ -56,6 +53,7 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.CoverageStatisti
 @DefaultLocale("en")
 @SuppressWarnings("checkstyle:JavadocVariable")
 public abstract class AbstractCoverageTest extends ResourceTest {
+
     public static final String COBERTURA_CODING_STYLE_FILE = "cobertura-codingstyle.xml";
 
     public static final String COBERTURA_CODING_STYLE_NO_DATA_FILE = "cobertura-codingstyle-no-data.xml";

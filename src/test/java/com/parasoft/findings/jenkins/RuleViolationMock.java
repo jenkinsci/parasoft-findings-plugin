@@ -21,8 +21,7 @@ import com.parasoft.findings.utils.results.violations.ResultLocation;
 import java.util.Properties;
 
 
-public class RuleViolationMock implements IRuleViolation
-{
+public class RuleViolationMock implements IRuleViolation {
 
     private ResultLocation _resultLocation;
     private String _packageName;
@@ -30,14 +29,12 @@ public class RuleViolationMock implements IRuleViolation
     private String _message;
     private String _ruleId;
 
-    public String getAnalyzerId()
-    {
+    public String getAnalyzerId() {
         // TODO Auto-generated method stub
         return null;
     }
 
-    public String getNamespace()
-    {
+    public String getNamespace() {
         return _packageName;
     }
 
@@ -46,35 +43,29 @@ public class RuleViolationMock implements IRuleViolation
         return null;
     }
 
-    public ResultLocation getResultLocation()
-    {
+    public ResultLocation getResultLocation() {
         return _resultLocation;
     }
 
-    public void addAttribute(String sName, String sValue)
-    {
+    public void addAttribute(String sName, String sValue) {
         // TODO Auto-generated method stub
 
     }
 
-    public String getAttribute(String sName)
-    {
+    public String getAttribute(String sName) {
         return _properties.getProperty(sName);
     }
 
-    public String getMessage()
-    {
+    public String getMessage() {
         return _message;
     }
 
-    public String getRuleId()
-    {
+    public String getRuleId() {
         return _ruleId;
     }
 
     public RuleViolationMock(ResultLocation resultLocation, String packageName,
-                             Properties properties, String message, String ruleId)
-    {
+                             Properties properties, String message, String ruleId) {
         super();
         _resultLocation = resultLocation;
         _packageName = packageName;

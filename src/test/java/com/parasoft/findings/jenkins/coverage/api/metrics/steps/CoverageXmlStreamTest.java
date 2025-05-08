@@ -73,6 +73,7 @@ import static org.xmlunit.assertj.XmlAssert.assertThat;
  */
 @SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
 class CoverageXmlStreamTest extends SerializableTest<Node> {
+
     private static final String ACTION_QUALIFIED_NAME = "com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageBuildAction";
     private static final String EMPTY = "[]";
 

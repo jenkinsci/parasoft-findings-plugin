@@ -37,6 +37,7 @@ import static com.parasoft.findings.jenkins.coverage.Assertions.*;
  * @author Ullrich Hafner
  */
 class FractionValueTest {
+
     @Test
     void shouldCreateDelta() {
         var fraction = Fraction.getFraction(50, 1);

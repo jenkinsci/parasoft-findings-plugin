@@ -47,6 +47,7 @@ import static com.parasoft.findings.jenkins.coverage.Assertions.*;
 @SuppressWarnings("PMD.GodClass")
 @DefaultLocale("en")
 class NodeTest {
+
     private static final String COVERED_FILE = "Covered.java";
     private static final Percentage HUNDERT_PERCENT = Percentage.valueOf(1, 1);
     private static final String MISSED_FILE = "Missed.java";
@@ -174,7 +175,7 @@ class NodeTest {
     }
 
     private static Coverage getCoverage(final Node node, final Metric metric) {
-        return (Coverage) node.getValue(metric).get();
+        return (Coverage) node.getValue(metric).orElseThrow();
     }
 
     @Test
@@ -513,9 +514,9 @@ class NodeTest {
         sameProject.addChild(autogradingPkg);
         Node combinedReport = project.merge(sameProject);
 
-        assertThat(combinedReport.find(coveragePkg.getMetric(), coveragePkg.getName()).get())
+        assertThat(combinedReport.find(coveragePkg.getMetric(), coveragePkg.getName()).orElseThrow())
                 .isNotSameAs(coveragePkg);
-        assertThat(combinedReport.find(autogradingPkg.getMetric(), autogradingPkg.getName()).get())
+        assertThat(combinedReport.find(autogradingPkg.getMetric(), autogradingPkg.getName()).orElseThrow())
                 .isNotSameAs(autogradingPkg);
     }
 
@@ -529,9 +530,9 @@ class NodeTest {
         pkg.addChild(file);
         Node otherReport = report.copyTree();
 
-        otherReport.find(FILE, file.getName()).get().addValue(
+        otherReport.find(FILE, file.getName()).orElseThrow().addValue(
                 new CoverageBuilder().setMetric(LINE).setCovered(90).setMissed(10).build());
-        report.find(FILE, file.getName()).get().addValue(
+        report.find(FILE, file.getName()).orElseThrow().addValue(
                 new CoverageBuilder().setMetric(LINE).setCovered(80).setMissed(20).build());
 
         Node combined = report.merge(otherReport);
@@ -547,9 +548,9 @@ class NodeTest {
         report.addChild(pkg);
         pkg.addChild(file);
         Node otherReport = report.copyTree();
-        otherReport.find(FILE, file.getName()).get().addValue(
+        otherReport.find(FILE, file.getName()).orElseThrow().addValue(
                 new CoverageBuilder().setMetric(LINE).setCovered(70).setMissed(30).build());
-        report.find(FILE, file.getName()).get().addValue(
+        report.find(FILE, file.getName()).orElseThrow().addValue(
                 new CoverageBuilder().setMetric(LINE).setCovered(80).setMissed(20).build());
 
         Node combined = report.merge(otherReport);
@@ -570,7 +571,7 @@ class NodeTest {
         var file = tree.findFile(COVERED_FILE);
         assertThat(file).isPresent();
 
-        registerCodeChangesAndCoverage(file.get());
+        registerCodeChangesAndCoverage(file.orElseThrow());
 
         verifyFilteredTree(tree, tree.filterByModifiedLines(), this::verifyModifiedLines);
     }
@@ -640,7 +641,7 @@ class NodeTest {
 
         var node = tree.findFile(COVERED_FILE);
         assertThat(node).isPresent();
-        var fileNode = node.get();
+        var fileNode = node.orElseThrow();
 
         registerCoverageWithoutChange(fileNode);
         registerCodeChangesAndCoverage(fileNode);
@@ -683,7 +684,7 @@ class NodeTest {
 
         var node = tree.findFile(COVERED_FILE);
         assertThat(node).isPresent();
-        registerIndirectCoverageChanges(node.get());
+        registerIndirectCoverageChanges(node.orElseThrow());
 
         assertThat(tree.filterByIndirectChanges())
                 .isNotSameAs(tree)

@@ -17,27 +17,25 @@ import io.jenkins.plugins.analysis.core.model.StaticAnalysisLabelProvider;
 import io.jenkins.plugins.util.JenkinsFacade;
 import io.jenkins.plugins.util.LogHandler;
 import org.jenkins.ui.symbol.SymbolRequest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class ParasoftToolTest
-{
+class ParasoftToolTest {
+
     private static final String REPORT_NAME = "jtest_10.6.0_static.xml";
     private static final String TOOL_NAME = "Parasoft Findings";
 
     @Test
-    public void scanReportTest()
-            throws IOException, InterruptedException
-    {
+    void scanReportTest() throws IOException, InterruptedException {
         File tempDir = FileUtil.getTempDir();
         try {
             String localSettingsPath = new File("src/test/resources/settings")
@@ -55,7 +53,7 @@ public class ParasoftToolTest
 
             Report report = underTest.scan(freeStyleBuild,
                     new FilePath(new File("src/test/resources/xml")),
-                    Charset.forName("UTF-8"), logger);
+                    StandardCharsets.UTF_8, logger);
 
             Set<Severity> severieties = report.getSeverities();
             assertEquals(17, report.getSize());
@@ -68,8 +66,7 @@ public class ParasoftToolTest
     }
 
     @Test
-    public void labelProviderAndDescriptorTest() throws IOException, InterruptedException
-    {
+    void labelProviderAndDescriptorTest() throws IOException, InterruptedException {
         File tempDir = FileUtil.getTempDir();
         try {
             String localSettingsPath = new File("src/test/resources/settings")
@@ -89,7 +86,7 @@ public class ParasoftToolTest
 
             Report report = underTest.scan(freeStyleBuild,
                     new FilePath(new File("src/test/resources/xml")),
-                    Charset.forName("UTF-8"), logger);
+                    StandardCharsets.UTF_8, logger);
 
             ReportScanningToolDescriptor descriptor = new Descriptor();
             assertNotNull(descriptor);
@@ -113,38 +110,32 @@ public class ParasoftToolTest
             List<Object> rows = model.getRows();
             assertEquals(17, rows.size());
             for (Object object : rows) {
-                assertTrue(object instanceof ParasoftTableRow);
+                assertInstanceOf(ParasoftTableRow.class, object);
             }
         } finally {
             FileUtil.recursiveDelete(tempDir);
         }
     }
 
-    @SuppressWarnings("serial")
-    private class UnderTest
-            extends ParasoftTool
-    {
+    private static class UnderTest
+            extends ParasoftTool {
         @Override
-        public String getActualPattern()
-        {
+        public String getActualPattern() {
             return REPORT_NAME;
         }
 
         @Override
-        public String getPattern()
-        {
+        public String getPattern() {
             return REPORT_NAME;
         }
 
         @Override
-        public String getActualId()
-        {
+        public String getActualId() {
             return TOOL_NAME;
         }
 
         @Override
-        public String getActualName()
-        {
+        public String getActualName() {
             return TOOL_NAME;
         }
     }

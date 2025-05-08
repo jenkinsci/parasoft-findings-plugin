@@ -29,13 +29,14 @@ import org.junit.jupiter.api.Test;
 import static com.parasoft.findings.jenkins.coverage.Assertions.*;
 
 class ContainerNodeTest extends AbstractNodeTest {
+
     @Override
-    Metric getMetric() {
+    protected Metric getMetric() {
         return Metric.CONTAINER;
     }
 
     @Override
-    Node createNode(final String name) {
+    protected Node createNode(final String name) {
         return new ContainerNode(name);
     }
 
