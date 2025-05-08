@@ -50,6 +50,7 @@ import static org.mockito.Mockito.*;
  */
 @SuppressWarnings("PMD.TooManyStaticImports")
 class CoverageViewModelTest extends AbstractCoverageTest {
+
     @Test
     void shouldReturnEmptySourceViewForExistingLinkButMissingSourceFile() {
         CoverageViewModel model = createModelFromCodingStyleReport();

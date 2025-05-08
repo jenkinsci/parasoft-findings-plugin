@@ -15,20 +15,20 @@
  */
 package com.parasoft.findings.jenkins;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.parasoft.findings.jenkins.internal.variables.VariablePatternVerifier;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class VariablePatternVerifierTest {
+class VariablePatternVerifierTest {
     /**
      * @task 60983
      * @pr 108878
      */
     @Test
-    public void testPercentPattern() {
+    void testPercentPattern() {
         VariablePatternVerifier verifier = new VariablePatternVerifier("%BUILD_ID");
         assertTrue(verifier.containsVariables());
         assertFalse(verifier.checkVariableNotation());
@@ -47,7 +47,7 @@ public class VariablePatternVerifierTest {
      * @pr 108878
      */
     @Test
-    public void testDollarPattern() {
+    void testDollarPattern() {
         VariablePatternVerifier verifier = new VariablePatternVerifier("$BUILD_ID");
         assertTrue(verifier.containsVariables());
         assertFalse(verifier.checkVariableNotation());

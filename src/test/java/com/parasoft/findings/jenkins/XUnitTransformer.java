@@ -17,6 +17,8 @@ package com.parasoft.findings.jenkins;
 
 import com.parasoft.findings.utils.common.util.FileUtil;
 import org.jenkinsci.lib.dtkit.util.converter.ConversionException;
+
+import static org.junit.jupiter.api.Assertions.fail;
 import org.jenkinsci.lib.dtkit.util.converter.ConversionService;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -36,12 +38,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import static org.junit.Assert.fail;
+class XUnitTransformer {
 
-class XUnitTransformer
-{
-    static void testXUnitTransformation(String reportFileName, String outputFileName, String pathToXslSchema)
-    {
+    public static void testXUnitTransformation(String reportFileName, String outputFileName, String pathToXslSchema) {
         try {
             File outputFile = transform(reportFileName, outputFileName, pathToXslSchema);
 
@@ -53,9 +52,8 @@ class XUnitTransformer
         }
     }
 
-    static File transform(String reportFileName, String outputFileName, String pathToXslSchema)
-            throws MalformedURLException, ConversionException
-    {
+    public static File transform(String reportFileName, String outputFileName, String pathToXslSchema)
+            throws MalformedURLException, ConversionException {
         URL report = new File(reportFileName).toURI().toURL();
         URL resource = new File(pathToXslSchema).toURI().toURL();
         File outputFile = new File(outputFileName);
@@ -65,8 +63,7 @@ class XUnitTransformer
     }
 
     private static void printContents(File outputFile)
-            throws IOException
-    {
+            throws IOException {
         ArrayList<String> lines = new ArrayList<>();
         FileUtil.readFile(outputFile, lines);
 
@@ -76,8 +73,7 @@ class XUnitTransformer
     }
 
     private static void validateAgainstXslSchemas(File outputFile)
-            throws SAXException, IOException
-    {
+            throws SAXException, IOException {
         // keep compatibility with old schema
         validate(outputFile, "src/test/resources/schema/junit-7.xsd");
         // validate against Ant Junit schema: https://github.com/windyroad/JUnit-Schema/blob/master/JUnit.xsd
@@ -85,8 +81,7 @@ class XUnitTransformer
     }
 
     private static void validate(File outputFile, String schemaPath)
-            throws SAXException, IOException
-    {
+            throws SAXException, IOException {
         URL schemaFile = new File(schemaPath).toURI().toURL();
         Source xmlFile = new StreamSource(outputFile);
         SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
@@ -95,9 +90,8 @@ class XUnitTransformer
         validator.validate(xmlFile);
     }
 
-    static void transform(URL inputUrl, URL xslURL, File outputFile)
-            throws ConversionException
-    {
+    public static void transform(URL inputUrl, URL xslURL, File outputFile)
+            throws ConversionException {
         InputStream inputStream = null;
         InputStream xslStream = null;
         try {
@@ -116,15 +110,14 @@ class XUnitTransformer
         }
     }
 
-    static void parseXunitOutputXml(File outputFile, TagCounterVerifier verifier)
-            throws ParserConfigurationException, SAXException, IOException
-    {
+    public static void parseXunitOutputXml(File outputFile, TagCounterVerifier verifier)
+            throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
         parser.parse(outputFile, verifier);
     }
 
-    static void doFail(Exception e)
+    public static void doFail(Exception e)
     {
         fail(e.getClass().getName() + ": " + e.getMessage());
     }
@@ -134,8 +127,7 @@ class XUnitTransformer
      *
      * @param stream
      */
-    public static void close(InputStream stream)
-    {
+    public static void close(InputStream stream) {
         if (stream == null) {
             return;
         }

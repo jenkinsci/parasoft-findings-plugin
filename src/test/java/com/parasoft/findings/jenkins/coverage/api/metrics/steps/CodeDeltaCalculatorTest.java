@@ -58,6 +58,7 @@ import static org.mockito.Mockito.*;
  * @author Florian Orendi
  */
 class CodeDeltaCalculatorTest {
+
     private static final String LOG_NAME = "Errors while calculating changes mapping:";
 
     private static final String EMPTY_PATH = "";

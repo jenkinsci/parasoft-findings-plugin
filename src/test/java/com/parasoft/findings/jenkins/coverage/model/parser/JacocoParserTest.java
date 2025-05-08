@@ -50,15 +50,16 @@ import static com.parasoft.findings.jenkins.coverage.Assertions.*;
 
 @DefaultLocale("en")
 class JacocoParserTest extends AbstractParserTest {
+
     private static final String PROJECT_NAME = "Java coding style";
 
     @Override
-    CoverageParser createParser() {
+    protected CoverageParser createParser() {
         return new JacocoParser();
     }
 
     private static Coverage getCoverage(final Node node, final Metric metric) {
-        return (Coverage) node.getValue(metric).get();
+        return (Coverage) node.getValue(metric).orElseThrow();
     }
 
     @Test
@@ -75,9 +76,9 @@ class JacocoParserTest extends AbstractParserTest {
         var builder = new CoverageBuilder().setMetric(LINE);
         assertThat(jenkinsRoot.getValue(LINE))
                 .contains(builder.setCovered(35_611).setMissed(18_100).build());
-        assertThat(jenkinsRoot.find(MODULE, "cli").get().getValue(LINE))
+        assertThat(jenkinsRoot.find(MODULE, "cli").orElseThrow().getValue(LINE))
                 .contains(builder.setCovered(337).setMissed(558).build());
-        assertThat(jenkinsRoot.find(MODULE, "jenkins-core").get().getValue(LINE))
+        assertThat(jenkinsRoot.find(MODULE, "jenkins-core").orElseThrow().getValue(LINE))
                 .contains(builder.setCovered(35_274).setMissed(17_542).build());
     }
 

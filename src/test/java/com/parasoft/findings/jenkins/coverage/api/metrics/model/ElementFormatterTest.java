@@ -12,7 +12,8 @@ import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DefaultLocale("en")
-public class ElementFormatterTest {
+class ElementFormatterTest {
+
     private static final int COVERED_LINES = 28;
     private static final int MISSED_LINES = 8;
     private static final int TOTAL_LINES = 36;
@@ -23,7 +24,7 @@ public class ElementFormatterTest {
     private FractionValue fractionValue;
 
     @BeforeEach
-    void generateFormatter() {
+    void setUp() {
         formatter = new ElementFormatter();
         coverage = new Coverage.CoverageBuilder().setMetric(Metric.LINE).setCovered(COVERED_LINES)
                 .setMissed(MISSED_LINES)
