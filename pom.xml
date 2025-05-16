@@ -9,7 +9,7 @@
 
   <groupId>com.parasoft</groupId>
   <artifactId>parasoft-findings</artifactId>
-  <version>10.7.6</version>
+  <version>10.7.7-SNAPSHOT</version>
   <packaging>hpi</packaging>
 
   <name>Parasoft Findings</name>
@@ -64,7 +64,7 @@
     <connection>scm:git:ssh://github.com/jenkinsci/parasoft-findings-plugin.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/jenkinsci/parasoft-findings-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/parasoft-findings-plugin</url>
-    <tag>parasoft-findings-10.7.6</tag>
+    <tag>master</tag>
   </scm>
 
   <build>
