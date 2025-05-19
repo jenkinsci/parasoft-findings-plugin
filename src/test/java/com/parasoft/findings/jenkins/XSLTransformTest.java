@@ -15,13 +15,14 @@
  */
 package com.parasoft.findings.jenkins;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-public class XSLTransformTest
-{
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class XSLTransformTest {
+
     private static final String TEST_RESOURCES = "src/test/resources/";
 
     private static final String XUNIT_XSL = "src/main/resources/com/parasoft/findings/jenkins/xunit/xunit.xsl";
@@ -30,21 +31,18 @@ public class XSLTransformTest
      * @task 66687
      */
     @Test
-    public void testXUnitTransform()
-    {
+    void testXUnitTransform() {
         xunitTransformation(TEST_RESOURCES + "xml/jTest_10_unit.xml", "junit-jtest.xml");
         xunitTransformation(TEST_RESOURCES + "xml/simulator_unit.xml", "junit-sim.xml");
     }
 
     @Test
-    public void testCppTest10EngineXUnitTransform2()
-    {
+    void testCppTest10EngineXUnitTransform2() {
         xunitTransformation(TEST_RESOURCES + "xml/cppTest_10.3.4_engine_unit_2.xml", "cppTest_10.3.4_engine_unit_2-output.xml");
     }
 
     @Test
-    public void testCppTest10EngineXUnitTransform()
-    {
+    void testCppTest10EngineXUnitTransform() {
         xunitTransformation(TEST_RESOURCES + "xml/cppTest_10.3.3_desktop_vs_unit.xml", "cppTest_10.3.3_desktop_vs_unit-output.xml");
     }
 
@@ -52,43 +50,36 @@ public class XSLTransformTest
      * @task 88025
      */
     @Test
-    public void testDemoXUnitTransform()
-    {
+    void testDemoXUnitTransform() {
         transform("jTest_10.2_unit.xml", 4, 4);
     }
 
     @Test
-    public void testCppTestUnitXUnitTransform()
-    {
+    void testCppTestUnitXUnitTransform() {
         transform("cppTest_10.3.3_desktop_unit.xml", 147, 0);
     }
 
     @Test
-    public void testCppTestUnit_10_5_1_XUnitTransform()
-    {
+    void testCppTestUnit_10_5_1_XUnitTransform() {
         transform("cppTest_10.5.1_unit.xml", 15, 0);
     }
 
     @Test
-    public void testCppTestUnit_10_5_2_XUnitTransform()
-    {
+    void testCppTestUnit_10_5_2_XUnitTransform() {
         transform("cppTest_10.5.2_unit.xml", 15, 0);
     }
 
     @Test
-    public void testCppTestUnit_10_6_0_XUnitTransform()
-    {
+    void testCppTestUnit_10_6_0_XUnitTransform() {
         transform("cppTest_10.6.0_unit.xml", 27, 0);
     }
 
     @Test
-    public void testCppTesEngineUnitXUnitTransform()
-    {
+    void testCppTesEngineUnitXUnitTransform() {
         transform("cppTest_10.3.4_engine_unit.xml", 12, 5);
     }
 
-    private void transform(String fileName, int failureNumber, int errorNumber)
-    {
+    private void transform(String fileName, int failureNumber, int errorNumber) {
         try {
             String reportFileName = TEST_RESOURCES + "xml/" + fileName;
             String outputFileName = "junit-demo.xml";
@@ -97,15 +88,14 @@ public class XSLTransformTest
             TagCounterVerifier verifier = new TagCounterVerifier();
             XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
 
-            Assert.assertEquals(failureNumber, verifier.getNumber("failure"));
-            Assert.assertEquals(errorNumber, verifier.getNumber("error"));
+            assertEquals(failureNumber, verifier.getNumber("failure"));
+            assertEquals(errorNumber, verifier.getNumber("error"));
         } catch (Exception e) {
             XUnitTransformer.doFail(e);
         }
     }
 
-    private static void xunitTransformation(String reportFileName, String outputFileName)
-    {
+    private static void xunitTransformation(String reportFileName, String outputFileName) {
         XUnitTransformer.testXUnitTransformation(reportFileName, outputFileName, XUNIT_XSL);
     }
 }

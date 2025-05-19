@@ -48,6 +48,7 @@ import static org.assertj.core.api.Assertions.*;
  * @author Florian Orendi
  */
 class FileChangesProcessorTest extends AbstractCoverageTest {
+
     private static final String TEST_FILE_1 = "Test1.java";
     private static final String TEST_FILE_2 = "Main.java";
     private static final String TEST_FILE_1_PATH = "test/example/" + TEST_FILE_1;
@@ -69,7 +70,7 @@ class FileChangesProcessorTest extends AbstractCoverageTest {
      * Initializes a map with the inserted {@link #CODE_CHANGES}.
      */
     @BeforeAll
-    static void initFileChanges() {
+    static void setUp() {
         Change insert1 = new Change(ChangeEditType.INSERT, 4, 4, 5, 9);
         Change insert2 = new Change(ChangeEditType.INSERT, 8, 8, 14, 18);
         Change insert3 = new Change(ChangeEditType.INSERT, 25, 25, 33, 36);
@@ -95,13 +96,13 @@ class FileChangesProcessorTest extends AbstractCoverageTest {
 
         assertThat(tree.findByHashCode(Metric.FILE, TEST_FILE_1_PATH.hashCode()))
                 .isNotEmpty()
-                .satisfies(node -> assertThat(node.get())
+                .satisfies(node -> assertThat(node.orElseThrow())
                         .isInstanceOfSatisfying(FileNode.class, f -> assertThat(f.getModifiedLines())
                                         .containsExactly(
                             5, 6, 7, 8, 9, 14, 15, 16, 17, 18, 20, 21, 22, 33, 34, 35, 36)));
         assertThat(tree.findByHashCode(Metric.FILE, TEST_FILE_2.hashCode()))
                 .isNotEmpty()
-                .satisfies(node -> assertThat(node.get())
+                .satisfies(node -> assertThat(node.orElseThrow())
                             .isInstanceOfSatisfying(FileNode.class, f -> assertThat(f.getModifiedLines())
                             .isEmpty()));
     }

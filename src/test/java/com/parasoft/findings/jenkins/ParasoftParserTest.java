@@ -15,11 +15,10 @@
  */
 package com.parasoft.findings.jenkins;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.in;
+import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -46,10 +45,8 @@ import com.parasoft.findings.utils.results.testableinput.ProjectFileTestableInpu
 import com.parasoft.findings.utils.results.violations.*;
 import com.parasoft.findings.utils.results.xml.IXmlTagsAndAttributes;
 import com.parasoft.findings.utils.results.xml.RulesImportHandler;
-import org.hamcrest.collection.IsIn;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.parasoft.findings.jenkins.parser.DupIssueAdditionalProperties;
@@ -68,8 +65,7 @@ import edu.hm.hafner.analysis.Severity;
  * Tests the extraction of Parasoft analysis results.
  */
 @SuppressWarnings("nls")
-public class ParasoftParserTest
-{
+class ParasoftParserTest {
 
     private static final String TEST_RESOURCES = "src/test/resources/";
 
@@ -89,71 +85,61 @@ public class ParasoftParserTest
 
     private static ParasoftParser _parser = null;
 
-    @BeforeClass
-    public static void initialize()
+    @BeforeAll
+    static void setUp()
     {
         _parser = new ParasoftParser(new Properties(), "workspace");
     }
-
-    @AfterClass
-    public static void finish()
-    {}
 
     /**
      * @Task 23895
      * @PR 107961
      */
     @Test
-    public void parseStdViolReportTest()
-    {
+    void parseStdViolReportTest() {
         Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_2.xml");
         assertEquals(503, report.getSize());
     }
 
     @Test
-    public void parseFAViolReportTest()
-    {
+    void parseFAViolReportTest() {
         Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static.xml");
         assertEquals(65, report.getSize());
     }
 
     @Test
-    public void parseStdViolReportJtest_10_5_2Test()
-    {
+    void parseStdViolReportJtest_10_5_2Test() {
         Report report = parseFile(TEST_RESOURCES + "xml/jtest_10.5.2_static.xml");
         assertEquals(808, report.getSize());
     }
 
     @Test
-    public void parseStdViolReportJtest_10_6_0Test()
-    {
+    void parseStdViolReportJtest_10_6_0Test() {
         Report report = parseFile(TEST_RESOURCES + "xml/jtest_10.6.0_static.xml");
         assertEquals(17, report.getSize());
     }
+
     @Test
-    public void parseJtest_10_6_0Test()
-    {
+    void parseJtest_10_6_0Test() {
         Report report = parseFile(TEST_RESOURCES + "xml/jtest_10.6.0_unit.xml");
         assertEquals(25, report.getSize());
     }
 
     @Test
-    public void parseCppEngineTestStatic_10_3_4()
+    void parseCppEngineTestStatic_10_3_4()
     {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.4_engine_static.xml");
         assertEquals(5, report.getSize());
     }
 
     @Test
-    public void parseCppEngineTestStatic_10_5_2()
-    {
+    void parseCppEngineTestStatic_10_5_2() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.2_engine_static.xml");
         assertEquals(3, report.getSize());
     }
 
     @Test
-    public void parseCppEngineTestStatic_10_6_0()
-    {
+    void parseCppEngineTestStatic_10_6_0() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.6.0_engine_static_flowanalysis.xml");
         assertEquals(2, report.getSize());
     }
@@ -162,47 +148,43 @@ public class ParasoftParserTest
      * @task 23266
      */
     @Test
-    public void parseFAViolReportTest2()
-    {
+    void parseFAViolReportTest2() {
         Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_empty_element.xml");
         assertEquals(16, report.getSize());
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof FlowIssueAdditionalProperties);
+            assertInstanceOf(FlowIssueAdditionalProperties.class, properties);
             String flowPath = ((FlowIssueAdditionalProperties) properties).getCallHierarchy(null);
             assertNotNull(flowPath);
         }
     }
 
     @Test
-    public void parseFAViolWithAnnotationsReportTest()
-    {
+    void parseFAViolWithAnnotationsReportTest() {
         Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_with_annotations.xml");
         assertEquals(64, report.getSize());
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof FlowIssueAdditionalProperties);
+            assertInstanceOf(FlowIssueAdditionalProperties.class, properties);
             String flowPath = ((FlowIssueAdditionalProperties) properties).getCallHierarchy(null);
             assertNotNull(flowPath);
         }
     }
 
     @Test
-    public void parseDCViolReportTest()
-    {
+    void parseDCViolReportTest() {
         Report report = parseFile(TEST_RESOURCES + "xml/jTest_10_static_code_dup.xml");
         assertEquals(2, report.getSize());
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof DupIssueAdditionalProperties);
+            assertInstanceOf(DupIssueAdditionalProperties.class, properties);
             String duplicates = ((DupIssueAdditionalProperties) properties).getCallHierarchy(null);
             assertNotNull(duplicates);
         }
     }
 
     @Test
-    public void parseCppMetricsViolsTest()
-    {
+    void parseCppMetricsViolsTest() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.4.2_engine_metrics.xml");
 
         assertEquals(105, report.getSize());
@@ -210,7 +192,7 @@ public class ParasoftParserTest
         int countMetrics = 0;
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
+            assertInstanceOf(ParasoftIssueAdditionalProperties.class, properties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties)properties;
             if (additionalProperties instanceof FlowIssueAdditionalProperties) {
                 assertEquals("com.parasoft.xtest.cpp.analyzer.static.flow", additionalProperties.getAnalyzer());
@@ -229,22 +211,20 @@ public class ParasoftParserTest
     }
 
     @Test
-    public void parseCppDesktopStdViolsTest()
-    {
+    void parseCppDesktopStdViolsTest() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static.xml");
 
         assertEquals(7, report.getSize());
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
+            assertInstanceOf(ParasoftIssueAdditionalProperties.class, properties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
             assertEquals(ANALYZER_PATTERN, additionalProperties.getAnalyzer());
         }
     }
 
     @Test
-    public void parseCppDesktopStdViolsCategoriesTest_Old()
-    {
+    void parseCppDesktopStdViolsCategoriesTest_Old() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static.xml");
 
         String[] rules = { "CODSTA-39", "CODSTA-39", "CODSTA-39", "MISRA2004-15_2", "INIT-04", "INIT-04", "INIT-04" };
@@ -252,7 +232,7 @@ public class ParasoftParserTest
         int i = 0;
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
+            assertInstanceOf(ParasoftIssueAdditionalProperties.class, properties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
 
             assertEquals(ANALYZER_PATTERN, additionalProperties.getAnalyzer());
@@ -264,30 +244,26 @@ public class ParasoftParserTest
     }
 
     @Test
-    public void parseCppStdViolsTest_10_5()
-    {
+    void parseCppStdViolsTest_10_5() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.0_static.xml");
         String[] authors = { "tester", "user-name", "user-name", "user-name", "user-name", "user-name"};
         checkStaticReport(6, new String[] {ANALYZER_PATTERN}, report, authors, RULES, CATEGORIES);
     }
 
     @Test
-    public void parseCppStdViolsTest_10_5_1()
-    {
+    void parseCppStdViolsTest_10_5_1() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.1_static.xml");
         checkStaticReport(6, new String[] {ANALYZER_PATTERN}, report, new String[] {"user-name"}, RULES, CATEGORIES);
     }
 
     @Test
-    public void parseCppStdViolsTest_10_5_2()
-    {
+    void parseCppStdViolsTest_10_5_2() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.2_static.xml");
         checkStaticReport(6, new String[] {ANALYZER_PATTERN}, report, new String[] {"user-name"}, RULES, CATEGORIES);
     }
 
     @Test
-    public void parseCppStdViolsTest_10_6_0()
-    {
+    void parseCppStdViolsTest_10_6_0() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.6.0_static.xml");
         checkStaticReport(11, new String[] {ANALYZER_FLOW, ANALYZER_PATTERN}, report,
                 new String[] {"user-name"}, new String[] {"BD-PB-ZERO", "BD-PB-NP", "OOP-23",
@@ -296,13 +272,12 @@ public class ParasoftParserTest
                         "Coding Conventions for C++", "Optimization"});
     }
 
-    private void checkStaticReport(int reportSize, String[] patternNames, Report report, String[] authors, String[] rules, String[] categories)
-    {
+    private void checkStaticReport(int reportSize, String[] patternNames, Report report, String[] authors, String[] rules, String[] categories) {
         assertEquals(reportSize, report.getSize());
         int i = 0;
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
+            assertInstanceOf(ParasoftIssueAdditionalProperties.class, properties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties)properties;
 
             if (patternNames.length == 1) {
@@ -330,15 +305,13 @@ public class ParasoftParserTest
     }
 
     @Test
-    public void parseJtestStdViolsTest_10_5()
-    {
+    void parseJtestStdViolsTest_10_5() {
         Report report = parseFile(TEST_RESOURCES + "xml/jTest_10.5.0_static.xml");
         assertEquals(67, report.getSize());
     }
 
     @Test
-    public void parseSOAtestStdViolsCategoriesTest_10_6_0()
-    {
+    void parseSOAtestStdViolsCategoriesTest_10_6_0() {
         Report report = parseFile(TEST_RESOURCES + "xml/SOAtest_static_10.6.0.xml");
 
         String[] rules = { "VXML.SCR", "VXML.CHECK" };
@@ -346,7 +319,7 @@ public class ParasoftParserTest
         int i = 0;
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
+            assertInstanceOf(ParasoftIssueAdditionalProperties.class, properties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
 
             assertEquals("com.parasoft.soavirt.desktop.static.analyzer", additionalProperties.getAnalyzer());
@@ -358,8 +331,7 @@ public class ParasoftParserTest
     }
 
     @Test
-    public void parseSOAtestStdViolsCategoriesTest_10_6_1()
-    {
+    void parseSOAtestStdViolsCategoriesTest_10_6_1() {
         Report report = parseFile(TEST_RESOURCES + "xml/SOAtest_static_10.6.1.xml");
 
         String[] rules = { "ACC-WCAG2.LA.HTML.EDFE", "ACC-WCAG2.LA.HTML.LAISO" };
@@ -370,7 +342,7 @@ public class ParasoftParserTest
                 break;
             }
             Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
+            assertInstanceOf(ParasoftIssueAdditionalProperties.class, properties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
 
             assertEquals("com.parasoft.soavirt.desktop.static.analyzer", additionalProperties.getAnalyzer());
@@ -382,24 +354,22 @@ public class ParasoftParserTest
     }
 
     @Test
-    public void parseCppDesktopStdViolsCategoriesTest()
-    {
+    void parseCppDesktopStdViolsCategoriesTest() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_static_categories.xml");
 
         assertEquals(7, report.getSize());
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
+            assertInstanceOf(ParasoftIssueAdditionalProperties.class, properties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
 
             assertEquals(ANALYZER_PATTERN, additionalProperties.getAnalyzer());
-            assertThat(issue.getCategory(), IsIn.isIn(new String[] { "Coding Conventions", "Initialization", "MISRA C 2004" }));  //$NON-NLS-2$  //$NON-NLS-3$
+            assertThat(issue.getCategory(), is(in(new String[] { "Coding Conventions", "Initialization", "MISRA C 2004" })));  //$NON-NLS-2$  //$NON-NLS-3$
         }
     }
 
     @Test
-    public void parseCppDesktopFAViolsTest()
-    {
+    void parseCppDesktopFAViolsTest() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.3.2_desktop_flowanalysis.xml");
 
         assertEquals(4, report.getSize());
@@ -407,8 +377,7 @@ public class ParasoftParserTest
     }
 
     @Test
-    public void parseCppDesktop_10_5_1_FAViolsTest()
-    {
+    void parseCppDesktop_10_5_1_FAViolsTest() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.1_flowanalysis.xml");
 
         assertEquals(2, report.getSize());
@@ -416,8 +385,7 @@ public class ParasoftParserTest
     }
 
     @Test
-    public void parseCppDesktop_10_5_2_FAViolsTest()
-    {
+    void parseCppDesktop_10_5_2_FAViolsTest() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.5.2_flowanalysis.xml");
 
         assertEquals(2, report.getSize());
@@ -425,19 +393,17 @@ public class ParasoftParserTest
     }
 
     @Test
-    public void parseCppDesktop_10_6_0_FAViolsTest()
-    {
+    void parseCppDesktop_10_6_0_FAViolsTest() {
         Report report = parseFile(TEST_RESOURCES + "xml/cppTest_10.6.0_flowanalysis.xml");
 
         assertEquals(11, report.getSize());
         checkFAReport(report, "user-name");
     }
 
-    private void checkFAReport(Report report, String author)
-    {
+    private void checkFAReport(Report report, String author) {
         for (Issue issue : report) {
             Serializable properties = issue.getAdditionalProperties();
-            assertTrue(properties instanceof ParasoftIssueAdditionalProperties);
+            assertInstanceOf(ParasoftIssueAdditionalProperties.class, properties);
             ParasoftIssueAdditionalProperties additionalProperties = (ParasoftIssueAdditionalProperties) properties;
             assertEquals("com.parasoft.xtest.cpp.analyzer.static.flow", additionalProperties.getAnalyzer());
             assertEquals(author, additionalProperties.getAuthor());
@@ -445,13 +411,11 @@ public class ParasoftParserTest
         }
     }
 
-    private Report parseFile(String name)
-    {
+    private Report parseFile(String name) {
         return parseFile(name, _parser);
     }
 
-    private static Report parseFile(String name, ParasoftParser parser)
-    {
+    private static Report parseFile(String name, ParasoftParser parser) {
         URL resource = null;
         try {
             resource = new File(name).toURI().toURL();
@@ -474,8 +438,7 @@ public class ParasoftParserTest
      * @task 21831
      */
     @Test
-    public void convertViolationsTest()
-    {
+    void convertViolationsTest() {
         List<IViolation> violations = mockViolations();
         RulesImportHandler rulesImportHandlerMock = Mockito.mock(RulesImportHandler.class);
         Mockito.when(rulesImportHandlerMock.getCategoryDescription("INIT")).thenReturn("Initialize");
@@ -510,8 +473,7 @@ public class ParasoftParserTest
      * @task 21831
      */
     @Test
-    public void convertFAViolations()
-    {
+    void convertFAViolations() {
         List<IViolation> violations = mockFAViolations();
         RulesImportHandler rulesImportHandlerMock = Mockito.mock(RulesImportHandler.class);
         Mockito.when(rulesImportHandlerMock.getCategoryDescription(Mockito.anyString())).thenReturn("Flow Analysis");
@@ -553,19 +515,16 @@ public class ParasoftParserTest
      * @task 88834
      */
     @Test
-    public void testSerialization() throws IOException, ClassNotFoundException
-    {
+    void testSerialization() throws IOException, ClassNotFoundException {
         serialization("jTest_10_static_2.xml");
     }
 
     @Test
-    public void testSerializationJtest_10_5_2() throws IOException, ClassNotFoundException
-    {
+    void testSerializationJtest_10_5_2() throws IOException, ClassNotFoundException {
         serialization("jtest_10.5.2_static.xml");
     }
 
-    public void serialization(String fileName) throws IOException, ClassNotFoundException
-    {
+    private void serialization(String fileName) throws IOException, ClassNotFoundException {
         Properties settings = new Properties();
         settings.setProperty("rules.provider1a.analyzer", "com.puppycrawl.tools.checkstyle");
         settings.setProperty("rules.provider1a.separator", ".");
@@ -606,9 +565,8 @@ public class ParasoftParserTest
         }
     }
 
-    private static List<IViolation> mockViolations()
-    {
-        List<IViolation> violations = new ArrayList<IViolation>();
+    private static List<IViolation> mockViolations() {
+        List<IViolation> violations = new ArrayList<>();
         IRuleViolation violationMock = mockViolation(// severity 5
                 "INIT.AAI",
                 "Array initializer used.",
@@ -643,8 +601,7 @@ public class ParasoftParserTest
     }
 
     private static IRuleViolation mockViolation(String ruleId, String message, String absolutePath, String packageName, int startingLine,
-                                                int endingLine, String severity, String header)
-    {
+                                                int endingLine, String severity, String header) {
         IRuleViolation violationMock = Mockito.mock(IRuleViolation.class);
 
         Mockito.when(violationMock.getRuleId()).thenReturn(ruleId);
@@ -661,11 +618,10 @@ public class ParasoftParserTest
         return violationMock;
     }
 
-    private static List<IViolation> mockFAViolations()
-    {
-        List<IViolation> violations = new ArrayList<IViolation>();
+    private static List<IViolation> mockFAViolations() {
+        List<IViolation> violations = new ArrayList<>();
 
-        List<String> childrenFileNames = new ArrayList<String>();
+        List<String> childrenFileNames = new ArrayList<>();
         childrenFileNames.add(PROJECT_PATH + RELATIVE_PATH + "\\ParasoftResult.java");
         childrenFileNames.add(PROJECT_PATH + RELATIVE_PATH + "\\ParasoftPublisher.java");
         childrenFileNames.add(PROJECT_PATH + RELATIVE_PATH + "\\ParasoftHealthDescriptor.java");
@@ -692,8 +648,7 @@ public class ParasoftParserTest
     }
 
     private static IFlowAnalysisViolation mockFAViolation(String ruleId, String message, String absolutePath, List<String> childrenFileNames,
-                                                          String packageName, int startingLine, int endingLine)
-    {
+                                                          String packageName, int startingLine, int endingLine) {
         ResultLocation resultLocationMock = mockResultLocation(startingLine, endingLine, absolutePath, packageName);
 
         ruleId.split(".");
@@ -710,8 +665,7 @@ public class ParasoftParserTest
         return violationMock;
     }
 
-    private static String substringBefore(String str, String separator)
-    {
+    private static String substringBefore(String str, String separator) {
         int index = str.indexOf(separator);
         if (index == -1) {
             return str;
@@ -719,9 +673,8 @@ public class ParasoftParserTest
         return str.substring(0, index);
     }
 
-    private static IFlowAnalysisPathElement[] getChildrenArray(List<String> childrenFilePaths)
-    {
-        List<IFlowAnalysisPathElement> childrenMock = new ArrayList<IFlowAnalysisPathElement>();
+    private static IFlowAnalysisPathElement[] getChildrenArray(List<String> childrenFilePaths) {
+        List<IFlowAnalysisPathElement> childrenMock = new ArrayList<>();
 
         IFlowAnalysisPathElement[] emptyArray = new IFlowAnalysisPathElement[0];
 
@@ -736,7 +689,7 @@ public class ParasoftParserTest
             Mockito.when(descriptor.getType()).thenReturn(type );
 
             if (i == 2) {
-                List<String> childrenFileNames = new ArrayList<String>();
+                List<String> childrenFileNames = new ArrayList<>();
                 childrenFileNames.add(PROJECT_PATH + RELATIVE_PATH + "\\ParasoftDetailBuilder.java");
                 childrenFileNames.add(PROJECT_PATH + RELATIVE_PATH + "\\ParasoftProjectAction.java");
                 IFlowAnalysisPathElement[] array = getChildrenArray(childrenFileNames);
@@ -746,12 +699,11 @@ public class ParasoftParserTest
             }
             childrenMock.add(descriptor);
         }
-        IFlowAnalysisPathElement[] array = childrenMock.toArray(new IFlowAnalysisPathElement[childrenMock.size()]);
+        IFlowAnalysisPathElement[] array = childrenMock.toArray(new IFlowAnalysisPathElement[0]);
         return array;
     }
 
-    private static ResultLocation mockResultLocation(int startLine, int endLine, String absolutePath, String moduleName)
-    {
+    private static ResultLocation mockResultLocation(int startLine, int endLine, String absolutePath, String moduleName) {
         SourceRange sourceRangeMock = Mockito.mock(SourceRange.class);
         ProjectFileTestableInput fileTestableInputMock = Mockito.mock(ProjectFileTestableInput.class);
         File fileMock = Mockito.mock(File.class);

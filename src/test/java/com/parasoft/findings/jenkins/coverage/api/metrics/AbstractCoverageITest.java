@@ -34,13 +34,16 @@ import hudson.model.FreeStyleProject;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageTool.Parser;
 import io.jenkins.plugins.util.IntegrationTestWithJenkinsPerSuite;
+import org.jvnet.hudson.test.junit.jupiter.WithJenkins;
 
 /**
  * Provides some helper methods to create different job types that will record code coverage results.
  *
  * @author Ullrich Hafner
  */
+@WithJenkins
 public abstract class AbstractCoverageITest extends IntegrationTestWithJenkinsPerSuite {
+
     protected FreeStyleProject createFreestyleJob(final Parser parser, final String... fileNames) {
         return createFreestyleJob(parser, i -> { }, fileNames);
     }

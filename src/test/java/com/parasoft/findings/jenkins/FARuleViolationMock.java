@@ -23,19 +23,17 @@ import com.parasoft.findings.utils.results.violations.ResultLocation;
 
 public class FARuleViolationMock
         extends RuleViolationMock
-        implements IFlowAnalysisViolation
-{
+        implements IFlowAnalysisViolation {
+
     public FARuleViolationMock(ResultLocation resultLocation, String packageName,
-                               Properties properties, String message, String ruleId, IFlowAnalysisPathElement[] FAElemDesc)
-    {
+                               Properties properties, String message, String ruleId, IFlowAnalysisPathElement[] FAElemDesc) {
         super(resultLocation, packageName, properties, message, ruleId);
         _FAElemDesc = FAElemDesc;
     }
 
     private IFlowAnalysisPathElement[] _FAElemDesc;
 
-    public IFlowAnalysisPathElement[] getPathElements()
-    {
+    public IFlowAnalysisPathElement[] getPathElements() {
         return _FAElemDesc;
     }
 }

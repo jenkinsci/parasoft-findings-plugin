@@ -33,6 +33,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.jvnet.hudson.test.junit.jupiter.WithJenkins;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
@@ -63,8 +64,10 @@ import static org.assertj.core.api.Assumptions.*;
  *
  * @author Florian Orendi
  */
+@WithJenkins
 @Testcontainers(disabledWithoutDocker = true)
 class GitForensicsITest extends AbstractCoverageITest {
+
     /** The JaCoCo coverage report, generated for the commit {@link #COMMIT}. */
     private static final String JACOCO_FILE = "forensics_integration.xml";
     /** The JaCoCo coverage report, generated for the reference commit {@link #COMMIT_REFERENCE}. */
