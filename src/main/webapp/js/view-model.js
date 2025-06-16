@@ -159,6 +159,11 @@ const CoverageChartGenerator = function ($) {
                             color: coveredColor
                         }
                     },
+                    emphasis: {
+                        itemStyle: {
+                            color: 'inherit'
+                        }
+                    },
                     label: {
                         show: true,
                         position: 'insideLeft',
@@ -177,6 +182,11 @@ const CoverageChartGenerator = function ($) {
                     itemStyle: {
                         normal: {
                             color: missedColor
+                        }
+                    },
+                    emphasis: {
+                        itemStyle: {
+                            color: 'inherit'
                         }
                     },
                     label: {
