@@ -283,6 +283,16 @@ const CoverageChartGenerator = function ($) {
                                 title: setupText
                             }
                         }
+                    },
+                    series: {
+                        emphasis: {
+                            itemStyle: {
+                                color: 'inherit'
+                            },
+                            lineStyle: {
+                                color: 'inherit'
+                            }
+                        }
                     }
                 });
                 resizeChartOf('#coverage-trend');
