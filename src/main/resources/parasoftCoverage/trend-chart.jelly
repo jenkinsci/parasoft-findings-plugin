@@ -82,6 +82,18 @@ SOFTWARE.-->
                       }
                   });
               }
+              parasoftCoverageTrendChart.setOption({
+                  series: {
+                      emphasis: {
+                          itemStyle: {
+                              color: 'inherit'
+                          },
+                          lineStyle: {
+                              color: 'inherit'
+                          }
+                      }
+                  }
+              });      
           });
       }
     </script>
