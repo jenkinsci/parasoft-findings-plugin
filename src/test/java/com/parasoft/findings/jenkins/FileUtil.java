@@ -26,13 +26,13 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Properties;
 
-public final class FileUtil
-{
+public final class FileUtil {
 
     /**
 	 * Private constructor to prevent instantiation.
 	 */
-    private FileUtil() { }
+    private FileUtil() {
+    }
 
     /**
 	 * Returns local storage directory for all files.
@@ -40,14 +40,12 @@ public final class FileUtil
 	 * @return
 	 *
 	 */
-    public static File getLocalStorageDir(Properties props)
-    {
+    public static File getLocalStorageDir(Properties props) {
         return LoggingStorageUtil.getLocalStorageDir(props);
     }
 
     public static File getTempDir()
-            throws IOException
-    {
+            throws IOException {
         File configDir = getLocalStorageDir(new Properties());
         File tempDir = new File(configDir, "temp"); //$NON-NLS-1$
         tempDir.mkdirs();
@@ -72,8 +70,7 @@ public final class FileUtil
      *
      * @pre root != null
      */
-    public static boolean recursiveDelete(File root)
-    {
+    public static boolean recursiveDelete(File root) {
         if (!root.exists()){
             return true;
         }
@@ -92,14 +89,14 @@ public final class FileUtil
      * This utility creates and returns local storage directory where all temporary
      * application specific data is kept.
      */
-    public static final class LoggingStorageUtil
-    {
+    public static final class LoggingStorageUtil {
         public static final String LOCAL_STORAGE_DIR = "local.storage.dir"; //$NON-NLS-1$
 
         /** System property used to configure local storage dir */
         public static final String LOCAL_STORAGE_DIR_SYSTEM_PROPERTY = "parasoft." + LOCAL_STORAGE_DIR; //$NON-NLS-1$
 
-        private LoggingStorageUtil() { }
+        private LoggingStorageUtil() {
+        }
 
         /**
          * Try to resolve location for local storage directory base on system property or provided settings.
@@ -107,10 +104,9 @@ public final class FileUtil
          * @return String resolved storage location or null
          * @pre properties != null
          */
-        public static String resolveLocalStorageDir(Properties properties)
-        {
+        public static String resolveLocalStorageDir(Properties properties) {
             String sStorageDir = System.getProperty(LOCAL_STORAGE_DIR_SYSTEM_PROPERTY);
-            if ((sStorageDir == null) || (sStorageDir.trim().length() <= 0)) {
+            if ((sStorageDir == null) || (sStorageDir.trim().isEmpty())) {
                 // Try to resolve local storage directory from local settings
                 sStorageDir = properties.getProperty(LOCAL_STORAGE_DIR);
             }
@@ -124,10 +120,9 @@ public final class FileUtil
          * @pre localSettings != null
          * @post $result != null
          */
-        public static File getLocalStorageDir(Properties settings)
-        {
+        public static File getLocalStorageDir(Properties settings) {
             String sStorageDir = resolveLocalStorageDir(settings);
-            if ((sStorageDir != null) && (sStorageDir.trim().length() > 0)) {
+            if ((sStorageDir != null) && (!sStorageDir.trim().isEmpty())) {
                 File storageDir = new File(sStorageDir);
                 if (checkStorageDir(storageDir)) {
                     return storageDir;
@@ -142,7 +137,7 @@ public final class FileUtil
                 // do nothing
             }
             sStorageDir = resolveLocalStorageDir(settings);
-            if ((sStorageDir != null) && (sStorageDir.trim().length() > 0)) {
+            if ((sStorageDir != null) && (!sStorageDir.trim().isEmpty())) {
                 File storageDir = new File(sStorageDir);
                 if (checkStorageDir(storageDir)) {
                     return storageDir;
@@ -156,8 +151,7 @@ public final class FileUtil
             return storageDir;
         }
 
-        private static boolean checkStorageDir(File storageDir)
-        {
+        private static boolean checkStorageDir(File storageDir) {
             storageDir = storageDir.getAbsoluteFile();
             storageDir.mkdirs();
             if (!(storageDir.isDirectory())) {
@@ -171,8 +165,7 @@ public final class FileUtil
             return true;
         }
 
-        private synchronized static File getTempLocalStorageDir()
-        {
+        private static synchronized File getTempLocalStorageDir() {
             File parasoftDir = getTempParasoftDir();
             File storagesDir = new File(parasoftDir, STORAGES_DIR_NAME);
 
@@ -180,8 +173,7 @@ public final class FileUtil
             return new File(storagesDir, STORAGE_DIR_PREFIX + getLogDatePart());
         }
 
-        public static String getLogDatePart()
-        {
+        public static String getLogDatePart() {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss"); //$NON-NLS-1$
             return simpleDateFormat.format(new Date());
         }
@@ -192,8 +184,7 @@ public final class FileUtil
          * @param filter
          * @param noOfSessionToPreserve
          */
-        public static void clearOldSession(File sessionDir, FilenameFilter filter, int noOfSessionToPreserve)
-        {
+        public static void clearOldSession(File sessionDir, FilenameFilter filter, int noOfSessionToPreserve) {
             String[] asList = sessionDir.list(filter);
             if ((asList == null) || (asList.length <= noOfSessionToPreserve)) {
                 return;
@@ -208,8 +199,7 @@ public final class FileUtil
             }
         }
 
-        private static File getTempParasoftDir()
-        {
+        private static File getTempParasoftDir() {
             String sSystemTempDir = System.getProperty("java.io.tmpdir"); //$NON-NLS-1$
             String sSystemUser = System.getProperty("user.name"); //$NON-NLS-1$
 
@@ -234,8 +224,7 @@ public final class FileUtil
          * @param dirToDelete the candidate directory for deletion
          * @return true if directory can be deleted or false in other case
          */
-        private static boolean canDelete(File dirToDelete)
-        {
+        private static boolean canDelete(File dirToDelete) {
             File[] files = dirToDelete.listFiles();
             if ((files == null) || (files.length == 0)) {
                 return true;
@@ -248,8 +237,7 @@ public final class FileUtil
             return lastModiffied.before(isOld);
         }
 
-        private static void deleteDirectoryRecursive(File dir)
-        {
+        private static void deleteDirectoryRecursive(File dir) {
             File[] listFiles = dir.listFiles();
             if (listFiles == null) {
                 return;

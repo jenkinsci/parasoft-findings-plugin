@@ -31,27 +31,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
-public class CoverageTableModelTest extends AbstractCoverageTest {
-    CoverageTableModel coverageTableModel;
-    Node coberturaResult = readCoberturaResult("cobertura-codingstyle.xml");
-    RowRenderer rowRenderer = new CoverageTableModel.InlineRowRenderer();
-    ColorProvider defaultColorProvider = ColorProviderFactory.createDefaultColorProvider();
+class CoverageTableModelTest extends AbstractCoverageTest {
+
+    private CoverageTableModel coverageTableModel;
+    private Node coberturaResult = readCoberturaResult("cobertura-codingstyle.xml");
+    private RowRenderer rowRenderer = new CoverageTableModel.InlineRowRenderer();
+    private ColorProvider defaultColorProvider = ColorProviderFactory.createDefaultColorProvider();
 
     @BeforeEach
-    public void setup() {
+    void setUp() {
         coverageTableModel = new CoverageTableModel("coverage-table-inline", coberturaResult,
                 rowRenderer, defaultColorProvider);
         assertThat(coverageTableModel).isNotNull();
     }
 
     @Test
-    public void testGetRenderer() {
+    void testGetRenderer() {
         RowRenderer render = coverageTableModel.getRenderer();
         assertThat(render).isEqualTo(rowRenderer);
     }
 
     @Test
-    public void testGetTableConfiguration() {
+    void testGetTableConfiguration() {
         try(MockedStatic<Jenkins> jenkinsMocked = mockStatic(Jenkins.class)) {
             Jenkins.RESOURCE_PATH = "/static/e64c2d52";
             Jenkins jenkins = mock(Jenkins.class);
@@ -76,7 +77,7 @@ public class CoverageTableModelTest extends AbstractCoverageTest {
     }
 
     @Test
-    public void testGetColumns() {
+    void testGetColumns() {
         List<TableColumn> tableColumns = coverageTableModel.getColumns();
         assertThat(tableColumns.size()).isEqualTo(5);
         assertThat(tableColumns.get(0).getHeaderLabel()).isEqualTo("Hash");
@@ -87,25 +88,25 @@ public class CoverageTableModelTest extends AbstractCoverageTest {
     }
 
     @Test
-    public void testGetRows() {
+    void testGetRows() {
         List<Object> rows = coverageTableModel.getRows();
-        assertThat(rows.size()).isEqualTo(5);
+        assertThat(rows).hasSize(5);
     }
 
     @Test
-    public void testGetRoot() {
+    void testGetRoot() {
         Node root = coverageTableModel.getRoot();
         assertThat(root).isEqualTo(coberturaResult);
     }
 
     @Test
-    public void testGetColorProvider() {
+    void testGetColorProvider() {
         ColorProvider colorProvider = coverageTableModel.getColorProvider();
         assertThat(colorProvider).isEqualTo(defaultColorProvider);
     }
 
     @Test
-    public void testCoverageRow() {
+    void testCoverageRow() {
         Locale browserLocale = Functions.getCurrentLocale();
         FileNode fileNode = coberturaResult.getAllFileNodes().get(0);
         CoverageRow coverageRow = new CoverageRow(fileNode, browserLocale, rowRenderer, defaultColorProvider);
@@ -138,7 +139,7 @@ public class CoverageTableModelTest extends AbstractCoverageTest {
 
         // Test getComplexity()
         int complexity = coverageRow.getComplexity();
-        assertThat(complexity).isEqualTo(0);
+        assertThat(complexity).isZero();
 
         // Test getFile()
         FileNode file = coverageRow.getFile();
@@ -146,14 +147,14 @@ public class CoverageTableModelTest extends AbstractCoverageTest {
     }
 
     @Test
-    public void testLinkedRowRenderer() {
+    void testLinkedRowRenderer() {
         RowRenderer linkedRowRenderer = new LinkedRowRenderer(new File("src/test/resources/com/parasoft/findings/jenkins/coverage/api/metrics/steps"), "", MODIFIED_LINES_COVERAGE_TABLE_ID);
         String fileName = linkedRowRenderer.renderFileName("Calculator.java", "src_main_java_Calculator.java");
         assertThat(fileName).isEqualTo("<a href=\"-839020164?tableId=modified-lines-coverage-table\">Calculator.java</a>");
     }
 
     @Test
-    public void testLinkedRowRenderer_noSourceCodeFile() {
+    void testLinkedRowRenderer_noSourceCodeFile() {
         RowRenderer linkedRowRenderer = new LinkedRowRenderer(new File("src/test/resources/com/parasoft/findings/jenkins/coverage/api/metrics/steps"), "", MODIFIED_LINES_COVERAGE_TABLE_ID);
         String fileName = linkedRowRenderer.renderFileName("NoSourceCodeFile.java", "src_main_java_NoSourceCodeFile.java");
         assertThat(fileName).isEqualTo("NoSourceCodeFile.java");

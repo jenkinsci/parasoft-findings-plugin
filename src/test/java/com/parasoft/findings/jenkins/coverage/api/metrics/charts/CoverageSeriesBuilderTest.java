@@ -40,7 +40,6 @@ import edu.hm.hafner.echarts.ChartModelConfiguration.AxisType;
 import edu.hm.hafner.echarts.line.LinesChartModel;
 import edu.hm.hafner.echarts.line.LinesDataSet;
 import edu.hm.hafner.util.ResourceTest;
-import edu.hm.hafner.util.VisibleForTesting;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.CoverageStatistics;
 
@@ -54,6 +53,7 @@ import static org.mockito.Mockito.*;
  * @author Ullrich Hafner
  */
 class CoverageSeriesBuilderTest extends ResourceTest {
+
     @Test
     void shouldHaveEmptyDataSetForEmptyIterator() {
         CoverageSeriesBuilder builder = new CoverageSeriesBuilder();
@@ -92,7 +92,6 @@ class CoverageSeriesBuilderTest extends ResourceTest {
         assertThat(lineCoverage.getRangeMax()).isEqualTo(2.3);
     }
 
-    @VisibleForTesting
     private BuildResult<CoverageStatistics> createResult(final int buildNumber,
             final Coverage lineCoverage, final Coverage branchCoverage) {
         var statistics = new CoverageStatistics(
