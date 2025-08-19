@@ -1,0 +1,18 @@
+<components>
+  <component>
+    <virtualPath>.*Saxon\-HE\-12\.4\.jar</virtualPath>
+    <externalReferences>
+      <reference type="other">
+        <url>https://central.sonatype.com/artifact/net.sf.saxon/Saxon-HE/12.4</url>
+      </reference>
+    </externalReferences>
+  </component>
+  <component>
+    <virtualPath>.*jsoup\-1\.17\.2\.jar</virtualPath>
+    <externalReferences>
+      <reference type="other">
+        <url>https://central.sonatype.com/artifact/org.jsoup/jsoup/1.17.2</url>
+      </reference>
+    </externalReferences>
+  </component>
+</components>
