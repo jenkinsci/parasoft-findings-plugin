@@ -1,0 +1,94 @@
+{
+	"components": [
+		{
+			"type": "library",
+			"group": "edu.hm.hafner",
+			"name": "coverage-model",
+			"version": "0.24.0",
+			"purl": "pkg:maven/edu.hm.hafner/coverage-model@0.24.0",
+			"licenses" : [
+				{
+					"license" : {
+						"id" : "MIT",
+						"url" : "http://www.opensource.org/licenses/mit-license.php"
+					}
+				}
+			],
+			"externalReferences" : [
+				{
+					"type" : "license",
+					"url" : "https://github.com/jenkinsci/coverage-model/blob/v0.24.0/LICENSE"
+				},
+				{
+					"type" : "website",
+					"url" : "https://cs.hm.edu/die_fakultaet/ansprechpartner/professoren/hafner/index.de.html"
+				},
+				{
+					"type" : "vcs",
+					"url" : "https://github.com/jenkinsci/coverage-model.git"
+				},
+				{
+					"type" : "issue-tracker",
+					"url" : "https://github.com/jenkinsci/coverage-model/issues"
+				},
+				{
+					"type" : "build-meta",
+					"url" : "https://repo1.maven.org/maven2/edu/hm/hafner/coverage-model/0.24.0/coverage-model-0.24.0.pom"
+				},
+				{
+					"type" : "distribution",
+					"url" : "https://repo1.maven.org/maven2/edu/hm/hafner/coverage-model/0.24.0/coverage-model-0.24.0.jar"
+				},
+				{
+					"type" : "other",
+					"url" : "https://github.com/jenkinsci/coverage-model/tree/v0.24.0"
+				}
+			]
+		},
+		{
+			"type": "library",
+			"group": "io.jenkins.plugins",
+			"name": "code-coverage-api",
+			"version": "4.6.0",
+			"purl": "pkg:maven/io.jenkins.plugins/code-coverage-api@4.6.0",
+			"licenses": [
+				{
+					"license": {
+						"id": "MIT",
+						"url": "https://opensource.org/licenses/MIT"
+					}
+				}
+			],
+			"externalReferences": [
+				{
+					"type" : "license",
+					"url": "https://github.com/jenkinsci/code-coverage-api-plugin/blob/v4.6.0/LICENSE"
+				},
+				{
+					"type": "website",
+					"url": "https://github.com/jenkinsci/code-coverage-api-plugin"
+				},
+				{
+					"type": "vcs",
+					"url": "https://github.com/jenkinsci/code-coverage-api-plugin.git"
+				},
+				{
+					"type": "issue-tracker",
+					"url": "https://github.com/jenkinsci/code-coverage-api-plugin/issues"
+				},
+				{
+					"type": "build-meta",
+					"url": "https://repo.jenkins-ci.org/releases/io/jenkins/plugins/code-coverage-api/4.6.0/code-coverage-api-4.6.0.pom"
+				},
+				{
+					"type": "distribution",
+					"url": "https://repo.jenkins-ci.org/releases/io/jenkins/plugins/code-coverage-api/4.6.0/code-coverage-api-4.6.0.hpi"
+				},
+				{
+					"type": "other",
+					"url": "https://github.com/jenkinsci/code-coverage-api-plugin/tree/v4.6.0"
+				}
+			]
+		}
+	]
+}
