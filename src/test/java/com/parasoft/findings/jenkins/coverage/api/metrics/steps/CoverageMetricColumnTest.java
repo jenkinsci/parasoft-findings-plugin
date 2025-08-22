@@ -31,7 +31,6 @@ import java.util.List;
 import java.util.Optional;
 
 import com.parasoft.findings.jenkins.coverage.model.Node;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
 
@@ -39,7 +38,6 @@ import com.parasoft.findings.jenkins.coverage.model.Coverage.CoverageBuilder;
 import com.parasoft.findings.jenkins.coverage.model.Metric;
 import com.parasoft.findings.jenkins.coverage.model.Value;
 import edu.hm.hafner.util.FilteredLog;
-import edu.hm.hafner.util.VisibleForTesting;
 
 import hudson.model.Job;
 import hudson.model.Run;
@@ -69,8 +67,7 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
      *
      * @return the created stub
      */
-    @VisibleForTesting
-    public static Job<?, ?> createJobWithActions(final CoverageBuildAction... actions) {
+    private static Job<?, ?> createJobWithActions(final CoverageBuildAction... actions) {
         Job<?, ?> job = mock(Job.class);
         Run<?, ?> build = createBuildWithActions(actions);
         when(job.getLastCompletedBuild()).thenAnswer(a -> build);
@@ -85,8 +82,7 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
      *
      * @return the created stub
      */
-    @VisibleForTesting
-    public static Run<?, ?> createBuildWithActions(final CoverageBuildAction... actions) {
+    private static Run<?, ?> createBuildWithActions(final CoverageBuildAction... actions) {
         Run<?, ?> build = mock(Run.class);
         when(build.getActions(CoverageBuildAction.class)).thenReturn(Arrays.asList(actions));
         if (actions.length > 0) {
@@ -169,7 +165,7 @@ class CoverageMetricColumnTest extends AbstractCoverageTest {
         assertThat(column.getCoverageValue(job))
                 .isNotEmpty()
                 .satisfies(coverage -> {
-                    assertThat(coverage.get()).isEqualTo(new CoverageBuilder().setMetric(Metric.LINE).setCovered(28).setMissed(8).build());
+                    assertThat(coverage.orElseThrow()).isEqualTo(new CoverageBuilder().setMetric(Metric.LINE).setCovered(28).setMissed(8).build());
                     assertThat(column.getDisplayColors(job, coverage).getLineColor())
                             .isEqualTo(Color.black);
                 });

@@ -38,6 +38,7 @@ import static com.parasoft.findings.jenkins.coverage.Assertions.*;
  * @author Melissa Bauer
  */
 class CyclomaticComplexityTest {
+
     private static final Coverage COVERAGE = new CoverageBuilder().setMetric(Metric.LINE)
             .setCovered(1)
             .setMissed(1)

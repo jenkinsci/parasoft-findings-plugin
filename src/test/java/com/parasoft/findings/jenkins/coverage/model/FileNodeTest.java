@@ -34,19 +34,20 @@ import nl.jqno.equalsverifier.api.EqualsVerifierApi;
 import static com.parasoft.findings.jenkins.coverage.Assertions.*;
 
 class FileNodeTest extends AbstractNodeTest {
+
     @Override
-    Metric getMetric() {
+    protected Metric getMetric() {
         return Metric.FILE;
     }
 
     @Override
-    void configureEqualsVerifier(final EqualsVerifierApi<? extends Node> verifier) {
+    protected void configureEqualsVerifier(final EqualsVerifierApi<? extends Node> verifier) {
         verifier.withPrefabValues(TreeString.class, TreeString.valueOf("src"), TreeString.valueOf("test"))
                 .suppress(Warning.NONFINAL_FIELDS);
     }
 
     @Override
-    FileNode createNode(final String name) {
+    protected FileNode createNode(final String name) {
         var fileNode = new FileNode(name, "path");
         fileNode.addCounters(10, 1, 0);
         fileNode.addCounters(11, 2, 2);

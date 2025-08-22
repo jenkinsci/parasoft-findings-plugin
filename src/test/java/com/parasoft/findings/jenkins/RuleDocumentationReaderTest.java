@@ -1,37 +1,29 @@
 package com.parasoft.findings.jenkins;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 import java.util.Scanner;
 
-import org.junit.Test;
-
 import com.parasoft.findings.jenkins.internal.rules.RuleDocumentationReader;
+
+import org.junit.jupiter.api.Test;
 import com.parasoft.findings.jenkins.internal.rules.RuleDocumentationStorage;
 
-public class RuleDocumentationReaderTest
-{
+class RuleDocumentationReaderTest {
+
     private String ruleName = "APSC_DV.000160.SRD";
     private String analyzer = "com.parasoft.jtest.standards.checkers.java";
 
     @Test
-    public void documentationReaderTest() throws IOException
-    {
+    void documentationReaderTest() throws IOException {
         File tempDir = FileUtil.getTempDir();
         try {
-            URL resource = null;
-            try {
-                resource = new File("src/test/resources/rule").toURI().toURL();
-            } catch (MalformedURLException e) {
-                fail();
-            }
+            URL resource = new File("src/test/resources/rule").toURI().toURL();
             Properties settings = new Properties();
             settings.put("report.rules", resource.getPath());
             RuleDocumentationStorage helper = new RuleDocumentationStorage(tempDir, settings);
@@ -45,7 +37,7 @@ public class RuleDocumentationReaderTest
             String ruleDoc = underTest.getRuleDoc(analyzer, ruleName);
             assertNotNull(ruleDoc);
             String ruleText = null;
-            try (Scanner scanner = new Scanner( new File( resource.getPath() + ruleName + ".html"), "UTF-8" )) {
+            try (Scanner scanner = new Scanner( new File( resource.getPath() + ruleName + ".html"), StandardCharsets.UTF_8)) {
                 ruleText = scanner.useDelimiter("\\A").next();
             }
             assertEquals(ruleText, ruleDoc);

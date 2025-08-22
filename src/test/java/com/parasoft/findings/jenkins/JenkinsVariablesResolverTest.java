@@ -15,27 +15,25 @@
  */
 package com.parasoft.findings.jenkins;
 
-import static org.junit.Assert.assertEquals;
-
 import com.parasoft.findings.jenkins.internal.variables.JenkinsVariablesResolver;
 
 import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Map;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class JenkinsVariablesResolverTest
-{
+class JenkinsVariablesResolverTest {
     private static final String PATH_EXAMPLE = "/job/workspace/builds/";
 
     @Test
-    public void testResolveSurroundedByCurlyBrackets()
-    {
+    void testResolveSurroundedByCurlyBrackets() {
         String sVariable = "${BUILD_NUMBER}";
         String sVariable2 = "${build_number}";
         String sExpr = PATH_EXAMPLE + sVariable;
         String sExpr2 = sVariable + PATH_EXAMPLE;
-        Map<String, String> variables = new HashMap<String, String>();
+        Map<String, String> variables = new HashMap<>();
         variables.put("BUILD_NUMBER", "1");
 
         JenkinsVariablesResolver resolver = new JenkinsVariablesResolver(variables);
@@ -46,12 +44,11 @@ public class JenkinsVariablesResolverTest
     }
 
     @Test
-    public void testResolveSurroundedByPercentSign()
-    {
+    void testResolveSurroundedByPercentSign() {
         String sVariable = "%BUILD_NUMBER%";
         String sExpr = PATH_EXAMPLE + sVariable;
         String sExpr2 = sVariable + PATH_EXAMPLE;
-        Map<String, String> variables = new HashMap<String, String>();
+        Map<String, String> variables = new HashMap<>();
         variables.put("BUILD_NUMBER", "1");
 
         JenkinsVariablesResolver resolver = new JenkinsVariablesResolver(variables);

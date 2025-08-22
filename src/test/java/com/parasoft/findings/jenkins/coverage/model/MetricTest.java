@@ -35,6 +35,7 @@ import static com.parasoft.findings.jenkins.coverage.Assertions.*;
  * @author Ullrich Hafner
  */
 class MetricTest {
+
     @EnumSource(Metric.class)
     @ParameterizedTest(name = "{0} should be converted to a tag name and then back to a metric")
     void shouldConvertToTags(final Metric metric) {

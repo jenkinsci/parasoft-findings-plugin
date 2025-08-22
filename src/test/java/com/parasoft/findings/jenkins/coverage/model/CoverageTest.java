@@ -44,6 +44,7 @@ import static com.parasoft.findings.jenkins.coverage.Assertions.*;
  */
 @DefaultLocale("en")
 class CoverageTest {
+
     private static final Coverage NO_COVERAGE = new CoverageBuilder()
             .setMetric(Metric.LINE)
             .setCovered(0)
