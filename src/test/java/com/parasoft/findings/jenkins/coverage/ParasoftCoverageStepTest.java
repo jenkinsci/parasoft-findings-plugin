@@ -5,6 +5,7 @@ import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import com.parasoft.findings.jenkins.coverage.api.metrics.steps.CoverageBuildAction;
 import com.parasoft.findings.jenkins.coverage.model.Coverage;
 import com.parasoft.findings.jenkins.coverage.model.Metric;
+import hudson.model.Descriptor;
 import hudson.model.Result;
 import hudson.model.Run;
 import jenkins.model.ParameterizedJobMixIn;
@@ -22,37 +23,37 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     private static final int MISSED_LINES = 8;
 
     @Test
-    void testJobWithAllParameters() {
+    void testJobWithAllParameters() throws Descriptor.FormException {
         WorkflowJob job = createPipeline("1", COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         verifyResult(job);
     }
 
     @Test
-    void testJobWithOutReferenceJob() {
+    void testJobWithOutReferenceJob() throws Descriptor.FormException {
         WorkflowJob job = createPipeline(null, null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         verifyResult(job);
     }
 
     @Test
-    void testJobWithOutReferenceBuild() {
+    void testJobWithOutReferenceBuild() throws Descriptor.FormException {
         WorkflowJob job = createPipeline(null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         verifyResult(job);
     }
 
     @Test
-    void testJobWithOutCoverageQualityGates() {
+    void testJobWithOutCoverageQualityGates() throws Descriptor.FormException {
         WorkflowJob job = createPipeline("1", null, SOURCECODE_ENCODING,COVERAGE_FILE);
         verifyResult(job);
     }
 
     @Test
-    void testJobWithOutsourceCodeEncoding() {
+    void testJobWithOutsourceCodeEncoding() throws Descriptor.FormException {
         WorkflowJob job = createPipeline("1", COVERAGE_QUALITY_GATE_SCRIPT, null, COVERAGE_FILE);
         verifyResult(job);
     }
 
     @Test
-    void testNotPassTheQualityGate() {
+    void testNotPassTheQualityGate() throws Descriptor.FormException {
         WorkflowJob job = createPipeline("7", UNSTABLE_COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         Run<?, ?> build = buildWithResult(job, Result.UNSTABLE);
 
@@ -63,7 +64,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
-    void testInvalidReferenceBuildNumber() {
+    void testInvalidReferenceBuildNumber() throws Descriptor.FormException {
         final String invalidReferenceBuildNumber = "abc";
         WorkflowJob job = createPipeline(invalidReferenceBuildNumber, UNSTABLE_COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         Run<?, ?> build = buildWithResult(job, Result.UNSTABLE);
@@ -82,7 +83,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
-    void testNoCoverageFilesFound() {
+    void testNoCoverageFilesFound() throws Descriptor.FormException {
         WorkflowJob job = createPipeline("1", COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, "wrongFile.xml");
         Run<?, ?> build = buildWithResult(job, Result.SUCCESS);
 
@@ -90,7 +91,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
-    void testNoStableBuildFoundInReferenceJob() {
+    void testNoStableBuildFoundInReferenceJob() throws Descriptor.FormException {
         WorkflowJob job = createPipelineWithWorkspaceFiles(COVERAGE_FILE, "parasoft_coverage_no_data.xml");
         setPipelineScript(job,
                 "invalid-snippet");
@@ -105,7 +106,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
-    void testNoCoverageDataFound() {
+    void testNoCoverageDataFound() throws Descriptor.FormException {
         WorkflowJob job = createPipeline("1", COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, "parasoft_coverage_no_data.xml");
         Run<?, ?> build = buildWithResult(job, Result.SUCCESS);
 
@@ -113,7 +114,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
-    void testNoCoverageDataInReferenceBuild() {
+    void testNoCoverageDataInReferenceBuild() throws Descriptor.FormException {
         WorkflowJob referenceJob = createPipeline();
         setPipelineScript(referenceJob, "");
         Run<?, ?> referenceBuild = buildSuccessfully(referenceJob);
@@ -148,7 +149,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
-    void testWhenBothReferenceJobAndReferenceBuildAreNotSet() {
+    void testWhenBothReferenceJobAndReferenceBuildAreNotSet() throws Descriptor.FormException {
         WorkflowJob job = createPipeline(null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         Run<?, ?> previousBuild = buildSuccessfully(job);
         var previousActions = previousBuild.getActions(CoverageBuildAction.class);
@@ -168,7 +169,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
-    void testWhenBothReferenceJobAndReferenceBuildAreSet() {
+    void testWhenBothReferenceJobAndReferenceBuildAreSet() throws Descriptor.FormException {
         final String notExistJobName = "not-exist-job";
         WorkflowJob referenceJob = createPipeline(notExistJobName, null, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         Run<?, ?> referenceBuild = buildSuccessfully(referenceJob);
@@ -186,7 +187,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
-    void testWhenOnlyReferenceJobOrReferenceBuildIsSet() {
+    void testWhenOnlyReferenceJobOrReferenceBuildIsSet() throws Descriptor.FormException {
         final String specifiedReferenceBuildNumber = "1";
         WorkflowJob referenceJob = createPipeline(specifiedReferenceBuildNumber, COVERAGE_QUALITY_GATE_SCRIPT, SOURCECODE_ENCODING, COVERAGE_FILE);
         Run<?, ?> referenceBuild = buildSuccessfully(referenceJob);
@@ -205,7 +206,7 @@ class ParasoftCoverageStepTest extends AbstractCoverageITest {
     }
 
     @Test
-    void testWhenReferenceBuildIsFailed() {
+    void testWhenReferenceBuildIsFailed() throws Descriptor.FormException {
         WorkflowJob job = createPipelineWithWorkspaceFiles(COVERAGE_FILE, "parasoft_coverage_no_data.xml");
         setPipelineScript(job,
                 "invalid-snippet");

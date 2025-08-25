@@ -75,7 +75,7 @@ public class ParasoftParser
     }
 
     @Override
-    public Report parse(ReaderFactory readerFactory) throws ParsingException, ParsingCanceledException
+    public Report parseReport(ReaderFactory readerFactory) throws ParsingException, ParsingCanceledException
     {
         File file = new File(readerFactory.getFileName());
         try (FileInputStream input = new FileInputStream(file)) {

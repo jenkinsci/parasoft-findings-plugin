@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.util.function.Consumer;
 
 import com.parasoft.findings.jenkins.coverage.ParasoftCoverageRecorder;
+import hudson.model.Descriptor;
 import org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition;
 import org.jenkinsci.plugins.workflow.job.WorkflowJob;
 import hudson.model.FreeStyleProject;
@@ -74,18 +75,18 @@ public abstract class AbstractCoverageITest extends IntegrationTestWithJenkinsPe
         project.getPublishersList().add(recorder);
     }
 
-    protected void setPipelineScript(final WorkflowJob job, final String recorderSnippet) {
+    protected void setPipelineScript(final WorkflowJob job, final String recorderSnippet) throws Descriptor.FormException {
         job.setDefinition(new CpsFlowDefinition(
                 "node {\n"
                         + recorderSnippet + "\n"
                         + " }\n", true));
     }
 
-    protected WorkflowJob createPipeline(final String referenceBuild, final String coverageQualityGates, final String sourceCodeEncoding, final String fileName) {
+    protected WorkflowJob createPipeline(final String referenceBuild, final String coverageQualityGates, final String sourceCodeEncoding, final String fileName) throws Descriptor.FormException {
         return createPipeline(null, referenceBuild, coverageQualityGates, sourceCodeEncoding, fileName);
     }
 
-    protected WorkflowJob createPipeline(final String referenceJob, final String referenceBuild, final String coverageQualityGates, final String sourceCodeEncoding, final String fileName) {
+    protected WorkflowJob createPipeline(final String referenceJob, final String referenceBuild, final String coverageQualityGates, final String sourceCodeEncoding, final String fileName) throws Descriptor.FormException {
         WorkflowJob job = createPipelineWithWorkspaceFiles("parasoft_coverage.xml", "parasoft_coverage_no_data.xml");
         String pipelineScript = "recordParasoftCoverage coverageQualityGates: [" + coverageQualityGates + "], " + "referenceBuild: '" + referenceBuild + "' , pattern: '" + fileName + "', sourceCodeEncoding: '" + sourceCodeEncoding + "'";
         if(referenceBuild == null) {

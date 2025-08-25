@@ -19,6 +19,7 @@
         "borderWidth": 0
       },
       "stack": "",
+      "emphasis":null,
       "areaStyle": {
         "normal": true
       }

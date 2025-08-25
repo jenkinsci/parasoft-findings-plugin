@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.jvnet.hudson.plugins</groupId>
     <artifactId>analysis-pom</artifactId>
-    <version>7.2.0</version>
+    <version>10.14.0</version>
     <relativePath />
   </parent>
 
@@ -23,15 +23,15 @@
   <properties>
     <!-- Library Dependencies Versions -->
     <parasoft-findings-utils.version>1.0.4</parasoft-findings-utils.version>
-    <jsoup.version>1.17.2</jsoup.version>
-    <saxon-he.version>12.4</saxon-he.version>
+    <jsoup.version>1.21.1</jsoup.version>
+    <saxon-he.version>12.8</saxon-he.version>
 
     <!-- Plugin Dependencies Versions -->
-    <warnings-ng.version>11.0.0</warnings-ng.version>
+    <warnings-ng.version>12.10.0</warnings-ng.version>
     <xunit.version>3.1.2</xunit.version>
-    <plugin-util-api.version>4.1.0</plugin-util-api.version>
-    <forensics-api.version>2.4.0</forensics-api.version>
-    <git-forensics.version>2.1.0</git-forensics.version>
+    <plugin-util-api.version>6.1.0</plugin-util-api.version>
+    <forensics-api.version>3.1.0</forensics-api.version>
+    <git-forensics.version>3.2.0</git-forensics.version>
 
     <!-- Test Library Dependencies Versions -->
     <xmlunit.version>2.10.0</xmlunit.version>
@@ -90,6 +90,7 @@
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
+        <version>3.65</version>
         <configuration>
           <pluginFirstClassLoader>true</pluginFirstClassLoader>
           <disabledTestInjection>true</disabledTestInjection>
@@ -188,7 +189,12 @@
       <dependency>
         <groupId>org.json</groupId>
         <artifactId>json</artifactId>
-        <version>20240205</version>
+        <version>20250517</version>
+      </dependency>
+      <dependency>
+        <groupId>io.jenkins.plugins</groupId>
+        <artifactId>analysis-model-api</artifactId>
+        <version>13.7.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

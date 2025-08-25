@@ -29,6 +29,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import hudson.model.Descriptor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -85,7 +86,7 @@ class GitForensicsITest extends AbstractCoverageITest {
     })
     @DisplayName("Should compute delta report and store selected source files")
     void shouldComputeDeltaInPipelineOnDockerAgent(final SourceCodeRetention sourceCodeRetention,
-            final int expectedNumberOfFilesToBeStored) {
+            final int expectedNumberOfFilesToBeStored) throws Descriptor.FormException {
         assumeThat(isWindows()).as("Running on Windows").isFalse();
 
         Node agent = createDockerAgent(AGENT_CONTAINER);
@@ -226,7 +227,7 @@ class GitForensicsITest extends AbstractCoverageITest {
      *
      * @return the created definition
      */
-    private FlowDefinition createPipelineForCommit(final String node, final String commit, final String fileName) {
+    private FlowDefinition createPipelineForCommit(final String node, final String commit, final String fileName) throws Descriptor.FormException {
         return createPipelineForCommit(node, commit, fileName, SourceCodeRetention.EVERY_BUILD);
     }
 
@@ -245,7 +246,7 @@ class GitForensicsITest extends AbstractCoverageITest {
      * @return the created definition
      */
     private FlowDefinition createPipelineForCommit(final String node, final String commit, final String fileName,
-            final SourceCodeRetention sourceCodeRetentionStrategy) {
+            final SourceCodeRetention sourceCodeRetentionStrategy) throws Descriptor.FormException {
         return new CpsFlowDefinition(node + " {"
                 + "    checkout([$class: 'GitSCM', "
                 + "         branches: [[name: '" + commit + "' ]],\n"
