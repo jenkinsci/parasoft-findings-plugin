@@ -54,40 +54,64 @@ public class XSLTransformTest
     @Test
     public void testDemoXUnitTransform()
     {
-        transform("jTest_10.2_unit.xml", 4, 4);
+        transform("jTest_10.2_unit.xml", 50, 4, 4);
     }
 
     @Test
     public void testCppTestUnitXUnitTransform()
     {
-        transform("cppTest_10.3.3_desktop_unit.xml", 147, 0);
+        transform("cppTest_10.3.3_desktop_unit.xml", 165, 147, 0);
     }
 
     @Test
     public void testCppTestUnit_10_5_1_XUnitTransform()
     {
-        transform("cppTest_10.5.1_unit.xml", 15, 0);
+        transform("cppTest_10.5.1_unit.xml", 122, 15, 0);
     }
 
     @Test
     public void testCppTestUnit_10_5_2_XUnitTransform()
     {
-        transform("cppTest_10.5.2_unit.xml", 15, 0);
+        transform("cppTest_10.5.2_unit.xml", 122, 15, 0);
     }
 
     @Test
     public void testCppTestUnit_10_6_0_XUnitTransform()
     {
-        transform("cppTest_10.6.0_unit.xml", 27, 0);
+        transform("cppTest_10.6.0_unit.xml", 152, 27, 0);
+    }
+
+    @Test
+    public void testCppTestUnit_2025_2_0_pro_XUnitTransform()
+    {
+        transform("cppTest_2025.2.0_pro_unit.xml", 162, 36, 0);
+    }
+
+    @Test
+    public void testCppTestUnit_2025_2_0_std_XUnitTransform()
+    {
+        transform("cppTest_2025.2.0_std_unit.xml", 5, 1, 0);
+    }
+
+    @Test
+    public void testJtestUnit_2025_2_0_zero_total_tests_XUnitTransform()
+    {
+        transform("jTest_2025.2.0_unit_zero_total_test.xml", 0, 0, 0);
+    }
+
+    @Test
+    public void testJtestUnit_2025_2_0_no_ExecutedTestsDetails_tag_XUnitTransform()
+    {
+        transform("jTest_2025.2.0_unit_no_ExecutedTestsDetails_tag.xml", 0, 0, 0);
     }
 
     @Test
     public void testCppTesEngineUnitXUnitTransform()
     {
-        transform("cppTest_10.3.4_engine_unit.xml", 12, 5);
+        transform("cppTest_10.3.4_engine_unit.xml", 40, 12, 5);
     }
 
-    private void transform(String fileName, int failureNumber, int errorNumber)
+    private void transform(String fileName, int total, int failureNumber, int errorNumber)
     {
         try {
             String reportFileName = TEST_RESOURCES + "xml/" + fileName;
@@ -97,6 +121,7 @@ public class XSLTransformTest
             TagCounterVerifier verifier = new TagCounterVerifier();
             XUnitTransformer.parseXunitOutputXml(outputFile, verifier);
 
+            Assert.assertEquals(total, verifier.getNumber("testcase"));
             Assert.assertEquals(failureNumber, verifier.getNumber("failure"));
             Assert.assertEquals(errorNumber, verifier.getNumber("error"));
         } catch (Exception e) {

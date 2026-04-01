@@ -4,17 +4,21 @@
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
     <xsl:variable name="newLine" select="'&#xA;'" />
+    <xsl:variable name="isNoTest" select="count(/ResultsSession/Exec) = 1 and count(/ResultsSession/Exec/ExecutedTestsDetails) = 0"/>
     <xsl:variable name="isFunctionalResult" select="/ResultsSession/@toolName = 'SOAtest'"/>
-    <xsl:variable name="isSoatestDesktop" select="count(/ResultsSession/ExecutedTestsDetails) = 1"/>
+    <xsl:variable name="isLegacyMode" select="count(/ResultsSession/ExecutedTestsDetails) = 1"/>
     <xsl:param name="pipelineBuildWorkingDirectory"><xsl:value-of select="/ResultsSession/@pipelineBuildWorkingDirectory"/></xsl:param>
 
     <xsl:template match="/">
         <xsl:choose>
-            <xsl:when test="$isFunctionalResult and $isSoatestDesktop">
+            <xsl:when test="$isFunctionalResult and not($isLegacyMode) and $isNoTest">
+                <testsuites/>
+            </xsl:when>
+            <xsl:when test="$isFunctionalResult and $isLegacyMode">
                 <!--  Functional results 9.x  -->
                 <xsl:apply-templates select="ResultsSession/ExecutedTestsDetails" mode="desktop"/>
             </xsl:when>
-            <xsl:when test="$isFunctionalResult and not($isSoatestDesktop)">
+            <xsl:when test="$isFunctionalResult and not($isLegacyMode)">
                 <!--  Functional results 10.x  -->
                 <xsl:call-template name="processWarFunctionalResults"/>
             </xsl:when>
