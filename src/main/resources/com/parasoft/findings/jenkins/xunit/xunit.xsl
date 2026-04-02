@@ -6,11 +6,15 @@
     <xsl:variable name="isLegacyMode" select="count(/ResultsSession/ExecutedTestsDetails) = 1"/>
     <xsl:variable name="isFunctionalResult" select="/ResultsSession/@toolName = 'SOAtest'"/>
     <xsl:variable name="useFullClassName" select="/ResultsSession/@toolName = 'C++test' or /ResultsSession/@toolId='c++test'" />
+    <xsl:variable name="isNoTest" select="count(/ResultsSession/Exec) = 1 and count(/ResultsSession/Exec/ExecutedTestsDetails) = 0"/>
 
     <xsl:param name="pipelineBuildWorkingDirectory"><xsl:value-of select="/ResultsSession/@pipelineBuildWorkingDirectory"/></xsl:param>
 
     <xsl:template match="/">
         <xsl:choose>
+            <xsl:when test="not($isLegacyMode = 'true') and not($isFunctionalResult = 'true') and ($isNoTest = 'true')">
+                <testsuites/>
+            </xsl:when>
             <xsl:when test="not($isLegacyMode = 'true') and not($isFunctionalResult = 'true')">
                 <!--  execution results 10.x  -->
                 <xsl:call-template name="processExecutionResults"/>

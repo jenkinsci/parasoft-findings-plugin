@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ResultsSession buildId="Default Project-2026-03-31" climode="false"
+   endTime="2026-03-31T16:22:43+08:00" execEnv="win32_x86_64" hasViols="false" id="1774397700110"
+   lang="en_US" machine="user-02" project="Default Project" tag="Example Configuration"
+   time="2026-03-31T16:22:43+08:00" toolDispName="SOAtest" toolId="soatest" toolName="SOAtest"
+   toolVer="2025.3.0.202510022000" user="user">
+   <TestParameters cmdLn="SOAtest: -config soatest.user://Example Configuration " />
+   <TestConfig machine="user-02" name="Example Configuration"
+      pseudoUrl="soatest.user://Example Configuration" user="user" />
+   <Authors />
+   <Analyzers>
+      <Analyzer id="com.parasoft.soavirt.desktop.functional.analyzer"
+         name="Parasoft Functional Tests Analyzer" ver="10.7.4.202510022000" />
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation"
+         ver="2" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards"
+         resultId="IFlowAnalysisViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IChangeImpactViolation" ver="1" ver10x="1" />
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards"
+         resultId="ICodingStandardsViolation" ver="2" ver10x="1" />
+      <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1" />
+   </VersionInfos>
+   <Scope>
+      <Repositories />
+      <Locations />
+   </Scope>
+
+   <SetupProblems />
+
+   <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
+
+      <AssocUrls>
+         <Tag disp="Requirement" name="req" />
+         <Tag disp="Feature request" name="fr" />
+         <Tag disp="Problem report" name="pr" />
+         <Tag disp="Task" name="task" />
+         <Tag disp="Asset" name="asset" />
+         <Tag disp="Test" name="test" />
+      </AssocUrls>
+
+
+      <Categories>
+         <CategoryGroup authTot="" authUrg="" desc="Functional Test Problems" id="GROUP.FUNC.FAIL"
+            label="Fix Functional Test Problems" name="Functional Test Problems" total="0">
+            <Category authTot="" authUrg="" id="FUNC.FAIL" name="Functional Failures"
+               short="functional failure" total="0" />
+            <Category authTot="" authUrg="" id="XML.VALID.ERROR" name="XML Validation Errors"
+               short="XML validation error" total="0" />
+            <Category authTot="" authUrg="" id="MISC.ERR" name="Miscellaneous Errors"
+               short="miscellaneous error" total="0" />
+         </CategoryGroup>
+         <CategoryGroup authTot="" authUrg="" desc="Change Impact" id="GROUP.CHNG.IMP"
+            label="Review Change Impact" name="Change Impact" total="0">
+            <Category authTot="" authUrg="" id="CHNG.IMP" name="Change Impact" short="change impact"
+               total="0" />
+         </CategoryGroup>
+      </Categories>
+      <Projects />
+
+      <APICoverage />
+
+
+      <TrafficData />
+
+      <EnvData />
+      <FuncAPISecurity pentest="false">
+
+         <Categories />
+
+         <Attacks />
+      </FuncAPISecurity>
+      <Axe scan="false">
+
+         <AxeRules />
+      </Axe>
+
+      <ExecViols />
+
+
+      <ExecutedTestsDetails functional="true" changeImpact="false" type="FT">
+         <Total total="0" name="Passed / Total" />
+      </ExecutedTestsDetails>
+
+
+      <FuncTestDetails />
+   </Exec>
+   <Statistics>
+
+   </Statistics>
+</ResultsSession>

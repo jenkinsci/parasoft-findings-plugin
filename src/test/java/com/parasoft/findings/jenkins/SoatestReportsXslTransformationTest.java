@@ -67,6 +67,18 @@ public class SoatestReportsXslTransformationTest
     }
 
     @Test
+    public void testSoatest_2025_3_0_FunctionalOutputXUnit()
+    {
+        transform("SOAtest_functional_2025.3.0_zero_total_test.xml", "SOAtest_functional_2025.3.0-output.xml", 0, 0, 0);
+    }
+
+    @Test
+    public void testSoatest_2025_3_0_no_ExecutedTestsDetails_tag_FunctionalOutputXUnit()
+    {
+        transform("SOAtest_functional_2025.3.0_no_ExecutedTestsDetails_tag.xml", "SOAtest_functional_2025.3.0_no_ExecutedTestsDetails_tag-output.xml", 0, 0, 0);
+    }
+
+    @Test
     public void testSoatestDesktop9FunctionalIterationsOutputXUnit()
     {
         transform("soatestDesktop9FunctionalIterations.xml", "soatestDesktop9FunctionalIterations.xml", 2, 20, 20);
