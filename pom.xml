@@ -23,7 +23,7 @@
   <properties>
     <!-- Library Dependencies Versions -->
     <parasoft-findings-utils.version>1.0.4</parasoft-findings-utils.version>
-    <jsoup.version>1.17.2</jsoup.version>
+    <jsoup.version>1.23.1</jsoup.version>
     <saxon-he.version>12.4</saxon-he.version>
 
     <!-- Plugin Dependencies Versions -->
