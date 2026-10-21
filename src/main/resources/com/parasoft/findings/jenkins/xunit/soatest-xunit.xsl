@@ -386,7 +386,9 @@
                 <xsl:when test="$testCasesNumber > 1">
                     <xsl:for-each select="./TestCase">
                         <xsl:variable name="testParams" select="@id" />
-                        <xsl:variable name="funcViols" select="/ResultsSession/Exec/ExecViols/FuncViol[@testId=$testID and @tcId=$testParams]" />
+                        <!-- Include all execution violation kinds, such as VisualDifference and ChangeImpact,
+                             while keeping failures associated with this test case. -->
+                        <xsl:variable name="funcViols" select="/ResultsSession/Exec/ExecViols/*[@testId=$testID and @tcId=$testParams]" />
 
                         <xsl:call-template name="writeXUnitTestCaseWar">
                             <xsl:with-param name="testName" select="concat($testName,'[',$testParams,']')" />
@@ -397,7 +399,8 @@
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:variable name="funcViols" select="/ResultsSession/Exec/ExecViols/FuncViol[@testId=$testID]" />
+                    <!-- Single-case tests also need every execution violation kind. -->
+                    <xsl:variable name="funcViols" select="/ResultsSession/Exec/ExecViols/*[@testId=$testID]" />
                     <xsl:call-template name="writeXUnitTestCaseWar">
                         <xsl:with-param name="testName" select="$testName" />
                         <xsl:with-param name="funcViols" select="$funcViols" />

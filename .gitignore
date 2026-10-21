@@ -3,5 +3,6 @@
 .project
 /target/
 /work/
+/docs/superpowers/plans/
 .arcconfig
 .idea

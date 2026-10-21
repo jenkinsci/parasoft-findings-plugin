@@ -17,8 +17,15 @@ package com.parasoft.findings.jenkins;
 
 import java.io.File;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 public class SoatestReportsXslTransformationTest
 {
@@ -26,6 +33,98 @@ public class SoatestReportsXslTransformationTest
     private static final String SOATEST_XUNIT_XSL = "src/main/resources/com/parasoft/findings/jenkins/xunit/soatest-xunit.xsl";
 
     private static final String TEST_RESOURCES = "src/test/resources/";
+
+    private static final String EXECUTION_VIOLATIONS_REPORT = "SOAtest_functional_execution_violations.xml";
+
+    private static final String[] EXECUTION_VIOLATION_TYPES = {
+        "ExecViol", "UnitViol", "FuncViol", "RuntimeViol", "ChangeImpact", "VisualDifference"
+    };
+
+    @Test
+    public void testSoatestExecutionViolationsForSingleTestCases() throws Exception
+    {
+        Document output = transformExecutionViolations("execution-violations-single-output.xml");
+        for (String type : EXECUTION_VIOLATION_TYPES) {
+            Element testCase = findTestCase(output, "Execution violations/Single " + type);
+            assertExecutionViolation(testCase, type);
+            Assert.assertEquals("1.000", testCase.getAttribute("time"));
+        }
+        Assert.assertEquals(0, findTestCase(output, "Execution violations/Passing test")
+                .getElementsByTagName("failure").getLength());
+    }
+
+    @Test
+    public void testSoatestExecutionViolationsForMultipleTestCases() throws Exception
+    {
+        Document output = transformExecutionViolations("execution-violations-multiple-output.xml");
+        for (String type : EXECUTION_VIOLATION_TYPES) {
+            assertExecutionViolation(findTestCase(output, "Execution violations/Parameterized " + type + "[Safari]"), type);
+            Assert.assertEquals(type, 0, findTestCase(output, "Execution violations/Parameterized " + type + "[Chrome]")
+                    .getElementsByTagName("failure").getLength());
+        }
+    }
+
+    @Test
+    public void testSoatestMixedExecutionViolationDetails() throws Exception
+    {
+        Document output = transformExecutionViolations("execution-violations-mixed-output.xml");
+        NodeList failures = findTestCase(output, "Execution violations/Mixed violations").getElementsByTagName("failure");
+        Assert.assertEquals(1, failures.getLength());
+        Element failure = (Element) failures.item(0);
+        Assert.assertEquals("Multiple errors reported", failure.getAttribute("message"));
+        Assert.assertEquals("Functional failure\n\nChange impact failure\nChange impact details"
+                + "\n\nVisual difference failure\nSource: screenshot.png", failure.getTextContent());
+    }
+
+    @Test
+    public void testSoatestExecutionViolationWithoutTestCase() throws Exception
+    {
+        Document output = transformExecutionViolations("execution-violations-without-test-case-output.xml");
+        NodeList failures = findTestCase(output, "Execution violations/Without test case").getElementsByTagName("failure");
+        Assert.assertEquals(1, failures.getLength());
+        Assert.assertEquals("Visual comparison failed", ((Element) failures.item(0)).getAttribute("message"));
+    }
+
+    @Test
+    public void testSoatestExecutionViolationCounts() throws Exception
+    {
+        transform(EXECUTION_VIOLATIONS_REPORT, "execution-violations-counts-output.xml", 1, 21, 14);
+        Document output = transformExecutionViolations("execution-violations-totals-output.xml");
+        Element suite = (Element) output.getElementsByTagName("testsuite").item(0);
+        Assert.assertEquals("21", suite.getAttribute("tests"));
+        Assert.assertEquals("14", suite.getAttribute("failures"));
+    }
+
+    @Test
+    public void testSoatestExecutionViolationsOutputSchema()
+    {
+        soatestXunitTransformation(TEST_RESOURCES + "xml/" + EXECUTION_VIOLATIONS_REPORT,
+                "execution-violations-schema-output.xml");
+    }
+
+    private Document transformExecutionViolations(String outputFileName) throws Exception
+    {
+        File output = XUnitTransformer.transform(TEST_RESOURCES + "xml/" + EXECUTION_VIOLATIONS_REPORT,
+                outputFileName, SOATEST_XUNIT_XSL);
+        return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(output);
+    }
+
+    private Element findTestCase(Document output, String name) throws Exception
+    {
+        Element testCase = (Element) XPathFactory.newInstance().newXPath()
+                .evaluate("//testcase[@name='" + name + "']", output, XPathConstants.NODE);
+        Assert.assertNotNull("Missing test case: " + name, testCase);
+        return testCase;
+    }
+
+    private void assertExecutionViolation(Element testCase, String type)
+    {
+        NodeList failures = testCase.getElementsByTagName("failure");
+        Assert.assertEquals(type, 1, failures.getLength());
+        Element failure = (Element) failures.item(0);
+        Assert.assertEquals(type + " failure", failure.getAttribute("message"));
+        Assert.assertEquals("RuntimeViol".equals(type) ? "" : type + " details", failure.getTextContent());
+    }
 
     @Test
     public void testSoatest9DesktopFunctionalXUnitTransform()

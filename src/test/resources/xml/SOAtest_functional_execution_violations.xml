@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Compact regression report for the ExecViols schema types listed in CICD-1179. -->
+<ResultsSession toolName="SOAtest" toolVer="2026.2.0" machine="test-host" time="2026-10-16T02:17:45">
+    <Exec>
+        <ExecutedTestsDetails>
+            <Total total="21" fail="14" pass="7" time="0:00:21.000">
+                <Project name="regression">
+                    <TestSuite name="Execution violations" id="wk:///regression/violations.tst#suite" total="21" fail="14" pass="7" time="0:00:21.000">
+                        <Test name="Single ExecViol" id="wk:///regression/violations.tst#suite#single-ExecViol" status="fail" total="1" fail="1" time="0:00:01.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Single UnitViol" id="wk:///regression/violations.tst#suite#single-UnitViol" status="fail" total="1" fail="1" time="0:00:01.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Single FuncViol" id="wk:///regression/violations.tst#suite#single-FuncViol" status="fail" total="1" fail="1" time="0:00:01.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Single RuntimeViol" id="wk:///regression/violations.tst#suite#single-RuntimeViol" status="fail" total="1" fail="1" time="0:00:01.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Single ChangeImpact" id="wk:///regression/violations.tst#suite#single-ChangeImpact" status="fail" total="1" fail="1" time="0:00:01.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Single VisualDifference" id="wk:///regression/violations.tst#suite#single-VisualDifference" status="fail" total="1" fail="1" time="0:00:01.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Parameterized ExecViol" id="wk:///regression/violations.tst#suite#parameterized-ExecViol" status="fail" total="2" fail="1" pass="1" time="0:00:02.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                            <TestCase id="Chrome" status="pass" total="1" pass="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Parameterized UnitViol" id="wk:///regression/violations.tst#suite#parameterized-UnitViol" status="fail" total="2" fail="1" pass="1" time="0:00:02.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                            <TestCase id="Chrome" status="pass" total="1" pass="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Parameterized FuncViol" id="wk:///regression/violations.tst#suite#parameterized-FuncViol" status="fail" total="2" fail="1" pass="1" time="0:00:02.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                            <TestCase id="Chrome" status="pass" total="1" pass="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Parameterized RuntimeViol" id="wk:///regression/violations.tst#suite#parameterized-RuntimeViol" status="fail" total="2" fail="1" pass="1" time="0:00:02.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                            <TestCase id="Chrome" status="pass" total="1" pass="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Parameterized ChangeImpact" id="wk:///regression/violations.tst#suite#parameterized-ChangeImpact" status="fail" total="2" fail="1" pass="1" time="0:00:02.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                            <TestCase id="Chrome" status="pass" total="1" pass="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Parameterized VisualDifference" id="wk:///regression/violations.tst#suite#parameterized-VisualDifference" status="fail" total="2" fail="1" pass="1" time="0:00:02.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                            <TestCase id="Chrome" status="pass" total="1" pass="1" time="0:00:01.000"/>
+                        </Test>
+                        <Test name="Mixed violations" id="wk:///regression/violations.tst#suite#mixed" status="fail" total="1" fail="1" time="0:00:01.000">
+                            <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        </Test>
+                        <!-- Reports may omit TestCase children; matching by testId still applies. -->
+                        <Test name="Without test case" id="wk:///regression/violations.tst#suite#without-test-case" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        <Test name="Passing test" id="wk:///regression/violations.tst#suite#passing" status="pass" total="1" pass="1" time="0:00:01.000">
+                            <TestCase id="Safari" status="pass" total="1" pass="1" time="0:00:01.000"/>
+                        </Test>
+                    </TestSuite>
+                </Project>
+            </Total>
+        </ExecutedTestsDetails>
+        <ExecViols>
+            <ExecViol testId="wk:///regression/violations.tst#suite#single-ExecViol" tcId="Safari" msg="ExecViol failure" violationDetails="ExecViol details"/>
+            <UnitViol testId="wk:///regression/violations.tst#suite#single-UnitViol" tcId="Safari" msg="UnitViol failure" violationDetails="UnitViol details"/>
+            <FuncViol testId="wk:///regression/violations.tst#suite#single-FuncViol" tcId="Safari" msg="FuncViol failure" violationDetails="FuncViol details"/>
+            <RuntimeViol testId="wk:///regression/violations.tst#suite#single-RuntimeViol" tcId="Safari" msg="RuntimeViol failure"/>
+            <ChangeImpact testId="wk:///regression/violations.tst#suite#single-ChangeImpact" tcId="Safari" msg="ChangeImpact failure" violationDetails="ChangeImpact details"/>
+            <VisualDifference testId="wk:///regression/violations.tst#suite#single-VisualDifference" tcId="Safari" msg="VisualDifference failure" violationDetails="VisualDifference details"/>
+            <ExecViol testId="wk:///regression/violations.tst#suite#parameterized-ExecViol" tcId="Safari" msg="ExecViol failure" violationDetails="ExecViol details"/>
+            <UnitViol testId="wk:///regression/violations.tst#suite#parameterized-UnitViol" tcId="Safari" msg="UnitViol failure" violationDetails="UnitViol details"/>
+            <FuncViol testId="wk:///regression/violations.tst#suite#parameterized-FuncViol" tcId="Safari" msg="FuncViol failure" violationDetails="FuncViol details"/>
+            <RuntimeViol testId="wk:///regression/violations.tst#suite#parameterized-RuntimeViol" tcId="Safari" msg="RuntimeViol failure"/>
+            <ChangeImpact testId="wk:///regression/violations.tst#suite#parameterized-ChangeImpact" tcId="Safari" msg="ChangeImpact failure" violationDetails="ChangeImpact details"/>
+            <VisualDifference testId="wk:///regression/violations.tst#suite#parameterized-VisualDifference" tcId="Safari" msg="VisualDifference failure" violationDetails="VisualDifference details"/>
+            <!-- Unexecuted browser IDs must not leak failures into the Safari or Chrome test cases. -->
+            <ExecViol testId="wk:///regression/violations.tst#suite#parameterized-ExecViol" tcId="Firefox" msg="Unrelated ExecViol"/>
+            <UnitViol testId="wk:///regression/violations.tst#suite#parameterized-UnitViol" tcId="Firefox" msg="Unrelated UnitViol"/>
+            <FuncViol testId="wk:///regression/violations.tst#suite#parameterized-FuncViol" tcId="Firefox" msg="Unrelated FuncViol"/>
+            <RuntimeViol testId="wk:///regression/violations.tst#suite#parameterized-RuntimeViol" tcId="Firefox" msg="Unrelated RuntimeViol"/>
+            <ChangeImpact testId="wk:///regression/violations.tst#suite#parameterized-ChangeImpact" tcId="Firefox" msg="Unrelated ChangeImpact"/>
+            <VisualDifference testId="wk:///regression/violations.tst#suite#parameterized-VisualDifference" tcId="Firefox" msg="Unrelated VisualDifference"/>
+            <FuncViol testId="wk:///regression/violations.tst#suite#mixed" tcId="Safari" msg="Functional failure"/>
+            <ChangeImpact testId="wk:///regression/violations.tst#suite#mixed" tcId="Safari" msg="Change impact failure" violationDetails="Change impact details"/>
+            <VisualDifference testId="wk:///regression/violations.tst#suite#mixed" tcId="Safari" msg="Visual difference failure" violationDetails="Source: screenshot.png"/>
+            <VisualDifference testId="wk:///regression/violations.tst#suite#without-test-case" msg="Visual comparison failed"/>
+        </ExecViols>
+    </Exec>
+</ResultsSession>
