@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?><ResultsSession buildId="Default Project-2026-10-22" climode="false" endTime="2026-10-22T17:54:04+08:00" execEnv="win32_x86_64" hasViols="true" id="1791976487016" lang="en_US" machine="CD-AWANG" project="Default Project" tag="Run Automated Server Tests" time="2026-10-22T17:54:04+08:00" toolDispName="SOAtest" toolId="soatest" toolName="SOAtest" toolVer="2026.2.0" user="awang">
+   <TestParameters cmdLn="SOAtest: -config soatest.builtin://Run Automated Server Tests -settings C:\Users\awang\AppData\Local\Temp\parasoft\soavirt\localsettings\run_20261022_175403_453153957.properties -resource /TestAssets/generated_by_mcp/CICD1179_JUnit_Standalone.tst -environmentConfig C:\Users\awang\AppData\Local\Temp\tmp-environmentConfig938206161693152671.xml -testName match: JUnit4 standalone all methods -dataGroupConfig C:\Users\awang\AppData\Local\Temp\tmp-dataGroupConfig8866987490917370805.xml -report C:\Users\awang\AppData\Local\Temp\parasoft\soavirt\reports\rep_20261022_175403_1795680857 "/>
+   <TestConfig machine="CD-AWANG" name="Run Automated Server Tests" pseudoUrl="soatest.builtin://Run Automated Server Tests" user="awang"/>
+   <Authors>
+      <Author id="dev1" name="awang"/>
+   </Authors>
+   <Analyzers>
+      <Analyzer id="com.parasoft.soavirt.desktop.functional.analyzer" name="Parasoft Functional Tests Analyzer" ver="10.7.6.202610142000"/>
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IChangeImpactViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IRuntimeViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IVisualDiffViolation" ver="1" ver10x="1"/>
+   </VersionInfos>
+   <Scope>
+      <Repositories/>
+      <Locations>
+         <Loc hash="982925324" locRef="1" projId="TestAssets" projPath="/TestAssets" project="TestAssets" resProjPath="generated_by_mcp/CICD1179_JUnit_Standalone.tst" totLns="52" uri="file:/D:/Workspaces/CICD/1179/soavirt_workspace/TestAssets/generated_by_mcp/CICD1179_JUnit_Standalone.tst"/>
+         <Loc hash="0" locRef="2" projId="TestAssets" projPath="/TestAssets" project="TestAssets" resProjPath="generated_by_mcp" uri="file:/D:/Workspaces/CICD/1179/soavirt_workspace/TestAssets/generated_by_mcp/"/>
+      </Locations>
+   </Scope>
+   
+  <SetupProblems/>
+
+   <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
+      
+      <AssocUrls>
+         <Tag disp="Requirement" name="req"/>
+         <Tag disp="Feature request" name="fr"/>
+         <Tag disp="Problem report" name="pr"/>
+         <Tag disp="Task" name="task"/>
+         <Tag disp="Asset" name="asset"/>
+         <Tag disp="Test" name="test"/>
+      </AssocUrls>
+   
+      
+      <Categories>
+         <CategoryGroup authTot="2;" authUrg="0;" desc="Functional Test Problems" id="GROUP.FUNC.FAIL" label="Fix Functional Test Problems" name="Functional Test Problems" total="2">
+            <Category authTot="0;" authUrg="0;" id="FUNC.FAIL" name="Functional Failures" short="functional failure" total="0"/>
+            <Category authTot="0;" authUrg="0;" id="XML.VALID.ERROR" name="XML Validation Errors" short="XML validation error" total="0"/>
+            <Category authTot="2;" authUrg="0;" id="MISC.ERR" name="Miscellaneous Errors" short="miscellaneous error" total="2">
+               <Type authTot="2;" authUrg="0;" name="unknown" total="2"/>
+            </Category>
+         </CategoryGroup>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="Change Impact" id="GROUP.CHNG.IMP" label="Review Change Impact" name="Change Impact" total="0">
+            <Category authTot="0;" authUrg="0;" id="CHNG.IMP" name="Change Impact" short="change impact" total="0"/>
+         </CategoryGroup>
+      </Categories>
+      <Projects>
+         <Project err="0" fail="1" id="TestAssets" name="TestAssets" pass="0" total="1">
+            <CategoryGroupStats id="GROUP.FUNC.FAIL" total="2"/>
+            <CategoryGroupStats id="GROUP.CHNG.IMP" total="0"/>
+         </Project>
+      </Projects>
+      
+  <ExecViols>
+    <FuncViol msg="assertionFailure(NativeJUnitCases): java.lang.AssertionError: Executor assertion expected:&lt;7> but was:&lt;8>" loc="/TestAssets/generated_by_mcp/CICD1179_JUnit_Standalone.tst" ln="-1" sev="1" auth="awang" locRef="1" violationDetails="java.lang.AssertionError: Executor assertion expected:&lt;7> but was:&lt;8>&#xd;&#xa;&#x9;at org.junit.Assert.fail(Assert.java:89)&#xd;&#xa;&#x9;at org.junit.Assert.failNotEquals(Assert.java:835)&#xd;&#xa;&#x9;at org.junit.Assert.assertEquals(Assert.java:647)&#xd;&#xa;&#x9;at NativeJUnitCases.assertionFailure(NativeJUnitCases.java:6)&#xd;&#xa;&#x9;at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)&#xd;&#xa;&#x9;at java.base/java.lang.reflect.Method.invoke(Method.java:580)&#xd;&#xa;&#x9;at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)&#xd;&#xa;&#x9;at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#xd;&#xa;&#x9;at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)&#xd;&#xa;&#x9;at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)&#xd;&#xa;&#x9;at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)&#xd;&#xa;&#x9;at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)&#xd;&#xa;&#x9;at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner.run(ParentRunner.java:413)&#xd;&#xa;&#x9;at org.junit.runner.JUnitCore.run(JUnitCore.java:137)&#xd;&#xa;&#x9;at org.junit.runner.JUnitCore.run(JUnitCore.java:115)&#xd;&#xa;&#x9;at com.parasoft.soavirt.tool.junitrunnertool.shaded.util.junit.JUnitRunner.run(JUnitRunner.java:41)&#xd;&#xa;&#x9;at com.parasoft.soavirt.tool.junitrunnertool.JUnitRunnerTool.execute(JUnitRunnerTool.java:35)&#xd;&#xa;&#x9;at webtool.extension.tool.CustomTool$ApplyTool.call(CustomTool.java:267)&#xd;&#xa;&#x9;at webtool.extension.tool.CustomTool$ApplyTool.call(CustomTool.java:1)&#xd;&#xa;&#x9;at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)&#xd;&#xa;&#x9;at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)&#xd;&#xa;&#x9;at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)&#xd;&#xa;&#x9;at java.base/java.lang.Thread.run(Thread.java:1583)&#xd;&#xa;" startPos="-1" endPos="-1" fatal="false" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="MISC.ERR" testId="wk:///TestAssets/generated_by_mcp/CICD1179_JUnit_Standalone.tst#0000000000#0000000002"/>
+    <FuncViol msg="nestedRuntimeFailure(NativeJUnitCases): java.lang.IllegalStateException: Executor outer" loc="/TestAssets/generated_by_mcp/CICD1179_JUnit_Standalone.tst" ln="-1" sev="1" auth="awang" locRef="1" violationDetails="java.lang.IllegalStateException: Executor outer&#xd;&#xa;&#x9;at NativeJUnitCases.nestedRuntimeFailure(NativeJUnitCases.java:8)&#xd;&#xa;&#x9;at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)&#xd;&#xa;&#x9;at java.base/java.lang.reflect.Method.invoke(Method.java:580)&#xd;&#xa;&#x9;at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)&#xd;&#xa;&#x9;at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#xd;&#xa;&#x9;at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)&#xd;&#xa;&#x9;at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)&#xd;&#xa;&#x9;at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)&#xd;&#xa;&#x9;at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)&#xd;&#xa;&#x9;at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)&#xd;&#xa;&#x9;at org.junit.runners.ParentRunner.run(ParentRunner.java:413)&#xd;&#xa;&#x9;at org.junit.runner.JUnitCore.run(JUnitCore.java:137)&#xd;&#xa;&#x9;at org.junit.runner.JUnitCore.run(JUnitCore.java:115)&#xd;&#xa;&#x9;at com.parasoft.soavirt.tool.junitrunnertool.shaded.util.junit.JUnitRunner.run(JUnitRunner.java:41)&#xd;&#xa;&#x9;at com.parasoft.soavirt.tool.junitrunnertool.JUnitRunnerTool.execute(JUnitRunnerTool.java:35)&#xd;&#xa;&#x9;at webtool.extension.tool.CustomTool$ApplyTool.call(CustomTool.java:267)&#xd;&#xa;&#x9;at webtool.extension.tool.CustomTool$ApplyTool.call(CustomTool.java:1)&#xd;&#xa;&#x9;at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)&#xd;&#xa;&#x9;at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)&#xd;&#xa;&#x9;at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)&#xd;&#xa;&#x9;at java.base/java.lang.Thread.run(Thread.java:1583)&#xd;&#xa;Caused by: java.lang.IllegalArgumentException: Executor inner&#xd;&#xa;&#x9;... 29 more&#xd;&#xa;" startPos="-1" endPos="-1" fatal="false" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="MISC.ERR" testId="wk:///TestAssets/generated_by_mcp/CICD1179_JUnit_Standalone.tst#0000000000#0000000002"/>
+  </ExecViols>
+
+      
+   <ExecutedTestsDetails functional="true" changeImpact="false" type="FT">
+      <Total fail="1" total="1" name="Total" time="0:00:00.032" authErr="0;" authFail="1;">
+         <Project fail="1" total="1" name="TestAssets" time="0:00:00.032" authErr="0;" id="TestAssets" authFail="1;">
+            <TestSuite ln="0" locRef="2" root="true" name="generated_by_mcp" id="wk:///TestAssets/generated_by_mcp" fail="1" total="1" time="0:00:00.032" authErr="0;" authFail="1;">
+               <TestSuite ln="0" locRef="1" name="CICD1179_JUnit_Standalone.tst" id="wk:///TestAssets/generated_by_mcp/CICD1179_JUnit_Standalone.tst" fail="1" total="1" time="0:00:00.032" authErr="0;" authFail="1;">
+                  <TestSuite ln="0" locRef="1" name="Scenario: CICD1179_JUnit_Standalone" id="wk:///TestAssets/generated_by_mcp/CICD1179_JUnit_Standalone.tst#0000000000" fail="1" total="1" time="0:00:00.032" authErr="0;" authFail="1;">
+                     <Test ln="0" auth="awang" locRef="1" name="Test 1: JUnit4 standalone all methods" startTime="1792662844858" id="wk:///TestAssets/generated_by_mcp/CICD1179_JUnit_Standalone.tst#0000000000#0000000002" status="fail" fail="1" total="1" time="0:00:00.032" authErr="0;" authFail="1;"/>
+                  </TestSuite>
+               </TestSuite>
+            </TestSuite>
+         </Project>
+      </Total>
+   </ExecutedTestsDetails>
+
+   </Exec>
+   <Statistics>
+      
+   </Statistics>
+</ResultsSession>

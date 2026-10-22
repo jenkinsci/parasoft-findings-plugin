@@ -105,6 +105,68 @@ public class SoatestNativeReportsXslTransformationTest
         XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact.xml", "native-change-schema-output.xml", XSL);
         XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact-only.xml", "native-change-only-schema-output.xml", XSL);
         XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact-filtered.xml", "native-change-filtered-schema-output.xml", XSL);
+        XUnitTransformer.testXUnitTransformation(REPORTS + "junit-executor.xml", "native-junit-executor-schema-output.xml", XSL);
+        XUnitTransformer.testXUnitTransformation(REPORTS + "junit-executor-standalone.xml", "native-junit-standalone-schema-output.xml", XSL);
+    }
+
+    @Test
+    public void testNativeStandaloneJunitExecutorCombinesItsAssertionAndRuntimeFailures() throws Exception
+    {
+        Document output = transform("junit-executor-standalone.xml", "native-junit-standalone-output.xml");
+        assertCounts(output, 1, 1);
+        Element failure = failure(output, "Scenario: CICD1179_JUnit_Standalone/Test 1: JUnit4 standalone all methods");
+        Assert.assertEquals("Multiple errors reported", failure.getAttribute("message"));
+        String details = failure.getTextContent();
+        Assert.assertTrue(details.contains("assertionFailure(NativeJUnitCases): java.lang.AssertionError: Executor assertion expected:<7> but was:<8>"));
+        Assert.assertTrue(details.contains("nestedRuntimeFailure(NativeJUnitCases): java.lang.IllegalStateException: Executor outer"));
+        Assert.assertTrue(details.contains("Caused by: java.lang.IllegalArgumentException: Executor inner"));
+        Assert.assertTrue(details.contains("JUnitRunnerTool.execute"));
+    }
+
+    @Test
+    public void testNativeJunitExecutorPreservesFailuresAndPassingControls() throws Exception
+    {
+        Document output = transform("junit-executor.xml", "native-junit-executor-output.xml");
+        assertCounts(output, 8, 6);
+        String scenario = "Scenario: CICD1179_JUnit_Executor/";
+        Assert.assertEquals(0, find(output, scenario + "Test 1: JUnit4 passing control")
+                .getElementsByTagName("failure").getLength());
+        Assert.assertEquals(0, find(output, scenario + "Test 4: JUnit4 expected exception")
+                .getElementsByTagName("failure").getLength());
+        Element assertion = failure(output, scenario + "Test 2: JUnit4 assertion failure");
+        Assert.assertEquals("assertionFailure(NativeJUnitCases): java.lang.AssertionError: Executor assertion expected:<7> but was:<8>",
+                assertion.getAttribute("message"));
+        // These frames distinguish the actual installed executor from a directly invoked JUnit assertion.
+        Assert.assertTrue(assertion.getTextContent().contains("JUnitRunnerTool.execute"));
+        Assert.assertTrue(assertion.getTextContent().contains("webtool.extension.tool.CustomTool$ApplyTool.call"));
+        Element runtime = failure(output, scenario + "Test 3: JUnit4 nested runtime exception");
+        Assert.assertEquals("nestedRuntimeFailure(NativeJUnitCases): java.lang.IllegalStateException: Executor outer",
+                runtime.getAttribute("message"));
+        String details = runtime.getTextContent();
+        int outer = details.indexOf("java.lang.IllegalStateException: Executor outer");
+        Assert.assertTrue(details, outer >= 0 && details.indexOf("Caused by: java.lang.IllegalArgumentException: Executor inner") > outer);
+        Element allMethods = failure(output, scenario + "Test 5: JUnit4 all methods");
+        Assert.assertEquals("Multiple errors reported", allMethods.getAttribute("message"));
+        Assert.assertTrue(allMethods.getTextContent().contains("assertionFailure(NativeJUnitCases)"));
+        Assert.assertTrue(allMethods.getTextContent().contains("nestedRuntimeFailure(NativeJUnitCases)"));
+        Assert.assertFalse(allMethods.getTextContent().contains("NativeJUnit3Cases"));
+    }
+
+    @Test
+    public void testNativeJunitExecutorSupportsJunit3AndConfigurationErrors() throws Exception
+    {
+        Document output = transform("junit-executor.xml", "native-junit-executor-errors-output.xml");
+        String scenario = "Scenario: CICD1179_JUnit_Executor/";
+        Element junit3 = failure(output, scenario + "Test 6: JUnit3 all methods");
+        Assert.assertEquals("Multiple errors reported", junit3.getAttribute("message"));
+        Assert.assertTrue(junit3.getTextContent().contains("junit.framework.AssertionFailedError: Executor JUnit3 assertion expected:<7> but was:<8>"));
+        Assert.assertTrue(junit3.getTextContent().contains("java.lang.NullPointerException: Executor JUnit3 runtime"));
+        Element method = failure(output, scenario + "Test 7: JUnit4 missing method");
+        Assert.assertEquals("Method \"doesNotExist\" is not present in \"NativeJUnitCases\"", method.getAttribute("message"));
+        Assert.assertTrue(method.getTextContent().contains("com.parasoft.api.tool.CustomToolException"));
+        Element missingClass = failure(output, scenario + "Test 8: JUnit4 missing class");
+        Assert.assertTrue(missingClass.getAttribute("message").startsWith("Class \"DoesNotExist\" is not present in "));
+        Assert.assertTrue(missingClass.getTextContent().contains("Caused by: java.lang.ClassNotFoundException: DoesNotExist"));
     }
 
     @Test

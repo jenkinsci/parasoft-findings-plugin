@@ -25,7 +25,8 @@
       "endpoints": [
         "tools/diffTools",
         "tools/extensionTools",
-        "files/tsts/wsdl"
+        "files/tsts/wsdl",
+        "tools/extensionTools/evaluates"
       ],
       "reason": "These native tool types are not exposed by the MCP HTTP-client authoring tools."
     }
@@ -163,8 +164,69 @@
         "No SOAP faults or functional violations are present."
       ],
       "note": "Functional and change-impact counters are separate; seven distinct clients were analyzed."
+    },
+    {
+      "file": "junit-executor.xml",
+      "sha256": "982c7e4dce6f0f3bd91c226ef295f4b83c8f0710a680c78467da7fbd86c539fc",
+      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_JUnit_Executor.tst",
+      "addon": {
+        "file": "junitexecutor.jar",
+        "sha256": "f7fcf60460c35e900f6f846414665e4586f2cee62f7d98163f702466377d05aa",
+        "implementation": "com.parasoft.soavirt.tool.junitrunnertool.JUnitRunnerTool",
+        "documentation": "https://docs.parasoft.com/display/SOAVIRT20262/JUnit+Executor"
+      },
+      "execution": "Native SOAtest REST execution using the installed add-on and bundled Java 21 runtime.",
+      "hosting": "MCP creates the scenario; REST authors Groovy Extension Tools because neither authoring API exposes standalone custom tools. Each host obtains the installed JUnit Executor descriptor, calls its native configuration initializer, sets the class folder/class/method, and invokes native CustomTool.apply using the real hosting MethodToolContext as the error-output context. The installed add-on and native wrapper generate the errors recorded by SOAtest.",
+      "tests": 8,
+      "passed": 2,
+      "failed": 6,
+      "violations": {
+        "FuncViol": 8
+      },
+      "cases": [
+        "JUnit 4 passing assertion control.",
+        "JUnit 4 assertion mismatch.",
+        "JUnit 4 IllegalStateException with an IllegalArgumentException cause.",
+        "JUnit 4 expected exception that passes.",
+        "All four JUnit 4 methods: two native diagnostics combined into one failed host test.",
+        "All three JUnit 3 methods: an assertion failure and runtime error combined into one failed host test.",
+        "An absent method produces a fatal native CustomToolException.",
+        "An absent class produces a fatal native CustomToolException with the ClassNotFoundException cause."
+      ],
+      "limitation": "These are Extension Tool hosts invoking the real native custom-tool wrapper, rather than persisted standalone JUnit Executor test steps. Report XML is unchanged. Both regular JUnit errors and fatal add-on configuration errors were emitted as FuncViol."
+    },
+    {
+      "file": "junit-executor-standalone.xml",
+      "sha256": "1df1989a6b735c7c0aa2874b55193a64d0b77523bec806db70b2a9394548a9ac",
+      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_JUnit_Standalone.tst",
+      "addon": {
+        "file": "junitexecutor.jar",
+        "sha256": "f7fcf60460c35e900f6f846414665e4586f2cee62f7d98163f702466377d05aa",
+        "implementation": "com.parasoft.soavirt.tool.junitrunnertool.JUnitRunnerTool",
+        "documentation": "https://docs.parasoft.com/display/SOAVIRT20262/JUnit+Executor"
+      },
+      "authoring": "MCP creates the scenario. The SOAtest desktop Add Test wizard creates an actual JUnit Executor step; its class folder and NativeJUnitCases class are configured in the native editor and saved by SOAtest.",
+      "execution": "Native SOAtest REST execution of the saved standalone JUnit Executor, using bundled Java 21.",
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "violations": {
+        "FuncViol": 2
+      },
+      "cases": [
+        "One standalone executor runs the four JUnit 4 methods: passing assertion, failing assertion, nested runtime failure and passing expected exception. The two native diagnostics belong to one failed SOAtest test."
+      ],
+      "note": "This confirms the native report type independently of Extension Tool hosting."
     }
   ],
   "preservation": "Each XML file is an unchanged native report.xml, obtained from a REST execution archive or native CLI report directory. Tests run offline without SOAVirt or ParaBank.",
-  "coverageLimit": "Native fixtures demonstrate FuncViol, VisualDifference and ChangeImpact. Java runtime exceptions and JUnit assertion failures emitted FuncViol in the Extension Tool probes. No current SOAtest producer was confirmed for ExecViol, UnitViol or RuntimeViol; controlled serializer-shaped fixtures cover those formats separately."
+  "coverageLimit": "Native fixtures demonstrate FuncViol, VisualDifference and ChangeImpact. The installed JUnit Executor was exercised as a saved standalone tool and through its native custom-tool wrapper: assertion, runtime and configuration errors emitted FuncViol. No current SOAtest producer was confirmed for ExecViol, UnitViol or RuntimeViol; controlled serializer-shaped fixtures cover those formats separately.",
+  "marketplaceInvestigation": {
+    "documentation": "https://docs.parasoft.com/display/SOAVIRT20262/Marketplace+Extensions",
+    "retrievedOn": "2026-10-22",
+    "pagesReviewed": 95,
+    "scope": "Current extension entries and their nested documentation, including JUnit/TestNG Executor, Burp Suite, Java Virtualization Agent, Event Monitor File Logger and transport/listener tools.",
+    "documentedProducers": "No Marketplace page reviewed specifies ExecViol, UnitViol or RuntimeViol XML output. Feature names alone do not establish native report types.",
+    "untestedCandidates": "TestNG Executor is documented but is not installed in this workspace. Its native report output was not confirmed."
+  }
 }
