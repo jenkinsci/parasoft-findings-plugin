@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Compact regression report for the ExecViols schema types listed in CICD-1179. -->
+<!-- Compact regression report using the execution diagnostics written by SOAtest/Virtualize. -->
 <ResultsSession toolName="SOAtest" toolVer="2026.2.0" machine="test-host" time="2026-10-16T02:17:45">
     <Exec>
         <ExecutedTestsDetails>
-            <Total total="21" fail="14" pass="7" time="0:00:21.000">
+            <Total total="26" fail="19" pass="7" time="0:00:26.000">
                 <Project name="regression">
-                    <TestSuite name="Execution violations" id="wk:///regression/violations.tst#suite" total="21" fail="14" pass="7" time="0:00:21.000">
+                    <TestSuite name="Execution violations" id="wk:///regression/violations.tst#suite" total="26" fail="19" pass="7" time="0:00:26.000">
                         <Test name="Single ExecViol" id="wk:///regression/violations.tst#suite#single-ExecViol" status="fail" total="1" fail="1" time="0:00:01.000">
                             <TestCase id="Safari" status="fail" total="1" fail="1" time="0:00:01.000"/>
                         </Test>
@@ -56,34 +56,101 @@
                         <Test name="Passing test" id="wk:///regression/violations.tst#suite#passing" status="pass" total="1" pass="1" time="0:00:01.000">
                             <TestCase id="Safari" status="pass" total="1" pass="1" time="0:00:01.000"/>
                         </Test>
+                        <Test name="Unit without message" id="wk:///regression/violations.tst#suite#unit-without-message" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        <Test name="Unit without throwable" id="wk:///regression/violations.tst#suite#unit-without-throwable" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        <Test name="Runtime without message" id="wk:///regression/violations.tst#suite#runtime-without-message" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        <Test name="Exec without message" id="wk:///regression/violations.tst#suite#exec-without-message" status="fail" total="1" fail="1" time="0:00:01.000"/>
+                        <Test name="Functional without message" id="wk:///regression/violations.tst#suite#functional-without-message" status="fail" total="1" fail="1" time="0:00:01.000"/>
                     </TestSuite>
                 </Project>
             </Total>
         </ExecutedTestsDetails>
         <ExecViols>
-            <ExecViol testId="wk:///regression/violations.tst#suite#single-ExecViol" tcId="Safari" msg="ExecViol failure" violationDetails="ExecViol details"/>
-            <UnitViol testId="wk:///regression/violations.tst#suite#single-UnitViol" tcId="Safari" msg="UnitViol failure" violationDetails="UnitViol details"/>
+            <ExecViol testId="wk:///regression/violations.tst#suite#single-ExecViol" tcId="Safari" msg="ExecViol failure"/>
+            <!-- The serializer writes the deepest cause first and the outer exception last. -->
+            <UnitViol testId="wk:///regression/violations.tst#suite#single-UnitViol" tcId="Safari">
+                <Thr>
+                    <ThrPart type="java.lang.IllegalStateException" msg="Underlying cause">
+                        <PathElem desc="service.call(Service.java:24)"/>
+                    </ThrPart>
+                    <ThrPart type="java.lang.AssertionError" msg="UnitViol failure">
+                        <PathElem desc="test.verify(Test.java:12)"/>
+                        <PathElem desc="test.run(Test.java:8)"/>
+                    </ThrPart>
+                </Thr>
+            </UnitViol>
             <FuncViol testId="wk:///regression/violations.tst#suite#single-FuncViol" tcId="Safari" msg="FuncViol failure" violationDetails="FuncViol details"/>
-            <RuntimeViol testId="wk:///regression/violations.tst#suite#single-RuntimeViol" tcId="Safari" msg="RuntimeViol failure"/>
+            <RuntimeViol testId="wk:///regression/violations.tst#suite#single-RuntimeViol" tcId="Safari" msg="RuntimeViol failure">
+                <ElDescList>
+                    <ElDesc ElType="MSG" desc="Runtime context">
+                        <ElDescList>
+                            <ElDesc ElType="ST" desc="service.call(Service.java:24)"/>
+                        </ElDescList>
+                    </ElDesc>
+                    <ElDesc ElType="SRC" desc="Request source"/>
+                </ElDescList>
+            </RuntimeViol>
             <ChangeImpact testId="wk:///regression/violations.tst#suite#single-ChangeImpact" tcId="Safari" msg="ChangeImpact failure" violationDetails="ChangeImpact details"/>
             <VisualDifference testId="wk:///regression/violations.tst#suite#single-VisualDifference" tcId="Safari" msg="VisualDifference failure" violationDetails="VisualDifference details"/>
-            <ExecViol testId="wk:///regression/violations.tst#suite#parameterized-ExecViol" tcId="Safari" msg="ExecViol failure" violationDetails="ExecViol details"/>
-            <UnitViol testId="wk:///regression/violations.tst#suite#parameterized-UnitViol" tcId="Safari" msg="UnitViol failure" violationDetails="UnitViol details"/>
+            <ExecViol testId="wk:///regression/violations.tst#suite#parameterized-ExecViol" tcId="Safari" msg="ExecViol failure"/>
+            <UnitViol testId="wk:///regression/violations.tst#suite#parameterized-UnitViol" tcId="Safari">
+                <Thr>
+                    <ThrPart type="java.lang.IllegalStateException" msg="Underlying cause">
+                        <PathElem desc="service.call(Service.java:24)"/>
+                    </ThrPart>
+                    <ThrPart type="java.lang.AssertionError" msg="UnitViol failure">
+                        <PathElem desc="test.verify(Test.java:12)"/>
+                        <PathElem desc="test.run(Test.java:8)"/>
+                    </ThrPart>
+                </Thr>
+            </UnitViol>
             <FuncViol testId="wk:///regression/violations.tst#suite#parameterized-FuncViol" tcId="Safari" msg="FuncViol failure" violationDetails="FuncViol details"/>
-            <RuntimeViol testId="wk:///regression/violations.tst#suite#parameterized-RuntimeViol" tcId="Safari" msg="RuntimeViol failure"/>
+            <RuntimeViol testId="wk:///regression/violations.tst#suite#parameterized-RuntimeViol" tcId="Safari" msg="RuntimeViol failure">
+                <ElDescList>
+                    <ElDesc ElType="MSG" desc="Runtime context">
+                        <ElDescList>
+                            <ElDesc ElType="ST" desc="service.call(Service.java:24)"/>
+                        </ElDescList>
+                    </ElDesc>
+                    <ElDesc ElType="SRC" desc="Request source"/>
+                </ElDescList>
+            </RuntimeViol>
             <ChangeImpact testId="wk:///regression/violations.tst#suite#parameterized-ChangeImpact" tcId="Safari" msg="ChangeImpact failure" violationDetails="ChangeImpact details"/>
             <VisualDifference testId="wk:///regression/violations.tst#suite#parameterized-VisualDifference" tcId="Safari" msg="VisualDifference failure" violationDetails="VisualDifference details"/>
             <!-- Unexecuted browser IDs must not leak failures into the Safari or Chrome test cases. -->
             <ExecViol testId="wk:///regression/violations.tst#suite#parameterized-ExecViol" tcId="Firefox" msg="Unrelated ExecViol"/>
-            <UnitViol testId="wk:///regression/violations.tst#suite#parameterized-UnitViol" tcId="Firefox" msg="Unrelated UnitViol"/>
+            <UnitViol testId="wk:///regression/violations.tst#suite#parameterized-UnitViol" tcId="Firefox">
+                <Thr><ThrPart type="java.lang.AssertionError" msg="Unrelated UnitViol"><PathElem desc="unrelated unit frame"/></ThrPart></Thr>
+            </UnitViol>
             <FuncViol testId="wk:///regression/violations.tst#suite#parameterized-FuncViol" tcId="Firefox" msg="Unrelated FuncViol"/>
-            <RuntimeViol testId="wk:///regression/violations.tst#suite#parameterized-RuntimeViol" tcId="Firefox" msg="Unrelated RuntimeViol"/>
+            <RuntimeViol testId="wk:///regression/violations.tst#suite#parameterized-RuntimeViol" tcId="Firefox" msg="Unrelated RuntimeViol">
+                <ElDescList><ElDesc ElType="ST" desc="unrelated runtime frame"/></ElDescList>
+            </RuntimeViol>
             <ChangeImpact testId="wk:///regression/violations.tst#suite#parameterized-ChangeImpact" tcId="Firefox" msg="Unrelated ChangeImpact"/>
             <VisualDifference testId="wk:///regression/violations.tst#suite#parameterized-VisualDifference" tcId="Firefox" msg="Unrelated VisualDifference"/>
             <FuncViol testId="wk:///regression/violations.tst#suite#mixed" tcId="Safari" msg="Functional failure"/>
+            <UnitViol testId="wk:///regression/violations.tst#suite#mixed" tcId="Safari">
+                <Thr><ThrPart type="java.lang.AssertionError" msg="Mixed unit failure"><PathElem desc="mixed unit frame"/></ThrPart></Thr>
+            </UnitViol>
+            <RuntimeViol testId="wk:///regression/violations.tst#suite#mixed" tcId="Safari" msg="Mixed runtime failure">
+                <ElDescList><ElDesc ElType="ST" desc="mixed runtime frame"/></ElDescList>
+            </RuntimeViol>
             <ChangeImpact testId="wk:///regression/violations.tst#suite#mixed" tcId="Safari" msg="Change impact failure" violationDetails="Change impact details"/>
             <VisualDifference testId="wk:///regression/violations.tst#suite#mixed" tcId="Safari" msg="Visual difference failure" violationDetails="Source: screenshot.png"/>
+            <FuncViol testId="wk:///regression/violations.tst#suite#mixed" tcId="Safari" violationDetails="Mixed details without summary"/>
             <VisualDifference testId="wk:///regression/violations.tst#suite#without-test-case" msg="Visual comparison failed"/>
+            <UnitViol testId="wk:///regression/violations.tst#suite#unit-without-message">
+                <Thr>
+                    <ThrPart type="java.lang.IllegalStateException" msg="Cause message"><PathElem desc="cause frame"/></ThrPart>
+                    <ThrPart type="java.lang.AssertionError"><PathElem desc="wrapper frame"/></ThrPart>
+                </Thr>
+            </UnitViol>
+            <UnitViol testId="wk:///regression/violations.tst#suite#unit-without-throwable"><Thr/></UnitViol>
+            <RuntimeViol testId="wk:///regression/violations.tst#suite#runtime-without-message" msg="">
+                <ElDescList><ElDesc ElType="ST" desc="Runtime frame without summary"/></ElDescList>
+            </RuntimeViol>
+            <ExecViol testId="wk:///regression/violations.tst#suite#exec-without-message"/>
+            <FuncViol testId="wk:///regression/violations.tst#suite#functional-without-message" msg="   " violationDetails="Details without summary"/>
         </ExecViols>
     </Exec>
 </ResultsSession>

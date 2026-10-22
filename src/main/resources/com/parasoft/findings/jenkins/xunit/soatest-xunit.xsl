@@ -433,12 +433,15 @@
                     <xsl:when test="count($funcViols) > 1">
                         <xsl:variable name="combinedFailures">
                             <xsl:for-each select="$funcViols">
-                                <xsl:if test="position() > 1 and string-length(@msg) > 0">
+                                <xsl:if test="position() > 1">
                                     <xsl:value-of select="concat($newLine, $newLine)" />
                                 </xsl:if>
-                                <xsl:value-of select="@msg" />
-                                <xsl:if test="string-length(@violationDetails) > 0">
-                                    <xsl:value-of select="concat($newLine, @violationDetails)" />
+                                <xsl:call-template name="executionViolationMessage" />
+                                <xsl:variable name="details">
+                                    <xsl:call-template name="executionViolationDetails" />
+                                </xsl:variable>
+                                <xsl:if test="string-length($details) > 0">
+                                    <xsl:value-of select="concat($newLine, $details)" />
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
@@ -447,15 +450,88 @@
                         </failure>
                     </xsl:when>
                     <xsl:otherwise>
-                        <failure message="{$funcViols/@msg}" type="Failure">
-                            <xsl:if test="string-length($funcViols/@violationDetails) > 0">
-                                <xsl:value-of select="$funcViols/@violationDetails" />
-                            </xsl:if>
-                        </failure>
+                        <xsl:for-each select="$funcViols">
+                            <failure type="Failure">
+                                <xsl:attribute name="message">
+                                    <xsl:call-template name="executionViolationMessage" />
+                                </xsl:attribute>
+                                <xsl:call-template name="executionViolationDetails" />
+                            </failure>
+                        </xsl:for-each>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:if>
         </testcase>
+    </xsl:template>
+
+    <xsl:template name="executionViolationMessage">
+        <!-- UnitViol omits top-level msg. The last throwable part is the outer exception,
+             whose message is also used by SOAtest/Virtualize's HTML renderer. -->
+        <xsl:variable name="exception" select="Thr/ThrPart[last()]" />
+        <xsl:choose>
+            <xsl:when test="string-length(normalize-space(@msg)) > 0">
+                <xsl:value-of select="@msg" />
+            </xsl:when>
+            <xsl:when test="string-length(normalize-space($exception/@msg)) > 0">
+                <xsl:value-of select="$exception/@msg" />
+            </xsl:when>
+            <xsl:when test="string-length(normalize-space($exception/@type)) > 0">
+                <xsl:value-of select="$exception/@type" />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="local-name()" />
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="executionViolationDetails">
+        <!-- Prefix each diagnostic block with a newline, then remove the first prefix.
+             This also keeps mixed failures separated when a violation has no msg attribute. -->
+        <xsl:variable name="details">
+            <xsl:if test="string-length(@violationDetails) > 0">
+                <xsl:value-of select="concat($newLine, @violationDetails)" />
+            </xsl:if>
+            <xsl:for-each select="Thr/ThrPart">
+                <!-- The serializer stores causes first; match the bundled xUnit renderer's order. -->
+                <xsl:sort select="position()" data-type="number" order="descending" />
+                <xsl:value-of select="$newLine" />
+                <xsl:if test="position() > 1">
+                    <xsl:text>Caused by: </xsl:text>
+                </xsl:if>
+                <xsl:choose>
+                    <xsl:when test="string-length(normalize-space(@type)) > 0">
+                        <xsl:value-of select="@type" />
+                        <xsl:if test="string-length(normalize-space(@msg)) > 0">
+                            <xsl:text>: </xsl:text>
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:when test="not(string-length(normalize-space(@msg)) > 0)">
+                        <xsl:text>Exception</xsl:text>
+                    </xsl:when>
+                </xsl:choose>
+                <xsl:if test="string-length(normalize-space(@msg)) > 0">
+                    <xsl:value-of select="@msg" />
+                </xsl:if>
+                <xsl:for-each select="PathElem[string-length(normalize-space(@desc)) > 0]">
+                    <xsl:value-of select="$newLine" />
+                    <xsl:text>&#x9;at </xsl:text>
+                    <xsl:value-of select="@desc" />
+                </xsl:for-each>
+            </xsl:for-each>
+            <xsl:apply-templates select="ElDescList/ElDesc" mode="executionDescriptor" />
+        </xsl:variable>
+        <xsl:value-of select="substring($details, 2)" />
+    </xsl:template>
+
+    <xsl:template match="ElDesc" mode="executionDescriptor">
+        <xsl:param name="indent" select="''" />
+        <xsl:if test="string-length(normalize-space(@desc)) > 0">
+            <xsl:value-of select="concat($newLine, $indent, @desc)" />
+        </xsl:if>
+        <!-- Runtime path elements can contain another descriptor list; retain the full hierarchy. -->
+        <xsl:apply-templates select="ElDescList/ElDesc" mode="executionDescriptor">
+            <xsl:with-param name="indent" select="concat($indent, '  ')" />
+        </xsl:apply-templates>
     </xsl:template>
 
     <!-- ===================== get parent path for test =========== -->
