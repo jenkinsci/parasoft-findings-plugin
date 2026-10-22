@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?><ResultsSession buildId="Default Project-2026-10-22" climode="false" endTime="2026-10-22T15:41:15+08:00" execEnv="win32_x86_64" hasViols="true" id="1791968517113" lang="en_US" machine="CD-AWANG" project="Default Project" tag="Run Automated Server Tests" time="2026-10-22T15:41:14+08:00" toolDispName="SOAtest" toolId="soatest" toolName="SOAtest" toolVer="2026.2.0" user="awang">
+   <TestParameters cmdLn="SOAtest: -config soatest.builtin://Run Automated Server Tests -settings C:\Users\awang\AppData\Local\Temp\parasoft\soavirt\localsettings\run_20261022_154113_84443168.properties -resource /TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst -report C:\Users\awang\AppData\Local\Temp\parasoft\soavirt\reports\rep_20261022_154113_1296846563 "/>
+   <TestConfig machine="CD-AWANG" name="Run Automated Server Tests" pseudoUrl="soatest.builtin://Run Automated Server Tests" user="awang"/>
+   <Authors>
+      <Author id="dev1" name="awang"/>
+   </Authors>
+   <Analyzers>
+      <Analyzer id="com.parasoft.soavirt.desktop.functional.analyzer" name="Parasoft Functional Tests Analyzer" ver="10.7.6.202610142000"/>
+   </Analyzers>
+   <VersionInfos>
+      <StorageInfo ownerId="" resultId="ISetupResult" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IMetricsViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IExecutionViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IDupCodeViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="IFlowAnalysisViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IFunctionalViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IChangeImpactViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="com.parasoft.xtest.checkers.api.standards" resultId="ICodingStandardsViolation" ver="2" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IUnitTestViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IRuntimeViolation" ver="1" ver10x="1"/>
+      <StorageInfo ownerId="" resultId="IVisualDiffViolation" ver="1" ver10x="1"/>
+   </VersionInfos>
+   <Scope>
+      <Repositories/>
+      <Locations>
+         <Loc hash="-1215325943" locRef="1" projId="TestAssets" projPath="/TestAssets" project="TestAssets" resProjPath="generated_by_mcp/CICD1179_ParaBank_Parameterized.tst" totLns="460" uri="file:/D:/Workspaces/CICD/1179/soavirt_workspace/TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst"/>
+         <Loc hash="0" locRef="2" projId="TestAssets" projPath="/TestAssets" project="TestAssets" resProjPath="generated_by_mcp" uri="file:/D:/Workspaces/CICD/1179/soavirt_workspace/TestAssets/generated_by_mcp/"/>
+      </Locations>
+   </Scope>
+   
+  <SetupProblems/>
+
+   <Exec ownerId="com.parasoft.xtest.checkers.api.execution" time="0:00:00">
+      
+      <AssocUrls>
+         <Tag disp="Requirement" name="req"/>
+         <Tag disp="Feature request" name="fr"/>
+         <Tag disp="Problem report" name="pr"/>
+         <Tag disp="Task" name="task"/>
+         <Tag disp="Asset" name="asset"/>
+         <Tag disp="Test" name="test"/>
+      </AssocUrls>
+   
+      
+      <Categories>
+         <CategoryGroup authTot="2;" authUrg="0;" desc="Functional Test Problems" id="GROUP.FUNC.FAIL" label="Fix Functional Test Problems" name="Functional Test Problems" total="2">
+            <Category authTot="0;" authUrg="0;" id="FUNC.FAIL" name="Functional Failures" short="functional failure" total="0"/>
+            <Category authTot="0;" authUrg="0;" id="XML.VALID.ERROR" name="XML Validation Errors" short="XML validation error" total="0"/>
+            <Category authTot="2;" authUrg="0;" id="MISC.ERR" name="Miscellaneous Errors" short="miscellaneous error" total="2">
+               <Type authTot="2;" authUrg="0;" name="unknown" total="2"/>
+            </Category>
+         </CategoryGroup>
+         <CategoryGroup authTot="0;" authUrg="0;" desc="Change Impact" id="GROUP.CHNG.IMP" label="Review Change Impact" name="Change Impact" total="0">
+            <Category authTot="0;" authUrg="0;" id="CHNG.IMP" name="Change Impact" short="change impact" total="0"/>
+         </CategoryGroup>
+      </Categories>
+      <Projects>
+         <Project err="0" fail="1" id="TestAssets" name="TestAssets" pass="3" total="4">
+            <CategoryGroupStats id="GROUP.FUNC.FAIL" total="2"/>
+            <CategoryGroupStats id="GROUP.CHNG.IMP" total="0"/>
+         </Project>
+      </Projects>
+      
+  <TrafficData>
+    <Traffic reqHeaders="GET /parabank/services/bank/customers/12212 HTTP/1.1&#xd;&#xa;Host: localhost:18080&#xd;&#xa;Accept: application/xml" serverResTime="5" resBody="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?>&lt;customer>&lt;id>12212&lt;/id>&lt;firstName>John&lt;/firstName>&lt;lastName>Smith&lt;/lastName>&lt;address>&lt;street>1431 Main St&lt;/street>&lt;city>Beverly Hills&lt;/city>&lt;state>CA&lt;/state>&lt;zipCode>90210&lt;/zipCode>&lt;/address>&lt;phoneNumber>310-447-4121&lt;/phoneNumber>&lt;ssn>622-11-9999&lt;/ssn>&lt;/customer>" reqBody="" resMIMEType="application/xml" reqTime="23039113" reqMIMEType="application/json" resHeaders="HTTP/1.1 200 &#xd;&#xa;Date: Thu, 22 Oct 2026 07:41:14 GMT&#xd;&#xa;Content-Type: application/xml&#xd;&#xa;Content-Length: 319" tfcRef="1"/>
+    <Traffic reqHeaders="GET /parabank/services/bank/customers/12212 HTTP/1.1&#xd;&#xa;Host: localhost:18080&#xd;&#xa;Accept: application/xml" serverResTime="5" resBody="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?>&lt;customer>&lt;id>12212&lt;/id>&lt;firstName>John&lt;/firstName>&lt;lastName>Smith&lt;/lastName>&lt;address>&lt;street>1431 Main St&lt;/street>&lt;city>Beverly Hills&lt;/city>&lt;state>CA&lt;/state>&lt;zipCode>90210&lt;/zipCode>&lt;/address>&lt;phoneNumber>310-447-4121&lt;/phoneNumber>&lt;ssn>622-11-9999&lt;/ssn>&lt;/customer>" reqBody="" resMIMEType="application/xml" reqTime="23039138" reqMIMEType="application/json" resHeaders="HTTP/1.1 200 &#xd;&#xa;Date: Thu, 22 Oct 2026 07:41:14 GMT&#xd;&#xa;Content-Type: application/xml&#xd;&#xa;Content-Length: 319" tfcRef="2"/>
+    <Traffic reqHeaders="GET /parabank/services/bank/customers/12212 HTTP/1.1&#xd;&#xa;Host: localhost:18080&#xd;&#xa;Accept: application/xml" serverResTime="5" resBody="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?>&lt;customer>&lt;id>12212&lt;/id>&lt;firstName>John&lt;/firstName>&lt;lastName>Smith&lt;/lastName>&lt;address>&lt;street>1431 Main St&lt;/street>&lt;city>Beverly Hills&lt;/city>&lt;state>CA&lt;/state>&lt;zipCode>90210&lt;/zipCode>&lt;/address>&lt;phoneNumber>310-447-4121&lt;/phoneNumber>&lt;ssn>622-11-9999&lt;/ssn>&lt;/customer>" reqBody="" resMIMEType="application/xml" reqTime="23039155" reqMIMEType="application/json" resHeaders="HTTP/1.1 200 &#xd;&#xa;Date: Thu, 22 Oct 2026 07:41:14 GMT&#xd;&#xa;Content-Type: application/xml&#xd;&#xa;Content-Length: 319" tfcRef="3"/>
+    <Traffic reqHeaders="GET /parabank/services/bank/customers/12212 HTTP/1.1&#xd;&#xa;Host: localhost:18080&#xd;&#xa;Accept: application/xml" serverResTime="5" resBody="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?>&lt;customer>&lt;id>12212&lt;/id>&lt;firstName>John&lt;/firstName>&lt;lastName>Smith&lt;/lastName>&lt;address>&lt;street>1431 Main St&lt;/street>&lt;city>Beverly Hills&lt;/city>&lt;state>CA&lt;/state>&lt;zipCode>90210&lt;/zipCode>&lt;/address>&lt;phoneNumber>310-447-4121&lt;/phoneNumber>&lt;ssn>622-11-9999&lt;/ssn>&lt;/customer>" reqBody="" resMIMEType="application/xml" reqTime="23039181" reqMIMEType="application/json" resHeaders="HTTP/1.1 200 &#xd;&#xa;Date: Thu, 22 Oct 2026 07:41:14 GMT&#xd;&#xa;Content-Type: application/xml&#xd;&#xa;Content-Length: 319" tfcRef="4"/></TrafficData>
+      
+  <ExecViols>
+    <FuncViol msg="DataSource: Customers (row 2): Customer ID from row: For element &quot;../id&quot;, expected: 12213 but was: 12212" loc="/TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst" ln="-1" sev="1" auth="awang" locRef="1" violationDetails="For element &quot;../id&quot;, expected: 12213 but was: 12212" linkableId="Customer ID from row1792654840767" startPos="-1" endPos="-1" fatal="false" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="MISC.ERR" testId="wk:///TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst#0000000000#0000000001" tcId="Customers (row 2)" tfcRef="3"/>
+    <FuncViol msg="DataSource: Customers (row 2): First name from row: For element &quot;../firstName&quot;, expected: Jane but was: John" loc="/TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst" ln="-1" sev="1" auth="awang" locRef="1" violationDetails="For element &quot;../firstName&quot;, expected: Jane but was: John" linkableId="First name from row1792654840767" startPos="-1" endPos="-1" fatal="false" analyzer="com.parasoft.soavirt.desktop.functional.analyzer" cat="MISC.ERR" testId="wk:///TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst#0000000000#0000000001" tcId="Customers (row 2)" tfcRef="3"/>
+  </ExecViols>
+
+      
+   <ExecutedTestsDetails functional="true" changeImpact="false" type="FT">
+      <Total fail="1" total="4" pass="3" name="Total" time="0:00:00.100" authErr="0;" authFail="1;">
+         <Project fail="1" total="4" pass="3" name="TestAssets" time="0:00:00.100" authErr="0;" id="TestAssets" authFail="1;">
+            <TestSuite ln="0" locRef="2" root="true" name="generated_by_mcp" id="wk:///TestAssets/generated_by_mcp" fail="1" total="4" pass="3" time="0:00:00.100" authErr="0;" authFail="1;">
+               <TestSuite ln="0" locRef="1" name="CICD1179_ParaBank_Parameterized.tst" id="wk:///TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst" fail="1" total="4" pass="3" time="0:00:00.100" authErr="0;" authFail="1;">
+                  <TestSuite ln="0" locRef="1" name="Scenario: CICD1179_ParaBank_Parameterized" id="wk:///TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst#0000000000" fail="1" total="4" pass="3" time="0:00:00.100" authErr="0;" authFail="1;">
+                     <Test ln="0" auth="awang" locRef="1" name="Test 1: Customer row assertions" startTime="0" id="wk:///TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst#0000000000#0000000001" status="fail" fail="1" total="2" pass="1" time="0:00:00.060" authErr="0;" authFail="1;">
+                        <TestCase auth="awang" name="Test 1: Customer row assertions: Customers (row 1)" startTime="1792654874837" testId="wk:///TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst#0000000000#0000000001" id="Customers (row 1)" status="pass" tfcRef="1" total="1" pass="1" time="0:00:00.039" authErr="0;" authFail="0;"/>
+                        <TestCase auth="awang" name="Test 1: Customer row assertions: Customers (row 2)" startTime="1792654874896" testId="wk:///TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst#0000000000#0000000001" id="Customers (row 2)" status="fail" tfcRef="3" fail="1" total="1" time="0:00:00.021" authErr="0;" authFail="1;"/>
+                     </Test>
+                     <Test ln="0" auth="awang" locRef="1" name="Test 2: Passing row control" startTime="0" id="wk:///TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst#0000000000#0000000002" status="pass" total="2" pass="2" time="0:00:00.040" authErr="0;" authFail="0;">
+                        <TestCase auth="awang" name="Test 2: Passing row control: Customers (row 1)" startTime="1792654874877" testId="wk:///TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst#0000000000#0000000002" id="Customers (row 1)" status="pass" tfcRef="2" total="1" pass="1" time="0:00:00.017" authErr="0;" authFail="0;"/>
+                        <TestCase auth="awang" name="Test 2: Passing row control: Customers (row 2)" startTime="1792654874920" testId="wk:///TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst#0000000000#0000000002" id="Customers (row 2)" status="pass" tfcRef="4" total="1" pass="1" time="0:00:00.023" authErr="0;" authFail="0;"/>
+                     </Test>
+                  </TestSuite>
+               </TestSuite>
+            </TestSuite>
+         </Project>
+      </Total>
+   </ExecutedTestsDetails>
+
+   </Exec>
+   <Statistics>
+      
+   </Statistics>
+</ResultsSession>

@@ -1,0 +1,56 @@
+{
+  "generatedOn": "2026-10-22",
+  "product": "SOAtest 2026.2.0",
+  "functionalAnalyzerVersion": "10.7.6.202610142000",
+  "application": {
+    "name": "Parasoft ParaBank",
+    "version": "3.0.0-SNAPSHOT",
+    "sourceCommit": "7e2946549eebba1cbd058dbcb5b367171587cea3",
+    "baseUrl": "http://localhost:18080/parabank",
+    "setup": "Built and launched in an isolated directory with Java 11; initialized the demo database through POST /services/bank/initializeDB."
+  },
+  "authoring": {
+    "protocol": "MCP",
+    "endpoint": "http://localhost:9080/soavirt/mcp",
+    "tools": ["createScenario", "addTest", "addDataSource"],
+    "execution": "Parasoft soatest-scenario-execution runner using the API address returned by soavirtApiAccess",
+    "configuration": "soatest.builtin://Run Automated Server Tests",
+    "agentSkillsSource": "https://github.com/parasoft/soavirt-ai-agent-skills"
+  },
+  "reports": [
+    {
+      "file": "parabank-single.xml",
+      "sha256": "a2f1054509a14b8bdf256aaea149b4cb6bab19d68de80d12261a5d590536ca08",
+      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_Single.tst",
+      "tests": 4,
+      "passed": 1,
+      "failed": 3,
+      "violations": {"FuncViol": 4},
+      "cases": [
+        "A passing HTTP 200 customer lookup and ID assertion.",
+        "An intentionally incorrect expected HTTP status (201 instead of 200).",
+        "Two intentionally incorrect name assertions on one test.",
+        "A refused connection, which SOAtest reports as a fatal FuncViol."
+      ]
+    },
+    {
+      "file": "parabank-parameterized.xml",
+      "sha256": "15f486feb4a8f3395b15f0e80e5aac1ed131a1246156b04fae98ff0b490163f1",
+      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst",
+      "dataSource": {
+        "name": "Customers",
+        "csv": "CustomerId,ExpectedId,ExpectedFirstName\n12212,12212,John\n12212,12213,Jane\n"
+      },
+      "tests": 4,
+      "passed": 3,
+      "failed": 1,
+      "violations": {"FuncViol": 2},
+      "cases": [
+        "One customer-assertion test runs for two CSV rows: the first passes and the second has two failed assertions.",
+        "A passing control runs for both rows, sharing tcId values with the assertion test to check testId isolation."
+      ]
+    }
+  ],
+  "preservation": "Each XML file is an unchanged report.xml extracted from the native execution archive. Tests transform these fixtures offline without SOAVirt or ParaBank.",
+  "coverageLimit": "These MCP HTTP/API scenarios emitted only FuncViol. They are not native examples of ExecViol, UnitViol, RuntimeViol, ChangeImpact or VisualDifference; controlled serializer-shaped fixtures cover those formats separately."
+}

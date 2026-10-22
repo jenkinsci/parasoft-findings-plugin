@@ -1,0 +1,2 @@
+# Preserve native report bytes, including generated whitespace, and their hashes.
+*.xml -text -whitespace
