@@ -3,6 +3,11 @@
 
     <xsl:output method="xml" encoding="UTF-8" indent="yes" />
 
+    <xsl:key name="executionViolationsByTest" match="ResultsSession/Exec/ExecViols/*[@testId]" use="@testId" />
+    <!-- Prefix the test ID with its length so delimiters inside test/case IDs cannot collide. -->
+    <xsl:key name="executionViolationsByCase" match="ResultsSession/Exec/ExecViols/*[@testId and @tcId]"
+             use="concat(string-length(@testId), ':', @testId, @tcId)" />
+
     <xsl:variable name="newLine" select="'&#xA;'" />
     <xsl:variable name="isNoTest" select="count(/ResultsSession/Exec) = 1 and count(/ResultsSession/Exec/ExecutedTestsDetails) = 0"/>
     <xsl:variable name="isFunctionalResult" select="/ResultsSession/@toolName = 'SOAtest'"/>
@@ -303,6 +308,14 @@
         <xsl:param name="depth" />
 
         <xsl:variable name="testID" select="$testNode/@id" />
+        <!-- Change Advisor can run without functional execution. Count each emitted testcase once,
+             including tests that have only a change-impact total, and use the writer's failure associations. -->
+        <xsl:variable name="singleCaseTests" select="$testNode//Test[@total &gt; 0 or @changeTotal &gt; 0][count(TestCase) &lt;= 1]" />
+        <xsl:variable name="multipleCaseTests" select="$testNode//Test[@total &gt; 0 or @changeTotal &gt; 0][count(TestCase) &gt; 1]/TestCase" />
+        <xsl:variable name="singleCaseFailures"
+                      select="count($singleCaseTests[@id][key('executionViolationsByTest', @id)])" />
+        <xsl:variable name="multipleCaseFailures"
+                      select="count($multipleCaseTests[@id and ../@id][key('executionViolationsByCase', concat(string-length(../@id), ':', ../@id, @id))])" />
 
         <xsl:variable name="rootTestName">
             <xsl:call-template name="parent_path_to_test">
@@ -328,7 +341,7 @@
             </xsl:call-template>
         </xsl:variable>
 
-        <xsl:variable name="totalTests" select="$testNode/@total" />
+        <xsl:variable name="totalTests" select="count($singleCaseTests) + count($multipleCaseTests)" />
 
         <testsuite name="{$rootTestName2}" tests="{$totalTests}" id="{position()}" package="">
             <xsl:call-template name="addTimeAttr" >
@@ -336,11 +349,11 @@
             </xsl:call-template>
             <xsl:call-template name="addHostnameAttr"/>
             <xsl:call-template name="addTimestampAttr"/>
-            <xsl:call-template name="addFailuresAttr"/>
+            <xsl:attribute name="failures"><xsl:value-of select="$singleCaseFailures + $multipleCaseFailures" /></xsl:attribute>
             <xsl:call-template name="addErrorsAttr"/>
 
             <properties/>
-            <xsl:for-each select="./Test[@total > 0] | ./TestSuite[@total > 0]">
+            <xsl:for-each select="./Test[@total > 0 or @changeTotal > 0] | ./TestSuite[@total > 0 or @changeTotal > 0]">
                 <xsl:call-template name="TestCaseInfoWar">
                     <xsl:with-param name="testNode" select="." />
                     <xsl:with-param name="depth" select="($depth) + 1" />
@@ -364,7 +377,7 @@
         <xsl:variable name="testID" select="$testNode/@id" />
 
         <xsl:if test="$isTestSuite">
-            <xsl:for-each select="./Test[@total > 0] | ./TestSuite[@total > 0]">
+            <xsl:for-each select="./Test[@total > 0 or @changeTotal > 0] | ./TestSuite[@total > 0 or @changeTotal > 0]">
                 <xsl:call-template name="TestCaseInfoWar">
                     <xsl:with-param name="testNode" select="." />
                     <xsl:with-param name="depth" select="($depth) + 1" />

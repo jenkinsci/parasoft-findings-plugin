@@ -12,10 +12,23 @@
   "authoring": {
     "protocol": "MCP",
     "endpoint": "http://localhost:9080/soavirt/mcp",
-    "tools": ["createScenario", "addTest", "addDataSource"],
+    "tools": [
+      "createScenario",
+      "addTest",
+      "addDataSource"
+    ],
     "execution": "Parasoft soatest-scenario-execution runner using the API address returned by soavirtApiAccess",
     "configuration": "soatest.builtin://Run Automated Server Tests",
-    "agentSkillsSource": "https://github.com/parasoft/soavirt-ai-agent-skills"
+    "agentSkillsSource": "https://github.com/parasoft/soavirt-ai-agent-skills",
+    "supplementalAuthoring": {
+      "protocol": "SOAVirt REST API v6",
+      "endpoints": [
+        "tools/diffTools",
+        "tools/extensionTools",
+        "files/tsts/wsdl"
+      ],
+      "reason": "These native tool types are not exposed by the MCP HTTP-client authoring tools."
+    }
   },
   "reports": [
     {
@@ -25,7 +38,9 @@
       "tests": 4,
       "passed": 1,
       "failed": 3,
-      "violations": {"FuncViol": 4},
+      "violations": {
+        "FuncViol": 4
+      },
       "cases": [
         "A passing HTTP 200 customer lookup and ID assertion.",
         "An intentionally incorrect expected HTTP status (201 instead of 200).",
@@ -44,13 +59,112 @@
       "tests": 4,
       "passed": 3,
       "failed": 1,
-      "violations": {"FuncViol": 2},
+      "violations": {
+        "FuncViol": 2
+      },
       "cases": [
         "One customer-assertion test runs for two CSV rows: the first passes and the second has two failed assertions.",
         "A passing control runs for both rows, sharing tcId values with the assertion test to check testId isolation."
       ]
+    },
+    {
+      "file": "parabank-visual.xml",
+      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_Visual.tst",
+      "tests": 2,
+      "passed": 1,
+      "failed": 1,
+      "violations": {
+        "VisualDifference": 1
+      },
+      "cases": [
+        "Unchanged image passes a native Visual Diff comparison.",
+        "A changed image produces native visual coordinates, dimensions and an image reference."
+      ],
+      "imageInputs": "ParaBank api-docs/images/favicon-32x32.png rendered on white and converted to ASCII PPM; the comparison image has a red rectangle at (8,8) of size 16x16. ASCII PPM preserves image bytes through the REST editor text field. No browser screenshot was used.",
+      "sha256": "74b5a3ca714dfad9ea81dfa258f21ee4c6f4f3c51102ca189c52557c4c33636f"
+    },
+    {
+      "file": "java-exceptions.xml",
+      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_Java_Exceptions.tst",
+      "tests": 4,
+      "passed": 1,
+      "failed": 3,
+      "violations": {
+        "FuncViol": 3
+      },
+      "cases": [
+        "A real Java AssertionError thrown by a Groovy Extension Tool.",
+        "An IllegalStateException with an IllegalArgumentException cause.",
+        "A real JUnit 4.13.2 Assert.assertEquals failure invoked through an Extension Tool.",
+        "A passing Extension Tool control."
+      ],
+      "limitation": "This uses a JUnit assertion through an Extension Tool, not the optional JUnit Executor extension. All three errors are emitted as FuncViol, with native stack details.",
+      "sha256": "0753ce17817e48a930b7b65c22613519ff03bbd268790051923ebbc889d05cc2"
+    },
+    {
+      "file": "parabank-change-impact.xml",
+      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_ChangeImpact_WSDL.tst",
+      "execution": "SOAtest CLI, using a separate temporary workspace after a separate project-import step.",
+      "configuration": "Native test configuration enabling functional tests and change-impact analysis, with explicit source and target StandardServiceDescriptor values serialized by SOAtest.",
+      "sourceDefinition": "http://localhost:18081/current.wsdl (unchanged ParaBank store-01 WSDL)",
+      "targetDefinition": "http://localhost:18080/parabank/services/store-01V2?wsdl",
+      "tests": 7,
+      "passed": 1,
+      "failed": 6,
+      "changeImpactTests": 7,
+      "changeImpactFailed": 7,
+      "violations": {
+        "ChangeImpact": 16,
+        "FuncViol": 6
+      },
+      "cases": [
+        "Native Form Input SOAP clients generated from the original ParaBank WSDL.",
+        "Change Advisor identifies operation/namespace changes against the real second WSDL.",
+        "The generated default SOAP requests produce six real SOAP faults; the local bookstore database was not initialized.",
+        "submitOrder passes functional execution but has two ChangeImpact findings. Native functional and change-impact counters are separate."
+      ],
+      "note": "The CLI summary combines seven functional checks and seven change-impact checks; the native XML functional total is seven.",
+      "sha256": "e76d84d6c159957e676dd7e338fac2347cc706d13b710c76c6d3da547333cd4a"
+    },
+    {
+      "file": "parabank-change-impact-only.xml",
+      "sha256": "346d7d6d43e35daa420f0675648c096eb55f45ef0ead747baee37de638cb70b0",
+      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_ChangeImpact_WSDL.tst",
+      "execution": "Native SOAtest CLI, same comparison and separate workspace as parabank-change-impact.xml.",
+      "tests": 0,
+      "passed": 0,
+      "failed": 0,
+      "changeImpactTests": 7,
+      "changeImpactFailed": 7,
+      "violations": {
+        "ChangeImpact": 16
+      },
+      "cases": [
+        "Functional execution disabled; Change Advisor analyzes all seven generated SOAP clients.",
+        "No SOAP faults or functional violations are present."
+      ],
+      "note": "Functional and change-impact counters are separate; seven distinct clients were analyzed."
+    },
+    {
+      "file": "parabank-change-impact-filtered.xml",
+      "sha256": "a2c4faf0bac0d21bb857b292808db90c49af2a86bbf1d5ff011f4d718cf123a8",
+      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_ChangeImpact_WSDL.tst",
+      "execution": "Native SOAtest CLI, same comparison and separate workspace as parabank-change-impact.xml.",
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "changeImpactTests": 7,
+      "changeImpactFailed": 7,
+      "violations": {
+        "ChangeImpact": 16
+      },
+      "cases": [
+        "Functional execution filtered to submitOrder; Change Advisor still analyzes all seven clients.",
+        "No SOAP faults or functional violations are present."
+      ],
+      "note": "Functional and change-impact counters are separate; seven distinct clients were analyzed."
     }
   ],
-  "preservation": "Each XML file is an unchanged report.xml extracted from the native execution archive. Tests transform these fixtures offline without SOAVirt or ParaBank.",
-  "coverageLimit": "These MCP HTTP/API scenarios emitted only FuncViol. They are not native examples of ExecViol, UnitViol, RuntimeViol, ChangeImpact or VisualDifference; controlled serializer-shaped fixtures cover those formats separately."
+  "preservation": "Each XML file is an unchanged native report.xml, obtained from a REST execution archive or native CLI report directory. Tests run offline without SOAVirt or ParaBank.",
+  "coverageLimit": "Native fixtures demonstrate FuncViol, VisualDifference and ChangeImpact. Java runtime exceptions and JUnit assertion failures emitted FuncViol in the Extension Tool probes. No current SOAtest producer was confirmed for ExecViol, UnitViol or RuntimeViol; controlled serializer-shaped fixtures cover those formats separately."
 }

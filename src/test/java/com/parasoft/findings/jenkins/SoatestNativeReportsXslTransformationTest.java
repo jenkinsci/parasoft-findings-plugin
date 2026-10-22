@@ -33,6 +33,10 @@ public class SoatestNativeReportsXslTransformationTest
     private static final String REPORTS = "src/test/resources/xml/soatest-native/";
     private static final String SINGLE = "Scenario: CICD1179_ParaBank_Single/";
     private static final String PARAMETERIZED = "Scenario: CICD1179_ParaBank_Parameterized/";
+    private static final String CHANGE_DETAILS = "Service Details (from the Service Catalog):\n"
+            + "\tService Name:  http://localhost:18080/parabank/services/store-01V2?wsdl\n"
+            + "\tSaved Service Version:  Old Version\n\tCurrent Service Version:  Current Version\n\n"
+            + "Source: http://localhost:18081/current.wsdl";
 
     @Test
     public void testNativeSingleCaseStatusAndConnectionDiagnostics() throws Exception
@@ -96,6 +100,95 @@ public class SoatestNativeReportsXslTransformationTest
     {
         XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-single.xml", "native-single-schema-output.xml", XSL);
         XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-parameterized.xml", "native-parameterized-schema-output.xml", XSL);
+        XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-visual.xml", "native-visual-schema-output.xml", XSL);
+        XUnitTransformer.testXUnitTransformation(REPORTS + "java-exceptions.xml", "native-exceptions-schema-output.xml", XSL);
+        XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact.xml", "native-change-schema-output.xml", XSL);
+        XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact-only.xml", "native-change-only-schema-output.xml", XSL);
+        XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact-filtered.xml", "native-change-filtered-schema-output.xml", XSL);
+    }
+
+    @Test
+    public void testNativeChangeImpactOnlyRunPreservesAnalyzedTests() throws Exception
+    {
+        Document output = transform("parabank-change-impact-only.xml", "native-change-only-output.xml");
+        // All seven change-impact checks ran even though every functional total is zero.
+        assertCounts(output, 7, 7);
+        Element failure = failure(output, "Test Suite: Test Suite/Test Suite: CartServicePort/Test 3: getItemById");
+        Assert.assertTrue(failure.getTextContent().contains("getItemByIdentifier"));
+        Assert.assertFalse(failure.getTextContent().contains("SOAP Fault"));
+    }
+
+    @Test
+    public void testNativeFilteredFunctionalRunRetainsAllExecutedChangeChecks() throws Exception
+    {
+        Document output = transform("parabank-change-impact-filtered.xml", "native-change-filtered-output.xml");
+        // The functional filter selects submitOrder; Change Advisor still analyzes all seven clients.
+        assertCounts(output, 7, 7);
+        Element failure = failure(output, "Test Suite: Test Suite/Test Suite: CartServicePort/Test 1: addItemToCart");
+        Assert.assertTrue(failure.getTextContent().contains("Operation \"addItemToCart\" - targetObjectUri changed"));
+        Assert.assertFalse(failure.getTextContent().contains("SOAP Fault"));
+    }
+
+    @Test
+    public void testNativeChangeImpactsIncludeFunctionallyPassingTestsInFailureTotals() throws Exception
+    {
+        Document output = transform("parabank-change-impact.xml", "native-change-output.xml");
+        // Native functional counters exclude the passing SOAP call whose Change Advisor checks failed.
+        assertCounts(output, 7, 7);
+        String scenario = "Test Suite: Test Suite/Test Suite: CartServicePort/";
+        Element changeOnly = failure(output, scenario + "Test 6: submitOrder");
+        Assert.assertEquals("Multiple errors reported", changeOnly.getAttribute("message"));
+        Assert.assertEquals("Operation \"submitOrder\" - targetObjectUri changed from \"http://bookstore.parasoft.com/\""
+                + " to \"http://bookstore2.parasoft.com/\"\n" + CHANGE_DETAILS
+                + "\n\nElement \"submitOrder\" - namespace changed from \"http://bookstore.parasoft.com/\""
+                + " to \"http://bookstore2.parasoft.com/\"\n" + CHANGE_DETAILS, changeOnly.getTextContent());
+
+        Element mixed = failure(output, scenario + "Test 1: addItemToCart");
+        Assert.assertTrue(mixed.getTextContent().contains("Operation \"addItemToCart\" - targetObjectUri changed"));
+        Assert.assertTrue(mixed.getTextContent().contains("Element \"addItemToCart\" - namespace changed"));
+        Assert.assertTrue(mixed.getTextContent().contains("SOAP Fault"));
+        Assert.assertFalse(mixed.getTextContent().contains("Operation \"getItemByTitle\""));
+    }
+
+    @Test
+    public void testNativeVisualDifferenceIsReportedAsFailure() throws Exception
+    {
+        Document output = transform("parabank-visual.xml", "native-visual-output.xml");
+        assertCounts(output, 2, 1);
+        String scenario = "Scenario: CICD1179_ParaBank_Visual/";
+        Assert.assertEquals(0, find(output, scenario + "Test 1: ParaBank unchanged image")
+                .getElementsByTagName("failure").getLength());
+        Element failure = failure(output, scenario + "Test 2: ParaBank changed image");
+        Assert.assertEquals("Visual difference found at (1, 1) of size 30 x 30.", failure.getAttribute("message"));
+        Assert.assertEquals("Source: text", failure.getTextContent());
+        Assert.assertEquals("0.020", find(output, scenario + "Test 2: ParaBank changed image").getAttribute("time"));
+    }
+
+    @Test
+    public void testNativeJavaAndJunitErrorsPreserveFunctionalDiagnostics() throws Exception
+    {
+        Document output = transform("java-exceptions.xml", "native-exceptions-output.xml");
+        assertCounts(output, 4, 3);
+        String scenario = "Scenario: CICD1179_Java_Exceptions/";
+        String prefix = "Error during script execution.  View Details for more information.\r\n";
+        Element assertion = failure(output, scenario + "Test 1: Java assertion");
+        Assert.assertEquals(prefix + "Intentional Java assertion from SOAtest extension", assertion.getAttribute("message"));
+        Assert.assertTrue(assertion.getTextContent().contains("java.lang.AssertionError: Intentional Java assertion from SOAtest extension"));
+
+        // These real Java failures remain FuncViol; their stack traces are stored in violationDetails.
+        Element runtime = failure(output, scenario + "Test 2: Java runtime exception");
+        Assert.assertEquals(prefix + "Inner cause", runtime.getAttribute("message"));
+        String details = runtime.getTextContent();
+        int outer = details.indexOf("java.lang.IllegalStateException: Outer exception");
+        int cause = details.indexOf("Caused by: java.lang.IllegalArgumentException: Inner cause");
+        Assert.assertTrue(details, outer >= 0 && cause > outer);
+
+        Element junit = failure(output, scenario + "Test 3: Failing JUnit invocation");
+        Assert.assertEquals(prefix + "Intentional JUnit mismatch expected:<1> but was:<2>", junit.getAttribute("message"));
+        Assert.assertTrue(junit.getTextContent().contains("java.lang.AssertionError: Intentional JUnit mismatch expected:<1> but was:<2>"));
+        Assert.assertTrue(junit.getTextContent().contains("org.junit.Assert.assertEquals"));
+        Assert.assertEquals(0, find(output, scenario + "Test 4: Passing Java control")
+                .getElementsByTagName("failure").getLength());
     }
 
     private Document transform(String report, String outputName) throws Exception
