@@ -63,15 +63,15 @@ public class SoatestNativeReportsXslTransformationTest
     public void testNativeReportsProduceSchemaValidXunit()
     {
         XUnitTransformer.testXUnitTransformation(REPORTS + "soatest-visual-difference.xml", "native-original-visual-schema-output.xml", XSL);
-        XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact-with-all-functional-tests.xml", "native-change-schema-output.xml", XSL);
-        XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact-without-functional-tests.xml", "native-change-only-schema-output.xml", XSL);
-        XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact-with-one-functional-test.xml", "native-change-filtered-schema-output.xml", XSL);
+        XUnitTransformer.testXUnitTransformation(REPORTS + "soatest-parabank-change-impact-with-all-functional-tests.xml", "native-change-schema-output.xml", XSL);
+        XUnitTransformer.testXUnitTransformation(REPORTS + "soatest-parabank-change-impact-without-functional-tests.xml", "native-change-only-schema-output.xml", XSL);
+        XUnitTransformer.testXUnitTransformation(REPORTS + "soatest-parabank-change-impact-with-one-functional-test.xml", "native-change-filtered-schema-output.xml", XSL);
     }
 
     @Test
     public void testNativeChangeImpactOnlyRunPreservesAnalyzedTests() throws Exception
     {
-        Document output = transform("parabank-change-impact-without-functional-tests.xml", "native-change-only-output.xml");
+        Document output = transform("soatest-parabank-change-impact-without-functional-tests.xml", "native-change-only-output.xml");
         // All seven change-impact checks ran even though every functional total is zero.
         assertCounts(output, 1, 7, 7);
         Element failure = failure(output, "Test Suite: Test Suite/Test Suite: CartServicePort/Test 3: getItemById");
@@ -82,7 +82,7 @@ public class SoatestNativeReportsXslTransformationTest
     @Test
     public void testNativeFilteredFunctionalRunRetainsAllExecutedChangeChecks() throws Exception
     {
-        Document output = transform("parabank-change-impact-with-one-functional-test.xml", "native-change-filtered-output.xml");
+        Document output = transform("soatest-parabank-change-impact-with-one-functional-test.xml", "native-change-filtered-output.xml");
         // The functional filter selects submitOrder; Change Advisor still analyzes all seven clients.
         assertCounts(output, 1, 7, 7);
         Element failure = failure(output, "Test Suite: Test Suite/Test Suite: CartServicePort/Test 1: addItemToCart");
@@ -93,7 +93,7 @@ public class SoatestNativeReportsXslTransformationTest
     @Test
     public void testNativeChangeImpactsIncludeFunctionallyPassingTestsInFailureTotals() throws Exception
     {
-        Document output = transform("parabank-change-impact-with-all-functional-tests.xml", "native-change-output.xml");
+        Document output = transform("soatest-parabank-change-impact-with-all-functional-tests.xml", "native-change-output.xml");
         // Native functional counters exclude the passing SOAP call whose Change Advisor checks failed.
         assertCounts(output, 1, 7, 7);
         String scenario = "Test Suite: Test Suite/Test Suite: CartServicePort/";
