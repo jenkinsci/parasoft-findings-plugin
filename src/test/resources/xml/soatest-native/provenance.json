@@ -103,7 +103,7 @@
       "sha256": "0753ce17817e48a930b7b65c22613519ff03bbd268790051923ebbc889d05cc2"
     },
     {
-      "file": "parabank-change-impact.xml",
+      "file": "parabank-change-impact-with-all-functional-tests.xml",
       "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_ChangeImpact_WSDL.tst",
       "execution": "SOAtest CLI, using a separate temporary workspace after a separate project-import step.",
       "configuration": "Native test configuration enabling functional tests and change-impact analysis, with explicit source and target StandardServiceDescriptor values serialized by SOAtest.",
@@ -128,10 +128,10 @@
       "sha256": "e76d84d6c159957e676dd7e338fac2347cc706d13b710c76c6d3da547333cd4a"
     },
     {
-      "file": "parabank-change-impact-only.xml",
+      "file": "parabank-change-impact-without-functional-tests.xml",
       "sha256": "346d7d6d43e35daa420f0675648c096eb55f45ef0ead747baee37de638cb70b0",
       "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_ChangeImpact_WSDL.tst",
-      "execution": "Native SOAtest CLI, same comparison and separate workspace as parabank-change-impact.xml.",
+      "execution": "Native SOAtest CLI, same comparison and separate workspace as parabank-change-impact-with-all-functional-tests.xml.",
       "tests": 0,
       "passed": 0,
       "failed": 0,
@@ -147,10 +147,10 @@
       "note": "Functional and change-impact counters are separate; seven distinct clients were analyzed."
     },
     {
-      "file": "parabank-change-impact-filtered.xml",
+      "file": "parabank-change-impact-with-one-functional-test.xml",
       "sha256": "a2c4faf0bac0d21bb857b292808db90c49af2a86bbf1d5ff011f4d718cf123a8",
       "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_ChangeImpact_WSDL.tst",
-      "execution": "Native SOAtest CLI, same comparison and separate workspace as parabank-change-impact.xml.",
+      "execution": "Native SOAtest CLI, same comparison and separate workspace as parabank-change-impact-with-all-functional-tests.xml.",
       "tests": 1,
       "passed": 1,
       "failed": 0,
