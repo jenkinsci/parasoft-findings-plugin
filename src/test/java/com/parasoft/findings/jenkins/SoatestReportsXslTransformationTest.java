@@ -37,14 +37,8 @@ public class SoatestReportsXslTransformationTest
     private static final String EXECUTION_VIOLATIONS_REPORT = "SOAtest_functional_execution_violations.xml";
 
     private static final String[] EXECUTION_VIOLATION_TYPES = {
-        "ExecViol", "UnitViol", "FuncViol", "RuntimeViol", "ChangeImpact", "VisualDifference"
+        "FuncViol", "ChangeImpact", "VisualDifference"
     };
-
-    private static final String UNIT_DIAGNOSTICS = "java.lang.AssertionError: UnitViol failure"
-            + "\n\tat test.verify(Test.java:12)\n\tat test.run(Test.java:8)"
-            + "\nCaused by: java.lang.IllegalStateException: Underlying cause\n\tat service.call(Service.java:24)";
-
-    private static final String RUNTIME_DIAGNOSTICS = "Runtime context\n  service.call(Service.java:24)\nRequest source";
 
     @Test
     public void testSoatestExecutionViolationsForSingleTestCases() throws Exception
@@ -78,9 +72,7 @@ public class SoatestReportsXslTransformationTest
         Assert.assertEquals(1, failures.getLength());
         Element failure = (Element) failures.item(0);
         Assert.assertEquals("Multiple errors reported", failure.getAttribute("message"));
-        Assert.assertEquals("Functional failure\n\nMixed unit failure"
-                + "\njava.lang.AssertionError: Mixed unit failure\n\tat mixed unit frame"
-                + "\n\nMixed runtime failure\nmixed runtime frame"
+        Assert.assertEquals("Functional failure"
                 + "\n\nChange impact failure\nChange impact details"
                 + "\n\nVisual difference failure\nSource: screenshot.png"
                 + "\n\nFuncViol\nMixed details without summary", failure.getTextContent());
@@ -90,13 +82,15 @@ public class SoatestReportsXslTransformationTest
     public void testSoatestExecutionViolationsWithoutMessages() throws Exception
     {
         Document output = transformExecutionViolations("execution-violations-message-fallback-output.xml");
-        assertFailure(output, "Unit without message", "java.lang.AssertionError",
-                "java.lang.AssertionError\n\tat wrapper frame"
-                        + "\nCaused by: java.lang.IllegalStateException: Cause message\n\tat cause frame");
-        assertFailure(output, "Unit without throwable", "UnitViol", "");
-        assertFailure(output, "Runtime without message", "RuntimeViol", "Runtime frame without summary");
-        assertFailure(output, "Exec without message", "ExecViol", "");
         assertFailure(output, "Functional without message", "FuncViol", "Details without summary");
+    }
+
+    @Test
+    public void testSoatestUnknownExecutionViolationIsNotReportedAsPassing() throws Exception
+    {
+        // FutureViolation is synthetic: matching must not depend on a fixed list of known types.
+        Document output = transformExecutionViolations("execution-violations-unknown-output.xml");
+        assertFailure(output, "Unknown violation", "Future violation failure", "Future violation details");
     }
 
     @Test
@@ -111,11 +105,11 @@ public class SoatestReportsXslTransformationTest
     @Test
     public void testSoatestExecutionViolationCounts() throws Exception
     {
-        transform(EXECUTION_VIOLATIONS_REPORT, "execution-violations-counts-output.xml", 1, 26, 19);
+        transform(EXECUTION_VIOLATIONS_REPORT, "execution-violations-counts-output.xml", 1, 14, 10);
         Document output = transformExecutionViolations("execution-violations-totals-output.xml");
         Element suite = (Element) output.getElementsByTagName("testsuite").item(0);
-        Assert.assertEquals("26", suite.getAttribute("tests"));
-        Assert.assertEquals("19", suite.getAttribute("failures"));
+        Assert.assertEquals("14", suite.getAttribute("tests"));
+        Assert.assertEquals("10", suite.getAttribute("failures"));
     }
 
     @Test
@@ -146,21 +140,7 @@ public class SoatestReportsXslTransformationTest
         Assert.assertEquals(type, 1, failures.getLength());
         Element failure = (Element) failures.item(0);
         Assert.assertEquals(type + " failure", failure.getAttribute("message"));
-        String details;
-        switch (type) {
-            case "UnitViol":
-                details = UNIT_DIAGNOSTICS;
-                break;
-            case "RuntimeViol":
-                details = RUNTIME_DIAGNOSTICS;
-                break;
-            case "ExecViol":
-                details = "";
-                break;
-            default:
-                details = type + " details";
-        }
-        Assert.assertEquals(type, details, failure.getTextContent());
+        Assert.assertEquals(type, type + " details", failure.getTextContent());
     }
 
     private void assertFailure(Document output, String testName, String message, String details) throws Exception

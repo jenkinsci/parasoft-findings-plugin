@@ -220,13 +220,13 @@
     }
   ],
   "preservation": "Each XML file is an unchanged native report.xml, obtained from a REST execution archive or native CLI report directory. Tests run offline without SOAVirt or ParaBank.",
-  "coverageLimit": "Native fixtures demonstrate FuncViol, VisualDifference and ChangeImpact. The installed JUnit Executor was exercised as a saved standalone tool and through its native custom-tool wrapper: assertion, runtime and configuration errors emitted FuncViol. No current SOAtest producer was confirmed for ExecViol, UnitViol or RuntimeViol; controlled serializer-shaped fixtures cover those formats separately.",
+  "coverageLimit": "Native fixtures demonstrate SOAtest's FuncViol, VisualDifference and ChangeImpact. The installed JUnit Executor was exercised as a saved standalone tool and through its native custom-tool wrapper: assertion, runtime and configuration errors emitted FuncViol. The shared schema also includes ExecViol (a base type without a known SOAtest producer), UnitViol (used by unit-testing products) and RuntimeViol (still produced by C/C++test, but no longer by SOAtest). Controlled SOAtest fixtures cover the three native kinds and an explicitly synthetic unknown kind; specialized unit/runtime formatting is outside this transformation's scope.",
   "marketplaceInvestigation": {
     "documentation": "https://docs.parasoft.com/display/SOAVIRT20262/Marketplace+Extensions",
     "retrievedOn": "2026-10-22",
     "pagesReviewed": 95,
     "scope": "Current extension entries and their nested documentation, including JUnit/TestNG Executor, Burp Suite, Java Virtualization Agent, Event Monitor File Logger and transport/listener tools.",
     "documentedProducers": "No Marketplace page reviewed specifies ExecViol, UnitViol or RuntimeViol XML output. Feature names alone do not establish native report types.",
-    "untestedCandidates": "TestNG Executor is documented but is not installed in this workspace. Its native report output was not confirmed."
+    "untestedCandidates": "TestNG Executor was not installed or executed. No claim is made about its native report output."
   }
 }
