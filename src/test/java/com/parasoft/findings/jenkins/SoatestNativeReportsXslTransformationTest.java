@@ -30,7 +30,7 @@ import org.w3c.dom.NodeList;
 public class SoatestNativeReportsXslTransformationTest
 {
     private static final String XSL = "src/main/resources/com/parasoft/findings/jenkins/xunit/soatest-xunit.xsl";
-    private static final String REPORTS = "src/test/resources/xml/soatest-native/";
+    private static final String REPORTS = "src/test/resources/xml/";
     private static final String CHANGE_DETAILS = "Service Details (from the Service Catalog):\n"
             + "\tService Name:  http://localhost:18080/parabank/services/store-01V2?wsdl\n"
             + "\tSaved Service Version:  Old Version\n\tCurrent Service Version:  Current Version\n\n"
