@@ -1,106 +1,31 @@
 {
-  "generatedOn": "2026-10-22",
   "product": "SOAtest 2026.2.0",
-  "functionalAnalyzerVersion": "10.7.6.202610142000",
-  "application": {
+  "generatedReportApplication": {
     "name": "Parasoft ParaBank",
     "version": "3.0.0-SNAPSHOT",
     "sourceCommit": "7e2946549eebba1cbd058dbcb5b367171587cea3",
-    "baseUrl": "http://localhost:18080/parabank",
-    "setup": "Built and launched in an isolated directory with Java 11; initialized the demo database through POST /services/bank/initializeDB."
-  },
-  "authoring": {
-    "protocol": "MCP",
-    "endpoint": "http://localhost:9080/soavirt/mcp",
-    "tools": [
-      "createScenario",
-      "addTest",
-      "addDataSource"
-    ],
-    "execution": "Parasoft soatest-scenario-execution runner using the API address returned by soavirtApiAccess",
-    "configuration": "soatest.builtin://Run Automated Server Tests",
-    "agentSkillsSource": "https://github.com/parasoft/soavirt-ai-agent-skills",
-    "supplementalAuthoring": {
-      "protocol": "SOAVirt REST API v6",
-      "endpoints": [
-        "tools/diffTools",
-        "tools/extensionTools",
-        "files/tsts/wsdl",
-        "tools/extensionTools/evaluates"
-      ],
-      "reason": "These native tool types are not exposed by the MCP HTTP-client authoring tools."
-    }
+    "baseUrl": "http://localhost:18080/parabank"
   },
   "reports": [
     {
-      "file": "parabank-single.xml",
-      "sha256": "a2f1054509a14b8bdf256aaea149b4cb6bab19d68de80d12261a5d590536ca08",
-      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_Single.tst",
-      "tests": 4,
-      "passed": 1,
-      "failed": 3,
-      "violations": {
-        "FuncViol": 4
+      "file": "soatest-visual-difference.xml",
+      "sha256": "0918f467ccd737d820a9259761d43ca0e954322ab764e6be295f91db66f48fd4",
+      "source": {
+        "kind": "Jira attachment",
+        "issue": "CICD-1179",
+        "attachmentId": "140064",
+        "originalFilename": "report.xml",
+        "url": "https://jira.parasoft.com/secure/attachment/140064/report.xml"
       },
-      "cases": [
-        "A passing HTTP 200 customer lookup and ID assertion.",
-        "An intentionally incorrect expected HTTP status (201 instead of 200).",
-        "Two intentionally incorrect name assertions on one test.",
-        "A refused connection, which SOAtest reports as a fatal FuncViol."
-      ]
-    },
-    {
-      "file": "parabank-parameterized.xml",
-      "sha256": "15f486feb4a8f3395b15f0e80e5aac1ed131a1246156b04fae98ff0b490163f1",
-      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_Parameterized.tst",
-      "dataSource": {
-        "name": "Customers",
-        "csv": "CustomerId,ExpectedId,ExpectedFirstName\n12212,12212,John\n12212,12213,Jane\n"
-      },
-      "tests": 4,
-      "passed": 3,
-      "failed": 1,
-      "violations": {
-        "FuncViol": 2
-      },
-      "cases": [
-        "One customer-assertion test runs for two CSV rows: the first passes and the second has two failed assertions.",
-        "A passing control runs for both rows, sharing tcId values with the assertion test to check testId isolation."
-      ]
-    },
-    {
-      "file": "parabank-visual.xml",
-      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_ParaBank_Visual.tst",
-      "tests": 2,
-      "passed": 1,
+      "tests": 526,
+      "passed": 525,
       "failed": 1,
       "violations": {
         "VisualDifference": 1
       },
       "cases": [
-        "Unchanged image passes a native Visual Diff comparison.",
-        "A changed image produces native visual coordinates, dimensions and an image reference."
-      ],
-      "imageInputs": "ParaBank api-docs/images/favicon-32x32.png rendered on white and converted to ASCII PPM; the comparison image has a red rectangle at (8,8) of size 16x16. ASCII PPM preserves image bytes through the REST editor text field. No browser screenshot was used.",
-      "sha256": "74b5a3ca714dfad9ea81dfa258f21ee4c6f4f3c51102ca189c52557c4c33636f"
-    },
-    {
-      "file": "java-exceptions.xml",
-      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_Java_Exceptions.tst",
-      "tests": 4,
-      "passed": 1,
-      "failed": 3,
-      "violations": {
-        "FuncViol": 3
-      },
-      "cases": [
-        "A real Java AssertionError thrown by a Groovy Extension Tool.",
-        "An IllegalStateException with an IllegalArgumentException cause.",
-        "A real JUnit 4.13.2 Assert.assertEquals failure invoked through an Extension Tool.",
-        "A passing Extension Tool control."
-      ],
-      "limitation": "This uses a JUnit assertion through an Extension Tool, not the optional JUnit Executor extension. All three errors are emitted as FuncViol, with native stack details.",
-      "sha256": "0753ce17817e48a930b7b65c22613519ff03bbd268790051923ebbc889d05cc2"
+        "The supplied browser report has one Safari visual-comparison failure among otherwise passing cases."
+      ]
     },
     {
       "file": "parabank-change-impact-with-all-functional-tests.xml",
@@ -164,69 +89,7 @@
         "No SOAP faults or functional violations are present."
       ],
       "note": "Functional and change-impact counters are separate; seven distinct clients were analyzed."
-    },
-    {
-      "file": "junit-executor.xml",
-      "sha256": "982c7e4dce6f0f3bd91c226ef295f4b83c8f0710a680c78467da7fbd86c539fc",
-      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_JUnit_Executor.tst",
-      "addon": {
-        "file": "junitexecutor.jar",
-        "sha256": "f7fcf60460c35e900f6f846414665e4586f2cee62f7d98163f702466377d05aa",
-        "implementation": "com.parasoft.soavirt.tool.junitrunnertool.JUnitRunnerTool",
-        "documentation": "https://docs.parasoft.com/display/SOAVIRT20262/JUnit+Executor"
-      },
-      "execution": "Native SOAtest REST execution using the installed add-on and bundled Java 21 runtime.",
-      "hosting": "MCP creates the scenario; REST authors Groovy Extension Tools because neither authoring API exposes standalone custom tools. Each host obtains the installed JUnit Executor descriptor, calls its native configuration initializer, sets the class folder/class/method, and invokes native CustomTool.apply using the real hosting MethodToolContext as the error-output context. The installed add-on and native wrapper generate the errors recorded by SOAtest.",
-      "tests": 8,
-      "passed": 2,
-      "failed": 6,
-      "violations": {
-        "FuncViol": 8
-      },
-      "cases": [
-        "JUnit 4 passing assertion control.",
-        "JUnit 4 assertion mismatch.",
-        "JUnit 4 IllegalStateException with an IllegalArgumentException cause.",
-        "JUnit 4 expected exception that passes.",
-        "All four JUnit 4 methods: two native diagnostics combined into one failed host test.",
-        "All three JUnit 3 methods: an assertion failure and runtime error combined into one failed host test.",
-        "An absent method produces a fatal native CustomToolException.",
-        "An absent class produces a fatal native CustomToolException with the ClassNotFoundException cause."
-      ],
-      "limitation": "These are Extension Tool hosts invoking the real native custom-tool wrapper, rather than persisted standalone JUnit Executor test steps. Report XML is unchanged. Both regular JUnit errors and fatal add-on configuration errors were emitted as FuncViol."
-    },
-    {
-      "file": "junit-executor-standalone.xml",
-      "sha256": "1df1989a6b735c7c0aa2874b55193a64d0b77523bec806db70b2a9394548a9ac",
-      "scenarioId": "/TestAssets/generated_by_mcp/CICD1179_JUnit_Standalone.tst",
-      "addon": {
-        "file": "junitexecutor.jar",
-        "sha256": "f7fcf60460c35e900f6f846414665e4586f2cee62f7d98163f702466377d05aa",
-        "implementation": "com.parasoft.soavirt.tool.junitrunnertool.JUnitRunnerTool",
-        "documentation": "https://docs.parasoft.com/display/SOAVIRT20262/JUnit+Executor"
-      },
-      "authoring": "MCP creates the scenario. The SOAtest desktop Add Test wizard creates an actual JUnit Executor step; its class folder and NativeJUnitCases class are configured in the native editor and saved by SOAtest.",
-      "execution": "Native SOAtest REST execution of the saved standalone JUnit Executor, using bundled Java 21.",
-      "tests": 1,
-      "passed": 0,
-      "failed": 1,
-      "violations": {
-        "FuncViol": 2
-      },
-      "cases": [
-        "One standalone executor runs the four JUnit 4 methods: passing assertion, failing assertion, nested runtime failure and passing expected exception. The two native diagnostics belong to one failed SOAtest test."
-      ],
-      "note": "This confirms the native report type independently of Extension Tool hosting."
     }
   ],
-  "preservation": "Each XML file is an unchanged native report.xml, obtained from a REST execution archive or native CLI report directory. Tests run offline without SOAVirt or ParaBank.",
-  "coverageLimit": "Native fixtures demonstrate SOAtest's FuncViol, VisualDifference and ChangeImpact. The installed JUnit Executor was exercised as a saved standalone tool and through its native custom-tool wrapper: assertion, runtime and configuration errors emitted FuncViol. The shared schema also includes ExecViol (a base type without a known SOAtest producer), UnitViol (used by unit-testing products) and RuntimeViol (still produced by C/C++test, but no longer by SOAtest). Controlled SOAtest fixtures cover the three native kinds and an explicitly synthetic unknown kind; specialized unit/runtime formatting is outside this transformation's scope.",
-  "marketplaceInvestigation": {
-    "documentation": "https://docs.parasoft.com/display/SOAVIRT20262/Marketplace+Extensions",
-    "retrievedOn": "2026-10-22",
-    "pagesReviewed": 95,
-    "scope": "Current extension entries and their nested documentation, including JUnit/TestNG Executor, Burp Suite, Java Virtualization Agent, Event Monitor File Logger and transport/listener tools.",
-    "documentedProducers": "No Marketplace page reviewed specifies ExecViol, UnitViol or RuntimeViol XML output. Feature names alone do not establish native report types.",
-    "untestedCandidates": "TestNG Executor was not installed or executed. No claim is made about its native report output."
-  }
+  "preservation": "The browser XML is the unchanged original Jira attachment. The three ParaBank XML files are unchanged native SOAtest CLI reports. Offline transformation tests require neither SOAVirt nor ParaBank."
 }

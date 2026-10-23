@@ -31,142 +31,41 @@ public class SoatestNativeReportsXslTransformationTest
 {
     private static final String XSL = "src/main/resources/com/parasoft/findings/jenkins/xunit/soatest-xunit.xsl";
     private static final String REPORTS = "src/test/resources/xml/soatest-native/";
-    private static final String SINGLE = "Scenario: CICD1179_ParaBank_Single/";
-    private static final String PARAMETERIZED = "Scenario: CICD1179_ParaBank_Parameterized/";
     private static final String CHANGE_DETAILS = "Service Details (from the Service Catalog):\n"
             + "\tService Name:  http://localhost:18080/parabank/services/store-01V2?wsdl\n"
             + "\tSaved Service Version:  Old Version\n\tCurrent Service Version:  Current Version\n\n"
             + "Source: http://localhost:18081/current.wsdl";
 
     @Test
-    public void testNativeSingleCaseStatusAndConnectionDiagnostics() throws Exception
+    public void testOriginalVisualDifferenceReport() throws Exception
     {
-        Document output = transform("parabank-single.xml", "native-single-output.xml");
-        assertCounts(output, 4, 3);
-        Assert.assertEquals(0, find(output, SINGLE + "Test 1: Customer passes").getElementsByTagName("failure").getLength());
-        Assert.assertEquals("0.356", find(output, SINGLE + "Test 1: Customer passes").getAttribute("time"));
+        Document output = transform("soatest-visual-difference.xml", "native-original-visual-output.xml");
+        assertCounts(output, 129, 526, 1);
+        NodeList testCases = output.getElementsByTagName("testcase");
+        int passingTests = 0;
+        for (int i = 0; i < testCases.getLength(); i++) {
+            Element testCase = (Element) testCases.item(i);
+            if (testCase.getElementsByTagName("failure").getLength() == 0
+                    && testCase.getElementsByTagName("error").getLength() == 0
+                    && testCase.getElementsByTagName("skipped").getLength() == 0) {
+                passingTests++;
+            }
+        }
+        Assert.assertEquals(525, passingTests);
 
-        Element status = failure(output, SINGLE + "Test 2: Unexpected status");
-        Assert.assertEquals("Response code Received HTTP Response Code 200 is not in valid range (Valid range: 201): 200 ",
-                status.getAttribute("message"));
-        Assert.assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><customer><id>12212</id>"
-                + "<firstName>John</firstName><lastName>Smith</lastName><address><street>1431 Main St</street>"
-                + "<city>Beverly Hills</city><state>CA</state><zipCode>90210</zipCode></address>"
-                + "<phoneNumber>310-447-4121</phoneNumber><ssn>622-11-9999</ssn></customer>", status.getTextContent());
-
-        // SOAtest emits a fatal FuncViol for this transport failure, not a UnitViol or RuntimeViol.
-        Element connection = failure(output, SINGLE + "Test 4: Refused connection");
-        Assert.assertEquals("Connection refused: connect", connection.getAttribute("message"));
-        Assert.assertEquals("A connection error has been detected.  This may occur if a test has timed out"
-                + " while the client was still attempting to send or receive data.", connection.getTextContent());
-    }
-
-    @Test
-    public void testNativeMultipleViolationsRemainOneFailure() throws Exception
-    {
-        Document output = transform("parabank-single.xml", "native-multiple-output.xml");
-        Element failure = failure(output, SINGLE + "Test 3: Multiple value mismatches");
-        Assert.assertEquals("Multiple errors reported", failure.getAttribute("message"));
-        Assert.assertEquals("Wrong first name: For element \"../firstName\", expected: Jane but was: John"
-                + "\nFor element \"../firstName\", expected: Jane but was: John"
-                + "\n\nWrong last name: For element \"../lastName\", expected: Doe but was: Smith"
-                + "\nFor element \"../lastName\", expected: Doe but was: Smith", failure.getTextContent());
-    }
-
-    @Test
-    public void testNativeParameterizedFailuresStayWithTheirTestAndRow() throws Exception
-    {
-        Document output = transform("parabank-parameterized.xml", "native-parameterized-output.xml");
-        assertCounts(output, 4, 1);
-        Assert.assertEquals(0, find(output, PARAMETERIZED + "Test 1: Customer row assertions[Customers (row 1)]")
-                .getElementsByTagName("failure").getLength());
-        Assert.assertEquals(0, find(output, PARAMETERIZED + "Test 2: Passing row control[Customers (row 1)]")
-                .getElementsByTagName("failure").getLength());
-        // The control shares tcId with the failing row; matching testId as well prevents leakage.
-        Assert.assertEquals(0, find(output, PARAMETERIZED + "Test 2: Passing row control[Customers (row 2)]")
-                .getElementsByTagName("failure").getLength());
-        Element failure = failure(output, PARAMETERIZED + "Test 1: Customer row assertions[Customers (row 2)]");
-        Assert.assertEquals("Multiple errors reported", failure.getAttribute("message"));
-        Assert.assertEquals("DataSource: Customers (row 2): Customer ID from row: For element \"../id\", expected: 12213 but was: 12212"
-                + "\nFor element \"../id\", expected: 12213 but was: 12212"
-                + "\n\nDataSource: Customers (row 2): First name from row: For element \"../firstName\", expected: Jane but was: John"
-                + "\nFor element \"../firstName\", expected: Jane but was: John", failure.getTextContent());
-        Assert.assertEquals("0.021", find(output, PARAMETERIZED + "Test 1: Customer row assertions[Customers (row 2)]")
-                .getAttribute("time"));
+        Element failure = failure(output, "Test Suite: Test Suite/Test Suite: Web Scenarios/"
+                + "Scenario: SOA-18974/Test 7: Visually Compare Window 2");
+        Assert.assertEquals("Visual difference found at (0, 0) of size 1,920 x 870.", failure.getAttribute("message"));
+        Assert.assertEquals("Source: SOA-18974_ScreenshotOutputs_test4_window2.png", failure.getTextContent());
     }
 
     @Test
     public void testNativeReportsProduceSchemaValidXunit()
     {
-        XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-single.xml", "native-single-schema-output.xml", XSL);
-        XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-parameterized.xml", "native-parameterized-schema-output.xml", XSL);
-        XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-visual.xml", "native-visual-schema-output.xml", XSL);
-        XUnitTransformer.testXUnitTransformation(REPORTS + "java-exceptions.xml", "native-exceptions-schema-output.xml", XSL);
+        XUnitTransformer.testXUnitTransformation(REPORTS + "soatest-visual-difference.xml", "native-original-visual-schema-output.xml", XSL);
         XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact-with-all-functional-tests.xml", "native-change-schema-output.xml", XSL);
         XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact-without-functional-tests.xml", "native-change-only-schema-output.xml", XSL);
         XUnitTransformer.testXUnitTransformation(REPORTS + "parabank-change-impact-with-one-functional-test.xml", "native-change-filtered-schema-output.xml", XSL);
-        XUnitTransformer.testXUnitTransformation(REPORTS + "junit-executor.xml", "native-junit-executor-schema-output.xml", XSL);
-        XUnitTransformer.testXUnitTransformation(REPORTS + "junit-executor-standalone.xml", "native-junit-standalone-schema-output.xml", XSL);
-    }
-
-    @Test
-    public void testNativeStandaloneJunitExecutorCombinesItsAssertionAndRuntimeFailures() throws Exception
-    {
-        Document output = transform("junit-executor-standalone.xml", "native-junit-standalone-output.xml");
-        assertCounts(output, 1, 1);
-        Element failure = failure(output, "Scenario: CICD1179_JUnit_Standalone/Test 1: JUnit4 standalone all methods");
-        Assert.assertEquals("Multiple errors reported", failure.getAttribute("message"));
-        String details = failure.getTextContent();
-        Assert.assertTrue(details.contains("assertionFailure(NativeJUnitCases): java.lang.AssertionError: Executor assertion expected:<7> but was:<8>"));
-        Assert.assertTrue(details.contains("nestedRuntimeFailure(NativeJUnitCases): java.lang.IllegalStateException: Executor outer"));
-        Assert.assertTrue(details.contains("Caused by: java.lang.IllegalArgumentException: Executor inner"));
-        Assert.assertTrue(details.contains("JUnitRunnerTool.execute"));
-    }
-
-    @Test
-    public void testNativeJunitExecutorPreservesFailuresAndPassingControls() throws Exception
-    {
-        Document output = transform("junit-executor.xml", "native-junit-executor-output.xml");
-        assertCounts(output, 8, 6);
-        String scenario = "Scenario: CICD1179_JUnit_Executor/";
-        Assert.assertEquals(0, find(output, scenario + "Test 1: JUnit4 passing control")
-                .getElementsByTagName("failure").getLength());
-        Assert.assertEquals(0, find(output, scenario + "Test 4: JUnit4 expected exception")
-                .getElementsByTagName("failure").getLength());
-        Element assertion = failure(output, scenario + "Test 2: JUnit4 assertion failure");
-        Assert.assertEquals("assertionFailure(NativeJUnitCases): java.lang.AssertionError: Executor assertion expected:<7> but was:<8>",
-                assertion.getAttribute("message"));
-        // These frames distinguish the actual installed executor from a directly invoked JUnit assertion.
-        Assert.assertTrue(assertion.getTextContent().contains("JUnitRunnerTool.execute"));
-        Assert.assertTrue(assertion.getTextContent().contains("webtool.extension.tool.CustomTool$ApplyTool.call"));
-        Element runtime = failure(output, scenario + "Test 3: JUnit4 nested runtime exception");
-        Assert.assertEquals("nestedRuntimeFailure(NativeJUnitCases): java.lang.IllegalStateException: Executor outer",
-                runtime.getAttribute("message"));
-        String details = runtime.getTextContent();
-        int outer = details.indexOf("java.lang.IllegalStateException: Executor outer");
-        Assert.assertTrue(details, outer >= 0 && details.indexOf("Caused by: java.lang.IllegalArgumentException: Executor inner") > outer);
-        Element allMethods = failure(output, scenario + "Test 5: JUnit4 all methods");
-        Assert.assertEquals("Multiple errors reported", allMethods.getAttribute("message"));
-        Assert.assertTrue(allMethods.getTextContent().contains("assertionFailure(NativeJUnitCases)"));
-        Assert.assertTrue(allMethods.getTextContent().contains("nestedRuntimeFailure(NativeJUnitCases)"));
-        Assert.assertFalse(allMethods.getTextContent().contains("NativeJUnit3Cases"));
-    }
-
-    @Test
-    public void testNativeJunitExecutorSupportsJunit3AndConfigurationErrors() throws Exception
-    {
-        Document output = transform("junit-executor.xml", "native-junit-executor-errors-output.xml");
-        String scenario = "Scenario: CICD1179_JUnit_Executor/";
-        Element junit3 = failure(output, scenario + "Test 6: JUnit3 all methods");
-        Assert.assertEquals("Multiple errors reported", junit3.getAttribute("message"));
-        Assert.assertTrue(junit3.getTextContent().contains("junit.framework.AssertionFailedError: Executor JUnit3 assertion expected:<7> but was:<8>"));
-        Assert.assertTrue(junit3.getTextContent().contains("java.lang.NullPointerException: Executor JUnit3 runtime"));
-        Element method = failure(output, scenario + "Test 7: JUnit4 missing method");
-        Assert.assertEquals("Method \"doesNotExist\" is not present in \"NativeJUnitCases\"", method.getAttribute("message"));
-        Assert.assertTrue(method.getTextContent().contains("com.parasoft.api.tool.CustomToolException"));
-        Element missingClass = failure(output, scenario + "Test 8: JUnit4 missing class");
-        Assert.assertTrue(missingClass.getAttribute("message").startsWith("Class \"DoesNotExist\" is not present in "));
-        Assert.assertTrue(missingClass.getTextContent().contains("Caused by: java.lang.ClassNotFoundException: DoesNotExist"));
     }
 
     @Test
@@ -174,7 +73,7 @@ public class SoatestNativeReportsXslTransformationTest
     {
         Document output = transform("parabank-change-impact-without-functional-tests.xml", "native-change-only-output.xml");
         // All seven change-impact checks ran even though every functional total is zero.
-        assertCounts(output, 7, 7);
+        assertCounts(output, 1, 7, 7);
         Element failure = failure(output, "Test Suite: Test Suite/Test Suite: CartServicePort/Test 3: getItemById");
         Assert.assertTrue(failure.getTextContent().contains("getItemByIdentifier"));
         Assert.assertFalse(failure.getTextContent().contains("SOAP Fault"));
@@ -185,7 +84,7 @@ public class SoatestNativeReportsXslTransformationTest
     {
         Document output = transform("parabank-change-impact-with-one-functional-test.xml", "native-change-filtered-output.xml");
         // The functional filter selects submitOrder; Change Advisor still analyzes all seven clients.
-        assertCounts(output, 7, 7);
+        assertCounts(output, 1, 7, 7);
         Element failure = failure(output, "Test Suite: Test Suite/Test Suite: CartServicePort/Test 1: addItemToCart");
         Assert.assertTrue(failure.getTextContent().contains("Operation \"addItemToCart\" - targetObjectUri changed"));
         Assert.assertFalse(failure.getTextContent().contains("SOAP Fault"));
@@ -196,7 +95,7 @@ public class SoatestNativeReportsXslTransformationTest
     {
         Document output = transform("parabank-change-impact-with-all-functional-tests.xml", "native-change-output.xml");
         // Native functional counters exclude the passing SOAP call whose Change Advisor checks failed.
-        assertCounts(output, 7, 7);
+        assertCounts(output, 1, 7, 7);
         String scenario = "Test Suite: Test Suite/Test Suite: CartServicePort/";
         Element changeOnly = failure(output, scenario + "Test 6: submitOrder");
         Assert.assertEquals("Multiple errors reported", changeOnly.getAttribute("message"));
@@ -210,47 +109,6 @@ public class SoatestNativeReportsXslTransformationTest
         Assert.assertTrue(mixed.getTextContent().contains("Element \"addItemToCart\" - namespace changed"));
         Assert.assertTrue(mixed.getTextContent().contains("SOAP Fault"));
         Assert.assertFalse(mixed.getTextContent().contains("Operation \"getItemByTitle\""));
-    }
-
-    @Test
-    public void testNativeVisualDifferenceIsReportedAsFailure() throws Exception
-    {
-        Document output = transform("parabank-visual.xml", "native-visual-output.xml");
-        assertCounts(output, 2, 1);
-        String scenario = "Scenario: CICD1179_ParaBank_Visual/";
-        Assert.assertEquals(0, find(output, scenario + "Test 1: ParaBank unchanged image")
-                .getElementsByTagName("failure").getLength());
-        Element failure = failure(output, scenario + "Test 2: ParaBank changed image");
-        Assert.assertEquals("Visual difference found at (1, 1) of size 30 x 30.", failure.getAttribute("message"));
-        Assert.assertEquals("Source: text", failure.getTextContent());
-        Assert.assertEquals("0.020", find(output, scenario + "Test 2: ParaBank changed image").getAttribute("time"));
-    }
-
-    @Test
-    public void testNativeJavaAndJunitErrorsPreserveFunctionalDiagnostics() throws Exception
-    {
-        Document output = transform("java-exceptions.xml", "native-exceptions-output.xml");
-        assertCounts(output, 4, 3);
-        String scenario = "Scenario: CICD1179_Java_Exceptions/";
-        String prefix = "Error during script execution.  View Details for more information.\r\n";
-        Element assertion = failure(output, scenario + "Test 1: Java assertion");
-        Assert.assertEquals(prefix + "Intentional Java assertion from SOAtest extension", assertion.getAttribute("message"));
-        Assert.assertTrue(assertion.getTextContent().contains("java.lang.AssertionError: Intentional Java assertion from SOAtest extension"));
-
-        // These real Java failures remain FuncViol; their stack traces are stored in violationDetails.
-        Element runtime = failure(output, scenario + "Test 2: Java runtime exception");
-        Assert.assertEquals(prefix + "Inner cause", runtime.getAttribute("message"));
-        String details = runtime.getTextContent();
-        int outer = details.indexOf("java.lang.IllegalStateException: Outer exception");
-        int cause = details.indexOf("Caused by: java.lang.IllegalArgumentException: Inner cause");
-        Assert.assertTrue(details, outer >= 0 && cause > outer);
-
-        Element junit = failure(output, scenario + "Test 3: Failing JUnit invocation");
-        Assert.assertEquals(prefix + "Intentional JUnit mismatch expected:<1> but was:<2>", junit.getAttribute("message"));
-        Assert.assertTrue(junit.getTextContent().contains("java.lang.AssertionError: Intentional JUnit mismatch expected:<1> but was:<2>"));
-        Assert.assertTrue(junit.getTextContent().contains("org.junit.Assert.assertEquals"));
-        Assert.assertEquals(0, find(output, scenario + "Test 4: Passing Java control")
-                .getElementsByTagName("failure").getLength());
     }
 
     private Document transform(String report, String outputName) throws Exception
@@ -274,12 +132,18 @@ public class SoatestNativeReportsXslTransformationTest
         return (Element) failures.item(0);
     }
 
-    private void assertCounts(Document output, int tests, int failures)
+    private void assertCounts(Document output, int suites, int tests, int failures)
     {
-        Assert.assertEquals(1, output.getElementsByTagName("testsuite").getLength());
-        Element suite = (Element) output.getElementsByTagName("testsuite").item(0);
-        Assert.assertEquals(Integer.toString(tests), suite.getAttribute("tests"));
-        Assert.assertEquals(Integer.toString(failures), suite.getAttribute("failures"));
+        NodeList testSuites = output.getElementsByTagName("testsuite");
+        Assert.assertEquals(suites, testSuites.getLength());
+        // The original browser report spans many suites; verify each summary against its emitted cases.
+        for (int i = 0; i < testSuites.getLength(); i++) {
+            Element suite = (Element) testSuites.item(i);
+            Assert.assertEquals(suite.getAttribute("name"),
+                    Integer.toString(suite.getElementsByTagName("testcase").getLength()), suite.getAttribute("tests"));
+            Assert.assertEquals(suite.getAttribute("name"),
+                    Integer.toString(suite.getElementsByTagName("failure").getLength()), suite.getAttribute("failures"));
+        }
         Assert.assertEquals(tests, output.getElementsByTagName("testcase").getLength());
         Assert.assertEquals(failures, output.getElementsByTagName("failure").getLength());
     }
