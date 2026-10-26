@@ -77,10 +77,10 @@ public class SoatestReportsXslTransformationTest
         Assert.assertEquals(1, failures.getLength());
         Element failure = (Element) failures.item(0);
         Assert.assertEquals("Multiple errors reported", failure.getAttribute("message"));
-        Assert.assertEquals("Functional failure"
-                + "\n\nChange impact failure\nChange impact details"
-                + "\n\nVisual difference failure\nSource: screenshot.png"
-                + "\n\nFuncViol\nMixed details without summary", failure.getTextContent());
+        Assert.assertEquals("==== ERROR ====\nFunctional failure"
+                + "\n\n==== ERROR ====\nChange impact failure\nChange impact details"
+                + "\n\n==== ERROR ====\nVisual difference failure\nSource: screenshot.png"
+                + "\n\n==== ERROR ====\nFuncViol\nMixed details without summary", failure.getTextContent());
     }
 
     @Test
@@ -187,9 +187,9 @@ public class SoatestReportsXslTransformationTest
         String scenario = "Test Suite: Test Suite/Test Suite: CartServicePort/";
         Element changeOnly = failure(output, scenario + "Test 6: submitOrder");
         Assert.assertEquals("Multiple errors reported", changeOnly.getAttribute("message"));
-        Assert.assertEquals("Operation \"submitOrder\" - targetObjectUri changed from \"http://bookstore.parasoft.com/\""
+        Assert.assertEquals("==== ERROR ====\nOperation \"submitOrder\" - targetObjectUri changed from \"http://bookstore.parasoft.com/\""
                 + " to \"http://bookstore2.parasoft.com/\"\n" + CHANGE_DETAILS
-                + "\n\nElement \"submitOrder\" - namespace changed from \"http://bookstore.parasoft.com/\""
+                + "\n\n==== ERROR ====\nElement \"submitOrder\" - namespace changed from \"http://bookstore.parasoft.com/\""
                 + " to \"http://bookstore2.parasoft.com/\"\n" + CHANGE_DETAILS, changeOnly.getTextContent());
 
         Element mixed = failure(output, scenario + "Test 1: addItemToCart");

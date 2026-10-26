@@ -449,6 +449,7 @@
                                 <xsl:if test="position() > 1">
                                     <xsl:value-of select="concat($newLine, $newLine)" />
                                 </xsl:if>
+                                <xsl:value-of select="concat('==== ERROR ====', $newLine)" />
                                 <xsl:call-template name="executionViolationMessage" />
                                 <xsl:if test="string-length(@violationDetails) > 0">
                                     <xsl:value-of select="concat($newLine, @violationDetails)" />
