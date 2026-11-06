@@ -22,9 +22,9 @@
 
   <properties>
     <!-- Library Dependencies Versions -->
-    <parasoft-findings-utils.version>1.0.4</parasoft-findings-utils.version>
-    <jsoup.version>1.17.2</jsoup.version>
-    <saxon-he.version>12.4</saxon-he.version>
+    <parasoft-findings-utils.version>1.0.5</parasoft-findings-utils.version>
+    <jsoup.version>1.24.1</jsoup.version>
+    <saxon-he.version>12.10</saxon-he.version>
 
     <!-- Plugin Dependencies Versions -->
     <warnings-ng.version>11.0.0</warnings-ng.version>
@@ -230,16 +230,6 @@
       <groupId>net.sf.saxon</groupId>
       <artifactId>Saxon-HE</artifactId>
       <version>${saxon-he.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.apache.httpcomponents</groupId>
-          <artifactId>httpclient</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.httpcomponents</groupId>
-          <artifactId>httpcore</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <!-- Plugin Dependencies -->
