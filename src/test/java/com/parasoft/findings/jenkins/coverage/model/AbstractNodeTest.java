@@ -38,6 +38,7 @@ import nl.jqno.equalsverifier.api.SingleTypeEqualsVerifierApi;
 import static com.parasoft.findings.jenkins.coverage.Assertions.*;
 
 abstract class AbstractNodeTest extends SerializableTest<Node> {
+
     private static final String NAME = "Node Name";
     private static final String CHILD = "Child";
     private static final Coverage MUTATION_COVERAGE = new CoverageBuilder().setMetric(Metric.MUTATION)
@@ -50,9 +51,9 @@ abstract class AbstractNodeTest extends SerializableTest<Node> {
         return createNode("Serialized");
     }
 
-    abstract Metric getMetric();
+    protected abstract Metric getMetric();
 
-    abstract Node createNode(String name);
+    protected abstract Node createNode(String name);
 
     @Test
     void shouldCreateSingleNode() {
@@ -129,7 +130,7 @@ abstract class AbstractNodeTest extends SerializableTest<Node> {
         equalsVerifier.verify();
     }
 
-    void configureEqualsVerifier(final EqualsVerifierApi<? extends Node> verifier) {
+    protected void configureEqualsVerifier(final EqualsVerifierApi<? extends Node> verifier) {
         // no additional configuration
     }
 }

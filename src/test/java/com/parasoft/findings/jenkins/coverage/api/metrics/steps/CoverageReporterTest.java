@@ -23,16 +23,17 @@ import java.util.List;
 import static io.jenkins.plugins.util.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-public class CoverageReporterTest extends AbstractCoverageTest {
+class CoverageReporterTest extends AbstractCoverageTest {
+
     @Test
-    public void testPublishAction_invalid_reference_build() {
+    void testPublishAction_invalid_reference_build() {
         CoverageBuildAction action = runPublishAction(new ArrayList<>(), "#1");
         assertThat(action).isNotNull();
         assertThat(action.getReferenceBuildWarningMessage()).isEqualTo(Messages.Reference_Build_Warning_Message_NO_SPECIFIED_REF_BUILD("#1", "test_project"));
     }
 
     @Test
-    public void testPublishAction_QualityGate_successful() {
+    void testPublishAction_QualityGate_successful() {
         List<CoverageQualityGate> qualityGates = new ArrayList<>();
         qualityGates.add(new CoverageQualityGate(40, Baseline.PROJECT, QualityGate.QualityGateCriticality.UNSTABLE));
 
@@ -42,7 +43,7 @@ public class CoverageReporterTest extends AbstractCoverageTest {
     }
 
     @Test
-    public void testPublishAction_QualityGate_failed() {
+    void testPublishAction_QualityGate_failed() {
         List<CoverageQualityGate> qualityGates = new ArrayList<>();
         qualityGates.add(new CoverageQualityGate(100, Baseline.PROJECT, QualityGate.QualityGateCriticality.UNSTABLE));
 

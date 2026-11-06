@@ -33,13 +33,14 @@ import com.parasoft.findings.jenkins.coverage.model.Coverage.CoverageBuilder;
 import static com.parasoft.findings.jenkins.coverage.Assertions.*;
 
 class MethodNodeTest extends AbstractNodeTest {
+
     @Override
-    Node createNode(final String name) {
+    protected Node createNode(final String name) {
         return new MethodNode(name, "(Ljava/util/Map;)V", 1234);
     }
 
     @Override
-    Metric getMetric() {
+    protected Metric getMetric() {
         return Metric.METHOD;
     }
 

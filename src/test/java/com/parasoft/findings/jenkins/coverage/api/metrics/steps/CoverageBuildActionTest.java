@@ -44,6 +44,7 @@ import hudson.model.FreeStyleBuild;
 
 import com.parasoft.findings.jenkins.coverage.api.metrics.model.Baseline;
 import io.jenkins.plugins.util.QualityGateResult;
+import org.mockito.MockedStatic;
 
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.DEFAULT_REFERENCE_BUILD_IDENTIFIER;
 import static com.parasoft.findings.jenkins.coverage.api.metrics.steps.ReferenceResult.ReferenceStatus.*;
@@ -57,7 +58,8 @@ import static org.mockito.Mockito.*;
  */
 @DefaultLocale("en")
 class CoverageBuildActionTest {
-    public static final String NO_REFERENCE_BUILD = "-";
+
+    private static final String NO_REFERENCE_BUILD = "-";
 
     @Test
     void shouldNotLoadResultIfCoverageValuesArePersistedInAction() {
@@ -116,9 +118,9 @@ class CoverageBuildActionTest {
         var action = createAction(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
 
         //Test getLog()
-        assertThat(action.getLog().getInfoMessages().toString()).isEqualTo("[This is a log message.]");
+        assertThat(action.getLog().getInfoMessages()).hasToString("[This is a log message.]");
         //Test getQualityGateResult()
-        assertThat(action.getQualityGateResult().getOverallStatus().toString()).isEqualTo("INACTIVE");
+        assertThat(action.getQualityGateResult().getOverallStatus()).hasToString("INACTIVE");
         //Test getFormatter()
         assertThat(action.getFormatter().getDisplayName(Metric.LINE)).isEqualTo("Coverage");
         //Test getProjectBaseline()
@@ -128,14 +130,14 @@ class CoverageBuildActionTest {
         //Test getTitle()
         assertThat(action.getTitle(Baseline.MODIFIED_LINES)).isEqualTo("Modified code lines");
         //Test getValues()
-        assertThat(action.getValues(Baseline.PROJECT).toString()).isEqualTo("[LINE: 80.00% (8/10), LOC: 10]");
-        assertThat(action.getValues(Baseline.MODIFIED_LINES).toString()).isEqualTo("[LINE: 80.00% (8/10)]");
+        assertThat(action.getValues(Baseline.PROJECT)).hasToString("[LINE: 80.00% (8/10), LOC: 10]");
+        assertThat(action.getValues(Baseline.MODIFIED_LINES)).hasToString("[LINE: 80.00% (8/10)]");
         //Test getValueForMetric()
-        assertThat(action.getValueForMetric(Baseline.PROJECT, Metric.LINE).toString()).isEqualTo("Optional[LINE: 80.00% (8/10)]");
+        assertThat(action.getValueForMetric(Baseline.PROJECT, Metric.LINE)).hasToString("Optional[LINE: 80.00% (8/10)]");
         //Test toString()
-        assertThat(action.toString()).isEqualTo("Parasoft Coverage (parasoft-coverage): [MODULE: 100.00% (1/1), LINE: 80.00% (8/10), BRANCH: 50.00% (1/2), LOC: 10]");
+        assertThat(action).hasToString("Parasoft Coverage (parasoft-coverage): [MODULE: 100.00% (1/1), LINE: 80.00% (8/10), BRANCH: 50.00% (1/2), LOC: 10]");
         //Test getIconFileName()
-        assertThat(action.getIconFileName()).isEqualTo("");
+        assertThat(action.getIconFileName()).isEmpty();
     }
 
     @Test
@@ -144,16 +146,17 @@ class CoverageBuildActionTest {
         //No reference build
         assertThat(action.getReferenceBuildLink()).isEqualTo(NO_REFERENCE_BUILD);
 
-        mockStatic(ReferenceBuild.class);
+        try (MockedStatic<ReferenceBuild> ignored = mockStatic(ReferenceBuild.class)) {
 
-        //Reference build removed
-        when(ReferenceBuild.getReferenceBuildLink(any())).thenReturn("#1");
-        action = createAction(OK, "1", "1");
-        assertThat(action.getReferenceBuildLink()).isEqualTo("1 (removed)");
+            //Reference build removed
+            when(ReferenceBuild.getReferenceBuildLink(any())).thenReturn("#1");
+            action = createAction(OK, "1", "1");
+            assertThat(action.getReferenceBuildLink()).isEqualTo("1 (removed)");
 
-        //Valid reference build id
-        when(ReferenceBuild.getReferenceBuildLink(any())).thenReturn("Reference build link");
-        assertThat(action.getReferenceBuildLink()).isEqualTo("Reference build link");
+            //Valid reference build id
+            when(ReferenceBuild.getReferenceBuildLink(any())).thenReturn("Reference build link");
+            assertThat(action.getReferenceBuildLink()).isEqualTo("Reference build link");
+        }
     }
 
     @Test
@@ -202,7 +205,7 @@ class CoverageBuildActionTest {
 
         //When referenceStatus is 'OK'
         action = createAction(OK, DEFAULT_REFERENCE_BUILD_IDENTIFIER, NO_REFERENCE_BUILD);
-        assertThat(action.getReferenceBuildWarningMessage()).isEqualTo("");
+        assertThat(action.getReferenceBuildWarningMessage()).isEmpty();
     }
 
     private CoverageBuildAction createAction(ReferenceResult.ReferenceStatus status, String referenceBuild,

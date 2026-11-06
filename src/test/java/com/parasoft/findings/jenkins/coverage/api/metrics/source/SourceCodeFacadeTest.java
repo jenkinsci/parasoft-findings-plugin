@@ -44,8 +44,10 @@ import static org.assertj.core.api.Assertions.*;
  * @author Florian Orendi
  */
 class SourceCodeFacadeTest extends ResourceTest {
+
     private static final String WHOLE_SOURCE_CODE = "SourcecodeTest.html";
     private static final String MODIFIED_LINES_COVERAGE_SOURCE_CODE = "SourcecodeTestCC.html";
+
     @Test
     void shouldCalculateSourcecodeForModifiedLinesCoverage() throws IOException {
         SourceCodeFacade sourceCodeFacade = createSourceCodeFacade();
